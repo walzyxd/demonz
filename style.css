@@ -49,7 +49,13 @@ body {
     font-size: 2.2rem;
     text-decoration: none;
     letter-spacing: -1px;
+    transition: transform 0.2s ease;
 }
+
+.brand-logo:hover {
+    transform: translateY(-2px);
+}
+
 .logo-text { color: var(--text-color-primary); }
 .logo-accent { color: var(--primary-color); }
 
@@ -61,6 +67,7 @@ body {
     padding: 4px 16px;
     font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .btn-back {
@@ -81,7 +88,7 @@ body {
 /* ==================== HERO SECTION ==================== */
 .hero-section {
     position: relative;
-    height: 250px;
+    height: 350px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -127,16 +134,16 @@ body {
 
 .hero-title {
     font-family: 'Inter', sans-serif;
-    font-size: 2.2rem;
+    font-size: 2.8rem;
     margin: 0 0 10px 0;
     font-weight: 900;
-    letter-spacing: -0.5px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: -1px;
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 
 .hero-subtitle {
     color: #d2d6dc;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: 0;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -148,27 +155,28 @@ body {
 }
 
 .section-title {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: var(--text-color-primary);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     font-weight: 700;
-    border-left: 4px solid var(--primary-color);
+    border-left: 5px solid var(--primary-color);
     padding-left: 15px;
+    letter-spacing: 0.5px;
 }
 
 /* ==================== GAMES GRID ==================== */
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 28px;
 }
 
 .game-card {
     background-color: var(--card-bg-color);
     border-radius: 20px;
-    box-shadow: 0 5px 20px var(--shadow-color);
-    border: 2px solid transparent;
-    padding: 20px 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border: 3px solid transparent;
+    padding: 25px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -180,365 +188,73 @@ body {
 .game-card:hover,
 .game-card:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 10px 30px rgba(229, 62, 62, 0.2);
-    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(229, 62, 62, 0.25);
+    transform: translateY(-10px);
 }
 
 .game-thumbnail {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.game-name {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--text-color-primary);
-    text-align: center;
-    margin: 0;
-    letter-spacing: 0.2px;
-}
-
-/* ==================== GAME PAGE STYLES ==================== */
-.game-main-content {
-    margin-top: 25px;
-    margin-bottom: 40px;
-}
-
-.game-header {
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.game-banner {
     width: 120px;
     height: 120px;
     object-fit: cover;
-    border-radius: 25px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
-}
-
-.game-title {
-    font-size: 1.8rem;
-    font-family: 'Inter', sans-serif;
-    color: var(--text-color-primary);
-    margin: 0 0 8px 0;
-    font-weight: 900;
-}
-
-.game-guide {
-    font-size: 0.9rem;
-    color: var(--text-color-secondary);
-    margin: 0;
-}
-
-.card-section {
-    background-color: var(--card-bg-color);
     border-radius: 18px;
-    box-shadow: 0 5px 20px var(--shadow-color);
-    padding: 20px;
     margin-bottom: 20px;
-    border: 1px solid var(--border-color);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
-.step-guide {
-    font-size: 1.1rem;
-    color: var(--primary-color);
+.game-name {
+    font-size: 1.25rem;
     font-weight: 700;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.step-guide i {
-    color: var(--text-color-secondary);
-}
-
-.input-group {
-    margin-bottom: 15px;
-}
-
-.input-group input {
-    width: 100%;
-    border-radius: 10px;
-    border: 1px solid var(--border-color);
-    padding: 15px;
-    font-size: 1rem;
-    background-color: var(--background-color);
     color: var(--text-color-primary);
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.input-group input:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
-}
-
-.product-grid,
-.payment-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 15px;
-    margin-top: 10px;
-}
-
-.product-card,
-.payment-card {
-    background-color: #f7fafc;
-    border-radius: 12px;
-    padding: 16px 8px;
     text-align: center;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: border 0.2s, box-shadow 0.2s, transform 0.2s, background-color 0.2s;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.product-card.active,
-.product-card:hover {
-    border-color: var(--primary-color);
-    background-color: #fefcbf;
-    box-shadow: 0 4px 15px rgba(229, 62, 62, 0.1);
-    transform: translateY(-4px);
-}
-
-.payment-card.active,
-.payment-card:hover {
-    border-color: var(--secondary-color);
-    background-color: #e3f2fd;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.1);
-    transform: translateY(-4px);
-}
-
-.product-label {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 5px;
-    color: var(--text-color-primary);
-}
-
-.product-price {
-    font-size: 1rem;
-    color: var(--primary-color);
-    font-weight: 600;
-}
-
-.payment-logo {
-    width: 45px;
-    height: 45px;
-    object-fit: contain;
-    border-radius: 10px;
-    margin-bottom: 8px;
-}
-
-.payment-name {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-color-primary);
-}
-
-.payment-price {
-    font-size: 0.95rem;
-    color: var(--secondary-color);
-}
-
-/* Badge Styles */
-.product-badge {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: var(--primary-color);
-    color: #fff;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 10px 0 10px 0;
-}
-
-.voucher-group {
-    display: flex;
-    gap: 10px;
-    align-items: stretch;
-}
-.voucher-group input {
-    flex: 1;
-    border-radius: 10px;
-}
-
-.btn-primary {
-    padding: 10px 15px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    background-color: var(--border-color);
-    color: var(--text-color-secondary);
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
-}
-.btn-primary:hover {
-    background-color: var(--primary-color);
-    color: #fff;
-}
-.btn-primary.btn-sm {
-    padding: 8px 12px;
-    font-size: 0.85rem;
-}
-
-.btn-checkout {
-    width: 100%;
-    padding: 16px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-top: 15px;
-    background-color: var(--primary-color);
-    color: #fff;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 15px rgba(229, 62, 62, 0.2);
-}
-.btn-checkout:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(229, 62, 62, 0.3);
-}
-
-.summary-box {
-    background-color: #fff1f2;
-    border-radius: 12px;
-    padding: 15px;
-    color: var(--text-color-primary);
-    font-size: 1.05rem;
-    margin-bottom: 20px;
-    border: 1px solid #fed7d7;
+    margin: 0;
+    letter-spacing: 0.5px;
 }
 
 /* ==================== FOOTER ==================== */
 .footer {
     background-color: var(--card-bg-color);
     border-top: 1px solid var(--border-color);
-    padding: 25px 0 15px 0;
+    padding: 40px 0 20px 0;
     text-align: center;
     color: var(--text-color-secondary);
     font-size: 0.95rem;
 }
 
-/* ==================== MODAL STYLES ==================== */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+.footer-content {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    z-index: 100;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    gap: 15px;
 }
 
-.modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.modal-content {
-    background-color: #fff;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 450px;
-    text-align: center;
-    transform: translateY(-50px);
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    position: relative;
-}
-
-.modal-overlay.active .modal-content {
-    transform: translateY(0);
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px;
-}
-
-.modal-title {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 700;
-}
-
-.modal-close-btn {
+.footer-logo {
     font-size: 2rem;
-    color: var(--text-color-secondary);
-    cursor: pointer;
-    line-height: 1;
+    margin-bottom: 0;
 }
 
-.modal-body {
-    text-align: left;
-    margin-bottom: 20px;
-}
-
-.modal-body p {
-    margin: 0 0 10px 0;
+.footer-desc {
+    max-width: 600px;
+    line-height: 1.7;
     font-size: 1rem;
+    margin: 0;
 }
 
-.modal-footer {
-    display: flex;
-    gap: 10px;
-}
-
-.modal-footer .btn-primary {
-    flex: 1;
-    padding: 12px;
-}
-
-/* Voucher Modal Specifics */
-.modal-voucher {
-    text-align: center;
-}
-.modal-voucher .modal-header {
-    justify-content: flex-end;
-}
-.modal-voucher .modal-title {
-    width: 100%;
-    text-align: center;
-}
-.modal-voucher-list li {
-    background-color: #f0f4f8;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 8px;
-    font-size: 0.95rem;
+.footer-copyright {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #a0aec0;
 }
 
 /* ==================== RESPONSIVE STYLES ==================== */
 @media (max-width: 768px) {
-    .hero-title { font-size: 1.8rem; }
-    .hero-subtitle { font-size: 1rem; }
-    .game-banner { width: 90px; height: 90px; }
-    .game-title { font-size: 1.5rem; }
-    .product-grid, .payment-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; }
+    .hero-section { height: 250px; }
+    .hero-title { font-size: 2rem; }
+    .hero-subtitle { font-size: 1.1rem; }
+    .games-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .game-thumbnail { width: 90px; height: 90px; }
+    .game-name { font-size: 1.1rem; }
+    .footer-content { gap: 10px; }
+    .footer-desc { font-size: 0.95rem; }
 }
 
 @media (max-width: 480px) {
@@ -548,15 +264,10 @@ body {
     .hero-section { height: 200px; }
     .hero-title { font-size: 1.5rem; }
     .hero-subtitle { font-size: 0.95rem; }
-    .games-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .game-thumbnail { width: 65px; height: 65px; border-radius: 12px; }
+    .section-title { font-size: 1.5rem; }
+    .games-grid { gap: 12px; }
+    .game-card { padding: 15px; }
+    .game-thumbnail { width: 70px; height: 70px; border-radius: 12px; }
     .game-name { font-size: 1rem; }
-    .game-banner { width: 70px; height: 70px; }
-    .card-section { padding: 15px; }
-    .input-group input { padding: 12px; font-size: 0.95rem; }
-    .product-grid, .payment-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .product-label, .product-price, .payment-name, .payment-price { font-size: 0.9rem; }
-    .btn-checkout { font-size: 1.1rem; padding: 14px; }
-    .voucher-group { flex-direction: column; align-items: stretch; }
-    .btn-primary { width: 100%; margin-top: 5px; }
+    .footer { padding: 25px 0 15px 0; }
 }
