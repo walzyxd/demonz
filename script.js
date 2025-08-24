@@ -8,15 +8,15 @@ const VOUCHERS = [
 ];
 
 const GAMES = [
-    { key: "free fire", name: "Free Fire", img: "https://files.catbox.moe/x5rvpg.jpg", server: false, guide: "Masukkan User ID Anda. Untuk menemukan User ID, ketuk ikon profil Anda di dalam game. User ID akan terlihat di bawah nama panggilan Anda." },
-    { key: "mobile legends", name: "Mobile Legends", img: "https://files.catbox.moe/wcxi20.jpg", server: true, guide: "Masukkan User ID dan Server ID Anda. Untuk menemukan ID, ketuk avatar Anda di sudut kiri atas layar. User ID dan Server ID Anda akan terlihat di bawah nama panggilan Anda." },
-    { key: "honor of kings", name: "Honor of Kings", img: "https://files.catbox.moe/rh78kj.jpg", server: false, guide: "Masukkan User ID Anda. Ketuk avatar Anda di dalam game dan User ID Anda akan terlihat di bagian bawah layar." },
-    { key: "genshin impact", name: "Genshin Impact", img: "https://files.catbox.moe/b91rfb.jpg", server: false, guide: "Masukkan User ID Anda. User ID Anda adalah nomor 9 digit yang ditampilkan di sudut kanan bawah layar saat Anda berada di dalam game." },
-    { key: "roblox", name: "Roblox", img: "https://files.catbox.moe/uvixa8.jpg", server: false, guide: "Masukkan User ID Anda. Gift card akan dikirimkan ke akun Anda." },
-    { key: "super sus", name: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", server: false, guide: "Masukkan User ID Anda. User ID dapat ditemukan di profil dalam game." },
-    { key: "clash of clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", server: false, guide: "Masukkan User ID Anda. User ID (tag pemain) Anda adalah kombinasi huruf dan angka yang diawali dengan tanda pagar (#)." },
-    { key: "blood strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", server: false, guide: "Masukkan User ID Anda. ID Anda dapat ditemukan di profil dalam game." },
-    { key: "pubg mobile", name: "PUBG Mobile", img: "https://files.catbox.moe/tatuo9.jpg", server: false, guide: "Masukkan User ID Anda. Untuk menemukan User ID Anda, ketuk ikon profil di kanan atas lobi game." },
+    { key: "free fire", name: "Free Fire", img: "https://files.catbox.moe/x5rvpg.jpg", server: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game." },
+    { key: "mobile legends", name: "Mobile Legends", img: "https://files.catbox.moe/wcxi20.jpg", server: true, guide: "Temukan User ID dan Server ID di bawah nama panggilan saat Anda mengklik avatar profil." },
+    { key: "honor of kings", name: "Honor of Kings", img: "https://files.catbox.moe/rh78kj.jpg", server: false, guide: "User ID Anda ada di bagian bawah layar saat Anda membuka profil." },
+    { key: "genshin impact", name: "Genshin Impact", img: "https://files.catbox.moe/b91rfb.jpg", server: false, guide: "User ID (9 digit) terletak di sudut kanan bawah layar saat Anda berada di dalam game." },
+    { key: "roblox", name: "Roblox", img: "https://files.catbox.moe/uvixa8.jpg", server: false, guide: "Top up menggunakan Gift Card yang akan dikirim langsung ke akun Anda." },
+    { key: "super sus", name: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", server: false, guide: "User ID dapat ditemukan di menu profil dalam game." },
+    { key: "clash of clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", server: false, guide: "User ID (Tag Pemain) adalah kombinasi huruf dan angka yang dimulai dengan tanda pagar (#)." },
+    { key: "blood strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", server: false, guide: "ID Anda dapat ditemukan di profil dalam game." },
+    { key: "pubg mobile", name: "PUBG Mobile", img: "https://files.catbox.moe/tatuo9.jpg", server: false, guide: "Temukan User ID Anda di sudut kanan atas lobi game saat mengklik profil." },
 ];
 
 const PAYMENTS = [
@@ -157,7 +157,10 @@ function showModal(modalId) {
 }
 
 function hideModal() {
-    qs("#modal-overlay").classList.remove("active");
+    const overlay = qs("#modal-overlay");
+    if (overlay) {
+        overlay.classList.remove("active");
+    }
 }
 
 /* ================== EVENT LISTENERS ================== */
@@ -167,6 +170,19 @@ document.addEventListener("DOMContentLoaded", () => {
         initIndexPage();
     } else if (page === "game") {
         initGamePage();
+    }
+
+    qsa(".modal-close-btn").forEach(btn => {
+        btn.addEventListener("click", hideModal);
+    });
+
+    const overlay = qs("#modal-overlay");
+    if (overlay) {
+        overlay.addEventListener("click", (e) => {
+            if (e.target.id === "modal-overlay") {
+                hideModal();
+            }
+        });
     }
 });
 
@@ -206,6 +222,7 @@ function selectGame(game) {
 
 function initHeroSlider() {
     const slider = qs(".hero-slider-wrapper");
+    if (!slider) return;
     slider.innerHTML = "";
     SLIDER_IMAGES.forEach(imgUrl => {
         const img = document.createElement("img");
@@ -218,8 +235,8 @@ function initHeroSlider() {
     setInterval(() => {
         currentSlide = (currentSlide + 1) % SLIDER_IMAGES.length;
         const offset = -currentSlide * 100;
-        slider.style.transform = `translateX(${offset}%)`; // Perbaiki transform untuk pas
-    }, 3000); // Durasi 3 detik
+        slider.style.transform = `translateX(${offset}%)`;
+    }, 3000);
 }
 
 /* ================== GAME PAGE LOGIC ================== */
@@ -238,13 +255,11 @@ function initGamePage() {
     const checkoutBtn = qs("#checkout-btn");
     const summaryBox = qs("#summary-box");
 
-    const modalOverlay = qs("#modal-overlay");
     const modalTitle = qs("#modal-title");
     const modalMessage = qs("#modal-message");
     const checkoutSummary = qs("#checkout-summary");
     const waBtn = qs("#wa-btn");
     const emailBtn = qs("#email-btn");
-    const modalCloseBtns = qsa(".modal-close-btn");
     const voucherListUl = qs("#voucher-list");
 
     if (!gameTitle || !banner) return;
@@ -258,11 +273,6 @@ function initGamePage() {
     guideText.textContent = gameData.guide;
     serverGroup.style.display = gameData.server ? "block" : "none";
 
-    userIdInput.placeholder = `User ID Game (Contoh: 12345678)`;
-    if (gameData.server) {
-        serverIdInput.placeholder = `Server ID (Contoh: (1234))`;
-    }
-
     let selectedProduct = null;
     let selectedPayment = null;
     let appliedVoucher = null;
@@ -275,15 +285,21 @@ function initGamePage() {
         }
 
         let total = selectedProduct.price;
+        let originalPrice = selectedProduct.price;
+        let discountAmount = 0;
+
         if (appliedVoucher) {
-            total = Math.round(total * (1 - appliedVoucher.percent / 100));
+            discountAmount = Math.round(originalPrice * (appliedVoucher.percent / 100));
+            total = originalPrice - discountAmount;
         }
 
         const paymentMethod = selectedPayment ? selectedPayment.name : "—";
-        
+        const voucherInfo = appliedVoucher ? `<p>Diskon Voucher: <b>-${fmtIDR(discountAmount)}</b></p>` : '';
+
         summaryBox.innerHTML = `
             <p>Produk: <b>${selectedProduct.label}</b></p>
             <p>Pembayaran: <b>${paymentMethod}</b></p>
+            ${voucherInfo}
             <p>Total: <b>${fmtIDR(total)}</b></p>
         `;
     }
@@ -313,7 +329,6 @@ function initGamePage() {
 
     function renderPayments() {
         paymentGrid.innerHTML = "";
-        
         PAYMENTS.forEach(payment => {
             const card = document.createElement("div");
             card.className = `payment-card`;
@@ -321,7 +336,6 @@ function initGamePage() {
             card.innerHTML = `
                 <img src="${payment.img}" alt="${payment.name}" class="payment-logo">
                 <p class="payment-name">${payment.name}</p>
-                <p class="payment-price">${selectedProduct ? fmtIDR(calculatePrice()) : '-'}</p>
             `;
             card.addEventListener("click", () => {
                 selectedPayment = payment;
@@ -331,7 +345,7 @@ function initGamePage() {
         });
     }
 
-    function calculatePrice() {
+    function calculateFinalPrice() {
         if (!selectedProduct) return 0;
         let finalPrice = selectedProduct.price;
         if (appliedVoucher) {
@@ -364,7 +378,6 @@ function initGamePage() {
         if (selectedPayment) {
             qs(`.payment-card[data-id="${selectedPayment.id}"]`)?.classList.add('active');
         }
-        renderPayments(); // Render ulang pembayaran untuk menampilkan harga
         updateSummary();
     }
 
@@ -377,7 +390,7 @@ function initGamePage() {
     useVoucherBtn.addEventListener("click", () => {
         const code = voucherInput.value.trim().toUpperCase();
         const foundVoucher = VOUCHERS.find(v => v.code === code);
-        
+
         if (!foundVoucher) {
             appliedVoucher = null;
             modalTitle.textContent = "Voucher Tidak Valid";
@@ -404,6 +417,7 @@ function initGamePage() {
         if (!userId) {
             modalTitle.textContent = "Perhatian";
             modalMessage.textContent = "Mohon isi User ID Anda.";
+            qs("#voucher-modal .modal-header").style.borderBottom = "1px solid #e2e8f0";
             showModal('voucher-modal');
             userIdInput.focus();
             return;
@@ -411,6 +425,7 @@ function initGamePage() {
         if (gameData.server && !serverId) {
             modalTitle.textContent = "Perhatian";
             modalMessage.textContent = "Mohon isi Server ID Anda.";
+            qs("#voucher-modal .modal-header").style.borderBottom = "1px solid #e2e8f0";
             showModal('voucher-modal');
             serverIdInput.focus();
             return;
@@ -418,6 +433,7 @@ function initGamePage() {
         if (!selectedProduct) {
             modalTitle.textContent = "Perhatian";
             modalMessage.textContent = "Mohon pilih nominal produk terlebih dahulu.";
+            qs("#voucher-modal .modal-header").style.borderBottom = "1px solid #e2e8f0";
             showModal('voucher-modal');
             productGrid.scrollIntoView({ behavior: 'smooth' });
             return;
@@ -425,60 +441,58 @@ function initGamePage() {
         if (!selectedPayment) {
             modalTitle.textContent = "Perhatian";
             modalMessage.textContent = "Mohon pilih metode pembayaran terlebih dahulu.";
+            qs("#voucher-modal .modal-header").style.borderBottom = "1px solid #e2e8f0";
             showModal('voucher-modal');
             paymentGrid.scrollIntoView({ behavior: 'smooth' });
             return;
         }
 
-        let finalPrice = calculatePrice();
+        const finalPrice = calculateFinalPrice();
 
-        const message = `Halo, saya ingin top up.\n\n` +
-            `*Detail Transaksi WalzShop*\n` +
-            `━━━━━━━━━━━━━━━━━━━━\n` +
-            `🎮 Game: ${gameData.name}\n` +
-            `🆔 ID: ${userId}\n` +
-            (gameData.server ? `🌐 Server ID: ${serverId}\n` : '') +
-            `💎 Produk: ${selectedProduct.label}\n` +
-            `💳 Pembayaran: ${selectedPayment.name}\n` +
-            (appliedVoucher ? `🏷 Voucher: ${appliedVoucher.code} (${appliedVoucher.percent}% off)\n` : '') +
-            `💰 Total: ${fmtIDR(finalPrice)}\n` +
-            `━━━━━━━━━━━━━━━━━━━━\n` +
-            `✅ Mohon konfirmasi ke admin.`
-            ;
-        
         checkoutSummary.innerHTML = `
-            <p><b>Game:</b> ${gameData.name}</p>
-            <p><b>User ID:</b> ${userId}</p>
-            ${gameData.server ? `<p><b>Server ID:</b> ${serverId}</p>` : ''}
-            <p><b>Produk:</b> ${selectedProduct.label}</p>
-            <p><b>Pembayaran:</b> ${selectedPayment.name}</p>
-            ${appliedVoucher ? `<p><b>Diskon Voucher:</b> ${appliedVoucher.percent}%</p>` : ''}
-            <p><b>Total Bayar:</b> <span class="text-lg font-bold">${fmtIDR(finalPrice)}</span></p>
+            <p>Game: <b>${gameData.name}</b></p>
+            <p>User ID: <b>${userId}</b></p>
+            ${gameData.server ? `<p>Server ID: <b>${serverId}</b></p>` : ''}
+            <p>Produk: <b>${selectedProduct.label}</b></p>
+            <p>Pembayaran: <b>${selectedPayment.name}</b></p>
+            ${appliedVoucher ? `<p>Voucher: <b>${appliedVoucher.code}</b></p>` : ''}
+            <hr style="border-top: 1px dashed var(--border-color); margin: 15px 0;">
+            <p>Total Harga: <span><b>${fmtIDR(finalPrice)}</b></span></p>
         `;
-
+        
         waBtn.onclick = () => {
+            const message = `Halo, saya ingin top up.\n\n` +
+                `*Detail Transaksi WalzShop*\n` +
+                `━━━━━━━━━━━━━━━━━━━━\n` +
+                `🎮 Game: ${gameData.name}\n` +
+                `🆔 ID: ${userId}\n` +
+                (gameData.server ? `🌐 Server ID: ${serverId}\n` : '') +
+                `💎 Produk: ${selectedProduct.label}\n` +
+                `💳 Pembayaran: ${selectedPayment.name}\n` +
+                (appliedVoucher ? `🔖 Voucher: ${appliedVoucher.code} (${appliedVoucher.percent}%)\n` : '') +
+                `━━━━━━━━━━━━━━━━━━━━\n` +
+                `💰 Total: ${fmtIDR(finalPrice)}\n\n` +
+                `Mohon segera diproses, terima kasih.`;
             const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/${ADMIN_WA}?text=${encodedMessage}`;
-            window.open(whatsappUrl, "_blank");
+            window.open(`https://wa.me/${ADMIN_WA}?text=${encodedMessage}`);
         };
 
         emailBtn.onclick = () => {
-            const emailSubject = encodeURIComponent("Pesanan Top Up " + gameData.name);
-            const emailBody = encodeURIComponent(message.replace(/\*/g, '').replace(/━━━━━━━━━━━━━━━━━━━━/g, '-----------------------------'));
-            const emailUrl = `mailto:${ADMIN_EMAIL}?subject=${emailSubject}&body=${emailBody}`;
-            window.open(emailUrl, "_blank");
+            const subject = encodeURIComponent(`Pemesanan Top Up ${gameData.name}`);
+            const body = encodeURIComponent(
+                `Detail Transaksi WalzShop\n\n` +
+                `Game: ${gameData.name}\n` +
+                `User ID: ${userId}\n` +
+                (gameData.server ? `Server ID: ${serverId}\n` : '') +
+                `Produk: ${selectedProduct.label}\n` +
+                `Pembayaran: ${selectedPayment.name}\n` +
+                (appliedVoucher ? `Voucher: ${appliedVoucher.code} (${appliedVoucher.percent}%)\n` : '') +
+                `Total: ${fmtIDR(finalPrice)}\n\n` +
+                `Mohon segera diproses, terima kasih.`
+            );
+            window.open(`mailto:${ADMIN_EMAIL}?subject=${subject}&body=${body}`);
         };
 
         showModal('checkout-modal');
-    });
-
-    modalCloseBtns.forEach(btn => {
-        btn.addEventListener("click", hideModal);
-    });
-
-    modalOverlay.addEventListener("click", (e) => {
-        if (e.target === modalOverlay) {
-            hideModal();
-        }
     });
 }
