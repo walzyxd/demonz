@@ -298,15 +298,15 @@ function initGamePage() {
         let discountAmount = originalPrice - finalPriceAfterVoucher;
 
         const voucherInfo = appliedVoucher ? `<p>Diskon Voucher: <b>-${fmtIDR(discountAmount)}</b></p>` : '';
-        const paymentFeeInfo = selectedPayment ? `<p>Total yang harus dibayar: <b>${fmtIDR(finalPriceAfterVoucher)}</b></p>` : '';
-
+        const paymentInfo = selectedPayment ? `<p>Metode Pembayaran: <b>${selectedPayment.name}</b></p>` : '<p>Metode Pembayaran: <b>—</b></p>';
+        
         summaryBox.innerHTML = `
             <p>Produk: <b>${selectedProduct.label}</b></p>
             <p>Harga: <b>${fmtIDR(originalPrice)}</b></p>
             ${voucherInfo}
-            <p>Metode Pembayaran: <b>${selectedPayment ? selectedPayment.name : "—"}</b></p>
+            ${paymentInfo}
             <hr style="border-top: 1px dashed var(--border-color); margin: 15px 0;">
-            ${paymentFeeInfo}
+            <p>Total yang harus dibayar: <b>${fmtIDR(finalPriceAfterVoucher)}</b></p>
         `;
     }
 
@@ -354,7 +354,7 @@ function initGamePage() {
             card.innerHTML = `
                 <img src="${payment.img}" alt="${payment.name}" class="payment-logo">
                 <p class="payment-name">${payment.name}</p>
-                <p class="payment-price" style="display: none;"></p>
+                <p class="payment-price" style="visibility: hidden; opacity: 0;"></p>
             `;
             card.addEventListener("click", () => {
                 selectedPayment = payment;
@@ -375,19 +375,21 @@ function initGamePage() {
             qs(`.payment-card[data-id="${selectedPayment.id}"]`).classList.add('active');
         }
 
-        // Update payment card prices
+        // Update payment card prices regardless of selection
         const finalPrice = calculateFinalPrice();
         qsa('.payment-card').forEach(card => {
             const priceEl = qs('.payment-price', card);
             if (selectedProduct) {
                 priceEl.textContent = fmtIDR(finalPrice);
-                priceEl.style.display = 'block';
+                priceEl.style.visibility = 'visible';
+                priceEl.style.opacity = '1';
             } else {
                 priceEl.textContent = '';
-                priceEl.style.display = 'none';
+                priceEl.style.visibility = 'hidden';
+                priceEl.style.opacity = '0';
             }
         });
-
+        
         updateSummary();
     }
 
@@ -410,7 +412,7 @@ function initGamePage() {
     renderProducts();
     renderPayments();
     renderVoucherListModal();
-    updateUI(); // Panggil updateUI() untuk menyembunyikan harga awal
+    updateUI(); 
 
     // Event listeners
     useVoucherBtn.addEventListener("click", () => {
