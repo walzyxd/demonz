@@ -22,7 +22,7 @@ body {
 
 .container {
     width: 95%;
-    max-width: 900px; /* Lebar container dikurangi */
+    max-width: 700px; /* Ukuran maksimal container lebih kecil untuk fokus ke mobile */
     margin: 0 auto;
 }
 
@@ -88,7 +88,7 @@ body {
 /* ==================== HERO SECTION ==================== */
 .hero-section {
     position: relative;
-    height: 350px;
+    height: 250px; /* Tinggi hero dikurangi */
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -134,8 +134,8 @@ body {
 
 .hero-title {
     font-family: 'Inter', sans-serif;
-    font-size: 2.5rem; /* Ukuran font hero title dikurangi */
-    margin: 0 0 10px 0;
+    font-size: 1.8rem; /* Ukuran font hero title dikurangi */
+    margin: 0 0 8px 0;
     font-weight: 900;
     letter-spacing: -1px;
     text-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
@@ -143,21 +143,21 @@ body {
 
 .hero-subtitle {
     color: #d2d6dc;
-    font-size: 1.1rem; /* Ukuran font hero subtitle dikurangi */
+    font-size: 1rem; /* Ukuran font hero subtitle dikurangi */
     margin-bottom: 0;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* ==================== MAIN CONTENT ==================== */
 .main-content {
-    margin-top: 30px;
-    margin-bottom: 50px;
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
 
 .section-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: var(--text-color-primary);
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     font-weight: 700;
     border-left: 5px solid var(--primary-color);
     padding-left: 15px;
@@ -167,16 +167,16 @@ body {
 /* ==================== GAMES GRID ==================== */
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 28px;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 20px;
 }
 
 .game-card {
     background-color: var(--card-bg-color);
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     border: 3px solid transparent;
-    padding: 25px 20px;
+    padding: 20px 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -188,21 +188,21 @@ body {
 .game-card:hover,
 .game-card:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 15px 40px rgba(229, 62, 62, 0.25);
-    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(229, 62, 62, 0.25);
+    transform: translateY(-5px);
 }
 
 .game-thumbnail {
-    width: 120px;
-    height: 120px;
+    width: 90px;
+    height: 90px;
     object-fit: cover;
-    border-radius: 18px;
-    margin-bottom: 20px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .game-name {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--text-color-primary);
     text-align: center;
@@ -212,26 +212,26 @@ body {
 
 /* ==================== GAME PAGE STYLES ==================== */
 .game-main-content {
-    padding-top: 30px;
-    padding-bottom: 50px;
+    padding-top: 20px;
+    padding-bottom: 40px;
 }
 
 .game-header {
     display: flex;
     align-items: center;
     background-color: var(--card-bg-color);
-    padding: 25px;
-    border-radius: 20px;
+    padding: 20px;
+    border-radius: 15px;
     box-shadow: 0 5px 20px var(--shadow-color);
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .game-banner {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
-    border-radius: 15px;
-    margin-right: 25px;
+    border-radius: 12px;
+    margin-right: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -240,32 +240,32 @@ body {
 }
 
 .game-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
     margin: 0;
 }
 
 .game-guide {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--text-color-secondary);
     margin: 8px 0 0;
 }
 
 .card-section {
     background-color: var(--card-bg-color);
-    padding: 30px;
-    border-radius: 20px;
+    padding: 25px;
+    border-radius: 15px;
     box-shadow: 0 5px 20px var(--shadow-color);
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .step-guide {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: var(--text-color-primary);
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     margin-bottom: 10px;
     border-bottom: 2px solid var(--border-color);
     padding-bottom: 10px;
@@ -276,9 +276,9 @@ body {
 }
 
 .step-description {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-color-secondary);
-    margin: 0 0 20px 0;
+    margin: 0 0 15px 0;
 }
 
 .input-group {
@@ -287,10 +287,10 @@ body {
 
 input[type="text"] {
     width: 100%;
-    padding: 15px 20px;
+    padding: 12px 15px;
     border: 2px solid var(--border-color);
-    border-radius: 12px;
-    font-size: 1rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
     color: var(--text-color-primary);
     transition: border-color 0.3s, box-shadow 0.3s;
     outline: none;
@@ -301,88 +301,88 @@ input[type="text"]:focus {
     box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
 }
 
-/* Penyesuaian Grid untuk Tampilan Lebih Rapi */
+/* Penyesuaian Grid untuk Tampilan 2 kolom */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom di HP */
+    gap: 12px;
 }
-
 .payment-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom di HP */
+    gap: 12px;
 }
 
 .product-card, .payment-card {
     background-color: var(--background-color);
-    border: 3px solid transparent;
-    border-radius: 15px;
-    padding: 20px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 15px;
     text-align: center;
     cursor: pointer;
     position: relative;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .product-card:hover, .payment-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
 }
 
 .product-card.active, .payment-card.active {
     border-color: var(--secondary-color);
     background-color: rgba(59, 130, 246, 0.1);
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
 }
 
 .product-label {
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin: 0 0 5px;
 }
 
 .product-price {
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: var(--text-color-secondary);
 }
 
+/* Gaya Badge Baru yang Lebih Mencolok */
 .product-badge {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: var(--primary-color);
-    color: white;
-    font-size: 0.75rem;
+    top: -5px;
+    right: -5px;
+    background-color: #333;
+    color: #fff;
+    font-size: 0.7rem;
     font-weight: 700;
     padding: 4px 8px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .payment-logo {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     object-fit: contain;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .payment-name {
     font-weight: 600;
-    font-size: 1rem; /* Ukuran font payment name dikurangi */
+    font-size: 0.9rem;
     margin: 0;
 }
 
 .payment-price {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--text-color-secondary);
-    margin-top: 5px;
+    margin-top: 3px;
 }
 
 .voucher-group {
     display: flex;
-    gap: 10px;
+    gap: 8px;
 }
 
 .voucher-group input {
@@ -390,15 +390,15 @@ input[type="text"]:focus {
 }
 
 .btn-primary {
-    padding: 15px 25px;
+    padding: 12px 20px;
     background-color: var(--primary-color);
     color: #fff;
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s, transform 0.2s;
-    font-size: 1rem;
+    font-size: 0.9rem;
     white-space: nowrap;
 }
 
@@ -408,8 +408,8 @@ input[type="text"]:focus {
 }
 
 .btn-sm {
-    padding: 12px 20px;
-    font-size: 0.9rem;
+    padding: 10px 18px;
+    font-size: 0.85rem;
 }
 
 .mt-3 {
@@ -417,15 +417,15 @@ input[type="text"]:focus {
 }
 
 .summary-section {
-    padding: 30px;
-    border: 3px solid var(--secondary-color);
+    padding: 25px;
+    border: 2px solid var(--secondary-color);
     background-color: rgba(59, 130, 246, 0.1);
 }
 
 .summary-box {
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-    line-height: 2;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    line-height: 1.8;
 }
 
 .summary-box p {
@@ -440,13 +440,13 @@ input[type="text"]:focus {
 
 .btn-checkout {
     width: 100%;
-    padding: 18px 20px;
+    padding: 15px 20px;
     background-color: var(--secondary-color);
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.2s, transform 0.2s;
 }
@@ -480,11 +480,11 @@ input[type="text"]:focus {
 
 .modal-content {
     background-color: var(--card-bg-color);
-    padding: 25px;
-    border-radius: 20px;
+    padding: 20px;
+    border-radius: 15px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
     width: 90%;
-    max-width: 450px;
+    max-width: 400px;
     text-align: center;
     transform: scale(0.9);
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -505,7 +505,7 @@ input[type="text"]:focus {
 
 .modal-header h3 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 600;
 }
 
@@ -517,7 +517,7 @@ input[type="text"]:focus {
 }
 
 .modal-body {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: var(--text-color-secondary);
     line-height: 1.6;
 }
@@ -527,26 +527,27 @@ input[type="text"]:focus {
 }
 
 #checkout-summary p {
-    margin: 10px 0;
+    margin: 8px 0;
     display: flex;
     justify-content: space-between;
 }
 
 #checkout-summary span {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--primary-color);
 }
 
 .modal-footer {
     display: flex;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 8px;
+    margin-top: 15px;
 }
 
 .modal-footer .btn-primary {
     flex-grow: 1;
-    padding: 12px;
+    padding: 10px;
+    font-size: 0.9rem;
 }
 
 .modal-voucher-list ul {
@@ -573,29 +574,4 @@ input[type="text"]:focus {
 }
 
 /* ==================== RESPONSIVE STYLES ==================== */
-@media (max-width: 768px) {
-    .game-header { flex-direction: column; text-align: center; padding: 20px; }
-    .game-banner { margin: 0 0 15px; }
-    .game-title { font-size: 1.8rem; }
-    .game-guide { font-size: 0.9rem; }
-    .card-section { padding: 20px; }
-    .step-guide { font-size: 1.3rem; }
-    .product-grid, .payment-grid { grid-template-columns: repeat(2, 1fr); }
-    .btn-checkout { font-size: 1.1rem; padding: 15px; }
-    .modal-content { padding: 20px; }
-    .modal-header h3 { font-size: 1.3rem; }
-}
-
-@media (max-width: 480px) {
-    .navbar-container { height: 60px; }
-    .brand-logo { font-size: 1.8rem; }
-    .btn-back { padding: 6px 14px; font-size: 1rem; }
-    .game-header { padding: 15px; }
-    .game-banner { width: 90px; height: 90px; }
-    .game-title { font-size: 1.5rem; }
-    .game-guide { font-size: 0.85rem; }
-    .card-section { padding: 15px; }
-    .step-guide { font-size: 1.2rem; }
-    .product-grid { grid-template-columns: 1fr; } /* Hanya 1 produk per baris di HP */
-    .btn-checkout { font-size: 1rem; }
-}
+/* Aturan media query dihapus karena layout grid sudah responsif */
