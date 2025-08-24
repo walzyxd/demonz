@@ -20,8 +20,8 @@ const GAMES = [
 ];
 
 const PAYMENTS = [
-    { id: "qris", name: "QRIS", img: "https://files.catbox.moe/crlcvj.jpg", price: 0 },
-    { id: "shopeepay", name: "ShopeePay", img: "https://files.catbox.moe/gub7ik.jpg", price: 0 },
+    { id: "qris", name: "QRIS", img: "https://files.catbox.moe/crlcvj.jpg", price: 1000 },
+    { id: "shopeepay", name: "ShopeePay", img: "https://files.catbox.moe/gub7ik.jpg", price: 1500 },
     { id: "dana", name: "Dana", img: "https://i.imghippo.com/files/qhn1355Ds.jpg", price: 0 },
     { id: "gopay", name: "GoPay", img: "https://i.imghippo.com/files/lRYZ9422LGY.jpg", price: 0 },
     { id: "ovo", name: "OVO", img: "https://i.imghippo.com/files/sIRs2824EY.jpg", price: 0 },
@@ -339,10 +339,11 @@ function initGamePage() {
             const card = document.createElement("div");
             card.className = `payment-card`;
             card.dataset.id = payment.id;
+            const priceText = payment.price === 0 ? 'Gratis' : fmtIDR(payment.price);
             card.innerHTML = `
                 <img src="${payment.img}" alt="${payment.name}" class="payment-logo">
                 <p class="payment-name">${payment.name}</p>
-                <p class="payment-price">${payment.price === 0 ? 'Gratis' : fmtIDR(payment.price)}</p>
+                <p class="payment-price">${priceText}</p>
             `;
             card.addEventListener("click", () => {
                 selectedPayment = payment;
