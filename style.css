@@ -2,7 +2,7 @@
 :root {
     --primary-color: #e53e3e;
     --secondary-color: #3b82f6;
-    --background-color: #6c567b; /* Warna ungu baru */
+    --background-color: #f7fafc;
     --card-bg-color: #ffffff;
     --text-color-primary: #1a202c;
     --text-color-secondary: #4a5568;
@@ -314,7 +314,7 @@ input[type="text"]:focus {
 }
 
 .product-card, .payment-card {
-    background-color: var(--card-bg-color);
+    background-color: var(--background-color);
     border: 2px solid transparent;
     border-radius: 12px;
     padding: 15px;
@@ -324,6 +324,14 @@ input[type="text"]:focus {
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
+/* --- MENGHAPUS KODE INI UNTUK MENGHILANGKAN EMOTICON DIAMOND --- */
+/*
+.product-card::before {
+    content: '💎';
+    margin-right: 5px;
+}
+*/
 
 .product-card:hover, .payment-card:hover {
     transform: translateY(-3px);
@@ -353,8 +361,8 @@ input[type="text"]:focus {
     position: absolute;
     top: -5px;
     right: -5px;
-    background-color: #f0db4f; /* Warna latar belakang badge baru */
-    color: #ffffff; /* Warna teks badge baru */
+    background-color: #333;
+    color: #fff;
     font-size: 0.7rem;
     font-weight: 700;
     padding: 4px 8px;
@@ -375,16 +383,19 @@ input[type="text"]:focus {
     margin: 0;
 }
 
+/* Mengubah tampilan harga pembayaran menjadi transparan/tidak terlihat secara default */
 .payment-price {
     font-weight: 700;
     font-size: 0.95rem;
     color: var(--text-color-secondary);
     margin-top: 5px;
+    /* --- PERBAIKAN DI SINI --- */
     visibility: hidden; 
     opacity: 0;
     transition: visibility 0s, opacity 0.3s;
 }
 
+/* Menambahkan style untuk menampilkan harga saat class 'active' diterapkan oleh JS */
 .payment-card.active .payment-price {
     visibility: visible;
     opacity: 1;
