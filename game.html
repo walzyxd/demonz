@@ -54,46 +54,5 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    // Ambil nama game dari URL (?game=free fire)
-    const params = new URLSearchParams(window.location.search);
-    const gameKey = params.get("game");
-
-    // Cari game di database script.js
-    const game = GAMES.find(g => g.key === gameKey);
-
-    if (game) {
-      // Render header
-      document.getElementById("gameTitle").textContent = game.name;
-      document.getElementById("gameBanner").src = game.img;
-
-      // Render input user ID / server (jika perlu)
-      let inputsHTML = `<label>ID Player:</label><input type="text" id="userId" placeholder="Masukkan ID">`;
-      if (game.needServer) {
-        inputsHTML += `<label>Server:</label><input type="text" id="serverId" placeholder="Masukkan Server">`;
-      }
-      document.getElementById("userInputs").innerHTML = inputsHTML;
-
-      // Render produk
-      const products = PRODUCTS[game.key] || [];
-      document.getElementById("productsGrid").innerHTML = products.map(p => `
-        <div class="product-card" onclick="selectProduct('${game.key}', '${p.id}')">
-          <h4>${p.label}</h4>
-          <p>Rp ${p.price.toLocaleString()}</p>
-          ${p.badge ? `<span class="badge">${p.badge}</span>` : ""}
-        </div>
-      `).join("");
-
-      // Render metode pembayaran
-      document.getElementById("paymentsGrid").innerHTML = PAYMENTS.map(p => `
-        <div class="payment-card" onclick="selectPayment('${p.key}')">
-          <img src="${p.img}" alt="${p.name}">
-          <p>${p.name}</p>
-        </div>
-      `).join("");
-    } else {
-      document.querySelector("main").innerHTML = "<p>Game tidak ditemukan.</p>";
-    }
-  </script>
 </body>
 </html>
