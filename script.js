@@ -280,14 +280,8 @@ function initGamePage() {
     function updateSummary() {
         if (!summaryBox) return;
 
-        // Tampilkan teks panduan jika belum ada produk yang dipilih
-        if (!selectedProduct) {
-            summaryBox.innerHTML = `<p>Pilih nominal & pembayaran untuk melihat ringkasan.</p>`;
-            return;
-        }
-
-        let total = selectedProduct.price;
-        let originalPrice = selectedProduct.price;
+        let total = selectedProduct ? selectedProduct.price : 0;
+        let originalPrice = selectedProduct ? selectedProduct.price : 0;
         let discountAmount = 0;
 
         if (appliedVoucher) {
@@ -299,10 +293,14 @@ function initGamePage() {
         const paymentPrice = selectedPayment ? selectedPayment.price : 0;
         total += paymentPrice;
 
+        if (!selectedProduct || !selectedPayment) {
+            summaryBox.innerHTML = `<p>Pilih nominal & pembayaran untuk melihat ringkasan.</p>`;
+            return;
+        }
+
         const voucherInfo = appliedVoucher ? `<p>Diskon Voucher: <b>-${fmtIDR(discountAmount)}</b></p>` : '';
         const paymentFeeInfo = selectedPayment && selectedPayment.price > 0 ? `<p>Biaya Pembayaran: <b>+${fmtIDR(paymentPrice)}</b></p>` : '';
 
-        // Tampilkan ringkasan lengkap
         summaryBox.innerHTML = `
             <p>Produk: <b>${selectedProduct.label}</b></p>
             <p>Harga: <b>${fmtIDR(originalPrice)}</b></p>
@@ -324,7 +322,7 @@ function initGamePage() {
             card.dataset.id = product.id;
             card.innerHTML = `
                 <p class="product-label">${product.label}</p>
-                <p class="product-price"></p>
+                <p class="product-price">${fmtIDR(product.price)}</p>
             `;
             if (product.badges && product.badges.length > 0) {
                 card.innerHTML += `<div class="product-badge">${product.badges[0]}</div>`;
@@ -343,10 +341,11 @@ function initGamePage() {
             const card = document.createElement("div");
             card.className = `payment-card`;
             card.dataset.id = payment.id;
+            const priceText = payment.price === 0 ? 'Gratis' : `${fmtIDR(payment.price)}`;
             card.innerHTML = `
                 <img src="${payment.img}" alt="${payment.name}" class="payment-logo">
                 <p class="payment-name">${payment.name}</p>
-                <p class="payment-price"></p>
+                <p class="payment-price">${priceText}</p>
             `;
             card.addEventListener("click", () => {
                 selectedPayment = payment;
@@ -357,41 +356,17 @@ function initGamePage() {
     }
 
     function updateUI() {
-        qsa('.product-card').forEach(c => {
-            c.classList.remove('active');
-            const priceEl = qs('.product-price', c);
-            priceEl.style.display = 'none';
-        });
-
+        qsa('.product-card').forEach(c => c.classList.remove('active'));
         if (selectedProduct) {
-            const activeCard = qs(`.product-card[data-id="${selectedProduct.id}"]`);
-            if (activeCard) {
-                activeCard.classList.add('active');
-                const priceEl = qs('.product-price', activeCard);
-                priceEl.textContent = fmtIDR(selectedProduct.price);
-                priceEl.style.display = 'block';
-            }
+            qs(`.product-card[data-id="${selectedProduct.id}"]`).classList.add('active');
         }
-    
-        qsa('.payment-card').forEach(c => {
-            c.classList.remove('active');
-            const priceEl = qs('.payment-price', c);
-            priceEl.style.display = 'none';
-        });
-    
+
+        qsa('.payment-card').forEach(c => c.classList.remove('active'));
         if (selectedPayment) {
-            const activePaymentCard = qs(`.payment-card[data-id="${selectedPayment.id}"]`);
-            if (activePaymentCard) {
-                activePaymentCard.classList.add('active');
-                const priceEl = qs('.payment-price', activePaymentCard);
-                const priceText = selectedPayment.price === 0 ? 'Gratis' : `+${fmtIDR(selectedPayment.price)}`;
-                priceEl.textContent = priceText;
-                priceEl.style.display = 'block';
-            }
+            qs(`.payment-card[data-id="${selectedPayment.id}"]`).classList.add('active');
         }
         updateSummary();
     }
-    
 
     function calculateFinalPrice() {
         if (!selectedProduct) return 0;
@@ -455,85 +430,82 @@ function initGamePage() {
         const serverId = gameData.server ? serverIdInput.value.trim() : null;
 
         if (!userId) {
-            modalTitle.textContent = "Perhatian";
-            modalMessage.textContent = "Mohon isi User ID Anda.";
-            qs("#voucher-modal .modal-header").style.borderBottom = "1px solid #e2e8f0";
-            showModal('voucher-modal');
-            userIdInput.focus();
+            modalTitle.textContent = "ID Pengguna Belum Terisi";
+            modalMessage.textContent = "Mohon masukkan ID pengguna Anda untuk melanjutkan.";
+            showModal('info-modal');
             return;
         }
+
         if (gameData.server && !serverId) {
-            modalTitle.textContent = "Perhatian";
-            modalMessage.textContent = "Mohon isi Server ID Anda.";
-            qs("#voucher-modal .modal-header").style.borderBottom = "1px solid #e2e8f0";
-            showModal('voucher-modal');
-            serverIdInput.focus();
+            modalTitle.textContent = "Server ID Belum Terisi";
+            modalMessage.textContent = "Mohon masukkan Server ID Anda untuk melanjutkan.";
+            showModal('info-modal');
             return;
         }
+
         if (!selectedProduct) {
-            modalTitle.textContent = "Perhatian";
-            modalMessage.textContent = "Mohon pilih nominal produk terlebih dahulu.";
-            qs("#voucher-modal .modal-header").style.borderBottom = "1px solid #e2e8f0";
-            showModal('voucher-modal');
-            productGrid.scrollIntoView({ behavior: 'smooth' });
+            modalTitle.textContent = "Produk Belum Dipilih";
+            modalMessage.textContent = "Mohon pilih nominal produk yang ingin Anda beli.";
+            showModal('info-modal');
             return;
         }
+
         if (!selectedPayment) {
-            modalTitle.textContent = "Perhatian";
-            modalMessage.textContent = "Mohon pilih metode pembayaran terlebih dahulu.";
-            qs("#voucher-modal .modal-header").style.borderBottom = "1px solid #e2e8f0";
-            showModal('voucher-modal');
-            paymentGrid.scrollIntoView({ behavior: 'smooth' });
+            modalTitle.textContent = "Metode Pembayaran Belum Dipilih";
+            modalMessage.textContent = "Mohon pilih metode pembayaran yang ingin Anda gunakan.";
+            showModal('info-modal');
             return;
         }
 
-        const finalPrice = calculateFinalPrice();
-
+        // Update modal summary
         checkoutSummary.innerHTML = `
             <p>Game: <b>${gameData.name}</b></p>
-            <p>User ID: <b>${userId}</b></p>
+            <p>ID Pengguna: <b>${userId}</b></p>
             ${gameData.server ? `<p>Server ID: <b>${serverId}</b></p>` : ''}
             <p>Produk: <b>${selectedProduct.label}</b></p>
-            <p>Harga Produk: <b>${fmtIDR(selectedProduct.price)}</b></p>
-            <p>Pembayaran: <b>${selectedPayment.name}</b></p>
-            ${appliedVoucher ? `<p>Voucher: <b>${appliedVoucher.code}</b></p>` : ''}
+            <p>Metode Pembayaran: <b>${selectedPayment.name}</b></p>
             <hr style="border-top: 1px dashed var(--border-color); margin: 15px 0;">
-            <p>Total Harga: <span><b>${fmtIDR(finalPrice)}</b></span></p>
+            <p>Total Harga: <span>${fmtIDR(calculateFinalPrice())}</span></p>
         `;
-        
-        waBtn.onclick = () => {
-            const message = `Halo, saya ingin top up.\n\n` +
-                `*Detail Transaksi WalzShop*\n` +
-                `━━━━━━━━━━━━━━━━━━━━\n` +
-                `🎮 Game: ${gameData.name}\n` +
-                `🆔 ID: ${userId}\n` +
-                (gameData.server ? `🌐 Server ID: ${serverId}\n` : '') +
-                `💎 Produk: ${selectedProduct.label}\n` +
-                `💳 Pembayaran: ${selectedPayment.name}\n` +
-                (appliedVoucher ? `🔖 Voucher: ${appliedVoucher.code} (${appliedVoucher.percent}%)\n` : '') +
-                `━━━━━━━━━━━━━━━━━━━━\n` +
-                `💰 Total: ${fmtIDR(finalPrice)}\n\n` +
-                `Mohon segera diproses, terima kasih.`;
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/${ADMIN_WA}?text=${encodedMessage}`);
-        };
-
-        emailBtn.onclick = () => {
-            const subject = encodeURIComponent(`Pemesanan Top Up ${gameData.name}`);
-            const body = encodeURIComponent(
-                `Detail Transaksi WalzShop\n\n` +
-                `Game: ${gameData.name}\n` +
-                `User ID: ${userId}\n` +
-                (gameData.server ? `Server ID: ${serverId}\n` : '') +
-                `Produk: ${selectedProduct.label}\n` +
-                `Pembayaran: ${selectedPayment.name}\n` +
-                (appliedVoucher ? `Voucher: ${appliedVoucher.code} (${appliedVoucher.percent}%)\n` : '') +
-                `Total: ${fmtIDR(finalPrice)}\n\n` +
-                `Mohon segera diproses, terima kasih.`
-            );
-            window.open(`mailto:${ADMIN_EMAIL}?subject=${subject}&body=${body}`);
-        };
 
         showModal('checkout-modal');
+    });
+
+    waBtn.addEventListener("click", () => {
+        const userId = userIdInput.value.trim();
+        const serverId = gameData.server ? serverIdInput.value.trim() : '';
+
+        const message = `
+Halo admin, saya ingin order.
+
+*Detail Pesanan:*
+Game: ${gameData.name}
+ID Pengguna: ${userId}
+${gameData.server ? `Server ID: ${serverId}\n` : ''}Produk: ${selectedProduct.label}
+Harga: ${fmtIDR(selectedProduct.price)}
+Pembayaran: ${selectedPayment.name}
+Total: ${fmtIDR(calculateFinalPrice())}
+        `.trim();
+        const encodedMessage = encodeURIComponent(message);
+        window.open(`https://wa.me/${ADMIN_WA}?text=${encodedMessage}`, "_blank");
+    });
+
+    emailBtn.addEventListener("click", () => {
+        const userId = userIdInput.value.trim();
+        const serverId = gameData.server ? serverIdInput.value.trim() : '';
+        const subject = encodeURIComponent(`Pemesanan Top Up ${gameData.name}`);
+        const body = encodeURIComponent(`
+Halo admin, saya ingin melakukan pemesanan top up dengan detail sebagai berikut:
+
+Game: ${gameData.name}
+ID Pengguna: ${userId}
+${gameData.server ? `Server ID: ${serverId}\n` : ''}Produk: ${selectedProduct.label}
+Harga: ${fmtIDR(selectedProduct.price)}
+Metode Pembayaran: ${selectedPayment.name}
+Total Harga: ${fmtIDR(calculateFinalPrice())}
+
+Mohon diproses, terima kasih.
+        `.trim());
+        window.open(`mailto:${ADMIN_EMAIL}?subject=${subject}&body=${body}`);
     });
 }
