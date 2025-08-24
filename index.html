@@ -5,87 +5,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WalzShop — Top Up Game</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body { margin: 0; font-family: 'Poppins', sans-serif; background: #f9f9f9; color: #222; }
-    .container { width: 92%; max-width: 1100px; margin: auto; }
-
-    /* BRAND */
-    .brand { text-align: center; margin: 20px auto; }
-    .brand-badge { font-family: 'Orbitron', sans-serif; font-size: 2.3rem; font-weight: 800; }
-    .logo-w { color: #ff4b5c; }
-    .logo-s { color: #2d3436; }
-    .tagline { font-size: 0.95rem; margin-top: 4px; }
-
-    /* HERO SLIDER */
-    .hero { position: relative; width: 100%; overflow: hidden; }
-    .hero img { width: 100%; height: 210px; object-fit: cover; border-radius: 12px; }
-    .hero-slider { display: flex; transition: transform 0.6s ease; }
-    .hero-slide { min-width: 100%; }
-
-    /* SLOGAN */
-    .slogan-card { display: flex; align-items: center; margin: 20px auto; background: #fff; padding: 12px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-    .s-dot { width: 10px; height: 10px; background: #ff4b5c; border-radius: 50%; margin-right: 10px; }
-    .s-body h3 { margin: 0; font-size: 1rem; }
-    .s-body p { margin: 3px 0 0; font-size: 0.85rem; color: #555; }
-
-    /* GAME LIST */
-    .section-title { text-align: center; margin-top: 20px; font-size: 1.4rem; font-weight: 600; }
-    .games-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 20px auto; }
-    .game-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.08); transition: transform 0.2s; text-align: center; padding: 10px; }
-    .game-card:hover { transform: scale(1.05); }
-    .game-card img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; }
-    .game-card p { margin: 8px 0 0; font-size: 0.95rem; font-weight: 600; text-decoration: none; color: #222; }
-
-    /* FOOTER */
-    footer { text-align: center; font-size: 0.85rem; padding: 20px 0; color: #666; }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="page">
+<body>
 
-  <!-- HERO -->
+  <!-- HERO SLIDER -->
   <section class="hero">
     <div class="hero-slider" id="heroSlider">
-      <div class="hero-slide"><img src="https://i.imghippo.com/files/IHhY6050Qlc.jpeg" alt="Hero 1"></div>
-      <div class="hero-slide"><img src="https://i.imghippo.com/files/uy5982ZtQ.jpeg" alt="Hero 2"></div>
-      <div class="hero-slide"><img src="https://i.imghippo.com/files/el4034qjU.jpeg" alt="Hero 3"></div>
-      <div class="hero-slide"><img src="https://i.imghippo.com/files/EZUu9660Hs.jpg" alt="Hero 4"></div>
+      <div class="hero-slide"><img src="https://i.imghippo.com/files/IHhY6050Qlc.jpeg" alt="Slide 1"></div>
+      <div class="hero-slide"><img src="https://i.imghippo.com/files/uy5982ZtQ.jpeg" alt="Slide 2"></div>
+      <div class="hero-slide"><img src="https://i.imghippo.com/files/el4034qjU.jpeg" alt="Slide 3"></div>
+      <div class="hero-slide"><img src="https://i.imghippo.com/files/EZUu9660Hs.jpg" alt="Slide 4"></div>
     </div>
   </section>
 
   <!-- BRAND -->
   <header class="brand container">
-    <div class="brand-badge">
+    <h1 class="brand-badge">
       <span class="logo-w">Walz</span><span class="logo-s">Shop</span>
-    </div>
+    </h1>
     <p class="tagline">Top Up Cepat ⚡ Murah 💎 Aman 🔒</p>
-
-    <!-- Slogan -->
-    <div class="slogan-card">
-      <div class="s-dot"></div>
-      <div class="s-body">
-        <h3>Mau Top Up?</h3>
-        <p>Masukkan ID, pilih produk, bayar & langsung masuk ⚡</p>
-      </div>
-    </div>
   </header>
 
   <!-- GAME LIST -->
   <main class="container">
     <h2 class="section-title">Pilih Game Favoritmu</h2>
-    <p class="tagline center">Klik game di bawah untuk mulai top up</p>
+    <p class="section-subtitle">Klik game untuk mulai top up</p>
 
-    <section class="games-grid" id="gamesGrid"></section>
+    <section class="games-grid">
+      <a href="game.html?game=freefire" class="game-card">
+        <img src="https://files.catbox.moe/x5rvpg.jpg" alt="Free Fire">
+        <p>Free Fire</p>
+      </a>
+      <a href="game.html?game=ml" class="game-card">
+        <img src="https://files.catbox.moe/wcxi20.jpg" alt="Mobile Legends">
+        <p>Mobile Legends</p>
+      </a>
+      <a href="game.html?game=hok" class="game-card">
+        <img src="https://files.catbox.moe/rh78kj.jpg" alt="Honor of Kings">
+        <p>Honor of Kings</p>
+      </a>
+      <a href="game.html?game=genshin" class="game-card">
+        <img src="https://files.catbox.moe/b91rfb.jpg" alt="Genshin Impact">
+        <p>Genshin Impact</p>
+      </a>
+      <a href="game.html?game=roblox" class="game-card">
+        <img src="https://files.catbox.moe/uvixa8.jpg" alt="Roblox">
+        <p>Roblox</p>
+      </a>
+      <a href="game.html?game=supersus" class="game-card">
+        <img src="https://files.catbox.moe/j61uny.jpg" alt="Super Sus">
+        <p>Super Sus</p>
+      </a>
+      <a href="game.html?game=coc" class="game-card">
+        <img src="https://files.catbox.moe/6aia0n.jpg" alt="Clash of Clans">
+        <p>Clash of Clans</p>
+      </a>
+      <a href="game.html?game=bloodstrike" class="game-card">
+        <img src="https://files.catbox.moe/3y066i.jpg" alt="Blood Strike">
+        <p>Blood Strike</p>
+      </a>
+      <a href="game.html?game=pubg" class="game-card">
+        <img src="https://files.catbox.moe/tatuo9.jpg" alt="PUBG Mobile">
+        <p>PUBG Mobile</p>
+      </a>
+    </section>
   </main>
 
   <!-- FOOTER -->
   <footer class="container">
-    <p>© 2025 <strong>WalzShop</strong>. Instan & Terpercaya ✅</p>
+    <p>© 2025 <strong>WalzShop</strong> — Instan & Terpercaya ✅</p>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- SLIDER SCRIPT -->
   <script>
-    // HERO AUTO SLIDE
     const slider = document.getElementById("heroSlider");
     let idx = 0;
     setInterval(() => {
