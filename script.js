@@ -64,7 +64,7 @@ const PRODUCTS = {
         { id: "ml-875", label: "875 Diamonds", price: 218500 },
         { id: "ml-2010", label: "2010 Diamonds", price: 475000 },
         { id: "ml-4830", label: "4830 Diamonds", price: 1140000 },
-        { id: "ml-wdp", label: "Weekly Diamond Pass", price: 28000, badges: ["WDP"] },
+        { id: "ml-wdp", label: "Weekly Diamond Pass", price: 28000, badges: ["Weekly"] },
         { id: "ml-twilight", label: "Twilight Pass", price: 150000, badges: ["Pass"] },
     ],
     "pubg mobile": [
@@ -334,7 +334,9 @@ function initGamePage() {
                 <p class="product-price">${fmtIDR(product.price)}</p>
             `;
             if (product.badges && product.badges.length > 0) {
-                card.innerHTML += `<div class="product-badge">${product.badges[0]}</div>`;
+                const badgeText = product.badges[0];
+                const badgeClass = `badge-${badgeText.toLowerCase().replace(/\s/g, '')}`;
+                card.innerHTML += `<div class="product-badge ${badgeClass}">${badgeText}</div>`;
             }
             card.addEventListener("click", () => {
                 selectedProduct = product;
@@ -375,7 +377,6 @@ function initGamePage() {
             qs(`.payment-card[data-id="${selectedPayment.id}"]`).classList.add('active');
         }
 
-        // Update payment card prices regardless of selection
         const finalPrice = calculateFinalPrice();
         qsa('.payment-card').forEach(card => {
             const priceEl = qs('.payment-price', card);
@@ -412,7 +413,7 @@ function initGamePage() {
     renderProducts();
     renderPayments();
     renderVoucherListModal();
-    updateUI(); 
+    updateUI();
 
     // Event listeners
     useVoucherBtn.addEventListener("click", () => {
@@ -442,37 +443,32 @@ function initGamePage() {
         const userId = userIdInput.value.trim();
         const serverId = gameData.server ? serverIdInput.value.trim() : null;
 
+        // Validasi dan gulir otomatis
         if (!userId) {
-            modalTitle.textContent = "ID Pengguna Belum Terisi";
-            modalMessage.textContent = "Mohon masukkan ID pengguna Anda untuk melanjutkan.";
-            showModal('info-modal');
+            userIdInput.focus();
+            userIdInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
 
         if (gameData.server && !serverId) {
-            modalTitle.textContent = "Server ID Belum Terisi";
-            modalMessage.textContent = "Mohon masukkan Server ID Anda untuk melanjutkan.";
-            showModal('info-modal');
+            serverIdInput.focus();
+            serverIdInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
 
         if (!selectedProduct) {
-            modalTitle.textContent = "Produk Belum Dipilih";
-            modalMessage.textContent = "Mohon pilih nominal produk yang ingin Anda beli.";
-            showModal('info-modal');
+            productGrid.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
 
         if (!selectedPayment) {
-            modalTitle.textContent = "Metode Pembayaran Belum Dipilih";
-            modalMessage.textContent = "Mohon pilih metode pembayaran yang ingin Anda gunakan.";
-            showModal('info-modal');
+            paymentGrid.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
-
+        
         const finalPrice = calculateFinalPrice();
 
-        // Update modal summary
+        // Tampilkan modal checkout
         checkoutSummary.innerHTML = `
             <p>Game: <b>${gameData.name}</b></p>
             <p>ID Pengguna: <b>${userId}</b></p>
