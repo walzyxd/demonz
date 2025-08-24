@@ -28,12 +28,12 @@
 
         <section class="card-section">
             <div class="step-guide"><i class="fas fa-user-circle"></i> 1. Masukkan ID Akun</div>
-            <p>Masukkan User ID & Server ID (jika dibutuhkan) untuk akun game Anda.</p>
+            <p>Masukkan User ID & Server ID (jika ada) untuk akun game Anda.</p>
             <div class="input-group">
-                <input type="text" id="user-id" maxlength="30" placeholder="User ID Game" autocomplete="off" required>
+                <input type="text" id="user-id" maxlength="30" placeholder="User ID Game (Contoh: 12345678)" autocomplete="off" required>
             </div>
             <div class="input-group" id="server-group" style="display:none;">
-                <input type="text" id="server-id" maxlength="10" placeholder="Server ID (jika ada)" autocomplete="off">
+                <input type="text" id="server-id" maxlength="10" placeholder="Server ID (Contoh: (1234))" autocomplete="off">
             </div>
         </section>
 
@@ -57,7 +57,6 @@
                 <button type="button" id="use-voucher-btn" class="btn-primary">Gunakan</button>
             </div>
             <button type="button" id="show-voucher-list-btn" class="btn-primary btn-sm mt-3">Lihat Kode Voucher</button>
-            <div id="voucher-info" class="voucher-info"></div>
         </section>
 
         <section class="card-section">
@@ -67,8 +66,20 @@
         </section>
     </main>
 
+    <footer class="footer">
+        <div class="container footer-content">
+            <a href="index.html" class="brand-logo footer-logo">
+                <span class="logo-text">Walz</span><span class="logo-accent">Shop</span>
+            </a>
+            <p class="footer-desc">
+                WalzShop adalah platform top-up game yang menyediakan berbagai kebutuhan in-game item dengan proses cepat dan terpercaya.
+            </p>
+            <p class="footer-copyright">&copy; 2025 <b>WalzShop</b> — Bukan situs resmi publisher game.</p>
+        </div>
+    </footer>
+
     <div id="modal-overlay" class="modal-overlay">
-        <div id="voucher-modal" class="modal-content modal-voucher">
+        <div id="voucher-modal" class="modal-content modal-message">
             <div class="modal-header">
                 <h3 id="modal-title"></h3>
                 <span class="modal-close-btn">&times;</span>
