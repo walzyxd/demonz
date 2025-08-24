@@ -2,8 +2,8 @@
 const ADMIN_WA = "6282298902274";
 
 const VOUCHERS = [
-  { code: "WALZSHOP", percent: 5 },
-  { code: "WALZPROMO", percent: 5 }
+  { code: "WALZSHOP", percent: 5, description: "Diskon 5% untuk semua produk" },
+  { code: "WALZPROMO", percent: 5, description: "Promo khusus 5% semua produk" }
 ];
 
 const GAMES = [
@@ -38,7 +38,6 @@ const PRODUCTS = {
     { id: "ff-1450", label: "1450 Diamonds", price: 180180 },
     { id: "ff-2180", label: "2180 Diamonds", price: 270270 },
     { id: "ff-3640", label: "3640 Diamonds", price: 450450 },
-    // Membership & Level Up
     { id: "ff-mw", label: "Membership Mingguan", price: 30500, badges: ["Member"] },
     { id: "ff-mb", label: "Membership Bulanan", price: 90000, badges: ["Member"] },
     { id: "ff-lvl6", label: "Level Up Pass Lv.6", price: 5500, badges: ["Level Up"] },
@@ -133,200 +132,229 @@ const PRODUCTS = {
   ],
 };
 
-/* ================== UTILITY ================== */
-const qs = (s, r = document) => r.querySelector(s);
-const qsa = (s, r = document) => Array.from(r.querySelectorAll(s));
-const fmtIDR = (n) => new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(n);
+/* ================== UTILITY FUNCTIONS ================== */
+const qs = (selector, parent = document) => parent.querySelector(selector);
+const qsa = (selector, parent = document) => Array.from(parent.querySelectorAll(selector));
+const fmtIDR = (n) => new Intl.NumberFormat("id-ID", {
+  style: "currency",
+  currency: "IDR",
+  maximumFractionDigits: 0
+}).format(n);
 
-/* ================== DOM READY ================== */
+/* ================== EVENT LISTENERS ================== */
 document.addEventListener("DOMContentLoaded", () => {
+  const page = document.body.dataset.page;
+  if (page === "index") {
+    initIndexPage();
+  } else if (page === "game") {
+    initGamePage();
+  }
+});
 
-  /* ---------------- INDEX PAGE ---------------- */
-  const grid = qs("#gamesGrid");
-  if (grid) {
-    grid.innerHTML = "";
-    GAMES.forEach(g => {
-      const card = document.createElement("div");
-      card.className = "game-card";
-      card.addEventListener("click", () => selectGame(g));
+/* ================== INDEX PAGE LOGIC ================== */
+function initIndexPage() {
+  const gamesGrid = qs("#gamesGrid");
+  if (!gamesGrid) return;
+  gamesGrid.innerHTML = "";
 
-      const img = document.createElement("img");
-      img.src = g.img; img.alt = g.name; img.className = "game-thumb";
-
-      const meta = document.createElement("div");
-      meta.className = "game-meta";
-
-      const name = document.createElement("p");
-      name.className = "game-name"; name.textContent = g.name;
-
-      meta.appendChild(name);
-      card.appendChild(img); card.appendChild(meta);
-      grid.appendChild(card);
+  GAMES.forEach(game => {
+    const card = document.createElement("a");
+    card.className = "game-card-coda";
+    card.href = "#";
+    card.addEventListener("click", (e) => {
+      e.preventDefault();
+      selectGame(game);
     });
-  }
 
-  function selectGame(game) {
-    localStorage.setItem("walz_game_key", game.key);
-    localStorage.setItem("walz_game_name", game.name);
-    localStorage.setItem("walz_game_img", game.img);
-    localStorage.setItem("walz_game_server", game.server ? "1" : "0");
-    location.href = "game.html";
-  }
+    card.innerHTML = `
+      <img src="${game.img}" alt="${game.name}" class="game-thumb-coda">
+      <h3 class="game-name-coda">${game.name}</h3>
+    `;
+    gamesGrid.appendChild(card);
+  });
+}
 
-  /* ---------------- GAME PAGE ---------------- */
+function selectGame(game) {
+  localStorage.setItem("walz_game_key", game.key);
+  localStorage.setItem("walz_game_name", game.name);
+  localStorage.setItem("walz_game_img", game.img);
+  localStorage.setItem("walz_game_server", game.server ? "1" : "0");
+  window.location.href = "game.html";
+}
+
+/* ================== GAME PAGE LOGIC ================== */
+function initGamePage() {
   const gameTitle = qs("#gameTitle");
   const banner = qs("#gameBanner");
+  const serverWrap = qs("#serverWrap");
   const productGrid = qs("#productGrid");
   const paymentGrid = qs("#paymentGrid");
   const voucherInput = qs("#voucherCode");
   const useVoucherBtn = qs("#useVoucherBtn");
   const checkoutBtn = qs("#checkoutBtn");
-  const serverWrap = qs("#serverWrap");
   const summaryBox = qs("#summary");
   const voucherList = qs("#voucherList");
 
-  if (!gameTitle || !banner || !productGrid || !paymentGrid) return;
+  if (!gameTitle || !banner) return;
 
-  const gName = localStorage.getItem("walz_game_name") || "Free Fire";
-  const gImg = localStorage.getItem("walz_game_img") || "https://files.catbox.moe/x5rvpg.jpg";
-  const gKey = localStorage.getItem("walz_game_key") || "free fire";
-  const needServer = localStorage.getItem("walz_game_server") === "1";
+  const gameKey = localStorage.getItem("walz_game_key");
+  const gameData = GAMES.find(g => g.key === gameKey) || GAMES[0];
 
-  gameTitle.textContent = gName;
-  banner.src = gImg;
-  banner.alt = gName;
-  if (serverWrap) serverWrap.style.display = needServer ? "block" : "none";
+  gameTitle.textContent = gameData.name;
+  banner.src = gameData.img;
+  banner.alt = gameData.name;
+  serverWrap.style.display = gameData.server ? "block" : "none";
 
   let selectedProduct = null;
   let selectedPayment = null;
   let appliedVoucher = null;
 
-  /* Render Produk */
+  function updateSummary() {
+    if (!summaryBox) return;
+    if (!selectedProduct) {
+      summaryBox.innerHTML = `<p>Pilih produk terlebih dahulu.</p>`;
+      return;
+    }
+
+    let total = selectedProduct.price;
+    if (appliedVoucher) {
+      total = Math.round(total * (1 - appliedVoucher.percent / 100));
+    }
+
+    const paymentMethod = selectedPayment ? selectedPayment.name : "—";
+    
+    summaryBox.innerHTML = `
+      <p>Produk: <b>${selectedProduct.label}</b></p>
+      <p>Pembayaran: <b>${paymentMethod}</b></p>
+      <p>Total: <b>${fmtIDR(total)}</b></p>
+    `;
+  }
+
   function renderProducts() {
     productGrid.innerHTML = "";
-    const items = PRODUCTS[gKey] || [];
-    items.forEach(p => {
+    const items = PRODUCTS[gameData.key] || [];
+
+    items.forEach(product => {
       const card = document.createElement("div");
-      card.className = "product-card";
-      card.innerHTML = `<p class="p-title">${p.label}</p><p class="p-price">${fmtIDR(p.price)}</p>`;
-      if (p.badges && p.badges.length) {
-        const badgeDiv = document.createElement("div");
-        badgeDiv.className = "badges";
-        p.badges.forEach(b => {
-          const tag = document.createElement("span"); tag.className = "badge"; tag.textContent = b;
-          badgeDiv.appendChild(tag);
-        });
-        card.appendChild(badgeDiv);
-      }
+      card.className = `product-card-coda`;
+      card.dataset.id = product.id;
+      card.innerHTML = `
+        <p class="p-title-coda">${product.label}</p>
+        <p class="p-price-coda">${fmtIDR(product.price)}</p>
+      `;
       card.addEventListener("click", () => {
-        qsa(".product-card", productGrid).forEach(c => c.classList.remove("active"));
-        card.classList.add("active");
-        selectedProduct = p;
-        renderPayments();
-        updateSummary();
+        selectedProduct = product;
+        updateUI();
       });
       productGrid.appendChild(card);
     });
   }
-  renderProducts();
 
-  /* Render Payments */
   function renderPayments() {
     paymentGrid.innerHTML = "";
-    PAYMENTS.forEach(pay => {
+
+    PAYMENTS.forEach(payment => {
       const card = document.createElement("div");
-      card.className = "payment-card";
+      card.className = `payment-card-coda`;
+      card.dataset.id = payment.id;
       card.innerHTML = `
-        <img src="${pay.img}" alt="${pay.name}" class="payment-logo">
-        <p class="payment-name">${pay.name}</p>
-        <div class="pay-price"></div>
+        <img src="${payment.img}" alt="${payment.name}" class="payment-logo-coda">
+        <p class="payment-name-coda">${payment.name}</p>
       `;
-      if (selectedProduct) {
-        let nominal = selectedProduct.price;
-        if (appliedVoucher) nominal = Math.round(nominal * (100 - appliedVoucher.percent) / 100);
-        card.querySelector(".pay-price").textContent = fmtIDR(nominal);
-      }
       card.addEventListener("click", () => {
-        qsa(".payment-card", paymentGrid).forEach(c => c.classList.remove("active"));
-        card.classList.add("active");
-        selectedPayment = pay;
-        updateSummary();
+        selectedPayment = payment;
+        updateUI();
       });
       paymentGrid.appendChild(card);
     });
   }
-  renderPayments();
 
-  /* Render Voucher List */
-  if (voucherList) {
-    voucherList.innerHTML = "<b>Daftar Voucher:</b><ul style='padding-left:18px; margin:7px 0 0 0;'>";
+  function renderVoucherList() {
+    voucherList.innerHTML = `<b>Daftar Voucher:</b>`;
+    const list = document.createElement("ul");
+    list.style.cssText = "padding-left: 20px; margin: 5px 0 0 0;";
     VOUCHERS.forEach(v => {
-      voucherList.innerHTML += `<li><b>${v.code}</b> — Diskon ${v.percent}%</li>`;
+      const item = document.createElement("li");
+      item.innerHTML = `<b>${v.code}</b> — ${v.description}`;
+      list.appendChild(item);
     });
-    voucherList.innerHTML += "</ul>";
+    voucherList.appendChild(list);
   }
 
-  /* Gunakan Voucher */
-  if (voucherInput && useVoucherBtn) {
-    useVoucherBtn.addEventListener("click", () => {
-      const code = (voucherInput.value || "").trim().toUpperCase();
-      const found = VOUCHERS.find(v => v.code === code);
+  function updateUI() {
+    qsa('.product-card-coda', productGrid).forEach(c => c.classList.remove('active'));
+    if (selectedProduct) {
+      qs(`.product-card-coda[data-id="${selectedProduct.id}"]`)?.classList.add('active');
+    }
+    qsa('.payment-card-coda', paymentGrid).forEach(c => c.classList.remove('active'));
+    if (selectedPayment) {
+      qs(`.payment-card-coda[data-id="${selectedPayment.id}"]`)?.classList.add('active');
+    }
+    updateSummary();
+  }
+
+  // Initial renders
+  renderProducts();
+  renderPayments();
+  renderVoucherList();
+
+  // Event listeners
+  useVoucherBtn.addEventListener("click", () => {
+    const code = voucherInput.value.trim().toUpperCase();
+    const foundVoucher = VOUCHERS.find(v => v.code === code);
+    if (!foundVoucher) {
+      alert("Kode voucher tidak valid.");
       appliedVoucher = null;
-      if (!selectedProduct) { alert("Pilih produk terlebih dahulu."); return; }
-      if (!found) { alert("Kode voucher tidak valid."); renderPayments(); return; }
-      appliedVoucher = found;
-      alert(`Voucher ${found.code} berhasil digunakan! Diskon ${found.percent}%`);
-      renderPayments();
-      updateSummary();
-    });
-  }
+    } else {
+      appliedVoucher = foundVoucher;
+      alert(`Voucher "${foundVoucher.code}" berhasil diterapkan. Diskon ${foundVoucher.percent}%!`);
+    }
+    updateSummary();
+  });
 
-  /* Update Summary */
-  function updateSummary() {
-    if (!summaryBox) return;
-    if (!selectedProduct) { summaryBox.innerHTML = `<p>Pilih produk terlebih dahulu.</p>`; return; }
-    let nominal = selectedProduct.price;
-    if (appliedVoucher) nominal = Math.round(nominal * (100 - appliedVoucher.percent) / 100);
-    const method = selectedPayment ? selectedPayment.name : "—";
-    summaryBox.innerHTML = `
-      <p>Produk: <b>${selectedProduct.label}</b></p>
-      <p>Metode Pembayaran: <b>${method}</b></p>
-      <p>Total: <b>${fmtIDR(nominal)}</b></p>
-    `;
-  }
+  checkoutBtn.addEventListener("click", () => {
+    const userId = qs("#userId").value.trim();
+    const serverId = gameData.server ? qs("#serverId").value.trim() : null;
 
-  /* Checkout */
-  if (checkoutBtn) {
-    checkoutBtn.addEventListener("click", () => {
-      const idVal = (qs("#userId")?.value || "").trim();
-      const serverVal = needServer ? (qs("#serverId")?.value || "").trim() : "";
-      if (!idVal) { alert("User ID wajib diisi."); qs("#userId")?.focus(); return; }
-      if (needServer && !serverVal) { alert("Server ID wajib diisi."); qs("#serverId")?.focus(); return; }
-      if (!selectedProduct) { alert("Silakan pilih produk."); productGrid.scrollIntoView({ behavior: "smooth" }); return; }
-      if (!selectedPayment) { alert("Silakan pilih metode pembayaran."); paymentGrid.scrollIntoView({ behavior: "smooth" }); return; }
+    if (!userId) {
+      alert("User ID wajib diisi.");
+      return;
+    }
+    if (gameData.server && !serverId) {
+      alert("Server ID wajib diisi.");
+      return;
+    }
+    if (!selectedProduct) {
+      alert("Pilih nominal terlebih dahulu.");
+      return;
+    }
+    if (!selectedPayment) {
+      alert("Pilih metode pembayaran terlebih dahulu.");
+      return;
+    }
 
-      let total = selectedProduct.price;
-      if (appliedVoucher) total = Math.round(total * (100 - appliedVoucher.percent) / 100);
+    let finalPrice = selectedProduct.price;
+    if (appliedVoucher) {
+      finalPrice = Math.round(finalPrice * (1 - appliedVoucher.percent / 100));
+    }
 
-      const lines = [
-        `🛒 *Detail Transaksi WalzShop*`,
-        `━━━━━━━━━━━━━━━━━━━━`,
-        `🎮 Game: ${gName}`,
-        `🆔 ID: ${idVal}`,
-        needServer ? `🌐 Server ID: ${serverVal}` : null,
-        `💎 Produk: ${selectedProduct.label}`,
-        `💳 Pembayaran: ${selectedPayment.name}`,
-        appliedVoucher ? `🏷 Voucher: ${appliedVoucher.code} (${appliedVoucher.percent}% off)` : null,
-        `💰 Total: ${fmtIDR(total)}`,
-        `━━━━━━━━━━━━━━━━━━━━`,
-        `✅ Mohon konfirmasi ke admin.`
-      ].filter(Boolean).join("\n");
+    const message = `Halo, saya ingin top up.\n\n` +
+      `*Detail Transaksi WalzShop*\n` +
+      `━━━━━━━━━━━━━━━━━━━━\n` +
+      `🎮 Game: ${gameData.name}\n` +
+      `🆔 ID: ${userId}\n` +
+      (gameData.server ? `🌐 Server ID: ${serverId}\n` : '') +
+      `💎 Produk: ${selectedProduct.label}\n` +
+      `💳 Pembayaran: ${selectedPayment.name}\n` +
+      (appliedVoucher ? `🏷 Voucher: ${appliedVoucher.code} (${appliedVoucher.percent}% off)\n` : '') +
+      `💰 Total: ${fmtIDR(finalPrice)}\n` +
+      `━━━━━━━━━━━━━━━━━━━━\n` +
+      `✅ Mohon konfirmasi ke admin.`
+      ;
 
-      const wa = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(lines)}`;
-      if (confirm("Lanjutkan proses ke WhatsApp admin?")) {
-        window.open(wa, "_blank");
-      }
-    });
-  }
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${ADMIN_WA}?text=${encodedMessage}`;
 
-});
+    window.open(whatsappUrl, "_blank");
+  });
+}
