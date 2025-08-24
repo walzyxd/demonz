@@ -7,15 +7,15 @@ const VOUCHERS = [
 ];
 
 const GAMES = [
-  { key: "free fire", name: "Free Fire", img: "https://files.catbox.moe/x5rvpg.jpg", server: false },
-  { key: "mobile legends", name: "Mobile Legends", img: "https://files.catbox.moe/wcxi20.jpg", server: true },
-  { key: "honor of kings", name: "Honor of Kings", img: "https://files.catbox.moe/rh78kj.jpg", server: false },
-  { key: "genshin impact", name: "Genshin Impact", img: "https://files.catbox.moe/b91rfb.jpg", server: false },
-  { key: "roblox", name: "Roblox", img: "https://files.catbox.moe/uvixa8.jpg", server: false },
-  { key: "super sus", name: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", server: false },
-  { key: "clash of clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", server: false },
-  { key: "blood strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", server: false },
-  { key: "pubg mobile", name: "PUBG Mobile", img: "https://files.catbox.moe/tatuo9.jpg", server: false },
+  { key: "free fire", name: "Free Fire", img: "https://files.catbox.moe/x5rvpg.jpg", server: false, guide: "Masukkan User ID Anda. Untuk menemukan User ID, ketuk ikon profil Anda di dalam game. User ID akan terlihat di bawah nama panggilan Anda." },
+  { key: "mobile legends", name: "Mobile Legends", img: "https://files.catbox.moe/wcxi20.jpg", server: true, guide: "Masukkan User ID dan Server ID Anda. Untuk menemukan ID, ketuk avatar Anda di sudut kiri atas layar. User ID dan Server ID Anda akan terlihat di bawah nama panggilan Anda." },
+  { key: "honor of kings", name: "Honor of Kings", img: "https://files.catbox.moe/rh78kj.jpg", server: false, guide: "Masukkan User ID Anda. Ketuk avatar Anda di dalam game dan User ID Anda akan terlihat di bagian bawah layar." },
+  { key: "genshin impact", name: "Genshin Impact", img: "https://files.catbox.moe/b91rfb.jpg", server: false, guide: "Masukkan User ID Anda. User ID Anda adalah nomor 9 digit yang ditampilkan di sudut kanan bawah layar saat Anda berada di dalam game." },
+  { key: "roblox", name: "Roblox", img: "https://files.catbox.moe/uvixa8.jpg", server: false, guide: "Masukkan User ID Anda. Gift card akan dikirimkan ke akun Anda." },
+  { key: "super sus", name: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", server: false, guide: "Masukkan User ID Anda. User ID dapat ditemukan di profil dalam game." },
+  { key: "clash of clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", server: false, guide: "Masukkan User ID Anda. User ID (tag pemain) Anda adalah kombinasi huruf dan angka yang diawali dengan tanda pagar (#)." },
+  { key: "blood strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", server: false, guide: "Masukkan User ID Anda. ID Anda dapat ditemukan di profil dalam game." },
+  { key: "pubg mobile", name: "PUBG Mobile", img: "https://files.catbox.moe/tatuo9.jpg", server: false, guide: "Masukkan User ID Anda. Untuk menemukan User ID Anda, ketuk ikon profil di kanan atas lobi game." },
 ];
 
 const PAYMENTS = [
@@ -132,6 +132,21 @@ const PRODUCTS = {
   ],
 };
 
+const PAYMENTS = [
+  { id: "qris", name: "QRIS", img: "https://files.catbox.moe/crlcvj.jpg" },
+  { id: "shopeepay", name: "ShopeePay", img: "https://files.catbox.moe/gub7ik.jpg" },
+  { id: "dana", name: "Dana", img: "https://files.catbox.moe/f5ey4y.jpg" },
+  { id: "gopay", name: "GoPay", img: "https://files.catbox.moe/je0irt.jpg" },
+  { id: "ovo", name: "OVO", img: "https://files.catbox.moe/57f44a.jpg" },
+];
+
+const SLIDER_IMAGES = [
+  "https://i.imghippo.com/files/IHhY6050Qlc.jpeg",
+  "https://i.imghippo.com/files/uy5982ZtQ.jpeg",
+  "https://i.imghippo.com/files/el4034qjU.jpeg",
+  "https://i.imghippo.com/files/EZUu9660Hs.jpg"
+];
+
 /* ================== UTILITY FUNCTIONS ================== */
 const qs = (selector, parent = document) => parent.querySelector(selector);
 const qsa = (selector, parent = document) => Array.from(parent.querySelectorAll(selector));
@@ -172,6 +187,8 @@ function initIndexPage() {
     `;
     gamesGrid.appendChild(card);
   });
+
+  initHeroSlider();
 }
 
 function selectGame(game) {
@@ -179,13 +196,32 @@ function selectGame(game) {
   localStorage.setItem("walz_game_name", game.name);
   localStorage.setItem("walz_game_img", game.img);
   localStorage.setItem("walz_game_server", game.server ? "1" : "0");
+  localStorage.setItem("walz_game_guide", game.guide);
   window.location.href = "game.html";
+}
+
+function initHeroSlider() {
+  const slider = qs(".hero-slider-coda");
+  SLIDER_IMAGES.forEach(imgUrl => {
+    const img = document.createElement("img");
+    img.src = imgUrl;
+    img.alt = "Banner hero";
+    slider.appendChild(img);
+  });
+
+  let currentSlide = 0;
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % SLIDER_IMAGES.length;
+    const offset = -currentSlide * 100;
+    slider.style.transform = `translateX(${offset}%)`;
+  }, 5000);
 }
 
 /* ================== GAME PAGE LOGIC ================== */
 function initGamePage() {
   const gameTitle = qs("#gameTitle");
   const banner = qs("#gameBanner");
+  const guideText = qs("#gameGuide");
   const serverWrap = qs("#serverWrap");
   const productGrid = qs("#productGrid");
   const paymentGrid = qs("#paymentGrid");
@@ -203,6 +239,7 @@ function initGamePage() {
   gameTitle.textContent = gameData.name;
   banner.src = gameData.img;
   banner.alt = gameData.name;
+  guideText.textContent = gameData.guide;
   serverWrap.style.display = gameData.server ? "block" : "none";
 
   let selectedProduct = null;
@@ -242,6 +279,9 @@ function initGamePage() {
         <p class="p-title-coda">${product.label}</p>
         <p class="p-price-coda">${fmtIDR(product.price)}</p>
       `;
+      if (product.badges && product.badges.length > 0) {
+        card.innerHTML += `<div class="product-badge-coda">${product.badges[0]}</div>`;
+      }
       card.addEventListener("click", () => {
         selectedProduct = product;
         updateUI();
@@ -252,6 +292,10 @@ function initGamePage() {
 
   function renderPayments() {
     paymentGrid.innerHTML = "";
+    let finalPrice = selectedProduct?.price || 0;
+    if (selectedProduct && appliedVoucher) {
+      finalPrice = Math.round(finalPrice * (1 - appliedVoucher.percent / 100));
+    }
 
     PAYMENTS.forEach(payment => {
       const card = document.createElement("div");
@@ -260,6 +304,7 @@ function initGamePage() {
       card.innerHTML = `
         <img src="${payment.img}" alt="${payment.name}" class="payment-logo-coda">
         <p class="payment-name-coda">${payment.name}</p>
+        <p class="pay-price-coda">${fmtIDR(finalPrice)}</p>
       `;
       card.addEventListener("click", () => {
         selectedPayment = payment;
@@ -290,6 +335,7 @@ function initGamePage() {
     if (selectedPayment) {
       qs(`.payment-card-coda[data-id="${selectedPayment.id}"]`)?.classList.add('active');
     }
+    renderPayments(); // Render payments again to update prices
     updateSummary();
   }
 
@@ -309,7 +355,7 @@ function initGamePage() {
       appliedVoucher = foundVoucher;
       alert(`Voucher "${foundVoucher.code}" berhasil diterapkan. Diskon ${foundVoucher.percent}%!`);
     }
-    updateSummary();
+    updateUI();
   });
 
   checkoutBtn.addEventListener("click", () => {
