@@ -228,6 +228,8 @@ function initGamePage() {
     const banner = qs("#game-banner");
     const guideText = qs("#game-guide");
     const serverGroup = qs("#server-group");
+    const userIdInput = qs("#user-id");
+    const serverIdInput = qs("#server-id");
     const productGrid = qs("#product-grid");
     const paymentGrid = qs("#payment-grid");
     const voucherInput = qs("#voucher-code");
@@ -236,6 +238,7 @@ function initGamePage() {
     const checkoutBtn = qs("#checkout-btn");
     const summaryBox = qs("#summary-box");
 
+    const modalOverlay = qs("#modal-overlay");
     const modalTitle = qs("#modal-title");
     const modalMessage = qs("#modal-message");
     const checkoutSummary = qs("#checkout-summary");
@@ -255,6 +258,11 @@ function initGamePage() {
     guideText.textContent = gameData.guide;
     serverGroup.style.display = gameData.server ? "block" : "none";
 
+    userIdInput.placeholder = `User ID Game (Contoh: 12345678)`;
+    if (gameData.server) {
+        serverIdInput.placeholder = `Server ID (Contoh: (1234))`;
+    }
+
     let selectedProduct = null;
     let selectedPayment = null;
     let appliedVoucher = null;
@@ -262,7 +270,7 @@ function initGamePage() {
     function updateSummary() {
         if (!summaryBox) return;
         if (!selectedProduct) {
-            summaryBox.innerHTML = `<p>Pilih produk dan pembayaran untuk melihat ringkasan.</p>`;
+            summaryBox.innerHTML = `<p>Pilih nominal & pembayaran untuk melihat ringkasan.</p>`;
             return;
         }
 
@@ -313,6 +321,7 @@ function initGamePage() {
             card.innerHTML = `
                 <img src="${payment.img}" alt="${payment.name}" class="payment-logo">
                 <p class="payment-name">${payment.name}</p>
+                <p class="payment-price">${selectedProduct ? fmtIDR(calculatePrice()) : '-'}</p>
             `;
             card.addEventListener("click", () => {
                 selectedPayment = payment;
@@ -322,11 +331,26 @@ function initGamePage() {
         });
     }
 
+    function calculatePrice() {
+        if (!selectedProduct) return 0;
+        let finalPrice = selectedProduct.price;
+        if (appliedVoucher) {
+            finalPrice = Math.round(finalPrice * (1 - appliedVoucher.percent / 100));
+        }
+        return finalPrice;
+    }
+
     function renderVoucherListModal() {
         voucherListUl.innerHTML = "";
         VOUCHERS.forEach(v => {
             const item = document.createElement("li");
             item.innerHTML = `<b>${v.code}</b> — ${v.description}`;
+            item.dataset.code = v.code;
+            item.addEventListener("click", () => {
+                voucherInput.value = v.code;
+                hideModal();
+                voucherInput.focus();
+            });
             voucherListUl.appendChild(item);
         });
     }
@@ -340,6 +364,7 @@ function initGamePage() {
         if (selectedPayment) {
             qs(`.payment-card[data-id="${selectedPayment.id}"]`)?.classList.add('active');
         }
+        renderPayments(); // Render ulang pembayaran untuk menampilkan harga
         updateSummary();
     }
 
@@ -373,38 +398,39 @@ function initGamePage() {
     });
 
     checkoutBtn.addEventListener("click", () => {
-        const userId = qs("#user-id").value.trim();
-        const serverId = gameData.server ? qs("#server-id").value.trim() : null;
+        const userId = userIdInput.value.trim();
+        const serverId = gameData.server ? serverIdInput.value.trim() : null;
 
         if (!userId) {
             modalTitle.textContent = "Perhatian";
-            modalMessage.textContent = "User ID wajib diisi.";
+            modalMessage.textContent = "Mohon isi User ID Anda.";
             showModal('voucher-modal');
+            userIdInput.focus();
             return;
         }
         if (gameData.server && !serverId) {
             modalTitle.textContent = "Perhatian";
-            modalMessage.textContent = "Server ID wajib diisi.";
+            modalMessage.textContent = "Mohon isi Server ID Anda.";
             showModal('voucher-modal');
+            serverIdInput.focus();
             return;
         }
         if (!selectedProduct) {
             modalTitle.textContent = "Perhatian";
-            modalMessage.textContent = "Pilih nominal terlebih dahulu.";
+            modalMessage.textContent = "Mohon pilih nominal produk terlebih dahulu.";
             showModal('voucher-modal');
+            productGrid.scrollIntoView({ behavior: 'smooth' });
             return;
         }
         if (!selectedPayment) {
             modalTitle.textContent = "Perhatian";
-            modalMessage.textContent = "Pilih metode pembayaran terlebih dahulu.";
+            modalMessage.textContent = "Mohon pilih metode pembayaran terlebih dahulu.";
             showModal('voucher-modal');
+            paymentGrid.scrollIntoView({ behavior: 'smooth' });
             return;
         }
 
-        let finalPrice = selectedProduct.price;
-        if (appliedVoucher) {
-            finalPrice = Math.round(finalPrice * (1 - appliedVoucher.percent / 100));
-        }
+        let finalPrice = calculatePrice();
 
         const message = `Halo, saya ingin top up.\n\n` +
             `*Detail Transaksi WalzShop*\n` +
@@ -450,8 +476,8 @@ function initGamePage() {
         btn.addEventListener("click", hideModal);
     });
 
-    qs("#modal-overlay").addEventListener("click", (e) => {
-        if (e.target.id === "modal-overlay") {
+    modalOverlay.addEventListener("click", (e) => {
+        if (e.target === modalOverlay) {
             hideModal();
         }
     });
