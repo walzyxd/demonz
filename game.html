@@ -9,92 +9,49 @@
 </head>
 <body class="page">
 
-  <!-- GAME HEADER -->
-  <header class="container game-header">
-    <button class="back-btn" id="backBtn">← Kembali</button>
-    <div class="game-head-info">
-      <img id="gameBanner" class="game-banner" src="" alt="Game Banner">
-      <h2 class="game-title" id="gameTitle"></h2>
+  <!-- HEADER GAME -->
+  <header class="game-header">
+    <img id="gameBanner" class="game-banner" alt="Banner Game" />
+    <div class="game-info">
+      <h1 id="gameTitle"></h1>
+      <a href="index.html" class="btn-back">← Kembali</a>
     </div>
   </header>
 
+  <!-- FORM TOPUP -->
   <main class="container">
+    <section class="card">
+      <h2>Masukkan Data</h2>
+      <div id="userInputs"></div>
+    </section>
 
-    <!-- USER INFO FORM -->
-    <div class="card">
-      <h3 class="card-title">Informasi User</h3>
-      <div class="form-grid">
-        <div class="form-group">
-          <label for="userId">User ID</label>
-          <input type="text" id="userId" placeholder="Masukkan User ID">
-          <span class="error" id="errUserId"></span>
-        </div>
-        <div class="form-group" id="serverWrap">
-          <label for="serverId">Server ID</label>
-          <input type="text" id="serverId" placeholder="Masukkan Server ID">
-          <span class="hint"></span>
-          <span class="error" id="errServerId"></span>
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="Masukkan Email">
-          <span class="error" id="errEmail"></span>
-        </div>
-      </div>
-    </div>
+    <section class="card">
+      <h2>Pilih Produk</h2>
+      <div id="productsGrid" class="products-grid"></div>
+    </section>
 
-    <!-- PRODUCTS -->
-    <div class="card">
-      <h3 class="card-title">Pilih Produk</h3>
-      <div class="product-grid" id="productGrid"></div>
-      <span class="error" id="errProduct"></span>
-    </div>
+    <section class="card">
+      <h2>Voucher Promo</h2>
+      <input type="text" id="voucherInput" placeholder="Masukkan kode voucher" />
+      <button onclick="applyVoucher()">Gunakan</button>
+    </section>
 
-    <!-- PAYMENT -->
-    <div class="card">
-      <h3 class="card-title">Pilih Metode Pembayaran</h3>
-      <div class="payment-grid" id="paymentGrid"></div>
-      <span class="error" id="errPayment"></span>
-    </div>
+    <section class="card">
+      <h2>Metode Pembayaran</h2>
+      <div id="paymentsGrid" class="payments-grid"></div>
+    </section>
 
-    <!-- VOUCHER -->
-    <div class="card">
-      <h3 class="card-title">Voucher / Promo</h3>
-      <div class="voucher-row">
-        <input type="text" id="voucherInput" placeholder="Masukkan kode voucher">
-        <button class="btn soft" id="applyVoucherBtn">Gunakan</button>
-      </div>
-      <div style="margin-top:6px;">
-        <button class="btn soft" id="listVoucherBtn">Daftar Voucher</button>
-        <div id="voucherList" class="voucher-list hidden"></div>
-      </div>
-      <span class="error" id="errVoucher"></span>
-    </div>
-
-    <!-- SUMMARY -->
-    <div class="card">
-      <h3 class="card-title">Ringkasan</h3>
-      <div class="summary" id="summary"></div>
-      <div class="checkout-actions">
-        <button class="btn primary" id="checkoutBtn">Beli Sekarang</button>
-      </div>
-    </div>
-
+    <section class="card">
+      <h2>Ringkasan</h2>
+      <p id="summary">Belum ada produk dipilih</p>
+      <button class="btn-buy" onclick="checkout()">Beli Sekarang</button>
+    </section>
   </main>
 
-  <!-- POPUP -->
-  <div class="popup hidden" id="popup">
-    <div class="popup-backdrop"></div>
-    <div class="popup-content">
-      <h3 class="popup-title" id="popupTitle"></h3>
-      <div class="popup-body" id="popupMessage"></div>
-      <div class="popup-actions">
-        <a class="btn success" target="_blank" id="waBtn">WhatsApp</a>
-        <a class="btn soft" id="emailBtn">Email</a>
-      </div>
-      <button class="popup-close" id="popupClose">✕</button>
-    </div>
-  </div>
+  <!-- FOOTER -->
+  <footer class="container">
+    <p>© 2025 <strong>WalzShop</strong>. Instan & Terpercaya ✅</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
