@@ -6,8 +6,9 @@
   <title>Top Up Game | WalzShop</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
+<body data-page="game">
   <nav class="navbar">
     <div class="container navbar-inner">
       <a href="index.html" class="brand-badge"><span class="logo-w">Walz</span><span class="logo-s">Shop</span></a>
@@ -22,7 +23,7 @@
     </section>
 
     <section class="card-coda">
-      <div class="step-guide-coda">1. Masukkan User ID Anda</div>
+      <div class="step-guide-coda"><i class="fas fa-user-circle"></i> 1. Masukkan User ID Anda</div>
       <div class="input-row-coda">
         <input type="text" id="userId" maxlength="30" placeholder="User ID Game" autocomplete="off"/>
       </div>
@@ -32,27 +33,26 @@
     </section>
 
     <section class="card-coda">
-      <div class="step-guide-coda">2. Pilih Nominal</div>
+      <div class="step-guide-coda"><i class="fas fa-diamond"></i> 2. Pilih Nominal</div>
       <div id="productGrid" class="product-grid-coda"></div>
     </section>
 
     <section class="card-coda">
-      <div class="step-guide-coda">3. Pilih Pembayaran</div>
+      <div class="step-guide-coda"><i class="fas fa-wallet"></i> 3. Pilih Pembayaran</div>
       <div id="paymentGrid" class="payment-grid-coda"></div>
     </section>
 
     <section class="card-coda">
-      <div class="step-guide-coda">4. Voucher Diskon</div>
+      <div class="step-guide-coda"><i class="fas fa-tags"></i> 4. Voucher Diskon</div>
       <div class="voucher-row-coda">
         <input type="text" id="voucherCode" maxlength="12" placeholder="Kode voucher"/>
-        <button type="button" id="listVoucherBtn" class="btn-coda btn-voucher">List Voucher</button>
         <button type="button" id="useVoucherBtn" class="btn-coda btn-voucher">Gunakan</button>
       </div>
       <div id="voucherList" class="voucher-list-coda"></div>
     </section>
 
     <section class="card-coda">
-      <div class="step-guide-coda">5. Ringkasan & Bayar</div>
+      <div class="step-guide-coda"><i class="fas fa-cash-register"></i> 5. Ringkasan & Bayar</div>
       <div id="summary" class="summary-coda"></div>
       <button id="checkoutBtn" class="btn-coda btn-checkout">Beli Sekarang</button>
     </section>
