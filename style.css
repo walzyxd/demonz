@@ -1,182 +1,231 @@
-/* ===== BASE ===== */
+/* ===== FONT & BASE STYLE ===== */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: #f1f5f9;
-  color: #1e293b;
-}
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
-.center { text-align: center; }
-
-/* ===== HERO ===== */
-.hero {
-  margin: 16px;
-  border-radius: 1.25rem;
-  overflow: hidden;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-}
-.hero img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+  background: #f8f9fa;
+  color: #333;
 }
 
-/* ===== BRAND ===== */
-.brand { text-align: center; margin-top: 20px; }
-.brand-badge {
+h1, h2, h3, h4 {
   font-family: 'Orbitron', sans-serif;
-  font-size: 2rem;
-  font-weight: 800;
-}
-.logo-w { color: #3b82f6; }
-.logo-s { color: #ef4444; }
-.tagline {
-  margin-top: 6px;
-  font-size: 0.95rem;
-  color: #64748b;
+  margin: 0 0 10px;
 }
 
-/* ===== SLOGAN ===== */
-.slogan-card {
+.container {
+  width: 95%;
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+/* ===== HEADER GAME ===== */
+.game-header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: white;
-  border-radius: 1rem;
-  padding: 14px 18px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  margin: 18px auto;
-  max-width: 500px;
-}
-.s-dot {
-  width: 12px; height: 12px;
-  background: #3b82f6;
-  border-radius: 50%;
-}
-.s-body h3 { margin: 0; font-size: 1.1rem; font-weight: 600; }
-.s-body p { margin: 2px 0 0; font-size: 0.9rem; color: #475569; }
-
-/* ===== GAME GRID ===== */
-.section-title {
-  text-align: center;
-  margin: 24px 0 6px;
-  font-size: 1.4rem;
-  font-weight: 600;
-}
-.games-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 16px;
-  margin-top: 20px;
-}
-.game-card {
-  background: white;
-  border-radius: 1rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  text-align: center;
-  padding: 12px;
-  transition: 0.2s;
-  cursor: pointer;
-}
-.game-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-}
-.game-card.selected {
-  border: 2px solid #22c55e;
-  background: #f0fdf4;
-}
-.game-card img {
-  width: 100%;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 0.75rem;
-}
-.game-card h4 {
-  margin: 10px 0 0;
-  font-size: 0.95rem;
-  font-weight: 600;
+  gap: 15px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 16px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
 }
 
-/* ===== GAME PAGE ===== */
-.game-header {
-  position: relative;
-  text-align: center;
-}
 .game-banner {
-  width: 100%;
-  height: 180px;
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
   object-fit: cover;
+  flex-shrink: 0;
 }
+
 .game-info {
-  position: absolute;
-  bottom: 10px;
-  left: 20px;
-  color: white;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+  flex: 1;
 }
+
 .btn-back {
   display: inline-block;
-  margin-top: 6px;
-  background: rgba(0,0,0,0.6);
-  color: white;
-  padding: 6px 14px;
-  border-radius: 8px;
+  margin-top: 5px;
+  font-size: 14px;
   text-decoration: none;
-  font-size: 0.9rem;
+  color: #007bff;
+  transition: 0.2s;
+}
+.btn-back:hover {
+  color: #0056b3;
 }
 
-/* ===== CARD & INPUT ===== */
+/* ===== CARD ===== */
 .card {
-  background: white;
-  border-radius: 1rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   padding: 16px;
-  margin: 16px 0;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
 }
-.products-grid, .payments-grid {
+
+.card h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: #222;
+}
+
+/* ===== INPUT USER ===== */
+#userInputs label {
+  display: block;
+  font-size: 14px;
+  margin: 8px 0 4px;
+}
+
+#userInputs input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+/* ===== PRODUCTS ===== */
+.products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px,1fr));
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 12px;
-  margin-top: 10px;
 }
-.product-card, .payment-card {
-  background: #f8fafc;
-  border-radius: 1rem;
+
+.product-card {
+  background: #f9f9f9;
+  border-radius: 16px;
   padding: 12px;
   text-align: center;
   cursor: pointer;
   transition: 0.2s;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.06);
   border: 2px solid transparent;
 }
-.product-card:hover, .payment-card:hover {
-  background: #f1f5f9;
+
+.product-card:hover {
+  transform: translateY(-3px);
 }
-.product-card.selected, .payment-card.selected {
-  border-color: #22c55e;
-  background: #f0fdf4;
+
+.product-card.selected {
+  border: 2px solid #28a745;
+  background: #eaffea;
 }
-.btn-buy {
-  width: 100%;
+
+.product-card h4 {
+  font-size: 15px;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.product-card p {
+  font-size: 14px;
+  color: #666;
+}
+
+.badge {
+  display: inline-block;
+  margin-top: 6px;
+  background: #ff5722;
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 12px;
+}
+
+/* ===== PAYMENTS ===== */
+.payments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.payment-card {
+  background: #f9f9f9;
+  border-radius: 16px;
   padding: 12px;
-  border: none;
-  background: #3b82f6;
-  color: white;
-  font-size: 1rem;
-  border-radius: 0.75rem;
+  text-align: center;
   cursor: pointer;
   transition: 0.2s;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.06);
+  border: 2px solid transparent;
 }
-.btn-buy:hover { background: #2563eb; }
+
+.payment-card img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-bottom: 6px;
+}
+
+.payment-card p {
+  font-size: 14px;
+  color: #333;
+}
+
+.payment-card:hover {
+  transform: translateY(-3px);
+}
+
+.payment-card.selected {
+  border: 2px solid #28a745;
+  background: #eaffea;
+}
+
+/* ===== BUTTONS ===== */
+button, .btn-buy {
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-top: 10px;
+}
+
+button:hover, .btn-buy:hover {
+  background: #218838;
+}
 
 /* ===== FOOTER ===== */
 footer {
-  margin: 40px auto;
   text-align: center;
-  color: #94a3b8;
-  font-size: 0.85rem;
+  padding: 16px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* ===== TOAST (notif voucher) ===== */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 999;
+}
+.toast.show {
+  opacity: 1;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .game-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .game-banner {
+    width: 100px;
+    height: 100px;
+  }
 }
