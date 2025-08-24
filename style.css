@@ -286,7 +286,7 @@ body {
     margin-bottom: 15px;
 }
 
-/* Perubahan lebar input ID */
+/* Perbaikan untuk input ID dan Server ID */
 .input-group input[type="text"] {
     width: 100%;
     max-width: 400px; /* Batasi lebar maksimum */
@@ -309,6 +309,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 12px;
 }
+
 .payment-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -424,8 +425,20 @@ body {
     gap: 8px;
 }
 
+/* Perbaikan untuk input voucher */
 .voucher-group input {
     flex-grow: 1;
+    width: auto; /* Memastikan lebar menyesuaikan */
+    border-radius: 10px; /* Membuat sudut membulat */
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.voucher-group input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
 }
 
 .btn-primary {
