@@ -20,11 +20,11 @@ const GAMES = [
 ];
 
 const PAYMENTS = [
-    { id: "qris", name: "QRIS", img: "https://files.catbox.moe/crlcvj.jpg" },
-    { id: "shopeepay", name: "ShopeePay", img: "https://files.catbox.moe/gub7ik.jpg" },
-    { id: "dana", name: "Dana", img: "https://i.imghippo.com/files/qhn1355Ds.jpg" },
-    { id: "gopay", name: "GoPay", img: "https://i.imghippo.com/files/lRYZ9422LGY.jpg" },
-    { id: "ovo", name: "OVO", img: "https://i.imghippo.com/files/sIRs2824EY.jpg" },
+    { id: "qris", name: "QRIS", img: "https://files.catbox.moe/crlcvj.jpg", price: 0 },
+    { id: "shopeepay", name: "ShopeePay", img: "https://files.catbox.moe/gub7ik.jpg", price: 0 },
+    { id: "dana", name: "Dana", img: "https://i.imghippo.com/files/qhn1355Ds.jpg", price: 0 },
+    { id: "gopay", name: "GoPay", img: "https://i.imghippo.com/files/lRYZ9422LGY.jpg", price: 0 },
+    { id: "ovo", name: "OVO", img: "https://i.imghippo.com/files/sIRs2824EY.jpg", price: 0 },
 ];
 
 const PRODUCTS = {
@@ -294,12 +294,18 @@ function initGamePage() {
         }
 
         const paymentMethod = selectedPayment ? selectedPayment.name : "—";
+        const paymentPrice = selectedPayment ? selectedPayment.price : 0;
+        total += paymentPrice;
+
         const voucherInfo = appliedVoucher ? `<p>Diskon Voucher: <b>-${fmtIDR(discountAmount)}</b></p>` : '';
+        const paymentFeeInfo = selectedPayment && selectedPayment.price > 0 ? `<p>Biaya Pembayaran: <b>+${fmtIDR(paymentPrice)}</b></p>` : '';
 
         summaryBox.innerHTML = `
             <p>Produk: <b>${selectedProduct.label}</b></p>
             <p>Pembayaran: <b>${paymentMethod}</b></p>
             ${voucherInfo}
+            ${paymentFeeInfo}
+            <hr style="border-top: 1px dashed var(--border-color); margin: 15px 0;">
             <p>Total: <b>${fmtIDR(total)}</b></p>
         `;
     }
@@ -336,6 +342,7 @@ function initGamePage() {
             card.innerHTML = `
                 <img src="${payment.img}" alt="${payment.name}" class="payment-logo">
                 <p class="payment-name">${payment.name}</p>
+                <p class="payment-price">${payment.price === 0 ? 'Gratis' : fmtIDR(payment.price)}</p>
             `;
             card.addEventListener("click", () => {
                 selectedPayment = payment;
@@ -350,6 +357,9 @@ function initGamePage() {
         let finalPrice = selectedProduct.price;
         if (appliedVoucher) {
             finalPrice = Math.round(finalPrice * (1 - appliedVoucher.percent / 100));
+        }
+        if (selectedPayment) {
+            finalPrice += selectedPayment.price;
         }
         return finalPrice;
     }
