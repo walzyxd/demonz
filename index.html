@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
   <!-- HERO SLIDER -->
   <section class="hero">
     <div class="hero-slider" id="heroSlider">
@@ -39,16 +38,6 @@
     <p>© 2025 <strong>WalzShop</strong> — Instan & Terpercaya ✅</p>
   </footer>
 
-  <!-- SLIDER SCRIPT -->
-  <script>
-    // Simple slider
-    const slider = document.getElementById("heroSlider");
-    let idx = 0;
-    setInterval(() => {
-      idx = (idx + 1) % slider.children.length;
-      slider.style.transform = `translateX(-${idx * 100}%)`;
-    }, 4000);
-  </script>
   <script src="script.js"></script>
 </body>
 </html>
