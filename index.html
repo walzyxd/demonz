@@ -1,50 +1,60 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WalzShop — Top Up Game</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WalzShop — Top Up Game</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Font branding -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="page">
 
-<!-- ===== HERO SLIDER ===== -->
-<section class="hero">
-  <div class="slider" id="heroSlider">
-    <div class="slides">
-      <img src="https://files.catbox.moe/ksyny1.jpg" alt="Promo 1">
-      <img src="https://files.catbox.moe/79080d.jpeg" alt="Promo 2">
-      <img src="https://files.catbox.moe/gdnf8n.jpeg" alt="Promo 3">
-      <img src="https://files.catbox.moe/etv4n9.jpeg" alt="Promo 4">
+  <!-- HERO SLIDER -->
+  <section class="hero">
+    <div class="slider" id="heroSlider">
+      <div class="slides">
+        <img src="https://i.imghippo.com/files/IHhY6050Qlc.jpeg" alt="Slide 1" />
+        <img src="https://i.imghippo.com/files/uy5982ZtQ.jpeg" alt="Slide 2" />
+        <img src="https://i.imghippo.com/files/el4034qjU.jpeg" alt="Slide 3" />
+        <img src="https://i.imghippo.com/files/EZUu9660Hs.jpg" alt="Slide 4" />
+      </div>
     </div>
-  </div>
-</section>
-
-<!-- ===== BRAND HEADER ===== -->
-<header class="brand">
-  <div class="brand-badge">
-    <span class="logo-w">Walz</span><span class="logo-s">Shop</span>
-  </div>
-  <p class="tagline">Top Up Cepat, Murah, Aman & Terpercaya</p>
-
-  <div class="slogan-card">
-    <div class="s-dot"></div>
-    <div class="s-body">
-      <h3>Siap Top Up?</h3>
-      <p>Masukkan ID, pilih produk & bayar. Order langsung diproses ⚡</p>
-    </div>
-  </div>
-</header>
-
-<!-- ===== DAFTAR GAME ===== -->
-<main class="container">
-  <section class="games-grid" id="gamesGrid">
-    <!-- Game cards akan di-render dari script.js -->
   </section>
-</main>
 
-<!-- ===== SCRIPT ===== -->
-<script src="script.js"></script>
+  <!-- BRAND -->
+  <header class="brand container">
+    <div class="brand-badge">
+      <span class="logo-w">Walz</span><span class="logo-s">Shop</span>
+    </div>
+    <p class="tagline">Top Up Cepat ⚡ Murah 💎 Aman 🔒 Terpercaya ✅</p>
 
+    <!-- Slogan card -->
+    <div class="slogan-card">
+      <div class="s-dot"></div>
+      <div class="s-body">
+        <h3>Siap Top Up?</h3>
+        <p>Masukkan ID, pilih produk & bayar. Order langsung diproses otomatis ⚡</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- GRID PILIHAN GAME -->
+  <main class="container">
+    <h2 class="section-title">Pilih Game Favoritmu</h2>
+    <p class="tagline">Klik salah satu game di bawah untuk mulai top up.</p>
+    
+    <section class="games-grid" id="gamesGrid">
+      <!-- Diisi otomatis oleh script.js -->
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="container" style="margin:40px auto;text-align:center;color:#94a3b8;font-size:0.9rem">
+    <p>© 2025 <strong>WalzShop</strong>. All Rights Reserved.</p>
+    <p>Top up instan & terpercaya ⚡</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
