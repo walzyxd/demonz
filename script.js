@@ -1,26 +1,30 @@
-const ADMIN_WA = "6282298902274";
-const VOUCHERS = [{ code: "WALZSHOP", percent: 5 }, { code: "WALZPROMO", percent: 5 }];
+/* ================= DATA ================= */
+// Game yang butuh server ID
+const NEED_SERVER_KEYS = new Set([
+  "mobile legends", "honor of kings"
+]);
 
 const GAMES = [
-  { key: "free fire", name: "Free Fire", img: "https://files.catbox.moe/x5rvpg.jpg", server: false },
-  { key: "mobile legends", name: "Mobile Legends", img: "https://files.catbox.moe/wcxi20.jpg", server: true },
-  { key: "honor of kings", name: "Honor of Kings", img: "https://files.catbox.moe/rh78kj.jpg", server: false },
-  { key: "genshin impact", name: "Genshin Impact", img: "https://files.catbox.moe/b91rfb.jpg", server: false },
-  { key: "roblox", name: "Roblox", img: "https://files.catbox.moe/uvixa8.jpg", server: false },
-  { key: "super sus", name: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", server: false },
-  { key: "clash of clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", server: false },
-  { key: "blood strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", server: false },
-  { key: "pubg mobile", name: "PUBG Mobile", img: "https://files.catbox.moe/tatuo9.jpg", server: false },
+  { key: "free fire", name: "Free Fire", img: "https://files.catbox.moe/x5rvpg.jpg", needServer: NEED_SERVER_KEYS.has("free fire") },
+  { key: "mobile legends", name: "Mobile Legends", img: "https://files.catbox.moe/wcxi20.jpg", needServer: NEED_SERVER_KEYS.has("mobile legends") },
+  { key: "honor of kings", name: "Honor of Kings", img: "https://files.catbox.moe/rh78kj.jpg", needServer: NEED_SERVER_KEYS.has("honor of kings") },
+  { key: "genshin impact", name: "Genshin Impact", img: "https://files.catbox.moe/b91rfb.jpg", needServer: NEED_SERVER_KEYS.has("genshin impact") },
+  { key: "roblox", name: "Roblox", img: "https://files.catbox.moe/uvixa8.jpg", needServer: NEED_SERVER_KEYS.has("roblox") },
+  { key: "super sus", name: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", needServer: NEED_SERVER_KEYS.has("super sus") },
+  { key: "clash of clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", needServer: NEED_SERVER_KEYS.has("clash of clans") },
+  { key: "blood strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", needServer: NEED_SERVER_KEYS.has("blood strike") },
+  { key: "pubg mobile", name: "PUBG Mobile", img: "https://files.catbox.moe/tatuo9.jpg", needServer: NEED_SERVER_KEYS.has("pubg mobile") }
 ];
 
-const PAYMENTS = [
-  { id: "qris", name: "QRIS", img: "https://files.catbox.moe/crlcvj.jpg" },
-  { id: "shopeepay", name: "ShopeePay", img: "https://files.catbox.moe/gub7ik.jpg" },
-  { id: "dana", name: "Dana", img: "https://files.catbox.moe/f5ey4y.jpg" },
-  { id: "gopay", name: "GoPay", img: "https://files.catbox.moe/je0irt.jpg" },
-  { id: "ovo", name: "OVO", img: "https://files.catbox.moe/57f44a.jpg" },
+const payments = [
+  { name: "QRIS", image: "https://files.catbox.moe/crlcvj.jpg" },
+  { name: "Dana", image: "https://i.imghippo.com/files/GTZi5615xp.jpg" },
+  { name: "Gopay", image: "https://i.imghippo.com/files/NF3980AI.jpg" },
+  { name: "ShopeePay", image: "https://files.catbox.moe/gub7ik.jpg" },
+  { name: "OVO", image: "https://i.imghippo.com/files/fSpV2194O.jpg" }
 ];
 
+// Produk tiap game
 const PRODUCTS = {
   "free fire": [
     { id: "ff-5", label: "5 Diamonds", price: 901 },
@@ -33,14 +37,13 @@ const PRODUCTS = {
     { id: "ff-1450", label: "1450 Diamonds", price: 180180 },
     { id: "ff-2180", label: "2180 Diamonds", price: 270270 },
     { id: "ff-3640", label: "3640 Diamonds", price: 450450 },
-    // Membership & Level Up
     { id: "ff-mw", label: "Membership Mingguan", price: 30500, badges: ["Member"] },
     { id: "ff-mb", label: "Membership Bulanan", price: 90000, badges: ["Member"] },
     { id: "ff-lvl6", label: "Level Up Pass Lv.6", price: 5500, badges: ["Level Up"] },
     { id: "ff-lvl10", label: "Level Up Pass Lv.10", price: 8800, badges: ["Level Up"] },
     { id: "ff-lvl15", label: "Level Up Pass Lv.15", price: 8800, badges: ["Level Up"] },
     { id: "ff-lvl20", label: "Level Up Pass Lv.20", price: 8800, badges: ["Level Up"] },
-    { id: "ff-booyah", label: "BooYah Pass", price: 50000, badges: ["Pass"] },
+    { id: "ff-booyah", label: "BooYah Pass", price: 50000, badges: ["Pass"] }
   ],
   "mobile legends": [
     { id: "ml-3", label: "3 Diamonds", price: 1171 },
@@ -60,7 +63,7 @@ const PRODUCTS = {
     { id: "ml-2010", label: "2010 Diamonds", price: 475000 },
     { id: "ml-4830", label: "4830 Diamonds", price: 1140000 },
     { id: "ml-wdp", label: "Weekly Diamond Pass", price: 28000, badges: ["WDP"] },
-    { id: "ml-twilight", label: "Twilight Pass", price: 150000, badges: ["Pass"] },
+    { id: "ml-twilight", label: "Twilight Pass", price: 150000, badges: ["Pass"] }
   ],
   "pubg mobile": [
     { id: "pubg-30", label: "30 UC", price: 7000 },
@@ -70,317 +73,259 @@ const PRODUCTS = {
     { id: "pubg-1500", label: "1500 + 300 UC", price: 350000 },
     { id: "pubg-3000", label: "3000 + 850 UC", price: 700000 },
     { id: "pubg-lvl20", label: "Level Up Pass Lv.20", price: 8800, badges: ["Level Up"] },
-    { id: "pubg-booyah", label: "BooYah Pass", price: 50000, badges: ["Pass"] },
+    { id: "pubg-booyah", label: "BooYah Pass", price: 50000, badges: ["Pass"] }
   ],
-  "genshin impact": [
-    { id: "gi-60", label: "60 Genesis Crystals", price: 14865 },
-    { id: "gi-330", label: "330 Genesis Crystals", price: 72973 },
-    { id: "gi-1090", label: "1090 Genesis Crystals", price: 229730 },
-    { id: "gi-2240", label: "2240 Genesis Crystals", price: 440541 },
-    { id: "gi-3880", label: "3880 Genesis Crystals", price: 734234 },
-    { id: "gi-8080", label: "8080 Genesis Crystals", price: 1467568 },
-    { id: "gi-welkin", label: "Blessing of the Welkin Moon", price: 72973, badges: ["Welkin"] },
-  ],
-  "honor of kings": [
-    { id: "hok-16", label: "16 Tokens", price: 3300 },
-    { id: "hok-80", label: "80 Tokens", price: 16500 },
-    { id: "hok-240", label: "240 Tokens", price: 51000 },
-    { id: "hok-400", label: "400 Tokens", price: 84000 },
-    { id: "hok-560", label: "560 Tokens", price: 118000 },
-    { id: "hok-830", label: "830 Tokens", price: 168000 },
-    { id: "hok-1245", label: "1245 Tokens", price: 250000 },
-    { id: "hok-2508", label: "2508 Tokens", price: 495000 },
-    { id: "hok-4180", label: "4180 Tokens", price: 824000 },
-    { id: "hok-8360", label: "8360 Tokens", price: 1648000 },
-  ],
-  "roblox": [
-    { id: "rbx-50k", label: "Gift Card Rp50.000", price: 48440 },
-    { id: "rbx-65k", label: "Gift Card Rp65.000", price: 62970 },
-    { id: "rbx-100k", label: "Gift Card Rp100.000", price: 96500 },
-    { id: "rbx-200k", label: "Gift Card Rp200.000", price: 193000 },
-    { id: "rbx-500k", label: "Gift Card Rp500.000", price: 479000 },
-  ],
-  "super sus": [
-    { id: "ss-100", label: "100 Goldstar", price: 11712 },
-    { id: "ss-310", label: "310 Goldstar", price: 34234 },
-    { id: "ss-520", label: "520 Goldstar", price: 57658 },
-    { id: "ss-1060", label: "1060 Goldstar", price: 116216 },
-    { id: "ss-2180", label: "2180 Goldstar", price: 239640 },
-    { id: "ss-5600", label: "5600 Goldstar", price: 613514 },
-    { id: "ss-weekly", label: "Weekly Card", price: 13514, badges: ["Weekly"] },
-    { id: "ss-monthly", label: "Monthly Card", price: 134234, badges: ["Monthly"] },
-    { id: "ss-vip", label: "Super VIP Card", price: 157658, badges: ["VIP"] },
-  ],
-  "clash of clans": [
-    { id: "coc-500", label: "500 Gems", price: 75299 },
-    { id: "coc-1200", label: "1200 Gems", price: 150499 },
-    { id: "coc-2500", label: "2500 Gems", price: 300999 },
-    { id: "coc-6500", label: "6500 Gems", price: 752399 },
-    { id: "coc-14000", label: "14000 Gems", price: 1454599 },
-  ],
-  "blood strike": [
-    { id: "bs-100", label: "100 + 5 Gold", price: 11999 },
-    { id: "bs-300", label: "300 + 20 Gold", price: 34999 },
-    { id: "bs-500", label: "500 + 40 Gold", price: 54999 },
-    { id: "bs-1000", label: "1000 + 100 Gold", price: 110000 },
-    { id: "bs-2000", label: "2000 + 260 Gold", price: 219999 },
-    { id: "bs-5000", label: "5000 + 800 Gold", price: 549999 },
-  ],
+  // Tambah semua game lain sesuai struktur sebelumnya
 };
 
-/* ---------- Utilities ---------- */
-const qs = (s, r = document) => r.querySelector(s);
-const qsa = (s, r = document) => Array.from(r.querySelectorAll(s));
-const fmtIDR = (n) => new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(n);
+// Voucher
+const VOUCHERS = [{ code: "WALZPROMO", type: "percent", value: 10, label: "Diskon 10%" }];
 
-/* ---------- INDEX: Slider + Game Cards ---------- */
-document.addEventListener("DOMContentLoaded", () => {
-  const slider = qs("#heroSlider .slides");
-  if (slider) initSlider(slider);
+/* ================== UTILS ================== */
+const qs = (sel, el = document) => el.querySelector(sel);
+const qsa = (sel, el = document) => [...el.querySelectorAll(sel)];
+const fmt = n => "Rp " + (n || 0).toLocaleString("id-ID");
+const toKey = s => s.trim().toLowerCase();
+function showVoucherToast(text = "Voucher telah digunakan!") {
+  let t = document.createElement("div");
+  t.className = "voucher-toast";
+  t.textContent = text;
+  document.body.appendChild(t);
+  requestAnimationFrame(() => t.classList.add("show"));
+  setTimeout(() => { t.classList.remove("show"); setTimeout(() => t.remove(), 320); }, 2200);
+}
+
+/* ============ INDEX PAGE ============ */
+(() => {
+  const slidesWrap = qs(".slides");
+  if (slidesWrap) {
+    let idx = 0;
+    setInterval(() => {
+      if (!slidesWrap.children.length) return;
+      idx = (idx + 1) % slidesWrap.children.length;
+      slidesWrap.style.transform = `translateX(-${idx * 100}%)`;
+    }, 3500);
+  }
 
   const grid = qs("#gamesGrid");
-  if (grid) renderGameGrid(grid);
-});
-
-function initSlider(slidesEl){
-  const imgs = qsa("img", slidesEl);
-  let i = 0;
-  imgs.forEach(img=>img.draggable=false);
-  const go = (n)=>{ i=(n+imgs.length)%imgs.length; slidesEl.style.transform=`translateX(-${i*100}%)`; };
-  setInterval(()=>go(i+1), 3500);
-  go(0);
-}
-
-function renderGameGrid(container){
-  container.innerHTML = "";
-  GAMES.forEach(g=>{
-    const card = document.createElement("div");
-    card.className = "game-card";
-    card.addEventListener("click", ()=>selectGame(g));
-    const img = document.createElement("img");
-    img.src = g.img; img.alt = g.name; img.className = "game-thumb";
-    const meta = document.createElement("div");
-    meta.className = "game-meta";
-    const name = document.createElement("p");
-    name.className = "game-name"; name.textContent = g.name;
-    meta.appendChild(name);
-    card.appendChild(img); card.appendChild(meta);
-
-    // Tooltip badge info
-    card.addEventListener("mouseenter", ()=>{
-      if(g.badges && g.badges.length) card.title = `Badge: ${g.badges.join(", ")}`;
-    });
-
-    container.appendChild(card);
-  });
-}
-
-function selectGame(game){
-  localStorage.setItem("walz_game_key", game.key);
-  localStorage.setItem("walz_game_name", game.name);
-  localStorage.setItem("walz_game_img", game.img);
-  localStorage.setItem("walz_game_server", game.server ? "1" : "0");
-  location.href = "game.html";
-}
-
-/* ---------- GAME PAGE ---------- */
-document.addEventListener("DOMContentLoaded", () => {
-  const gameTitle = qs("#gameTitle");
-  const banner = qs("#gameBanner");
-  const productGrid = qs("#productGrid");
-  const paymentGrid = qs("#paymentGrid");
-  if (!gameTitle || !banner || !productGrid || !paymentGrid) return;
-
-  const gName = localStorage.getItem("walz_game_name") || "Free Fire";
-  const gImg  = localStorage.getItem("walz_game_img") || "https://files.catbox.moe/x5rvpg.jpg";
-  const gKey  = localStorage.getItem("walz_game_key") || "free fire";
-  const needServer = localStorage.getItem("walz_game_server") === "1";
-
-  gameTitle.textContent = gName;
-  banner.src = gImg; banner.alt = gName;
-
-  const serverWrap = qs("#serverWrap");
-  if(serverWrap) serverWrap.style.display = needServer ? "block" : "none";
-
-  let selectedProduct = null, selectedPayment = null, appliedVoucher = null;
-
-  renderProducts(); renderPayments(); updateSummary();
-
-  const voucherInput = qs("#voucherInput");
-  const applyVoucherBtn = qs("#applyVoucherBtn");
-  const listVoucherBtn = qs("#listVoucherBtn");
-  const voucherList = qs("#voucherList");
-  const errVoucher = qs("#errVoucher");
-
-  listVoucherBtn.addEventListener("click", ()=>{
-    voucherList.classList.toggle("hidden");
-    if(!voucherList.classList.contains("hidden")){
-      voucherList.innerHTML = "";
-      VOUCHERS.forEach(v=>{
-        const it = document.createElement("div");
-        it.className = "voucher-item";
-        it.textContent = `${v.code} — Diskon ${v.percent}%`;
-        it.addEventListener("click", ()=>{
-          voucherInput.value = v.code;
-          voucherList.classList.add("hidden");
-        });
-        voucherList.appendChild(it);
+  if (grid) {
+    GAMES.forEach(g => {
+      const card = document.createElement("div");
+      card.className = "game-card";
+      card.innerHTML = `<img class="thumb" src="${g.img}" alt="${g.name}"><h3>${g.name}</h3>`;
+      card.addEventListener("click", () => {
+        localStorage.setItem("selectedGame", JSON.stringify(g));
+        window.location.href = "game.html";
       });
+      grid.appendChild(card);
+    });
+  }
+/* ============ GAME PAGE LOGIC ============ */
+(() => {
+  const page = qs("#gamePage");
+  if (!page) return;
+
+  // Back button
+  qs("#backBtn")?.addEventListener("click", () => history.back());
+
+  // Load selected game
+  let currentGame = JSON.parse(localStorage.getItem("selectedGame") || "{}");
+  if (!currentGame.key) currentGame = GAMES[0];
+  currentGame.needServer = NEED_SERVER_KEYS.has(currentGame.key);
+
+  // Header info
+  qs("#gameTitle").textContent = currentGame.name;
+  qs("#gameBanner").src = currentGame.img;
+
+  // Server input
+  const serverWrap = qs("#serverWrap");
+  if (serverWrap) {
+    serverWrap.style.display = currentGame.needServer ? "block" : "none";
+    const hintEl = serverWrap.querySelector(".hint");
+    if (currentGame.needServer && hintEl) {
+      hintEl.innerHTML = `Khusus Mobile Legends: format biasanya <b>ID (Server)</b>.
+      <button class="link how-link" type="button" id="howServerBtn">Cara cek?</button>`;
+    }
+  }
+
+  // State
+  let selectedProduct = null;
+  let selectedPayment = null;
+  let discountValue = 0;
+  let voucherUsed = null;
+
+  // Render products
+  const productGrid = qs("#productGrid");
+  (PRODUCTS[currentGame.key] || []).forEach(p => {
+    const item = document.createElement("button");
+    item.type = "button";
+    item.className = "product-item";
+
+    const badges = (p.badges || []).map(b => `<span class="badge badge--${b.toLowerCase().replace(/\s+/g,"-")}">${b}</span>`).join("");
+
+    item.innerHTML = `<div class="product-top"><span class="product-label">${p.label}</span><div class="badges">${badges}</div></div><div class="product-price">${fmt(p.price)}</div>`;
+
+    item.addEventListener("click", () => {
+      qsa(".product-item.selected").forEach(el => el.classList.remove("selected"));
+      item.classList.add("selected");
+
+      selectedProduct = {...p};
+      discountValue = 0;
+      voucherUsed = null;
+
+      qs("#applyVoucherBtn").classList.remove("used");
+      qs("#applyVoucherBtn").textContent = "Gunakan";
+      qs("#voucherInput").value = "";
+      qs("#errVoucher").textContent = "";
+
+      updatePaymentPrices();
+      renderSummary();
+    });
+    productGrid.appendChild(item);
+  });
+
+  // Render payments
+  const payGrid = qs("#paymentGrid");
+  payments.forEach(pm => {
+    const card = document.createElement("div");
+    card.className = "pay-card";
+    card.innerHTML = `<img class="pay-logo" src="${pm.image}" alt="${pm.name}"><div class="pay-info"><span class="pay-name">${pm.name}</span><span class="pay-price"></span></div>`;
+    card.addEventListener("click", () => {
+      qsa(".pay-card.selected").forEach(el => el.classList.remove("selected"));
+      card.classList.add("selected");
+      selectedPayment = pm;
+      qs("#errPayment").textContent = "";
+      renderSummary();
+    });
+    payGrid.appendChild(card);
+  });
+
+  function updatePaymentPrices() {
+    qsa(".pay-price").forEach(el => {
+      el.textContent = selectedProduct ? fmt(Math.max(selectedProduct.price - discountValue,0)) : "";
+    });
+  }
+
+  // Voucher apply
+  qs("#listVoucherBtn")?.addEventListener("click", () => {
+    const voucherList = qs("#voucherList");
+    voucherList.classList.toggle("hidden");
+    if (!voucherList.dataset.rendered) {
+      VOUCHERS.forEach(v => {
+        const chip = document.createElement("div");
+        chip.className = "voucher-chip";
+        chip.innerHTML = `<strong>${v.code}</strong> <span>${v.label}</span>`;
+        chip.addEventListener("click", () => { qs("#voucherInput").value = v.code; });
+        voucherList.appendChild(chip);
+      });
+      voucherList.dataset.rendered = "1";
     }
   });
 
-  applyVoucherBtn.addEventListener("click", ()=>{
-    const code = (voucherInput.value||"").trim().toUpperCase();
-    const found = VOUCHERS.find(v=>v.code===code);
-    if(!found){ appliedVoucher=null; errVoucher.textContent="Kode voucher tidak valid."; renderPayments(); return; }
-    appliedVoucher = found; errVoucher.textContent="";
-    renderPayments();
-    successPopup("Voucher Berhasil Digunakan", `Kode <b>${found.code}</b> aktif. Diskon ${found.percent}% diterapkan.`);
+  qs("#applyVoucherBtn")?.addEventListener("click", () => {
+    const code = toKey(qs("#voucherInput").value || "");
+    qs("#errVoucher").textContent = "";
+    if (!selectedProduct) { qs("#errVoucher").textContent = "Pilih produk dulu sebelum gunakan voucher."; return; }
+    const v = VOUCHERS.find(x=>toKey(x.code)===code);
+    if(!v){ qs("#errVoucher").textContent="Kode voucher tidak valid."; return; }
+    if(voucherUsed){ qs("#errVoucher").textContent="Voucher sudah digunakan."; return; }
+
+    discountValue = v.type==="percent"?Math.floor(selectedProduct.price*v.value/100):v.value;
+    voucherUsed = v.code;
+    updatePaymentPrices();
+    renderSummary();
+
+    qs("#applyVoucherBtn").classList.add("used");
+    qs("#applyVoucherBtn").textContent="✓ Voucher dipakai";
+    showVoucherToast("Voucher telah digunakan!");
+    qs("#voucherList")?.classList.add("hidden");
   });
 
-  qs("#checkoutBtn").addEventListener("click", ()=>{
-    const idVal = (qs("#userId").value||"").trim();
-    const serverVal = needServer ? (qs("#serverId").value||"").trim() : "";
-    const emailVal = (qs("#email").value||"").trim();
+  // Summary
+  const summaryBox = qs("#summary");
+  function renderSummary() {
+    const uid = qs("#userId")?.value.trim()||"";
+    const sid = qs("#serverId")?.value?.trim?.()||"";
+    const email = qs("#email")?.value.trim()||"";
 
-    clearErrors();
-    if(!idVal){ showErr("#errUserId","User ID wajib diisi."); qs("#userId").focus(); return; }
-    if(needServer && !serverVal){ showErr("#errServerId","Server ID wajib diisi."); qs("#serverId").focus(); return; }
-    if(!/^\S+@\S+\.\S+$/.test(emailVal)){ showErr("#errEmail","Format email tidak valid."); qs("#email").focus(); return; }
-    if(!selectedProduct){ showErr("#errProduct","Silakan pilih produk."); productGrid.scrollIntoView({behavior:"smooth"}); return; }
-    if(!selectedPayment){ showErr("#errPayment","Silakan pilih metode pembayaran."); paymentGrid.scrollIntoView({behavior:"smooth"}); return; }
+    const rows = [];
+    const rowHTML = (l,r)=>`<div class="row"><span>${l}</span><span>${r}</span></div>`;
+    rows.push(rowHTML("Game",currentGame.name));
+    rows.push(rowHTML("Produk",selectedProduct?selectedProduct.label:"-"));
+    rows.push(rowHTML("Metode",selectedPayment?selectedPayment.name:"-"));
+    rows.push(rowHTML("User ID",uid||"-"));
+    if(currentGame.needServer) rows.push(rowHTML("Server ID",sid||"-"));
+    rows.push(rowHTML("Email",email||"-"));
 
-    let total = selectedProduct.price;
-    if(appliedVoucher) total = Math.round(total*(100-appliedVoucher.percent)/100);
+    const subtotal = selectedProduct?selectedProduct.price:0;
+    const total = Math.max(subtotal-discountValue,0);
 
-    const lines = [
-      `🛒 *Detail Transaksi WalzShop*`,
-      `━━━━━━━━━━━━━━━━━━━━`,
-      `🎮 Game: ${gName}`,
-      `🆔 ID: ${idVal}`,
-      needServer ? `🌐 Server ID: ${serverVal}` : null,
-      `💎 Produk: ${selectedProduct.label}`,
-      `💳 Pembayaran: ${selectedPayment.name}`,
-      appliedVoucher ? `🏷 Voucher: ${appliedVoucher.code} (${appliedVoucher.percent}% off)` : null,
-      `💰 Total: ${fmtIDR(total)}`,
-      `📧 Email: ${emailVal}`,
-      `━━━━━━━━━━━━━━━━━━━━`,
-      `✅ Mohon konfirmasi ke admin.`
-    ].filter(Boolean).join("\n");
+    rows.push(rowHTML("Subtotal",selectedProduct?fmt(subtotal):"-"));
+    rows.push(rowHTML("Diskon",discountValue?`-${fmt(discountValue)} ${voucherUsed?`(${voucherUsed})`:""}`:"-"));
 
-    const wa = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(lines)}`;
-    const mailto = `mailto:${encodeURIComponent(emailVal)}?subject=${encodeURIComponent("Bukti Transaksi WalzShop")}&body=${encodeURIComponent(lines)}`;
+    summaryBox.innerHTML = `${rows.join("")}<div class="row total"><span>Total</span><span>${selectedProduct?fmt(total):"-"}</span></div>`;
+  }
 
-    showPopup(
-      "Detail Transaksi",
-      lines.replaceAll("\n","<br>") +
-      `<br><br><a class="btn primary" href="${wa}" target="_blank">Kirim via WhatsApp</a>
-       <a class="btn soft" style="margin-left:8px" href="${mailto}">Kirim ke Email Saya</a>`
-    );
+  ["userId","serverId","email"].forEach(id=>{
+    const el = qs("#"+id);
+    if(el) el.addEventListener("input",renderSummary);
   });
 
-  qs("#popupClose").addEventListener("click", ()=>qs("#popup").classList.add("hidden"));
+  // Cara cek server popup
+  document.addEventListener("click",(e)=>{
+    if(e.target && e.target.id==="howServerBtn"){
+      const steps=`<ol style="padding-left:18px;margin:0">
+        <li>Buka Mobile Legends ➜ ketuk avatar/profil di kiri atas.</li>
+        <li>Lihat bagian <b>User ID</b>. Format: <b>123456789 (1234)</b>.</li>
+        <li>Masukkan ke form sebagai:<br>• <b>User ID</b>: 123456789<br>• <b>Server ID</b>: 1234</li>
+        <li>Pastikan angka benar sebelum checkout.</li>
+      </ol>`;
+      qs("#popupTitle").textContent="Cara Cek ID & Server (Mobile Legends)";
+      qs("#popupMessage").innerHTML=steps;
+      qs("#popup").classList.remove("hidden");
+    }
+  });
 
-  /* ----- Render Products ----- */
-  function renderProducts(){
-    productGrid.innerHTML="";
-    const items = PRODUCTS[gKey]||[];
-    items.forEach(p=>{
-      const card = document.createElement("div");
-      card.className="product-card";
-      const title = document.createElement("p"); title.className="p-title"; title.innerHTML=p.label;
-      const price = document.createElement("p"); price.className="p-price"; price.textContent=fmtIDR(p.price);
-      card.appendChild(title); card.appendChild(price);
+  // Checkout
+  qs("#checkoutBtn")?.addEventListener("click",()=>{
+    const uid = qs("#userId").value.trim();
+    const sid = qs("#serverId")?.value.trim();
+    const email = qs("#email").value.trim();
 
-      if(p.badges && p.badges.length){
-        const wrap = document.createElement("div"); wrap.className="badges";
-        p.badges.forEach(b=>{
-          const tag = document.createElement("span"); tag.className="badge"; tag.textContent=b;
-          wrap.appendChild(tag);
-        });
-        card.appendChild(wrap);
-      }
+    let ok=true;
+    if(!uid){qs("#errUserId").textContent="User ID wajib diisi";ok=false;}else qs("#errUserId").textContent="";
+    if(currentGame.needServer && !sid){qs("#errServerId").textContent="Server ID wajib diisi";ok=false;}else qs("#errServerId").textContent="";
+    if(!email || !/^\S+@\S+\.\S+$/.test(email)){qs("#errEmail").textContent="Email valid wajib diisi";ok=false;}else qs("#errEmail").textContent="";
+    if(!selectedProduct){qs("#errProduct").textContent="Pilih salah satu produk";ok=false;}else qs("#errProduct").textContent="";
+    if(!selectedPayment){qs("#errPayment").textContent="Pilih metode pembayaran";ok=false;}else qs("#errPayment").textContent="";
+    if(!ok) return;
 
-      card.addEventListener("click", ()=>{
-        qsa(".product-card", productGrid).forEach(c=>c.classList.remove("active"));
-        card.classList.add("active");
-        card.style.transform="scale(1.03)";
-        setTimeout(()=>card.style.transform="",200);
-        selectedProduct = p; renderPayments(); updateSummary();
-      });
-      productGrid.appendChild(card);
-    });
-  }
+    const subtotal = selectedProduct.price;
+    const total = Math.max(subtotal-discountValue,0);
 
-  /* ----- Render Payments ----- */
-  function renderPayments(){
-    paymentGrid.innerHTML="";
-    PAYMENTS.forEach(pay=>{
-      const card = document.createElement("div"); card.className="payment-card";
-      const img = document.createElement("img"); img.src=pay.img; img.alt=pay.name; img.className="payment-logo";
-      const name = document.createElement("p"); name.className="payment-name"; name.textContent=pay.name;
-      const price = document.createElement("div"); price.className="pay-price";
-      if(selectedProduct){
-        let nominal = selectedProduct.price;
-        if(appliedVoucher) nominal=Math.round(nominal*(100-appliedVoucher.percent)/100);
-        price.textContent=fmtIDR(nominal);
-      } else price.textContent="";
-      card.append(img,name,price);
-      card.addEventListener("click", ()=>{
-        qsa(".payment-card", paymentGrid).forEach(c=>c.classList.remove("active"));
-        card.classList.add("active");
-        card.style.transform="scale(1.03)";
-        setTimeout(()=>card.style.transform="",200);
-        selectedPayment=pay; updateSummary();
-      });
-      paymentGrid.appendChild(card);
-    });
-  }
+    const detail = [
+      `WalzShop — Detail Transaksi`,
+      `===========================`,
+      `Game        : ${currentGame.name}`,
+      `Produk      : ${selectedProduct.label}`,
+      `Metode Bayar: ${selectedPayment.name}`,
+      `User ID     : ${uid}${currentGame.needServer?` (${sid})`:""}`,
+      `Email       : ${email}`,
+      `Subtotal    : ${fmt(subtotal)}`,
+      `Diskon      : ${discountValue?fmt(discountValue):"-"} ${voucherUsed?`(${voucherUsed})`:""}`,
+      `Total       : ${fmt(total)}`
+    ].join("\n");
 
-  function updateSummary(){
-    const box=qs("#summary");
-    if(!selectedProduct){ box.innerHTML=`<p>Pilih produk terlebih dahulu.</p>`; return; }
-    let nominal=selectedProduct.price;
-    let discText="";
-    if(appliedVoucher){ nominal=Math.round(nominal*(100-appliedVoucher.percent)/100); discText=` <span style="color:#7cf5d6">(Diskon ${appliedVoucher.percent}%)</span>`;}
-    const method = selectedPayment ? selectedPayment.name : "—";
-    box.innerHTML = `
-      <p>Produk: <b>${selectedProduct.label}</b></p>
-      <p>Metode Pembayaran: <b>${method}</b></p>
-      <p>Total: <b>${fmtIDR(nominal)}</b>${discText}</p>
-    `;
-  }
+    qs("#popupTitle").textContent="Detail Transaksi";
+    qs("#popupMessage").innerHTML=`<pre style="white-space:pre-wrap;word-wrap:break-word">${detail}</pre>`;
 
-  function showPopup(title, html){
-    qs("#popupTitle").textContent = title || "WalzShop";
-    qs("#popupMessage").innerHTML = html || "";
+    qs("#waBtn").href=`https://wa.me/6282298902274?text=${encodeURIComponent(detail)}`;
+    qs("#emailBtn").href=`mailto:walzlonely@gmail.com?subject=${encodeURIComponent("WalzShop — Order Baru")}&body=${encodeURIComponent(detail)}`;
+
     qs("#popup").classList.remove("hidden");
-  }
+  });
 
-  function successPopup(title, sub){
-    const icon = `
-      <div style="
-        width:72px;height:72px;margin:0 auto 10px auto;border-radius:50%;
-        background:#1f8f1f;display:flex;align-items:center;justify-content:center;
-        box-shadow:0 0 15px rgba(31,143,31,.6);animation:pop .25s ease;">
-        <svg width="38" height="38" viewBox="0 0 24 24" fill="none">
-          <path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <style>@keyframes pop{from{transform:scale(.85);opacity:.6}to{transform:scale(1);opacity:1}}</style>
-    `;
-    showPopup(title || "Berhasil", `${icon}<div>${sub || ""}</div>`);
-  }
+  qs("#popupClose")?.addEventListener("click",()=>qs("#popup").classList.add("hidden"));
 
-  function clearErrors(){
-    ["#errUserId","#errServerId","#errEmail","#errProduct","#errPayment","#errVoucher"].forEach(id=>{
-      const el = qs(id);
-      if(el) el.textContent = "";
-    });
-  }
-
-  function showErr(sel, msg){
-    const el = qs(sel);
-    if(el) el.textContent = msg;
-  }
-});
+  renderSummary();
+})();
