@@ -4,137 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WalzShop — Top Up Game</title>
+  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #f8fafc;
-      color: #1e293b;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 16px;
-    }
-
-    /* HERO */
-    .hero {
-      position: relative;
-      overflow: hidden;
-      height: 200px;
-      border-radius: 1rem;
-      margin: 16px;
-    }
-    .hero img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 1rem;
-    }
-
-    /* BRAND */
-    .brand {
-      text-align: center;
-      margin-top: 20px;
-    }
-    .brand-badge {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2rem;
-      font-weight: 800;
-    }
-    .logo-w { color: #3b82f6; }
-    .logo-s { color: #ef4444; }
-    .tagline {
-      margin-top: 6px;
-      font-size: 0.95rem;
-      color: #64748b;
-    }
-
-    /* SLOGAN */
-    .slogan-card {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: white;
-      border-radius: 1rem;
-      padding: 14px 18px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      margin: 18px auto;
-      max-width: 500px;
-    }
-    .s-dot {
-      width: 12px;
-      height: 12px;
-      background: #3b82f6;
-      border-radius: 50%;
-    }
-    .s-body h3 {
-      margin: 0;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #1e293b;
-    }
-    .s-body p {
-      margin: 2px 0 0;
-      font-size: 0.9rem;
-      color: #475569;
-    }
-
-    /* GRID GAME */
-    .section-title {
-      text-align: center;
-      margin: 24px 0 6px;
-      font-size: 1.4rem;
-      font-weight: 600;
-    }
-    .games-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-      gap: 16px;
-      margin-top: 20px;
-    }
-    .game-card {
-      background: white;
-      border-radius: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-      text-align: center;
-      padding: 12px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      cursor: pointer;
-    }
-    .game-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-    }
-    .game-card img {
-      width: 100%;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 0.75rem;
-    }
-    .game-card h4 {
-      margin: 10px 0 0;
-      font-size: 0.95rem;
-      color: #1e293b;
-      font-weight: 600;
-    }
-
-    /* FOOTER */
-    footer {
-      margin: 40px auto;
-      text-align: center;
-      color: #94a3b8;
-      font-size: 0.85rem;
-    }
-  </style>
 </head>
 <body class="page">
 
-  <!-- HERO SLIDER -->
+  <!-- HERO -->
   <section class="hero">
-    <img src="https://i.imghippo.com/files/IHhY6050Qlc.jpeg" alt="Hero" />
+    <img src="https://i.imghippo.com/files/IHhY6050Qlc.jpeg" alt="Hero WalzShop" />
   </section>
 
   <!-- BRAND -->
@@ -142,30 +19,29 @@
     <div class="brand-badge">
       <span class="logo-w">Walz</span><span class="logo-s">Shop</span>
     </div>
-    <p class="tagline">Top Up Cepat ⚡ Murah 💎 Aman 🔒 Terpercaya ✅</p>
+    <p class="tagline">Top Up Cepat ⚡ Murah 💎 Aman 🔒</p>
 
-    <!-- Slogan card -->
+    <!-- Slogan -->
     <div class="slogan-card">
       <div class="s-dot"></div>
       <div class="s-body">
-        <h3>Siap Top Up?</h3>
-        <p>Masukkan ID, pilih produk & bayar. Order langsung diproses otomatis ⚡</p>
+        <h3>Mau Top Up?</h3>
+        <p>Masukkan ID, pilih produk, bayar & langsung masuk ⚡</p>
       </div>
     </div>
   </header>
 
-  <!-- GRID PILIHAN GAME -->
+  <!-- GAME LIST -->
   <main class="container">
     <h2 class="section-title">Pilih Game Favoritmu</h2>
-    <p class="tagline" style="text-align:center">Klik salah satu game di bawah untuk mulai top up.</p>
+    <p class="tagline center">Klik game di bawah untuk mulai top up</p>
 
     <section class="games-grid" id="gamesGrid"></section>
   </main>
 
   <!-- FOOTER -->
   <footer class="container">
-    <p>© 2025 <strong>WalzShop</strong>. All Rights Reserved.</p>
-    <p>Top up instan & terpercaya ⚡</p>
+    <p>© 2025 <strong>WalzShop</strong>. Instan & Terpercaya ✅</p>
   </footer>
 
   <script src="script.js"></script>
