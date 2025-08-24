@@ -5,70 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Top Up Game | WalzShop</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="brand container">
-    <a href="index.html" class="btn-back">&larr; Kembali</a>
-    <h1 class="brand-badge">
-      <span class="logo-w">Walz</span><span class="logo-s">Shop</span>
-    </h1>
-    <p class="tagline">Top Up Cepat ⚡ Murah 💎 Aman 🔒</p>
-  </header>
-  <main class="container">
-    <!-- GAME HEADER -->
-    <section class="game-header">
-      <img id="gameBanner" class="game-banner" src="" alt="Game">
-      <div class="game-info">
-        <h1 id="gameTitle"></h1>
+  <!-- NAVBAR / LOGO -->
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-badge">
+        <span class="logo-w">Walz</span><span class="logo-s">Shop</span>
+      </a>
+      <a href="index.html" class="btn-back-coda" title="Kembali">&larr;</a>
+    </div>
+  </nav>
+
+  <main class="container game-main-coda">
+    <!-- HEADER GAME -->
+    <section class="game-header-coda">
+      <img id="gameBanner" class="game-banner-coda" src="" alt="Game">
+      <h1 id="gameTitle" class="game-title-coda"></h1>
+    </section>
+
+    <!-- STEP 1: USER ID -->
+    <section class="card-coda">
+      <div class="step-guide-coda">1. Masukkan User ID Anda</div>
+      <div class="input-row-coda">
+        <input type="text" id="userId" maxlength="30" placeholder="User ID Game" autocomplete="off"/>
+      </div>
+      <div class="input-row-coda" id="serverWrap" style="display:none;">
+        <input type="text" id="serverId" maxlength="10" placeholder="Server ID (jika ada)" autocomplete="off"/>
       </div>
     </section>
 
-    <!-- STEP 1 -->
-    <section class="card">
-      <div class="step-guide">Step 1: Masukkan User ID Anda dengan benar.</div>
-      <div class="input-row">
-        <label for="userId">User ID</label>
-        <input type="text" id="userId" placeholder="Masukkan User ID game" maxlength="30" autocomplete="off" />
+    <!-- STEP 2: PILIH PRODUK -->
+    <section class="card-coda">
+      <div class="step-guide-coda">2. Pilih Nominal</div>
+      <div id="productGrid" class="product-grid-coda"></div>
+    </section>
+
+    <!-- STEP 3: METODE PEMBAYARAN -->
+    <section class="card-coda">
+      <div class="step-guide-coda">3. Pilih Pembayaran</div>
+      <div id="paymentGrid" class="payment-grid-coda"></div>
+    </section>
+
+    <!-- STEP 4: VOUCHER -->
+    <section class="card-coda">
+      <div class="step-guide-coda">4. Voucher Diskon</div>
+      <div class="voucher-row-coda">
+        <input type="text" id="voucherCode" maxlength="12" placeholder="Kode voucher"/>
+        <button type="button" id="listVoucherBtn" class="btn-coda btn-voucher">List Voucher</button>
+        <button type="button" id="useVoucherBtn" class="btn-coda btn-voucher">Gunakan</button>
       </div>
-      <div class="input-row" id="serverWrap" style="display:none;">
-        <label for="serverId">Server ID</label>
-        <input type="text" id="serverId" placeholder="Masukkan Server ID" maxlength="10" autocomplete="off" />
-      </div>
+      <div id="voucherList" class="voucher-list-coda"></div>
     </section>
 
-    <!-- STEP 2 -->
-    <section class="card">
-      <div class="step-guide">Step 2: Pilih nominal produk yang ingin di-top up.</div>
-      <div id="productGrid"></div>
-    </section>
-
-    <!-- STEP 3 -->
-    <section class="card">
-      <div class="step-guide">Step 3: Pilih metode pembayaran favorit Anda.</div>
-      <div id="paymentGrid"></div>
-    </section>
-
-    <!-- STEP 4 -->
-    <section class="card">
-      <div class="step-guide">Step 4: Masukkan kode voucher (jika ada) dan gunakan.</div>
-      <div class="voucher-row">
-        <input type="text" id="voucherCode" maxlength="12" placeholder="Kode voucher" />
-        <button type="button" id="listVoucherBtn">List Voucher</button>
-        <button type="button" id="useVoucherBtn">Gunakan</button>
-      </div>
-      <div id="voucherList"></div>
-    </section>
-
-    <!-- STEP 5 -->
-    <section class="card">
-      <div class="step-guide">Step 5: Cek ringkasan, lalu klik Beli Sekarang!</div>
-      <div id="summary"></div>
-      <button id="checkoutBtn" class="btn">Beli Sekarang</button>
+    <!-- STEP 5: RINGKASAN & CHECKOUT -->
+    <section class="card-coda">
+      <div class="step-guide-coda">5. Ringkasan & Bayar</div>
+      <div id="summary" class="summary-coda"></div>
+      <button id="checkoutBtn" class="btn-coda btn-checkout">Beli Sekarang</button>
     </section>
   </main>
-  <footer class="container">
-    <p>© 2025 <strong>WalzShop</strong> — Instan & Terpercaya ✅</p>
+
+  <footer class="footer-coda">
+    <div class="container">
+      <p>© 2025 <b>WalzShop</b> — Bukan situs resmi publisher game.</p>
+    </div>
   </footer>
   <script src="script.js"></script>
 </body>
