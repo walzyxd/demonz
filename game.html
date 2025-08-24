@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Top Up — WalzShop</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- HEADER GAME -->
+  <header class="game-header">
+    <img id="gameBanner" class="game-banner" alt="Banner Game" />
+    <h1 id="gameTitle" class="game-title"></h1>
+  </header>
+
+  <main class="container game-container">
+    <!-- STEP 1: ID -->
+    <section class="card">
+      <h2 class="card-title">1) Masukkan Data Akun</h2>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="userId">User ID</label>
+          <input id="userId" type="text" placeholder="Contoh: 123456789" />
+          <small class="error" id="errUserId"></small>
+          <p class="hint">Cek menu profil game untuk melihat User ID.</p>
+        </div>
+        <div class="form-group" id="serverWrap" style="display:none">
+          <label for="serverId">(Server ID)</label>
+          <input id="serverId" type="text" placeholder="Contoh: 1234" />
+          <small class="error" id="errServerId"></small>
+          <p class="hint">Khusus Mobile Legends: format biasanya <b>ID (Server)</b>.</p>
+        </div>
+        <div class="form-group">
+          <label for="email">Email (Wajib)</label>
+          <input id="email" type="email" placeholder="Email aktif untuk bukti transaksi" />
+          <small class="error" id="errEmail"></small>
+          <p class="hint">Jika WhatsApp sedang nonaktif, bukti transaksi akan dikirim via email.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2: PRODUK -->
+    <section class="card">
+      <h2 class="card-title">2) Pilih Produk</h2>
+      <div id="productGrid" class="product-grid"></div>
+      <small class="error" id="errProduct"></small>
+    </section>
+
+    <!-- STEP 3: PEMBAYARAN -->
+    <section class="card">
+      <h2 class="card-title">3) Metode Pembayaran</h2>
+      <div id="paymentGrid" class="payment-grid"></div>
+      <small class="error" id="errPayment"></small>
+      <p class="hint">Harga muncul setelah pilih produk.</p>
+    </section>
+
+    <!-- STEP 4: VOUCHER -->
+    <section class="card">
+      <h2 class="card-title">4) Kode Promo</h2>
+      <div class="voucher-row">
+        <input id="voucherInput" type="text" placeholder="Masukkan kode voucher" />
+        <button class="btn primary" id="applyVoucherBtn">Gunakan</button>
+      </div>
+      <div class="voucher-tools">
+        <button class="btn soft" id="listVoucherBtn">List kode voucher</button>
+        <div id="voucherList" class="voucher-list hidden"></div>
+      </div>
+      <small class="error" id="errVoucher"></small>
+    </section>
+
+    <!-- STEP 5: RINGKASAN & CHECKOUT -->
+    <section class="card">
+      <h2 class="card-title">5) Ringkasan & Checkout</h2>
+      <div id="summary" class="summary"></div>
+      <div class="checkout-actions">
+        <button class="btn success" id="checkoutBtn">Lihat Detail & Kirim WhatsApp</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- POPUP -->
+  <div id="popup" class="popup hidden">
+    <div class="popup-backdrop"></div>
+    <div class="popup-content">
+      <button class="popup-close" id="popupClose" aria-label="Tutup">✕</button>
+      <h3 class="popup-title" id="popupTitle">WalzShop</h3>
+      <div id="popupMessage"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
