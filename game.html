@@ -1,63 +1,183 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Top Up Game | WalzShop</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detail Game | WalzShop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5fbff 0%, #d9e9fa 100%);
+      color: #e3f6ff;
+      font-family: 'Poppins', Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+    }
+    .container {
+      width: 94%;
+      max-width: 440px;
+      margin: 0 auto;
+      padding-top: 38px;
+    }
+    .game-header {
+      background: #f5faff;
+      border-radius: 22px;
+      box-shadow: 0 4px 18px #b2bfcf19;
+      padding: 30px 0 24px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 35px;
+    }
+    .game-banner {
+      width: 170px;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px #b2bfcf33;
+      margin-bottom: 16px;
+      background: #e3f6ff;
+    }
+    .game-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1e2331;
+      margin-bottom: 3px;
+      letter-spacing: 1px;
+    }
+    .game-desc {
+      color: #3e81e3;
+      font-size: 1.03rem;
+      margin-bottom: 0;
+      text-align: center;
+      line-height: 1.4;
+      max-width: 330px;
+    }
+    .section {
+      background: #f9fbfd;
+      border-radius: 18px;
+      box-shadow: 0 2px 14px #b2bfcf17;
+      padding: 18px 18px 13px 18px;
+      margin-bottom: 22px;
+    }
+    .section-title {
+      color: #1e2331;
+      font-weight: 700;
+      font-size: 1.12rem;
+      letter-spacing: 0.5px;
+      margin-bottom: 13px;
+    }
+    .input-label {
+      color: #3e81e3;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      display: block;
+    }
+    .input-box {
+      width: 100%;
+      padding: 9px 12px;
+      margin-bottom: 13px;
+      border-radius: 9px;
+      border: 1px solid #b2bfcf;
+      font-size: 1rem;
+      background: #fff;
+      color: #1e2331;
+      outline: none;
+      transition: border 0.15s;
+    }
+    .input-box:focus {
+      border: 1.5px solid #47b5ff;
+      box-shadow: 0 0 0 1.5px #47b5ff22;
+    }
+    .btn-wan {
+      background: #47b5ff;
+      color: #f5fbff;
+      border: none;
+      padding: 12px 0;
+      border-radius: 13px;
+      font-size: 1.09rem;
+      font-weight: 700;
+      box-shadow: 0 2px 12px #b2bfcf22;
+      width: 100%;
+      margin-top: 8px;
+      margin-bottom: 7px;
+      transition: background 0.18s, color 0.15s;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+    }
+    .btn-wan:hover { background: #1363df; color: #fff; }
+    .info-note {
+      color: #3e81e3;
+      background: #e3f6ff;
+      border-radius: 7px;
+      font-size: 0.98rem;
+      padding: 7px 11px;
+      margin-bottom: 11px;
+      margin-top: 5px;
+      display: block;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #47b5ff;
+      font-weight: 700;
+      background: #f5fbff;
+      padding: 8px 18px;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 2px 8px #b2bfcf10;
+      transition: background 0.14s, color 0.13s;
+    }
+    .back-link:hover { background: #e3f6ff; color: #1363df; }
+    /* Responsive */
+    @media (max-width: 600px) {
+      .container { padding-top: 19px; }
+      .game-header { padding: 17px 0 13px 0; }
+      .game-title { font-size: 1.3rem; }
+      .game-banner { width: 100px; }
+    }
+  </style>
 </head>
 <body>
-  <!-- HEADER GAME -->
-  <header class="game-header">
-    <a id="backBtn" href="index.html" class="btn-back">← Kembali</a>
-    <img id="gameBanner" class="game-banner" alt="Banner Game" />
-    <div class="game-info">
-      <h1 id="gameTitle"></h1>
+  <div class="container">
+    <a href="index.html" class="back-link">&larr; Kembali ke Beranda</a>
+    <div class="game-header">
+      <img src="https://i.imghippo.com/files/IHhY6050Qlc.jpeg" alt="Banner Game" class="game-banner" id="gameBanner">
+      <div class="game-title" id="gameTitle">Mobile Legends: Bang Bang</div>
+      <p class="game-desc" id="gameDesc">Top up diamond MLBB resmi, harga murah, proses instan! Masukkan ID dan pilih nominal.</p>
     </div>
-  </header>
+    <form class="section" id="topupForm" autocomplete="off">
+      <div class="section-title">Formulir Top Up</div>
+      <label class="input-label" for="userId">ID Pengguna (ID/UID)</label>
+      <input type="text" class="input-box" id="userId" placeholder="Masukkan ID game kamu" required>
+      <span class="info-note">Pastikan ID sudah benar agar voucher/top up tidak salah kirim.</span>
+      <label class="input-label" for="amount">Pilih Nominal</label>
+      <select class="input-box" id="amount" required>
+        <option value="">Pilih...</option>
+        <option value="5">5 Diamond</option>
+        <option value="12">12 Diamond</option>
+        <option value="28">28 Diamond</option>
+        <option value="60">60 Diamond</option>
+        <option value="170">170 Diamond</option>
+      </select>
+      <button type="submit" class="btn-wan">Lanjutkan Top Up</button>
+    </form>
+  </div>
+  <script>
+    // -- Contoh pengisian otomatis dari URL parameter / localstorage (optional) --
+    // Kamu bisa ambil data game dari querystring atau storage di sini jika mau dinamis
 
-  <!-- FORM TOPUP -->
-  <main class="container">
-    <section class="card">
-      <h2>Masukkan ID</h2>
-      <input type="text" id="userId" placeholder="Masukkan ID kamu" autocomplete="off" />
-      <div id="serverWrap" style="display:none;">
-        <input type="text" id="serverId" placeholder="Masukkan Server ID" autocomplete="off" />
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>Pilih Produk</h2>
-      <div id="productGrid" class="products-grid"></div>
-    </section>
-
-    <section class="card">
-      <h2>Voucher Promo</h2>
-      <div style="display:flex; gap:7px;">
-        <input type="text" id="voucherCode" placeholder="Masukkan kode voucher" style="flex:1;" />
-        <button id="useVoucherBtn" class="btn-wan">Gunakan</button>
-      </div>
-      <div id="voucherList" style="margin-top:10px;"></div>
-    </section>
-
-    <section class="card">
-      <h2>Metode Pembayaran</h2>
-      <div id="paymentGrid" class="payments-grid"></div>
-    </section>
-
-    <section class="card">
-      <h2>Ringkasan</h2>
-      <div id="summary">Pilih produk terlebih dahulu.</div>
-      <button id="checkoutBtn" class="btn-wan btn-buy">Beli Sekarang</button>
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="container">
-    <p>© 2025 <strong>WalzShop</strong> — Instan & Terpercaya ✅</p>
-  </footer>
-
-  <script src="script.js"></script>
+    // -- Contoh aksi submit --
+    document.getElementById('topupForm').onsubmit = function(e) {
+      e.preventDefault();
+      const id = document.getElementById('userId').value.trim();
+      const amt = document.getElementById('amount').value;
+      if(!id || !amt) return;
+      alert('Top up untuk ID: ' + id + '\\nNominal: ' + amt + ' Diamond.\\n(Lanjutkan proses pembayaran di halaman berikutnya sesuai sistem kamu)');
+      // Ganti alert di atas dengan modal custom jika perlu
+      // Atau redirect ke pembayaran, dsb.
+    };
+  </script>
 </body>
 </html>
