@@ -3,57 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WalzShop — Top Up Game</title>
+  <title>Top Up Game | WalzShop</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body { margin:0; font-family:'Poppins', sans-serif; background:#f9f9f9; color:#222; }
-    .container { width:92%; max-width:1100px; margin:auto; }
-
-    /* HEADER GAME */
-    .game-header { position: relative; text-align: center; margin:20px 0; }
-    .game-banner { width:100%; max-height:220px; object-fit:cover; border-radius:12px; }
-    .game-info { margin-top:10px; }
-    .game-info h1 { font-size:1.8rem; font-weight:700; margin:0; }
-    .btn-back { display:inline-block; margin-top:6px; text-decoration:none; color:#ff4b5c; font-weight:600; }
-
-    /* FORM TOPUP */
-    .card { background:#fff; border-radius:12px; padding:15px; margin:12px 0; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
-    .card h2 { margin:0 0 10px; font-size:1.2rem; color:#222; }
-
-    input[type="text"], input[type="number"] {
-      width:100%; padding:10px; margin:6px 0; border-radius:8px; border:1px solid #ddd; font-size:0.95rem;
-    }
-
-    /* PRODUCTS GRID */
-    .products-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
-    .product-card { background:#f6f6f6; border-radius:10px; padding:10px; text-align:center; cursor:pointer; transition:transform 0.2s; }
-    .product-card.selected { border:2px solid #ff4b5c; transform:scale(1.05); }
-    .product-card .badges span { display:inline-block; background:#ff4b5c; color:#fff; border-radius:4px; font-size:0.7rem; padding:2px 4px; margin:2px 2px 0 0; }
-
-    /* PAYMENTS GRID */
-    .payments-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:5px; }
-    .payment-card { text-align:center; padding:8px; background:#f6f6f6; border-radius:10px; cursor:pointer; transition:transform 0.2s; }
-    .payment-card.selected { border:2px solid #ff4b5c; transform:scale(1.05); }
-    .payment-card img { width:50px; height:50px; object-fit:contain; margin-bottom:5px; }
-
-    /* SUMMARY & BUTTON */
-    #summary { font-size:0.95rem; color:#333; margin-bottom:8px; }
-    .btn-buy { width:100%; background:#ff4b5c; color:#fff; padding:12px; border:none; border-radius:10px; font-weight:600; font-size:1rem; cursor:pointer; transition:background 0.2s; }
-    .btn-buy:hover { background:#e03f50; }
-
-    /* FOOTER */
-    footer { text-align:center; font-size:0.85rem; padding:15px 0; color:#666; }
-  </style>
 </head>
 <body>
-
   <!-- HEADER GAME -->
   <header class="game-header">
+    <a id="backBtn" href="index.html" class="btn-back">← Kembali</a>
     <img id="gameBanner" class="game-banner" alt="Banner Game" />
     <div class="game-info">
       <h1 id="gameTitle"></h1>
-      <a href="index.html" class="btn-back">← Kembali</a>
     </div>
   </header>
 
@@ -61,29 +21,35 @@
   <main class="container">
     <section class="card">
       <h2>Masukkan ID</h2>
-      <input type="text" id="userId" placeholder="Masukkan ID kamu" />
-      <input type="text" id="serverId" placeholder="Masukkan Server (jika perlu)" />
+      <input type="text" id="userId" placeholder="Masukkan ID kamu" autocomplete="off" />
+      <div id="serverWrap" style="display:none;">
+        <input type="text" id="serverId" placeholder="Masukkan Server ID" autocomplete="off" />
+      </div>
     </section>
 
     <section class="card">
       <h2>Pilih Produk</h2>
-      <div id="productList" class="products-grid"></div>
+      <div id="productGrid" class="products-grid"></div>
     </section>
 
     <section class="card">
       <h2>Voucher Promo</h2>
-      <input type="text" id="voucherCode" placeholder="Masukkan kode voucher" />
+      <div style="display:flex; gap:7px;">
+        <input type="text" id="voucherCode" placeholder="Masukkan kode voucher" style="flex:1;" />
+        <button id="useVoucherBtn" class="btn-wan">Gunakan</button>
+      </div>
+      <div id="voucherList" style="margin-top:10px;"></div>
     </section>
 
     <section class="card">
       <h2>Metode Pembayaran</h2>
-      <div id="paymentList" class="payments-grid"></div>
+      <div id="paymentGrid" class="payments-grid"></div>
     </section>
 
     <section class="card">
       <h2>Ringkasan</h2>
-      <p id="summary">Belum ada produk dipilih</p>
-      <button id="checkoutBtn" class="btn-buy">Beli Sekarang</button>
+      <div id="summary">Pilih produk terlebih dahulu.</div>
+      <button id="checkoutBtn" class="btn-wan btn-buy">Beli Sekarang</button>
     </section>
   </main>
 
