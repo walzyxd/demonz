@@ -1,103 +1,93 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Top Up — WalzShop</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body { font-family:Poppins, sans-serif; background:#f9fafb; color:#222; padding:1rem; }
-    .back-btn { display:inline-block;margin-bottom:1rem;padding:0.6rem 1rem;background:#f4f4f4;border-radius:10px;text-decoration:none;color:#333;font-weight:bold; }
-    .back-btn:hover { background:#ddd; }
-    .game-banner { width:120px;height:120px;object-fit:cover;border-radius:20px;display:block;margin:0 auto; }
-    .game-title { text-align:center;margin-top:0.8rem;font-size:1.3rem;font-weight:600; }
-    .card { background:#fff;padding:1rem;border-radius:15px;margin-bottom:1rem; box-shadow:0 3px 8px rgba(0,0,0,0.08); }
-    .card-title { font-weight:600;margin-bottom:0.7rem; }
-    .form-group { margin-bottom:0.7rem; }
-    input { width:100%; padding:0.5rem;border-radius:8px;border:1px solid #ccc; }
-    .btn { padding:0.5rem 1rem;border:none;border-radius:8px; cursor:pointer; }
-    .btn.primary { background:#4f46e5;color:#fff; }
-    .btn.success { background:#16a34a;color:#fff; width:100%; margin-top:0.5rem; }
-    .error { color:red; font-size:0.8rem; }
-    .hint { font-size:0.75rem; color:#555; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top Up Game — WalzShop</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <a href="index.html" class="back-btn">← Kembali</a>
+<!-- ===== GAME HEADER ===== -->
+<header class="game-header">
+  <button class="btn-back" onclick="history.back()">← Kembali</button>
+  <img id="gameBanner" class="game-banner" src="" alt="Game Banner">
+  <h1 id="gameTitle" class="game-title">Nama Game</h1>
+</header>
 
-  <header class="game-header">
-    <img id="gameBanner" class="game-banner" alt="Banner Game" />
-    <h1 id="gameTitle" class="game-title"></h1>
-  </header>
+<!-- ===== FORM USER ===== -->
+<div class="card">
+  <h2 class="card-title">Informasi Pengguna</h2>
+  <div class="form-grid">
+    <div class="form-group">
+      <label for="userId">User ID</label>
+      <input type="text" id="userId" placeholder="Masukkan ID akun">
+      <span id="errUserId" class="error"></span>
+    </div>
+    <div class="form-group" id="serverWrap">
+      <label for="serverId">Server ID</label>
+      <input type="text" id="serverId" placeholder="Masukkan Server ID (jika perlu)">
+      <span id="errServerId" class="error"></span>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Masukkan email Anda">
+      <span id="errEmail" class="error"></span>
+    </div>
+  </div>
+</div>
 
-  <main>
-    <!-- STEP 1: ID -->
-    <section class="card">
-      <h2 class="card-title">1) Masukkan Data Akun</h2>
-      <div class="form-group">
-        <label for="userId">User ID</label>
-        <input id="userId" type="text" placeholder="Contoh: 123456789" />
-        <small class="error" id="errUserId"></small>
-        <p class="hint">Cek menu profil game untuk melihat User ID.</p>
-      </div>
-      <div class="form-group" id="serverWrap" style="display:none">
-        <label for="serverId">(Server ID)</label>
-        <input id="serverId" type="text" placeholder="Contoh: 1234" />
-        <small class="error" id="errServerId"></small>
-        <p class="hint">Khusus Mobile Legends: format biasanya <b>ID (Server)</b>.</p>
-      </div>
-      <div class="form-group">
-        <label for="email">Email (Wajib)</label>
-        <input id="email" type="email" placeholder="Email aktif untuk bukti transaksi" />
-        <small class="error" id="errEmail"></small>
-        <p class="hint">Jika WhatsApp sedang nonaktif, bukti transaksi akan dikirim via email.</p>
-      </div>
-    </section>
+<!-- ===== PRODUK ===== -->
+<div class="card">
+  <h2 class="card-title">Pilih Produk</h2>
+  <div id="productGrid" class="product-grid"></div>
+  <span id="errProduct" class="error"></span>
+</div>
 
-    <!-- STEP 2-5 bisa diisi script.js sama seperti sebelumnya -->
-    <section class="card">
-      <h2 class="card-title">2) Pilih Produk</h2>
-      <div id="productGrid" class="product-grid"></div>
-    </section>
+<!-- ===== METODE PEMBAYARAN ===== -->
+<div class="card">
+  <h2 class="card-title">Pilih Metode Pembayaran</h2>
+  <div id="paymentGrid" class="payment-grid"></div>
+  <span id="errPayment" class="error"></span>
+</div>
 
-    <section class="card">
-      <h2 class="card-title">3) Metode Pembayaran</h2>
-      <div id="paymentGrid" class="payment-grid"></div>
-    </section>
+<!-- ===== VOUCHER ===== -->
+<div class="card">
+  <h2 class="card-title">Voucher</h2>
+  <div class="voucher-row">
+    <input type="text" id="voucherInput" placeholder="Masukkan kode voucher">
+    <button id="applyVoucherBtn" class="btn soft">Gunakan</button>
+    <button id="listVoucherBtn" class="btn soft">Daftar Voucher</button>
+  </div>
+  <div id="voucherList" class="voucher-list hidden"></div>
+  <span id="errVoucher" class="error"></span>
+</div>
 
-    <section class="card">
-      <h2 class="card-title">4) Kode Promo</h2>
-      <input id="voucherInput" type="text" placeholder="Masukkan kode voucher" />
-      <button class="btn primary" id="applyVoucherBtn">Gunakan</button>
-    </section>
+<!-- ===== RINGKASAN ===== -->
+<div class="card">
+  <h2 class="card-title">Ringkasan</h2>
+  <div id="summary" class="summary">
+    Pilih produk terlebih dahulu.
+  </div>
+</div>
 
-    <section class="card">
-      <h2 class="card-title">5) Ringkasan & Checkout</h2>
-      <div id="summary" class="summary"></div>
-      <button class="btn success" id="checkoutBtn">Lihat Detail & Kirim WhatsApp</button>
-    </section>
-  </main>
+<!-- ===== CHECKOUT ===== -->
+<div class="card">
+  <button id="checkoutBtn" class="btn success">Checkout</button>
+</div>
 
-  <script>
-    const GAMES = [
-      { key: "free fire", name: "Free Fire", img: "https://files.catbox.moe/x57iz9.jpg" },
-      { key: "mobile legends", name: "Mobile Legends", img: "https://files.catbox.moe/9n1rpo.jpg" },
-      { key: "pubg", name: "PUBG Mobile", img: "https://files.catbox.moe/n5ruie.jpg" },
-      { key: "valorant", name: "Valorant", img: "https://files.catbox.moe/fydqk7.jpg" }
-    ];
+<!-- ===== POPUP ===== -->
+<div id="popup" class="popup hidden">
+  <div class="popup-backdrop"></div>
+  <div class="popup-content">
+    <button id="popupClose" class="popup-close">&times;</button>
+    <h2 id="popupTitle" class="popup-title"></h2>
+    <div id="popupMessage"></div>
+  </div>
+</div>
 
-    function loadGame() {
-      const params = new URLSearchParams(window.location.search);
-      const key = params.get('game');
-      const game = GAMES.find(g => g.key === key);
-      if (game) {
-        document.getElementById("gameBanner").src = game.img;
-        document.getElementById("gameTitle").textContent = game.name;
-      }
-    }
+<!-- ===== SCRIPT ===== -->
+<script src="script.js"></script>
 
-    document.addEventListener("DOMContentLoaded", loadGame);
-  </script>
 </body>
 </html>
