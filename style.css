@@ -82,36 +82,65 @@ body {
 
 /* ==================== HERO SECTION ==================== */
 .hero-coda {
-  background: linear-gradient(120deg, #1e90ff 0%, #002244 100%);
-  padding: 50px 0;
-  text-align: center;
-  color: #fff;
   position: relative;
+  height: 250px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
-.hero-logo {
-  width: 90px;
-  margin-bottom: 15px;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+.hero-slider-coda {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.hero-slider-coda img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.hero-slider-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8));
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
 }
 
 .hero-title {
   font-family: 'Inter', sans-serif;
   font-size: 2.2rem;
-  color: #fff;
   margin: 0 0 10px 0;
   font-weight: 800;
   letter-spacing: -0.5px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .hero-text {
   color: #e2e8f0;
   font-size: 1.1rem;
   margin-bottom: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* ==================== MAIN CONTENT ==================== */
@@ -175,29 +204,6 @@ body {
   letter-spacing: 0.2px;
 }
 
-.btn-coda {
-  width: 100%;
-  background: linear-gradient(90deg, #1e90ff 50%, #ff8c00 100%);
-  border: none;
-  color: #fff;
-  font-size: 1.1rem;
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  border-radius: 10px;
-  padding: 14px 0;
-  margin-top: 20px;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 15px rgba(30, 144, 255, 0.2);
-}
-
-.btn-coda:hover,
-.btn-coda:focus {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(30, 144, 255, 0.3);
-}
-
 /* ==================== GAME PAGE STYLES ==================== */
 .game-main-coda {
   margin-top: 25px;
@@ -224,6 +230,12 @@ body {
   color: #1e90ff;
   margin: 0 0 8px 0;
   font-weight: 800;
+}
+
+.game-guide-coda {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
 }
 
 .card-coda {
@@ -286,6 +298,10 @@ body {
   cursor: pointer;
   border: 2px solid transparent;
   transition: border 0.2s, box-shadow 0.2s, transform 0.2s, background 0.2s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .product-card-coda.active,
@@ -334,6 +350,19 @@ body {
 .pay-price-coda {
   font-size: 0.95rem;
   color: #1e90ff;
+}
+
+/* Badge Styles */
+.product-badge-coda {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(45deg, #1e90ff, #ff8c00);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 10px 0 10px 0;
 }
 
 .voucher-row-coda {
@@ -399,6 +428,12 @@ body {
 
 /* ==================== RESPONSIVE STYLES ==================== */
 @media (max-width: 768px) {
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  .hero-text {
+    font-size: 1rem;
+  }
   .game-banner-coda {
     width: 90px;
     height: 90px;
@@ -422,6 +457,9 @@ body {
   }
   .nav-note {
     display: none;
+  }
+  .hero-coda {
+    height: 200px;
   }
   .hero-title {
     font-size: 1.5rem;
