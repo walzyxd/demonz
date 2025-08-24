@@ -5,12 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Top Up — WalzShop</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Tambahan styling */
+    .back-btn {
+      display: inline-block;
+      margin: 1rem;
+      padding: 0.6rem 1rem;
+      background: #f4f4f4;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .back-btn:hover {
+      background: #ddd;
+    }
+    .game-banner {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 20px; /* ujung bulat */
+      display: block;
+      margin: 0 auto;
+    }
+    .game-title {
+      text-align: center;
+      margin-top: 0.8rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+  </style>
 </head>
 <body>
+  <!-- TOMBOL KEMBALI -->
+  <a href="index.html" class="back-btn">← Kembali</a>
+
   <!-- HEADER GAME -->
   <header class="game-header">
-    <img id="gameBanner" class="game-banner" alt="Banner Game" />
-    <h1 id="gameTitle" class="game-title"></h1>
+    <img id="gameBanner" class="game-banner" alt="Banner Game" src="https://via.placeholder.com/120" />
+    <h1 id="gameTitle" class="game-title">Nama Game</h1>
   </header>
 
   <main class="container game-container">
