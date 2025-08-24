@@ -15,6 +15,7 @@
   --shadow:0 8px 30px rgba(0,0,0,.35);
 }
 
+/* ===== Reset & base ===== */
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{
@@ -26,208 +27,229 @@ body{
   line-height:1.55;
 }
 
-/* ============ BADGE UPGRADE ============ */
-.badge{
-  font-size:11px;font-weight:900;padding:4px 8px;border-radius:12px;
-  background:linear-gradient(90deg, #4fd1ff, #7cf5d6);
-  border:1px solid var(--stroke);
-  color:#00303e; /* font berwarna lebih kontras */
-  text-transform: uppercase;
-  letter-spacing:0.5px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.25);
-  transition: transform 0.2s, box-shadow 0.2s;
+/* ===== HEADER GAME ===== */
+.game-header{
+  padding:12px 16px 0 16px;
+  text-align:center;
+  position: relative;
 }
-.badge:hover{
-  transform:translateY(-2px);
-  box-shadow:0 6px 15px rgba(0,0,0,0.35);
-}
-
-/* ============ PRODUK SPESIAL ============ */
-.product-card.active {
-  background:linear-gradient(180deg, rgba(79,209,255,.15), rgba(124,245,214,.15));
-  border-color:rgba(124,245,214,.7);
-  box-shadow:0 8px 30px rgba(0,0,0,.4);
-}
-.p-title.special{
-  color:#7cf5d6; /* font berwarna untuk produk spesial */
-  font-weight:900;
-}
-.p-price.special{
-  color:#4fd1ff; /* harga lebih standout */
-  font-weight:800;
-}
-
-/* ============ HOVER EFFECT PRODUK ============ */
-.product-card:hover{
-  transform:translateY(-3px) scale(1.02);
-  border-color:rgba(79,209,255,.5);
-  box-shadow:0 10px 30px rgba(0,0,0,.45);
-}
-
-/* ============ RESPONSIVE BADGE ============ */
-@media(max-width:720px){
-  .badge{
-    font-size:10px;
-    padding:3px 6px;
-  }
-}
-
-/* ============ HERO SLIDER ============ */
-.hero{width:100%;overflow:hidden}
-.slider{position:relative;width:100%;height:220px;overflow:hidden}
-.slides{display:flex;height:100%;transition:transform .6s cubic-bezier(.22,.61,.36,1)}
-.slides img{width:100%;height:100%;object-fit:cover;flex:0 0 100%;user-select:none;pointer-events:none}
-
-/* ============ BRAND ============ */
-.brand{padding:22px 16px 8px 16px;text-align:center}
-.brand-badge{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:10px 16px;border-radius:16px;
-  background:linear-gradient(120deg, rgba(79,209,255,.15), rgba(124,245,214,.12));
-  border:1px solid var(--stroke);box-shadow:var(--shadow)
-}
-.logo-w{font-weight:800;font-size:26px;letter-spacing:1px;color:var(--brand)}
-.logo-s{font-weight:800;font-size:26px;letter-spacing:1px;color:var(--brand-2)}
-.tagline{margin:10px 0 16px 0;color:#cfe8ff;font-weight:600;opacity:.9}
-
-.slogan-card{
-  width:min(920px,92%);margin:0 auto;border-radius:16px;
-  display:flex;gap:12px;align-items:center;
-  background:linear-gradient(180deg, rgba(79,209,255,.10), rgba(124,245,214,.10));
-  border:1px solid var(--stroke);padding:10px 14px;backdrop-filter: blur(4px);
-  box-shadow:var(--shadow)
-}
-.s-dot{width:10px;height:10px;border-radius:50%;background:var(--brand)}
-.s-body h3{margin:4px 0 4px 0;font-size:16px}
-.s-body p{margin:0;color:var(--muted);font-size:13px}
-
-/* ============ CONTAINER ============ */
-.container{width:min(980px,92%);margin:20px auto}
-
-/* ============ GAME CARDS (index) ============ */
-.games-grid{
-  display:grid;grid-template-columns:repeat(2,1fr);gap:14px;
-}
-.game-card{
-  background:var(--panel);
-  border:1px solid var(--stroke);border-radius:14px;overflow:hidden;
-  cursor:pointer;transition:.22s transform, .22s background;
-  box-shadow:0 10px 25px rgba(0,0,0,.35)
-}
-.game-card:hover{transform:translateY(-2px);background:var(--panel-2)}
-.game-thumb{width:100%;height:130px;object-fit:cover;display:block}
-.game-meta{padding:10px 12px;text-align:center}
-.game-name{
-  margin:0;color:#e9f4ff;font-weight:700;font-size:15px;letter-spacing:.2px;
-  text-decoration:none
-}
-
-/* ============ GAME HEADER ============ */
-.game-header{padding:12px 0 0 0;text-align:center}
 .game-banner{
-  width:100%;max-height:200px;object-fit:cover;display:block;
-  border-bottom:1px solid var(--stroke)
+  width:100%;
+  max-height:200px;
+  object-fit:cover;
+  border-radius:16px;
+  border-bottom:1px solid var(--stroke);
 }
-.game-title{margin:12px 0 4px 0;font-size:24px}
+.game-title{
+  margin:12px 0 8px 0;
+  font-size:24px;
+  font-weight:700;
+}
 
-/* ============ CARD WRAPPER ============ */
+/* Tombol kembali */
+.btn-back{
+  position:absolute;
+  top:12px;
+  left:16px;
+  background:linear-gradient(90deg, var(--brand), var(--brand-2));
+  color:#00303e;
+  border:none;
+  padding:8px 14px;
+  border-radius:12px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 4px 10px rgba(0,0,0,.35);
+  transition:.2s;
+}
+.btn-back:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 15px rgba(0,0,0,.4);
+}
+
+/* ===== CARD & FORM ===== */
 .card{
   background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
-  border:1px solid var(--stroke);border-radius:16px;padding:14px;margin:14px 0;
-  box-shadow:var(--shadow)
+  border:1px solid var(--stroke);
+  border-radius:16px;
+  padding:16px;
+  margin:16px 0;
+  box-shadow:var(--shadow);
 }
-.card-title{margin:0 0 10px 0;font-size:18px}
+.card-title{margin:0 0 12px 0;font-size:18px;font-weight:700}
 
-/* ============ FORM ============ */
+/* Form */
 .form-grid{display:grid;grid-template-columns:1fr;gap:12px}
 .form-group label{display:block;margin:0 0 6px 6px;font-size:14px;color:#d9e9ff}
 .form-group input{
-  width:100%;padding:12px 12px;border-radius:12px;
-  background:#0f1220;border:1px solid var(--stroke);color:var(--text);
-  outline:none;transition:border-color .15s ease
+  width:100%;
+  padding:12px 14px;
+  border-radius:12px;
+  background:#0f1220;
+  border:1px solid var(--stroke);
+  color:var(--text);
+  outline:none;
+  transition:border-color .15s ease;
 }
 .form-group input:focus{border-color:rgba(124,245,214,.45)}
 .hint{margin:6px 6px 0;color:var(--muted);font-size:12px}
 .error{display:block;color:var(--err);font-size:12px;margin:6px 6px 0}
 
-/* ============ PRODUCTS ============ */
+/* ===== PRODUCT GRID ===== */
 .product-grid{
-  display:grid;grid-template-columns:repeat(2,1fr);gap:10px
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
 }
 .product-card{
-  background:#111427;border:1px solid var(--stroke);border-radius:14px;padding:10px 12px;
-  text-align:center;cursor:pointer;transition:.2s transform, .2s background, .2s border-color;
-  min-height:76px;display:flex;flex-direction:column;justify-content:center
+  background:#111427;
+  border:1px solid var(--stroke);
+  border-radius:16px;
+  padding:12px;
+  text-align:center;
+  cursor:pointer;
+  transition:.2s transform, .2s background, .2s border-color;
+  min-height:92px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
-.product-card:hover{transform:translateY(-1px);border-color:rgba(124,245,214,.35)}
-.product-card.active{background:linear-gradient(180deg, rgba(124,245,214,.10), rgba(79,209,255,.10));border-color:rgba(124,245,214,.55)}
-.p-title{margin:0;font-size:14px;font-weight:800;letter-spacing:.2px}
-.p-price{margin:4px 0 0 0;font-size:12px;color:#cfe8ff}
+.product-card:hover{
+  transform:translateY(-2px);
+  border-color:rgba(79,209,255,.4);
+  box-shadow:0 10px 25px rgba(0,0,0,.35);
+}
+.product-card.active{
+  background:linear-gradient(180deg, rgba(79,209,255,.1), rgba(124,245,214,.1));
+  border-color:rgba(124,245,214,.6);
+  box-shadow:0 8px 30px rgba(0,0,0,.45);
+}
+.p-title{margin:0;font-size:14px;font-weight:800}
+.p-price{margin:6px 0 0 0;font-size:12px;color:#cfe8ff}
 
-/* Badge kecil untuk item spesial (WDP, Membership, Twilight) */
-.badges{display:flex;gap:6px;justify-content:center;margin-top:6px;flex-wrap:wrap}
+/* Badge */
+.badges{display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap}
 .badge{
-  font-size:10px;font-weight:800;padding:3px 7px;border-radius:999px;
-  background:linear-gradient(90deg, #7cf5d626, #4fd1ff26);border:1px solid var(--stroke);color:#bfffea
+  font-size:10px;font-weight:800;padding:4px 8px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#7cf5d626,#4fd1ff26);
+  border:1px solid var(--stroke);
+  color:#bfffea;
 }
 
-/* ============ PAYMENTS ============ */
+/* ===== PAYMENT GRID ===== */
 .payment-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:10px
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
 }
 .payment-card{
-  background:#111427;border:1px solid var(--stroke);border-radius:14px;padding:8px 10px;
-  text-align:center;cursor:pointer;transition:.2s transform, .2s border-color;
-  min-height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center
+  background:#111427;
+  border:1px solid var(--stroke);
+  border-radius:16px;
+  padding:12px;
+  text-align:center;
+  cursor:pointer;
+  transition:.2s transform, .2s border-color;
+  min-height:92px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 }
-.payment-card:hover{transform:translateY(-1px);border-color:rgba(79,209,255,.4)}
-.payment-card.active{border-color:rgba(124,245,214,.7);box-shadow:0 0 0 3px rgba(124,245,214,.15) inset}
-.payment-logo{width:38px;height:38px;object-fit:contain;display:block}
+.payment-card:hover{transform:translateY(-2px);border-color:rgba(79,209,255,.4)}
+.payment-card.active{
+  border-color:rgba(124,245,214,.7);
+  box-shadow:0 0 0 3px rgba(124,245,214,.15) inset;
+}
+.payment-logo{width:40px;height:40px;object-fit:contain;display:block}
 .payment-name{margin:6px 0 0 0;font-size:13px;font-weight:700}
 .pay-price{margin:2px 0 0 0;font-size:12px;font-weight:700;color:#a7ffc7;min-height:18px}
 
-/* ============ VOUCHER ============ */
+/* ===== VOUCHER ===== */
 .voucher-row{display:flex;gap:8px;align-items:center}
 .voucher-row input{
-  flex:1;border-radius:12px;background:#0f1220;border:1px solid var(--stroke);padding:12px;color:var(--text)
+  flex:1;
+  border-radius:12px;
+  background:#0f1220;
+  border:1px solid var(--stroke);
+  padding:12px;
+  color:var(--text);
 }
 .voucher-tools{margin-top:8px}
 .voucher-list{margin-top:8px;border:1px dashed var(--stroke);border-radius:12px;padding:8px}
 .voucher-item{
-  padding:8px 10px;border-radius:10px;background:#0f1220;border:1px solid var(--stroke);
-  margin-bottom:6px;cursor:pointer
+  padding:8px 10px;
+  border-radius:12px;
+  background:#0f1220;
+  border:1px solid var(--stroke);
+  margin-bottom:6px;
+  cursor:pointer;
 }
 .voucher-item:last-child{margin-bottom:0}
 .hidden{display:none}
 
-/* Buttons */
-.btn{border:none;cursor:pointer;border-radius:12px;padding:10px 14px;font-weight:800}
-.btn.primary{background:linear-gradient(90deg, var(--brand), var(--brand-2));color:#00303e}
-.btn.soft{background:#0f1220;border:1px solid var(--stroke);color:#cfe8ff}
-.btn.success{background:linear-gradient(90deg, #41e1a3, #b4ffd7);color:#003a26;width:100%;padding:14px}
-
-/* ============ SUMMARY ============ */
+/* ===== SUMMARY ===== */
 .summary{
-  background:#0f1220;border:1px solid var(--stroke);border-radius:12px;padding:12px;
-  font-size:14px;color:#dfefff
+  background:#0f1220;
+  border:1px solid var(--stroke);
+  border-radius:12px;
+  padding:12px;
+  font-size:14px;
+  color:#dfefff;
 }
 .summary p{margin:6px 0}
 
-/* ============ POPUP ============ */
+/* ===== BUTTONS ===== */
+.btn{
+  border:none;
+  cursor:pointer;
+  border-radius:12px;
+  padding:12px 16px;
+  font-weight:800;
+  transition:.2s;
+}
+.btn.primary{
+  background:linear-gradient(90deg,var(--brand),var(--brand-2));
+  color:#00303e;
+}
+.btn.soft{
+  background:#0f1220;
+  border:1px solid var(--stroke);
+  color:#cfe8ff;
+}
+.btn.success{
+  background:linear-gradient(90deg,#41e1a3,#b4ffd7);
+  color:#003a26;
+  width:100%;
+}
+
+/* ===== POPUP ===== */
 .popup.hidden{display:none}
 .popup{position:fixed;inset:0;z-index:60}
 .popup-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.55);backdrop-filter: blur(2px)}
 .popup-content{
-  position:relative;max-width:560px;margin:8vh auto;background:#0f1228;border:1px solid var(--stroke);
-  border-radius:16px;padding:16px 16px 20px 16px;box-shadow:var(--shadow)
+  position:relative;
+  max-width:560px;
+  margin:8vh auto;
+  background:#0f1228;
+  border:1px solid var(--stroke);
+  border-radius:16px;
+  padding:16px 16px 20px 16px;
+  box-shadow:var(--shadow);
 }
-.popup-close{position:absolute;top:8px;right:8px;border:none;background:transparent;color:#9cc;cursor:pointer;font-size:18px}
+.popup-close{
+  position:absolute;
+  top:8px;right:8px;
+  border:none;
+  background:transparent;
+  color:#9cc;
+  cursor:pointer;
+  font-size:18px;
+}
 .popup-title{margin:0 0 8px 0}
 
-/* ============ RESPONSIVE ============ */
+/* ===== RESPONSIVE ===== */
 @media(min-width:720px){
-  .slider{height:280px}
-  .games-grid{grid-template-columns:repeat(4,1fr)}
   .product-grid{grid-template-columns:repeat(3,1fr)}
   .payment-grid{grid-template-columns:repeat(5,1fr)}
 }
