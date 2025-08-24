@@ -1,93 +1,101 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Top Up Game — WalzShop</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WalzShop — Top Up Game</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="page">
 
-<!-- ===== GAME HEADER ===== -->
-<header class="game-header">
-  <button class="btn-back" onclick="history.back()">← Kembali</button>
-  <img id="gameBanner" class="game-banner" src="" alt="Game Banner">
-  <h1 id="gameTitle" class="game-title">Nama Game</h1>
-</header>
-
-<!-- ===== FORM USER ===== -->
-<div class="card">
-  <h2 class="card-title">Informasi Pengguna</h2>
-  <div class="form-grid">
-    <div class="form-group">
-      <label for="userId">User ID</label>
-      <input type="text" id="userId" placeholder="Masukkan ID akun">
-      <span id="errUserId" class="error"></span>
+  <!-- GAME HEADER -->
+  <header class="container game-header">
+    <button class="back-btn" id="backBtn">← Kembali</button>
+    <div class="game-head-info">
+      <img id="gameBanner" class="game-banner" src="" alt="Game Banner">
+      <h2 class="game-title" id="gameTitle"></h2>
     </div>
-    <div class="form-group" id="serverWrap">
-      <label for="serverId">Server ID</label>
-      <input type="text" id="serverId" placeholder="Masukkan Server ID (jika perlu)">
-      <span id="errServerId" class="error"></span>
+  </header>
+
+  <main class="container">
+
+    <!-- USER INFO FORM -->
+    <div class="card">
+      <h3 class="card-title">Informasi User</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="userId">User ID</label>
+          <input type="text" id="userId" placeholder="Masukkan User ID">
+          <span class="error" id="errUserId"></span>
+        </div>
+        <div class="form-group" id="serverWrap">
+          <label for="serverId">Server ID</label>
+          <input type="text" id="serverId" placeholder="Masukkan Server ID">
+          <span class="hint"></span>
+          <span class="error" id="errServerId"></span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Masukkan Email">
+          <span class="error" id="errEmail"></span>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" placeholder="Masukkan email Anda">
-      <span id="errEmail" class="error"></span>
+
+    <!-- PRODUCTS -->
+    <div class="card">
+      <h3 class="card-title">Pilih Produk</h3>
+      <div class="product-grid" id="productGrid"></div>
+      <span class="error" id="errProduct"></span>
+    </div>
+
+    <!-- PAYMENT -->
+    <div class="card">
+      <h3 class="card-title">Pilih Metode Pembayaran</h3>
+      <div class="payment-grid" id="paymentGrid"></div>
+      <span class="error" id="errPayment"></span>
+    </div>
+
+    <!-- VOUCHER -->
+    <div class="card">
+      <h3 class="card-title">Voucher / Promo</h3>
+      <div class="voucher-row">
+        <input type="text" id="voucherInput" placeholder="Masukkan kode voucher">
+        <button class="btn soft" id="applyVoucherBtn">Gunakan</button>
+      </div>
+      <div style="margin-top:6px;">
+        <button class="btn soft" id="listVoucherBtn">Daftar Voucher</button>
+        <div id="voucherList" class="voucher-list hidden"></div>
+      </div>
+      <span class="error" id="errVoucher"></span>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="card">
+      <h3 class="card-title">Ringkasan</h3>
+      <div class="summary" id="summary"></div>
+      <div class="checkout-actions">
+        <button class="btn primary" id="checkoutBtn">Beli Sekarang</button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- POPUP -->
+  <div class="popup hidden" id="popup">
+    <div class="popup-backdrop"></div>
+    <div class="popup-content">
+      <h3 class="popup-title" id="popupTitle"></h3>
+      <div class="popup-body" id="popupMessage"></div>
+      <div class="popup-actions">
+        <a class="btn success" target="_blank" id="waBtn">WhatsApp</a>
+        <a class="btn soft" id="emailBtn">Email</a>
+      </div>
+      <button class="popup-close" id="popupClose">✕</button>
     </div>
   </div>
-</div>
 
-<!-- ===== PRODUK ===== -->
-<div class="card">
-  <h2 class="card-title">Pilih Produk</h2>
-  <div id="productGrid" class="product-grid"></div>
-  <span id="errProduct" class="error"></span>
-</div>
-
-<!-- ===== METODE PEMBAYARAN ===== -->
-<div class="card">
-  <h2 class="card-title">Pilih Metode Pembayaran</h2>
-  <div id="paymentGrid" class="payment-grid"></div>
-  <span id="errPayment" class="error"></span>
-</div>
-
-<!-- ===== VOUCHER ===== -->
-<div class="card">
-  <h2 class="card-title">Voucher</h2>
-  <div class="voucher-row">
-    <input type="text" id="voucherInput" placeholder="Masukkan kode voucher">
-    <button id="applyVoucherBtn" class="btn soft">Gunakan</button>
-    <button id="listVoucherBtn" class="btn soft">Daftar Voucher</button>
-  </div>
-  <div id="voucherList" class="voucher-list hidden"></div>
-  <span id="errVoucher" class="error"></span>
-</div>
-
-<!-- ===== RINGKASAN ===== -->
-<div class="card">
-  <h2 class="card-title">Ringkasan</h2>
-  <div id="summary" class="summary">
-    Pilih produk terlebih dahulu.
-  </div>
-</div>
-
-<!-- ===== CHECKOUT ===== -->
-<div class="card">
-  <button id="checkoutBtn" class="btn success">Checkout</button>
-</div>
-
-<!-- ===== POPUP ===== -->
-<div id="popup" class="popup hidden">
-  <div class="popup-backdrop"></div>
-  <div class="popup-content">
-    <button id="popupClose" class="popup-close">&times;</button>
-    <h2 id="popupTitle" class="popup-title"></h2>
-    <div id="popupMessage"></div>
-  </div>
-</div>
-
-<!-- ===== SCRIPT ===== -->
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
