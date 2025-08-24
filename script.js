@@ -318,14 +318,17 @@ function initGamePage() {
             const card = document.createElement("div");
             card.className = `product-card`;
             card.dataset.id = product.id;
-            
+
             let labelWithEmoji = product.label;
-            if (product.label.toLowerCase().includes("diamond") || product.label.toLowerCase().includes("gems") || product.label.toLowerCase().includes("uc") || product.label.toLowerCase().includes("crystal") || product.label.toLowerCase().includes("tokens") || product.label.toLowerCase().includes("goldstar") || product.label.toLowerCase().includes("gold")) {
+            const keywords = ["diamonds", "gems", "uc", "crystals", "tokens", "goldstar", "gold"];
+            const isMatch = keywords.some(keyword => product.label.toLowerCase().includes(keyword));
+
+            if (isMatch) {
                 const parts = product.label.split(' ');
                 parts[parts.length - 1] += ' 💎';
                 labelWithEmoji = parts.join(' ');
             }
-
+            
             card.innerHTML = `
                 <p class="product-label">${labelWithEmoji}</p>
                 <p class="product-price">${fmtIDR(product.price)}</p>
@@ -348,13 +351,10 @@ function initGamePage() {
             card.className = `payment-card`;
             card.dataset.id = payment.id;
             
-            const finalPrice = calculateFinalPrice();
-            const priceText = finalPrice > 0 ? `${fmtIDR(finalPrice)}` : 'Gratis';
-
             card.innerHTML = `
                 <img src="${payment.img}" alt="${payment.name}" class="payment-logo">
                 <p class="payment-name">${payment.name}</p>
-                <p class="payment-price">${priceText}</p>
+                <p class="payment-price" style="display: none;"></p>
             `;
             card.addEventListener("click", () => {
                 selectedPayment = payment;
@@ -379,8 +379,13 @@ function initGamePage() {
         const finalPrice = calculateFinalPrice();
         qsa('.payment-card').forEach(card => {
             const priceEl = qs('.payment-price', card);
-            const priceText = finalPrice > 0 ? `${fmtIDR(finalPrice)}` : 'Gratis';
-            priceEl.textContent = priceText;
+            if (selectedProduct) {
+                priceEl.textContent = fmtIDR(finalPrice);
+                priceEl.style.display = 'block';
+            } else {
+                priceEl.textContent = '';
+                priceEl.style.display = 'none';
+            }
         });
 
         updateSummary();
@@ -405,7 +410,7 @@ function initGamePage() {
     renderProducts();
     renderPayments();
     renderVoucherListModal();
-    updateSummary();
+    updateUI(); // Panggil updateUI() untuk menyembunyikan harga awal
 
     // Event listeners
     useVoucherBtn.addEventListener("click", () => {
