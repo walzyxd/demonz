@@ -5,39 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WalzShop — Top Up Game</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- HERO SLIDER -->
-  <section class="hero">
-    <div class="hero-slider" id="heroSlider">
-      <div class="hero-slide"><img src="https://i.imghippo.com/files/IHhY6050Qlc.jpeg" alt="Slide 1"></div>
-      <div class="hero-slide"><img src="https://i.imghippo.com/files/uy5982ZtQ.jpeg" alt="Slide 2"></div>
-      <div class="hero-slide"><img src="https://i.imghippo.com/files/el4034qjU.jpeg" alt="Slide 3"></div>
-      <div class="hero-slide"><img src="https://i.imghippo.com/files/EZUu9660Hs.jpg" alt="Slide 4"></div>
+  <!-- NAVBAR / LOGO -->
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="#" class="brand-badge">
+        <span class="logo-w">Walz</span><span class="logo-s">Shop</span>
+      </a>
+      <span class="nav-note">Top Up Instan & Aman</span>
+    </div>
+  </nav>
+
+  <!-- HERO SIMPLE -->
+  <section class="hero-coda">
+    <div class="hero-content">
+      <img src="https://cdn.codashop.com/global/images/codashop-logo-new.svg" alt="Codashop" class="hero-logo">
+      <h1 class="hero-title">Top Up Game Favoritmu Instan & Aman</h1>
+      <p class="hero-text">Pilih game, masukkan data, langsung isi saldo & item!</p>
     </div>
   </section>
 
-  <!-- BRAND -->
-  <header class="brand container">
-    <h1 class="brand-badge">
-      <span class="logo-w">Walz</span><span class="logo-s">Shop</span>
-    </h1>
-    <p class="tagline">Top Up Cepat ⚡ Murah 💎 Aman 🔒</p>
-  </header>
-
   <!-- GAME LIST -->
-  <main class="container">
-    <h2 class="section-title">Pilih Game Favoritmu</h2>
-    <p class="section-subtitle">Klik game untuk mulai top up</p>
-    <div id="gamesGrid" class="games-grid"></div>
+  <main class="container main-coda">
+    <h2 class="main-title">Pilih Game</h2>
+    <div id="gamesGrid" class="games-list-coda"></div>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="container">
-    <p>© 2025 <strong>WalzShop</strong> — Instan & Terpercaya ✅</p>
+  <footer class="footer-coda">
+    <div class="container">
+      <p>© 2025 <b>WalzShop</b> — Bukan situs resmi publisher game.</p>
+    </div>
   </footer>
-
-  <script src="script.js"></script>
+  <script>
+    // Contoh data game
+    const GAMES = [
+      {id:'mlbb', name:'Mobile Legends', thumb:'https://cdn.upoint.id/game-cover/mlbb.jpg'},
+      {id:'ff', name:'Free Fire', thumb:'https://cdn.upoint.id/game-cover/ff.jpg'},
+      {id:'pubgm', name:'PUBG Mobile', thumb:'https://cdn.upoint.id/game-cover/pubgm.jpg'},
+      {id:'gi', name:'Genshin Impact', thumb:'https://cdn.codashop.com/global/images/game-icons/GenshinImpact_square.jpg'},
+      {id:'valo', name:'Valorant', thumb:'https://cdn.codashop.com/global/images/game-icons/valo-square.jpg'},
+    ];
+    if(document.getElementById("gamesGrid")) {
+      document.getElementById("gamesGrid").innerHTML = GAMES.map(game => `
+        <a class="game-card-coda" href="game.html?game=${game.id}">
+          <img class="game-thumb-coda" src="${game.thumb}" alt="${game.name}">
+          <div class="game-name-coda">${game.name}</div>
+          <button class="btn-coda">Top Up</button>
+        </a>
+      `).join('');
+    }
+  </script>
 </body>
 </html>
