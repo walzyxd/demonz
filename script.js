@@ -21,7 +21,6 @@ const PAYMENTS = [
   { id: "ovo", name: "OVO", img: "https://files.catbox.moe/57f44a.jpg" },
 ];
 
-// Produk per game (angka contoh realistis + sesuai arahan)
 const PRODUCTS = {
   "free fire": [
     { id: "ff-5", label: "5 Diamonds", price: 901 },
@@ -128,6 +127,7 @@ const PRODUCTS = {
     { id: "bs-5000", label: "5000 + 800 Gold", price: 549999 },
   ],
 };
+
 /* ---------- Utilities ---------- */
 const qs = (s, r = document) => r.querySelector(s);
 const qsa = (s, r = document) => Array.from(r.querySelectorAll(s));
@@ -165,6 +165,12 @@ function renderGameGrid(container){
     name.className = "game-name"; name.textContent = g.name;
     meta.appendChild(name);
     card.appendChild(img); card.appendChild(meta);
+
+    // Tooltip badge info
+    card.addEventListener("mouseenter", ()=>{
+      if(g.badges && g.badges.length) card.title = `Badge: ${g.badges.join(", ")}`;
+    });
+
     container.appendChild(card);
   });
 }
@@ -183,31 +189,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const banner = qs("#gameBanner");
   const productGrid = qs("#productGrid");
   const paymentGrid = qs("#paymentGrid");
-  if (!gameTitle || !banner || !productGrid || !paymentGrid) return; // bukan game.html
+  if (!gameTitle || !banner || !productGrid || !paymentGrid) return;
 
-  // Header
   const gName = localStorage.getItem("walz_game_name") || "Free Fire";
   const gImg  = localStorage.getItem("walz_game_img") || "https://files.catbox.moe/x5rvpg.jpg";
-  const gKey  = (localStorage.getItem("walz_game_key") || "free fire");
+  const gKey  = localStorage.getItem("walz_game_key") || "free fire";
   const needServer = localStorage.getItem("walz_game_server") === "1";
 
   gameTitle.textContent = gName;
-  banner.src = gImg;
-  banner.alt = gName;
+  banner.src = gImg; banner.alt = gName;
 
-  // Server ID hanya MLBB
   const serverWrap = qs("#serverWrap");
-  if (serverWrap) serverWrap.style.display = needServer ? "block" : "none";
+  if(serverWrap) serverWrap.style.display = needServer ? "block" : "none";
 
-  // Render Produk & Payment
-  let selectedProduct = null;
-  let selectedPayment = null;
-  let appliedVoucher = null;
+  let selectedProduct = null, selectedPayment = null, appliedVoucher = null;
 
-  renderProducts();
-  renderPayments(); // harga kosong sampai pilih produk
+  renderProducts(); renderPayments(); updateSummary();
 
-  // Voucher UI
   const voucherInput = qs("#voucherInput");
   const applyVoucherBtn = qs("#applyVoucherBtn");
   const listVoucherBtn = qs("#listVoucherBtn");
@@ -216,15 +214,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   listVoucherBtn.addEventListener("click", ()=>{
     voucherList.classList.toggle("hidden");
-    if (!voucherList.classList.contains("hidden")) {
+    if(!voucherList.classList.contains("hidden")){
       voucherList.innerHTML = "";
       VOUCHERS.forEach(v=>{
         const it = document.createElement("div");
         it.className = "voucher-item";
         it.textContent = `${v.code} — Diskon ${v.percent}%`;
         it.addEventListener("click", ()=>{
-          voucherInput.value = v.code; // isi otomatis
-          // Tidak langsung apply—harus klik "Gunakan" (sesuai permintaan)
+          voucherInput.value = v.code;
           voucherList.classList.add("hidden");
         });
         voucherList.appendChild(it);
@@ -233,40 +230,29 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   applyVoucherBtn.addEventListener("click", ()=>{
-    const code = (voucherInput.value || "").trim().toUpperCase();
+    const code = (voucherInput.value||"").trim().toUpperCase();
     const found = VOUCHERS.find(v=>v.code===code);
-    if (!found) {
-      appliedVoucher = null;
-      errVoucher.textContent = "Kode voucher tidak valid.";
-      renderPayments();
-      return;
-    }
-    appliedVoucher = found;
-    errVoucher.textContent = "";
+    if(!found){ appliedVoucher=null; errVoucher.textContent="Kode voucher tidak valid."; renderPayments(); return; }
+    appliedVoucher = found; errVoucher.textContent="";
     renderPayments();
-    // Popup ceklis hijau
     successPopup("Voucher Berhasil Digunakan", `Kode <b>${found.code}</b> aktif. Diskon ${found.percent}% diterapkan.`);
   });
 
-  // Checkout
   qs("#checkoutBtn").addEventListener("click", ()=>{
-    // Validasi
-    const idVal = (qs("#userId").value || "").trim();
-    const serverVal = needServer ? (qs("#serverId").value || "").trim() : "";
-    const emailVal = (qs("#email").value || "").trim();
+    const idVal = (qs("#userId").value||"").trim();
+    const serverVal = needServer ? (qs("#serverId").value||"").trim() : "";
+    const emailVal = (qs("#email").value||"").trim();
 
     clearErrors();
-    if (!idVal){ showErr("#errUserId","User ID wajib diisi."); qs("#userId").focus(); return; }
-    if (needServer && !serverVal){ showErr("#errServerId","Server ID wajib diisi."); qs("#serverId").focus(); return; }
-    if (!/^\S+@\S+\.\S+$/.test(emailVal)){ showErr("#errEmail","Format email tidak valid."); qs("#email").focus(); return; }
-    if (!selectedProduct){ showErr("#errProduct","Silakan pilih produk terlebih dahulu."); productGrid.scrollIntoView({behavior:"smooth"}); return; }
-    if (!selectedPayment){ showErr("#errPayment","Silakan pilih metode pembayaran terlebih dahulu."); paymentGrid.scrollIntoView({behavior:"smooth"}); return; }
+    if(!idVal){ showErr("#errUserId","User ID wajib diisi."); qs("#userId").focus(); return; }
+    if(needServer && !serverVal){ showErr("#errServerId","Server ID wajib diisi."); qs("#serverId").focus(); return; }
+    if(!/^\S+@\S+\.\S+$/.test(emailVal)){ showErr("#errEmail","Format email tidak valid."); qs("#email").focus(); return; }
+    if(!selectedProduct){ showErr("#errProduct","Silakan pilih produk."); productGrid.scrollIntoView({behavior:"smooth"}); return; }
+    if(!selectedPayment){ showErr("#errPayment","Silakan pilih metode pembayaran."); paymentGrid.scrollIntoView({behavior:"smooth"}); return; }
 
-    // Hitung total
     let total = selectedProduct.price;
-    if (appliedVoucher) total = Math.round(total * (100 - appliedVoucher.percent)/100);
+    if(appliedVoucher) total = Math.round(total*(100-appliedVoucher.percent)/100);
 
-    // Ringkasan
     const lines = [
       `🛒 *Detail Transaksi WalzShop*`,
       `━━━━━━━━━━━━━━━━━━━━`,
@@ -287,37 +273,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     showPopup(
       "Detail Transaksi",
-      lines.replaceAll("\n", "<br>") +
-      `<br><br><a class="btn primary" href="${wa}" target="_blank" rel="noopener">Kirim via WhatsApp</a>
+      lines.replaceAll("\n","<br>") +
+      `<br><br><a class="btn primary" href="${wa}" target="_blank">Kirim via WhatsApp</a>
        <a class="btn soft" style="margin-left:8px" href="${mailto}">Kirim ke Email Saya</a>`
     );
   });
 
   qs("#popupClose").addEventListener("click", ()=>qs("#popup").classList.add("hidden"));
 
-  /* ----- Renders ----- */
+  /* ----- Render Products ----- */
   function renderProducts(){
-    productGrid.innerHTML = "";
-    const items = PRODUCTS[gKey] || [];
+    productGrid.innerHTML="";
+    const items = PRODUCTS[gKey]||[];
     items.forEach(p=>{
       const card = document.createElement("div");
-      card.className = "product-card";
-      // Title: jumlah + diamond (atau label khusus)
-      const title = document.createElement("p");
-      title.className = "p-title";
-      title.innerHTML = p.label; // sudah berisi "xx 💎" / label khusus
+      card.className="product-card";
+      const title = document.createElement("p"); title.className="p-title"; title.innerHTML=p.label;
+      const price = document.createElement("p"); price.className="p-price"; price.textContent=fmtIDR(p.price);
+      card.appendChild(title); card.appendChild(price);
 
-      const price = document.createElement("p");
-      price.className = "p-price";
-      price.textContent = fmtIDR(p.price);
-
-      card.appendChild(title);
-      card.appendChild(price);
-
-      if (p.badges && p.badges.length){
+      if(p.badges && p.badges.length){
         const wrap = document.createElement("div"); wrap.className="badges";
         p.badges.forEach(b=>{
-          const tag = document.createElement("span"); tag.className="badge"; tag.textContent = b;
+          const tag = document.createElement("span"); tag.className="badge"; tag.textContent=b;
           wrap.appendChild(tag);
         });
         card.appendChild(wrap);
@@ -326,68 +304,59 @@ document.addEventListener("DOMContentLoaded", () => {
       card.addEventListener("click", ()=>{
         qsa(".product-card", productGrid).forEach(c=>c.classList.remove("active"));
         card.classList.add("active");
-        selectedProduct = p;
-        renderPayments(); // update harga muncul
-        updateSummary();
+        card.style.transform="scale(1.03)";
+        setTimeout(()=>card.style.transform="",200);
+        selectedProduct = p; renderPayments(); updateSummary();
       });
       productGrid.appendChild(card);
     });
   }
 
+  /* ----- Render Payments ----- */
   function renderPayments(){
-    paymentGrid.innerHTML = "";
+    paymentGrid.innerHTML="";
     PAYMENTS.forEach(pay=>{
-      const card = document.createElement("div");
-      card.className = "payment-card";
-
-      const img = document.createElement("img");
-      img.src = pay.img; img.alt = pay.name; img.className = "payment-logo";
-
-      const name = document.createElement("p");
-      name.className = "payment-name"; name.textContent = pay.name;
-
-      const price = document.createElement("div");
-      price.className = "pay-price";
-      // harga kosong jika belum ada produk
-      if (selectedProduct){
+      const card = document.createElement("div"); card.className="payment-card";
+      const img = document.createElement("img"); img.src=pay.img; img.alt=pay.name; img.className="payment-logo";
+      const name = document.createElement("p"); name.className="payment-name"; name.textContent=pay.name;
+      const price = document.createElement("div"); price.className="pay-price";
+      if(selectedProduct){
         let nominal = selectedProduct.price;
-        if (appliedVoucher) nominal = Math.round(nominal * (100 - appliedVoucher.percent)/100);
-        price.textContent = fmtIDR(nominal);
-      }else{
-        price.textContent = "";
-      }
-
-      card.appendChild(img); card.appendChild(name); card.appendChild(price);
+        if(appliedVoucher) nominal=Math.round(nominal*(100-appliedVoucher.percent)/100);
+        price.textContent=fmtIDR(nominal);
+      } else price.textContent="";
+      card.append(img,name,price);
       card.addEventListener("click", ()=>{
         qsa(".payment-card", paymentGrid).forEach(c=>c.classList.remove("active"));
         card.classList.add("active");
-        selectedPayment = pay;
-        updateSummary();
+        card.style.transform="scale(1.03)";
+        setTimeout(()=>card.style.transform="",200);
+        selectedPayment=pay; updateSummary();
       });
-
       paymentGrid.appendChild(card);
     });
   }
 
   function updateSummary(){
-    const box = qs("#summary");
-    if (!selectedProduct) { box.innerHTML = `<p>Pilih produk terlebih dahulu.</p>`; return; }
-    let nominal = selectedProduct.price;
-    if (appliedVoucher) nominal = Math.round(nominal * (100 - appliedVoucher.percent)/100);
+    const box=qs("#summary");
+    if(!selectedProduct){ box.innerHTML=`<p>Pilih produk terlebih dahulu.</p>`; return; }
+    let nominal=selectedProduct.price;
+    let discText="";
+    if(appliedVoucher){ nominal=Math.round(nominal*(100-appliedVoucher.percent)/100); discText=` <span style="color:#7cf5d6">(Diskon ${appliedVoucher.percent}%)</span>`;}
     const method = selectedPayment ? selectedPayment.name : "—";
     box.innerHTML = `
       <p>Produk: <b>${selectedProduct.label}</b></p>
       <p>Metode Pembayaran: <b>${method}</b></p>
-      <p>Total: <b>${fmtIDR(nominal)}</b></p>
+      <p>Total: <b>${fmtIDR(nominal)}</b>${discText}</p>
     `;
   }
 
-  /* ----- Popup helpers ----- */
   function showPopup(title, html){
     qs("#popupTitle").textContent = title || "WalzShop";
     qs("#popupMessage").innerHTML = html || "";
     qs("#popup").classList.remove("hidden");
   }
+
   function successPopup(title, sub){
     const icon = `
       <div style="
@@ -405,8 +374,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function clearErrors(){
     ["#errUserId","#errServerId","#errEmail","#errProduct","#errPayment","#errVoucher"].forEach(id=>{
-      const el = qs(id); if (el) el.textContent = "";
+      const el = qs(id);
+      if(el) el.textContent = "";
     });
   }
-  function showErr(sel, msg){ const el = qs(sel); if (el) el.textContent = msg; }
+
+  function showErr(sel, msg){
+    const el = qs(sel);
+    if(el) el.textContent = msg;
+  }
 });
