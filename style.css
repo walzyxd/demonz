@@ -1,7 +1,7 @@
 /* ==================== GLOBAL STYLES ==================== */
 :root {
     --primary-color: #e53e3e;
-    --secondary-color: #f6ad55;
+    --secondary-color: #3b82f6; /* Warna biru baru untuk select */
     --background-color: #f7fafc;
     --card-bg-color: #ffffff;
     --text-color-primary: #1a202c;
@@ -313,8 +313,8 @@ body {
 .payment-card.active,
 .payment-card:hover {
     border-color: var(--secondary-color);
-    background-color: #fffaf0;
-    box-shadow: 0 4px 15px rgba(246, 173, 85, 0.1);
+    background-color: #e3f2fd;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.1);
     transform: translateY(-4px);
 }
 
@@ -366,11 +366,11 @@ body {
 .voucher-group {
     display: flex;
     gap: 10px;
-    align-items: center;
-    margin-bottom: 15px;
+    align-items: stretch;
 }
 .voucher-group input {
     flex: 1;
+    border-radius: 10px;
 }
 
 .btn-primary {
@@ -379,7 +379,7 @@ body {
     font-weight: 600;
     background-color: var(--border-color);
     color: var(--text-color-secondary);
-    border-radius: 8px;
+    border-radius: 10px;
     border: none;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s;
@@ -387,6 +387,10 @@ body {
 .btn-primary:hover {
     background-color: var(--primary-color);
     color: #fff;
+}
+.btn-primary.btn-sm {
+    padding: 8px 12px;
+    font-size: 0.85rem;
 }
 
 .btn-checkout {
@@ -519,6 +523,13 @@ body {
 .modal-voucher .modal-title {
     width: 100%;
     text-align: center;
+}
+.modal-voucher-list li {
+    background-color: #f0f4f8;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
 }
 
 /* ==================== RESPONSIVE STYLES ==================== */
