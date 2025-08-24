@@ -20,11 +20,11 @@ const GAMES = [
 ];
 
 const PAYMENTS = [
-    { id: "qris", name: "QRIS", img: "https://files.catbox.moe/crlcvj.jpg", price: 1000 },
-    { id: "shopeepay", name: "ShopeePay", img: "https://files.catbox.moe/gub7ik.jpg", price: 1500 },
-    { id: "dana", name: "Dana", img: "https://i.imghippo.com/files/qhn1355Ds.jpg", price: 0 },
-    { id: "gopay", name: "GoPay", img: "https://i.imghippo.com/files/lRYZ9422LGY.jpg", price: 0 },
-    { id: "ovo", name: "OVO", img: "https://i.imghippo.com/files/sIRs2824EY.jpg", price: 0 },
+    { id: "qris", name: "QRIS", img: "https://files.catbox.moe/crlcvj.jpg" },
+    { id: "shopeepay", name: "ShopeePay", img: "https://files.catbox.moe/gub7ik.jpg" },
+    { id: "dana", name: "Dana", img: "https://i.imghippo.com/files/qhn1355Ds.jpg" },
+    { id: "gopay", name: "GoPay", img: "https://i.imghippo.com/files/lRYZ9422LGY.jpg" },
+    { id: "ovo", name: "OVO", img: "https://i.imghippo.com/files/sIRs2824EY.jpg" },
 ];
 
 const PRODUCTS = {
@@ -277,38 +277,36 @@ function initGamePage() {
     let selectedPayment = null;
     let appliedVoucher = null;
 
+    function calculateFinalPrice() {
+        let finalPrice = selectedProduct ? selectedProduct.price : 0;
+        if (appliedVoucher) {
+            finalPrice = Math.round(finalPrice * (1 - appliedVoucher.percent / 100));
+        }
+        return finalPrice;
+    }
+
     function updateSummary() {
         if (!summaryBox) return;
 
-        let total = selectedProduct ? selectedProduct.price : 0;
-        let originalPrice = selectedProduct ? selectedProduct.price : 0;
-        let discountAmount = 0;
-
-        if (appliedVoucher) {
-            discountAmount = Math.round(originalPrice * (appliedVoucher.percent / 100));
-            total = originalPrice - discountAmount;
-        }
-
-        const paymentMethod = selectedPayment ? selectedPayment.name : "—";
-        const paymentPrice = selectedPayment ? selectedPayment.price : 0;
-        total += paymentPrice;
-
-        if (!selectedProduct || !selectedPayment) {
+        if (!selectedProduct) {
             summaryBox.innerHTML = `<p>Pilih nominal & pembayaran untuk melihat ringkasan.</p>`;
             return;
         }
 
+        let originalPrice = selectedProduct.price;
+        let finalPriceAfterVoucher = calculateFinalPrice();
+        let discountAmount = originalPrice - finalPriceAfterVoucher;
+
         const voucherInfo = appliedVoucher ? `<p>Diskon Voucher: <b>-${fmtIDR(discountAmount)}</b></p>` : '';
-        const paymentFeeInfo = selectedPayment && selectedPayment.price > 0 ? `<p>Biaya Pembayaran: <b>+${fmtIDR(paymentPrice)}</b></p>` : '';
+        const paymentFeeInfo = selectedPayment ? `<p>Total yang harus dibayar: <b>${fmtIDR(finalPriceAfterVoucher)}</b></p>` : '';
 
         summaryBox.innerHTML = `
             <p>Produk: <b>${selectedProduct.label}</b></p>
             <p>Harga: <b>${fmtIDR(originalPrice)}</b></p>
-            <p>Pembayaran: <b>${paymentMethod}</b></p>
             ${voucherInfo}
-            ${paymentFeeInfo}
+            <p>Metode Pembayaran: <b>${selectedPayment ? selectedPayment.name : "—"}</b></p>
             <hr style="border-top: 1px dashed var(--border-color); margin: 15px 0;">
-            <p>Total: <b>${fmtIDR(total)}</b></p>
+            ${paymentFeeInfo}
         `;
     }
 
@@ -320,8 +318,16 @@ function initGamePage() {
             const card = document.createElement("div");
             card.className = `product-card`;
             card.dataset.id = product.id;
+            
+            let labelWithEmoji = product.label;
+            if (product.label.toLowerCase().includes("diamond") || product.label.toLowerCase().includes("gems") || product.label.toLowerCase().includes("uc") || product.label.toLowerCase().includes("crystal") || product.label.toLowerCase().includes("tokens") || product.label.toLowerCase().includes("goldstar") || product.label.toLowerCase().includes("gold")) {
+                const parts = product.label.split(' ');
+                parts[parts.length - 1] += ' 💎';
+                labelWithEmoji = parts.join(' ');
+            }
+
             card.innerHTML = `
-                <p class="product-label">${product.label}</p>
+                <p class="product-label">${labelWithEmoji}</p>
                 <p class="product-price">${fmtIDR(product.price)}</p>
             `;
             if (product.badges && product.badges.length > 0) {
@@ -341,7 +347,10 @@ function initGamePage() {
             const card = document.createElement("div");
             card.className = `payment-card`;
             card.dataset.id = payment.id;
-            const priceText = payment.price === 0 ? 'Gratis' : `${fmtIDR(payment.price)}`;
+            
+            const finalPrice = calculateFinalPrice();
+            const priceText = finalPrice > 0 ? `${fmtIDR(finalPrice)}` : 'Gratis';
+
             card.innerHTML = `
                 <img src="${payment.img}" alt="${payment.name}" class="payment-logo">
                 <p class="payment-name">${payment.name}</p>
@@ -365,19 +374,16 @@ function initGamePage() {
         if (selectedPayment) {
             qs(`.payment-card[data-id="${selectedPayment.id}"]`).classList.add('active');
         }
-        updateSummary();
-    }
 
-    function calculateFinalPrice() {
-        if (!selectedProduct) return 0;
-        let finalPrice = selectedProduct.price;
-        if (appliedVoucher) {
-            finalPrice = Math.round(finalPrice * (1 - appliedVoucher.percent / 100));
-        }
-        if (selectedPayment) {
-            finalPrice += selectedPayment.price;
-        }
-        return finalPrice;
+        // Update payment card prices
+        const finalPrice = calculateFinalPrice();
+        qsa('.payment-card').forEach(card => {
+            const priceEl = qs('.payment-price', card);
+            const priceText = finalPrice > 0 ? `${fmtIDR(finalPrice)}` : 'Gratis';
+            priceEl.textContent = priceText;
+        });
+
+        updateSummary();
     }
 
     function renderVoucherListModal() {
@@ -418,7 +424,7 @@ function initGamePage() {
             qs("#voucher-modal .modal-header").style.borderBottom = "1px solid var(--primary-color)";
         }
         showModal('voucher-modal');
-        updateSummary();
+        updateUI();
     });
 
     showVoucherListBtn.addEventListener("click", () => {
@@ -457,6 +463,8 @@ function initGamePage() {
             return;
         }
 
+        const finalPrice = calculateFinalPrice();
+
         // Update modal summary
         checkoutSummary.innerHTML = `
             <p>Game: <b>${gameData.name}</b></p>
@@ -465,7 +473,7 @@ function initGamePage() {
             <p>Produk: <b>${selectedProduct.label}</b></p>
             <p>Metode Pembayaran: <b>${selectedPayment.name}</b></p>
             <hr style="border-top: 1px dashed var(--border-color); margin: 15px 0;">
-            <p>Total Harga: <span>${fmtIDR(calculateFinalPrice())}</span></p>
+            <p>Total Harga: <span>${fmtIDR(finalPrice)}</span></p>
         `;
 
         showModal('checkout-modal');
@@ -474,6 +482,7 @@ function initGamePage() {
     waBtn.addEventListener("click", () => {
         const userId = userIdInput.value.trim();
         const serverId = gameData.server ? serverIdInput.value.trim() : '';
+        const finalPrice = calculateFinalPrice();
 
         const message = `
 Halo admin, saya ingin order.
@@ -484,7 +493,7 @@ ID Pengguna: ${userId}
 ${gameData.server ? `Server ID: ${serverId}\n` : ''}Produk: ${selectedProduct.label}
 Harga: ${fmtIDR(selectedProduct.price)}
 Pembayaran: ${selectedPayment.name}
-Total: ${fmtIDR(calculateFinalPrice())}
+Total: ${fmtIDR(finalPrice)}
         `.trim();
         const encodedMessage = encodeURIComponent(message);
         window.open(`https://wa.me/${ADMIN_WA}?text=${encodedMessage}`, "_blank");
@@ -493,6 +502,7 @@ Total: ${fmtIDR(calculateFinalPrice())}
     emailBtn.addEventListener("click", () => {
         const userId = userIdInput.value.trim();
         const serverId = gameData.server ? serverIdInput.value.trim() : '';
+        const finalPrice = calculateFinalPrice();
         const subject = encodeURIComponent(`Pemesanan Top Up ${gameData.name}`);
         const body = encodeURIComponent(`
 Halo admin, saya ingin melakukan pemesanan top up dengan detail sebagai berikut:
@@ -502,7 +512,7 @@ ID Pengguna: ${userId}
 ${gameData.server ? `Server ID: ${serverId}\n` : ''}Produk: ${selectedProduct.label}
 Harga: ${fmtIDR(selectedProduct.price)}
 Metode Pembayaran: ${selectedPayment.name}
-Total Harga: ${fmtIDR(calculateFinalPrice())}
+Total Harga: ${fmtIDR(finalPrice)}
 
 Mohon diproses, terima kasih.
         `.trim());
