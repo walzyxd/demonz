@@ -21,9 +21,9 @@ const GAMES = [
 const PAYMENTS = [
   { id: "qris", name: "QRIS", img: "https://files.catbox.moe/crlcvj.jpg" },
   { id: "shopeepay", name: "ShopeePay", img: "https://files.catbox.moe/gub7ik.jpg" },
-  { id: "dana", name: "Dana", img: "https://files.catbox.moe/f5ey4y.jpg" },
-  { id: "gopay", name: "GoPay", img: "https://files.catbox.moe/je0irt.jpg" },
-  { id: "ovo", name: "OVO", img: "https://files.catbox.moe/57f44a.jpg" },
+  { id: "dana", name: "Dana", img: "https://i.imghippo.com/files/qhn1355Ds.jpg" },
+  { id: "gopay", name: "GoPay", img: "https://i.imghippo.com/files/lRYZ9422LGY.jpg" },
+  { id: "ovo", name: "OVO", img: "https://i.imghippo.com/files/sIRs2824EY.jpg" },
 ];
 
 const PRODUCTS = {
@@ -132,14 +132,6 @@ const PRODUCTS = {
   ],
 };
 
-const PAYMENTS = [
-  { id: "qris", name: "QRIS", img: "https://files.catbox.moe/crlcvj.jpg" },
-  { id: "shopeepay", name: "ShopeePay", img: "https://files.catbox.moe/gub7ik.jpg" },
-  { id: "dana", name: "Dana", img: "https://files.catbox.moe/f5ey4y.jpg" },
-  { id: "gopay", name: "GoPay", img: "https://files.catbox.moe/je0irt.jpg" },
-  { id: "ovo", name: "OVO", img: "https://files.catbox.moe/57f44a.jpg" },
-];
-
 const SLIDER_IMAGES = [
   "https://i.imghippo.com/files/IHhY6050Qlc.jpeg",
   "https://i.imghippo.com/files/uy5982ZtQ.jpeg",
@@ -202,6 +194,7 @@ function selectGame(game) {
 
 function initHeroSlider() {
   const slider = qs(".hero-slider-coda");
+  slider.innerHTML = "";
   SLIDER_IMAGES.forEach(imgUrl => {
     const img = document.createElement("img");
     img.src = imgUrl;
@@ -213,7 +206,7 @@ function initHeroSlider() {
   setInterval(() => {
     currentSlide = (currentSlide + 1) % SLIDER_IMAGES.length;
     const offset = -currentSlide * 100;
-    slider.style.transform = `translateX(${offset}%)`;
+    slider.style.transform = `translateX(${offset}%) scale(1.03)`;
   }, 5000);
 }
 
@@ -292,7 +285,7 @@ function initGamePage() {
 
   function renderPayments() {
     paymentGrid.innerHTML = "";
-    let finalPrice = selectedProduct?.price || 0;
+    let finalPrice = selectedProduct ? selectedProduct.price : 0;
     if (selectedProduct && appliedVoucher) {
       finalPrice = Math.round(finalPrice * (1 - appliedVoucher.percent / 100));
     }
@@ -304,7 +297,7 @@ function initGamePage() {
       card.innerHTML = `
         <img src="${payment.img}" alt="${payment.name}" class="payment-logo-coda">
         <p class="payment-name-coda">${payment.name}</p>
-        <p class="pay-price-coda">${fmtIDR(finalPrice)}</p>
+        ${selectedProduct ? `<p class="pay-price-coda">${fmtIDR(finalPrice)}</p>` : ''}
       `;
       card.addEventListener("click", () => {
         selectedPayment = payment;
@@ -335,7 +328,7 @@ function initGamePage() {
     if (selectedPayment) {
       qs(`.payment-card-coda[data-id="${selectedPayment.id}"]`)?.classList.add('active');
     }
-    renderPayments(); // Render payments again to update prices
+    renderPayments();
     updateSummary();
   }
 
