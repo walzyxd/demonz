@@ -1,122 +1,182 @@
-/* ================= RESET & BASE ================= */
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#0f172a; --card:#111827; --muted:#1f2937; --line:#293244;
-  --text:#e5e7eb; --soft:#94a3b8; --brand:#38bdf8; --brand-2:#7c3aed;
-  --ok:#22c55e; --warn:#f59e0b; --bad:#ef4444;
-  --radius:14px; --shadow:0 8px 28px rgba(0,0,0,.35);
+/* ===== BASE ===== */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f1f5f9;
+  color: #1e293b;
 }
-body.page{
-  background:var(--bg);
-  color:var(--text);
-  font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-  line-height:1.55;
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
 }
-.container{width:95%;max-width:1100px;margin:0 auto}
+.center { text-align: center; }
 
-/* ================= BRANDING ================= */
-.brand-badge{display:inline-flex;gap:.25rem;align-items:baseline;margin:12px 0 6px}
-.logo-w{font-family:'Orbitron',sans-serif;font-weight:800;font-size:34px;letter-spacing:.5px;background:linear-gradient(90deg,#fff,#a5f3fc);-webkit-background-clip:text;background-clip:text;color:transparent}
-.logo-s{font-family:'Orbitron',sans-serif;font-weight:800;font-size:34px;letter-spacing:.5px;background:linear-gradient(90deg,#60a5fa,#7c3aed);-webkit-background-clip:text;background-clip:text;color:transparent}
-.tagline{color:var(--soft);margin-bottom:14px}
-
-/* ================= HERO SLIDER ================= */
-.hero{position:relative;overflow:hidden;margin:16px auto;border-radius:16px;width:95%;max-width:1100px}
-.slider{width:100%;height:210px}
-.slides{display:flex;width:100%;height:100%;transition:transform .8s ease-in-out}
-.slides img{width:100%;height:210px;object-fit:cover;flex:0 0 100%}
-
-/* ================= SECTION TITLE ================= */
-.section-title{margin:18px 0 8px;font-weight:600;border-left:4px solid var(--brand);padding-left:10px;color:#e2e8f0}
-
-/* ================= GAMES GRID ================= */
-.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:14px}
-.game-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:transform .2s,box-shadow .2s}
-.game-card:hover{transform:translateY(-4px)}
-.game-card .thumb{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
-.game-card h3{font-size:13px;text-align:center;padding:10px 8px;color:#e5e7eb}
-
-/* ================= GAME HEADER ================= */
-.game-header{display:flex;align-items:center;gap:12px;padding:10px 0}
-.back-btn{background:transparent;border:1px solid var(--line);color:#e2e7eb;padding:8px 12px;border-radius:10px;cursor:pointer}
-.back-btn:hover{background:#0b1222}
-.game-head-info{display:flex;align-items:center;gap:12px}
-.game-banner{width:56px;height:56px;object-fit:cover;border-radius:12px;border:1px solid var(--line)}
-.game-title{font-family:'Orbitron',sans-serif;font-size:22px}
-
-/* ================= CARDS & FORMS ================= */
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:14px 0;box-shadow:var(--shadow)}
-.card-title{font-weight:600;margin-bottom:12px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
-@media(max-width:900px){.form-grid{grid-template-columns:1fr}}
-.form-group label{font-size:14px;color:#cbd5e1}
-.form-group input{width:100%;margin-top:6px;background:#0b1222;border:1px solid var(--line);border-radius:10px;color:#e5e7eb;padding:10px 12px;outline:none}
-.hint{font-size:12px;color:#94a3b8;margin-top:6px}
-.error{color:var(--bad);font-size:12px;margin-top:6px;display:block;min-height:16px}
-
-/* ================= PRODUCTS ================= */
-.product-grid{display:flex;flex-wrap:wrap;gap:12px}
-.product-item{background:#1e293b;border:1px solid transparent;border-radius:16px;padding:12px 12px 10px;box-shadow:0 6px 16px rgba(0,0,0,.25);transition:transform .2s,box-shadow .2s,border-color .2s;width:150px;min-height:120px;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;cursor:pointer}
-.product-item:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(0,0,0,.35);background:#273549}
-.product-item.selected{border-color:var(--brand)}
-.product-label{font-weight:600;color:#fff;font-size:13px}
-.product-price{margin-top:10px;font-weight:700;color:var(--brand)}
-.badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
-.badge{padding:3px 8px;border-radius:999px;font-size:10px;font-weight:700;line-height:1}
-.badge--wdp{background:linear-gradient(90deg,#06b6d4,#3b82f6);color:#021018;border:1px solid rgba(255,255,255,.06)}
-.badge--level-up{background:linear-gradient(90deg,#f97316,#ef4444);color:#1b0b06;border:1px solid rgba(255,255,255,.06)}
-.badge--pass,.badge--member,.badge--weekly,.badge--monthly,.badge--vip,.badge--welkin{background:#0b1222;border:1px dashed var(--brand);color:#e2e8f0}
-
-/* ================= PAYMENT ================= */
-.payment-grid{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px}
-.pay-card{display:flex;align-items:center;gap:14px;background:#1e293b;border:1px solid transparent;border-radius:16px;padding:14px;cursor:pointer;transition:.25s ease;box-shadow:0 6px 16px rgba(0,0,0,.25);min-width:220px}
-.pay-card:hover{transform:translateY(-4px);border-color:var(--brand);box-shadow:0 10px 20px rgba(0,0,0,.35);background:#273549}
-.pay-card.selected{border-color:var(--brand)}
-.pay-logo{width:54px;height:54px;object-fit:contain;border-radius:12px;background:#0a0f1a;padding:6px}
-.pay-info{display:flex;flex-direction:column;gap:2px}
-.pay-name{font-size:.95rem;font-weight:600;color:#ffffff}
-.pay-price{font-size:.85rem;font-weight:700;color:var(--brand);min-height:18px}
-
-/* ================= VOUCHER ================= */
-.voucher-row{display:flex;gap:8px;margin-top:6px}
-.voucher-row input{flex:1;background:#0b1222;border:1px solid var(--line);border-radius:10px;color:#e5e7eb;padding:10px 12px}
-.btn{border:none;border-radius:10px;cursor:pointer;padding:8px 10px;font-weight:600;transition:.2s;text-decoration:none}
-.btn.primary{background:var(--brand);color:#04131a}
-.btn.success{background:var(--ok);color:#03140a}
-.btn.soft{background:#0b1222;border:1px solid var(--line);color:#e2e8f0}
-.btn:hover{filter:brightness(1.05)}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-.voucher-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-.voucher-list.hidden{display:none}
-.voucher-chip{background:#1e293b;border:1px solid var(--line);padding:6px 10px;border-radius:12px;cursor:pointer;transition:.2s}
-.voucher-chip:hover{background:#273549}
-
-/* ================= SUMMARY ================= */
-.summary{display:grid;gap:8px;background:#0b1222;border:1px solid var(--line);border-radius:12px;padding:12px}
-.summary .row{display:flex;justify-content:space-between;color:#cbd5e1}
-.summary .total{font-size:16px;font-weight:700;color:#e5e7eb;border-top:1px dashed var(--line);padding-top:8px}
-.checkout-actions{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
-
-/* ================= POPUP ================= */
-.popup{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:50}
-.popup.hidden{display:none}
-.popup-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.6)}
-.popup-content{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);width:min(560px,92vw);padding:16px}
-.popup-title{font-family:'Orbitron',sans-serif;margin-bottom:10px}
-.popup-body{background:#0b1222;border:1px solid var(--line);border-radius:12px;padding:12px;max-height:55vh;overflow:auto;color:#cbd5e1}
-.popup-actions{display:flex;justify-content:space-between;margin-top:16px;flex-wrap:nowrap;gap:8px}
-.popup-actions .btn{text-decoration:none;padding:6px 8px;font-size:12px}
-.popup-close{position:absolute;right:10px;top:10px;background:#0b1222;border:1px solid var(--line);border-radius:10px;color:#e2e8f0;padding:6px 9px;cursor:pointer}
-
-/* ================= UTIL ================= */
-.mt-6{margin-top:6px}
-.link{color:var(--brand);text-decoration:underline;cursor:pointer}
-
-/* ================= TOAST VOUCHER ================= */
-.voucher-toast{
-  position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-20px);
-  background:var(--brand);color:#fff;padding:10px 16px;border-radius:12px;
-  box-shadow:0 6px 16px rgba(0,0,0,.35);opacity:0;transition:.3s;
-  z-index:100;
+/* ===== HERO ===== */
+.hero {
+  margin: 16px;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
-.voucher-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.hero img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* ===== BRAND ===== */
+.brand { text-align: center; margin-top: 20px; }
+.brand-badge {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+}
+.logo-w { color: #3b82f6; }
+.logo-s { color: #ef4444; }
+.tagline {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  color: #64748b;
+}
+
+/* ===== SLOGAN ===== */
+.slogan-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  border-radius: 1rem;
+  padding: 14px 18px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin: 18px auto;
+  max-width: 500px;
+}
+.s-dot {
+  width: 12px; height: 12px;
+  background: #3b82f6;
+  border-radius: 50%;
+}
+.s-body h3 { margin: 0; font-size: 1.1rem; font-weight: 600; }
+.s-body p { margin: 2px 0 0; font-size: 0.9rem; color: #475569; }
+
+/* ===== GAME GRID ===== */
+.section-title {
+  text-align: center;
+  margin: 24px 0 6px;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.game-card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  text-align: center;
+  padding: 12px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+.game-card.selected {
+  border: 2px solid #22c55e;
+  background: #f0fdf4;
+}
+.game-card img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+.game-card h4 {
+  margin: 10px 0 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* ===== GAME PAGE ===== */
+.game-header {
+  position: relative;
+  text-align: center;
+}
+.game-banner {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.game-info {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+}
+.btn-back {
+  display: inline-block;
+  margin-top: 6px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+/* ===== CARD & INPUT ===== */
+.card {
+  background: white;
+  border-radius: 1rem;
+  padding: 16px;
+  margin: 16px 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+.products-grid, .payments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px,1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+.product-card, .payment-card {
+  background: #f8fafc;
+  border-radius: 1rem;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s;
+  border: 2px solid transparent;
+}
+.product-card:hover, .payment-card:hover {
+  background: #f1f5f9;
+}
+.product-card.selected, .payment-card.selected {
+  border-color: #22c55e;
+  background: #f0fdf4;
+}
+.btn-buy {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: #3b82f6;
+  color: white;
+  font-size: 1rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.btn-buy:hover { background: #2563eb; }
+
+/* ===== FOOTER ===== */
+footer {
+  margin: 40px auto;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
