@@ -31,45 +31,7 @@
   <main class="container">
     <h2 class="section-title">Pilih Game Favoritmu</h2>
     <p class="section-subtitle">Klik game untuk mulai top up</p>
-
-    <section class="games-grid">
-      <a href="game.html?game=freefire" class="game-card">
-        <img src="https://files.catbox.moe/x5rvpg.jpg" alt="Free Fire">
-        <p>Free Fire</p>
-      </a>
-      <a href="game.html?game=ml" class="game-card">
-        <img src="https://files.catbox.moe/wcxi20.jpg" alt="Mobile Legends">
-        <p>Mobile Legends</p>
-      </a>
-      <a href="game.html?game=hok" class="game-card">
-        <img src="https://files.catbox.moe/rh78kj.jpg" alt="Honor of Kings">
-        <p>Honor of Kings</p>
-      </a>
-      <a href="game.html?game=genshin" class="game-card">
-        <img src="https://files.catbox.moe/b91rfb.jpg" alt="Genshin Impact">
-        <p>Genshin Impact</p>
-      </a>
-      <a href="game.html?game=roblox" class="game-card">
-        <img src="https://files.catbox.moe/uvixa8.jpg" alt="Roblox">
-        <p>Roblox</p>
-      </a>
-      <a href="game.html?game=supersus" class="game-card">
-        <img src="https://files.catbox.moe/j61uny.jpg" alt="Super Sus">
-        <p>Super Sus</p>
-      </a>
-      <a href="game.html?game=coc" class="game-card">
-        <img src="https://files.catbox.moe/6aia0n.jpg" alt="Clash of Clans">
-        <p>Clash of Clans</p>
-      </a>
-      <a href="game.html?game=bloodstrike" class="game-card">
-        <img src="https://files.catbox.moe/3y066i.jpg" alt="Blood Strike">
-        <p>Blood Strike</p>
-      </a>
-      <a href="game.html?game=pubg" class="game-card">
-        <img src="https://files.catbox.moe/tatuo9.jpg" alt="PUBG Mobile">
-        <p>PUBG Mobile</p>
-      </a>
-    </section>
+    <div id="gamesGrid" class="games-grid"></div>
   </main>
 
   <!-- FOOTER -->
@@ -79,6 +41,7 @@
 
   <!-- SLIDER SCRIPT -->
   <script>
+    // Simple slider
     const slider = document.getElementById("heroSlider");
     let idx = 0;
     setInterval(() => {
@@ -86,5 +49,6 @@
       slider.style.transform = `translateX(-${idx * 100}%)`;
     }, 4000);
   </script>
+  <script src="script.js"></script>
 </body>
 </html>
