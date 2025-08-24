@@ -218,8 +218,8 @@ function initHeroSlider() {
     setInterval(() => {
         currentSlide = (currentSlide + 1) % SLIDER_IMAGES.length;
         const offset = -currentSlide * 100;
-        slider.style.transform = `translateX(${offset}%) scale(1.03)`;
-    }, 5000);
+        slider.style.transform = `translateX(${offset}%)`; // Perbaiki transform untuk pas
+    }, 3000); // Durasi 3 detik
 }
 
 /* ================== GAME PAGE LOGIC ================== */
@@ -232,9 +232,9 @@ function initGamePage() {
     const paymentGrid = qs("#payment-grid");
     const voucherInput = qs("#voucher-code");
     const useVoucherBtn = qs("#use-voucher-btn");
+    const showVoucherListBtn = qs("#show-voucher-list-btn");
     const checkoutBtn = qs("#checkout-btn");
     const summaryBox = qs("#summary-box");
-    const voucherInfo = qs("#voucher-info");
 
     const modalTitle = qs("#modal-title");
     const modalMessage = qs("#modal-message");
@@ -242,6 +242,7 @@ function initGamePage() {
     const waBtn = qs("#wa-btn");
     const emailBtn = qs("#email-btn");
     const modalCloseBtns = qsa(".modal-close-btn");
+    const voucherListUl = qs("#voucher-list");
 
     if (!gameTitle || !banner) return;
 
@@ -261,7 +262,7 @@ function initGamePage() {
     function updateSummary() {
         if (!summaryBox) return;
         if (!selectedProduct) {
-            summaryBox.innerHTML = `<p>Pilih produk terlebih dahulu.</p>`;
+            summaryBox.innerHTML = `<p>Pilih produk dan pembayaran untuk melihat ringkasan.</p>`;
             return;
         }
 
@@ -304,11 +305,7 @@ function initGamePage() {
 
     function renderPayments() {
         paymentGrid.innerHTML = "";
-        let finalPrice = selectedProduct ? selectedProduct.price : 0;
-        if (selectedProduct && appliedVoucher) {
-            finalPrice = Math.round(finalPrice * (1 - appliedVoucher.percent / 100));
-        }
-
+        
         PAYMENTS.forEach(payment => {
             const card = document.createElement("div");
             card.className = `payment-card`;
@@ -316,7 +313,6 @@ function initGamePage() {
             card.innerHTML = `
                 <img src="${payment.img}" alt="${payment.name}" class="payment-logo">
                 <p class="payment-name">${payment.name}</p>
-                ${selectedProduct ? `<p class="payment-price">${fmtIDR(finalPrice)}</p>` : ''}
             `;
             card.addEventListener("click", () => {
                 selectedPayment = payment;
@@ -326,16 +322,13 @@ function initGamePage() {
         });
     }
 
-    function renderVoucherInfo() {
-        voucherInfo.innerHTML = `<p><b>Daftar Voucher:</b></p>`;
-        const list = document.createElement("ul");
-        list.className = "voucher-list";
+    function renderVoucherListModal() {
+        voucherListUl.innerHTML = "";
         VOUCHERS.forEach(v => {
             const item = document.createElement("li");
             item.innerHTML = `<b>${v.code}</b> — ${v.description}`;
-            list.appendChild(item);
+            voucherListUl.appendChild(item);
         });
-        voucherInfo.appendChild(list);
     }
 
     function updateUI() {
@@ -347,14 +340,13 @@ function initGamePage() {
         if (selectedPayment) {
             qs(`.payment-card[data-id="${selectedPayment.id}"]`)?.classList.add('active');
         }
-        renderPayments();
         updateSummary();
     }
 
     // Initial renders
     renderProducts();
     renderPayments();
-    renderVoucherInfo();
+    renderVoucherListModal();
 
     // Event listeners
     useVoucherBtn.addEventListener("click", () => {
@@ -374,6 +366,10 @@ function initGamePage() {
         }
         showModal('voucher-modal');
         updateUI();
+    });
+
+    showVoucherListBtn.addEventListener("click", () => {
+        showModal('voucher-list-modal');
     });
 
     checkoutBtn.addEventListener("click", () => {
