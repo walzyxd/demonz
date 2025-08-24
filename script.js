@@ -431,4 +431,32 @@ function initGamePage() {
             <p><b>Produk:</b> ${selectedProduct.label}</p>
             <p><b>Pembayaran:</b> ${selectedPayment.name}</p>
             ${appliedVoucher ? `<p><b>Diskon Voucher:</b> ${appliedVoucher.percent}%</p>` : ''}
-            <p><b>Total Bayar:</b> <span class="text-lg font-bold">${fmtIDR(fina
+            <p><b>Total Bayar:</b> <span class="text-lg font-bold">${fmtIDR(finalPrice)}</span></p>
+        `;
+
+        waBtn.onclick = () => {
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${ADMIN_WA}?text=${encodedMessage}`;
+            window.open(whatsappUrl, "_blank");
+        };
+
+        emailBtn.onclick = () => {
+            const emailSubject = encodeURIComponent("Pesanan Top Up " + gameData.name);
+            const emailBody = encodeURIComponent(message.replace(/\*/g, '').replace(/━━━━━━━━━━━━━━━━━━━━/g, '-----------------------------'));
+            const emailUrl = `mailto:${ADMIN_EMAIL}?subject=${emailSubject}&body=${emailBody}`;
+            window.open(emailUrl, "_blank");
+        };
+
+        showModal('checkout-modal');
+    });
+
+    modalCloseBtns.forEach(btn => {
+        btn.addEventListener("click", hideModal);
+    });
+
+    qs("#modal-overlay").addEventListener("click", (e) => {
+        if (e.target.id === "modal-overlay") {
+            hideModal();
+        }
+    });
+}
