@@ -2,7 +2,7 @@
 :root {
     --primary-color: #e53e3e;
     --secondary-color: #3b82f6;
-    --background-color: #6c567b;
+    --background-color: #ffffff;
     --card-bg-color: #ffffff;
     --text-color-primary: #1a202c;
     --text-color-secondary: #4a5568;
@@ -286,8 +286,10 @@ body {
     margin-bottom: 15px;
 }
 
-input[type="text"] {
+/* Perubahan lebar input ID */
+.input-group input[type="text"] {
     width: 100%;
+    max-width: 400px; /* Batasi lebar maksimum */
     padding: 12px 15px;
     border: 2px solid var(--border-color);
     border-radius: 10px;
@@ -297,19 +299,19 @@ input[type="text"] {
     outline: none;
 }
 
-input[type="text"]:focus {
+.input-group input[type="text"]:focus {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
 }
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 12px;
 }
 .payment-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 12px;
 }
 
