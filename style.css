@@ -1,13 +1,3 @@
-/*
- * style.css - Perbaikan tampilan halaman WalzShop
- *
- * Gaya ini berfokus pada:
- * 1. Palet warna yang harmonis dan profesional.
- * 2. Tipografi yang bersih dan mudah dibaca.
- * 3. Tata letak responsif untuk berbagai perangkat.
- * 4. Efek transisi yang halus pada elemen interaktif.
- */
-
 /* ==================== GLOBAL STYLES ==================== */
 body {
   margin: 0;
@@ -245,15 +235,28 @@ body {
   border: 1px solid #e0e0e0;
 }
 
+.step-guide-coda {
+  font-size: 1.1rem;
+  color: #1e90ff;
+  font-weight: 700;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.step-guide-coda i {
+  color: #ff8c00;
+}
+
 .input-row-coda {
   margin-bottom: 15px;
 }
 
 .input-row-coda input {
   width: 100%;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid #ccc;
-  padding: 14px;
+  padding: 15px;
   font-size: 1rem;
   background: #f9f9f9;
   color: #333;
@@ -264,16 +267,6 @@ body {
 .input-row-coda input:focus {
   border-color: #1e90ff;
   box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.2);
-}
-
-.step-guide-coda {
-  font-size: 0.9rem;
-  color: #3182ce;
-  background: #ebf8ff;
-  border-radius: 8px;
-  padding: 6px 15px;
-  margin-bottom: 12px;
-  font-weight: 600;
 }
 
 .product-grid-coda,
@@ -292,7 +285,7 @@ body {
   text-align: center;
   cursor: pointer;
   border: 2px solid transparent;
-  transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+  transition: border 0.2s, box-shadow 0.2s, transform 0.2s, background 0.2s;
 }
 
 .product-card-coda.active,
@@ -300,6 +293,7 @@ body {
   border-color: #ff8c00;
   background: #fffbeb;
   box-shadow: 0 4px 15px rgba(255, 140, 0, 0.1);
+  transform: translateY(-4px);
 }
 
 .payment-card-coda.active,
@@ -307,6 +301,7 @@ body {
   border-color: #1e90ff;
   background: #f1f9ff;
   box-shadow: 0 4px 15px rgba(30, 144, 255, 0.1);
+  transform: translateY(-4px);
 }
 
 .p-title-coda {
@@ -347,9 +342,39 @@ body {
   align-items: center;
   margin-bottom: 15px;
 }
-
 .voucher-row-coda input {
   flex: 1;
+}
+.btn-voucher {
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: #e2e8f0;
+  color: #4a5568;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-voucher:hover {
+  background: #ff8c00;
+  color: #fff;
+}
+.btn-checkout {
+  width: 100%;
+  padding: 16px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-top: 15px;
+  background: linear-gradient(90deg, #1e90ff 50%, #ff8c00 100%);
+  color: #fff;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(30, 144, 255, 0.2);
+}
+.btn-checkout:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(30, 144, 255, 0.3);
 }
 
 .summary-coda {
@@ -374,39 +399,17 @@ body {
 
 /* ==================== RESPONSIVE STYLES ==================== */
 @media (max-width: 768px) {
-  .navbar-inner {
-    height: 60px;
-  }
-  .brand-badge {
-    font-size: 1.8rem;
-  }
-  .hero-title {
-    font-size: 1.8rem;
-  }
-  .games-list-coda {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 15px;
-  }
-  .game-card-coda {
-    padding: 15px 10px;
-  }
-  .game-thumb-coda {
-    width: 80px;
-    height: 80px;
-  }
-  .main-title {
-    font-size: 1.3rem;
-  }
-  .btn-coda {
-    font-size: 1rem;
-    padding: 12px 0;
-  }
   .game-banner-coda {
     width: 90px;
     height: 90px;
   }
   .game-title-coda {
     font-size: 1.5rem;
+  }
+  .product-grid-coda,
+  .payment-grid-coda {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
   }
 }
 
@@ -437,5 +440,42 @@ body {
   }
   .game-name-coda {
     font-size: 1rem;
+  }
+  .game-banner-coda {
+    width: 70px;
+    height: 70px;
+  }
+  .game-title-coda {
+    font-size: 1.3rem;
+  }
+  .card-coda {
+    padding: 15px;
+  }
+  .input-row-coda input {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+  .product-grid-coda,
+  .payment-grid-coda {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .p-title-coda,
+  .p-price-coda,
+  .payment-name-coda,
+  .pay-price-coda {
+    font-size: 0.9rem;
+  }
+  .btn-checkout {
+    font-size: 1.1rem;
+    padding: 14px;
+  }
+  .voucher-row-coda {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn-voucher {
+    width: 100%;
+    margin-top: 5px;
   }
 }
