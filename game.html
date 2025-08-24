@@ -22,36 +22,38 @@
     <main class="game-main-content container">
         <section class="game-header">
             <img id="game-banner" class="game-banner" src="" alt="Game Banner">
-            <h1 id="game-title" class="game-title"></h1>
-            <p id="game-guide" class="game-guide"></p>
+            <div class="game-info">
+                <h1 id="game-title" class="game-title"></h1>
+                <p id="game-guide" class="game-guide"></p>
+            </div>
         </section>
 
         <section class="card-section">
-            <div class="step-guide"><i class="fas fa-user-circle"></i> 1. Masukkan ID Akun</div>
-            <p>Masukkan User ID & Server ID (jika ada) untuk akun game Anda.</p>
+            <div class="step-guide"><i class="fa-solid fa-id-card"></i> 1. Masukkan ID Akun</div>
+            <p class="step-description">Isi User ID & Server ID (jika ada) sesuai akun game Anda.</p>
             <div class="input-group">
-                <input type="text" id="user-id" maxlength="30" placeholder="User ID Game (Contoh: 12345678)" autocomplete="off" required>
+                <input type="text" id="user-id" maxlength="30" placeholder="User ID Game" autocomplete="off" required>
             </div>
             <div class="input-group" id="server-group" style="display:none;">
-                <input type="text" id="server-id" maxlength="10" placeholder="Server ID (Contoh: (1234))" autocomplete="off">
+                <input type="text" id="server-id" maxlength="10" placeholder="Server ID" autocomplete="off">
             </div>
         </section>
 
         <section class="card-section">
-            <div class="step-guide"><i class="fas fa-diamond"></i> 2. Pilih Nominal</div>
-            <p>Pilih jumlah nominal produk yang Anda inginkan.</p>
+            <div class="step-guide"><i class="fa-solid fa-sack-dollar"></i> 2. Pilih Nominal</div>
+            <p class="step-description">Pilih jumlah item atau mata uang yang Anda inginkan.</p>
             <div id="product-grid" class="product-grid"></div>
         </section>
 
         <section class="card-section">
-            <div class="step-guide"><i class="fas fa-wallet"></i> 3. Pilih Metode Pembayaran</div>
-            <p>Pilih metode pembayaran yang paling mudah untuk Anda.</p>
+            <div class="step-guide"><i class="fa-solid fa-wallet"></i> 3. Pilih Metode Pembayaran</div>
+            <p class="step-description">Pilih cara pembayaran yang paling mudah dan cepat untuk Anda.</p>
             <div id="payment-grid" class="payment-grid"></div>
         </section>
 
         <section class="card-section">
-            <div class="step-guide"><i class="fas fa-tags"></i> 4. Voucher Diskon</div>
-            <p>Gunakan kode voucher Anda untuk mendapatkan diskon.</p>
+            <div class="step-guide"><i class="fa-solid fa-tags"></i> 4. Voucher Diskon</div>
+            <p class="step-description">Masukkan kode voucher jika Anda punya untuk mendapatkan potongan harga.</p>
             <div class="voucher-group">
                 <input type="text" id="voucher-code" maxlength="12" placeholder="Kode voucher">
                 <button type="button" id="use-voucher-btn" class="btn-primary">Gunakan</button>
@@ -59,8 +61,8 @@
             <button type="button" id="show-voucher-list-btn" class="btn-primary btn-sm mt-3">Lihat Kode Voucher</button>
         </section>
 
-        <section class="card-section">
-            <div class="step-guide"><i class="fas fa-cash-register"></i> 5. Ringkasan & Bayar</div>
+        <section class="card-section summary-section">
+            <div class="step-guide"><i class="fa-solid fa-receipt"></i> 5. Ringkasan & Bayar</div>
             <div id="summary-box" class="summary-box"></div>
             <button id="checkout-btn" class="btn-checkout">Beli Sekarang</button>
         </section>
