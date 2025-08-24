@@ -325,11 +325,13 @@ input[type="text"]:focus {
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Menambahkan emoticon diamond pada semua produk */
+/* --- MENGHAPUS KODE INI UNTUK MENGHILANGKAN EMOTICON DIAMOND --- */
+/*
 .product-card::before {
     content: '💎';
     margin-right: 5px;
 }
+*/
 
 .product-card:hover, .payment-card:hover {
     transform: translateY(-3px);
@@ -347,13 +349,12 @@ input[type="text"]:focus {
     margin: 0 0 5px;
 }
 
-/* Mengubah tampilan harga produk agar selalu terlihat */
 .product-price {
     font-weight: 700;
     font-size: 0.95rem;
     color: var(--text-color-secondary);
     margin-top: 5px;
-    display: block; /* Memastikan harga selalu terlihat */
+    display: block; 
 }
 
 .product-badge {
@@ -382,13 +383,22 @@ input[type="text"]:focus {
     margin: 0;
 }
 
-/* Mengubah tampilan harga pembayaran agar selalu terlihat */
+/* Mengubah tampilan harga pembayaran menjadi transparan/tidak terlihat secara default */
 .payment-price {
     font-weight: 700;
     font-size: 0.95rem;
     color: var(--text-color-secondary);
     margin-top: 5px;
-    display: block; /* Memastikan harga e-wallet selalu terlihat */
+    /* --- PERBAIKAN DI SINI --- */
+    visibility: hidden; 
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s;
+}
+
+/* Menambahkan style untuk menampilkan harga saat class 'active' diterapkan oleh JS */
+.payment-card.active .payment-price {
+    visibility: visible;
+    opacity: 1;
 }
 
 .voucher-group {
