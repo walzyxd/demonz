@@ -1,237 +1,228 @@
-/* ===== BASE ===== */
-body.page {
-  margin: 0;
+/* ==== RESET & BASE ==== */
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-  background: #f6f6f9;
+}
+
+body.page {
+  background: #f9fafc;
   color: #222;
-}
-.container {
-  width: 90%;
-  max-width: 1000px;
-  margin: auto;
-  padding: 10px 0;
+  line-height: 1.6;
 }
 
-/* ===== HERO ===== */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 200px;
-  border-radius: 20px;
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-.hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-}
-.hero-text {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  color: white;
-}
-.hero-text h1 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 28px;
-  margin: 0;
-}
-.hero-text p {
-  margin: 4px 0 0;
-  font-size: 14px;
-}
-
-/* ===== BRAND ===== */
-.brand {
+/* ==== HEADER ==== */
+.main-header {
   text-align: center;
-  margin-bottom: 20px;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #00c853, #009688);
+  color: white;
+  border-radius: 0 0 20px 20px;
 }
-.brand-badge {
-  font-size: 28px;
-  font-weight: 700;
-}
-.logo-w {
-  color: #28a745;
-}
-.logo-s {
-  color: #222;
+.logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.2rem;
 }
 .tagline {
-  font-size: 14px;
-  margin-top: 6px;
-  color: #666;
-}
-.tagline.center {
-  text-align: center;
+  font-size: .9rem;
+  margin-top: .3rem;
 }
 
-/* ===== SLOGAN CARD ===== */
-.slogan-card {
+/* ==== SLIDER ==== */
+.slider {
+  overflow: hidden;
+  width: 100%;
+  height: 180px;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.slider .slides {
   display: flex;
-  align-items: center;
-  background: #fff;
-  border-radius: 14px;
-  padding: 10px 14px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  margin-top: 15px;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 400%;
+  animation: slide 16s infinite;
 }
-.s-dot {
-  width: 12px;
-  height: 12px;
-  background: #28a745;
-  border-radius: 50%;
-  margin-right: 10px;
+.slider img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
 }
-.s-body h3 {
-  margin: 0;
-  font-size: 16px;
-}
-.s-body p {
-  margin: 2px 0 0;
-  font-size: 13px;
-  color: #555;
+@keyframes slide {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(0); }
+  25% { transform: translateX(-100%); }
+  45% { transform: translateX(-100%); }
+  50% { transform: translateX(-200%); }
+  70% { transform: translateX(-200%); }
+  75% { transform: translateX(-300%); }
+  95% { transform: translateX(-300%); }
+  100% { transform: translateX(0); }
 }
 
-/* ===== GAME LIST ===== */
-.section-title {
-  font-size: 20px;
-  margin-bottom: 8px;
-  text-align: center;
+/* ==== CONTAINER ==== */
+.container {
+  width: 90%;
+  max-width: 900px;
+  margin: auto;
+  padding: 1rem 0;
 }
+h2 { margin-bottom: .8rem; font-size: 1.3rem; }
+
+/* ==== GAME GRID (Page 1) ==== */
 .games-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 15px;
-  margin-top: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
 }
 .game-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 10px;
+  background: white;
+  border-radius: 20px;
+  padding: .8rem;
   text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform .2s, box-shadow .2s;
   cursor: pointer;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
-  transition: 0.2s;
-}
-.game-card:hover {
-  transform: translateY(-3px);
 }
 .game-card img {
   width: 100%;
-  height: 100px;
+  height: 120px;
   object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 8px;
+  border-radius: 15px;
 }
-.game-card h4 {
-  font-size: 14px;
-  margin: 0;
-  color: #333;
+.game-card p {
+  margin-top: .5rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.game-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 }
 
-/* ===== GAME PAGE ===== */
+/* ==== GAME PAGE HEADER ==== */
 .game-header {
   position: relative;
   text-align: center;
 }
 .game-banner {
   width: 100%;
-  height: 180px;
+  max-height: 200px;
   object-fit: cover;
   border-radius: 0 0 20px 20px;
 }
 .game-info {
   position: absolute;
-  bottom: 15px;
-  left: 20px;
-  color: #fff;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  bottom: 10px; left: 10px;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
 }
 .btn-back {
   display: inline-block;
-  margin-top: 6px;
-  padding: 6px 12px;
-  background: #fff;
-  color: #222;
-  border-radius: 8px;
+  margin-top: .5rem;
+  padding: .4rem .8rem;
+  background: rgba(0,0,0,0.6);
+  border-radius: 12px;
+  color: white;
   text-decoration: none;
-  font-size: 14px;
+  font-size: .9rem;
 }
 
-/* ===== CARDS ===== */
+/* ==== CARD ==== */
 .card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 15px;
-  margin: 15px 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  background: white;
+  border-radius: 20px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 .card h2 {
-  margin-top: 0;
-  font-size: 18px;
+  font-size: 1.1rem;
+  margin-bottom: .6rem;
 }
 
-/* ===== PRODUCTS ===== */
+/* ==== INPUTS ==== */
+input {
+  width: 100%;
+  padding: .7rem;
+  margin-bottom: .7rem;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  font-size: .95rem;
+  transition: border .2s, box-shadow .2s;
+}
+input:focus {
+  border-color: #00c853;
+  box-shadow: 0 0 6px rgba(0,200,83,.4);
+  outline: none;
+}
+
+/* ==== PRODUCTS GRID ==== */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px,1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: .8rem;
 }
 .product-card {
-  border: 2px solid #ddd;
-  border-radius: 12px;
-  padding: 10px;
+  padding: .8rem;
+  background: #f5f5f5;
+  border-radius: 16px;
   text-align: center;
+  font-size: .9rem;
   cursor: pointer;
-  transition: 0.2s;
+  transition: background .2s, transform .2s;
 }
-.product-card:hover {
-  border-color: #28a745;
-}
-.product-card.active {
-  border-color: #28a745;
-  background: #eafbea;
+.product-card:hover { transform: scale(1.05); }
+.product-card.selected {
+  background: #00c853;
+  color: white;
+  font-weight: bold;
 }
 
-/* ===== PAYMENTS ===== */
+/* ==== PAYMENTS GRID ==== */
 .payments-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px,1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: .8rem;
 }
 .payment-card {
-  border: 2px solid #ddd;
-  border-radius: 12px;
-  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 16px;
+  padding: .6rem;
   text-align: center;
   cursor: pointer;
+  transition: transform .2s, background .2s;
 }
-.payment-card.active {
-  border-color: #007bff;
-  background: #e6f0ff;
+.payment-card img {
+  width: 60px; height: 60px;
+  object-fit: contain;
+  margin-bottom: .4rem;
+}
+.payment-card:hover { transform: scale(1.05); }
+.payment-card.selected {
+  background: #00c853;
+  color: white;
+  font-weight: bold;
 }
 
-/* ===== BUTTONS ===== */
+/* ==== BUTTON ==== */
 button, .btn-buy {
-  display: inline-block;
-  padding: 10px 16px;
-  background: #28a745;
-  color: #fff;
+  width: 100%;
+  padding: .8rem;
+  background: #00c853;
+  color: white;
   border: none;
-  border-radius: 12px;
-  font-size: 14px;
+  border-radius: 14px;
+  font-size: 1rem;
   cursor: pointer;
-  margin-top: 10px;
+  transition: background .2s, transform .2s;
 }
 button:hover, .btn-buy:hover {
-  opacity: 0.9;
+  background: #009688;
+  transform: translateY(-2px);
+}
+
+/* ==== FOOTER ==== */
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: .85rem;
+  color: #555;
 }
