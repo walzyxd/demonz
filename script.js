@@ -22,10 +22,10 @@ const GAMES = [
 /* ================= PAYMENT ================= */
 const payments = [
   { name: "QRIS", image: "https://files.catbox.moe/crlcvj.jpg" },
-  { name: "Dana", image: "https://i.imghippo.com/files/GTZi5615xp.jpg" },
-  { name: "Gopay", image: "https://i.imghippo.com/files/NF3980AI.jpg" },
   { name: "ShopeePay", image: "https://files.catbox.moe/gub7ik.jpg" },
-  { name: "OVO", image: "https://i.imghippo.com/files/fSpV2194O.jpg" }
+  { name: "Dana", image: "https://i.imghippo.com/files/qhn1355Ds.jpg" },
+  { name: "Gopay", image: "https://files.catbox.moe/lRYZ9422LGY.jpg" },
+  { name: "OVO", image: "https://files.catbox.moe/sIRs2824EY.jpg" }
 ];
 
 /* ================= PRODUCTS ================= */
@@ -129,6 +129,7 @@ function selectProduct(el) {
     label: el.querySelector("span").innerText,
     price: parseInt(el.dataset.price)
   };
+  document.getElementById("summary").innerText = `Produk dipilih: ${selectedProduct.label} - Rp ${selectedProduct.price.toLocaleString()}`;
 }
 
 /* ================= RENDER PAYMENTS ================= */
@@ -194,6 +195,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const gameKey = params.get("game");
   if (gameKey) {
+    // update banner & title
+    const game = GAMES.find(g => g.key === gameKey);
+    if (game) {
+      document.getElementById("gameBanner").src = game.img;
+      document.getElementById("gameTitle").innerText = game.name;
+    }
     renderProducts(gameKey);
     renderPayments();
     document.getElementById("checkoutBtn")?.addEventListener("click", () => checkout(gameKey));
