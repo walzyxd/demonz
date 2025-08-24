@@ -4,10 +4,49 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WalzShop — Top Up Game</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
+    body { background:#f9fafb; color:#222; }
+
+    /* HERO SLIDER */
+    .hero { width:100%; overflow:hidden; }
+    .slider { position:relative; width:100%; height:200px; }
+    .slides { display:flex; width:400%; animation: slide 12s infinite; }
+    .slides img { width:100%; height:200px; object-fit:cover; border-radius:0 0 20px 20px; }
+    @keyframes slide {
+      0% {transform: translateX(0);}
+      25% {transform: translateX(-100%);}
+      50% {transform: translateX(-200%);}
+      75% {transform: translateX(-300%);}
+      100% {transform: translateX(0);}
+    }
+
+    /* BRAND */
+    .brand { text-align:center; padding:1.5rem; }
+    .brand-badge { font-size:2rem; font-weight:700; }
+    .logo-w { color:#4f46e5; }
+    .logo-s { color:#16a34a; }
+    .tagline { margin-top:0.3rem; font-size:0.9rem; color:#555; }
+
+    .slogan-card { display:flex; align-items:center; background:#fff; border-radius:15px; padding:1rem; margin:1rem auto; max-width:400px; box-shadow:0 4px 12px rgba(0,0,0,0.08);}
+    .s-dot { width:10px; height:10px; background:#4f46e5; border-radius:50%; margin-right:0.7rem; }
+    .s-body h3 { font-size:1.1rem; margin-bottom:0.2rem; }
+
+    /* GAMES GRID */
+    .container { padding:1rem; }
+    .games-grid { display:grid; grid-template-columns: repeat(2,1fr); gap:1rem; }
+    .game-card {
+      background:#fff; border-radius:20px; box-shadow:0 3px 8px rgba(0,0,0,0.08);
+      overflow:hidden; transition: transform 0.25s ease, box-shadow 0.25s ease; text-align:center; cursor:pointer; text-decoration:none; color:#222;
+    }
+    .game-card:hover { transform: translateY(-6px); box-shadow:0 6px 16px rgba(0,0,0,0.15); }
+    .game-card img { width:100%; height:120px; object-fit:cover; }
+    .game-card h4 { padding:0.7rem; font-size:1rem; font-weight:600; }
+  </style>
 </head>
 <body>
-  <!-- HERO SLIDER (full width) -->
+
+  <!-- HERO SLIDER -->
   <section class="hero">
     <div class="slider" id="heroSlider">
       <div class="slides">
@@ -25,8 +64,6 @@
       <span class="logo-w">Walz</span><span class="logo-s">Shop</span>
     </div>
     <p class="tagline">Top Up Cepat, Murah, Aman & Terpercaya</p>
-
-    <!-- Slogan pop-card -->
     <div class="slogan-card">
       <div class="s-dot"></div>
       <div class="s-body">
@@ -36,13 +73,32 @@
     </div>
   </header>
 
-  <!-- PILIHAN GAME (2 kolom, kartu tidak kaku) -->
+  <!-- GAMES GRID -->
   <main class="container">
-    <section class="games-grid" id="gamesGrid">
-      <!-- Card diisi dari script.js agar konsisten & mudah tambah game -->
-    </section>
+    <section class="games-grid" id="gamesGrid"></section>
   </main>
 
-  <script src="script.js"></script>
+  <script>
+    const GAMES = [
+      { key: "free fire", name: "Free Fire", img: "https://files.catbox.moe/x57iz9.jpg" },
+      { key: "mobile legends", name: "Mobile Legends", img: "https://files.catbox.moe/9n1rpo.jpg" },
+      { key: "pubg", name: "PUBG Mobile", img: "https://files.catbox.moe/n5ruie.jpg" },
+      { key: "valorant", name: "Valorant", img: "https://files.catbox.moe/fydqk7.jpg" }
+    ];
+
+    function renderGames() {
+      const grid = document.getElementById("gamesGrid");
+      grid.innerHTML = "";
+      GAMES.forEach(game => {
+        const card = document.createElement("a");
+        card.href = `game.html?game=${encodeURIComponent(game.key)}`;
+        card.className = "game-card";
+        card.innerHTML = `<img src="${game.img}" alt="${game.name}" /><h4>${game.name}</h4>`;
+        grid.appendChild(card);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", renderGames);
+  </script>
 </body>
 </html>
