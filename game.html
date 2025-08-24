@@ -27,7 +27,8 @@
         </section>
 
         <section class="card-section">
-            <div class="step-guide"><i class="fas fa-user-circle"></i> 1. Masukkan User ID Anda</div>
+            <div class="step-guide"><i class="fas fa-user-circle"></i> 1. Masukkan ID Akun</div>
+            <p>Masukkan User ID & Server ID (jika dibutuhkan) untuk akun game Anda.</p>
             <div class="input-group">
                 <input type="text" id="user-id" maxlength="30" placeholder="User ID Game" autocomplete="off" required>
             </div>
@@ -38,20 +39,24 @@
 
         <section class="card-section">
             <div class="step-guide"><i class="fas fa-diamond"></i> 2. Pilih Nominal</div>
+            <p>Pilih jumlah nominal produk yang Anda inginkan.</p>
             <div id="product-grid" class="product-grid"></div>
         </section>
 
         <section class="card-section">
-            <div class="step-guide"><i class="fas fa-wallet"></i> 3. Pilih Pembayaran</div>
+            <div class="step-guide"><i class="fas fa-wallet"></i> 3. Pilih Metode Pembayaran</div>
+            <p>Pilih metode pembayaran yang paling mudah untuk Anda.</p>
             <div id="payment-grid" class="payment-grid"></div>
         </section>
 
         <section class="card-section">
             <div class="step-guide"><i class="fas fa-tags"></i> 4. Voucher Diskon</div>
+            <p>Gunakan kode voucher Anda untuk mendapatkan diskon.</p>
             <div class="voucher-group">
                 <input type="text" id="voucher-code" maxlength="12" placeholder="Kode voucher">
                 <button type="button" id="use-voucher-btn" class="btn-primary">Gunakan</button>
             </div>
+            <button type="button" id="show-voucher-list-btn" class="btn-primary btn-sm mt-3">Lihat Kode Voucher</button>
             <div id="voucher-info" class="voucher-info"></div>
         </section>
 
@@ -84,6 +89,16 @@
             <div class="modal-footer">
                 <button id="wa-btn" class="btn-primary">Kirim via WhatsApp</button>
                 <button id="email-btn" class="btn-primary">Kirim via Email</button>
+            </div>
+        </div>
+
+        <div id="voucher-list-modal" class="modal-content modal-voucher-list">
+            <div class="modal-header">
+                <h3 class="modal-title">Daftar Kode Voucher</h3>
+                <span class="modal-close-btn">&times;</span>
+            </div>
+            <div class="modal-body">
+                <ul id="voucher-list" class="modal-voucher-list-ul"></ul>
             </div>
         </div>
     </div>
