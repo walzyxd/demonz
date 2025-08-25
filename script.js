@@ -131,6 +131,104 @@ const PRODUCTS = {
         { id: "bs-2000", label: "2000 + 260 Gold", price: 219999 },
         { id: "bs-5000", label: "5000 + 800 Gold", price: 549999 },
     ],
+    "eggy party": [
+    // Package & Event
+    { id: "eggy-weekly", label: "Weekly Egg Coin Pack", price: 14799 },
+    { id: "eggy-yoyo", label: "Yoyo Membership", price: 27799 },
+    { id: "eggy-shiny", label: "Shiny Coin Jar", price: 42699 },
+    { id: "eggy-aquarius", label: "Energetic Aquarius", price: 14499 },
+    { id: "eggy-capricorn", label: "Obsidian Capricorn", price: 14399 },
+    { id: "eggy-libra", label: "Elegant Libra", price: 14499 },
+    { id: "eggy-sagittarius", label: "Wandering Sagittarius", price: 14399 },
+    { id: "eggy-scorpio", label: "Mysterious Scorpio", price: 14399 },
+    { id: "eggy-spring-small", label: "Spring Egg Coin Pack Small", price: 14399 },
+    { id: "eggy-spring-big", label: "Spring Egg Coin Pack Big", price: 163399 },
+
+    // Top Up
+    { id: "eggy-10", label: "10 Eggy Coins", price: 2199 },
+    { id: "eggy-60", label: "60 + 3 Bonus", price: 13999 },
+    { id: "eggy-120", label: "120 + 6 Bonus", price: 26999 },
+    { id: "eggy-300", label: "300 + 24 Bonus", price: 68499 },
+    { id: "eggy-600", label: "600 + 57 Bonus", price: 138599 },
+    { id: "eggy-1250", label: "1250 + 144 Bonus", price: 251099 },
+    { id: "eggy-1880", label: "1880 + 216 Bonus", price: 378099 },
+    { id: "eggy-3180", label: "3180 + 423 Bonus", price: 630199 },
+    { id: "eggy-6480", label: "6480 + 903 Bonus", price: 1244999 },
+  ],
+
+    "call of duty mobile": [
+    { id: "codm-31", label: "31 CP", price: 4899 },
+    { id: "codm-63", label: "63 CP", price: 9699 },
+    { id: "codm-128", label: "128 CP", price: 19399 },
+    { id: "codm-321", label: "321 CP", price: 48499 },
+    { id: "codm-645", label: "645 CP", price: 99999 },
+    { id: "codm-800", label: "800 CP", price: 119999 },
+    { id: "codm-1373", label: "1373 CP", price: 193999 },
+    { id: "codm-2060", label: "2060 CP", price: 290999 },
+    { id: "codm-2750", label: "2750 CP", price: 379999 },
+    { id: "codm-3564", label: "3564 CP", price: 484999 },
+    { id: "codm-5619", label: "5619 CP", price: 729999 },
+    { id: "codm-7656", label: "7656 CP", price: 969999 },
+    { id: "codm-15312", label: "15312 CP", price: 1999999 },
+    { id: "codm-38280", label: "38280 CP", price: 4999999 },
+    { id: "codm-76560", label: "76560 CP", price: 9999999 },
+  ],
+
+    "valorant": [
+    { id: "val-475", label: "475 Points", price: 54349 },
+    { id: "val-1000", label: "1000 Points", price: 108799 },
+    { id: "val-2050", label: "2050 Points", price: 217499 },
+    { id: "val-3650", label: "3650 Points", price: 372199 },
+    { id: "val-5350", label: "5350 Points", price: 544999 },
+    { id: "val-11000", label: "11000 Points", price: 1089999 },
+  ],
+
+    "garena delta force": [
+    // Special Offers
+    { id: "delta-tide", label: "Tide Supplies", price: 8499 },
+    { id: "delta-adv", label: "Tide Supplies Advanced", price: 24499 },
+    { id: "delta-genesis", label: "Black Hawk Down Genesis", price: 41999 },
+    { id: "delta-redefine", label: "Black Hawk Down Redefine", price: 84999 },
+
+    // Top Up
+    { id: "delta-18", label: "18 + 1", price: 4999 },
+    { id: "delta-30", label: "30 + 2", price: 7499 },
+    { id: "delta-60", label: "60 + 3", price: 14999 },
+    { id: "delta-300", label: "300 + 36", price: 74999 },
+    { id: "delta-420", label: "420 + 62", price: 99999 },
+    { id: "delta-680", label: "680 + 105", price: 139999 },
+    { id: "delta-1280", label: "1280 + 264", price: 279999 },
+    { id: "delta-1680", label: "1680 + 385", price: 349999 },
+    { id: "delta-3280", label: "3280 + 834", price: 699999 },
+    { id: "delta-6480", label: "6480 + 1944", price: 1399999 },
+    { id: "delta-12960", label: "12960 + 3888", price: 2799999 },
+    { id: "delta-19440", label: "19440 + 5832", price: 4199999 },
+  ],
+
+    "garena undawn": [
+    // Top Up
+    { id: "undawn-bulanan", label: "Kartu Bulanan", price: 47299 },
+    { id: "undawn-growth", label: "Growth Fund", price: 94799 },
+    { id: "undawn-glory", label: "Glory Pass Premium", price: 142299 },
+    { id: "undawn-elite", label: "Elite Fund Rebate LV 80", price: 126999 },
+    { id: "undawn-ace", label: "Ace Fund", price: 143999 },
+    { id: "undawn-rc80", label: "RC 80", price: 14599 },
+    { id: "undawn-rc250", label: "RC 250", price: 43699 },
+    { id: "undawn-rc450", label: "RC 450", price: 72799 },
+    { id: "undawn-rc920", label: "RC 920", price: 144599 },
+    { id: "undawn-rc1850", label: "RC 1850", price: 290099 },
+    { id: "undawn-rc2800", label: "RC 2800", price: 435599 },
+    { id: "undawn-rc4750", label: "RC 4750", price: 726599 },
+    { id: "undawn-rc9600", label: "RC 9600", price: 1454099 },
+    { id: "undawn-rc33000", label: "RC 33.000", price: 4849999 },
+    { id: "undawn-rc66500", label: "RC 66.500", price: 9699999 },
+
+    // Membership
+    { id: "undawn-mingguan", label: "Kartu Mingguan", price: 28599 },
+    { id: "undawn-glory-s7", label: "Glory Pass Premium S7", price: 143999 },
+    { id: "undawn-glory-s16", label: "Glory Pass Premium S16", price: 143999 },
+    { id: "undawn-prep", label: "Quick Battle Prep", price: 94379 },
+  ]
 };
 
 const SLIDER_IMAGES = [
