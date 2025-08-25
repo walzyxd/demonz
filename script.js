@@ -17,7 +17,12 @@ const GAMES = [
     { key: "clash of clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", server: false, guide: "User ID (Tag Pemain) adalah kombinasi huruf dan angka yang dimulai dengan tanda pagar (#)." },
     { key: "blood strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", server: false, guide: "ID Anda dapat ditemukan di profil dalam game." },
     { key: "pubg mobile", name: "PUBG Mobile", img: "https://files.catbox.moe/tatuo9.jpg", server: false, guide: "Temukan User ID Anda di sudut kanan atas lobi game saat mengklik profil." },
-];
+    { key: "garena delta force", name: "Garena Delta Force", img: "https://files.catbox.moe/qul2qy.png", server: false, guide: "Buka menu profil di game dan Anda dapat menemukan User ID Anda." },
+    { key: "call of duty", name: "Call Of Duty", img: "https://files.catbox.moe/i1kcw5.webp", server: false, guide: "User ID Anda dapat ditemukan di profil game." },
+    { key: "valorant", name: "Valorant", img: "https://files.catbox.moe/3h9932.png", server: false, guide: "User ID Anda (Riot ID) dapat ditemukan di bawah nama akun Anda di bagian atas layar." },
+    { key: "eggy party", name: "Eggy Party", img: "https://files.catbox.moe/59mdks.webp", server: false, guide: "User ID Anda dapat ditemukan di profil dalam game." },
+    { key: "garena undawn", name: "Garena Undawn", img: "https://files.catbox.moe/o5bto9.webp", server: false, guide: "Buka menu profil dan User ID Anda akan terlihat." },
+]
 
 const PAYMENTS = [
     { id: "qris", name: "QRIS", img: "https://files.catbox.moe/crlcvj.jpg" },
