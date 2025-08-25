@@ -237,10 +237,10 @@ const PRODUCTS = {
 };
 
 const SLIDER_IMAGES = [
-    "https://i.imghippo.com/files/IHhY6050Qlc.jpeg",
-    "https://i.imghippo.com/files/uy5982ZtQ.jpeg",
-    "https://i.imghippo.com/files/el4034qjU.jpeg",
-    "https://i.imghippo.com/files/EZUu9660Hs.jpg"
+    "https://files.catbox.moe/4lkz5o.jpg",
+    "https://files.catbox.moe/sj388o.jpg",
+    "https://files.catbox.moe/uzhwri.jpg",
+    "https://files.catbox.moe/9y4pf9.jpeg"
 ];
 
 /* ================== UTILITY FUNCTIONS ================== */
