@@ -184,6 +184,7 @@ body {
     cursor: pointer;
     text-decoration: none;
     transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s, border-color 0.3s;
+    position: relative;
 }
 
 .game-card:hover,
@@ -209,6 +210,26 @@ body {
     text-align: center;
     margin: 0;
     letter-spacing: 0.5px;
+}
+
+/* ==================== GAME BADGE ==================== */
+.game-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+/* WARNA BADGE GAME TERBARU */
+.game-badge-new {
+    background-color: var(--primary-color); /* Merah */
 }
 
 /* ==================== GAME PAGE STYLES ==================== */
