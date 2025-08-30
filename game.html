@@ -3,116 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Up Game | WalzShop</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
+    <title>Top Up Game - WalzShop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="game">
-    <header class="navbar">
+
+    <nav class="navbar">
         <div class="container navbar-container">
-            <a href="index.html" class="brand-logo">
-                <span class="logo-text">Walz</span><span class="logo-accent">Shop</span>
+            <a href="index.html" class="btn-back">
+                <i class="fas fa-arrow-left"></i> Kembali
             </a>
-            <a href="index.html" class="btn-back" title="Kembali">&larr;</a>
-        </div>
-    </header>
-
-    <main class="game-main-content container">
-        <section class="game-header">
-            <img id="game-banner" class="game-banner" src="" alt="Game Banner">
-            <div class="game-info">
-                <h1 id="game-title" class="game-title"></h1>
-                <p id="game-guide" class="game-guide"></p>
+            <a href="index.html" class="brand-logo">
+                <span class="logo-text">WALZ</span><span class="logo-accent">SHOP</span>
+            </a>
+            <div class="brand-tagline">
+                Termurah & Terpercaya
             </div>
-        </section>
+        </div>
+    </nav>
 
-        <section class="card-section">
-            <div class="step-guide"><i class="fa-solid fa-id-card"></i> 1. Masukkan ID Akun</div>
-            <p class="step-description">Isi User ID & Server ID (jika ada) sesuai akun game Anda.</p>
+    <div class="game-main-content container">
+        <div class="game-header">
+            <img id="game-banner" src="" alt="Game Banner" class="game-banner">
+            <div class="game-info">
+                <h1 id="game-title" class="game-title">Nama Game</h1>
+                <p id="game-guide" class="game-guide">Panduan menemukan ID.</p>
+            </div>
+        </div>
+
+        <div class="card-section">
+            <h2 class="step-guide"><i class="fas fa-user"></i> Masukkan ID</h2>
             <div class="input-group">
-                <input type="text" id="user-id" maxlength="30" placeholder="User ID Game" autocomplete="off" required>
+                <input type="text" id="user-id" placeholder="Masukkan User ID">
             </div>
             <div class="input-group" id="server-group" style="display:none;">
-                <input type="text" id="server-id" maxlength="10" placeholder="Server ID" autocomplete="off">
+                <input type="text" id="server-id" placeholder="Masukkan Server ID (opsional)">
             </div>
-        </section>
-
-        <section class="card-section">
-            <div class="step-guide"><i class="fa-solid fa-sack-dollar"></i> 2. Pilih Nominal</div>
-            <p class="step-description">Pilih jumlah item atau mata uang yang Anda inginkan.</p>
-            <div id="product-grid" class="product-grid"></div>
-        </section>
-
-        <section class="card-section">
-            <div class="step-guide"><i class="fa-solid fa-wallet"></i> 3. Pilih Metode Pembayaran</div>
-            <p class="step-description">Pilih cara pembayaran yang paling mudah dan cepat untuk Anda.</p>
-            <div id="payment-grid" class="payment-grid"></div>
-        </section>
-
-        <section class="card-section">
-            <div class="step-guide"><i class="fa-solid fa-tags"></i> 4. Voucher Diskon</div>
-            <p class="step-description">Masukkan kode voucher jika Anda punya untuk mendapatkan potongan harga.</p>
-            <div class="voucher-group">
-                <input type="text" id="voucher-code" maxlength="12" placeholder="Kode voucher">
-                <button type="button" id="use-voucher-btn" class="btn-primary">Gunakan</button>
-            </div>
-            <button type="button" id="show-voucher-list-btn" class="btn-primary btn-sm mt-3">Lihat Kode Voucher</button>
-        </section>
-
-        <section class="card-section summary-section">
-            <div class="step-guide"><i class="fa-solid fa-receipt"></i> 5. Ringkasan & Bayar</div>
-            <div id="summary-box" class="summary-box"></div>
-            <button id="checkout-btn" class="btn-checkout">Beli Sekarang</button>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container footer-content">
-            <a href="index.html" class="brand-logo footer-logo">
-                <span class="logo-text">Walz</span><span class="logo-accent">Shop</span>
-            </a>
-            <p class="footer-desc">
-                WalzShop adalah platform top-up game yang menyediakan berbagai kebutuhan in-game item dengan proses cepat dan terpercaya.
-            </p>
-            <p class="footer-copyright">&copy; 2025 <b>WalzShop</b> — Bukan situs resmi publisher game.</p>
         </div>
-    </footer>
+
+        <div class="card-section">
+            <h2 class="step-guide"><i class="fas fa-gem"></i> Pilih Nominal</h2>
+            <div id="product-grid" class="product-grid">
+                </div>
+        </div>
+
+        <div class="card-section">
+            <h2 class="step-guide"><i class="fas fa-dollar-sign"></i> Pilih Pembayaran</h2>
+            <div id="payment-grid" class="payment-grid">
+                </div>
+        </div>
+
+        <div class="card-section summary-section">
+            <h2 class="step-guide"><i class="fas fa-clipboard-list"></i> Ringkasan Pesanan</h2>
+            <div id="summary-box" class="summary-box">
+                <p>Pilih nominal & pembayaran untuk melihat ringkasan.</p>
+            </div>
+            <button id="checkout-btn" class="btn-checkout">Bayar Sekarang</button>
+        </div>
+
+    </div>
 
     <div id="modal-overlay" class="modal-overlay">
-        <div id="voucher-modal" class="modal-content modal-message">
+        <div id="checkout-modal" class="modal-content modal-checkout" style="display:none;">
             <div class="modal-header">
-                <h3 id="modal-title"></h3>
+                <h3>Selesaikan Pembayaran</h3>
                 <span class="modal-close-btn">&times;</span>
             </div>
-            <div class="modal-body">
-                <p id="modal-message"></p>
-            </div>
-        </div>
-        
-        <div id="checkout-modal" class="modal-content modal-checkout">
-            <div class="modal-header">
-                <h3 class="modal-title">Detail Transaksi</h3>
-                <span class="modal-close-btn">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div id="checkout-summary"></div>
-            </div>
-            <div class="modal-footer">
-                <button id="wa-btn" class="btn-primary">Kirim via WhatsApp</button>
-                <button id="email-btn" class="btn-primary">Kirim via Email</button>
-            </div>
-        </div>
-
-        <div id="voucher-list-modal" class="modal-content modal-voucher-list">
-            <div class="modal-header">
-                <h3 class="modal-title">Daftar Kode Voucher</h3>
-                <span class="modal-close-btn">&times;</span>
-            </div>
-            <div class="modal-body">
-                <ul id="voucher-list" class="modal-voucher-list-ul"></ul>
-            </div>
+            <div id="checkout-summary" class="modal-body">
+                </div>
         </div>
     </div>
 
