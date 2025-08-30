@@ -25,11 +25,12 @@ const GAMES = [
 ]
 
 const PAYMENTS = [
-    { id: "qris", name: "QRIS", img: "https://files.catbox.moe/crlcvj.jpg" },
-    { id: "shopeepay", name: "ShopeePay", img: "https://files.catbox.moe/gub7ik.jpg" },
-    { id: "dana", name: "Dana", img: "https://i.imghippo.com/files/qhn1355Ds.jpg" },
-    { id: "gopay", name: "GoPay", img: "https://i.imghippo.com/files/lRYZ9422LGY.jpg" },
-    { id: "ovo", name: "OVO", img: "https://i.imghippo.com/files/sIRs2824EY.jpg" },
+    { id: "qris", name: "QRIS", img: "https://files.catbox.moe/pa0iwo.png", type: "qris" },
+    { id: "shopeepay", name: "ShopeePay", img: "https://files.catbox.moe/gub7ik.jpg", type: "qris" },
+    { id: "dana", name: "Dana", img: "https://cdn.icon-icons.com/icons2/2699/PNG/512/dana_logo_icon_169727.png", type: "bank", info: { number: "082298902274", name: "WalzShop" } },
+    { id: "bankkrom", name: "Bank Krom", img: "https://files.catbox.moe/mae938.jpg", type: "bank", info: { number: "770072009565", name: "WalzShop" } },
+    { id: "gopay", name: "GoPay", img: "https://i.imghippo.com/files/lRYZ9422LGY.jpg", type: "qris" },
+    { id: "ovo", name: "OVO", img: "https://i.imghippo.com/files/sIRs2824EY.jpg", type: "qris" },
 ];
 
 const PRODUCTS = {
@@ -266,6 +267,15 @@ function hideModal() {
     }
 }
 
+function copyToClipboard(text, message) {
+    navigator.clipboard.writeText(text).then(() => {
+        alert(message);
+    }).catch(err => {
+        console.error('Gagal menyalin: ', err);
+        alert('Gagal menyalin nomor. Silakan salin secara manual.');
+    });
+}
+
 /* ================== EVENT LISTENERS ================== */
 document.addEventListener("DOMContentLoaded", () => {
     const page = document.body.dataset.page;
@@ -352,18 +362,9 @@ function initGamePage() {
     const serverIdInput = qs("#server-id");
     const productGrid = qs("#product-grid");
     const paymentGrid = qs("#payment-grid");
-    const voucherInput = qs("#voucher-code");
-    const useVoucherBtn = qs("#use-voucher-btn");
-    const showVoucherListBtn = qs("#show-voucher-list-btn");
     const checkoutBtn = qs("#checkout-btn");
     const summaryBox = qs("#summary-box");
-
-    const modalTitle = qs("#modal-title");
-    const modalMessage = qs("#modal-message");
     const checkoutSummary = qs("#checkout-summary");
-    const waBtn = qs("#wa-btn");
-    const emailBtn = qs("#email-btn");
-    const voucherListUl = qs("#voucher-list");
 
     if (!gameTitle || !banner) return;
 
@@ -402,7 +403,7 @@ function initGamePage() {
 
         const voucherInfo = appliedVoucher ? `<p>Diskon Voucher: <b>-${fmtIDR(discountAmount)}</b></p>` : '';
         const paymentInfo = selectedPayment ? `<p>Metode Pembayaran: <b>${selectedPayment.name}</b></p>` : '<p>Metode Pembayaran: <b>—</b></p>';
-        
+
         summaryBox.innerHTML = `
             <p>Produk: <b>${selectedProduct.label}</b></p>
             <p>Harga: <b>${fmtIDR(originalPrice)}</b></p>
@@ -421,6 +422,8 @@ function initGamePage() {
             const card = document.createElement("div");
             card.className = `product-card`;
             card.dataset.id = product.id;
+            card.dataset.name = product.label;
+            card.dataset.price = product.price;
 
             let labelWithEmoji = product.label;
             const keywords = ["diamonds", "gems", "uc", "crystals", "tokens", "goldstar", "gold"];
@@ -431,7 +434,7 @@ function initGamePage() {
                 parts[parts.length - 1] += ' 💎';
                 labelWithEmoji = parts.join(' ');
             }
-            
+
             card.innerHTML = `
                 <p class="product-label">${labelWithEmoji}</p>
                 <p class="product-price">${fmtIDR(product.price)}</p>
@@ -455,7 +458,9 @@ function initGamePage() {
             const card = document.createElement("div");
             card.className = `payment-card`;
             card.dataset.id = payment.id;
-            
+            card.dataset.name = payment.name;
+            card.dataset.type = payment.type;
+
             card.innerHTML = `
                 <img src="${payment.img}" alt="${payment.name}" class="payment-logo">
                 <p class="payment-name">${payment.name}</p>
@@ -493,54 +498,14 @@ function initGamePage() {
                 priceEl.style.opacity = '0';
             }
         });
-        
-        updateSummary();
-    }
 
-    function renderVoucherListModal() {
-        voucherListUl.innerHTML = "";
-        VOUCHERS.forEach(v => {
-            const item = document.createElement("li");
-            item.innerHTML = `<b>${v.code}</b> — ${v.description}`;
-            item.dataset.code = v.code;
-            item.addEventListener("click", () => {
-                voucherInput.value = v.code;
-                hideModal();
-                voucherInput.focus();
-            });
-            voucherListUl.appendChild(item);
-        });
+        updateSummary();
     }
 
     // Initial renders
     renderProducts();
     renderPayments();
-    renderVoucherListModal();
     updateUI();
-
-    // Event listeners
-    useVoucherBtn.addEventListener("click", () => {
-        const code = voucherInput.value.trim().toUpperCase();
-        const foundVoucher = VOUCHERS.find(v => v.code === code);
-
-        if (!foundVoucher) {
-            appliedVoucher = null;
-            modalTitle.textContent = "Voucher Tidak Valid";
-            modalMessage.textContent = "Kode voucher yang Anda masukkan tidak dikenali. Silakan coba lagi.";
-            qs("#voucher-modal .modal-header").style.borderBottom = "1px solid #e2e8f0";
-        } else {
-            appliedVoucher = foundVoucher;
-            modalTitle.textContent = "Voucher Berhasil Digunakan!";
-            modalMessage.textContent = `Voucher "${foundVoucher.code}" berhasil diterapkan. Anda mendapatkan diskon ${foundVoucher.percent}%!`;
-            qs("#voucher-modal .modal-header").style.borderBottom = "1px solid var(--primary-color)";
-        }
-        showModal('voucher-modal');
-        updateUI();
-    });
-
-    showVoucherListBtn.addEventListener("click", () => {
-        showModal('voucher-list-modal');
-    });
 
     checkoutBtn.addEventListener("click", () => {
         const userId = userIdInput.value.trim();
@@ -568,60 +533,60 @@ function initGamePage() {
             paymentGrid.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
-        
+
         const finalPrice = calculateFinalPrice();
 
-        // Tampilkan modal checkout
-        checkoutSummary.innerHTML = `
-            <p>Game: <b>${gameData.name}</b></p>
-            <p>ID Pengguna: <b>${userId}</b></p>
-            ${gameData.server ? `<p>Server ID: <b>${serverId}</b></p>` : ''}
-            <p>Produk: <b>${selectedProduct.label}</b></p>
-            <p>Metode Pembayaran: <b>${selectedPayment.name}</b></p>
-            <hr style="border-top: 1px dashed var(--border-color); margin: 15px 0;">
-            <p>Total Harga: <span>${fmtIDR(finalPrice)}</span></p>
+        // Kosongkan modal dari konten sebelumnya
+        checkoutSummary.innerHTML = '';
+    
+        // 1. Tambahkan detail pesanan
+        const orderSummary = document.createElement('div');
+        orderSummary.classList.add('summary-item');
+        orderSummary.innerHTML = `
+            <h4 class="modal-title">Detail Pesanan</h4>
+            <p><strong>Game:</strong> <span id="summary-game">${gameData.name}</span></p>
+            <p><strong>User ID:</strong> <span id="summary-id">${userId}</span></p>
+            ${gameData.server ? `<p><strong>Server ID:</strong> <span id="summary-server">${serverId}</span></p>` : ''}
+            <p><strong>Produk:</strong> <span id="summary-product">${selectedProduct.label}</span></p>
+            <p><strong>Metode Pembayaran:</strong> <span id="summary-payment">${selectedPayment.name}</span></p>
+            <hr>
+            <div class="checkout-total">Total Bayar: <span class="total-price-text">${fmtIDR(finalPrice)}</span></div>
         `;
+        checkoutSummary.appendChild(orderSummary);
+
+        // 2. Tambahkan metode pembayaran
+        if (selectedPayment.type === 'qris') {
+            const qrisSection = document.createElement('div');
+            qrisSection.classList.add('payment-method-container');
+            qrisSection.innerHTML = `
+                <h4>Scan untuk Bayar</h4>
+                <img src="${selectedPayment.img}" alt="QRIS" class="qris-image">
+                <p class="payment-info">Scan kode di atas dengan aplikasi e-wallet Anda (Dana, GoPay, ShopeePay, OVO, dll.)</p>
+            `;
+            checkoutSummary.appendChild(qrisSection);
+        } else if (selectedPayment.type === 'bank') {
+            const accountNumberSection = document.createElement('div');
+            accountNumberSection.classList.add('payment-method-container');
+            accountNumberSection.innerHTML = `
+                <h4>Transfer ke ${selectedPayment.name}</h4>
+                <div class="account-info-container">
+                    <img src="${selectedPayment.img}" alt="${selectedPayment.name} Logo">
+                    <span id="account-number" class="account-number">${selectedPayment.info.number}</span>
+                    <button id="copy-account-btn" class="btn-copy"><i class="fa-solid fa-copy"></i> Salin</button>
+                </div>
+                <p class="payment-info">a/n ${selectedPayment.info.name}</p>
+            `;
+            checkoutSummary.appendChild(accountNumberSection);
+
+            const copyButton = qs('#copy-account-btn', checkoutSummary);
+            if (copyButton) {
+                copyButton.addEventListener('click', () => {
+                    copyToClipboard(selectedPayment.info.number, `Nomor ${selectedPayment.name} berhasil disalin!`);
+                });
+            }
+        }
 
         showModal('checkout-modal');
     });
 
-    waBtn.addEventListener("click", () => {
-        const userId = userIdInput.value.trim();
-        const serverId = gameData.server ? serverIdInput.value.trim() : '';
-        const finalPrice = calculateFinalPrice();
-
-        const message = `
-Halo admin, saya ingin order.
-
-*Detail Pesanan:*
-Game: ${gameData.name}
-ID Pengguna: ${userId}
-${gameData.server ? `Server ID: ${serverId}\n` : ''}Produk: ${selectedProduct.label}
-Harga: ${fmtIDR(selectedProduct.price)}
-Pembayaran: ${selectedPayment.name}
-Total: ${fmtIDR(finalPrice)}
-        `.trim();
-        const encodedMessage = encodeURIComponent(message);
-        window.open(`https://wa.me/${ADMIN_WA}?text=${encodedMessage}`, "_blank");
-    });
-
-    emailBtn.addEventListener("click", () => {
-        const userId = userIdInput.value.trim();
-        const serverId = gameData.server ? serverIdInput.value.trim() : '';
-        const finalPrice = calculateFinalPrice();
-        const subject = encodeURIComponent(`Pemesanan Top Up ${gameData.name}`);
-        const body = encodeURIComponent(`
-Halo admin, saya ingin melakukan pemesanan top up dengan detail sebagai berikut:
-
-Game: ${gameData.name}
-ID Pengguna: ${userId}
-${gameData.server ? `Server ID: ${serverId}\n` : ''}Produk: ${selectedProduct.label}
-Harga: ${fmtIDR(selectedProduct.price)}
-Metode Pembayaran: ${selectedPayment.name}
-Total Harga: ${fmtIDR(finalPrice)}
-
-Mohon diproses, terima kasih.
-        `.trim());
-        window.open(`mailto:${ADMIN_EMAIL}?subject=${subject}&body=${body}`);
-    });
 }
