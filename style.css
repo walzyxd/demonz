@@ -601,51 +601,102 @@ body {
     text-align: left;
 }
 
-#checkout-summary p {
+.summary-item {
+    margin-bottom: 15px;
+}
+
+.summary-item p {
     margin: 8px 0;
     display: flex;
     justify-content: space-between;
 }
 
-#checkout-summary span {
+.summary-item strong {
+    color: var(--text-color-primary);
+}
+
+.checkout-total {
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--primary-color);
-}
-
-.modal-footer {
     display: flex;
-    gap: 8px;
+    justify-content: space-between;
     margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--border-color);
 }
 
-.modal-footer .btn-primary {
-    flex-grow: 1;
-    padding: 10px;
-    font-size: 0.9rem;
+.total-price-text {
+    color: var(--secondary-color);
 }
 
-.modal-voucher-list ul {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-    max-height: 200px;
-    overflow-y: auto;
+/* New payment method styles */
+.payment-method-container {
+    text-align: center;
+    margin-top: 25px;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background-color: var(--background-color);
 }
 
-.modal-voucher-list li {
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border-color);
+.payment-method-container h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.qris-image {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.payment-info {
+    font-size: 0.85rem;
+    color: var(--text-color-secondary);
+    margin: 0;
+}
+
+.account-info-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.account-info-container img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.account-number {
+    font-family: monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-color-primary);
+}
+
+.btn-copy {
+    background-color: var(--secondary-color);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 15px;
+    font-size: 0.8rem;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
-.modal-voucher-list li:hover {
-    background-color: var(--background-color);
-}
-
-.modal-voucher-list li:last-child {
-    border-bottom: none;
+.btn-copy:hover {
+    background-color: #2b6cb0;
 }
 
 /* ==================== RESPONSIVE STYLES ==================== */
