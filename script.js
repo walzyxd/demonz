@@ -25,12 +25,9 @@ const GAMES = [
 ]
 
 const PAYMENTS = [
-    { id: "qris", name: "QRIS", img: "https://files.catbox.moe/pa0iwo.png", type: "qris" },
-    { id: "shopeepay", name: "ShopeePay", img: "https://files.catbox.moe/gub7ik.jpg", type: "qris" },
+    { id: "qris", name: "QRIS", img: "https://files.catbox.moe/pa0iwo.png", type: "qris", info: { qrisImg: "https://files.catbox.moe/x1b7j2.jpg" } },
     { id: "dana", name: "Dana", img: "https://cdn.icon-icons.com/icons2/2699/PNG/512/dana_logo_icon_169727.png", type: "bank", info: { number: "082298902274", name: "WalzShop" } },
-    { id: "bankkrom", name: "Bank Krom", img: "https://files.catbox.moe/mae938.jpg", type: "bank", info: { number: "770072009565", name: "WalzShop" } },
-    { id: "gopay", name: "GoPay", img: "https://i.imghippo.com/files/lRYZ9422LGY.jpg", type: "qris" },
-    { id: "ovo", name: "OVO", img: "https://i.imghippo.com/files/sIRs2824EY.jpg", type: "qris" },
+    { id: "bankkrom", name: "Bank Krom", img: "https://files.catbox.moe/mae938.jpg", type: "bank", info: { number: "770072009565", name: "WalzShop" } }
 ];
 
 const PRODUCTS = {
@@ -365,6 +362,7 @@ function initGamePage() {
     const checkoutBtn = qs("#checkout-btn");
     const summaryBox = qs("#summary-box");
     const checkoutSummary = qs("#checkout-summary");
+    const qrisFullscreenImg = qs("#qris-fullscreen-img");
 
     if (!gameTitle || !banner) return;
 
@@ -511,7 +509,6 @@ function initGamePage() {
         const userId = userIdInput.value.trim();
         const serverId = gameData.server ? serverIdInput.value.trim() : null;
 
-        // Validasi dan gulir otomatis
         if (!userId) {
             userIdInput.focus();
             userIdInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -535,11 +532,8 @@ function initGamePage() {
         }
 
         const finalPrice = calculateFinalPrice();
-
-        // Kosongkan modal dari konten sebelumnya
         checkoutSummary.innerHTML = '';
     
-        // 1. Tambahkan detail pesanan
         const orderSummary = document.createElement('div');
         orderSummary.classList.add('summary-item');
         orderSummary.innerHTML = `
@@ -554,16 +548,20 @@ function initGamePage() {
         `;
         checkoutSummary.appendChild(orderSummary);
 
-        // 2. Tambahkan metode pembayaran
         if (selectedPayment.type === 'qris') {
             const qrisSection = document.createElement('div');
             qrisSection.classList.add('payment-method-container');
             qrisSection.innerHTML = `
                 <h4>Scan untuk Bayar</h4>
-                <img src="${selectedPayment.img}" alt="QRIS" class="qris-image">
-                <p class="payment-info">Scan kode di atas dengan aplikasi e-wallet Anda (Dana, GoPay, ShopeePay, OVO, dll.)</p>
+                <img src="${selectedPayment.info.qrisImg}" alt="QRIS" class="qris-image">
+                <button id="expand-qris-btn" class="btn-expand-qris">Perbesar QRIS</button>
+                <p class="payment-info">Scan kode di atas dengan aplikasi e-wallet atau mobile banking Anda.</p>
             `;
             checkoutSummary.appendChild(qrisSection);
+            qs('#expand-qris-btn').addEventListener('click', () => {
+                qrisFullscreenImg.src = selectedPayment.info.qrisImg;
+                showModal('qris-fullscreen-modal');
+            });
         } else if (selectedPayment.type === 'bank') {
             const accountNumberSection = document.createElement('div');
             accountNumberSection.classList.add('payment-method-container');
@@ -571,13 +569,12 @@ function initGamePage() {
                 <h4>Transfer ke ${selectedPayment.name}</h4>
                 <div class="account-info-container">
                     <img src="${selectedPayment.img}" alt="${selectedPayment.name} Logo">
+                    <p class="account-name-text">a/n ${selectedPayment.info.name}</p>
                     <span id="account-number" class="account-number">${selectedPayment.info.number}</span>
-                    <button id="copy-account-btn" class="btn-copy"><i class="fa-solid fa-copy"></i> Salin</button>
+                    <button id="copy-account-btn" class="btn-copy"><i class="fa-solid fa-copy"></i> Salin Nomor</button>
                 </div>
-                <p class="payment-info">a/n ${selectedPayment.info.name}</p>
             `;
             checkoutSummary.appendChild(accountNumberSection);
-
             const copyButton = qs('#copy-account-btn', checkoutSummary);
             if (copyButton) {
                 copyButton.addEventListener('click', () => {
@@ -588,5 +585,4 @@ function initGamePage() {
 
         showModal('checkout-modal');
     });
-
 }
