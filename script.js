@@ -29,6 +29,7 @@ const PROMOS = [
     { title: "Top Up Starlight MLBB Harga Cuan", img: "https://files.catbox.moe/dpr6d2.jpg", gameKey: "mobile-legends" },
     { title: "Promo UC PUBG Mobile Khusus Member", img: "https://files.catbox.moe/w43dgb.jpg", gameKey: "pubg-mobile" },
     { title: "Blessing of the Welkin Moon Genshin", img: "https://files.catbox.moe/uusd4l.jpg", gameKey: "genshin-impact" },
+    { title: "Top Up Robux Paling Murah!", img: "https://files.catbox.moe/k28lxp.jpg", gameKey: "roblox" },
 ];
 
 const PAYMENTS = [
@@ -532,7 +533,7 @@ function initGamePage() {
             <p>Produk: <span><b>${selectedProduct.label}</b></span></p>
             <p>Harga: <span><b>${fmtIDR(originalPrice)}</b></span></p>
             ${voucherInfo}
-            <hr style="border-top: 1px dashed var(--border-color); margin: 15px 0;">
+            <hr style="border-top: 1px dashed var(--border-secondary); margin: 15px 0;">
             <p>Total: <span><b>${fmtIDR(finalPriceAfterVoucher)}</b></span></p>
         `;
     }
