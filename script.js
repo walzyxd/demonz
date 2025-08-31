@@ -1,4 +1,4 @@
-/* ================== CONFIG & DATA ================== */
+/* ================== KONFIGURASI & DATA APLIKASI ================== */
 const ADMIN_WA = "6282298902274";
 const ADMIN_EMAIL = "walzlonely@gmail.com";
 
@@ -8,27 +8,27 @@ const VOUCHERS = [
 ];
 
 const GAMES = [
-    { key: "free fire", name: "Free Fire", img: "https://files.catbox.moe/x5rvpg.jpg", server: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game." },
-    { key: "mobile legends", name: "Mobile Legends", img: "https://files.catbox.moe/c96d5v.jpg", server: true, guide: "Temukan User ID dan Server ID di bawah nama panggilan saat Anda mengklik avatar profil." },
-    { key: "honor of kings", name: "Honor of Kings", img: "https://files.catbox.moe/rh78kj.jpg", server: false, guide: "User ID Anda ada di bagian bawah layar saat Anda membuka profil." },
-    { key: "genshin impact", name: "Genshin Impact", img: "https://files.catbox.moe/b91rfb.jpg", server: false, guide: "User ID (9 digit) terletak di sudut kanan bawah layar saat Anda berada di dalam game." },
-    { key: "roblox", name: "Roblox", img: "https://files.catbox.moe/uvixa8.jpg", server: false, guide: "Top up menggunakan Gift Card yang akan dikirim langsung ke akun Anda." },
-    { key: "super sus", name: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", server: false, guide: "User ID dapat ditemukan di menu profil dalam game." },
-    { key: "clash of clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", server: false, guide: "User ID (Tag Pemain) adalah kombinasi huruf dan angka yang dimulai dengan tanda pagar (#)." },
-    { key: "blood strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", server: false, guide: "ID Anda dapat ditemukan di profil dalam game." },
-    { key: "pubg mobile", name: "PUBG Mobile", img: "https://files.catbox.moe/tatuo9.jpg", server: false, guide: "Temukan User ID Anda di sudut kanan atas lobi game saat mengklik profil." },
-    { key: "garena delta force", name: "Garena Delta Force", img: "https://files.catbox.moe/qul2qy.png", server: false, guide: "Buka menu profil di game dan Anda dapat menemukan User ID Anda." },
-    { key: "call of duty", name: "Call Of Duty", img: "https://files.catbox.moe/i1kcw5.webp", server: false, guide: "User ID Anda dapat ditemukan di profil game." },
-    { key: "valorant", name: "Valorant", img: "https://files.catbox.moe/3h9932.png", server: false, guide: "User ID Anda (Riot ID) dapat ditemukan di bawah nama akun Anda di bagian atas layar." },
-    { key: "eggy party", name: "Eggy Party", img: "https://files.catbox.moe/59mdks.webp", server: false, guide: "User ID Anda dapat ditemukan di profil dalam game." },
-    { key: "garena undawn", name: "Garena Undawn", img: "https://files.catbox.moe/o5bto9.webp", server: false, guide: "Buka menu profil dan User ID Anda akan terlihat." },
+    { key: "free-fire", name: "Free Fire", img: "https://files.catbox.moe/x5rvpg.jpg", hasServerId: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game." },
+    { key: "mobile-legends", name: "Mobile Legends", img: "https://files.catbox.moe/c96d5v.jpg", hasServerId: true, guide: "Temukan User ID dan Server ID di bawah nama panggilan saat Anda mengklik avatar profil." },
+    { key: "honor-of-kings", name: "Honor of Kings", img: "https://files.catbox.moe/rh78kj.jpg", hasServerId: false, guide: "User ID Anda ada di bagian bawah layar saat Anda membuka profil." },
+    { key: "genshin-impact", name: "Genshin Impact", img: "https://files.catbox.moe/b91rfb.jpg", hasServerId: false, guide: "User ID (9 digit) terletak di sudut kanan bawah layar saat Anda berada di dalam game." },
+    { key: "roblox", name: "Roblox", img: "https://files.catbox.moe/uvixa8.jpg", hasServerId: false, guide: "Top up menggunakan Gift Card yang akan dikirim langsung ke akun Anda." },
+    { key: "super-sus", name: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", hasServerId: false, guide: "User ID dapat ditemukan di menu profil dalam game." },
+    { key: "clash-of-clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", hasServerId: false, guide: "User ID (Tag Pemain) adalah kombinasi huruf dan angka yang dimulai dengan tanda pagar (#)." },
+    { key: "blood-strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", hasServerId: false, guide: "ID Anda dapat ditemukan di profil dalam game." },
+    { key: "pubg-mobile", name: "PUBG Mobile", img: "https://files.catbox.moe/tatuo9.jpg", hasServerId: false, guide: "Temukan User ID Anda di sudut kanan atas lobi game saat mengklik profil." },
+    { key: "garena-delta-force", name: "Garena Delta Force", img: "https://files.catbox.moe/qul2qy.png", hasServerId: false, guide: "Buka menu profil di game dan Anda dapat menemukan User ID Anda." },
+    { key: "call-of-duty", name: "Call Of Duty", img: "https://files.catbox.moe/i1kcw5.webp", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil game." },
+    { key: "valorant", name: "Valorant", img: "https://files.catbox.moe/3h9932.png", hasServerId: false, guide: "User ID Anda (Riot ID) dapat ditemukan di bawah nama akun Anda di bagian atas layar." },
+    { key: "eggy-party", name: "Eggy Party", img: "https://files.catbox.moe/59mdks.webp", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil dalam game." },
+    { key: "garena-undawn", name: "Garena Undawn", img: "https://files.catbox.moe/o5bto9.webp", hasServerId: false, guide: "Buka menu profil dan User ID Anda akan terlihat." },
 ];
 
 const PROMOS = [
-    { title: "Top Up Diamond FF Termurah", img: "https://files.catbox.moe/ijvqjo.png", gameKey: "free fire" },
-    { title: "Top Up Starlight MLBB Harga Cuan", img: "https://files.catbox.moe/dpr6d2.jpg", gameKey: "mobile legends" },
-    { title: "Promo UC PUBG Mobile Khusus Member", img: "https://files.catbox.moe/w43dgb.jpg", gameKey: "pubg mobile" },
-    { title: "Blessing of the Welkin Moon Genshin", img: "https://files.catbox.moe/uusd4l.jpg", gameKey: "genshin impact" },
+    { title: "Top Up Diamond FF Termurah", img: "https://files.catbox.moe/ijvqjo.png", gameKey: "free-fire" },
+    { title: "Top Up Starlight MLBB Harga Cuan", img: "https://files.catbox.moe/dpr6d2.jpg", gameKey: "mobile-legends" },
+    { title: "Promo UC PUBG Mobile Khusus Member", img: "https://files.catbox.moe/w43dgb.jpg", gameKey: "pubg-mobile" },
+    { title: "Blessing of the Welkin Moon Genshin", img: "https://files.catbox.moe/uusd4l.jpg", gameKey: "genshin-impact" },
 ];
 
 const PAYMENTS = [
@@ -38,7 +38,7 @@ const PAYMENTS = [
 ];
 
 const PRODUCTS = {
-    "free fire": [
+    "free-fire": [
         { id: "ff-5", label: "5 Diamonds", price: 901 },
         { id: "ff-12", label: "12 Diamonds", price: 1802 },
         { id: "ff-50", label: "50 Diamonds", price: 7207 },
@@ -57,7 +57,7 @@ const PRODUCTS = {
         { id: "ff-lvl20", label: "Level Up Pass Lv.20", price: 8800, badges: ["Level Up"] },
         { id: "ff-booyah", label: "BooYah Pass", price: 50000, badges: ["Pass"] },
     ],
-    "mobile legends": [
+    "mobile-legends": [
         { id: "ml-3", label: "3 Diamonds", price: 1171 },
         { id: "ml-5", label: "5 Diamonds", price: 1423 },
         { id: "ml-12", label: "12 Diamonds", price: 3323 },
@@ -77,7 +77,7 @@ const PRODUCTS = {
         { id: "ml-wdp", label: "Weekly Diamond Pass", price: 28000, badges: ["Weekly"] },
         { id: "ml-twilight", label: "Twilight Pass", price: 150000, badges: ["Pass"] },
     ],
-    "pubg mobile": [
+    "pubg-mobile": [
         { id: "pubg-30", label: "30 UC", price: 7000 },
         { id: "pubg-60", label: "60 UC", price: 14000 },
         { id: "pubg-300", label: "300 + 25 UC", price: 70000 },
@@ -87,7 +87,7 @@ const PRODUCTS = {
         { id: "pubg-lvl20", label: "Level Up Pass Lv.20", price: 8800, badges: ["Level Up"] },
         { id: "pubg-booyah", label: "BooYah Pass", price: 50000, badges: ["Pass"] },
     ],
-    "genshin impact": [
+    "genshin-impact": [
         { id: "gi-60", label: "60 Genesis Crystals", price: 14865 },
         { id: "gi-330", label: "330 Genesis Crystals", price: 72973 },
         { id: "gi-1090", label: "1090 Genesis Crystals", price: 229730 },
@@ -96,7 +96,7 @@ const PRODUCTS = {
         { id: "gi-8080", label: "8080 Genesis Crystals", price: 1467568 },
         { id: "gi-welkin", label: "Blessing of the Welkin Moon", price: 72973, badges: ["Welkin"] },
     ],
-    "honor of kings": [
+    "honor-of-kings": [
         { id: "hok-16", label: "16 Tokens", price: 3300 },
         { id: "hok-80", label: "80 Tokens", price: 16500 },
         { id: "hok-240", label: "240 Tokens", price: 51000 },
@@ -115,7 +115,7 @@ const PRODUCTS = {
         { id: "rbx-200k", label: "Gift Card Rp200.000", price: 193000 },
         { id: "rbx-500k", label: "Gift Card Rp500.000", price: 479000 },
     ],
-    "super sus": [
+    "super-sus": [
         { id: "ss-100", label: "100 Goldstar", price: 11712 },
         { id: "ss-310", label: "310 Goldstar", price: 34234 },
         { id: "ss-520", label: "520 Goldstar", price: 57658 },
@@ -126,14 +126,14 @@ const PRODUCTS = {
         { id: "ss-monthly", label: "Monthly Card", price: 134234, badges: ["Monthly"] },
         { id: "ss-vip", label: "Super VIP Card", price: 157658, badges: ["VIP"] },
     ],
-    "clash of clans": [
+    "clash-of-clans": [
         { id: "coc-500", label: "500 Gems", price: 75299 },
         { id: "coc-1200", label: "1200 Gems", price: 150499 },
         { id: "coc-2500", label: "2500 Gems", price: 300999 },
         { id: "coc-6500", label: "6500 Gems", price: 752399 },
         { id: "coc-14000", label: "14000 Gems", price: 1454599 },
     ],
-    "blood strike": [
+    "blood-strike": [
         { id: "bs-100", label: "100 + 5 Gold", price: 11999 },
         { id: "bs-300", label: "300 + 20 Gold", price: 34999 },
         { id: "bs-500", label: "500 + 40 Gold", price: 54999 },
@@ -141,7 +141,7 @@ const PRODUCTS = {
         { id: "bs-2000", label: "2000 + 260 Gold", price: 219999 },
         { id: "bs-5000", label: "5000 + 800 Gold", price: 549999 },
     ],
-    "eggy party": [
+    "eggy-party": [
         { id: "eggy-weekly", label: "Weekly Egg Coin Pack", price: 14799, badges: ["Weekly"] },
         { id: "eggy-yoyo", label: "Yoyo Membership", price: 27799, badges: ["Member"] },
         { id: "eggy-shiny", label: "Shiny Coin Jar", price: 42699, badges: ["Hot"] },
@@ -162,7 +162,7 @@ const PRODUCTS = {
         { id: "eggy-3180", label: "3180 + 423 Bonus", price: 630199 },
         { id: "eggy-6480", label: "6480 + 903 Bonus", price: 1244999 },
     ],
-    "call of duty": [
+    "call-of-duty": [
         { id: "codm-31", label: "31 CP", price: 4899 },
         { id: "codm-63", label: "63 CP", price: 9699 },
         { id: "codm-128", label: "128 CP", price: 19399 },
@@ -187,7 +187,7 @@ const PRODUCTS = {
         { id: "val-5350", label: "5350 Points", price: 544999 },
         { id: "val-11000", label: "11000 Points", price: 1089999, badges: ["Hot"] },
     ],
-    "garena delta force": [
+    "garena-delta-force": [
         { id: "delta-tide", label: "Tide Supplies", price: 8499, badges: ["New"] },
         { id: "delta-adv", label: "Tide Supplies Advanced", price: 24499, badges: ["New"] },
         { id: "delta-genesis", label: "Black Hawk Down Genesis", price: 41999, badges: ["New"] },
@@ -205,7 +205,7 @@ const PRODUCTS = {
         { id: "delta-12960", label: "12960 + 3888", price: 2799999 },
         { id: "delta-19440", label: "19440 + 5832", price: 4199999 },
     ],
-    "garena undawn": [
+    "garena-undawn": [
         { id: "undawn-bulanan", label: "Kartu Bulanan", price: 47299, badges: ["Member"] },
         { id: "undawn-growth", label: "Growth Fund", price: 94799, badges: ["Hot"] },
         { id: "undawn-glory", label: "Glory Pass Premium", price: 142299, badges: ["Pass"] },
@@ -228,7 +228,7 @@ const PRODUCTS = {
     ]
 };
 
-/* ================== UTILITY FUNCTIONS ================== */
+/* ================== FUNGSI UTILITY GLOBAL ================== */
 const qs = (selector, parent = document) => parent.querySelector(selector);
 const qsa = (selector, parent = document) => Array.from(parent.querySelectorAll(selector));
 const fmtIDR = (n) => new Intl.NumberFormat("id-ID", {
@@ -272,11 +272,10 @@ function copyToClipboard(text, buttonElement) {
             buttonElement.style.backgroundColor = originalBg;
         }, 2000);
     }).catch(err => {
-        console.error('Failed to copy: ', err);
+        console.error('Gagal menyalin: ', err);
     });
 }
 
-/* ================== EVENT LISTENERS ================== */
 document.addEventListener("DOMContentLoaded", () => {
     const page = document.body.dataset.page;
     if (page === "index") {
@@ -298,14 +297,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-/* ================== INDEX PAGE LOGIC ================== */
 function initIndexPage() {
     const gamesGrid = qs("#games-grid");
     const promoSlider = qs("#promo-slider");
     const sliderDots = qs("#slider-dots");
     let currentSlide = 0;
 
-    if (gamesGrid) {
+    function renderGamesGrid() {
+        if (!gamesGrid) return;
         gamesGrid.innerHTML = "";
         GAMES.forEach(game => {
             const card = document.createElement("a");
@@ -313,7 +312,7 @@ function initIndexPage() {
             card.href = "#";
             card.addEventListener("click", (e) => {
                 e.preventDefault();
-                selectGame(game);
+                selectGame(game.key);
             });
 
             card.innerHTML = `
@@ -326,7 +325,9 @@ function initIndexPage() {
         });
     }
 
-    if (promoSlider && sliderDots) {
+    function initPromoSlider() {
+        if (!promoSlider || !sliderDots) return;
+
         PROMOS.forEach((promo, index) => {
             const slide = document.createElement("a");
             slide.className = "slider-item";
@@ -334,10 +335,7 @@ function initIndexPage() {
             slide.style.backgroundImage = `url(${promo.img})`;
             slide.addEventListener("click", (e) => {
                 e.preventDefault();
-                const game = GAMES.find(g => g.key === promo.gameKey);
-                if (game) {
-                    selectGame(game);
-                }
+                selectGame(promo.gameKey);
             });
             promoSlider.appendChild(slide);
 
@@ -369,19 +367,25 @@ function initIndexPage() {
         updateSlider();
         setInterval(nextSlide, 3000);
     }
+
+    renderGamesGrid();
+    initPromoSlider();
 }
 
-function selectGame(game) {
-    localStorage.setItem("walz_game_key", game.key);
-    localStorage.setItem("walz_game_name", game.name);
-    localStorage.setItem("walz_game_img", game.img);
-    localStorage.setItem("walz_game_server", game.server ? "1" : "0");
-    localStorage.setItem("walz_game_guide", game.guide);
+function selectGame(gameKey) {
+    localStorage.setItem("walz_game_key", gameKey);
     window.location.href = "game.html";
 }
 
-/* ================== GAME PAGE LOGIC ================== */
 function initGamePage() {
+    const gameKey = localStorage.getItem("walz_game_key");
+    if (!gameKey) {
+        window.location.href = "index.html";
+        return;
+    }
+    const gameData = GAMES.find(g => g.key === gameKey);
+    const productsData = PRODUCTS[gameData.key];
+    
     const gameTitle = qs("#game-title");
     const banner = qs("#game-banner");
     const guideText = qs("#game-guide");
@@ -393,34 +397,116 @@ function initGamePage() {
     const checkoutBtn = qs("#checkout-btn");
     const summaryBox = qs("#summary-box");
     const checkoutModalContent = qs("#checkout-modal");
-    
-    // Elemen voucher
     const voucherInput = qs("#voucher-input");
     const voucherBtn = qs("#voucher-btn");
     const voucherStatus = qs("#voucher-status");
 
-    const gameKey = localStorage.getItem("walz_game_key");
-    const gameData = GAMES.find(g => g.key === gameKey) || GAMES[0];
+    let selectedProduct = null;
+    let selectedPayment = null;
+    let appliedVoucher = null;
 
     gameTitle.textContent = gameData.name;
     banner.src = gameData.img;
     banner.alt = gameData.name;
     guideText.textContent = `${gameData.guide}`;
-    serverGroup.style.display = gameData.server ? "block" : "none";
-
-    let selectedProduct = null;
-    let selectedPayment = null;
-    let appliedVoucher = null;
-    
-    renderProducts();
-    renderPayments();
+    serverGroup.style.display = gameData.hasServerId ? "block" : "none";
 
     function calculateFinalPrice() {
-        let finalPrice = selectedProduct ? selectedProduct.price : 0;
+        if (!selectedProduct) return 0;
+        let finalPrice = selectedProduct.price;
         if (appliedVoucher) {
             finalPrice = Math.round(finalPrice * (1 - appliedVoucher.percent / 100));
         }
         return finalPrice;
+    }
+
+    function updateUI() {
+        qsa('.product-card').forEach(c => c.classList.remove('active'));
+        qsa('.payment-card').forEach(c => c.classList.remove('active'));
+    
+        if (selectedProduct) {
+            qs(`.product-card[data-id="${selectedProduct.id}"]`).classList.add('active');
+        }
+        if (selectedPayment) {
+            qs(`.payment-card[data-id="${selectedPayment.id}"]`).classList.add('active');
+        }
+    
+        const finalPrice = calculateFinalPrice();
+        qsa('.payment-card').forEach(card => {
+            const priceEl = qs('.payment-price', card);
+            if (selectedProduct) {
+                priceEl.textContent = fmtIDR(finalPrice);
+                priceEl.style.opacity = '1';
+                priceEl.style.visibility = 'visible';
+            } else {
+                priceEl.style.opacity = '0';
+                priceEl.style.visibility = 'hidden';
+            }
+        });
+        
+        updateSummary();
+    }
+
+    function renderProducts() {
+        if (!productGrid) return;
+        productGrid.innerHTML = "";
+        const items = productsData || [];
+    
+        items.forEach(product => {
+            const card = document.createElement("div");
+            card.className = "product-card";
+            card.dataset.id = product.id;
+    
+            let labelText = product.label;
+            const keywords = ["diamonds", "gems", "uc", "crystals", "tokens", "goldstar", "gold", "points", "coins", "cp"];
+            const hasKeyword = keywords.some(keyword => product.label.toLowerCase().includes(keyword));
+    
+            if (hasKeyword) {
+                const parts = product.label.split(' ');
+                parts.push('💎');
+                labelText = parts.join(' ');
+            }
+    
+            let badgeHtml = '';
+            if (product.badges && product.badges.length > 0) {
+                const badgeText = product.badges[0];
+                const badgeClass = `badge-${badgeText.toLowerCase().replace(/\s/g, '')}`;
+                badgeHtml = `<div class="product-badge ${badgeClass}">${badgeText}</div>`;
+            }
+    
+            card.innerHTML = `
+                ${badgeHtml}
+                <p class="product-label">${labelText}</p>
+                <p class="product-price">${fmtIDR(product.price)}</p>
+            `;
+            
+            card.addEventListener("click", () => {
+                selectedProduct = product;
+                updateUI();
+            });
+            productGrid.appendChild(card);
+        });
+    }
+
+    function renderPayments() {
+        if (!paymentGrid) return;
+        paymentGrid.innerHTML = "";
+        PAYMENTS.forEach(payment => {
+            const card = document.createElement("div");
+            card.className = "payment-card";
+            card.dataset.id = payment.id;
+    
+            card.innerHTML = `
+                <img src="${payment.img}" alt="${payment.name}" class="payment-logo">
+                <p class="payment-name">${payment.name}</p>
+                <p class="payment-price"></p>
+            `;
+            card.addEventListener("click", () => {
+                selectedPayment = payment;
+                updateUI();
+            });
+            paymentGrid.appendChild(card);
+        });
     }
 
     function updateSummary() {
@@ -450,93 +536,6 @@ function initGamePage() {
             <p>Total: <span><b>${fmtIDR(finalPriceAfterVoucher)}</b></span></p>
         `;
     }
-
-    function renderProducts() {
-        productGrid.innerHTML = "";
-        const items = PRODUCTS[gameData.key] || [];
-
-        items.forEach(product => {
-            const card = document.createElement("div");
-            card.className = `product-card`;
-            card.dataset.id = product.id;
-            card.dataset.name = product.label;
-            card.dataset.price = product.price;
-
-            let labelWithEmoji = product.label;
-            const keywords = ["diamonds", "gems", "uc", "crystals", "tokens", "goldstar", "gold", "points", "coins", "cp"];
-            const isMatch = keywords.some(keyword => product.label.toLowerCase().includes(keyword));
-
-            if (isMatch) {
-                const parts = product.label.split(' ');
-                parts[parts.length - 1] += ' 💎';
-                labelWithEmoji = parts.join(' ');
-            }
-
-            card.innerHTML = `
-                <p class="product-label">${labelWithEmoji}</p>
-                <p class="product-price">${fmtIDR(product.price)}</p>
-            `;
-            if (product.badges && product.badges.length > 0) {
-                const badgeText = product.badges[0];
-                const badgeClass = `badge-${badgeText.toLowerCase().replace(/\s/g, '')}`;
-                card.innerHTML += `<div class="product-badge ${badgeClass}">${badgeText}</div>`;
-            }
-            card.addEventListener("click", () => {
-                selectedProduct = product;
-                updateUI();
-            });
-            productGrid.appendChild(card);
-        });
-    }
-
-    function renderPayments() {
-        paymentGrid.innerHTML = "";
-        PAYMENTS.forEach(payment => {
-            const card = document.createElement("div");
-            card.className = `payment-card`;
-            card.dataset.id = payment.id;
-            card.dataset.name = payment.name;
-            card.dataset.type = payment.type;
-
-            card.innerHTML = `
-                <img src="${payment.img}" alt="${payment.name}" class="payment-logo">
-                <p class="payment-name">${payment.name}</p>
-                <p class="payment-price"></p>
-            `;
-            card.addEventListener("click", () => {
-                selectedPayment = payment;
-                updateUI();
-            });
-            paymentGrid.appendChild(card);
-        });
-    }
-    
-    function updateUI() {
-        qsa('.product-card').forEach(c => c.classList.remove('active'));
-        if (selectedProduct) {
-            qs(`.product-card[data-id="${selectedProduct.id}"]`).classList.add('active');
-        }
-    
-        qsa('.payment-card').forEach(c => c.classList.remove('active'));
-        if (selectedPayment) {
-            qs(`.payment-card[data-id="${selectedPayment.id}"]`).classList.add('active');
-        }
-    
-        const finalPrice = calculateFinalPrice();
-        qsa('.payment-card').forEach(card => {
-            const priceEl = qs('.payment-price', card);
-            if (selectedProduct) {
-                priceEl.textContent = fmtIDR(finalPrice);
-                priceEl.style.opacity = '1';
-                priceEl.style.visibility = 'visible';
-            } else {
-                priceEl.style.opacity = '0';
-                priceEl.style.visibility = 'hidden';
-            }
-        });
-    
-        updateSummary();
-    }
     
     voucherBtn.addEventListener("click", () => {
         const code = voucherInput.value.trim().toUpperCase();
@@ -545,44 +544,59 @@ function initGamePage() {
         if (voucher) {
             appliedVoucher = voucher;
             voucherStatus.textContent = `Voucher ${voucher.code} berhasil diterapkan! Diskon ${voucher.percent}%`;
-            voucherStatus.classList.remove('error');
-            voucherStatus.classList.add('success');
+            voucherStatus.className = 'voucher-status success';
         } else {
             appliedVoucher = null;
             voucherStatus.textContent = "Kode voucher tidak valid.";
-            voucherStatus.classList.remove('success');
-            voucherStatus.classList.add('error');
+            voucherStatus.className = 'voucher-status error';
         }
         updateUI();
     });
 
     checkoutBtn.addEventListener("click", () => {
         const userId = userIdInput.value.trim();
-        const serverId = gameData.server ? serverIdInput.value.trim() : null;
+        const serverId = gameData.hasServerId ? serverIdInput.value.trim() : null;
 
         if (!userId) {
+            alert("Masukkan User ID Anda.");
             userIdInput.focus();
-            userIdInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
 
-        if (gameData.server && !serverId) {
+        if (gameData.hasServerId && !serverId) {
+            alert("Masukkan Server ID Anda.");
             serverIdInput.focus();
-            serverIdInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
 
         if (!selectedProduct) {
-            productGrid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            alert("Pilih nominal top-up.");
+            productGrid.scrollIntoView({ behavior: 'smooth' });
             return;
         }
 
         if (!selectedPayment) {
-            paymentGrid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            alert("Pilih metode pembayaran.");
+            paymentGrid.scrollIntoView({ behavior: 'smooth' });
             return;
         }
 
         const finalPrice = calculateFinalPrice();
+        const encodedData = {
+            game: gameData.name,
+            userId: userId,
+            ...(gameData.hasServerId && { serverId: serverId }),
+            product: selectedProduct.label,
+            totalPrice: fmtIDR(finalPrice)
+        };
+
+        const waMessage = `Halo Admin, saya sudah melakukan pembayaran untuk pesanan saya.\n\n` +
+            `Game: ${encodedData.game}\n` +
+            `User ID: ${encodedData.userId}\n` +
+            (gameData.hasServerId ? `Server ID: ${encodedData.serverId}\n` : '') +
+            `Produk: ${encodedData.product}\n` +
+            `Total Bayar: ${encodedData.totalPrice}`;
+
         checkoutModalContent.innerHTML = `
             <div class="modal-header">
                 <h4 class="modal-title">Konfirmasi Pembelian</h4>
@@ -593,7 +607,7 @@ function initGamePage() {
                     <p><strong>Detail Pesanan</strong></p>
                     <p>Game: <span>${gameData.name}</span></p>
                     <p>User ID: <span>${userId}</span></p>
-                    ${gameData.server ? `<p>Server ID: <span>${serverId}</span></p>` : ''}
+                    ${gameData.hasServerId ? `<p>Server ID: <span>${serverId}</span></p>` : ''}
                     <p>Produk: <span>${selectedProduct.label}</span></p>
                     <p>Metode Pembayaran: <span>${selectedPayment.name}</span></p>
                 </div>
@@ -615,7 +629,7 @@ function initGamePage() {
                 
                 <div class="whatsapp-button-container">
                     <p class="whatsapp-guide">Silahkan transfer sesuai nominal di atas, setelah itu kirim bukti transfernya di tombol WhatsApp di bawah ini.</p>
-                    <a href="https://wa.me/${ADMIN_WA}?text=Halo%20Admin,%20saya%20sudah%20melakukan%20pembayaran%20untuk%20pesanan%20saya.%0A%0AGame:%20${encodeURIComponent(gameData.name)}%0AUser%20ID:%20${encodeURIComponent(userId)}%0AProduk:%20${encodeURIComponent(selectedProduct.label)}%0ATotal%20Bayar:%20${encodeURIComponent(fmtIDR(finalPrice))}" target="_blank" class="whatsapp-button">
+                    <a href="https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(waMessage)}" target="_blank" class="whatsapp-button">
                         <i class="fab fa-whatsapp"></i> Kirim Bukti Transfer
                     </a>
                 </div>
@@ -635,7 +649,10 @@ function initGamePage() {
                 hideModal('checkout-modal');
             });
         }
-
         showModal('checkout-modal');
     });
+
+    renderProducts();
+    renderPayments();
+    updateUI();
 }
