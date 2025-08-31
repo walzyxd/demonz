@@ -61,12 +61,21 @@
                 </section>
 
                 <section class="section-card">
-                    <h3 class="section-title">4. Voucher & Ringkasan</h3>
-                    <div class="voucher-group">
-                        <input type="text" id="voucher-input" placeholder="Masukkan kode voucher">
-                        <button id="voucher-btn" class="btn-secondary">Gunakan</button>
+                    <h3 class="section-title">4. Masukkan Kode Voucher</h3>
+                    <div class="voucher-section">
+                        <div class="voucher-input-group">
+                            <input type="text" id="voucher-input" placeholder="Masukkan kode voucher">
+                            <button id="voucher-btn" class="btn-secondary btn-small">Gunakan</button>
+                        </div>
+                        <button id="voucher-list-btn" class="btn-secondary btn-small">
+                            <i class="fas fa-tags"></i> List Kode Voucher
+                        </button>
+                        <div id="voucher-status" class="voucher-status"></div>
                     </div>
-                    <div id="voucher-status" class="voucher-status"></div>
+                </section>
+
+                <section id="summary-section" class="section-card summary-section" style="opacity: 0; pointer-events: none;">
+                    <h3 class="section-title">5. Ringkasan Pesanan</h3>
                     <div id="summary-box" class="summary-box">
                         <p class="summary-placeholder">Pilih nominal & pembayaran untuk melihat ringkasan.</p>
                     </div>
@@ -79,6 +88,8 @@
 
     <div id="modal-overlay" class="modal-overlay">
         <div id="checkout-modal" class="modal-content">
+            </div>
+        <div id="voucher-list-modal" class="modal-content" style="display: none;">
             </div>
     </div>
 
