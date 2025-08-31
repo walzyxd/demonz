@@ -3,88 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Up Game - WalzShop</title>
+    <title>Top Up Game | Walz Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body data-page="game">
-    <header class="navbar game-navbar">
+
+    <header class="navbar">
         <div class="container navbar-container">
             <a href="index.html" class="brand-logo">
-                <span class="logo-text">Walz</span><span class="logo-accent">Shop</span>
+                <span class="logo-text">WALZ</span>
+                <span class="logo-accent">STORE</span>
+                <p class="tagline">Top Up Game Murah</p>
             </a>
-            <button onclick="window.history.back()" class="btn-back" aria-label="Kembali ke halaman sebelumnya">
+            <a href="index.html" class="btn-back">
                 <i class="fas fa-arrow-left"></i> Kembali
-            </button>
+            </a>
         </div>
     </header>
 
-    <main class="main-content container">
-        <div class="content-box">
-            <div class="game-header">
-                <img id="game-banner" class="game-banner" src="" alt="Game Banner">
-                <div class="game-info">
-                    <h1 id="game-title" class="game-title">Nama Game</h1>
-                    <div class="guide-container">
-                        <i class="fas fa-info-circle guide-icon" aria-hidden="true"></i>
-                        <p id="game-guide" class="guide-text"></p>
+    <main class="main-content">
+        <div class="container">
+            <div class="content-box">
+                <div class="game-header">
+                    <img id="game-banner" src="" alt="Game Banner" class="game-banner">
+                    <div class="game-info">
+                        <h1 id="game-title" class="game-title">Nama Game</h1>
+                        <div class="guide-container">
+                            <i class="fas fa-info-circle guide-icon"></i>
+                            <p id="game-guide" class="guide-text">Panduan untuk menemukan ID.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="section-card">
-                <h2 class="section-title">1. Masukkan Data Akun</h2>
-                <div class="form-group">
-                    <label for="user-id">User ID:</label>
-                    <input type="text" id="user-id" placeholder="Masukkan User ID Anda" required aria-required="true">
-                </div>
-                <div class="form-group" id="server-group">
-                    <label for="server-id">Server ID:</label>
-                    <input type="text" id="server-id" placeholder="Masukkan Server ID Anda" required aria-required="true">
-                </div>
-            </div>
+                <section class="section-card">
+                    <h3 class="section-title">1. Masukkan User ID</h3>
+                    <div class="form-group">
+                        <label for="user-id">User ID</label>
+                        <input type="text" id="user-id" placeholder="Masukkan User ID Anda">
+                    </div>
+                    <div class="form-group" id="server-group" style="display: none;">
+                        <label for="server-id">Server ID (Optional)</label>
+                        <input type="text" id="server-id" placeholder="Masukkan Server ID (contoh: 1234)">
+                    </div>
+                </section>
 
-            <div class="section-card">
-                <h2 class="section-title">2. Pilih Nominal Top Up</h2>
-                <div id="product-grid" class="product-grid"></div>
-            </div>
+                <section class="section-card">
+                    <h3 class="section-title">2. Pilih Nominal</h3>
+                    <div id="product-grid" class="product-grid">
+                        </div>
+                </section>
 
-            <div class="section-card">
-                <h2 class="section-title">3. Pilih Metode Pembayaran</h2>
-                <div id="payment-grid" class="payment-grid"></div>
-            </div>
+                <section class="section-card">
+                    <h3 class="section-title">3. Pilih Pembayaran</h3>
+                    <div id="payment-grid" class="payment-grid">
+                        </div>
+                </section>
 
-            <div class="section-card">
-                <h2 class="section-title">4. Ringkasan & Pembayaran</h2>
-                <div id="summary-box">
-                    <p>Pilih nominal & pembayaran untuk melihat ringkasan.</p>
-                </div>
-                <div class="voucher-group">
-                    <input type="text" id="voucher-input" placeholder="Masukkan kode voucher">
-                    <button id="voucher-btn" class="btn-secondary">Terapkan</button>
-                </div>
-                <p id="voucher-status" class="voucher-status" role="alert"></p>
-                <button id="checkout-btn" class="btn-primary">Beli Sekarang</button>
+                <section class="section-card">
+                    <h3 class="section-title">4. Voucher & Ringkasan</h3>
+                    <div class="voucher-group">
+                        <input type="text" id="voucher-input" placeholder="Masukkan kode voucher">
+                        <button id="voucher-btn" class="btn-secondary">Gunakan</button>
+                    </div>
+                    <div id="voucher-status" class="voucher-status"></div>
+                    <div id="summary-box" class="summary-box">
+                        <p class="summary-placeholder">Pilih nominal & pembayaran untuk melihat ringkasan.</p>
+                    </div>
+                </section>
+
+                <button id="checkout-btn" class="btn-primary">Checkout Sekarang</button>
             </div>
         </div>
     </main>
 
+    <div id="modal-overlay" class="modal-overlay">
+        <div id="checkout-modal" class="modal-content">
+            </div>
+    </div>
+
     <footer class="footer">
         <div class="container footer-content">
-            <a href="index.html" class="brand-logo footer-logo">
-                <span class="logo-text">Walz</span><span class="logo-accent">Shop</span>
-            </a>
+            <div class="footer-logo">
+                <span class="logo-text">WALZ</span>
+                <span class="logo-accent">STORE</span>
+            </div>
             <p class="footer-desc">
-                WalzShop adalah platform top-up game yang menyediakan berbagai kebutuhan in-game item dengan proses cepat dan terpercaya.
+                Walz Store adalah platform top up game terpercaya. Kami menyediakan layanan top up termurah dengan proses yang cepat dan aman. Dukungan pelanggan 24/7.
             </p>
-            <p class="footer-copyright">&copy; 2025 <b>WalzShop</b> — Website Top up Termurah🔥.</p>
+            <div class="footer-social">
+                <a href="https://wa.me/6282298902274" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp fa-lg"></i></a>
+            </div>
+            <p class="footer-copyright">&copy; 2024 Walz Store. All rights reserved.</p>
         </div>
     </footer>
-
-    <div id="modal-overlay" class="modal-overlay">
-        <div id="checkout-modal" class="modal-content"></div>
-    </div>
 
     <script src="script.js"></script>
 </body>
