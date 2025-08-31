@@ -4,14 +4,17 @@ const ADMIN_EMAIL = "walzlonely@gmail.com";
 
 const VOUCHERS = [
     { code: "WALZSHOP", percent: 5, description: "Diskon 5% untuk semua produk" },
-    { code: "WALZPROMO", percent: 5, description: "Promo khusus 5% semua produk" }
+    { code: "WALZPROMO", percent: 5, description: "Promo khusus 5% semua produk" },
+    { code: "HEMAT5000", percent: 10, description: "Diskon Rp5.000 (min. belanja Rp50.000)" },
+    { code: "TOPUPSPECIAL", percent: 15, description: "Diskon 15% untuk top up pertama" },
+    { code: "FREEDIAMOND", percent: 20, description: "Diskon 20% (maks. Rp20.000)" }
 ];
 
 const GAMES = [
     { key: "free-fire", name: "Free Fire", img: "https://files.catbox.moe/ldccdf.jpg", hasServerId: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game." },
     { key: "mobile-legends", name: "Mobile Legends", img: "https://files.catbox.moe/6ns43w.jpg", hasServerId: true, guide: "Temukan User ID dan Server ID di bawah nama panggilan saat Anda mengklik avatar profil." },
     { key: "honor-of-kings", name: "Honor of Kings", img: "https://files.catbox.moe/i7ge1c.jpg", hasServerId: false, guide: "User ID Anda ada di bagian bawah layar saat Anda membuka profil." },
-    { key: "genshin-impact", name: "Genshin Impact", img: "https://files.catbox.moe/b91rfb.jpg", hasServerId: false, guide: "User ID (9 digit) terletak di sudut kanan bawah layar saat Anda berada di dalam game." },
+    { key: "genshin-impact", name: "Genshin Impact", img: "https://files.catbox.moe/he48wt.jpg", hasServerId: false, guide: "User ID (9 digit) terletak di sudut kanan bawah layar saat Anda berada di dalam game." }, // Ganti Gambar
     { key: "roblox", name: "Roblox", img: "https://files.catbox.moe/k28lxp.jpg", hasServerId: false, guide: "Top up menggunakan Gift Card yang akan dikirim langsung ke akun Anda." },
     { key: "super-sus", name: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", hasServerId: false, guide: "User ID dapat ditemukan di menu profil dalam game." },
     { key: "clash-of-clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", hasServerId: false, guide: "User ID (Tag Pemain) adalah kombinasi huruf dan angka yang dimulai dengan tanda pagar (#)." },
@@ -30,10 +33,11 @@ const PROMOS = [
     { title: "Promo UC PUBG Mobile Khusus Member", img: "https://files.catbox.moe/w43dgb.jpg", gameKey: "pubg-mobile" },
     { title: "Blessing of the Welkin Moon Genshin", img: "https://files.catbox.moe/uusd4l.jpg", gameKey: "genshin-impact" },
     { title: "Top Up Robux Paling Murah!", img: "https://files.catbox.moe/k28lxp.jpg", gameKey: "roblox" },
-];
+]; // Hanya 5 promo, slide terakhir dihapus.
 
 const PAYMENTS = [
     { id: "dana", name: "Dana", img: "https://files.catbox.moe/0j5opw.png", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
+    { id: "gopay", name: "Gopay", img: "https://files.catbox.moe/37vcbe.jpg", type: "ewallet", info: { number: "082116690164", name: "TI** SUT***" } }, // Tambah Gopay
     { id: "qris", name: "QRIS", img: "https://files.catbox.moe/pa0iwo.png", type: "qris", info: { qrisImg: "https://files.catbox.moe/pa0iwo.png" } },
     { id: "krom", name: "Krom Bank", img: "https://files.catbox.moe/mae938.jpg", type: "bank_transfer", info: { number: "770072009565", name: "TI** SUT***" } },
 ];
@@ -242,8 +246,8 @@ function showModal(modalId) {
     const overlay = qs("#modal-overlay");
     const modal = qs(`#${modalId}`);
     if (overlay && modal) {
+        modal.style.display = 'block'; // Changed to block for easier handling
         overlay.classList.add("active");
-        modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
     }
 }
@@ -289,7 +293,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (overlay) {
         overlay.addEventListener("click", (e) => {
             if (e.target.id === "modal-overlay") {
-                const activeModal = qs(".modal-content[style*='display: flex']");
+                const activeModal = qs(".modal-content[style*='display: block']"); // Changed to block
                 if (activeModal) {
                     hideModal(activeModal.id);
                 }
@@ -303,6 +307,7 @@ function initIndexPage() {
     const promoSlider = qs("#promo-slider");
     const sliderDots = qs("#slider-dots");
     let currentSlide = 0;
+    let slideInterval;
 
     function renderGamesGrid() {
         if (!gamesGrid) return;
@@ -329,6 +334,9 @@ function initIndexPage() {
     function initPromoSlider() {
         if (!promoSlider || !sliderDots) return;
 
+        promoSlider.innerHTML = ""; // Clear existing slides
+        sliderDots.innerHTML = ""; // Clear existing dots
+
         PROMOS.forEach((promo, index) => {
             const slide = document.createElement("a");
             slide.className = "slider-item";
@@ -352,7 +360,9 @@ function initIndexPage() {
         function updateSlider() {
             promoSlider.style.transform = `translateX(${-currentSlide * 100}%)`;
             dots.forEach(dot => dot.classList.remove('active'));
-            dots[currentSlide].classList.add('active');
+            if (dots[currentSlide]) {
+                dots[currentSlide].classList.add('active');
+            }
         }
 
         function nextSlide() {
@@ -363,10 +373,14 @@ function initIndexPage() {
         function goToSlide(index) {
             currentSlide = index;
             updateSlider();
+            clearInterval(slideInterval); // Reset interval on manual navigation
+            slideInterval = setInterval(nextSlide, 3000);
         }
 
-        updateSlider();
-        setInterval(nextSlide, 3000);
+        if (slides.length > 0) {
+            updateSlider();
+            slideInterval = setInterval(nextSlide, 3000);
+        }
     }
 
     renderGamesGrid();
@@ -397,10 +411,11 @@ function initGamePage() {
     const paymentGrid = qs("#payment-grid");
     const checkoutBtn = qs("#checkout-btn");
     const summaryBox = qs("#summary-box");
-    const checkoutModalContent = qs("#checkout-modal");
+    const summarySection = qs("#summary-section"); // New element for summary section
     const voucherInput = qs("#voucher-input");
     const voucherBtn = qs("#voucher-btn");
     const voucherStatus = qs("#voucher-status");
+    const voucherListBtn = qs("#voucher-list-btn"); // New button for voucher list
 
     let selectedProduct = null;
     let selectedPayment = null;
@@ -445,7 +460,19 @@ function initGamePage() {
             }
         });
         
+        updateSummaryVisibility();
         updateSummary();
+    }
+
+    // New function for summary visibility
+    function updateSummaryVisibility() {
+        if (selectedProduct && selectedPayment) {
+            summarySection.style.opacity = '1';
+            summarySection.style.pointerEvents = 'auto'; // Enable interactions
+        } else {
+            summarySection.style.opacity = '0';
+            summarySection.style.pointerEvents = 'none'; // Disable interactions
+        }
     }
 
     function renderProducts() {
@@ -513,7 +540,7 @@ function initGamePage() {
     function updateSummary() {
         if (!summaryBox) return;
 
-        if (!selectedProduct) {
+        if (!selectedProduct || !selectedPayment) {
             summaryBox.innerHTML = `<p class="summary-placeholder">Pilih nominal & pembayaran untuk melihat ringkasan.</p>`;
             return;
         }
@@ -523,17 +550,15 @@ function initGamePage() {
         let discountAmount = originalPrice - finalPriceAfterVoucher;
 
         const voucherInfo = appliedVoucher ? `
-            <p>Diskon Voucher: <span><b>-${fmtIDR(discountAmount)}</b></span></p>
+            <p>Diskon Voucher (${appliedVoucher.percent}%): <span><b>-${fmtIDR(discountAmount)}</b></span></p>
         ` : '';
-        const paymentInfo = selectedPayment ? `
-            <p>Metode Pembayaran: <span><b>${selectedPayment.name}</b></span></p>
-        ` : '';
-
+        
         summaryBox.innerHTML = `
             <p>Produk: <span><b>${selectedProduct.label}</b></span></p>
             <p>Harga: <span><b>${fmtIDR(originalPrice)}</b></span></p>
             ${voucherInfo}
             <hr style="border-top: 1px dashed var(--border-secondary); margin: 15px 0;">
+            <p>Metode Pembayaran: <span><b>${selectedPayment.name}</b></span></p>
             <p>Total: <span><b>${fmtIDR(finalPriceAfterVoucher)}</b></span></p>
         `;
     }
@@ -554,6 +579,46 @@ function initGamePage() {
         updateUI();
     });
 
+    voucherListBtn.addEventListener("click", () => {
+        const modalContent = qs("#voucher-list-modal");
+        modalContent.innerHTML = `
+            <div class="modal-header">
+                <h4 class="modal-title">Daftar Kode Voucher</h4>
+                <button class="modal-close-btn" data-modal-id="voucher-list-modal">&times;</button>
+            </div>
+            <div class="modal-body voucher-list-modal-body">
+                <ul>
+                    ${VOUCHERS.map(v => `
+                        <li>
+                            <div>
+                                <div class="voucher-code">${v.code}</div>
+                                <div class="voucher-desc">${v.description}</div>
+                            </div>
+                            <button class="btn-apply-voucher" data-voucher-code="${v.code}">Gunakan</button>
+                        </li>
+                    `).join('')}
+                </ul>
+            </div>
+        `;
+
+        qsa('.btn-apply-voucher', modalContent).forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const code = e.target.dataset.voucherCode;
+                voucherInput.value = code;
+                hideModal('voucher-list-modal');
+                voucherBtn.click(); // Simulate click on apply button
+            });
+        });
+
+        const closeBtn = qs('.modal-close-btn', modalContent);
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                hideModal('voucher-list-modal');
+            });
+        }
+        showModal('voucher-list-modal');
+    });
+
     checkoutBtn.addEventListener("click", () => {
         const userId = userIdInput.value.trim();
         const serverId = gameData.hasServerId ? serverIdInput.value.trim() : null;
@@ -572,13 +637,11 @@ function initGamePage() {
 
         if (!selectedProduct) {
             alert("Pilih nominal top-up.");
-            productGrid.scrollIntoView({ behavior: 'smooth' });
             return;
         }
 
         if (!selectedPayment) {
             alert("Pilih metode pembayaran.");
-            paymentGrid.scrollIntoView({ behavior: 'smooth' });
             return;
         }
 
@@ -600,10 +663,11 @@ function initGamePage() {
             `*Total Pembayaran:* ${encodedData.totalPrice}\n\n` +
             `Mohon dibantu prosesnya. Terima kasih.`;
 
-        checkoutModalContent.innerHTML = `
+        const checkoutModalEl = qs("#checkout-modal");
+        checkoutModalEl.innerHTML = `
             <div class="modal-header">
                 <h4 class="modal-title">Konfirmasi Pembelian</h4>
-                <button class="modal-close-btn">&times;</button>
+                <button class="modal-close-btn" data-modal-id="checkout-modal">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="summary-details">
@@ -641,14 +705,14 @@ function initGamePage() {
             </div>
         `;
         
-        const copyButton = qs('#copy-account-btn', checkoutModalContent);
+        const copyButton = qs('#copy-account-btn', checkoutModalEl);
         if (copyButton) {
             copyButton.addEventListener('click', () => {
                 copyToClipboard(selectedPayment.info.number, copyButton);
             });
         }
         
-        const closeBtn = qs('.modal-close-btn', checkoutModalContent);
+        const closeBtn = qs('.modal-close-btn', checkoutModalEl);
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
                 hideModal('checkout-modal');
@@ -659,5 +723,5 @@ function initGamePage() {
 
     renderProducts();
     renderPayments();
-    updateUI();
+    updateUI(); // Initial UI update to hide summary
 }
