@@ -361,10 +361,8 @@ function initGamePage() {
     const paymentGrid = qs("#payment-grid");
     const checkoutBtn = qs("#checkout-btn");
     const summaryBox = qs("#summary-box");
-    const checkoutModal = qs("#checkout-modal");
     const checkoutSummary = qs("#checkout-summary");
     const qrisFullscreenImg = qs("#qris-fullscreen-img");
-    const qrisModal = qs("#qris-fullscreen-modal");
     
     // Elemen voucher
     const voucherInput = qs("#voucher-input");
@@ -383,6 +381,10 @@ function initGamePage() {
     let selectedProduct = null;
     let selectedPayment = null;
     let appliedVoucher = null;
+    
+    // Panggil fungsi render untuk memuat produk dan pembayaran saat halaman dimuat
+    renderProducts();
+    renderPayments();
 
     function calculateFinalPrice() {
         let finalPrice = selectedProduct ? selectedProduct.price : 0;
@@ -533,23 +535,27 @@ function initGamePage() {
         const serverId = gameData.server ? serverIdInput.value.trim() : null;
 
         if (!userId) {
+            alert('Mohon masukkan User ID terlebih dahulu.');
             userIdInput.focus();
             userIdInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
 
         if (gameData.server && !serverId) {
+            alert('Mohon masukkan Server ID terlebih dahulu.');
             serverIdInput.focus();
             serverIdInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
 
         if (!selectedProduct) {
+            alert('Mohon pilih nominal top up.');
             productGrid.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
 
         if (!selectedPayment) {
+            alert('Mohon pilih metode pembayaran.');
             paymentGrid.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
