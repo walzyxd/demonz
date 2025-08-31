@@ -1,15 +1,16 @@
-/* ================== General Styles ================== */
+/* ================== General Styles (Dark Mode) ================== */
 :root {
-    --bg-color: #f0f2f5;
-    --card-bg: #ffffff;
-    --section-bg: #e9ecef;
-    --text-color: #333333;
-    --text-color-light: #6c757d;
-    --primary-color: #007bff;
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --section-bg: #2b2b2b;
+    --text-color: #ffffff;
+    --text-color-light: #b0b0b0;
+    --primary-color: #0096c7; /* Biru Neon */
     --secondary-color: #6c757d;
-    --border-color: #dee2e6;
-    --green-accent: #28a745;
-    --red-accent: #dc3545;
+    --border-color: #444444;
+    --green-accent: #2ecc71;
+    --red-accent: #e74c3c;
+    --shadow-color: rgba(0, 0, 0, 0.4);
 }
 
 body {
@@ -59,11 +60,11 @@ a:hover {
     cursor: pointer;
     text-align: center;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px var(--shadow-color);
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #0077a3;
     transform: translateY(-2px);
 }
 
@@ -71,8 +72,9 @@ a:hover {
     background-color: var(--card-bg);
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 15px var(--shadow-color);
     margin-bottom: 20px;
+    border: 1px solid var(--border-color);
 }
 
 .form-group {
@@ -89,24 +91,24 @@ label {
 input[type="text"] {
     width: calc(100% - 20px);
     padding: 10px;
-    background-color: #fff;
+    background-color: var(--section-bg);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     color: var(--text-color);
     font-size: 1rem;
+    transition: border-color 0.2s ease;
 }
 
 input[type="text"]:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
 
 /* ================== Navbar ================== */
 .navbar {
     background-color: var(--card-bg);
     padding: 15px 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 10px var(--shadow-color);
     position: sticky;
     top: 0;
     z-index: 500;
@@ -144,7 +146,8 @@ input[type="text"]:focus {
     height: 200px;
     margin-bottom: 20px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px var(--shadow-color);
+    border-radius: 12px;
 }
 
 .hero-slider-wrapper {
@@ -211,14 +214,15 @@ input[type="text"]:focus {
     background-color: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
     cursor: pointer;
     border: 1px solid var(--border-color);
 }
 
 .game-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 20px var(--shadow-color);
+    background-color: #252525;
 }
 
 .game-thumbnail {
@@ -272,6 +276,23 @@ input[type="text"]:focus {
     padding-top: 20px;
 }
 
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    background: none;
+    border: none;
+    color: var(--text-color-light);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.btn-back:hover {
+    color: var(--primary-color);
+}
+
 .game-header {
     text-align: center;
 }
@@ -282,7 +303,7 @@ input[type="text"]:focus {
     object-fit: cover;
     border-radius: 12px;
     margin-bottom: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px var(--shadow-color);
 }
 
 .game-title {
@@ -332,13 +353,13 @@ input[type="text"]:focus {
 
 .product-card:hover, .payment-card:hover {
     border-color: var(--primary-color);
-    background-color: #e2e6ea;
+    background-color: #383838;
 }
 
 .product-card.active, .payment-card.active {
     border-color: var(--primary-color);
-    background-color: #cfe2ff;
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+    background-color: #2a3e5c;
+    box-shadow: 0 0 10px rgba(0, 150, 199, 0.5);
 }
 
 .product-label {
@@ -357,6 +378,7 @@ input[type="text"]:focus {
     height: 30px;
     object-fit: contain;
     margin-bottom: 5px;
+    filter: brightness(0.9) contrast(1.2);
 }
 
 .payment-name {
@@ -404,6 +426,7 @@ input[type="text"]:focus {
 
 .voucher-group input {
     flex-grow: 1;
+    background-color: var(--card-bg);
 }
 
 .voucher-group button {
@@ -413,6 +436,10 @@ input[type="text"]:focus {
     border-radius: 8px;
     padding: 10px 15px;
     cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.voucher-group button:hover {
+    background-color: #5a6268;
 }
 
 .voucher-status {
@@ -438,6 +465,11 @@ input[type="text"]:focus {
 #summary-box p {
     margin: 5px 0;
     font-size: 0.9rem;
+    color: var(--text-color-light);
+}
+
+#summary-box p strong, #summary-box p b {
+    color: var(--text-color);
 }
 
 #checkout-btn {
@@ -451,7 +483,7 @@ input[type="text"]:focus {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -469,7 +501,7 @@ input[type="text"]:focus {
 .modal-content {
     background: var(--card-bg);
     border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
     width: 90%;
     max-width: 450px;
     max-height: 90vh;
@@ -479,6 +511,7 @@ input[type="text"]:focus {
     flex-direction: column;
     padding: 20px;
     animation: fadeIn 0.3s ease-out;
+    border: 1px solid var(--border-color);
 }
 
 @keyframes fadeIn {
@@ -565,7 +598,7 @@ input[type="text"]:focus {
     height: auto;
     border-radius: 8px;
     margin-bottom: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 .ewallet-info-container {
@@ -606,7 +639,7 @@ input[type="text"]:focus {
 }
 
 .btn-copy:hover {
-    background-color: #0056b3;
+    background-color: #0077a3;
     transform: translateY(-2px);
 }
 
