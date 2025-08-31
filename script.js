@@ -241,19 +241,30 @@ function showModal(modalId) {
     const modal = qs(`#${modalId}`);
     if (overlay && modal) {
         qsa(".modal-content").forEach(el => el.style.display = 'none');
-        modal.style.display = 'block';
+        modal.style.display = 'flex'; // Menggunakan flex untuk layout
         overlay.classList.add("active");
-        document.body.style.overflow = 'hidden'; // Mencegah scroll di belakang modal
+        document.body.style.overflow = 'hidden';
     }
 }
 
-function hideModal() {
-    const overlay = qs("#modal-overlay");
-    if (overlay) {
-        overlay.classList.remove("active");
-        document.body.style.overflow = ''; // Mengembalikan scroll
+function hideModal(modalId) {
+    if (modalId) {
+        const modal = qs(`#${modalId}`);
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    }
+    // Jika tidak ada modal yang aktif lagi, sembunyikan overlay dan kembalikan scroll
+    const activeModals = qsa(".modal-content[style*='display: flex']").length;
+    if (activeModals === 0) {
+        const overlay = qs("#modal-overlay");
+        if (overlay) {
+            overlay.classList.remove("active");
+            document.body.style.overflow = '';
+        }
     }
 }
+
 
 function copyToClipboard(text, buttonElement) {
     navigator.clipboard.writeText(text).then(() => {
@@ -282,14 +293,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     qsa(".modal-close-btn").forEach(btn => {
-        btn.addEventListener("click", hideModal);
+        btn.addEventListener("click", () => {
+            const modalId = btn.closest('.modal-content').id;
+            hideModal(modalId);
+        });
     });
 
     const overlay = qs("#modal-overlay");
     if (overlay) {
         overlay.addEventListener("click", (e) => {
             if (e.target.id === "modal-overlay") {
-                hideModal();
+                const activeModals = qsa(".modal-content[style*='display: flex']");
+                activeModals.forEach(modal => hideModal(modal.id));
             }
         });
     }
@@ -360,7 +375,7 @@ function initGamePage() {
     const paymentGrid = qs("#payment-grid");
     const checkoutBtn = qs("#checkout-btn");
     const summaryBox = qs("#summary-box");
-    const checkoutSummary = qs("#checkout-summary");
+    const checkoutModalContent = qs("#checkout-modal");
     const qrisFullscreenImg = qs("#qris-fullscreen-img");
     
     // Elemen voucher
@@ -480,19 +495,16 @@ function initGamePage() {
     
     // Fungsi untuk memperbarui UI
     function updateUI() {
-        // Reset state produk
         qsa('.product-card').forEach(c => c.classList.remove('active'));
         if (selectedProduct) {
             qs(`.product-card[data-id="${selectedProduct.id}"]`).classList.add('active');
         }
     
-        // Reset state pembayaran
         qsa('.payment-card').forEach(c => c.classList.remove('active'));
         if (selectedPayment) {
             qs(`.payment-card[data-id="${selectedPayment.id}"]`).classList.add('active');
         }
     
-        // Perbarui harga di kartu pembayaran
         const finalPrice = calculateFinalPrice();
         qsa('.payment-card').forEach(card => {
             const priceEl = qs('.payment-price', card);
@@ -556,39 +568,35 @@ function initGamePage() {
         }
 
         const finalPrice = calculateFinalPrice();
-        checkoutSummary.innerHTML = '';
-    
+        checkoutModalContent.innerHTML = '';
+
         const orderSummary = document.createElement('div');
         orderSummary.classList.add('summary-item');
         orderSummary.innerHTML = `
             <div class="modal-header">
-                <h4 class="modal-title">Detail Pesanan</h4>
-                <button class="modal-close-btn" id="close-checkout-modal">&times;</button>
+                <h4 class="modal-title">Konfirmasi Pembelian</h4>
+                <button class="modal-close-btn">&times;</button>
             </div>
             <div class="modal-body">
-                <p><strong>Game:</strong> <span id="summary-game">${gameData.name}</span></p>
-                <p><strong>User ID:</strong> <span id="summary-id">${userId}</span></p>
-                ${gameData.server ? `<p><strong>Server ID:</strong> <span id="summary-server">${serverId}</span></p>` : ''}
-                <p><strong>Produk:</strong> <span id="summary-product">${selectedProduct.label}</span></p>
-                <p><strong>Metode Pembayaran:</strong> <span id="summary-payment">${selectedPayment.name}</span></p>
+                <div class="summary-details">
+                    <p><strong>Detail Pesanan</strong></p>
+                    <p>Game: <span>${gameData.name}</span></p>
+                    <p>User ID: <span>${userId}</span></p>
+                    ${gameData.server ? `<p>Server ID: <span>${serverId}</span></p>` : ''}
+                    <p>Produk: <span>${selectedProduct.label}</span></p>
+                    <p>Metode Pembayaran: <span>${selectedPayment.name}</span></p>
+                </div>
                 <hr>
                 <div class="checkout-total">Total Bayar: <span class="total-price-text">${fmtIDR(finalPrice)}</span></div>
             </div>
         `;
-        checkoutSummary.appendChild(orderSummary);
+        checkoutModalContent.appendChild(orderSummary);
 
         const paymentSection = document.createElement('div');
         paymentSection.classList.add('payment-section');
         
-        const existingQrisSection = qs('.qris-image-container', checkoutSummary);
-        if (existingQrisSection) existingQrisSection.remove();
-
-        const existingEwalletSection = qs('.ewallet-info-container', checkoutSummary);
-        if (existingEwalletSection) existingEwalletSection.remove();
-
         if (selectedPayment.type === 'qris') {
             paymentSection.innerHTML = `
-                <h4>QRIS Payment</h4>
                 <div class="qris-image-container">
                     <img src="${selectedPayment.info.qrisImg}" alt="QRIS" class="qris-image">
                     <button id="expand-qris-btn" class="btn-expand-qris">Perbesar QRIS</button>
@@ -596,7 +604,6 @@ function initGamePage() {
             `;
         } else if (selectedPayment.type === 'ewallet') {
             paymentSection.innerHTML = `
-                <h4>DANA</h4>
                 <div class="ewallet-info-container">
                     <img src="${selectedPayment.img}" alt="${selectedPayment.name} Logo">
                     <span id="account-number" class="ewallet-number">${selectedPayment.info.number}</span>
@@ -605,10 +612,10 @@ function initGamePage() {
                 </div>
             `;
         }
-        checkoutSummary.appendChild(paymentSection);
+        checkoutModalContent.appendChild(paymentSection);
         
         if (selectedPayment.type === 'ewallet') {
-            const copyButton = qs('#copy-account-btn', checkoutSummary);
+            const copyButton = qs('#copy-account-btn', checkoutModalContent);
             if (copyButton) {
                 copyButton.addEventListener('click', () => {
                     copyToClipboard(selectedPayment.info.number, copyButton);
@@ -617,7 +624,7 @@ function initGamePage() {
         }
         
         if (selectedPayment.type === 'qris') {
-            const expandButton = qs('#expand-qris-btn', checkoutSummary);
+            const expandButton = qs('#expand-qris-btn', checkoutModalContent);
             if(expandButton){
                 expandButton.addEventListener('click', () => {
                     qrisFullscreenImg.src = selectedPayment.info.qrisImg;
@@ -634,17 +641,25 @@ function initGamePage() {
                 <i class="fab fa-whatsapp"></i> Kirim Bukti Transfer
             </a>
         `;
-        checkoutSummary.appendChild(whatsappSection);
-
-        // Tambahkan tombol kembali
-        const backButton = document.createElement('button');
-        backButton.id = 'back-to-form-btn';
-        backButton.className = 'btn-back-to-form';
-        backButton.textContent = 'Kembali';
-        backButton.addEventListener('click', hideModal); // Cukup sembunyikan modal untuk kembali
-
-        checkoutSummary.appendChild(backButton);
+        checkoutModalContent.appendChild(whatsappSection);
 
         showModal('checkout-modal');
     });
+
+    // Event listener untuk tombol close (ikon X) di dalam modal detail pesanan
+    const closeBtn = qs('.modal-header .modal-close-btn', checkoutModalContent);
+    if(closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            hideModal('checkout-modal');
+        });
+    }
+
+    // Event listener untuk tombol close (ikon X) di dalam modal QRIS fullscreen
+    const qrisFullscreenModal = qs('#qris-fullscreen-modal');
+    const qrisCloseBtn = qs('.modal-header .modal-close-btn', qrisFullscreenModal);
+    if(qrisCloseBtn){
+        qrisCloseBtn.addEventListener('click', () => {
+            hideModal('qris-fullscreen-modal');
+        });
+    }
 }
