@@ -24,6 +24,13 @@ const GAMES = [
     { key: "garena undawn", name: "Garena Undawn", img: "https://files.catbox.moe/o5bto9.webp", server: false, guide: "Buka menu profil dan User ID Anda akan terlihat." },
 ];
 
+const PROMOS = [
+    { title: "Top Up Diamond FF Termurah", img: "https://files.catbox.moe/2s959m.png", gameKey: "free fire" },
+    { title: "Top Up Starlight MLBB Harga Cuan", img: "https://files.catbox.moe/0b36e9.jpeg", gameKey: "mobile legends" },
+    { title: "Promo UC PUBG Mobile Khusus Member", img: "https://files.catbox.moe/p9r1m0.webp", gameKey: "pubg mobile" },
+    { title: "Blessing of the Welkin Moon Genshin", img: "https://files.catbox.moe/oih28d.jpeg", gameKey: "genshin impact" },
+];
+
 const PAYMENTS = [
     { id: "dana", name: "Dana", img: "https://files.catbox.moe/0j5opw.png", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
     { id: "qris", name: "QRIS", img: "https://files.catbox.moe/pa0iwo.png", type: "qris", info: { qrisImg: "https://files.catbox.moe/pa0iwo.png" } },
@@ -293,24 +300,73 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ================== INDEX PAGE LOGIC ================== */
 function initIndexPage() {
     const gamesGrid = qs("#games-grid");
-    if (!gamesGrid) return;
-    gamesGrid.innerHTML = "";
+    const promoSlider = qs("#promo-slider");
+    const sliderDots = qs("#slider-dots");
+    let currentSlide = 0;
 
-    GAMES.forEach(game => {
-        const card = document.createElement("a");
-        card.className = "game-card";
-        card.href = "#";
-        card.addEventListener("click", (e) => {
-            e.preventDefault();
-            selectGame(game);
+    if (gamesGrid) {
+        gamesGrid.innerHTML = "";
+        GAMES.forEach(game => {
+            const card = document.createElement("a");
+            card.className = "game-card";
+            card.href = "#";
+            card.addEventListener("click", (e) => {
+                e.preventDefault();
+                selectGame(game);
+            });
+
+            card.innerHTML = `
+                <img src="${game.img}" alt="${game.name}" class="game-thumbnail">
+                <h3 class="game-name">${game.name}</h3>
+            `;
+            gamesGrid.appendChild(card);
+        });
+    }
+
+    if (promoSlider && sliderDots) {
+        PROMOS.forEach((promo, index) => {
+            const slide = document.createElement("a");
+            slide.className = "slider-item";
+            slide.href = "#";
+            slide.style.backgroundImage = `url(${promo.img})`;
+            slide.addEventListener("click", (e) => {
+                e.preventDefault();
+                const game = GAMES.find(g => g.key === promo.gameKey);
+                if (game) {
+                    selectGame(game);
+                }
+            });
+            slide.innerHTML = `<span class="slider-caption">${promo.title}</span>`;
+            promoSlider.appendChild(slide);
+
+            const dot = document.createElement("span");
+            dot.className = "slider-dot";
+            dot.addEventListener("click", () => goToSlide(index));
+            sliderDots.appendChild(dot);
         });
 
-        card.innerHTML = `
-            <img src="${game.img}" alt="${game.name}" class="game-thumbnail">
-            <h3 class="game-name">${game.name}</h3>
-        `;
-        gamesGrid.appendChild(card);
-    });
+        const slides = qsa('.slider-item');
+        const dots = qsa('.slider-dot');
+
+        function updateSlider() {
+            promoSlider.style.transform = `translateX(${-currentSlide * 100}%)`;
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlider();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+        }
+
+        updateSlider();
+        setInterval(nextSlide, 3000);
+    }
 }
 
 function selectGame(game) {
