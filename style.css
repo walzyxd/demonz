@@ -244,12 +244,13 @@ body {
 
 /* Perbaikan Ukuran Banner Game */
 .game-banner {
-    width: 100px; /* Ukuran tetap */
-    height: 100px; /* Ukuran tetap */
-    object-fit: cover; /* Pastikan gambar mengisi area tanpa distorsi */
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
     border-radius: 15px;
     margin-right: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    aspect-ratio: 1 / 1; /* Membuat rasio 1:1 */
 }
 
 .game-info {
@@ -508,6 +509,17 @@ body {
 .btn-sm {
     padding: 10px 18px;
     font-size: 0.85rem;
+}
+
+#voucher-status {
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-align: center;
+    color: #e53e3e; /* default error color */
+}
+
+#voucher-status.success {
+    color: #38a169; /* green for success */
 }
 
 .mt-3 {
