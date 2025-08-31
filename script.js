@@ -572,6 +572,16 @@ function initGamePage() {
             }
         }
 
+        const whatsappSection = document.createElement('div');
+        whatsappSection.classList.add('whatsapp-button-container');
+        whatsappSection.innerHTML = `
+            <p class="whatsapp-guide">Silahkan transfer sesuai nominal di atas, setelah itu kirim bukti transfernya di tombol WhatsApp di bawah ini.</p>
+            <a href="https://wa.me/${ADMIN_WA}?text=Halo%20Admin,%20saya%20sudah%20melakukan%20pembayaran%20untuk%20pesanan%20saya.%0A%0AGame:%20${encodeURIComponent(gameData.name)}%0AUser%20ID:%20${encodeURIComponent(userId)}%0AProduk:%20${encodeURIComponent(selectedProduct.label)}%0ATotal%20Bayar:%20${encodeURIComponent(fmtIDR(finalPrice))}" target="_blank" class="whatsapp-button">
+                Kirim Bukti Transfer
+            </a>
+        `;
+        checkoutSummary.appendChild(whatsappSection);
+
         showModal('checkout-modal');
     });
 }
