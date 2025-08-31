@@ -1,13 +1,13 @@
 /* ==================== GLOBAL STYLES ==================== */
 :root {
-    --primary-color: #e53e3e;
-    --secondary-color: #3b82f6;
-    --background-color: #ffffff;
-    --card-bg-color: #ffffff;
-    --text-color-primary: #1a202c;
-    --text-color-secondary: #4a5568;
-    --border-color: #e2e8f0;
-    --shadow-color: rgba(26, 32, 44, 0.1);
+    --primary-color: #e53e3e; /* Merah */
+    --secondary-color: #3b82f6; /* Biru */
+    --background-color: #f7fafc; /* Latar belakang abu-abu terang */
+    --card-bg-color: #ffffff; /* Latar belakang kartu putih */
+    --text-color-primary: #1a202c; /* Teks gelap utama */
+    --text-color-secondary: #4a5568; /* Teks abu-abu sekunder */
+    --border-color: #e2e8f0; /* Warna border */
+    --shadow-color: rgba(26, 32, 44, 0.08); /* Warna shadow */
 }
 
 body {
@@ -40,45 +40,39 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 70px;
+    height: 60px; /* Tinggi navbar sedikit dikurangi */
 }
 
+/* Revisi Brand Logo */
 .brand-logo {
-    font-family: 'Inter', sans-serif;
-    font-weight: 900;
-    font-size: 2.2rem;
+    font-family: 'Inter', sans-serif; /* Menggunakan Inter */
+    font-weight: 800; /* Lebih tebal */
+    font-size: 1.6rem; /* Ukuran lebih kecil */
     text-decoration: none;
-    letter-spacing: -1px;
+    letter-spacing: -0.5px;
     transition: transform 0.2s ease;
 }
 
 .brand-logo:hover {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 }
 
 .logo-text { color: var(--text-color-primary); }
-.logo-accent { color: var(--primary-color); }
+.logo-accent { color: var(--primary-color); } /* Tetap merah untuk .shop atau .pro */
 
-.brand-tagline {
-    font-size: 0.8rem;
-    color: var(--primary-color);
-    background-color: #fed7d7;
-    border-radius: 999px;
-    padding: 4px 16px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
+/* Revisi Tombol Kembali */
 .btn-back {
-    font-size: 1.2rem;
+    font-size: 0.9rem; /* Ukuran font lebih kecil */
     background-color: var(--border-color);
     color: var(--text-color-secondary);
-    border-radius: 8px;
-    padding: 8px 18px;
+    border-radius: 6px; /* Radius lebih kecil */
+    padding: 6px 14px; /* Padding lebih kecil */
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 600;
     transition: background-color 0.2s, color 0.2s;
+    display: flex; /* Untuk ikon dan teks */
+    align-items: center;
+    gap: 5px; /* Jarak antara ikon dan teks */
 }
 
 .btn-back:hover {
@@ -248,10 +242,11 @@ body {
     margin-bottom: 25px;
 }
 
+/* Perbaikan Ukuran Banner Game */
 .game-banner {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
+    width: 100px; /* Ukuran tetap */
+    height: 100px; /* Ukuran tetap */
+    object-fit: cover; /* Pastikan gambar mengisi area tanpa distorsi */
     border-radius: 15px;
     margin-right: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
