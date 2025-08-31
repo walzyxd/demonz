@@ -243,6 +243,7 @@ function showModal(modalId) {
         qsa(".modal-content").forEach(el => el.style.display = 'none');
         modal.style.display = 'block';
         overlay.classList.add("active");
+        document.body.style.overflow = 'hidden'; // Mencegah scroll di belakang modal
     }
 }
 
@@ -250,18 +251,21 @@ function hideModal() {
     const overlay = qs("#modal-overlay");
     if (overlay) {
         overlay.classList.remove("active");
+        document.body.style.overflow = ''; // Mengembalikan scroll
     }
 }
 
 function copyToClipboard(text, buttonElement) {
     navigator.clipboard.writeText(text).then(() => {
         const originalText = buttonElement.textContent;
+        const originalBg = buttonElement.style.backgroundColor;
+        
         buttonElement.textContent = "Nomor Tersalin!";
         buttonElement.style.backgroundColor = "#25D366"; // Green
         
         setTimeout(() => {
             buttonElement.textContent = originalText;
-            buttonElement.style.backgroundColor = ""; // Revert to original color
+            buttonElement.style.backgroundColor = originalBg; // Revert to original color
         }, 2000);
     }).catch(err => {
         console.error('Failed to copy: ', err);
@@ -524,11 +528,6 @@ function initGamePage() {
         updateUI();
     });
 
-    // Initial renders
-    renderProducts();
-    renderPayments();
-    updateUI();
-
     checkoutBtn.addEventListener("click", () => {
         const userId = userIdInput.value.trim();
         const serverId = gameData.server ? serverIdInput.value.trim() : null;
@@ -536,26 +535,22 @@ function initGamePage() {
         if (!userId) {
             userIdInput.focus();
             userIdInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            alert("Harap masukkan User ID Anda.");
             return;
         }
 
         if (gameData.server && !serverId) {
             serverIdInput.focus();
             serverIdInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            alert("Harap masukkan Server ID Anda.");
             return;
         }
 
         if (!selectedProduct) {
             productGrid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            alert("Harap pilih nominal terlebih dahulu.");
             return;
         }
 
         if (!selectedPayment) {
             paymentGrid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            alert("Harap pilih metode pembayaran.");
             return;
         }
 
@@ -578,6 +573,13 @@ function initGamePage() {
 
         const paymentSection = document.createElement('div');
         paymentSection.classList.add('payment-section');
+        
+        // Hapus elemen QRIS dan e-wallet yang sudah ada
+        const existingQrisSection = qs('.qris-image-container', checkoutSummary);
+        if (existingQrisSection) existingQrisSection.remove();
+
+        const existingEwalletSection = qs('.ewallet-info-container', checkoutSummary);
+        if (existingEwalletSection) existingEwalletSection.remove();
 
         if (selectedPayment.type === 'qris') {
             paymentSection.innerHTML = `
@@ -587,12 +589,6 @@ function initGamePage() {
                     <button id="expand-qris-btn" class="btn-expand-qris">Perbesar QRIS</button>
                 </div>
             `;
-            checkoutSummary.appendChild(paymentSection);
-        
-            qs('#expand-qris-btn', checkoutSummary).addEventListener('click', () => {
-                qrisFullscreenImg.src = selectedPayment.info.qrisImg;
-                showModal('qris-fullscreen-modal');
-            });
         } else if (selectedPayment.type === 'ewallet') {
             paymentSection.innerHTML = `
                 <h4>DANA</h4>
@@ -603,8 +599,11 @@ function initGamePage() {
                     <button id="copy-account-btn" class="btn-copy">Salin Nomor DANA</button>
                 </div>
             `;
-            checkoutSummary.appendChild(paymentSection);
-            
+        }
+        checkoutSummary.appendChild(paymentSection);
+
+        // Tambahkan kembali event listener setelah elemen ditambahkan
+        if (selectedPayment.type === 'ewallet') {
             const copyButton = qs('#copy-account-btn', checkoutSummary);
             if (copyButton) {
                 copyButton.addEventListener('click', () => {
@@ -612,7 +611,19 @@ function initGamePage() {
                 });
             }
         }
-
+        
+        // Perbaikan untuk tombol perbesar QRIS
+        if (selectedPayment.type === 'qris') {
+            const expandButton = qs('#expand-qris-btn', checkoutSummary);
+            if(expandButton){
+                expandButton.addEventListener('click', () => {
+                    qrisFullscreenImg.src = selectedPayment.info.qrisImg;
+                    showModal('qris-fullscreen-modal');
+                });
+            }
+        }
+        
+        // Tambahkan tombol WhatsApp untuk semua jenis pembayaran
         const whatsappSection = document.createElement('div');
         whatsappSection.classList.add('whatsapp-button-container');
         whatsappSection.innerHTML = `
