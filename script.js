@@ -220,13 +220,6 @@ const PRODUCTS = {
     ]
 };
 
-const SLIDER_IMAGES = [
-    "https://files.catbox.moe/4lkz5o.jpg",
-    "https://files.catbox.moe/sj388o.jpg",
-    "https://files.catbox.moe/uzhwri.jpg",
-    "https://files.catbox.moe/9y4pf9.jpeg"
-];
-
 /* ================== UTILITY FUNCTIONS ================== */
 const qs = (selector, parent = document) => parent.querySelector(selector);
 const qsa = (selector, parent = document) => Array.from(parent.querySelectorAll(selector));
@@ -318,8 +311,6 @@ function initIndexPage() {
         `;
         gamesGrid.appendChild(card);
     });
-
-    initHeroSlider();
 }
 
 function selectGame(game) {
@@ -329,25 +320,6 @@ function selectGame(game) {
     localStorage.setItem("walz_game_server", game.server ? "1" : "0");
     localStorage.setItem("walz_game_guide", game.guide);
     window.location.href = "game.html";
-}
-
-function initHeroSlider() {
-    const slider = qs(".hero-slider-wrapper");
-    if (!slider) return;
-    slider.innerHTML = "";
-    SLIDER_IMAGES.forEach(imgUrl => {
-        const img = document.createElement("img");
-        img.src = imgUrl;
-        img.alt = "Banner hero";
-        slider.appendChild(img);
-    });
-
-    let currentSlide = 0;
-    setInterval(() => {
-        currentSlide = (currentSlide + 1) % SLIDER_IMAGES.length;
-        const offset = -currentSlide * 100;
-        slider.style.transform = `translateX(${offset}%)`;
-    }, 3000);
 }
 
 /* ================== GAME PAGE LOGIC ================== */
@@ -375,7 +347,7 @@ function initGamePage() {
     gameTitle.textContent = gameData.name;
     banner.src = gameData.img;
     banner.alt = gameData.name;
-    guideText.textContent = gameData.guide;
+    guideText.textContent = `(${gameData.guide})`;
     serverGroup.style.display = gameData.server ? "block" : "none";
 
     let selectedProduct = null;
@@ -468,7 +440,7 @@ function initGamePage() {
             card.innerHTML = `
                 <img src="${payment.img}" alt="${payment.name}" class="payment-logo">
                 <p class="payment-name">${payment.name}</p>
-                <p class="payment-price" style="visibility: hidden; opacity: 0;"></p>
+                <p class="payment-price"></p>
             `;
             card.addEventListener("click", () => {
                 selectedPayment = payment;
@@ -494,12 +466,11 @@ function initGamePage() {
             const priceEl = qs('.payment-price', card);
             if (selectedProduct) {
                 priceEl.textContent = fmtIDR(finalPrice);
-                priceEl.style.visibility = 'visible';
                 priceEl.style.opacity = '1';
+                priceEl.style.visibility = 'visible';
             } else {
-                priceEl.textContent = '';
-                priceEl.style.visibility = 'hidden';
                 priceEl.style.opacity = '0';
+                priceEl.style.visibility = 'hidden';
             }
         });
     
@@ -590,7 +561,6 @@ function initGamePage() {
             </div>
         `;
         
-        // Tambahkan event listener untuk tombol salin dan tombol close di dalam modal
         const copyButton = qs('#copy-account-btn', checkoutModalContent);
         if (copyButton) {
             copyButton.addEventListener('click', () => {
