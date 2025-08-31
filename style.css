@@ -96,6 +96,9 @@ a {
     font-size: 0.9rem;
     font-weight: 500;
     transition: all 0.3s ease;
+    display: flex; /* Added for better icon alignment */
+    align-items: center; /* Added for better icon alignment */
+    gap: 0.5rem; /* Added for spacing between icon and text */
 }
 
 .btn-back:hover {
@@ -112,6 +115,8 @@ a {
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    /* Added responsive padding for smaller screens */
+    padding: 1.5rem; 
 }
 
 .section-card {
@@ -119,6 +124,8 @@ a {
     padding: 2rem;
     border-radius: 12px;
     margin-top: 2rem;
+    /* Added responsive padding for smaller screens */
+    padding: 1.5rem;
 }
 
 /* ================== INDEX PAGE STYLES ================== */
@@ -224,6 +231,8 @@ a {
     border-radius: 8px;
     object-fit: cover;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* Added flex-shrink to prevent it from shrinking too much on small screens */
+    flex-shrink: 0;
 }
 
 .game-info {
@@ -280,7 +289,8 @@ a {
 
 .product-grid, .payment-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    /* Adjusted minmax for better responsiveness on smaller screens */
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); 
     gap: 1rem;
 }
 
@@ -297,6 +307,7 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    min-height: 100px; /* Ensured minimum height for consistency */
 }
 
 .product-card:hover, .payment-card:hover {
@@ -378,6 +389,13 @@ a {
     justify-content: space-between;
 }
 
+.summary-box .summary-placeholder {
+    color: var(--text-secondary);
+    font-style: italic;
+    text-align: center;
+}
+
+
 .voucher-group {
     display: flex;
     gap: 0.5rem;
@@ -428,6 +446,7 @@ a {
     font-size: 0.9rem;
     margin-top: -0.5rem;
     margin-bottom: 1rem;
+    text-align: center; /* Centered status text */
 }
 
 .voucher-status.success {
@@ -480,6 +499,8 @@ a {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-secondary); /* Added separator */
+    padding-bottom: 1rem; /* Added padding */
 }
 
 .modal-title {
@@ -496,14 +517,19 @@ a {
     line-height: 1;
 }
 
-.summary-details p {
+.modal-body .summary-details {
+    margin-bottom: 1.5rem;
+}
+
+.modal-body .summary-details p {
     display: flex;
     justify-content: space-between;
     font-size: 1rem;
     color: var(--text-secondary);
+    margin-bottom: 0.5rem;
 }
 
-.summary-details span {
+.modal-body .summary-details span {
     color: var(--text-color);
     font-weight: 500;
 }
@@ -513,12 +539,18 @@ a {
     font-weight: 700;
     color: var(--accent-color);
     text-align: center;
-    margin: 1rem 0;
+    margin: 1rem 0 1.5rem 0; /* Adjusted margin */
 }
 
 .payment-section {
     text-align: center;
     margin-bottom: 1.5rem;
+}
+
+.payment-instruction { /* Added style for payment instructions */
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
 }
 
 .qris-image {
@@ -573,6 +605,7 @@ a {
 
 .whatsapp-button-container {
     text-align: center;
+    margin-top: 2rem; /* Added spacing */
 }
 
 .whatsapp-guide {
@@ -658,11 +691,54 @@ a {
         height: 100px;
     }
 
-    .section-card {
-        padding: 1.5rem;
+    .content-box, .section-card { /* Reduced padding for smaller screens */
+        padding: 1rem;
     }
 
     .product-grid, .payment-grid {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        /* Allow cards to be smaller if needed, but not too small */
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
+    }
+    
+    .product-card, .payment-card {
+        padding: 0.8rem;
+        min-height: 90px;
+    }
+
+    .product-label {
+        font-size: 0.9rem;
+    }
+
+    .product-price {
+        font-size: 1rem;
+    }
+
+    .payment-logo {
+        width: 50px;
+        height: 35px;
+    }
+
+    .payment-name {
+        font-size: 0.8rem;
+    }
+
+    .game-title {
+        font-size: 1.5rem;
+    }
+
+    .modal-content {
+        padding: 1.5rem;
+    }
+
+    .modal-title {
+        font-size: 1.2rem;
+    }
+
+    .checkout-total {
+        font-size: 1.2rem;
+    }
+
+    .ewallet-number {
+        font-size: 1rem;
     }
 }
