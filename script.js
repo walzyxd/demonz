@@ -253,11 +253,18 @@ function hideModal() {
     }
 }
 
-function copyToClipboard(text, message) {
+function copyToClipboard(text, buttonElement) {
     navigator.clipboard.writeText(text).then(() => {
-        alert(message);
+        const originalText = buttonElement.textContent;
+        buttonElement.textContent = "Nomor Tersalin!";
+        buttonElement.style.backgroundColor = "#25D366"; // Green
+        
+        setTimeout(() => {
+            buttonElement.textContent = originalText;
+            buttonElement.style.backgroundColor = ""; // Revert to original color
+        }, 2000);
     }).catch(err => {
-        console.error('Gagal menyalin: ', err);
+        console.error('Failed to copy: ', err);
         alert('Gagal menyalin nomor. Silakan salin secara manual.');
     });
 }
@@ -353,17 +360,12 @@ function initGamePage() {
     const checkoutModal = qs("#checkout-modal");
     const checkoutSummary = qs("#checkout-summary");
     const qrisFullscreenImg = qs("#qris-fullscreen-img");
-    const qrisModal = qs("#qris-fullscreen-modal"); // Perlu elemen ini jika ingin modal QRIS
+    const qrisModal = qs("#qris-fullscreen-modal");
     
-    // Pastikan qrisModal ada
-    if (!qrisModal) {
-        console.error("Elemen #qris-fullscreen-modal tidak ditemukan.");
-        // Anda bisa memilih untuk membuat elemen ini secara dinamis atau menghentikan fungsi
-        // Untuk saat ini, kita akan melanjutkan, tapi pastikan HTML Anda sudah benar
-    }
-
-
-    if (!gameTitle || !banner) return;
+    // Elemen voucher
+    const voucherInput = qs("#voucher-input");
+    const voucherBtn = qs("#voucher-btn");
+    const voucherStatus = qs("#voucher-status");
 
     const gameKey = localStorage.getItem("walz_game_key");
     const gameData = GAMES.find(g => g.key === gameKey) || GAMES[0];
@@ -398,7 +400,7 @@ function initGamePage() {
         let finalPriceAfterVoucher = calculateFinalPrice();
         let discountAmount = originalPrice - finalPriceAfterVoucher;
 
-        const voucherInfo = appliedVoucher ? `<p>Diskon Voucher: <b>-${fmtIDR(discountAmount)}</b></p>` : '';
+        const voucherInfo = appliedVoucher ? `<p>Diskon Voucher (${appliedVoucher.percent}%): <b>-${fmtIDR(discountAmount)}</b></p>` : '';
         const paymentInfo = selectedPayment ? `<p>Metode Pembayaran: <b>${selectedPayment.name}</b></p>` : '<p>Metode Pembayaran: <b>—</b></p>';
 
         summaryBox.innerHTML = `
@@ -470,18 +472,22 @@ function initGamePage() {
             paymentGrid.appendChild(card);
         });
     }
-
+    
+    // Fungsi untuk memperbarui UI
     function updateUI() {
+        // Reset state produk
         qsa('.product-card').forEach(c => c.classList.remove('active'));
         if (selectedProduct) {
             qs(`.product-card[data-id="${selectedProduct.id}"]`).classList.add('active');
         }
-
+    
+        // Reset state pembayaran
         qsa('.payment-card').forEach(c => c.classList.remove('active'));
         if (selectedPayment) {
             qs(`.payment-card[data-id="${selectedPayment.id}"]`).classList.add('active');
         }
-
+    
+        // Perbarui harga di kartu pembayaran
         const finalPrice = calculateFinalPrice();
         qsa('.payment-card').forEach(card => {
             const priceEl = qs('.payment-price', card);
@@ -495,9 +501,28 @@ function initGamePage() {
                 priceEl.style.opacity = '0';
             }
         });
-
+    
         updateSummary();
     }
+    
+    // Logika Voucher
+    voucherBtn.addEventListener("click", () => {
+        const code = voucherInput.value.trim().toUpperCase();
+        const voucher = VOUCHERS.find(v => v.code === code);
+    
+        if (voucher) {
+            appliedVoucher = voucher;
+            voucherStatus.textContent = `Voucher ${voucher.code} berhasil diterapkan! Diskon ${voucher.percent}%`;
+            voucherStatus.classList.remove('error');
+            voucherStatus.classList.add('success');
+        } else {
+            appliedVoucher = null;
+            voucherStatus.textContent = "Kode voucher tidak valid.";
+            voucherStatus.classList.remove('success');
+            voucherStatus.classList.add('error');
+        }
+        updateUI();
+    });
 
     // Initial renders
     renderProducts();
@@ -511,22 +536,26 @@ function initGamePage() {
         if (!userId) {
             userIdInput.focus();
             userIdInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            alert("Harap masukkan User ID Anda.");
             return;
         }
 
         if (gameData.server && !serverId) {
             serverIdInput.focus();
             serverIdInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            alert("Harap masukkan Server ID Anda.");
             return;
         }
 
         if (!selectedProduct) {
             productGrid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            alert("Harap pilih nominal terlebih dahulu.");
             return;
         }
 
         if (!selectedPayment) {
             paymentGrid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            alert("Harap pilih metode pembayaran.");
             return;
         }
 
@@ -559,7 +588,7 @@ function initGamePage() {
                 </div>
             `;
             checkoutSummary.appendChild(paymentSection);
-
+        
             qs('#expand-qris-btn', checkoutSummary).addEventListener('click', () => {
                 qrisFullscreenImg.src = selectedPayment.info.qrisImg;
                 showModal('qris-fullscreen-modal');
@@ -579,7 +608,7 @@ function initGamePage() {
             const copyButton = qs('#copy-account-btn', checkoutSummary);
             if (copyButton) {
                 copyButton.addEventListener('click', () => {
-                    copyToClipboard(selectedPayment.info.number, `Nomor ${selectedPayment.name} berhasil disalin!`);
+                    copyToClipboard(selectedPayment.info.number, copyButton);
                 });
             }
         }
@@ -589,7 +618,7 @@ function initGamePage() {
         whatsappSection.innerHTML = `
             <p class="whatsapp-guide">Silahkan transfer sesuai nominal di atas, setelah itu kirim bukti transfernya di tombol WhatsApp di bawah ini.</p>
             <a href="https://wa.me/${ADMIN_WA}?text=Halo%20Admin,%20saya%20sudah%20melakukan%20pembayaran%20untuk%20pesanan%20saya.%0A%0AGame:%20${encodeURIComponent(gameData.name)}%0AUser%20ID:%20${encodeURIComponent(userId)}%0AProduk:%20${encodeURIComponent(selectedProduct.label)}%0ATotal%20Bayar:%20${encodeURIComponent(fmtIDR(finalPrice))}" target="_blank" class="whatsapp-button">
-                Kirim Bukti Transfer
+                <i class="fab fa-whatsapp"></i> Kirim Bukti Transfer
             </a>
         `;
         checkoutSummary.appendChild(whatsappSection);
