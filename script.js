@@ -238,9 +238,12 @@ const fmtIDR = (n) => new Intl.NumberFormat("id-ID", {
 
 function showModal(modalId) {
     const overlay = qs("#modal-overlay");
-    overlay.classList.add("active");
-    qsa(".modal-content").forEach(el => el.style.display = 'none');
-    qs(`#${modalId}`).style.display = 'block';
+    const modal = qs(`#${modalId}`);
+    if (overlay && modal) {
+        qsa(".modal-content").forEach(el => el.style.display = 'none');
+        modal.style.display = 'block';
+        overlay.classList.add("active");
+    }
 }
 
 function hideModal() {
@@ -350,6 +353,7 @@ function initGamePage() {
     const checkoutModal = qs("#checkout-modal");
     const checkoutSummary = qs("#checkout-summary");
     const qrisFullscreenImg = qs("#qris-fullscreen-img");
+    const qrisModal = qs("#qris-fullscreen-modal");
 
     if (!gameTitle || !banner) return;
 
@@ -548,7 +552,7 @@ function initGamePage() {
             `;
             checkoutSummary.appendChild(paymentSection);
 
-            qs('#expand-qris-btn').addEventListener('click', () => {
+            qs('#expand-qris-btn', checkoutSummary).addEventListener('click', () => {
                 qrisFullscreenImg.src = selectedPayment.info.qrisImg;
                 showModal('qris-fullscreen-modal');
             });
