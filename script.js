@@ -337,7 +337,6 @@ function initIndexPage() {
                     selectGame(game);
                 }
             });
-            slide.innerHTML = `<span class="slider-caption">${promo.title}</span>`;
             promoSlider.appendChild(slide);
 
             const dot = document.createElement("span");
@@ -404,7 +403,7 @@ function initGamePage() {
     gameTitle.textContent = gameData.name;
     banner.src = gameData.img;
     banner.alt = gameData.name;
-    guideText.textContent = `(${gameData.guide})`;
+    guideText.textContent = `${gameData.guide}`;
     serverGroup.style.display = gameData.server ? "block" : "none";
 
     let selectedProduct = null;
@@ -434,16 +433,19 @@ function initGamePage() {
         let finalPriceAfterVoucher = calculateFinalPrice();
         let discountAmount = originalPrice - finalPriceAfterVoucher;
 
-        const voucherInfo = appliedVoucher ? `<p>Diskon Voucher (${appliedVoucher.percent}%): <b>-${fmtIDR(discountAmount)}</b></p>` : '';
-        const paymentInfo = selectedPayment ? `<p>Metode Pembayaran: <b>${selectedPayment.name}</b></p>` : '<p>Metode Pembayaran: <b>—</b></p>';
+        const voucherInfo = appliedVoucher ? `
+            <p>Diskon Voucher: <span><b>-${fmtIDR(discountAmount)}</b></span></p>
+        ` : '';
+        const paymentInfo = selectedPayment ? `
+            <p>Metode Pembayaran: <span><b>${selectedPayment.name}</b></span></p>
+        ` : '';
 
         summaryBox.innerHTML = `
-            <p>Produk: <b>${selectedProduct.label}</b></p>
-            <p>Harga: <b>${fmtIDR(originalPrice)}</b></p>
+            <p>Produk: <span><b>${selectedProduct.label}</b></span></p>
+            <p>Harga: <span><b>${fmtIDR(originalPrice)}</b></span></p>
             ${voucherInfo}
-            ${paymentInfo}
             <hr style="border-top: 1px dashed var(--border-color); margin: 15px 0;">
-            <p>Total yang harus dibayar: <b>${fmtIDR(finalPriceAfterVoucher)}</b></p>
+            <p>Total: <span><b>${fmtIDR(finalPriceAfterVoucher)}</b></span></p>
         `;
     }
 
@@ -459,7 +461,7 @@ function initGamePage() {
             card.dataset.price = product.price;
 
             let labelWithEmoji = product.label;
-            const keywords = ["diamonds", "gems", "uc", "crystals", "tokens", "goldstar", "gold", "points"];
+            const keywords = ["diamonds", "gems", "uc", "crystals", "tokens", "goldstar", "gold", "points", "coins", "cp"];
             const isMatch = keywords.some(keyword => product.label.toLowerCase().includes(keyword));
 
             if (isMatch) {
