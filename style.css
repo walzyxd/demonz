@@ -1,3 +1,536 @@
+/* ==================== GLOBAL STYLES ==================== */
+:root {
+    --primary-color: #e53e3e;
+    --secondary-color: #3b82f6;
+    --background-color: #ffffff;
+    --card-bg-color: #ffffff;
+    --text-color-primary: #1a202c;
+    --text-color-secondary: #4a5568;
+    --border-color: #e2e8f0;
+    --shadow-color: rgba(26, 32, 44, 0.1);
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    width: 95%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* ==================== NAVBAR ==================== */
+.navbar {
+    background-color: var(--card-bg-color);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+.brand-logo {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 2.2rem;
+    text-decoration: none;
+    letter-spacing: -1px;
+    transition: transform 0.2s ease;
+}
+
+.brand-logo:hover {
+    transform: translateY(-2px);
+}
+
+.logo-text { color: var(--text-color-primary); }
+.logo-accent { color: var(--primary-color); }
+
+.brand-tagline {
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    background-color: #fed7d7;
+    border-radius: 999px;
+    padding: 4px 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-back {
+    font-size: 1.2rem;
+    background-color: var(--border-color);
+    color: var(--text-color-secondary);
+    border-radius: 8px;
+    padding: 8px 18px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-back:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* ==================== HERO SECTION ==================== */
+.hero-section {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    box-shadow: 0 5px 20px var(--shadow-color);
+}
+
+.hero-slider-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hero-slider-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.hero-slider-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8));
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+}
+
+.hero-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.8rem;
+    margin: 0 0 8px 0;
+    font-weight: 900;
+    letter-spacing: -1px;
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.hero-subtitle {
+    color: #d2d6dc;
+    font-size: 1rem;
+    margin-bottom: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ==================== MAIN CONTENT ==================== */
+.main-content {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    color: var(--text-color-primary);
+    margin-bottom: 20px;
+    font-weight: 700;
+    border-left: 5px solid var(--primary-color);
+    padding-left: 15px;
+    letter-spacing: 0.5px;
+}
+
+/* ==================== GAMES GRID ==================== */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 20px;
+}
+
+.game-card {
+    background-color: var(--card-bg-color);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 3px solid transparent;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s, border-color 0.3s;
+    position: relative;
+}
+
+.game-card:hover,
+.game-card:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(229, 62, 62, 0.25);
+    transform: translateY(-5px);
+}
+
+.game-thumbnail {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.game-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-color-primary);
+    text-align: center;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* ==================== GAME BADGE ==================== */
+.game-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+/* WARNA BADGE GAME TERBARU */
+.game-badge-new {
+    background-color: var(--primary-color); /* Merah */
+}
+
+/* ==================== GAME PAGE STYLES ==================== */
+.game-main-content {
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.game-header {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-bg-color);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px var(--shadow-color);
+    margin-bottom: 25px;
+}
+
+.game-banner {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-right: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.game-info {
+    flex-grow: 1;
+}
+
+.game-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.game-guide {
+    font-size: 0.9rem;
+    color: var(--text-color-secondary);
+    margin: 8px 0 0;
+}
+
+.card-section {
+    background-color: var(--card-bg-color);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px var(--shadow-color);
+    margin-bottom: 20px;
+}
+
+.step-guide {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-color-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.step-guide .fas, .step-guide .fa-solid {
+    color: var(--primary-color);
+}
+
+.step-description {
+    font-size: 0.85rem;
+    color: var(--text-color-secondary);
+    margin: 0 0 15px 0;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Perbaikan untuk input ID dan Server ID */
+.input-group input[type="text"] {
+    width: 100%;
+    max-width: 300px; /* Lebar maksimum baru, lebih kecil */
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 0.95rem;
+    color: var(--text-color-primary);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none;
+    margin: 0 auto;
+    display: block;
+}
+
+.input-group input[type="text"]:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+}
+
+.payment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+}
+
+.product-card, .payment-card {
+    background-color: var(--card-bg-color);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.product-card:hover, .payment-card:hover {
+    transform: translateY(-3px);
+}
+
+.product-card.active, .payment-card.active {
+    border-color: var(--secondary-color);
+    background-color: rgba(59, 130, 246, 0.1);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+}
+
+.product-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin: 0 0 5px;
+}
+
+.product-price {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-color-secondary);
+    margin-top: 5px;
+    display: block;
+}
+
+.product-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+}
+
+/* ============ BADGE COLORS ============ */
+.badge-member {
+    background-color: #6a0dad; /* Ungu gelap */
+    color: #ffffff;
+}
+
+.badge-levelup {
+    background-color: #0077b6; /* Biru cerah */
+    color: #ffffff;
+}
+
+.badge-pass {
+    background-color: #2b820b; /* Hijau */
+    color: #ffffff;
+}
+
+.badge-welkin {
+    background-color: #d94d89; /* Merah jambu */
+    color: #ffffff;
+}
+
+.badge-weekly,
+.badge-monthly,
+.badge-vip {
+    background-color: #b8860b; /* Emas */
+    color: #ffffff;
+}
+
+.payment-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
+.payment-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.payment-price {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-color-secondary);
+    margin-top: 5px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s;
+}
+
+.payment-card.active .payment-price {
+    visibility: visible;
+    opacity: 1;
+}
+
+.voucher-group {
+    display: flex;
+    gap: 8px;
+}
+
+.voucher-group input {
+    flex-grow: 1;
+    width: auto;
+    border-radius: 10px;
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.voucher-group input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
+}
+
+.btn-primary {
+    padding: 12px 20px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.btn-primary:hover {
+    background-color: #c53030;
+    transform: translateY(-2px);
+}
+
+.btn-sm {
+    padding: 10px 18px;
+    font-size: 0.85rem;
+}
+
+.mt-3 {
+    margin-top: 10px;
+}
+
+.summary-section {
+    padding: 25px;
+    border: 2px solid var(--secondary-color);
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+.summary-box {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.summary-box p {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.summary-box b {
+    color: var(--text-color-primary);
+}
+
+.btn-checkout {
+    width: 100%;
+    padding: 15px 20px;
+    background-color: var(--secondary-color);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-checkout:hover {
+    background-color: #2b6cb0;
+    transform: translateY(-2px);
+}
+
 /* ==================== MODAL STYLES ==================== */
 .modal-overlay {
     position: fixed;
@@ -85,7 +618,7 @@
 .checkout-total {
     font-size: 1.1rem;
     font-weight: 700;
-    color: #e53e3e;
+    color: var(--primary-color);
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
@@ -94,7 +627,7 @@
 }
 
 .total-price-text {
-    color: #3b82f6;
+    color: var(--secondary-color);
 }
 
 /* Updated payment method styles for the new layout */
