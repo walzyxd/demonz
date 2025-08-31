@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top Up Game - WalzShop</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body data-page="game">
@@ -24,45 +23,49 @@
             <i class="fas fa-arrow-left"></i> Kembali
         </button>
 
-        <div class="card game-header">
-            <img id="game-banner" class="game-banner" src="" alt="Game Banner">
-            <h1 id="game-title" class="game-title">Nama Game</h1>
-            <p id="game-guide" class="guide-text"></p>
-        </div>
+        <div class="content-box">
+            <div class="game-header">
+                <img id="game-banner" class="game-banner" src="" alt="Game Banner">
+                <div class="game-info">
+                    <h1 id="game-title" class="game-title">Nama Game</h1>
+                    <p id="game-guide" class="guide-text"></p>
+                </div>
+            </div>
 
-        <div class="card section-card">
-            <h2 class="section-title">1. Masukkan Data Akun</h2>
-            <div class="form-group">
-                <label for="user-id">User ID:</label>
-                <input type="text" id="user-id" placeholder="Masukkan User ID Anda">
+            <div class="section-card">
+                <h2 class="section-title">1. Masukkan Data Akun</h2>
+                <div class="form-group">
+                    <label for="user-id">User ID:</label>
+                    <input type="text" id="user-id" placeholder="Masukkan User ID Anda">
+                </div>
+                <div class="form-group" id="server-group">
+                    <label for="server-id">Server ID:</label>
+                    <input type="text" id="server-id" placeholder="Masukkan Server ID Anda">
+                </div>
             </div>
-            <div class="form-group" id="server-group">
-                <label for="server-id">Server ID:</label>
-                <input type="text" id="server-id" placeholder="Masukkan Server ID Anda">
-            </div>
-        </div>
 
-        <div class="card section-card">
-            <h2 class="section-title">2. Pilih Nominal Top Up</h2>
-            <div id="product-grid" class="product-grid"></div>
-        </div>
+            <div class="section-card">
+                <h2 class="section-title">2. Pilih Nominal Top Up</h2>
+                <div id="product-grid" class="product-grid"></div>
+            </div>
 
-        <div class="card section-card">
-            <h2 class="section-title">3. Pilih Metode Pembayaran</h2>
-            <div id="payment-grid" class="payment-grid"></div>
-        </div>
-        
-        <div class="card section-card">
-            <h2 class="section-title">4. Ringkasan & Pembayaran</h2>
-            <div id="summary-box">
-                <p>Pilih nominal & pembayaran untuk melihat ringkasan.</p>
+            <div class="section-card">
+                <h2 class="section-title">3. Pilih Metode Pembayaran</h2>
+                <div id="payment-grid" class="payment-grid"></div>
             </div>
-            <div class="voucher-group">
-                <input type="text" id="voucher-input" placeholder="Masukkan kode voucher">
-                <button id="voucher-btn">Terapkan</button>
+            
+            <div class="section-card">
+                <h2 class="section-title">4. Ringkasan & Pembayaran</h2>
+                <div id="summary-box">
+                    <p>Pilih nominal & pembayaran untuk melihat ringkasan.</p>
+                </div>
+                <div class="voucher-group">
+                    <input type="text" id="voucher-input" placeholder="Masukkan kode voucher">
+                    <button id="voucher-btn">Terapkan</button>
+                </div>
+                <p id="voucher-status" class="voucher-status"></p>
+                <button id="checkout-btn" class="btn-primary">Beli Sekarang</button>
             </div>
-            <p id="voucher-status" class="voucher-status"></p>
-            <button id="checkout-btn" class="btn-primary">Beli Sekarang</button>
         </div>
     </main>
 
