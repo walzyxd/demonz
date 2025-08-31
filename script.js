@@ -25,15 +25,16 @@ const GAMES = [
 ];
 
 const PROMOS = [
-    { title: "Top Up Diamond FF Termurah", img: "https://files.catbox.moe/2s959m.png", gameKey: "free fire" },
-    { title: "Top Up Starlight MLBB Harga Cuan", img: "https://files.catbox.moe/0b36e9.jpeg", gameKey: "mobile legends" },
-    { title: "Promo UC PUBG Mobile Khusus Member", img: "https://files.catbox.moe/p9r1m0.webp", gameKey: "pubg mobile" },
-    { title: "Blessing of the Welkin Moon Genshin", img: "https://files.catbox.moe/oih28d.jpeg", gameKey: "genshin impact" },
+    { title: "Top Up Diamond FF Termurah", img: "https://files.catbox.moe/ijvqjo.png", gameKey: "free fire" },
+    { title: "Top Up Starlight MLBB Harga Cuan", img: "https://files.catbox.moe/dpr6d2.jpg", gameKey: "mobile legends" },
+    { title: "Promo UC PUBG Mobile Khusus Member", img: "https://files.catbox.moe/w43dgb.jpg", gameKey: "pubg mobile" },
+    { title: "Blessing of the Welkin Moon Genshin", img: "https://files.catbox.moe/uusd4l.jpg", gameKey: "genshin impact" },
 ];
 
 const PAYMENTS = [
     { id: "dana", name: "Dana", img: "https://files.catbox.moe/0j5opw.png", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
     { id: "qris", name: "QRIS", img: "https://files.catbox.moe/pa0iwo.png", type: "qris", info: { qrisImg: "https://files.catbox.moe/pa0iwo.png" } },
+    { id: "krom", name: "Krom Bank", img: "https://files.catbox.moe/mae938.jpg", type: "bank_transfer", info: { number: "770072009565", name: "TI** SUT***" } },
 ];
 
 const PRODUCTS = {
@@ -603,7 +604,7 @@ function initGamePage() {
                             <img src="${selectedPayment.img}" alt="${selectedPayment.name} Logo">
                             <span id="account-number" class="ewallet-number">${selectedPayment.info.number}</span>
                             <p class="ewallet-name-text">A/N: ${selectedPayment.info.name}</p>
-                            <button id="copy-account-btn" class="btn-copy">Salin Nomor DANA</button>
+                            <button id="copy-account-btn" class="btn-copy">Salin Nomor ${selectedPayment.name}</button>
                         </div>
                     `}
                 </div>
