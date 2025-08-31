@@ -269,7 +269,6 @@ function copyToClipboard(text, buttonElement) {
         }, 2000);
     }).catch(err => {
         console.error('Failed to copy: ', err);
-        alert('Gagal menyalin nomor. Silakan salin secara manual.');
     });
 }
 
@@ -535,27 +534,23 @@ function initGamePage() {
         const serverId = gameData.server ? serverIdInput.value.trim() : null;
 
         if (!userId) {
-            alert('Mohon masukkan User ID terlebih dahulu.');
             userIdInput.focus();
             userIdInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
 
         if (gameData.server && !serverId) {
-            alert('Mohon masukkan Server ID terlebih dahulu.');
             serverIdInput.focus();
             serverIdInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
 
         if (!selectedProduct) {
-            alert('Mohon pilih nominal top up.');
             productGrid.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
 
         if (!selectedPayment) {
-            alert('Mohon pilih metode pembayaran.');
             paymentGrid.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
@@ -566,21 +561,25 @@ function initGamePage() {
         const orderSummary = document.createElement('div');
         orderSummary.classList.add('summary-item');
         orderSummary.innerHTML = `
-            <h4 class="modal-title">Detail Pesanan</h4>
-            <p><strong>Game:</strong> <span id="summary-game">${gameData.name}</span></p>
-            <p><strong>User ID:</strong> <span id="summary-id">${userId}</span></p>
-            ${gameData.server ? `<p><strong>Server ID:</strong> <span id="summary-server">${serverId}</span></p>` : ''}
-            <p><strong>Produk:</strong> <span id="summary-product">${selectedProduct.label}</span></p>
-            <p><strong>Metode Pembayaran:</strong> <span id="summary-payment">${selectedPayment.name}</span></p>
-            <hr>
-            <div class="checkout-total">Total Bayar: <span class="total-price-text">${fmtIDR(finalPrice)}</span></div>
+            <div class="modal-header">
+                <h4 class="modal-title">Detail Pesanan</h4>
+                <button class="modal-close-btn" id="close-checkout-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Game:</strong> <span id="summary-game">${gameData.name}</span></p>
+                <p><strong>User ID:</strong> <span id="summary-id">${userId}</span></p>
+                ${gameData.server ? `<p><strong>Server ID:</strong> <span id="summary-server">${serverId}</span></p>` : ''}
+                <p><strong>Produk:</strong> <span id="summary-product">${selectedProduct.label}</span></p>
+                <p><strong>Metode Pembayaran:</strong> <span id="summary-payment">${selectedPayment.name}</span></p>
+                <hr>
+                <div class="checkout-total">Total Bayar: <span class="total-price-text">${fmtIDR(finalPrice)}</span></div>
+            </div>
         `;
         checkoutSummary.appendChild(orderSummary);
 
         const paymentSection = document.createElement('div');
         paymentSection.classList.add('payment-section');
         
-        // Hapus elemen QRIS dan e-wallet yang sudah ada
         const existingQrisSection = qs('.qris-image-container', checkoutSummary);
         if (existingQrisSection) existingQrisSection.remove();
 
@@ -607,8 +606,7 @@ function initGamePage() {
             `;
         }
         checkoutSummary.appendChild(paymentSection);
-
-        // Tambahkan kembali event listener setelah elemen ditambahkan
+        
         if (selectedPayment.type === 'ewallet') {
             const copyButton = qs('#copy-account-btn', checkoutSummary);
             if (copyButton) {
@@ -618,7 +616,6 @@ function initGamePage() {
             }
         }
         
-        // Perbaikan untuk tombol perbesar QRIS
         if (selectedPayment.type === 'qris') {
             const expandButton = qs('#expand-qris-btn', checkoutSummary);
             if(expandButton){
@@ -628,8 +625,7 @@ function initGamePage() {
                 });
             }
         }
-        
-        // Tambahkan tombol WhatsApp untuk semua jenis pembayaran
+
         const whatsappSection = document.createElement('div');
         whatsappSection.classList.add('whatsapp-button-container');
         whatsappSection.innerHTML = `
@@ -639,6 +635,15 @@ function initGamePage() {
             </a>
         `;
         checkoutSummary.appendChild(whatsappSection);
+
+        // Tambahkan tombol kembali
+        const backButton = document.createElement('button');
+        backButton.id = 'back-to-form-btn';
+        backButton.className = 'btn-back-to-form';
+        backButton.textContent = 'Kembali';
+        backButton.addEventListener('click', hideModal); // Cukup sembunyikan modal untuk kembali
+
+        checkoutSummary.appendChild(backButton);
 
         showModal('checkout-modal');
     });
