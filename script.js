@@ -240,31 +240,23 @@ function showModal(modalId) {
     const overlay = qs("#modal-overlay");
     const modal = qs(`#${modalId}`);
     if (overlay && modal) {
-        qsa(".modal-content").forEach(el => el.style.display = 'none');
-        modal.style.display = 'flex'; // Menggunakan flex untuk layout
         overlay.classList.add("active");
+        modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
     }
 }
 
 function hideModal(modalId) {
-    if (modalId) {
-        const modal = qs(`#${modalId}`);
-        if (modal) {
-            modal.style.display = 'none';
-        }
+    const modal = qs(`#${modalId}`);
+    if (modal) {
+        modal.style.display = 'none';
     }
-    // Jika tidak ada modal yang aktif lagi, sembunyikan overlay dan kembalikan scroll
-    const activeModals = qsa(".modal-content[style*='display: flex']").length;
-    if (activeModals === 0) {
-        const overlay = qs("#modal-overlay");
-        if (overlay) {
-            overlay.classList.remove("active");
-            document.body.style.overflow = '';
-        }
+    const overlay = qs("#modal-overlay");
+    if (overlay) {
+        overlay.classList.remove("active");
+        document.body.style.overflow = '';
     }
 }
-
 
 function copyToClipboard(text, buttonElement) {
     navigator.clipboard.writeText(text).then(() => {
@@ -272,11 +264,11 @@ function copyToClipboard(text, buttonElement) {
         const originalBg = buttonElement.style.backgroundColor;
         
         buttonElement.textContent = "Nomor Tersalin!";
-        buttonElement.style.backgroundColor = "#25D366"; // Green
+        buttonElement.style.backgroundColor = "#25D366";
         
         setTimeout(() => {
             buttonElement.textContent = originalText;
-            buttonElement.style.backgroundColor = originalBg; // Revert to original color
+            buttonElement.style.backgroundColor = originalBg;
         }, 2000);
     }).catch(err => {
         console.error('Failed to copy: ', err);
@@ -292,19 +284,14 @@ document.addEventListener("DOMContentLoaded", () => {
         initGamePage();
     }
 
-    qsa(".modal-close-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const modalId = btn.closest('.modal-content').id;
-            hideModal(modalId);
-        });
-    });
-
     const overlay = qs("#modal-overlay");
     if (overlay) {
         overlay.addEventListener("click", (e) => {
             if (e.target.id === "modal-overlay") {
-                const activeModals = qsa(".modal-content[style*='display: flex']");
-                activeModals.forEach(modal => hideModal(modal.id));
+                const activeModal = qs(".modal-content[style*='display: flex']");
+                if (activeModal) {
+                    hideModal(activeModal.id);
+                }
             }
         });
     }
@@ -376,7 +363,6 @@ function initGamePage() {
     const checkoutBtn = qs("#checkout-btn");
     const summaryBox = qs("#summary-box");
     const checkoutModalContent = qs("#checkout-modal");
-    const qrisFullscreenImg = qs("#qris-fullscreen-img");
     
     // Elemen voucher
     const voucherInput = qs("#voucher-input");
@@ -396,7 +382,6 @@ function initGamePage() {
     let selectedPayment = null;
     let appliedVoucher = null;
     
-    // Panggil fungsi render untuk memuat produk dan pembayaran saat halaman dimuat
     renderProducts();
     renderPayments();
 
@@ -493,7 +478,6 @@ function initGamePage() {
         });
     }
     
-    // Fungsi untuk memperbarui UI
     function updateUI() {
         qsa('.product-card').forEach(c => c.classList.remove('active'));
         if (selectedProduct) {
@@ -522,7 +506,6 @@ function initGamePage() {
         updateSummary();
     }
     
-    // Logika Voucher
     voucherBtn.addEventListener("click", () => {
         const code = voucherInput.value.trim().toUpperCase();
         const voucher = VOUCHERS.find(v => v.code === code);
@@ -568,11 +551,7 @@ function initGamePage() {
         }
 
         const finalPrice = calculateFinalPrice();
-        checkoutModalContent.innerHTML = '';
-
-        const orderSummary = document.createElement('div');
-        orderSummary.classList.add('summary-item');
-        orderSummary.innerHTML = `
+        checkoutModalContent.innerHTML = `
             <div class="modal-header">
                 <h4 class="modal-title">Konfirmasi Pembelian</h4>
                 <button class="modal-close-btn">&times;</button>
@@ -588,78 +567,44 @@ function initGamePage() {
                 </div>
                 <hr>
                 <div class="checkout-total">Total Bayar: <span class="total-price-text">${fmtIDR(finalPrice)}</span></div>
+                
+                <div class="payment-section">
+                    ${selectedPayment.type === 'qris' ?
+                        `<img src="${selectedPayment.info.qrisImg}" alt="QRIS" class="qris-image">` :
+                        `
+                        <div class="ewallet-info-container">
+                            <img src="${selectedPayment.img}" alt="${selectedPayment.name} Logo">
+                            <span id="account-number" class="ewallet-number">${selectedPayment.info.number}</span>
+                            <p class="ewallet-name-text">A/N: ${selectedPayment.info.name}</p>
+                            <button id="copy-account-btn" class="btn-copy">Salin Nomor DANA</button>
+                        </div>
+                    `}
+                </div>
+                
+                <div class="whatsapp-button-container">
+                    <p class="whatsapp-guide">Silahkan transfer sesuai nominal di atas, setelah itu kirim bukti transfernya di tombol WhatsApp di bawah ini.</p>
+                    <a href="https://wa.me/${ADMIN_WA}?text=Halo%20Admin,%20saya%20sudah%20melakukan%20pembayaran%20untuk%20pesanan%20saya.%0A%0AGame:%20${encodeURIComponent(gameData.name)}%0AUser%20ID:%20${encodeURIComponent(userId)}%0AProduk:%20${encodeURIComponent(selectedProduct.label)}%0ATotal%20Bayar:%20${encodeURIComponent(fmtIDR(finalPrice))}" target="_blank" class="whatsapp-button">
+                        <i class="fab fa-whatsapp"></i> Kirim Bukti Transfer
+                    </a>
+                </div>
             </div>
         `;
-        checkoutModalContent.appendChild(orderSummary);
-
-        const paymentSection = document.createElement('div');
-        paymentSection.classList.add('payment-section');
         
-        if (selectedPayment.type === 'qris') {
-            paymentSection.innerHTML = `
-                <div class="qris-image-container">
-                    <img src="${selectedPayment.info.qrisImg}" alt="QRIS" class="qris-image">
-                    <button id="expand-qris-btn" class="btn-expand-qris">Perbesar QRIS</button>
-                </div>
-            `;
-        } else if (selectedPayment.type === 'ewallet') {
-            paymentSection.innerHTML = `
-                <div class="ewallet-info-container">
-                    <img src="${selectedPayment.img}" alt="${selectedPayment.name} Logo">
-                    <span id="account-number" class="ewallet-number">${selectedPayment.info.number}</span>
-                    <p class="ewallet-name-text">A/N: ${selectedPayment.info.name}</p>
-                    <button id="copy-account-btn" class="btn-copy">Salin Nomor DANA</button>
-                </div>
-            `;
-        }
-        checkoutModalContent.appendChild(paymentSection);
-        
-        if (selectedPayment.type === 'ewallet') {
-            const copyButton = qs('#copy-account-btn', checkoutModalContent);
-            if (copyButton) {
-                copyButton.addEventListener('click', () => {
-                    copyToClipboard(selectedPayment.info.number, copyButton);
-                });
-            }
+        // Tambahkan event listener untuk tombol salin dan tombol close di dalam modal
+        const copyButton = qs('#copy-account-btn', checkoutModalContent);
+        if (copyButton) {
+            copyButton.addEventListener('click', () => {
+                copyToClipboard(selectedPayment.info.number, copyButton);
+            });
         }
         
-        if (selectedPayment.type === 'qris') {
-            const expandButton = qs('#expand-qris-btn', checkoutModalContent);
-            if(expandButton){
-                expandButton.addEventListener('click', () => {
-                    qrisFullscreenImg.src = selectedPayment.info.qrisImg;
-                    showModal('qris-fullscreen-modal');
-                });
-            }
+        const closeBtn = qs('.modal-close-btn', checkoutModalContent);
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                hideModal('checkout-modal');
+            });
         }
-
-        const whatsappSection = document.createElement('div');
-        whatsappSection.classList.add('whatsapp-button-container');
-        whatsappSection.innerHTML = `
-            <p class="whatsapp-guide">Silahkan transfer sesuai nominal di atas, setelah itu kirim bukti transfernya di tombol WhatsApp di bawah ini.</p>
-            <a href="https://wa.me/${ADMIN_WA}?text=Halo%20Admin,%20saya%20sudah%20melakukan%20pembayaran%20untuk%20pesanan%20saya.%0A%0AGame:%20${encodeURIComponent(gameData.name)}%0AUser%20ID:%20${encodeURIComponent(userId)}%0AProduk:%20${encodeURIComponent(selectedProduct.label)}%0ATotal%20Bayar:%20${encodeURIComponent(fmtIDR(finalPrice))}" target="_blank" class="whatsapp-button">
-                <i class="fab fa-whatsapp"></i> Kirim Bukti Transfer
-            </a>
-        `;
-        checkoutModalContent.appendChild(whatsappSection);
 
         showModal('checkout-modal');
     });
-
-    // Event listener untuk tombol close (ikon X) di dalam modal detail pesanan
-    const closeBtn = qs('.modal-header .modal-close-btn', checkoutModalContent);
-    if(closeBtn) {
-        closeBtn.addEventListener('click', () => {
-            hideModal('checkout-modal');
-        });
-    }
-
-    // Event listener untuk tombol close (ikon X) di dalam modal QRIS fullscreen
-    const qrisFullscreenModal = qs('#qris-fullscreen-modal');
-    const qrisCloseBtn = qs('.modal-header .modal-close-btn', qrisFullscreenModal);
-    if(qrisCloseBtn){
-        qrisCloseBtn.addEventListener('click', () => {
-            hideModal('qris-fullscreen-modal');
-        });
-    }
 }
