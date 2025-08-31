@@ -1,12 +1,17 @@
 /* ================== GLOBAL STYLES & UTILITIES ================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 :root {
-    --bg-color: #0A192F;
-    --card-bg: #112240;
-    --text-color: #CCD6F6;
-    --text-secondary: #8892B0;
-    --accent-color: #64FFDA;
-    --border-color: rgba(100, 255, 218, 0.2);
-    --border-secondary: #303C55;
+    --bg-color: #F0F2F5; /* Light gray background */
+    --card-bg: #FFFFFF; /* White card background */
+    --text-color: #1A1A1A; /* Dark text */
+    --text-secondary: #5A5A5A; /* Lighter text for secondary info */
+    --accent-color: #007BFF; /* Blue accent color */
+    --accent-hover: #0060c4; /* Darker blue for hover */
+    --accent-light: rgba(0, 123, 255, 0.1); /* Lighter blue for selection */
+    --border-color: #E0E0E0; /* Light border */
+    --border-secondary: #CCCCCC; /* Lighter border */
+    --shadow-color: rgba(0, 0, 0, 0.1);
     --font-poppins: 'Poppins', sans-serif;
 }
 
@@ -35,14 +40,14 @@ body {
 
 a {
     text-decoration: none;
-    color: inherit;
+    color: var(--accent-color);
     transition: color 0.3s ease;
 }
 
 .section-title {
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--accent-color);
+    color: var(--text-color);
     margin-bottom: 1.5rem;
     text-align: center;
 }
@@ -51,7 +56,7 @@ a {
 .navbar {
     background-color: var(--card-bg);
     padding: 1rem 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 10px var(--shadow-color);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -87,22 +92,22 @@ a {
 }
 
 .btn-back {
-    background-color: transparent;
-    border: 2px solid var(--accent-color);
-    color: var(--accent-color);
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
     padding: 0.5rem 1rem;
     border-radius: 8px;
     cursor: pointer;
     font-size: 0.9rem;
     font-weight: 500;
     transition: all 0.3s ease;
-    display: flex; /* Added for better icon alignment */
-    align-items: center; /* Added for better icon alignment */
-    gap: 0.5rem; /* Added for spacing between icon and text */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .btn-back:hover {
-    background-color: rgba(100, 255, 218, 0.1);
+    background-color: var(--border-color);
 }
 
 /* ================== MAIN CONTENT ================== */
@@ -114,18 +119,17 @@ a {
     background-color: var(--card-bg);
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    /* Added responsive padding for smaller screens */
-    padding: 1.5rem; 
+    box-shadow: 0 4px 15px var(--shadow-color);
+    border: 1px solid var(--border-color);
 }
 
 .section-card {
-    background-color: #1a2a46;
+    background-color: var(--card-bg);
     padding: 2rem;
     border-radius: 12px;
     margin-top: 2rem;
-    /* Added responsive padding for smaller screens */
-    padding: 1.5rem;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    border: 1px solid var(--border-color);
 }
 
 /* ================== INDEX PAGE STYLES ================== */
@@ -138,7 +142,7 @@ a {
     width: 100%;
     overflow: hidden;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px var(--shadow-color);
 }
 
 .slider-wrapper {
@@ -166,7 +170,7 @@ a {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: var(--text-secondary);
+    background-color: var(--border-secondary);
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -182,23 +186,23 @@ a {
 }
 
 .game-card {
-    background-color: #112240;
+    background-color: var(--card-bg);
     border-radius: 8px;
     overflow: hidden;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 2px solid transparent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 1px solid var(--border-color);
 }
 
 .game-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 20px var(--shadow-color);
     border-color: var(--accent-color);
 }
 
 .game-thumbnail-container {
     padding: 0.5rem;
-    background-color: #0A192F;
+    background-color: #F8F9FA;
 }
 
 .game-thumbnail {
@@ -221,7 +225,7 @@ a {
     align-items: center;
     gap: 1.5rem;
     margin-bottom: 2rem;
-    border-bottom: 2px solid var(--border-secondary);
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 1.5rem;
 }
 
@@ -230,8 +234,7 @@ a {
     height: 80px;
     border-radius: 8px;
     object-fit: cover;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    /* Added flex-shrink to prevent it from shrinking too much on small screens */
+    box-shadow: 0 4px 10px var(--shadow-color);
     flex-shrink: 0;
 }
 
@@ -268,14 +271,15 @@ a {
     display: block;
     font-size: 1rem;
     margin-bottom: 0.5rem;
-    color: var(--accent-color);
+    color: var(--text-color);
+    font-weight: 500;
 }
 
 .form-group input {
     width: 100%;
     padding: 0.8rem 1rem;
     background-color: var(--bg-color);
-    border: 2px solid var(--border-secondary);
+    border: 1px solid var(--border-secondary);
     color: var(--text-color);
     border-radius: 8px;
     font-size: 1rem;
@@ -289,14 +293,13 @@ a {
 
 .product-grid, .payment-grid {
     display: grid;
-    /* Adjusted minmax for better responsiveness on smaller screens */
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); 
     gap: 1rem;
 }
 
 .product-card, .payment-card {
     background-color: var(--card-bg);
-    border: 2px solid var(--border-secondary);
+    border: 1px solid var(--border-secondary);
     border-radius: 8px;
     padding: 1rem;
     text-align: center;
@@ -307,24 +310,25 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100px; /* Ensured minimum height for consistency */
+    min-height: 100px;
 }
 
 .product-card:hover, .payment-card:hover {
     transform: translateY(-5px);
     border-color: var(--accent-color);
-    box-shadow: 0 4px 15px rgba(100, 255, 218, 0.1);
+    box-shadow: 0 4px 15px var(--shadow-color);
 }
 
 .product-card.active, .payment-card.active {
     border-color: var(--accent-color);
-    background-color: rgba(100, 255, 218, 0.1);
+    background-color: var(--accent-light); /* Lighter accent color for selected state */
 }
 
 .product-label {
     font-size: 1rem;
     font-weight: 500;
     margin-bottom: 0.2rem;
+    color: var(--text-color);
 }
 
 .product-price {
@@ -342,6 +346,7 @@ a {
 
 .payment-name {
     font-size: 0.9rem;
+    color: var(--text-color);
 }
 
 .payment-price {
@@ -353,15 +358,17 @@ a {
     visibility: hidden;
 }
 
+/* New Badge Styles */
 .product-badge {
     position: absolute;
     top: 0;
     right: 0;
     background-color: var(--accent-color);
-    color: var(--bg-color);
+    color: #FFF;
     font-size: 0.7rem;
     padding: 0.2rem 0.5rem;
     border-bottom-left-radius: 8px;
+    font-weight: 600;
 }
 
 .badge-member { background-color: #3b82f6; }
@@ -369,24 +376,26 @@ a {
 .badge-pass { background-color: #db2777; }
 .badge-weekly { background-color: #0d9488; }
 .badge-monthly { background-color: #a16207; }
-.badge-vip { background-color: #d1d5db; color: var(--bg-color); }
+.badge-vip { background-color: #d1d5db; color: #1A1A1A; }
 .badge-welkin { background-color: #4f46e5; }
 .badge-hot { background-color: #ef4444; }
 .badge-new { background-color: #22c55e; }
 .badge-sale { background-color: #f59e0b; }
 
 .summary-box {
-    background-color: #1a2a46;
+    background-color: var(--card-bg);
     border-radius: 8px;
     padding: 1rem;
     margin-bottom: 1.5rem;
     line-height: 1.8;
+    border: 1px solid var(--border-color);
 }
 
 .summary-box p {
     margin: 0;
     display: flex;
     justify-content: space-between;
+    color: var(--text-color);
 }
 
 .summary-box .summary-placeholder {
@@ -395,6 +404,9 @@ a {
     text-align: center;
 }
 
+.summary-box span {
+    font-weight: 600;
+}
 
 .voucher-group {
     display: flex;
@@ -424,12 +436,12 @@ a {
 .btn-primary {
     width: 100%;
     background-color: var(--accent-color);
-    color: var(--bg-color);
+    color: #FFF;
     margin-top: 1rem;
 }
 
 .btn-primary:hover {
-    background-color: #7affc8;
+    background-color: var(--accent-hover);
 }
 
 .btn-secondary {
@@ -439,14 +451,14 @@ a {
 }
 
 .btn-secondary:hover {
-    background-color: rgba(100, 255, 218, 0.1);
+    background-color: var(--accent-light);
 }
 
 .voucher-status {
     font-size: 0.9rem;
     margin-top: -0.5rem;
     margin-bottom: 1rem;
-    text-align: center; /* Centered status text */
+    text-align: center;
 }
 
 .voucher-status.success {
@@ -464,7 +476,7 @@ a {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
     display: none;
     justify-content: center;
     align-items: center;
@@ -479,10 +491,10 @@ a {
 }
 
 .modal-content {
-    background-color: var(--bg-color);
+    background-color: var(--card-bg);
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     width: 90%;
     max-width: 500px;
     position: relative;
@@ -499,8 +511,8 @@ a {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border-secondary); /* Added separator */
-    padding-bottom: 1rem; /* Added padding */
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
 }
 
 .modal-title {
@@ -539,7 +551,7 @@ a {
     font-weight: 700;
     color: var(--accent-color);
     text-align: center;
-    margin: 1rem 0 1.5rem 0; /* Adjusted margin */
+    margin: 1rem 0 1.5rem 0;
 }
 
 .payment-section {
@@ -547,7 +559,7 @@ a {
     margin-bottom: 1.5rem;
 }
 
-.payment-instruction { /* Added style for payment instructions */
+.payment-instruction {
     color: var(--text-secondary);
     font-size: 0.9rem;
     margin-bottom: 1rem;
@@ -561,7 +573,7 @@ a {
 }
 
 .ewallet-info-container {
-    background-color: #1a2a46;
+    background-color: #F8F9FA;
     padding: 1rem;
     border-radius: 8px;
     border: 1px dashed var(--accent-color);
@@ -590,7 +602,7 @@ a {
 
 .btn-copy {
     background-color: var(--accent-color);
-    color: var(--bg-color);
+    color: #FFF;
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 5px;
@@ -600,12 +612,12 @@ a {
 }
 
 .btn-copy:hover {
-    background-color: #7affc8;
+    background-color: var(--accent-hover);
 }
 
 .whatsapp-button-container {
     text-align: center;
-    margin-top: 2rem; /* Added spacing */
+    margin-top: 2rem;
 }
 
 .whatsapp-guide {
@@ -637,6 +649,8 @@ a {
     padding: 2rem 0;
     margin-top: 2rem;
     text-align: center;
+    box-shadow: 0 -2px 10px var(--shadow-color);
+    border-top: 1px solid var(--border-color);
 }
 
 .footer-content {
@@ -691,12 +705,11 @@ a {
         height: 100px;
     }
 
-    .content-box, .section-card { /* Reduced padding for smaller screens */
+    .content-box, .section-card {
         padding: 1rem;
     }
 
     .product-grid, .payment-grid {
-        /* Allow cards to be smaller if needed, but not too small */
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
     }
     
