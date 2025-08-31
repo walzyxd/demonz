@@ -546,15 +546,6 @@ function initGamePage() {
                     <button id="expand-qris-btn" class="btn-expand-qris">Perbesar QRIS</button>
                 </div>
             `;
-            qs('#checkout-modal').style.backgroundImage = 'url(http://googleusercontent.com/file_content/0)';
-            qs('#checkout-modal').style.backgroundSize = 'cover';
-            qs('#checkout-modal').style.backgroundPosition = 'center';
-
-            qs('#checkout-modal').style.background = 'linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2)), url("http://googleusercontent.com/file_content/0")';
-            qs('#checkout-modal').style.backgroundSize = 'cover';
-            qs('#checkout-modal').style.backgroundPosition = 'center';
-            qs('#checkout-modal').style.backdropFilter = 'blur(10px)';
-
             checkoutSummary.appendChild(paymentSection);
 
             qs('#expand-qris-btn').addEventListener('click', () => {
@@ -571,13 +562,6 @@ function initGamePage() {
                     <button id="copy-account-btn" class="btn-copy">Salin Nomor DANA</button>
                 </div>
             `;
-            qs('#checkout-modal').style.backgroundImage = 'url(http://googleusercontent.com/file_content/0)';
-            qs('#checkout-modal').style.backgroundSize = 'cover';
-            qs('#checkout-modal').style.backgroundPosition = 'center';
-            qs('#checkout-modal').style.background = 'linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2)), url("http://googleusercontent.com/file_content/0")';
-            qs('#checkout-modal').style.backgroundSize = 'cover';
-            qs('#checkout-modal').style.backgroundPosition = 'center';
-            qs('#checkout-modal').style.backdropFilter = 'blur(10px)';
             checkoutSummary.appendChild(paymentSection);
             
             const copyButton = qs('#copy-account-btn', checkoutSummary);
