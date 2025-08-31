@@ -581,6 +581,7 @@ body {
     opacity: 0;
     transition: opacity 0.3s, visibility 0.3s;
     z-index: 50;
+    overflow: hidden; /* Mencegah scroll di belakang modal */
 }
 
 .modal-overlay.active {
@@ -786,6 +787,9 @@ body {
     cursor: pointer;
     text-decoration: none;
     transition: background-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .whatsapp-button:hover {
