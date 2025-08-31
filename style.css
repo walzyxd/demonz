@@ -1,107 +1,135 @@
-/* ==================== GLOBAL STYLES ==================== */
+/* ================== General Styles ================== */
 :root {
-    --primary-color: #e53e3e; /* Merah */
-    --secondary-color: #3b82f6; /* Biru */
-    --background-color: #f7fafc; /* Latar belakang abu-abu terang */
-    --card-bg-color: #ffffff; /* Latar belakang kartu putih */
-    --text-color-primary: #1a202c; /* Teks gelap utama */
-    --text-color-secondary: #4a5568; /* Teks abu-abu sekunder */
-    --border-color: #e2e8f0; /* Warna border */
-    --shadow-color: rgba(26, 32, 44, 0.08); /* Warna shadow */
+    --bg-color: #0d1117;
+    --card-bg: #161b22;
+    --section-bg: #21262d;
+    --text-color: #c9d1d9;
+    --text-color-light: #8b949e;
+    --primary-color: #2196f3;
+    --secondary-color: #7986cb;
+    --border-color: #30363d;
 }
 
 body {
-    margin: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color-primary);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
     line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
-    width: 95%;
-    max-width: 700px;
+    max-width: 900px;
     margin: 0 auto;
+    padding: 20px;
 }
 
-/* ==================== NAVBAR ==================== */
-.navbar {
-    background-color: var(--card-bg-color);
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    position: sticky;
-    top: 0;
-    z-index: 20;
-}
-
-.navbar-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px; /* Tinggi navbar sedikit dikurangi */
-}
-
-/* Revisi Brand Logo */
-.brand-logo {
-    font-family: 'Inter', sans-serif; /* Menggunakan Inter */
-    font-weight: 800; /* Lebih tebal */
-    font-size: 1.6rem; /* Ukuran lebih kecil */
-    text-decoration: none;
-    letter-spacing: -0.5px;
-    transition: transform 0.2s ease;
-}
-
-.brand-logo:hover {
-    transform: translateY(-1px);
-}
-
-.logo-text { color: var(--text-color-primary); }
-.logo-accent { color: var(--primary-color); } /* Tetap merah untuk .shop atau .pro */
-
-/* Revisi Tombol Kembali */
-.btn-back {
-    font-size: 0.9rem; /* Ukuran font lebih kecil */
-    background-color: var(--border-color);
-    color: var(--text-color-secondary);
-    border-radius: 6px; /* Radius lebih kecil */
-    padding: 6px 14px; /* Padding lebih kecil */
-    text-decoration: none;
+h1, h2, h3, h4 {
+    color: var(--text-color);
+    margin-top: 0;
     font-weight: 600;
-    transition: background-color 0.2s, color 0.2s;
-    display: flex; /* Untuk ikon dan teks */
-    align-items: center;
-    gap: 5px; /* Jarak antara ikon dan teks */
 }
 
-.btn-back:hover {
+p {
+    margin-bottom: 10px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.btn-primary {
+    display: block;
+    width: 100%;
+    padding: 12px;
     background-color: var(--primary-color);
     color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s ease;
 }
 
-/* ==================== HERO SECTION ==================== */
-.hero-section {
-    position: relative;
-    height: 250px;
-    overflow: hidden;
+.btn-primary:hover {
+    background-color: #1a73e8;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: var(--text-color-light);
+}
+
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    background-color: var(--section-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* ================== Header & Footer ================== */
+header {
+    background-color: var(--card-bg);
+    padding: 15px 20px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-    box-shadow: 0 5px 20px var(--shadow-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 500;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* ================== Hero Slider ================== */
+.hero-slider {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 12px;
+    margin-bottom: 20px;
 }
 
 .hero-slider-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     display: flex;
-    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
 }
 
 .hero-slider-wrapper img {
@@ -111,706 +139,502 @@ body {
     flex-shrink: 0;
 }
 
-.hero-slider-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8));
-    z-index: 1;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    color: #fff;
-}
-
-.hero-title {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.8rem;
-    margin: 0 0 8px 0;
-    font-weight: 900;
-    letter-spacing: -1px;
-    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
-}
-
-.hero-subtitle {
-    color: #d2d6dc;
-    font-size: 1rem;
-    margin-bottom: 0;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-/* ==================== MAIN CONTENT ==================== */
-.main-content {
-    margin-top: 20px;
-    margin-bottom: 40px;
-}
-
-.section-title {
-    font-size: 1.5rem;
-    color: var(--text-color-primary);
-    margin-bottom: 20px;
-    font-weight: 700;
-    border-left: 5px solid var(--primary-color);
-    padding-left: 15px;
-    letter-spacing: 0.5px;
-}
-
-/* ==================== GAMES GRID ==================== */
+/* ================== Games Grid ================== */
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 15px;
 }
 
 .game-card {
-    background-color: var(--card-bg-color);
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border: 3px solid transparent;
-    padding: 20px 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     cursor: pointer;
-    text-decoration: none;
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s, border-color 0.3s;
-    position: relative;
+    padding: 10px;
 }
 
-.game-card:hover,
-.game-card:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 10px 30px rgba(229, 62, 62, 0.25);
+.game-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .game-thumbnail {
-    width: 90px;
-    height: 90px;
+    width: 100%;
+    height: 100px;
     object-fit: cover;
-    border-radius: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 10px;
 }
 
 .game-name {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--text-color-primary);
-    text-align: center;
+    font-size: 0.8rem;
     margin: 0;
-    letter-spacing: 0.5px;
+    color: var(--text-color-light);
 }
 
-/* ==================== GAME BADGE ==================== */
-.game-badge {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    color: white;
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 4px 8px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    white-space: nowrap;
-    text-transform: uppercase;
-}
-
-/* WARNA BADGE GAME TERBARU */
-.game-badge-new {
-    background-color: var(--primary-color); /* Merah */
-}
-
-/* ==================== GAME PAGE STYLES ==================== */
-.game-main-content {
-    padding-top: 20px;
-    padding-bottom: 40px;
-}
-
-.game-header {
-    display: flex;
-    align-items: center;
-    background-color: var(--card-bg-color);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px var(--shadow-color);
-    margin-bottom: 25px;
-}
-
-/* Perbaikan Ukuran Banner Game */
+/* ================== Game Page Specific Styles ================== */
 .game-banner {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 150px;
     object-fit: cover;
-    border-radius: 15px;
-    margin-right: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    aspect-ratio: 1 / 1; /* Membuat rasio 1:1 */
-}
-
-.game-info {
-    flex-grow: 1;
-}
-
-.game-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin: 0;
-}
-
-.game-guide {
-    font-size: 0.9rem;
-    color: var(--text-color-secondary);
-    margin: 8px 0 0;
-}
-
-.card-section {
-    background-color: var(--card-bg-color);
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px var(--shadow-color);
+    border-radius: 12px;
     margin-bottom: 20px;
 }
 
-.step-guide {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--text-color-primary);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 10px;
-}
-
-.step-guide .fas, .step-guide .fa-solid {
-    color: var(--primary-color);
-}
-
-.step-description {
-    font-size: 0.85rem;
-    color: var(--text-color-secondary);
-    margin: 0 0 15px 0;
-}
-
-.input-group {
-    margin-bottom: 15px;
+.guide-text {
+    font-size: 0.9rem;
+    color: var(--text-color-light);
+    margin-bottom: 20px;
     text-align: center;
 }
 
-/* Perbaikan untuk input ID dan Server ID */
-.input-group input[type="text"] {
-    width: 100%;
-    max-width: 300px; /* Lebar maksimum baru, lebih kecil */
-    padding: 12px 15px;
+.section-title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 5px;
+}
+
+#server-group {
+    display: none;
+}
+
+/* ================== Product & Payment Grid ================== */
+.product-grid, .payment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+}
+
+.product-card, .payment-card {
+    background-color: var(--section-bg);
     border: 2px solid var(--border-color);
-    border-radius: 10px;
-    font-size: 0.95rem;
-    color: var(--text-color-primary);
-    transition: border-color 0.3s, box-shadow 0.3s;
-    outline: none;
-    margin: 0 auto;
-    display: block;
-}
-
-.input-group input[type="text"]:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
-}
-
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 12px;
-}
-
-.payment-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-}
-
-.product-card {
-    background-color: var(--card-bg-color);
-    border: 2px solid transparent;
     border-radius: 12px;
     padding: 15px;
     text-align: center;
     cursor: pointer;
+    transition: all 0.2s ease;
     position: relative;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.product-card:hover {
-    transform: translateY(-3px);
+.product-card:hover, .payment-card:hover {
+    border-color: var(--primary-color);
+    background-color: #2c323a;
 }
 
-.product-card.active {
-    border-color: var(--secondary-color);
-    background-color: rgba(59, 130, 246, 0.1);
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+.product-card.active, .payment-card.active {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(33, 150, 243, 0.5);
+}
+
+.product-card.active p, .payment-card.active p {
+    color: #fff;
 }
 
 .product-label {
-    font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    font-weight: 500;
     margin: 0 0 5px;
 }
 
 .product-price {
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: var(--text-color-secondary);
+    font-size: 0.9rem;
+    color: var(--text-color-light);
+}
+
+.payment-logo {
+    width: 50px;
+    height: 30px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
+.payment-name {
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.payment-price {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #fff;
     margin-top: 5px;
-    display: block;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .product-badge {
     position: absolute;
-    top: -5px;
-    right: -5px;
-    color: white;
+    top: 5px;
+    right: 5px;
     font-size: 0.7rem;
-    font-weight: 700;
-    padding: 4px 8px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #e53935;
+    padding: 2px 6px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    white-space: nowrap;
 }
 
-/* ============ BADGE COLORS ============ */
-.badge-member {
-    background-color: #6a0dad; /* Ungu gelap */
-    color: #ffffff;
-}
+.badge-member { background-color: #4caf50; }
+.badge-level_up { background-color: #ff9800; }
+.badge-pass { background-color: #2196f3; }
+.badge-weekly { background-color: #9c27b0; }
+.badge-hot { background-color: #e53935; }
+.badge-new { background-color: #00bcd4; }
+.badge-sale { background-color: #ff5722; }
+.badge-welkin { background-color: #8b949e; }
+.badge-monthly { background-color: #2196f3; }
+.badge-vip { background-color: #ffeb3b; color: #000; }
 
-.badge-levelup {
-    background-color: #0077b6; /* Biru cerah */
-    color: #ffffff;
-}
-
-.badge-pass {
-    background-color: #2b820b; /* Hijau */
-    color: #ffffff;
-}
-
-.badge-welkin {
-    background-color: #d94d89; /* Merah jambu */
-    color: #ffffff;
-}
-
-.badge-weekly,
-.badge-monthly,
-.badge-vip {
-    background-color: #b8860b; /* Emas */
-    color: #ffffff;
-}
-
-/* REVISI TAMPILAN PAYMENT CARD */
-.payment-card {
-    background-color: var(--card-bg-color);
-    border: 2px solid transparent;
-    border-radius: 12px;
-    padding: 15px;
-    cursor: pointer;
-    position: relative;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.payment-card:hover {
-    transform: translateY(-3px);
-}
-
-.payment-card.active {
-    border-color: var(--secondary-color);
-    background-color: rgba(59, 130, 246, 0.1);
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
-}
-
-.payment-logo {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    margin-right: 15px;
-}
-
-.payment-name {
-    font-weight: 600;
-    font-size: 1rem;
-    margin: 0;
-    color: var(--text-color-primary);
-}
-
-.payment-price {
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--text-color-secondary);
-    margin-left: auto;
-    white-space: nowrap;
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s, opacity 0.3s;
-}
-
-.payment-card.active .payment-price {
-    visibility: visible;
-    opacity: 1;
-}
-
+/* ================== Summary & Checkout ================== */
 .voucher-group {
     display: flex;
-    gap: 8px;
+    gap: 10px;
+    margin-top: 20px;
 }
 
 .voucher-group input {
     flex-grow: 1;
-    width: auto;
-    border-radius: 10px;
-    padding: 12px 15px;
-    border: 2px solid var(--border-color);
-    outline: none;
-    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.voucher-group input:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
-}
-
-.btn-primary {
-    padding: 12px 20px;
-    background-color: var(--primary-color);
+.voucher-group button {
+    background-color: var(--secondary-color);
     color: #fff;
     border: none;
-    border-radius: 10px;
-    font-weight: 600;
+    border-radius: 8px;
+    padding: 10px 15px;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s;
+}
+
+.voucher-status.success {
+    color: #4caf50;
+    font-size: 0.8rem;
+}
+
+.voucher-status.error {
+    color: #f44336;
+    font-size: 0.8rem;
+}
+
+#summary-box {
+    background-color: var(--section-bg);
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+    border: 1px dashed var(--border-color);
+}
+
+#summary-box p {
+    margin: 5px 0;
     font-size: 0.9rem;
-    white-space: nowrap;
 }
 
-.btn-primary:hover {
-    background-color: #c53030;
-    transform: translateY(-2px);
+#checkout-btn {
+    margin-top: 20px;
 }
 
-.btn-sm {
-    padding: 10px 18px;
-    font-size: 0.85rem;
-}
-
-#voucher-status {
-    font-size: 0.9rem;
-    margin-top: 10px;
-    text-align: center;
-    color: #e53e3e; /* default error color */
-}
-
-#voucher-status.success {
-    color: #38a169; /* green for success */
-}
-
-.mt-3 {
-    margin-top: 10px;
-}
-
-.summary-section {
-    padding: 25px;
-    border: 2px solid var(--secondary-color);
-    background-color: rgba(59, 130, 246, 0.1);
-}
-
-.summary-box {
-    margin-bottom: 15px;
-    font-size: 1rem;
-    line-height: 1.8;
-}
-
-.summary-box p {
-    margin: 0;
-    display: flex;
-    justify-content: space-between;
-}
-
-.summary-box b {
-    color: var(--text-color-primary);
-}
-
-.btn-checkout {
-    width: 100%;
-    padding: 15px 20px;
-    background-color: var(--secondary-color);
-    color: white;
-    font-size: 1.1rem;
-    font-weight: 700;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s;
-}
-
-.btn-checkout:hover {
-    background-color: #2b6cb0;
-    transform: translateY(-2px);
-}
-
-/* ==================== MODAL STYLES (REVISED) ==================== */
+/* ================== Modal Styles ================== */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
-    visibility: hidden;
+    z-index: 1000;
     opacity: 0;
-    transition: opacity 0.3s, visibility 0.3s;
-    z-index: 50;
-    overflow: hidden; /* Mencegah scroll di belakang modal */
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .modal-overlay.active {
-    visibility: visible;
     opacity: 1;
+    visibility: visible;
 }
 
 .modal-content {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-    transform: scale(0.9);
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    padding: 20px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    width: 90%; /* Default untuk mobile */
+    max-width: 450px; /* Batasi lebar maksimum */
+    max-height: 90vh; /* Batasi tinggi maksimum */
+    overflow-y: auto; /* Aktifkan scroll jika konten terlalu panjang */
+    position: relative;
     display: none; /* Default hidden */
-}
-
-.modal-overlay.active .modal-content {
-    transform: scale(1);
+    flex-direction: column; /* Untuk menata konten secara vertikal */
+    z-index: 1001; /* Pastikan di atas overlay */
+    padding: 20px; /* Padding untuk konten modal */
 }
 
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 15px;
     margin-bottom: 15px;
-    border-bottom: 1px solid rgba(226, 232, 240, 0.5);
-    text-align: left;
+    position: sticky; /* Agar header tetap terlihat saat scroll */
+    top: 0;
+    background: var(--card-bg);
+    z-index: 10;
 }
 
-.modal-header h3 {
+.modal-title {
+    font-size: 1.4rem;
+    color: var(--text-color);
     margin: 0;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #1a202c;
 }
 
 .modal-close-btn {
+    background: none;
+    border: none;
     font-size: 2rem;
-    font-weight: 300;
-    color: #4a5568;
+    color: var(--secondary-color);
     cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    color: var(--primary-color);
 }
 
 .modal-body {
-    font-size: 0.95rem;
-    color: #4a5568;
-    line-height: 1.6;
-    text-align: left;
+    flex-grow: 1; /* Biarkan body mengambil sisa ruang */
+    padding-right: 5px; /* Sedikit padding agar scrollbar tidak terlalu mepet */
 }
 
+/* Style untuk modal checkout */
+#checkout-modal .modal-body {
+    padding-bottom: 20px; /* Tambahkan padding di bawah body untuk tombol WA */
+}
+
+/* Summary item styling */
 .summary-item {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
-.summary-item p {
+.summary-details p {
     margin: 8px 0;
+    font-size: 0.95rem;
+    color: var(--text-color-light);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Untuk meratakan label dan nilai */
 }
 
-.summary-item strong {
-    color: #1a202c;
+.summary-details p strong {
+    color: var(--text-color);
+}
+
+.summary-details p span {
+    font-weight: bold;
+    color: var(--text-color);
+    text-align: right;
 }
 
 .checkout-total {
-    font-size: 1.1rem;
-    font-weight: 700;
+    font-size: 1.2rem;
+    font-weight: bold;
     color: var(--primary-color);
-    display: flex;
-    justify-content: space-between;
+    text-align: right;
     margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px dashed rgba(226, 232, 240, 0.5);
 }
 
-.total-price-text {
-    color: var(--secondary-color);
-}
-
+/* Payment section styling */
 .payment-section {
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 20px;
+    background: var(--section-bg);
+    border-radius: 8px;
+    padding: 15px;
     margin-top: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    position: relative;
-    border: 1px solid rgba(226, 232, 240, 0.5);
+    text-align: center;
 }
 
 .payment-section h4 {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #1a202c;
+    color: var(--text-color);
     margin-top: 0;
     margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.qris-image-container {
     text-align: center;
+}
+
+.qris-image {
+    max-width: 80%; /* Sesuaikan lebar QRIS */
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.btn-expand-qris {
+    background-color: var(--button-bg);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-expand-qris:hover {
+    background-color: var(--primary-color);
 }
 
 .ewallet-info-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
 }
 
 .ewallet-info-container img {
     width: 60px;
     height: 60px;
     object-fit: contain;
-    border-radius: 12px;
     margin-bottom: 10px;
 }
 
 .ewallet-number {
-    font-family: 'Inter', monospace;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #1a202c;
-    margin: 5px 0 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 5px;
 }
 
 .ewallet-name-text {
-    font-size: 0.95rem;
-    color: #4a5568;
-    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-color-light);
+    margin-bottom: 15px;
 }
 
 .btn-copy {
-    background-color: #3b82f6;
+    background-color: #007bff; /* Warna biru untuk tombol salin */
     color: #fff;
     border: none;
-    border-radius: 10px;
-    padding: 12px 25px;
-    font-size: 1rem;
-    font-weight: 600;
+    padding: 10px 15px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.2s;
-    margin-top: 15px;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+    min-width: 150px;
 }
 
 .btn-copy:hover {
-    background-color: #2b6cb0;
-}
-
-.qris-image-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 15px;
-    border-radius: 15px;
-    background: #fff;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
-}
-
-.qris-image {
-    width: 180px;
-    height: 180px;
-    object-fit: contain;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    border: 5px solid #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.btn-expand-qris {
-    padding: 10px 20px;
-    background-color: #3b82f6;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 0.95rem;
-    font-weight: 600;
-    transition: background-color 0.2s, transform 0.2s;
-    margin-top: 10px;
-}
-
-.btn-expand-qris:hover {
-    background-color: #2b6cb0;
-    transform: translateY(-2px);
+    background-color: #0056b3;
 }
 
 .whatsapp-button-container {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 25px;
+    border-top: 1px dashed var(--border-color);
+    padding-top: 20px;
+}
+
+.whatsapp-guide {
+    font-size: 0.9rem;
+    color: var(--text-color-light);
+    margin-bottom: 15px;
 }
 
 .whatsapp-button {
-    background-color: #25D366; /* WhatsApp brand color */
-    color: #fff;
-    padding: 12px 25px;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.2s;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    background-color: #25D366; /* WhatsApp Green */
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.whatsapp-button i {
+    margin-right: 10px;
+    font-size: 1.2rem;
 }
 
 .whatsapp-button:hover {
-    background-color: #1da851;
+    background-color: #1DA851;
 }
 
-/* Modal for full screen QRIS */
-.qris-fullscreen-modal {
-    display: none;
-}
-
-.qris-fullscreen-modal .modal-content {
-    max-width: 90%;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    backdrop-filter: blur(10px);
-}
-
-.qris-fullscreen-img {
-    max-width: 100%;
+/* QRIS Fullscreen Modal Specific Styles */
+#qris-fullscreen-modal .modal-content {
+    background: rgba(0, 0, 0, 0.8); /* Background gelap transparan */
+    padding: 15px;
+    width: 95%; /* Lebih lebar untuk QRIS */
+    max-width: 90vh; /* Sesuaikan agar QRIS tetap persegi */
     height: auto;
-    border-radius: 15px;
-    border: 5px solid #fff;
+    max-height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+
+#qris-fullscreen-modal .modal-header {
+    position: absolute; /* Posisikan di atas gambar */
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    background: none; /* Hapus background header */
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    justify-content: flex-end; /* Pindahkan tombol close ke kanan */
+}
+
+#qris-fullscreen-modal .modal-title {
+    display: none; /* Sembunyikan judul di modal fullscreen */
+}
+
+#qris-fullscreen-modal .modal-close-btn {
+    color: #fff; /* Tombol close putih */
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-size: 1.5rem;
+}
+
+#qris-fullscreen-modal .modal-close-btn:hover {
+    color: var(--primary-color);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#qris-fullscreen-img {
+    max-width: 100%;
+    max-height: calc(95vh - 50px); /* Kurangi tinggi untuk tombol close */
+    height: auto;
+    width: auto; /* Biarkan lebar mengikuti tinggi untuk menjaga aspek rasio */
+    display: block;
+    border-radius: 8px;
+    object-fit: contain; /* Memastikan gambar QRIS pas tanpa terpotong */
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .modal-content {
+        width: 70%;
+        max-width: 500px;
+    }
+
+    #qris-fullscreen-modal .modal-content {
+        width: 60%;
+        max-width: 600px;
+    }
+}
+
+/* Ensure body scroll is reset if modal is dismissed by overlay click */
+.modal-overlay:not(.active) {
+    pointer-events: none; /* Disable events when not active */
 }
