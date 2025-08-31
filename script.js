@@ -8,11 +8,11 @@ const VOUCHERS = [
 ];
 
 const GAMES = [
-    { key: "free-fire", name: "Free Fire", img: "https://files.catbox.moe/x5rvpg.jpg", hasServerId: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game." },
-    { key: "mobile-legends", name: "Mobile Legends", img: "https://files.catbox.moe/c96d5v.jpg", hasServerId: true, guide: "Temukan User ID dan Server ID di bawah nama panggilan saat Anda mengklik avatar profil." },
-    { key: "honor-of-kings", name: "Honor of Kings", img: "https://files.catbox.moe/rh78kj.jpg", hasServerId: false, guide: "User ID Anda ada di bagian bawah layar saat Anda membuka profil." },
+    { key: "free-fire", name: "Free Fire", img: "https://files.catbox.moe/ldccdf.jpg", hasServerId: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game." },
+    { key: "mobile-legends", name: "Mobile Legends", img: "https://files.catbox.moe/6ns43w.jpg", hasServerId: true, guide: "Temukan User ID dan Server ID di bawah nama panggilan saat Anda mengklik avatar profil." },
+    { key: "honor-of-kings", name: "Honor of Kings", img: "https://files.catbox.moe/i7ge1c.jpg", hasServerId: false, guide: "User ID Anda ada di bagian bawah layar saat Anda membuka profil." },
     { key: "genshin-impact", name: "Genshin Impact", img: "https://files.catbox.moe/b91rfb.jpg", hasServerId: false, guide: "User ID (9 digit) terletak di sudut kanan bawah layar saat Anda berada di dalam game." },
-    { key: "roblox", name: "Roblox", img: "https://files.catbox.moe/uvixa8.jpg", hasServerId: false, guide: "Top up menggunakan Gift Card yang akan dikirim langsung ke akun Anda." },
+    { key: "roblox", name: "Roblox", img: "https://files.catbox.moe/k28lxp.jpg", hasServerId: false, guide: "Top up menggunakan Gift Card yang akan dikirim langsung ke akun Anda." },
     { key: "super-sus", name: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", hasServerId: false, guide: "User ID dapat ditemukan di menu profil dalam game." },
     { key: "clash-of-clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", hasServerId: false, guide: "User ID (Tag Pemain) adalah kombinasi huruf dan angka yang dimulai dengan tanda pagar (#)." },
     { key: "blood-strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", hasServerId: false, guide: "ID Anda dapat ditemukan di profil dalam game." },
@@ -513,7 +513,7 @@ function initGamePage() {
         if (!summaryBox) return;
 
         if (!selectedProduct) {
-            summaryBox.innerHTML = `<p>Pilih nominal & pembayaran untuk melihat ringkasan.</p>`;
+            summaryBox.innerHTML = `<p class="summary-placeholder">Pilih nominal & pembayaran untuk melihat ringkasan.</p>`;
             return;
         }
 
@@ -590,12 +590,14 @@ function initGamePage() {
             totalPrice: fmtIDR(finalPrice)
         };
 
-        const waMessage = `Halo Admin, saya sudah melakukan pembayaran untuk pesanan saya.\n\n` +
-            `Game: ${encodedData.game}\n` +
-            `User ID: ${encodedData.userId}\n` +
-            (gameData.hasServerId ? `Server ID: ${encodedData.serverId}\n` : '') +
-            `Produk: ${encodedData.product}\n` +
-            `Total Bayar: ${encodedData.totalPrice}`;
+        const waMessage = `Halo Admin, saya ingin konfirmasi pesanan top-up saya:\n\n` +
+            `*Game:* ${encodedData.game}\n` +
+            `*User ID:* ${encodedData.userId}\n` +
+            (gameData.hasServerId ? `*Server ID:* ${encodedData.serverId}\n` : '') +
+            `*Produk:* ${encodedData.product}\n` +
+            `*Metode Pembayaran:* ${selectedPayment.name}\n` +
+            `*Total Pembayaran:* ${encodedData.totalPrice}\n\n` +
+            `Mohon dibantu prosesnya. Terima kasih.`;
 
         checkoutModalContent.innerHTML = `
             <div class="modal-header">
@@ -604,7 +606,7 @@ function initGamePage() {
             </div>
             <div class="modal-body">
                 <div class="summary-details">
-                    <p><strong>Detail Pesanan</strong></p>
+                    <p><strong>Detail Pesanan Anda:</strong></p>
                     <p>Game: <span>${gameData.name}</span></p>
                     <p>User ID: <span>${userId}</span></p>
                     ${gameData.hasServerId ? `<p>Server ID: <span>${serverId}</span></p>` : ''}
@@ -616,8 +618,10 @@ function initGamePage() {
                 
                 <div class="payment-section">
                     ${selectedPayment.type === 'qris' ?
-                        `<img src="${selectedPayment.info.qrisImg}" alt="QRIS" class="qris-image">` :
+                        `<p class="payment-instruction">Scan QRIS di bawah untuk pembayaran:</p>
+                        <img src="${selectedPayment.info.qrisImg}" alt="QRIS" class="qris-image">` :
                         `
+                        <p class="payment-instruction">Transfer ke rekening/e-wallet berikut:</p>
                         <div class="ewallet-info-container">
                             <img src="${selectedPayment.img}" alt="${selectedPayment.name} Logo">
                             <span id="account-number" class="ewallet-number">${selectedPayment.info.number}</span>
@@ -628,7 +632,7 @@ function initGamePage() {
                 </div>
                 
                 <div class="whatsapp-button-container">
-                    <p class="whatsapp-guide">Silahkan transfer sesuai nominal di atas, setelah itu kirim bukti transfernya di tombol WhatsApp di bawah ini.</p>
+                    <p class="whatsapp-guide">Setelah melakukan pembayaran, mohon kirim bukti transfer Anda melalui WhatsApp:</p>
                     <a href="https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(waMessage)}" target="_blank" class="whatsapp-button">
                         <i class="fab fa-whatsapp"></i> Kirim Bukti Transfer
                     </a>
