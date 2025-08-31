@@ -26,7 +26,7 @@ const GAMES = [
 
 const PAYMENTS = [
     { id: "dana", name: "Dana", img: "https://files.catbox.moe/0j5opw.png", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
-    { id: "qris", name: "QRIS", img: "https://files.catbox.moe/pa0iwo.png", type: "qris", info: { qrisImg: "https://files.catbox.moe/x1b7j2.jpg" } },
+    { id: "qris", name: "QRIS", img: "https://files.catbox.moe/pa0iwo.png", type: "qris", info: { qrisImg: "https://files.catbox.moe/pa0iwo.png" } },
 ];
 
 const PRODUCTS = {
@@ -154,7 +154,7 @@ const PRODUCTS = {
         { id: "eggy-3180", label: "3180 + 423 Bonus", price: 630199 },
         { id: "eggy-6480", label: "6480 + 903 Bonus", price: 1244999 },
     ],
-    "call of duty mobile": [
+    "call of duty": [
         { id: "codm-31", label: "31 CP", price: 4899 },
         { id: "codm-63", label: "63 CP", price: 9699 },
         { id: "codm-128", label: "128 CP", price: 19399 },
@@ -353,7 +353,15 @@ function initGamePage() {
     const checkoutModal = qs("#checkout-modal");
     const checkoutSummary = qs("#checkout-summary");
     const qrisFullscreenImg = qs("#qris-fullscreen-img");
-    const qrisModal = qs("#qris-fullscreen-modal");
+    const qrisModal = qs("#qris-fullscreen-modal"); // Perlu elemen ini jika ingin modal QRIS
+    
+    // Pastikan qrisModal ada
+    if (!qrisModal) {
+        console.error("Elemen #qris-fullscreen-modal tidak ditemukan.");
+        // Anda bisa memilih untuk membuat elemen ini secara dinamis atau menghentikan fungsi
+        // Untuk saat ini, kita akan melanjutkan, tapi pastikan HTML Anda sudah benar
+    }
+
 
     if (!gameTitle || !banner) return;
 
