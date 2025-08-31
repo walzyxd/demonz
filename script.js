@@ -430,7 +430,7 @@ function initGamePage() {
             card.dataset.price = product.price;
 
             let labelWithEmoji = product.label;
-            const keywords = ["diamonds", "gems", "uc", "crystals", "tokens", "goldstar", "gold"];
+            const keywords = ["diamonds", "gems", "uc", "crystals", "tokens", "goldstar", "gold", "points"];
             const isMatch = keywords.some(keyword => product.label.toLowerCase().includes(keyword));
 
             if (isMatch) {
