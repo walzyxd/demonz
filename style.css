@@ -1,13 +1,15 @@
 /* ================== General Styles ================== */
 :root {
-    --bg-color: #0d1117;
-    --card-bg: #161b22;
-    --section-bg: #21262d;
-    --text-color: #c9d1d9;
-    --text-color-light: #8b949e;
-    --primary-color: #2196f3;
-    --secondary-color: #7986cb;
-    --border-color: #30363d;
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --section-bg: #e9ecef;
+    --text-color: #333333;
+    --text-color-light: #6c757d;
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --border-color: #dee2e6;
+    --green-accent: #28a745;
+    --red-accent: #dc3545;
 }
 
 body {
@@ -22,7 +24,7 @@ body {
 .container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 20px;
 }
 
 h1, h2, h3, h4 {
@@ -51,23 +53,25 @@ a:hover {
     background-color: var(--primary-color);
     color: #fff;
     border: none;
-    border-radius: 8px;
+    border-radius: 50px;
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
     text-align: center;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary:hover {
-    background-color: #1a73e8;
+    background-color: #0056b3;
+    transform: translateY(-2px);
 }
 
 .card {
     background-color: var(--card-bg);
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     margin-bottom: 20px;
 }
 
@@ -85,7 +89,7 @@ label {
 input[type="text"] {
     width: calc(100% - 20px);
     padding: 10px;
-    background-color: var(--section-bg);
+    background-color: #fff;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     color: var(--text-color);
@@ -95,35 +99,52 @@ input[type="text"] {
 input[type="text"]:focus {
     outline: none;
     border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
 
-/* ================== Header & Footer ================== */
-header {
+/* ================== Navbar ================== */
+.navbar {
     background-color: var(--card-bg);
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     position: sticky;
     top: 0;
     z-index: 500;
 }
 
-.logo {
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-logo {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
     font-size: 1.5rem;
-    font-weight: bold;
+    color: var(--text-color);
+}
+
+.logo-accent {
     color: var(--primary-color);
 }
 
-/* ================== Hero Slider ================== */
-.hero-slider {
+.brand-tagline {
+    font-size: 0.8rem;
+    color: var(--text-color-light);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ================== Hero Section ================== */
+.hero-section {
+    position: relative;
     width: 100%;
     height: 200px;
-    overflow: hidden;
-    position: relative;
-    border-radius: 12px;
     margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .hero-slider-wrapper {
@@ -139,10 +160,46 @@ header {
     flex-shrink: 0;
 }
 
-/* ================== Games Grid ================== */
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    z-index: 10;
+}
+
+.hero-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+
+.hero-subtitle {
+    font-weight: 400;
+    font-size: 1rem;
+    margin: 0;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+
+/* ================== Game Selection Section ================== */
+.game-selection-section {
+    padding-top: 20px;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 700;
+}
+
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 15px;
 }
 
@@ -156,49 +213,99 @@ header {
     overflow: hidden;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     cursor: pointer;
-    padding: 10px;
+    border: 1px solid var(--border-color);
 }
 
 .game-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 .game-thumbnail {
     width: 100%;
-    height: 100px;
+    height: 120px;
     object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 10px;
+    margin: 0;
 }
 
 .game-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 10px 0;
+    color: var(--text-color);
+}
+
+/* ================== Footer ================== */
+.footer {
+    background-color: var(--card-bg);
+    padding: 40px 0 20px;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    margin-top: 40px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-logo {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.footer-desc {
+    max-width: 600px;
+    font-size: 0.9rem;
+    color: var(--text-color-light);
+    margin-bottom: 20px;
+}
+
+.footer-copyright {
     font-size: 0.8rem;
-    margin: 0;
     color: var(--text-color-light);
 }
 
 /* ================== Game Page Specific Styles ================== */
+.main-content {
+    padding-top: 20px;
+}
+
+.game-header {
+    text-align: center;
+}
+
 .game-banner {
     width: 100%;
     height: 150px;
     object-fit: cover;
     border-radius: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.game-title {
+    font-size: 1.8rem;
+    font-weight: 700;
 }
 
 .guide-text {
     font-size: 0.9rem;
     color: var(--text-color-light);
-    margin-bottom: 20px;
-    text-align: center;
+    margin: 0;
+}
+
+.section-card {
+    margin-top: 20px;
 }
 
 .section-title {
     font-size: 1.2rem;
     margin-bottom: 15px;
-    border-bottom: 2px solid var(--border-color);
     padding-bottom: 5px;
+    border-bottom: 2px solid var(--border-color);
+    text-align: left;
 }
 
 #server-group {
@@ -225,17 +332,13 @@ header {
 
 .product-card:hover, .payment-card:hover {
     border-color: var(--primary-color);
-    background-color: #2c323a;
+    background-color: #e2e6ea;
 }
 
 .product-card.active, .payment-card.active {
     border-color: var(--primary-color);
-    background-color: var(--primary-color);
-    box-shadow: 0 0 10px rgba(33, 150, 243, 0.5);
-}
-
-.product-card.active p, .payment-card.active p {
-    color: #fff;
+    background-color: #cfe2ff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
 }
 
 .product-label {
@@ -264,7 +367,7 @@ header {
 .payment-price {
     font-size: 0.8rem;
     font-weight: bold;
-    color: #fff;
+    color: var(--text-color);
     margin-top: 5px;
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
@@ -285,12 +388,12 @@ header {
 .badge-level_up { background-color: #ff9800; }
 .badge-pass { background-color: #2196f3; }
 .badge-weekly { background-color: #9c27b0; }
-.badge-hot { background-color: #e53935; }
-.badge-new { background-color: #00bcd4; }
-.badge-sale { background-color: #ff5722; }
-.badge-welkin { background-color: #8b949e; }
-.badge-monthly { background-color: #2196f3; }
-.badge-vip { background-color: #ffeb3b; color: #000; }
+.badge-hot { background-color: #dc3545; }
+.badge-new { background-color: #17a2b8; }
+.badge-sale { background-color: #ffc107; }
+.badge-welkin { background-color: #6c757d; }
+.badge-monthly { background-color: #007bff; }
+.badge-vip { background-color: #ffc107; color: #333; }
 
 /* ================== Summary & Checkout ================== */
 .voucher-group {
@@ -312,14 +415,16 @@ header {
     cursor: pointer;
 }
 
-.voucher-status.success {
-    color: #4caf50;
+.voucher-status {
     font-size: 0.8rem;
+    margin-top: 5px;
+}
+.voucher-status.success {
+    color: var(--green-accent);
 }
 
 .voucher-status.error {
-    color: #f44336;
-    font-size: 0.8rem;
+    color: var(--red-accent);
 }
 
 #summary-box {
@@ -346,7 +451,7 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -364,16 +469,27 @@ header {
 .modal-content {
     background: var(--card-bg);
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    width: 90%; /* Default untuk mobile */
-    max-width: 450px; /* Batasi lebar maksimum */
-    max-height: 90vh; /* Batasi tinggi maksimum */
-    overflow-y: auto; /* Aktifkan scroll jika konten terlalu panjang */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 450px;
+    max-height: 90vh;
+    overflow-y: auto;
     position: relative;
-    display: none; /* Default hidden */
-    flex-direction: column; /* Untuk menata konten secara vertikal */
-    z-index: 1001; /* Pastikan di atas overlay */
-    padding: 20px; /* Padding untuk konten modal */
+    display: none;
+    flex-direction: column;
+    padding: 20px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .modal-header {
@@ -383,10 +499,6 @@ header {
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 15px;
     margin-bottom: 15px;
-    position: sticky; /* Agar header tetap terlihat saat scroll */
-    top: 0;
-    background: var(--card-bg);
-    z-index: 10;
 }
 
 .modal-title {
@@ -409,26 +521,16 @@ header {
 }
 
 .modal-body {
-    flex-grow: 1; /* Biarkan body mengambil sisa ruang */
-    padding-right: 5px; /* Sedikit padding agar scrollbar tidak terlalu mepet */
+    flex-grow: 1;
 }
 
-/* Style untuk modal checkout */
-#checkout-modal .modal-body {
-    padding-bottom: 20px; /* Tambahkan padding di bawah body untuk tombol WA */
-}
-
-/* Summary item styling */
-.summary-item {
-    margin-bottom: 20px;
-}
-
+/* Konfirmasi Pembelian Pop-up Styles */
 .summary-details p {
     margin: 8px 0;
     font-size: 0.95rem;
     color: var(--text-color-light);
     display: flex;
-    justify-content: space-between; /* Untuk meratakan label dan nilai */
+    justify-content: space-between;
 }
 
 .summary-details p strong {
@@ -449,7 +551,6 @@ header {
     margin-top: 15px;
 }
 
-/* Payment section styling */
 .payment-section {
     background: var(--section-bg);
     border-radius: 8px;
@@ -458,37 +559,13 @@ header {
     text-align: center;
 }
 
-.payment-section h4 {
-    color: var(--text-color);
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-}
-
-.qris-image-container {
-    text-align: center;
-}
-
 .qris-image {
-    max-width: 80%; /* Sesuaikan lebar QRIS */
+    width: 100%;
+    max-width: 250px;
     height: auto;
     border-radius: 8px;
     margin-bottom: 15px;
-}
-
-.btn-expand-qris {
-    background-color: var(--button-bg);
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.95rem;
-    transition: background-color 0.2s ease;
-}
-
-.btn-expand-qris:hover {
-    background-color: var(--primary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .ewallet-info-container {
@@ -518,19 +595,19 @@ header {
 }
 
 .btn-copy {
-    background-color: #007bff; /* Warna biru untuk tombol salin */
+    background-color: var(--primary-color);
     color: #fff;
     border: none;
     padding: 10px 15px;
-    border-radius: 8px;
+    border-radius: 50px;
     cursor: pointer;
     font-size: 0.95rem;
-    transition: background-color 0.2s ease;
-    min-width: 150px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .btn-copy:hover {
     background-color: #0056b3;
+    transform: translateY(-2px);
 }
 
 .whatsapp-button-container {
@@ -549,92 +626,25 @@ header {
 .whatsapp-button {
     display: inline-flex;
     align-items: center;
-    background-color: #25D366; /* WhatsApp Green */
+    background-color: #25D366;
     color: #fff;
     text-decoration: none;
     padding: 12px 20px;
     border-radius: 50px;
     font-weight: bold;
     font-size: 1rem;
-    transition: background-color 0.2s ease;
-}
-
-.whatsapp-button i {
-    margin-right: 10px;
-    font-size: 1.2rem;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .whatsapp-button:hover {
     background-color: #1DA851;
+    transform: translateY(-2px);
 }
 
-/* QRIS Fullscreen Modal Specific Styles */
-#qris-fullscreen-modal .modal-content {
-    background: rgba(0, 0, 0, 0.8); /* Background gelap transparan */
-    padding: 15px;
-    width: 95%; /* Lebih lebar untuk QRIS */
-    max-width: 90vh; /* Sesuaikan agar QRIS tetap persegi */
-    height: auto;
-    max-height: 95vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 12px;
-}
-
-#qris-fullscreen-modal .modal-header {
-    position: absolute; /* Posisikan di atas gambar */
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    background: none; /* Hapus background header */
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-    justify-content: flex-end; /* Pindahkan tombol close ke kanan */
-}
-
-#qris-fullscreen-modal .modal-title {
-    display: none; /* Sembunyikan judul di modal fullscreen */
-}
-
-#qris-fullscreen-modal .modal-close-btn {
-    color: #fff; /* Tombol close putih */
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    padding: 5px 10px;
-    font-size: 1.5rem;
-}
-
-#qris-fullscreen-modal .modal-close-btn:hover {
-    color: var(--primary-color);
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-#qris-fullscreen-img {
-    max-width: 100%;
-    max-height: calc(95vh - 50px); /* Kurangi tinggi untuk tombol close */
-    height: auto;
-    width: auto; /* Biarkan lebar mengikuti tinggi untuk menjaga aspek rasio */
-    display: block;
-    border-radius: 8px;
-    object-fit: contain; /* Memastikan gambar QRIS pas tanpa terpotong */
-}
-
-/* Responsive adjustments */
-@media (min-width: 768px) {
-    .modal-content {
-        width: 70%;
-        max-width: 500px;
+/* ================== Responsive Adjustments ================== */
+@media (max-width: 768px) {
+    .brand-tagline {
+        display: none;
     }
-
-    #qris-fullscreen-modal .modal-content {
-        width: 60%;
-        max-width: 600px;
-    }
-}
-
-/* Ensure body scroll is reset if modal is dismissed by overlay click */
-.modal-overlay:not(.active) {
-    pointer-events: none; /* Disable events when not active */
 }
