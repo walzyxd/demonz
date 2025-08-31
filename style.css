@@ -152,25 +152,34 @@ input[type="text"]:focus {
     letter-spacing: 1px;
 }
 
+.game-navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.game-navbar .navbar-container {
+    max-width: 960px;
+    padding: 0 15px;
+    width: 100%;
+    justify-content: space-between;
+}
+
 /* ================== Hero Section ================== */
 .hero-section {
     position: relative;
     width: 100%;
-    height: 200px;
+    height: 150px;
     margin-bottom: 20px;
     background: linear-gradient(135deg, var(--primary-color), #4facfe);
     box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
     border-radius: 12px;
     overflow: hidden;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.hero-content {
-    text-align: center;
     color: #fff;
-    z-index: 10;
+    text-align: center;
 }
 
 .hero-title {
@@ -186,6 +195,64 @@ input[type="text"]:focus {
     margin: 0;
     color: rgba(255, 255, 255, 0.9);
 }
+
+/* ================== Promo Slider ================== */
+.promo-section {
+    padding-bottom: 20px;
+}
+.slider-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 12px;
+}
+
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slider-item {
+    min-width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+}
+
+.slider-caption {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.slider-dots-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.slider-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: var(--border-color);
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.slider-dot.active {
+    background-color: var(--primary-color);
+}
+
 
 /* ================== Game Selection Section ================== */
 .game-selection-section {
@@ -277,18 +344,14 @@ input[type="text"]:focus {
 }
 
 .btn-back {
-    position: absolute;
-    top: 30px;
-    left: 20px;
-    background: var(--container-bg);
+    background: none;
     color: var(--primary-color);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--primary-color);
     border-radius: 50px;
     padding: 10px 15px;
     font-size: 0.9rem;
     font-weight: 500;
     cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease;
     z-index: 10;
 }
@@ -296,7 +359,7 @@ input[type="text"]:focus {
 .btn-back:hover {
     background-color: var(--primary-color);
     color: #fff;
-    transform: translateX(-5px);
+    transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
 }
 
@@ -684,7 +747,13 @@ input[type="text"]:focus {
 
     .btn-back {
         top: 20px;
-        left: 20px;
+        right: 20px;
+        position: static;
+    }
+
+    .game-navbar .navbar-container {
+        flex-direction: column;
+        gap: 15px;
     }
 
     .game-header {
