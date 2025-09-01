@@ -444,10 +444,12 @@ function initGamePage() {
         qsa('.payment-card').forEach(c => c.classList.remove('active'));
     
         if (selectedProduct) {
-            qs(`.product-card[data-id="${selectedProduct.id}"]`).classList.add('active');
+            const productCard = qs(`.product-card[data-id="${selectedProduct.id}"]`);
+            if (productCard) productCard.classList.add('active');
         }
         if (selectedPayment) {
-            qs(`.payment-card[data-id="${selectedPayment.id}"]`).classList.add('active');
+            const paymentCard = qs(`.payment-card[data-id="${selectedPayment.id}"]`);
+            if (paymentCard) paymentCard.classList.add('active');
         }
     
         updateSummaryVisibility();
@@ -606,13 +608,13 @@ function initGamePage() {
     
             if (!userId) {
                 alert("Masukkan User ID Anda.");
-                userIdInput.focus();
+                if (userIdInput) userIdInput.focus();
                 return;
             }
     
             if (gameData.hasServerId && !serverId) {
                 alert("Masukkan Server ID Anda.");
-                serverIdInput.focus();
+                if (serverIdInput) serverIdInput.focus();
                 return;
             }
     
