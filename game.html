@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Up Game | Walz Shop</title>
+    <title>Walz Shop - Top Up Murah & Cepat</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body data-page="game">
+<body data-page="index">
 
     <header class="navbar">
         <div class="container navbar-container">
@@ -15,7 +15,7 @@
                 <span class="logo-text">WALZ</span>
                 <span class="logo-accent">SHOP</span>
             </a>
-            <a href="index.html" class="btn-back">
+            <a href="#" class="btn-back" style="display: none;">
                 <i class="fas fa-arrow-left"></i> Kembali
             </a>
         </div>
@@ -23,74 +23,22 @@
 
     <main class="main-content">
         <div class="container">
-            <div class="content-box">
-                <div class="game-header">
-                    <img id="game-banner" src="" alt="Game Banner" class="game-banner">
-                    <div class="game-info">
-                        <h1 id="game-title" class="game-title">Nama Game</h1>
-                        <div class="guide-container">
-                            <i class="fas fa-info-circle guide-icon"></i>
-                            <p id="game-guide" class="guide-text">Panduan untuk menemukan ID.</p>
+            <section class="promo-section">
+                <div class="slider-container">
+                    <div id="promo-slider" class="slider-wrapper">
                         </div>
-                    </div>
                 </div>
-
-                <section class="section-card">
-                    <h3 class="section-title">1. Masukkan User ID</h3>
-                    <div class="form-group">
-                        <label for="user-id">User ID</label>
-                        <input type="text" id="user-id" placeholder="Masukkan User ID Anda">
+                <div id="slider-dots" class="slider-dots">
                     </div>
-                    <div class="form-group" id="server-group" style="display: none;">
-                        <label for="server-id">Server ID (Optional)</label>
-                        <input type="text" id="server-id" placeholder="Masukkan Server ID (contoh: 1234)">
+            </section>
+
+            <section class="content-box">
+                <h2 class="section-title">Pilih Game Favoritmu</h2>
+                <div id="games-grid" class="game-grid">
                     </div>
-                </section>
-
-                <section class="section-card">
-                    <h3 class="section-title">2. Pilih Nominal</h3>
-                    <div id="product-grid" class="product-grid">
-                        </div>
-                </section>
-
-                <section class="section-card">
-                    <h3 class="section-title">3. Pilih Pembayaran</h3>
-                    <div id="payment-grid" class="payment-grid">
-                        </div>
-                </section>
-
-                <section class="section-card">
-                    <h3 class="section-title">4. Masukkan Kode Voucher</h3>
-                    <div class="voucher-section">
-                        <div class="voucher-input-group">
-                            <input type="text" id="voucher-input" placeholder="Masukkan kode voucher">
-                            <button id="voucher-btn" class="btn-secondary btn-small">Gunakan</button>
-                        </div>
-                        <button id="voucher-list-btn" class="btn-secondary btn-small">
-                            <i class="fas fa-tags"></i> List Kode Voucher
-                        </button>
-                        <div id="voucher-status" class="voucher-status"></div>
-                    </div>
-                </section>
-
-                <section id="summary-section" class="section-card summary-section" style="opacity: 0; pointer-events: none;">
-                    <h3 class="section-title">5. Ringkasan Pesanan</h3>
-                    <div id="summary-box" class="summary-box">
-                        <p class="summary-placeholder">Pilih nominal & pembayaran untuk melihat ringkasan.</p>
-                    </div>
-                </section>
-
-                <button id="checkout-btn" class="btn-primary">Checkout Sekarang</button>
-            </div>
+            </section>
         </div>
     </main>
-
-    <div id="modal-overlay" class="modal-overlay">
-        <div id="checkout-modal" class="modal-content">
-            </div>
-        <div id="voucher-list-modal" class="modal-content" style="display: none;">
-            </div>
-    </div>
 
     <footer class="footer">
         <div class="container footer-content">
