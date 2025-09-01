@@ -92,7 +92,7 @@ p.muted, small.muted {
     color: #fff;
 }
 
-.btn-primary:hover {
+.btn-primary:hover:not(:disabled) {
     background-color: var(--primary-hover);
     transform: translateY(-2px);
 }
@@ -126,6 +126,10 @@ p.muted, small.muted {
     background-color: #ccc;
     cursor: not-allowed;
     transform: none;
+    /* Tambahkan aturan untuk memastikan teks terlihat jelas pada tombol nonaktif */
+    color: #999;
+    /* Hindari efek hover pada tombol nonaktif */
+    pointer-events: none;
 }
 
 .btn-link {
@@ -454,9 +458,51 @@ input[type="text"] {
     margin-top: 4px;
 }
 
-.grid.items-grid {
-    grid-template-columns: repeat(2, 1fr);
+/* --- PERBAIKAN: UKURAN GAMBAR GAME DI PAGE 2 --- */
+.game-card-small {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--card-background);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: center;
+    cursor: pointer;
+    /* Tambahkan aturan untuk membatasi ukuran gambar */
+    max-width: 120px; 
+    height: 120px;
+    position: relative;
 }
+
+.game-card-small:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px var(--shadow);
+}
+
+.game-card-small img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover;
+}
+
+.game-card-small .game-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.5); 
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.grid.items-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+/* --- AKHIR PERBAIKAN: UKURAN GAMBAR GAME DI PAGE 2 --- */
 
 @media (min-width: 768px) {
     .grid.items-grid {
@@ -618,15 +664,15 @@ input[type="text"] {
     width: 90%;
     max-width: 500px;
     position: relative;
-    transform: translateY(20px);
-    opacity: 0;
-    transition: transform 0.3s, opacity 0.3s;
+    /* --- PERBAIKAN: POPUP DI TENGAH LAYAR --- */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Hapus aturan transform lama dan opacity */
+    opacity: 1; 
+    transition: none;
 }
-
-.modal.active {
-    transform: translateY(0);
-    opacity: 1;
-}
+/* --- AKHIR PERBAIKAN: POPUP DI TENGAH LAYAR --- */
 
 .modal__head {
     display: flex;
