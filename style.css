@@ -10,6 +10,16 @@
     --border-color: #3b3b5c;
     --success-color: #22c55e;
     --error-color: #ef4444;
+    --hot-color: #ff6347; /* Tomat */
+    --sale-color: #ffd700; /* Emas */
+    --new-color: #1e90ff; /* Biru */
+    --member-color: #9370db; /* Ungu muda */
+    --pass-color: #20b2aa; /* Hijau Laut */
+    --weekly-color: #ff8c00; /* Oranye gelap */
+    --monthly-color: #4682b4; /* Biru baja */
+    --levelup-color: #8b4513; /* Coklat */
+    --welkin-color: #a0522d; /* Coklat tua */
+    --vip-color: #c0c0c0; /* Perak */
 }
 
 * {
@@ -228,11 +238,13 @@ body {
     border-radius: 12px;
     overflow: hidden;
     text-align: center;
-    padding-bottom: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     text-decoration: none;
     color: inherit;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .game-card:hover {
@@ -242,9 +254,11 @@ body {
 
 .game-thumbnail-container {
     width: 100%;
-    height: 150px;
+    height: 70%;
     overflow: hidden;
     position: relative;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 }
 
 .game-thumbnail {
@@ -264,6 +278,11 @@ body {
     font-weight: 600;
     color: var(--text-color);
     padding: 0 10px;
+    text-align: center;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* ================== GAME PAGE STYLES ================== */
@@ -449,11 +468,18 @@ body {
     color: white;
     border-bottom-left-radius: 8px;
     border-top-right-radius: 6px;
+    text-transform: capitalize;
 }
-.badge-member, .badge-weekly, .badge-monthly, .badge-pass { background-color: #3b82f6; } /* Biru */
-.badge-levelup, .badge-sale { background-color: #f97316; } /* Oranye */
-.badge-hot, .badge-vip, .badge-new { background-color: #ef4444; } /* Merah */
-.badge-welkin { background-color: #8b5cf6; } /* Ungu */
+.badge-hot { background-color: var(--hot-color); }
+.badge-sale { background-color: var(--sale-color); }
+.badge-new { background-color: var(--new-color); }
+.badge-member { background-color: var(--member-color); }
+.badge-pass { background-color: var(--pass-color); }
+.badge-weekly { background-color: var(--weekly-color); }
+.badge-monthly { background-color: var(--monthly-color); }
+.badge-levelup { background-color: var(--levelup-color); }
+.badge-welkin { background-color: var(--welkin-color); }
+.badge-vip { background-color: var(--vip-color); }
 
 .voucher-container {
     display: flex;
@@ -474,17 +500,18 @@ body {
 .voucher-status.error { color: var(--error-color); }
 
 .summary-section {
-    padding-top: 0;
-    overflow: hidden;
-    height: 0;
-    opacity: 0;
-    pointer-events: none;
     transition: all 0.4s ease-in-out;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    pointer-events: none;
+    padding-top: 0;
 }
 
 .summary-section.active {
-    height: auto;
     opacity: 1;
+    height: auto;
+    overflow: visible;
     pointer-events: auto;
     padding-top: 20px;
 }
