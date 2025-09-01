@@ -472,10 +472,7 @@ function initGamePage() {
     function updateSummaryVisibility() {
         const isReady = selectedProduct && selectedPayment;
         if (summarySection) {
-            summarySection.style.opacity = isReady ? '1' : '0';
-            summarySection.style.height = isReady ? 'auto' : '0';
-            summarySection.style.overflow = 'hidden';
-            summarySection.style.pointerEvents = isReady ? 'auto' : 'none';
+            summarySection.classList.toggle('active', isReady);
         }
     }
 
