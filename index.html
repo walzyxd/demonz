@@ -1,56 +1,73 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walz Shop - Top Up Termurah & Terlengkap</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Walz Shop – Top Up Termurah & Terpercaya</title>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body data-page="index">
+  <header class="header">
+    <a href="index.html" class="logo">Walz<span>Shop</span></a>
+    <nav class="nav">
+      <a class="nav-item active" href="index.html">Beranda</a>
+      <a class="nav-item" href="#tentang">Tentang</a>
+      <a class="nav-item" href="#kontak">Kontak</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle Menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </header>
 
-    <header class="header">
-        <a href="index.html" class="logo">WALZ SHOP</a>
-        <nav class="nav">
-            <a href="index.html" class="nav-item active">Beranda</a>
-            <a href="#" class="nav-item">Tentang Kami</a>
-            <a href="#" class="nav-item">Kontak</a>
-        </nav>
-        <button class="nav-toggle">
-            <i class="fas fa-bars"></i>
-        </button>
-    </header>
+  <main class="container">
+    <section class="hero">
+      <div class="hero__copy">
+        <h1>Top Up Game Cepat, Aman, & Cuan</h1>
+        <p>Harga bersahabat, proses ngebut. Banyak pilihan game & metode bayar.</p>
+      </div>
+      <div class="hero__img">
+        <img src="https://files.catbox.moe/k3c37n.png" alt="Walz Shop Hero">
+      </div>
+    </section>
 
-    <main class="container">
-        <section class="hero-section">
-            <div class="hero-content">
-                <h1 class="main-slogan">Top Up Game Termurah dan Terpercaya</h1>
-                <p class="sub-slogan">Cepat, Aman, dan Instan.</p>
-            </div>
-            <div class="hero-image-container">
-                <img src="https://files.catbox.moe/k3c37n.png" alt="Hero Image" class="hero-image">
-            </div>
-        </section>
+    <section class="promo">
+      <h2 class="section-title">Promo Terbaru</h2>
+      <div class="slider">
+        <div id="promo-slider" class="slider__track"></div>
+      </div>
+      <div id="slider-dots" class="slider__dots"></div>
+    </section>
 
-        <section class="promo-section">
-            <h2 class="section-title">Promo Terbaru</h2>
-            <div class="slider-container">
-                <div id="promo-slider" class="slider-items"></div>
-                <div id="slider-dots" class="slider-dots"></div>
-            </div>
-        </section>
+    <section class="games">
+      <h2 class="section-title">Pilih Game Favoritmu</h2>
+      <div id="games-grid" class="grid-games"></div>
+    </section>
 
-        <section class="games-section">
-            <h2 class="section-title">Pilih Game Favoritmu</h2>
-            <div id="games-grid" class="games-grid">
-                </div>
-        </section>
-    </main>
+    <section id="tentang" class="info">
+      <h2 class="section-title">Tentang Walz Shop</h2>
+      <p>Walz Shop adalah tempat top up game yang fokus pada kemudahan, kecepatan, dan harga yang ramah kantong.</p>
+    </section>
 
-    <footer class="footer">
-        <p>&copy; 2025 Walz Shop. Semua Hak Dilindungi.</p>
-    </footer>
+    <section id="kontak" class="info">
+      <h2 class="section-title">Kontak</h2>
+      <p>Butuh bantuan? Hubungi kami via WhatsApp di halaman checkout setelah memilih produk.</p>
+    </section>
+  </main>
 
-    <script src="script.js"></script>
+  <footer class="footer">
+    <p>&copy; 2025 Walz Shop. Semua hak dilindungi.</p>
+  </footer>
+
+  <div id="modal-overlay"></div>
+  <script src="script.js"></script>
 </body>
 </html>
