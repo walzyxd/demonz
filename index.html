@@ -3,57 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walz Shop - Top Up Murah & Cepat</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Walz Store - Top Up Game Murah & Terpercaya</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="index">
 
-    <header class="navbar">
-        <div class="container navbar-container">
-            <a href="index.html" class="brand-logo">
-                <span class="logo-text">WALZ</span>
-                <span class="logo-accent">SHOP</span>
-            </a>
-            <a href="#" class="btn-back" style="display: none;">
-                <i class="fas fa-arrow-left"></i> Kembali
-            </a>
-        </div>
+    <div id="modal-overlay"></div>
+
+    <header class="header">
+        <a href="index.html" class="logo">WALZ STORE</a>
+        <nav class="nav">
+            <a href="#games-section">Top Up Game</a>
+            <a href="#promo-section">Promo</a>
+            <a href="#contact-section">Kontak</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
     </header>
 
-    <main class="main-content">
-        <div class="container">
-            <section class="promo-section">
-                <div class="slider-container">
-                    <div id="promo-slider" class="slider-wrapper">
-                        </div>
-                </div>
-                <div id="slider-dots" class="slider-dots">
-                    </div>
-            </section>
+    <main>
+        <section id="hero-section" class="hero-section">
+            <div class="hero-content">
+                <h1>Top Up Games Murah & Terpercaya</h1>
+                <p>Proses Cepat, 100% Aman, Langsung Masuk!</p>
+                <a href="#games-section" class="btn btn-primary">Top Up Sekarang</a>
+            </div>
+        </section>
 
-            <section class="content-box">
-                <h2 class="section-title">Pilih Game Favoritmu</h2>
-                <div id="games-grid" class="game-grid">
-                    </div>
-            </section>
-        </div>
+        <section id="promo-section" class="promo-section">
+            <h2>🔥 Promo Terbaru</h2>
+            <div class="slider-container">
+                <div id="promo-slider" class="promo-slider"></div>
+            </div>
+            <div id="slider-dots" class="slider-dots"></div>
+        </section>
+
+        <section id="games-section" class="games-section">
+            <h2>Pilih Game Anda</h2>
+            <div id="games-grid" class="games-grid">
+                </div>
+        </section>
+
+        <section id="contact-section" class="contact-section">
+            <h2>Hubungi Kami</h2>
+            <p>Jika Anda memiliki pertanyaan atau butuh bantuan, hubungi kami melalui kontak di bawah ini.</p>
+            <div class="contact-methods">
+                <a href="https://wa.me/6282298902274" target="_blank" class="contact-card">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <p>62822-9890-2274</p>
+                </a>
+                <a href="mailto:walzlonely@gmail.com" class="contact-card">
+                    <i class="far fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>walzlonely@gmail.com</p>
+                </a>
+            </div>
+        </section>
+
     </main>
 
-    <footer class="footer">
-        <div class="container footer-content">
-            <div class="footer-logo">
-                <span class="logo-text">WALZ</span>
-                <span class="logo-accent">SHOP</span>
-            </div>
-            <p class="footer-desc">
-                Walz Shop adalah platform top up game terpercaya. Kami menyediakan layanan top up termurah dengan proses yang cepat dan aman. Dukungan pelanggan 24/7.
-            </p>
-            <div class="footer-social">
-                <a href="https://wa.me/6282298902274" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp fa-lg"></i></a>
-            </div>
-            <p class="footer-copyright">&copy; 2024 Walz Shop. All rights reserved.</p>
-        </div>
+    <footer>
+        <p>&copy; 2024 Walz Store. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
