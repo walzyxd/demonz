@@ -285,17 +285,19 @@ document.addEventListener("DOMContentLoaded", () => {
 function initIndex(){
   // Games grid
   const grid = qs("#games-grid");
-  grid.innerHTML = "";
-  GAMES.forEach(g=>{
-    const a = document.createElement("a");
-    a.className = "game-card";
-    a.href = `game.html?key=${g.key}`;
-    a.innerHTML = `
-      <img src="${g.img}" alt="${g.name}">
-      <p>${g.name}</p>
-    `;
-    grid.appendChild(a);
-  });
+  if(grid){
+    grid.innerHTML = "";
+    GAMES.forEach(g=>{
+      const a = document.createElement("a");
+      a.className = "game-card";
+      a.href = `game.html?key=${g.key}`;
+      a.innerHTML = `
+        <img src="${g.img}" alt="${g.name}">
+        <p>${g.name}</p>
+      `;
+      grid.appendChild(a);
+    });
+  }
 
   // Promo slider
   const track = qs("#promo-slider");
@@ -337,7 +339,6 @@ function initGame(){
   const key = url.get("key");
   const game = GAMES.find(g=>g.key===key);
   if(!game){
-    // tampilkan info singkat tanpa alert
     qs(".container.game-page").innerHTML = `<div class="card"><p class="muted">Game tidak ditemukan. Silakan kembali ke beranda.</p><div style="margin-top:8px"><a class="btn btn-ghost" href="index.html">Kembali</a></div></div>`;
     return;
   }
@@ -355,43 +356,51 @@ function initGame(){
   const productGrid = qs("#product-grid");
   const products = PRODUCTS[game.key] || [];
   productGrid.innerHTML = "";
-  products.forEach(p=>{
-    const div = document.createElement("div");
-    div.className = "item product-card";
-    div.dataset.id = p.id;
-    div.dataset.price = p.price;
-    div.innerHTML = `
-      <div class="label">${p.label}</div>
-      <div class="price">${fmtIDR(p.price)}</div>
-      ${p.badges ? p.badges.map(b=>`<span class="badge badge-${b}">${b}</span>`).join("") : ""}
-    `;
-    div.addEventListener("click",()=>{
-      selectedProduct = p;
-      appliedVoucher = null;
-      setVoucherStatus("");
-      qs("#voucher-input").value="";
-      refreshSelections();
+  if (products.length > 0) {
+    products.forEach(p=>{
+      const div = document.createElement("div");
+      div.className = "item product-card";
+      div.dataset.id = p.id;
+      div.dataset.price = p.price;
+      div.innerHTML = `
+        <div class="label">${p.label}</div>
+        <div class="price">${fmtIDR(p.price)}</div>
+        ${p.badges ? p.badges.map(b=>`<span class="badge badge-${b}">${b}</span>`).join("") : ""}
+      `;
+      div.addEventListener("click",()=>{
+        selectedProduct = p;
+        appliedVoucher = null;
+        setVoucherStatus("");
+        qs("#voucher-input").value="";
+        refreshSelections();
+      });
+      productGrid.appendChild(div);
     });
-    productGrid.appendChild(div);
-  });
+  } else {
+    productGrid.innerHTML = `<p class="muted">Produk untuk game ini belum tersedia.</p>`;
+  }
 
   // render payments
   const paymentGrid = qs("#payment-grid");
   paymentGrid.innerHTML = "";
-  PAYMENTS.forEach(pay=>{
-    const div = document.createElement("div");
-    div.className = "item payment-card";
-    div.dataset.id = pay.id;
-    div.innerHTML = `
-      <img class="pay-logo" src="${pay.img}" alt="${pay.name}">
-      <div class="label">${pay.name}</div>
-    `;
-    div.addEventListener("click",()=>{
-      selectedPayment = pay;
-      refreshSelections();
+  if (PAYMENTS.length > 0) {
+    PAYMENTS.forEach(pay=>{
+      const div = document.createElement("div");
+      div.className = "item payment-card";
+      div.dataset.id = pay.id;
+      div.innerHTML = `
+        <img class="pay-logo" src="${pay.img}" alt="${pay.name}">
+        <div class="label">${pay.name}</div>
+      `;
+      div.addEventListener("click",()=>{
+        selectedPayment = pay;
+        refreshSelections();
+      });
+      paymentGrid.appendChild(div);
     });
-    paymentGrid.appendChild(div);
-  });
+  } else {
+    paymentGrid.innerHTML = `<p class="muted">Metode pembayaran belum tersedia.</p>`;
+  }
 
   // voucher
   const voucherBtn = qs("#voucher-btn");
@@ -420,7 +429,6 @@ function initGame(){
       appliedVoucher = v;
       const discount = calcDiscount(selectedProduct.price, v);
       
-      // Animasi tombol berhasil
       const originalText = voucherBtn.textContent;
       voucherBtn.textContent = "Berhasil!";
       voucherBtn.classList.add("btn-success");
@@ -434,7 +442,6 @@ function initGame(){
     });
   }
 
-  // Perbaikan: Logika tombol "Lihat Kode"
   if(voucherListBtn){
     voucherListBtn.addEventListener("click",()=>{
       const modal = qs("#voucher-list-modal");
@@ -524,7 +531,6 @@ function refreshSelections(){
     }
   });
 
-
   // clear errors
   setError("#error-product","");
   setError("#error-payment","");
@@ -594,7 +600,6 @@ function setupModalClose(modalEl){
 }
 
 /* ========== CHECKOUT MODAL ========== */
-// Perbaikan: Menampilkan detail transaksi sesuai metode pembayaran
 function openCheckout(game){
   if(!validateForm(game.hasServerId)) return;
 
@@ -613,7 +618,6 @@ Terima kasih.`;
 
   const modal = qs("#checkout-modal");
   
-  // Perbaikan: Menyesuaikan tampilan pop-up dengan tipe pembayaran
   let payBlock = '';
   if (selectedPayment.type === "qris") {
     payBlock = `
@@ -657,7 +661,7 @@ Terima kasih.`;
         <a class="btn btn-ghost" href="https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(waMsg)}" target="_blank" rel="noopener">
           <i class="fa-brands fa-whatsapp"></i> Chat Admin
         </a>
-        <button class="btn" data-close="checkout-modal">Tutup</button>
+        <button class="btn btn-primary" data-close="checkout-modal">Tutup</button>
       </div>
 
       <p class="muted" style="margin-top:8px">Setelah bayar, kirim bukti transfer ke Admin agar diproses.</p>
