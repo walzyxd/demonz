@@ -1,512 +1,604 @@
-/* ================== General ================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* --- Variabel Warna dan Font --- */
 :root {
-  --primary: #007bff;
-  --primary-100: #e7f3ff;
-  --text: #333;
-  --muted: #666;
-  --bg: #f8f9fa;
-  --card-bg: #fff;
-  --border: #ddd;
-  --success: #28a745;
-  --error: #dc3545;
-  --warn: #ffc107;
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --background-color: #f8f9fa;
+    --card-background: #ffffff;
+    --text-color: #343a40;
+    --muted-text: #6c757d;
+    --border-color: #e9ecef;
+    --danger-color: #dc3545;
+    --success-color: #28a745;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Pengaturan Dasar --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  line-height: 1.6;
-  color: var(--text);
-  background-color: var(--bg);
-  margin: 0;
-  padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3;
 }
 
 .container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
-.muted { color: var(--muted); font-size: 0.9em; }
 
-/* ================== Header ================== */
+/* --- Header & Navigasi --- */
 .header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  padding: 8px 20px;
+    background-color: var(--card-background);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
+
 .header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-.logo {
-  font-weight: 800;
-  color: var(--text);
-  text-decoration: none;
-  letter-spacing: 0.3px;
-  font-size: 1.1rem;
-}
-.logo span {
-  color: var(--primary);
-}
-.nav {
-  display: flex;
-  gap: 16px;
-}
-.nav-item {
-  color: var(--muted);
-  text-decoration: none;
-  font-weight: 600;
-  padding: 6px 8px;
-  border-radius: 8px;
-}
-.nav-item.active,
-.nav-item:hover {
-  color: var(--primary);
-  background: var(--primary-100);
-}
-.nav-toggle {
-  display: none;
-  background: transparent;
-  border: 0;
-  color: var(--primary);
-  font-size: 1.25rem;
-  padding: 8px;
-}
-@media (max-width: 768px) {
-  .nav {
-    display: none;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 56px;
-    background: var(--bg);
-    border-bottom: 1px solid var(--border);
-    padding: 12px;
-    flex-direction: column;
-    gap: 0;
-  }
-  .nav.active {
     display: flex;
-  }
-  .nav-toggle {
-    display: block;
-  }
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 20px;
 }
 
-/* ================== Card & Layout ================== */
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.logo span {
+    color: var(--primary-color);
+}
+
+.nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-item {
+    color: var(--muted-text);
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+    color: var(--primary-color);
+}
+
+.nav-item.active {
+    color: var(--primary-color);
+}
+
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+/* --- Komponen Utama --- */
 .card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    padding: 24px;
+    margin-bottom: 24px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 12px;
-}
-.item {
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  position: relative;
-}
-.item.selected,
-.item:hover {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 2px var(--primary-100);
+.card h2 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--text-color);
 }
 
-/* ================== Index Page ================== */
-.games-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 16px;
-  margin-top: 20px;
-}
-.game-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  text-decoration: none;
-  color: var(--text);
-  transition: transform 0.2s ease;
-  cursor: pointer;
-}
-.game-card img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1/1;
-  border-radius: 12px;
-  object-fit: cover;
-  border: 1px solid var(--border);
-}
-.game-card p {
-  margin-top: 8px;
-  font-size: 0.9em;
-  font-weight: 500;
-}
-.game-card:hover {
-  transform: translateY(-4px);
-}
-.promo-section {
-  margin-bottom: 20px;
-}
-.promo-section h2 {
-  margin-bottom: 15px;
-}
-.slider {
-  position: relative;
-  overflow: hidden;
-}
-.slider__track {
-  display: flex;
-  transition: transform 0.5s ease;
-}
-.slider__item {
-  flex: 0 0 100%;
-  aspect-ratio: 16/9;
-  border-radius: 12px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  text-decoration: none;
-  border: 1px solid var(--border);
-}
-.slider__dots {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-  gap: 8px;
-}
-.slider__dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #ccc;
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-.slider__dot.active {
-  background: var(--primary);
-}
 .cta-box {
-  background: linear-gradient(45deg, var(--primary), #0056b3);
-  color: #fff;
-  padding: 24px;
-  border-radius: 12px;
-  text-align: center;
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 3rem 2rem;
+    border-radius: 8px;
 }
+
 .cta-box h3 {
-  margin: 0 0 8px;
-}
-.cta-box p {
-  margin: 0 0 16px;
-  font-size: 0.9em;
-  opacity: 0.9;
-}
-.cta-box .btn {
-  background: #fff;
-  color: var(--primary);
-  border: none;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
 }
 
-/* ================== Game Page ================== */
-.game-page .banner {
-  width: 100%;
-  aspect-ratio: 16/9;
-  border-radius: 12px;
-  object-fit: cover;
-  border: 1px solid var(--border);
-  margin-bottom: 20px;
-}
-.game-page h1 {
-  margin: 0;
-}
-.game-page .guide {
-  font-size: 0.9em;
-  color: var(--muted);
-  margin-top: 4px;
-}
-.game-page h2 {
-  font-size: 1.2rem;
-  margin: 0 0 15px;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 8px;
-}
-.form-group {
-  margin-bottom: 15px;
-}
-.form-group label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-.form-group input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-size: 1em;
-  box-sizing: border-box;
-}
-.form-group input:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 2px var(--primary-100);
-}
-.product-card .label {
-  font-weight: bold;
-}
-.product-card .price {
-  font-size: 0.9em;
-  color: var(--muted);
-}
-.product-card .badge {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  font-size: 0.7em;
-  font-weight: bold;
-  padding: 3px 6px;
-  border-radius: 4px;
-  text-transform: uppercase;
-}
-.badge-hot { background: #ff4d4f; color: #fff; }
-.badge-new { background: #52c41a; color: #fff; }
-.badge-sale { background: #faad14; color: #fff; }
-.badge-pass, .badge-member, .badge-weekly, .badge-monthly, .badge-levelup, .badge-vip, .badge-welkin { background: #1890ff; color: #fff; }
-.payment-card .pay-logo {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  margin-bottom: 4px;
-}
-.payment-card .label {
-  font-size: 0.9em;
-}
-.voucher-input-group {
-  display: flex;
-  gap: 8px;
-}
-.voucher-input-group input {
-  flex-grow: 1;
-  padding: 10px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-}
-.status-text {
-  font-size: 0.9em;
-  margin-top: 8px;
-  min-height: 1.2em;
-}
-.status-text.success { color: var(--success); }
-.status-text.error { color: var(--error); }
-.summary-card .row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-.price-box {
-  display: flex;
-  justify-content: space-between;
-  font-weight: bold;
-  font-size: 1.2rem;
-  padding-top: 15px;
-  border-top: 1px solid var(--border);
-  margin-top: 15px;
-}
-
-/* ================== Modal ================== */
-#modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: none;
-  z-index: 99;
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-}
-#modal-overlay.active {
-  display: block;
-}
-.modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--card-bg);
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  z-index: 100;
-  max-width: 90%;
-  width: 400px;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  transform: translate(-50%, -45%) scale(0.95);
-}
-.modal.active {
-  opacity: 1;
-  visibility: visible;
-  transform: translate(-50%, -50%) scale(1);
-}
-.modal__head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 12px;
-  margin-bottom: 12px;
-}
-.modal__title {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-.modal__close {
-  background: transparent;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: var(--muted);
-}
-.voucher-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.voucher-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  border: 1px dashed var(--border);
-  border-radius: 8px;
-  background: #fcfcfc;
-}
-.voucher-info .voucher-code {
-  font-weight: bold;
-  color: var(--primary);
-  font-size: 1.1em;
-}
-.voucher-info .voucher-desc {
-  font-size: 0.8em;
-  color: var(--muted);
-}
-.checkout-modal .row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.95rem;
-  margin-bottom: 8px;
-}
-.checkout-modal .row strong {
-  font-weight: 600;
-}
-.checkout-modal .qris {
-  width: 100%;
-  max-width: 250px;
-  height: auto;
-  margin: 10px auto;
-  display: block;
-}
-.copy-wrap {
-  background: #f0f4f7;
-  border-radius: 8px;
-  padding: 15px;
-  text-align: center;
-  margin: 15px 0;
-  border: 1px dashed #ccc;
-}
-.copy-btn {
-  background-color: var(--primary);
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  margin-top: 10px;
-}
-.actions {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  margin-top: 15px;
-}
-.actions .btn {
-  flex-grow: 1;
-  text-align: center;
-}
-
-/* ================== Buttons & Forms ================== */
+/* --- Tombol (Buttons) --- */
 .btn {
-  padding: 12px 20px;
-  border-radius: 8px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background 0.2s ease, transform 0.2s ease;
-  text-decoration: none;
-  display: inline-block;
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-align: center;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    cursor: pointer;
 }
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
 .btn-primary {
-  background-color: var(--primary);
-  color: #fff;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
 }
-.btn-primary:hover {
-  background-color: #0056b3;
+
+.btn-primary:disabled {
+    background-color: #a0c4ff;
+    cursor: not-allowed;
+    transform: none;
 }
+
 .btn-secondary {
-  background-color: #f0f0f0;
-  color: var(--text);
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
 }
-.btn-secondary:hover {
-  background-color: #e0e0e0;
-}
+
 .btn-ghost {
-  background-color: transparent;
-  color: var(--primary);
-  border: 1px solid var(--primary);
+    background: none;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 500;
 }
-.btn-ghost:hover {
-  background-color: var(--primary-100);
-}
+
 .btn-block {
-  display: block;
-  width: 100%;
+    display: block;
+    width: 100%;
 }
+
 .btn-success {
-  background-color: var(--success);
-  color: #fff;
+    background-color: var(--success-color);
+    border: none;
 }
-.btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+
+/* --- Bagian Homepage --- */
+.promo-section {
+    margin-top: 20px;
+}
+
+.slider {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+}
+
+.slider__track {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slider__item {
+    min-width: 100%;
+}
+
+.slider__item img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.slider__dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 1rem;
+}
+
+.slider__dot {
+    width: 10px;
+    height: 10px;
+    background-color: var(--muted-text);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.slider__dot.active {
+    background-color: var(--primary-color);
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.game-card {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.game-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.game-card p {
+    padding: 10px 5px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.9rem;
+}
+
+/* --- Halaman Top Up Game --- */
+.game-page .banner {
+    margin-top: 20px;
+    margin-bottom: 24px;
+}
+
+.game-page .banner img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--text-color);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
 .error-text {
-  color: var(--error);
-  font-size: 0.8em;
-  margin-top: 4px;
-  display: block;
-  min-height: 1.2em;
+    color: var(--danger-color);
+    font-size: 0.8rem;
+    margin-top: 4px;
+    display: block;
 }
 
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 16px;
+    margin-top: 1rem;
+}
+
+.item {
+    background-color: var(--background-color);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.item:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.item.selected {
+    border-color: var(--primary-color);
+    background-color: #e6f0ff;
+}
+
+.product-card .label {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.product-card .price {
+    font-size: 0.9rem;
+    color: var(--muted-text);
+}
+
+.payment-card img {
+    max-width: 80px;
+    margin-bottom: 8px;
+    height: auto;
+}
+
+.payment-card .label {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.voucher-input-group {
+    display: flex;
+    gap: 8px;
+}
+
+.voucher-input-group input {
+    flex-grow: 1;
+}
+
+.status-text {
+    font-size: 0.9rem;
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+.status-text.success {
+    color: var(--success-color);
+}
+
+.status-text.error {
+    color: var(--danger-color);
+}
+
+.summary-card {
+    position: sticky;
+    top: 80px;
+}
+
+.summary-card h2 {
+    margin-bottom: 12px;
+}
+
+.summary-card .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.summary-card .row:last-of-type {
+    border-bottom: none;
+}
+
+.summary-card .row p {
+    margin: 0;
+}
+
+.price-box {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 12px 0;
+    border-top: 2px solid var(--border-color);
+    margin-top: 12px;
+}
+
+/* --- Modal & Overlay --- */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background-color: var(--card-background);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    max-width: 500px;
+    width: 90%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.modal__close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--muted-text);
+}
+
+#modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+#modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.voucher-item {
+    background-color: var(--background-color);
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.voucher-item .voucher-code {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
+
+.voucher-item .voucher-desc {
+    font-size: 0.9rem;
+    color: var(--muted-text);
+}
+
+.copy-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    background: #f1f1f1;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.copy-wrap .pay-logo {
+    max-height: 50px;
+}
+
+.copy-wrap .qris {
+    max-width: 150px;
+    margin-top: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.copy-btn {
+    margin-top: 10px;
+    padding: 8px 16px;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.copy-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* --- Footer --- */
+.footer {
+    background-color: var(--text-color);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+/* --- Media Queries (Responsiveness) --- */
+@media (max-width: 768px) {
+    .header-inner {
+        flex-wrap: wrap;
+    }
+    .nav {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+        gap: 0;
+        margin-top: 1rem;
+        text-align: center;
+    }
+    .nav.active {
+        display: flex;
+    }
+    .nav-item {
+        padding: 1rem;
+        border-top: 1px solid var(--border-color);
+    }
+    .nav-toggle {
+        display: block;
+    }
+    .game-page .card {
+        padding: 16px;
+    }
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+    .summary-card {
+        position: static;
+    }
+}
