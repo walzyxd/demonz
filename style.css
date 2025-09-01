@@ -712,8 +712,4 @@ input:focus {
         width: 150px;
         height: 150px;
     }
-
-    .modal {
-        max-width: 90%;
-    }
 }
