@@ -305,6 +305,15 @@ function initIndexPage() {
     const gamesGrid = qs("#games-grid");
     const promoSlider = qs("#promo-slider");
     const sliderDots = qs("#slider-dots");
+    const navToggle = qs('.nav-toggle');
+    const nav = qs('.nav');
+    
+    if (navToggle && nav) {
+        navToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+    }
+
     let currentSlide = 0;
     let slideInterval;
 
@@ -416,6 +425,14 @@ function initGamePage() {
     const voucherBtn = qs("#voucher-btn");
     const voucherStatus = qs("#voucher-status");
     const voucherListBtn = qs("#voucher-list-btn");
+    const navToggle = qs('.nav-toggle');
+    const nav = qs('.nav');
+    
+    if (navToggle && nav) {
+        navToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+    }
 
     let selectedProduct = null;
     let selectedPayment = null;
@@ -434,7 +451,15 @@ function initGamePage() {
         if (!selectedProduct) return 0;
         let finalPrice = selectedProduct.price;
         if (appliedVoucher) {
-            finalPrice = Math.round(finalPrice * (1 - appliedVoucher.percent / 100));
+            let discountAmount = finalPrice * (appliedVoucher.percent / 100);
+            // Batasi diskon maksimal jika ada
+            if (appliedVoucher.code === "HEMAT5000" && discountAmount > 5000) {
+                discountAmount = 5000;
+            }
+            if (appliedVoucher.code === "FREEDIAMOND" && discountAmount > 20000) {
+                discountAmount = 20000;
+            }
+            finalPrice = finalPrice - discountAmount;
         }
         return finalPrice;
     }
@@ -524,8 +549,8 @@ function initGamePage() {
         }
 
         let originalPrice = selectedProduct.price;
-        let finalPriceAfterVoucher = calculateFinalPrice();
-        let discountAmount = originalPrice - finalPriceAfterVoucher;
+        let finalPrice = calculateFinalPrice();
+        let discountAmount = originalPrice - finalPrice;
 
         const voucherInfo = appliedVoucher ? `
             <p>Diskon Voucher (${appliedVoucher.percent}%): <span><b>-${fmtIDR(discountAmount)}</b></span></p>
@@ -537,7 +562,7 @@ function initGamePage() {
             <p>Metode Pembayaran: <span><b>${selectedPayment.name}</b></span></p>
             ${voucherInfo}
             <hr style="border-top: 1px dashed var(--border-secondary); margin: 15px 0;">
-            <p>Total: <span><b>${fmtIDR(finalPriceAfterVoucher)}</b></span></p>
+            <p>Total: <span><b>${fmtIDR(finalPrice)}</b></span></p>
         `;
     }
     
@@ -548,7 +573,13 @@ function initGamePage() {
         
             if (voucher) {
                 appliedVoucher = voucher;
-                voucherStatus.textContent = `Voucher ${voucher.code} berhasil diterapkan! Diskon ${voucher.percent}%`;
+                let finalPrice = calculateFinalPrice();
+                let originalPrice = selectedProduct ? selectedProduct.price : 0;
+                let discountAmount = originalPrice - finalPrice;
+
+                let statusText = `Voucher ${voucher.code} berhasil diterapkan! Diskon ${fmtIDR(discountAmount)}`;
+
+                voucherStatus.textContent = statusText;
                 voucherStatus.className = 'voucher-status success';
             } else {
                 appliedVoucher = null;
