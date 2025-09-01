@@ -424,12 +424,12 @@ function initGame(){
           <div class="modal__title">Daftar Kode Voucher</div>
           <button class="modal__close" data-close="voucher-list-modal">&times;</button>
         </div>
-        <div>
+        <div class="voucher-list">
           ${VOUCHERS.map(v=>`
-            <div class="row" style="align-items:center;gap:8px">
-              <div>
-                <div style="font-weight:800">${v.code}</div>
-                <div class="muted" style="font-size:.9rem">${v.description}</div>
+            <div class="voucher-item">
+              <div class="voucher-info">
+                <div class="voucher-code">${v.code}</div>
+                <div class="voucher-desc">${v.description}</div>
               </div>
               <button class="btn btn-ghost" data-choose="${v.code}">Pilih</button>
             </div>
