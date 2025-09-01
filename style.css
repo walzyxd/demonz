@@ -388,6 +388,14 @@ p.muted, small.muted {
 }
 
 /* ================== GAME PAGE ================== */
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
 .game-header {
     margin-bottom: 1rem;
     border-radius: 12px;
@@ -397,7 +405,7 @@ p.muted, small.muted {
 
 .game-header img {
     width: 100%;
-    height: 250px;
+    height: 150px;
     object-fit: cover;
 }
 
@@ -447,7 +455,13 @@ input[type="text"] {
 }
 
 .grid.items-grid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 768px) {
+    .grid.items-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
 }
 
 .item {
