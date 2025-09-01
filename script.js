@@ -269,9 +269,19 @@ function closeModal(id) {
 
 function copyToClipboard(text, btn) {
     navigator.clipboard.writeText(text).then(() => {
-        const old = btn.textContent;
+        const originalText = btn.textContent;
+        const originalBg = btn.style.backgroundColor;
+        const originalColor = btn.style.color;
+
         btn.textContent = "Disalin!";
-        setTimeout(() => btn.textContent = old, 1500);
+        btn.style.backgroundColor = 'var(--success-color)';
+        btn.style.color = '#fff';
+
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.backgroundColor = originalBg;
+            btn.style.color = originalColor;
+        }, 1500);
     });
 }
 
@@ -716,7 +726,7 @@ Terima kasih.`;
                     <div class="account-info">
                         <p>${selectedPayment.name}</p>
                         <p>A/N: ${selectedPayment.info.name || "-"}</p>
-                        <p>${selectedPayment.info.number} <button id="copy-account" class="btn-link">Salin</button></p>
+                        <p>${selectedPayment.info.number} <button id="copy-account" class="btn btn-secondary btn-sm">Salin</button></p>
                     </div>
                 </div>
             </div>
