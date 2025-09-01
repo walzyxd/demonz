@@ -24,7 +24,7 @@ const GAMES = [
   { key: "pubg-mobile", name: "PUBG Mobile", img: "https://files.catbox.moe/tatuo9.jpg", hasServerId: false, guide: "Temukan User ID Anda di sudut kanan atas lobi game saat mengklik profil." },
   { key: "garena-delta-force", name: "Garena Delta Force", img: "https://files.catbox.moe/qul2qy.png", hasServerId: false, guide: "Buka menu profil di game dan Anda dapat menemukan User ID Anda." },
   { key: "call-of-duty", name: "Call Of Duty", img: "https://files.catbox.moe/i1kcw5.webp", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil game." },
-  { key: "valorant", name: "Valorant", img: "https://files.catbox.moe/3h9932.png", hasServerId: false, guide: "User ID Anda (Riot ID) dapat ditemukan di bawah nama akun Anda di bagian atas layar." },
+  { key: "valorant", name: "Valorant", img: "https://files.catbox.moe/3h9932.png", hasServerId: false, guide: "User ID (Riot ID) dapat ditemukan di bawah nama akun Anda di bagian atas layar." },
   { key: "eggy-party", name: "Eggy Party", img: "https://files.catbox.moe/59mdks.webp", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil dalam game." },
   { key: "garena-undawn", name: "Garena Undawn", img: "https://files.catbox.moe/o5bto9.webp", hasServerId: false, guide: "Buka menu profil dan User ID Anda akan terlihat." },
 ];
@@ -646,7 +646,7 @@ Terima kasih.`;
       ${game.hasServerId ? `<div class="row"><span>Server ID</span><strong>${serverId}</strong></div>` : ""}
       <div class="row"><span>Produk</span><strong>${selectedProduct.label}</strong></div>
       <div class="row"><span>Metode</span><strong>${selectedPayment.name}</strong></div>
-      ${appliedVoucher ? `<div class="row"><span>Voucher</span><strong>${appliedVoucher.code}</strong></div>` : ""}
+      ${appliedVoucher ? `<div class="row"><span>Voucher</span><span><strong>- ${fmtIDR(selectedProduct.price - finalPrice())}</strong></span></div>` : ""}
       <div class="row" style="border-top:1px solid var(--border);padding-top:8px">
         <span>Total Bayar</span><strong style="color:var(--success)">${fmtIDR(total)}</strong>
       </div>
