@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Up Game</title>
+    <title>Top Up Game - Walz Shop</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body data-page="game">
 
+    <!-- Navbar -->
     <header class="navbar">
         <div class="container">
-            <a href="/" class="logo">
+            <a href="index.html" class="logo">
                 <img src="https://files.catbox.moe/k28lxp.jpg" alt="Logo">
                 Walz Shop
             </a>
@@ -28,6 +29,7 @@
         </div>
     </header>
 
+    <!-- Main Content -->
     <main class="main-content">
         <div class="container game-page">
 
@@ -42,7 +44,10 @@
             </div>
 
             <div class="grid-layout">
+                <!-- Left -->
                 <div class="left-section">
+                    
+                    <!-- Step 1 -->
                     <section class="step-card">
                         <div class="step-title">
                             <span class="step-number">1</span>
@@ -58,16 +63,17 @@
                         </div>
                     </section>
     
+                    <!-- Step 2 -->
                     <section class="step-card">
                         <div class="step-title">
                             <span class="step-number">2</span>
                             <h3>Pilih Nominal Top Up</h3>
                         </div>
-                        <div class="grid" id="product-grid">
-                            </div>
+                        <div class="grid" id="product-grid"></div>
                         <small class="error-msg" id="error-product"></small>
                     </section>
     
+                    <!-- Step 3 -->
                     <section class="step-card">
                         <div class="step-title">
                             <span class="step-number">3</span>
@@ -83,17 +89,18 @@
                         </div>
                     </section>
     
+                    <!-- Step 4 -->
                     <section class="step-card">
                         <div class="step-title">
                             <span class="step-number">4</span>
                             <h3>Pilih Metode Pembayaran</h3>
                         </div>
-                        <div class="grid" id="payment-grid">
-                            </div>
+                        <div class="grid" id="payment-grid"></div>
                         <small class="error-msg" id="error-payment"></small>
                     </section>
                 </div>
     
+                <!-- Right -->
                 <div class="right-section">
                     <section class="step-card summary-card">
                         <div class="step-title">
@@ -117,6 +124,7 @@
         </div>
     </main>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2024 Walz Shop. All rights reserved.</p>
@@ -128,6 +136,7 @@
         </div>
     </footer>
 
+    <!-- Modal -->
     <div class="modal-overlay" id="modal-overlay"></div>
     <div class="modal" id="voucher-list-modal"></div>
     <div class="modal" id="checkout-modal"></div>
