@@ -65,8 +65,9 @@ body {
     transition: color 0.3s ease;
 }
 
-.nav a:hover {
+.nav a.active {
     color: var(--primary-color);
+    font-weight: bold;
 }
 
 .nav-toggle {
@@ -117,9 +118,18 @@ body {
 }
 
 /* ================== HOME PAGE STYLES ================== */
-.header-content {
-    text-align: center;
-    padding: 60px 20px 40px;
+.hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    padding: 60px 20px;
+    flex-wrap: wrap-reverse;
+}
+
+.hero-content {
+    flex: 1;
+    min-width: 300px;
 }
 
 .main-slogan {
@@ -135,10 +145,31 @@ body {
     color: var(--subtle-text);
 }
 
+.hero-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    min-width: 300px;
+}
+
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
 .promo-section {
     position: relative;
     max-width: 900px;
     margin: 0 auto 40px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: var(--text-color);
 }
 
 .slider-container {
@@ -183,13 +214,6 @@ body {
 
 .games-section {
     margin-top: 40px;
-}
-
-.section-title {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 30px;
-    color: var(--text-color);
 }
 
 .games-grid {
@@ -266,6 +290,11 @@ body {
     font-size: 1.2rem;
     margin-right: 15px;
     cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.btn-back:hover {
+    color: var(--primary-color);
 }
 
 .page-title {
@@ -319,6 +348,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-right: 15px;
+    flex-shrink: 0;
 }
 
 .step-title {
@@ -343,6 +373,13 @@ body {
     border-radius: 8px;
     color: var(--text-color);
     font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(93, 56, 182, 0.5);
 }
 
 .input-field::placeholder {
@@ -374,6 +411,7 @@ body {
 .product-card.active, .payment-card.active {
     border-color: var(--primary-color);
     box-shadow: 0 0 10px var(--primary-color);
+    transform: translateY(-3px);
 }
 
 .product-label {
@@ -438,7 +476,17 @@ body {
 .summary-section {
     padding-top: 0;
     overflow: hidden;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
     transition: all 0.4s ease-in-out;
+}
+
+.summary-section.active {
+    height: auto;
+    opacity: 1;
+    pointer-events: auto;
+    padding-top: 20px;
 }
 
 .summary-box {
