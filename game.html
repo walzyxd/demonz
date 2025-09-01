@@ -5,14 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Top Up – Walz Shop</title>
 
-  <!-- Font -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
-  <!-- Styles -->
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body data-page="game">
@@ -38,8 +35,17 @@
       <img id="game-banner" src="" alt="Banner Game">
     </div>
 
+    <div class="card" style="margin-top: 20px; padding: 16px;">
+      <h2 style="font-size: 1.1rem; margin-bottom: 8px;">Panduan Top Up</h2>
+      <ol style="padding-left: 20px;">
+        <li>Masukkan User ID (dan Server ID jika diperlukan).</li>
+        <li>Pilih nominal dan metode pembayaran yang Anda inginkan.</li>
+        <li>Isi kode voucher jika ada.</li>
+        <li>Klik "Lanjutkan Pembayaran" dan ikuti instruksi di pop-up.</li>
+      </ol>
+    </div>
+
     <div class="steps">
-      <!-- Step 1 -->
       <section class="card step">
         <div class="step__head">
           <div class="step__num">1</div>
@@ -64,7 +70,6 @@
         </div>
       </section>
 
-      <!-- Step 2 -->
       <section class="card step">
         <div class="step__head">
           <div class="step__num">2</div>
@@ -74,7 +79,6 @@
         <p id="error-product" class="error-text"></p>
       </section>
 
-      <!-- Step 3 -->
       <section class="card step">
         <div class="step__head">
           <div class="step__num">3</div>
@@ -84,7 +88,6 @@
         <p id="error-payment" class="error-text"></p>
       </section>
 
-      <!-- Step 4 -->
       <section class="card step">
         <div class="step__head">
           <div class="step__num">4</div>
@@ -99,7 +102,6 @@
         <p id="voucher-status" class="status-text"></p>
       </section>
 
-      <!-- Step 5 -->
       <section id="summary-section" class="card step summary">
         <div class="step__head">
           <div class="step__num">5</div>
@@ -109,7 +111,6 @@
           <p class="muted">Pilih nominal & metode bayar untuk melihat total.</p>
         </div>
 
-        <!-- Harga hanya tampil setelah pilih produk + pembayaran -->
         <div id="price-box" class="price-row" style="display:none;">
           <div>Total</div>
           <div id="total-price" class="price"></div>
@@ -126,13 +127,14 @@
     <p>&copy; 2025 Walz Shop. Semua hak dilindungi.</p>
   </footer>
 
-  <!-- Overlay + Modal -->
+  <a href="https://wa.me/6282298902274" class="floating-wa" target="_blank" rel="noopener">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
   <div id="modal-overlay"></div>
 
-  <!-- Modal Daftar Voucher -->
   <div id="voucher-list-modal" class="modal card"></div>
 
-  <!-- Modal Checkout -->
   <div id="checkout-modal" class="modal card"></div>
 
   <script src="script.js"></script>
