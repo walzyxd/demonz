@@ -173,7 +173,7 @@ h2, h3 {
 }
 
 .game-card img {
-    width: 100%;
+    width: 100px;
     height: 100px;
     border-radius: 12px;
     object-fit: cover;
@@ -187,7 +187,7 @@ h2, h3 {
     padding: 0;
 }
 
-.info-section li {
+.info-section ol li {
     background-color: var(--background-color);
     border-radius: 8px;
     padding: 15px;
@@ -195,6 +195,35 @@ h2, h3 {
     display: flex;
     align-items: center;
     gap: 10px;
+    font-weight: bold;
+}
+.info-section ol li::before {
+    content: counter(step-counter);
+    counter-increment: step-counter;
+    font-weight: bold;
+    color: var(--primary-color);
+    background-color: var(--card-bg-color);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid var(--primary-color);
+}
+.info-section.info-section ol {
+    counter-reset: step-counter;
+}
+
+.contact-card {
+    background-color: var(--background-color);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+.contact-card p {
+    margin-top: 0;
 }
 
 /* Game Page Specific */
@@ -204,6 +233,7 @@ h2, h3 {
     align-items: center;
     gap: 8px;
     font-weight: bold;
+    padding: 8px 15px;
 }
 
 .game-page .game-header {
@@ -426,6 +456,19 @@ input:focus {
     font-weight: normal;
     margin-left: 5px;
     font-size: 0.9em;
+}
+.btn.btn-card {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 10px 15px;
+    border-radius: 8px;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
+.btn.btn-card:hover {
+    background-color: var(--border-color);
 }
 
 .footer {
