@@ -367,7 +367,6 @@ function initIndexPage() {
         function nextSlide() {
             currentSlide = (currentSlide + 1) % slides.length;
             updateSlider();
-            console.log(`Current slide: ${currentSlide}`);
         }
 
         function goToSlide(index) {
@@ -416,7 +415,6 @@ function initGamePage() {
     const voucherBtn = qs("#voucher-btn");
     const voucherStatus = qs("#voucher-status");
     const voucherListBtn = qs("#voucher-list-btn");
-    const summaryPlaceholder = qs(".summary-placeholder", summaryBox);
 
     let selectedProduct = null;
     let selectedPayment = null;
@@ -454,21 +452,8 @@ function initGamePage() {
 
     function updateSummaryVisibility() {
         const isReady = selectedProduct && selectedPayment;
-        if (isReady) {
-            summarySection.style.opacity = '1';
-            summarySection.style.pointerEvents = 'auto';
-            summaryBox.style.minHeight = '140px';
-            if (summaryPlaceholder) {
-                summaryPlaceholder.style.display = 'none';
-            }
-        } else {
-            summarySection.style.opacity = '0';
-            summarySection.style.pointerEvents = 'none';
-            summaryBox.style.minHeight = '60px';
-            if (summaryPlaceholder) {
-                summaryPlaceholder.style.display = 'block';
-            }
-        }
+        summarySection.style.opacity = isReady ? '1' : '0';
+        summarySection.style.pointerEvents = isReady ? 'auto' : 'none';
     }
 
     function renderProducts() {
@@ -591,6 +576,7 @@ function initGamePage() {
                 const code = e.target.dataset.voucherCode;
                 voucherInput.value = code;
                 hideModal('voucher-list-modal');
+                voucherBtn.click(); // Otomatis terapkan voucher
             });
         });
 
