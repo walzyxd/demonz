@@ -2,109 +2,68 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WalzShop — Top Up Game</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
-  <!-- Font Poppins -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Icon -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Walz Shop – Top Up Termurah & Terpercaya</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <link rel="stylesheet" href="style.css"/>
+  <meta name="description" content="Tempat top up game termurah, cepat, dan terpercaya. Tersedia diamond Free Fire, Mobile Legends, Genshin Impact, dan banyak lagi." />
 </head>
-<body>
-  <!-- ==============================
-       HEADER
-  =============================== -->
+<body data-page="index">
   <header class="header">
-    <div class="header-container container">
-      <div class="logo">WalzShop</div>
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Walz<span>Shop</span></a>
       <nav class="nav">
-        <a href="index.html" class="nav-item">Beranda</a>
-        <a href="#games" class="nav-item">Top Up</a>
-        <a href="#panduan" class="nav-item">Panduan</a>
-        <a href="#tentang" class="nav-item">Tentang</a>
+        <a class="nav-item active" href="index.html">Beranda</a>
+        <a class="nav-item" href="#promo">Promo</a>
+        <a class="nav-item" href="#games">Game</a>
+        <a class="nav-item" href="#tentang">Tentang</a>
+        <a class="nav-item" href="#kontak">Kontak</a>
       </nav>
-      <button class="nav-toggle"><i class="fas fa-bars"></i></button>
+      <button class="nav-toggle" aria-label="Toggle Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
     </div>
   </header>
 
-  <!-- ==============================
-       HERO
-  =============================== -->
-  <section class="hero">
-    <h1>Top Up Game Favoritmu dengan Mudah</h1>
-    <p>Pilih game, masukkan ID, pilih nominal, dan bayar instan. Semua proses cepat, aman, dan terpercaya.</p>
-    <a href="#games" class="btn-primary" style="margin-top:1.5rem; display:inline-block;">Mulai Top Up</a>
-  </section>
+  <main>
+    <section id="promo" class="promo container">
+      <h2 class="section-title">Promo Terbaru</h2>
+      <div class="slider">
+        <div id="promo-slider" class="slider__track"></div>
+      </div>
+      <div id="slider-dots" class="slider__dots"></div>
+    </section>
 
-  <!-- ==============================
-       GAME LIST
-  =============================== -->
-  <section id="games" class="container">
-    <h2 style="text-align:center; margin-bottom:1rem; color:#6a0dad;">Pilih Game</h2>
-    <div class="options-grid">
-      <!-- Game list injected from script.js -->
-      <div class="option-card">
-        <img src="https://files.catbox.moe/x5rvpg.jpg" alt="Free Fire" class="game-image-square">
-        <h3>Free Fire</h3>
-        <a href="game.html?game=free%20fire" class="btn-secondary" style="margin-top:0.5rem;">Top Up</a>
-      </div>
-      <div class="option-card">
-        <img src="https://files.catbox.moe/0s5t1n.jpg" alt="Mobile Legends" class="game-image-square">
-        <h3>Mobile Legends</h3>
-        <a href="game.html?game=mobile%20legends" class="btn-secondary" style="margin-top:0.5rem;">Top Up</a>
-      </div>
-      <div class="option-card">
-        <img src="https://files.catbox.moe/6o7gk9.jpg" alt="PUBG Mobile" class="game-image-square">
-        <h3>PUBG Mobile</h3>
-        <a href="game.html?game=pubg%20mobile" class="btn-secondary" style="margin-top:0.5rem;">Top Up</a>
-      </div>
-      <div class="option-card">
-        <img src="https://files.catbox.moe/7b2v3a.jpg" alt="Valorant" class="game-image-square">
-        <h3>Valorant</h3>
-        <a href="game.html?game=valorant" class="btn-secondary" style="margin-top:0.5rem;">Top Up</a>
-      </div>
+    <section id="games" class="games container">
+      <h2 class="section-title">Pilih Game Favoritmu</h2>
+      <div id="games-grid" class="grid-games"></div>
+    </section>
+
+    <section id="tentang" class="info container">
+      <h2 class="section-title">Tentang Walz Shop</h2>
+      <p>Walz Shop adalah tempat top up game yang fokus pada kemudahan, kecepatan, dan harga yang ramah kantong.</p>
+    </section>
+
+    <section id="kontak" class="info container">
+      <h2 class="section-title">Kontak</h2>
+      <p>Butuh bantuan? Hubungi kami via WhatsApp di halaman checkout setelah memilih produk.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Walz Shop. Semua hak dilindungi.</p>
     </div>
-  </section>
+  </footer>
 
-  <!-- ==============================
-       PANDUAN
-  =============================== -->
-  <section id="panduan" class="guide-section container">
-    <h2 style="color:#6a0dad; text-align:center; margin-bottom:1rem;">Cara Top Up</h2>
-    <ul class="guide-list">
-      <li>1. Pilih game yang ingin kamu top up.</li>
-      <li>2. Masukkan User ID (dan Server ID jika diminta).</li>
-      <li>3. Pilih jumlah diamond/UC/VP sesuai kebutuhan.</li>
-      <li>4. Pilih metode pembayaran favoritmu.</li>
-      <li>5. Klik <b>Beli Sekarang</b> dan lakukan pembayaran.</li>
-      <li>6. Diamond akan otomatis masuk ke akunmu setelah pembayaran berhasil.</li>
-    </ul>
-  </section>
-
-  <!-- ==============================
-       TENTANG
-  =============================== -->
-  <section id="tentang" class="container">
-    <h2 style="text-align:center; margin-bottom:1rem; color:#6a0dad;">Tentang WalzShop</h2>
-    <p style="text-align:center; color:#555; max-width:700px; margin:0 auto;">
-      WalzShop adalah platform top up game terpercaya. Kami menyediakan berbagai pilihan game populer dengan harga bersaing dan proses cepat. Keamanan dan kenyamanan pelanggan adalah prioritas utama kami.
-    </p>
-  </section>
-
-  <!-- ==============================
-       FLOATING WHATSAPP
-  =============================== -->
-  <a href="https://wa.me/6282298902274" target="_blank" class="wa-float">
-    <i class="fab fa-whatsapp"></i>
+  <a href="https://wa.me/6282298902274" class="floating-wa" target="_blank" rel="noopener" aria-label="Hubungi Admin via WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
   </a>
 
-  <!-- ==============================
-       FOOTER
-  =============================== -->
-  <footer class="footer">
-    <p>&copy; 2025 WalzShop. Semua Hak Dilindungi.</p>
-    <p>Dibuat dengan ❤️ untuk gamers Indonesia</p>
-  </footer>
+  <script src="script.js"></script>
 </body>
 </html>
