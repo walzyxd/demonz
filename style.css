@@ -36,7 +36,7 @@ body {
 }
 
 .container {
-    max-width: 1100px;
+    max-width: 900px; /* Diperkecil untuk game page, diatur ulang untuk index */
     margin: 0 auto;
     padding: 0 1rem;
 }
@@ -383,11 +383,13 @@ a {
 .voucher-input-group {
     display: flex;
     gap: 0.75rem;
+    flex-wrap: wrap; /* Memastikan responsif */
 }
 
 .voucher-input-group input {
     flex-grow: 1;
     border-radius: 12px;
+    min-width: 150px; /* Batasan lebar input */
 }
 
 .btn-small {
@@ -542,11 +544,11 @@ a {
 
 .modal-content {
     background-color: var(--card-bg);
-    padding: 2.5rem;
+    padding: 2rem;
     border-radius: 16px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-    width: 90%;
-    max-width: 550px;
+    width: 95%; /* Diperbesar sedikit untuk layar kecil */
+    max-width: 500px; /* Diperkecil untuk layar besar */
     position: relative;
     transform: scale(0.95);
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
@@ -604,7 +606,7 @@ a {
 }
 
 .checkout-total {
-    font-size: 1.8rem;
+    font-size: 1.5rem; /* Diperkecil */
     font-weight: 700;
     color: var(--accent-color);
     text-align: center;
@@ -647,7 +649,7 @@ a {
 }
 
 .ewallet-number {
-    font-size: 1.4rem;
+    font-size: 1.2rem; /* Diperkecil */
     font-weight: 600;
     color: var(--text-color);
 }
@@ -799,18 +801,23 @@ a {
         font-size: 0.9rem;
     }
     .modal-content {
-        padding: 2rem;
+        padding: 1.5rem; /* Diperkecil */
+        width: 95%;
+        max-width: 450px;
     }
     .modal-title {
         font-size: 1.5rem;
     }
     .checkout-total {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
     .ewallet-number {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
     .qris-image {
         max-width: 90%;
+    }
+    .btn-primary {
+        padding: 0.8rem 1.5rem;
     }
 }
