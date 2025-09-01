@@ -1,142 +1,207 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Top Up – Walz Shop</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Walz Shop — Top Up Game</title>
 
+  <!-- Font & Icons -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css">
 
-  <link rel="stylesheet" href="style.css"/>
+  <!-- Script (defer supaya DOM siap dulu) -->
+  <script src="script.js" defer></script>
+
+  <meta name="description" content="Halaman top up game Walz Shop — masukkan ID, pilih nominal & metode pembayaran, pakai voucher (opsional), lalu checkout." />
 </head>
 <body data-page="game">
-  <header class="header">
-    <a href="index.html" class="logo">Walz<span>Shop</span></a>
-    <nav class="nav">
-      <a class="nav-item" href="index.html">Beranda</a>
-    </nav>
-    <button class="nav-toggle" aria-label="Toggle Menu">
-      <i class="fa-solid fa-bars"></i>
-    </button>
+
+  <!-- ================= HEADER ================= -->
+  <header class="header" role="banner">
+    <div class="container header-inner" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <a href="index.html" class="logo" aria-label="Walz Shop">Walz<span>Shop</span></a>
+      </div>
+
+      <nav class="nav" aria-label="Main navigation">
+        <a class="nav-item" href="index.html">Beranda</a>
+        <a class="nav-item" href="index.html#promo">Promo</a>
+        <a class="nav-item" href="index.html#games">Game</a>
+        <a class="nav-item" href="#contact">Kontak</a>
+      </nav>
+
+      <div style="display:flex;align-items:center;gap:10px;">
+        <!-- Back button (some scripts listen to .btn-back, some to .btn-link) -->
+        <button class="btn-back btn-link" aria-label="Kembali"><i class="fa-solid fa-arrow-left"></i></button>
+      </div>
+    </div>
   </header>
 
-  <main class="container game">
-    <div class="page-head">
-      <button class="btn-link back-link" onclick="history.back()">
-        <i class="fa-solid fa-arrow-left"></i> Kembali
-      </button>
-      <h1 id="game-title" class="page-title">Memuat…</h1>
-    </div>
+  <!-- ================= MAIN ================= -->
+  <main class="container game" style="padding-top:20px;padding-bottom:40px;">
+    <!-- Page header with small square game image -->
+    <section class="page-head" style="display:flex;align-items:center;gap:16px;margin-bottom:18px;">
+      <img id="game-banner" src="" alt="Banner Game" class="game-banner" style="width:120px;height:120px;border-radius:12px;object-fit:cover;border:1px solid var(--border);background:#fff;">
+      <div>
+        <h1 id="game-title" class="page-title" style="font-size:1.4rem;margin-bottom:6px;">Memuat…</h1>
+        <p id="game-guide" class="muted" style="margin:0;font-size:0.95rem;color:var(--muted)">Panduan singkat akan muncul di sini.</p>
+      </div>
+    </section>
 
-    <div class="banner">
-      <img id="game-banner" src="" alt="Banner Game">
-    </div>
-
-    <div class="card" style="margin-top: 20px; padding: 16px;">
-      <h2 style="font-size: 1.1rem; margin-bottom: 8px;">Panduan Top Up</h2>
-      <ol style="padding-left: 20px;">
-        <li>Masukkan User ID (dan Server ID jika diperlukan).</li>
-        <li>Pilih nominal dan metode pembayaran yang Anda inginkan.</li>
-        <li>Isi kode voucher jika ada.</li>
-        <li>Klik "Lanjutkan Pembayaran" dan ikuti instruksi di pop-up.</li>
+    <!-- Informasi singkat & panduan ringkas -->
+    <div class="card" style="padding:14px;margin-bottom:14px;">
+      <strong style="display:block;margin-bottom:6px;color:var(--primary)">Panduan Singkat</strong>
+      <ol style="padding-left:18px;color:var(--muted)">
+        <li>Masukkan User ID (dan Server ID jika diminta).</li>
+        <li>Pilih nominal/top-up yang diinginkan.</li>
+        <li>Pilih metode pembayaran.</li>
+        <li(Opsi) Masukkan kode voucher untuk potongan harga.</li>
+        <li>Klik "Lanjutkan Pembayaran" lalu ikuti instruksi di popup.</li>
       </ol>
+      <small style="display:block;margin-top:8px;color:var(--muted)">Jika butuh bantuan, gunakan tombol WhatsApp di kanan bawah.</small>
     </div>
 
-    <div class="steps">
-      <section class="card step">
-        <div class="step__head">
+    <!-- STEPS (1-5) -->
+    <div class="steps" style="display:flex;flex-direction:column;gap:14px;">
+
+      <!-- STEP 1: Masukkan ID -->
+      <section class="card step" aria-labelledby="step1-title">
+        <div class="step__head" style="display:flex;gap:12px;align-items:center;">
           <div class="step__num">1</div>
           <div>
-            <h2 class="step__title">Masukkan User ID</h2>
-            <p id="game-guide" class="muted"></p>
+            <h2 id="step1-title" class="step__title">Masukkan User ID</h2>
+            <p class="muted" style="margin-top:6px" id="game-guide-2">Silakan masukkan User ID / Player ID Anda.</p>
           </div>
         </div>
 
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="user-id">User ID</label>
-            <input id="user-id" class="input" type="text" placeholder="Contoh: 123456789"/>
-            <p id="error-user" class="error-text"></p>
+        <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div>
+            <label for="user-id" style="font-weight:600;margin-bottom:6px;display:block">User ID</label>
+            <input id="user-id" class="input" type="text" placeholder="Contoh: 123456789" autocomplete="off">
+            <p id="error-user" class="error-text" style="min-height:1.2em"></p>
           </div>
 
           <div id="server-group" class="form-group" style="display:none;">
-            <label for="server-id">Server ID</label>
-            <input id="server-id" class="input" type="text" placeholder="Contoh: 1234"/>
-            <p id="error-server" class="error-text"></p>
+            <label for="server-id" style="font-weight:600;margin-bottom:6px;display:block">Server ID (jika diperlukan)</label>
+            <input id="server-id" class="input" type="text" placeholder="Contoh: 1234">
+            <p id="error-server" class="error-text" style="min-height:1.2em"></p>
           </div>
         </div>
       </section>
 
-      <section class="card step">
-        <div class="step__head">
+      <!-- STEP 2: Pilih Produk -->
+      <section class="card step" aria-labelledby="step2-title">
+        <div class="step__head" style="display:flex;gap:12px;align-items:center;">
           <div class="step__num">2</div>
-          <h2 class="step__title">Pilih Produk</h2>
+          <div>
+            <h2 id="step2-title" class="step__title">Pilih Produk</h2>
+            <p class="muted" style="margin-top:6px">Pilih nominal/top-up yang ingin dibeli.</p>
+          </div>
         </div>
-        <div id="product-grid" class="grid-items"></div>
-        <p id="error-product" class="error-text"></p>
+
+        <div id="product-grid" class="grid-items" style="margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;">
+          <!-- JS akan render product-card di sini -->
+        </div>
+        <p id="error-product" class="error-text" style="min-height:1.2em"></p>
       </section>
 
-      <section class="card step">
-        <div class="step__head">
+      <!-- STEP 3: Pilih Pembayaran -->
+      <section class="card step" aria-labelledby="step3-title">
+        <div class="step__head" style="display:flex;gap:12px;align-items:center;">
           <div class="step__num">3</div>
-          <h2 class="step__title">Pilih Metode Pembayaran</h2>
+          <div>
+            <h2 id="step3-title" class="step__title">Pilih Metode Pembayaran</h2>
+            <p class="muted" style="margin-top:6px">Pilih salah satu untuk melihat instruksi pembayaran.</p>
+          </div>
         </div>
-        <div id="payment-grid" class="grid-items grid-payments"></div>
-        <p id="error-payment" class="error-text"></p>
+
+        <div id="payment-grid" class="grid-items grid-payments" style="margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;align-items:start;">
+          <!-- JS akan render payment-card di sini -->
+        </div>
+        <p id="error-payment" class="error-text" style="min-height:1.2em"></p>
       </section>
 
-      <section class="card step">
-        <div class="step__head">
+      <!-- STEP 4: Kode Voucher -->
+      <section class="card step" aria-labelledby="step4-title">
+        <div class="step__head" style="display:flex;gap:12px;align-items:center;">
           <div class="step__num">4</div>
-          <h2 class="step__title">Pakai Kode Voucher (Opsional)</h2>
+          <div>
+            <h2 id="step4-title" class="step__title">Masukkan Kode Voucher (Opsional)</h2>
+            <p class="muted" style="margin-top:6px">Masukkan kode jika punya, atau klik "Lihat Kode" untuk daftar yang tersedia.</p>
+          </div>
         </div>
 
-        <div class="voucher-row">
-          <input id="voucher-input" class="input" type="text" placeholder="Masukkan kode voucher"/>
-          <button id="voucher-btn" class="btn">Gunakan</button>
-          <button id="voucher-list-btn" class="btn btn-ghost">Lihat Kode</button>
+        <div style="margin-top:12px;display:flex;gap:10px;align-items:center;">
+          <input id="voucher-input" class="input voucher-input" type="text" placeholder="Contoh: WALZSHOP" style="flex:1;">
+          <button id="voucher-btn" class="btn btn-primary">Gunakan</button>
+          <button id="voucher-list-btn" class="btn btn-secondary">Lihat Kode</button>
         </div>
-        <p id="voucher-status" class="status-text"></p>
+        <div id="voucher-status" class="voucher-status status-text" style="margin-top:8px;min-height:1.2em"></div>
       </section>
 
-      <section id="summary-section" class="card step summary">
-        <div class="step__head">
+      <!-- STEP 5: Ringkasan & Checkout -->
+      <section id="summary-section" class="card step summary-section" style="padding-bottom:12px;">
+        <div class="step__head" style="display:flex;gap:12px;align-items:center;">
           <div class="step__num">5</div>
-          <h2 class="step__title">Ringkasan & Checkout</h2>
-        </div>
-        <div id="summary-box" class="summary-box">
-          <p class="muted">Pilih nominal & metode bayar untuk melihat total.</p>
+          <div>
+            <h2 class="step__title">Ringkasan & Checkout</h2>
+            <p class="muted" style="margin-top:6px">Harga akan muncul setelah memilih produk dan metode pembayaran.</p>
+          </div>
         </div>
 
-        <div id="price-box" class="price-row" style="display:none;">
+        <div id="summary-box" class="summary-box" style="margin-top:12px;">
+          <p class="summary-placeholder">Pilih nominal & metode bayar untuk melihat ringkasan.</p>
+        </div>
+
+        <div id="price-box" class="price-row" style="display:none;margin-top:12px;border-top:1px solid var(--border);padding-top:12px;">
           <div>Total</div>
-          <div id="total-price" class="price"></div>
+          <div id="total-price" class="price">Rp0</div>
         </div>
 
-        <button id="checkout-btn" class="btn btn-primary" disabled>
+        <button id="checkout-btn" class="btn btn-primary checkout-btn" style="margin-top:12px;" disabled>
           <i class="fa-solid fa-cart-shopping"></i> Lanjutkan Pembayaran
         </button>
       </section>
-    </div>
+
+    </div> <!-- end steps -->
   </main>
 
-  <footer class="footer">
-    <p>&copy; 2025 Walz Shop. Semua hak dilindungi.</p>
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer" role="contentinfo" id="contact">
+    <div class="container" style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+      <p style="color:var(--muted)">© 2025 Walz Shop. Semua hak dilindungi.</p>
+      <small style="color:var(--muted)">Butuh bantuan? Klik tombol WhatsApp di pojok kanan bawah.</small>
+    </div>
   </footer>
 
-  <a href="https://wa.me/6282298902274" class="floating-wa" target="_blank" rel="noopener">
+  <!-- ================= FLOATING WHATSAPP ================= -->
+  <a href="https://wa.me/6282298902274" class="floating-wa" target="_blank" rel="noopener" aria-label="Hubungi Admin via WhatsApp">
     <i class="fa-brands fa-whatsapp"></i>
   </a>
 
+  <!-- ================= MODALS & OVERLAY (diperlukan oleh script.js) ================= -->
   <div id="modal-overlay"></div>
 
-  <div id="voucher-list-modal" class="modal card"></div>
+  <!-- Voucher list modal (diisi oleh JS saat dipanggil) -->
+  <div id="voucher-list-modal" class="modal card" aria-hidden="true" style="display:none;"></div>
 
-  <div id="checkout-modal" class="modal card"></div>
+  <!-- Checkout modal (diisi oleh JS saat dipanggil) -->
+  <div id="checkout-modal" class="modal card" aria-hidden="true" style="display:none;"></div>
 
-  <script src="script.js"></script>
+  <!-- ================= OPTIONAL: fallback inline script to improve UX (no logic) ================= -->
+  <script>
+    // UX: support back button(s) behavior without depending on script.js
+    document.addEventListener('DOMContentLoaded', () => {
+      const backBtns = document.querySelectorAll('.btn-back, .back-link');
+      backBtns.forEach(b => b.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (history.length > 1) history.back(); else window.location.href = 'index.html';
+      }));
+    });
+  </script>
 </body>
 </html>
