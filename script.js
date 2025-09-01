@@ -527,9 +527,10 @@ function initGame() {
 /* ================== STATE GLOBAL & FUNGSI BANTUAN ================== */
 function setVoucherStatus(text, isError = false) {
   const el = qs("#voucher-status");
-  if (!el) return;
-  el.textContent = text;
-  el.className = `status-text ${text ? (isError ? 'error' : 'success') : ''}`;
+  if (el) {
+    el.textContent = text;
+    el.className = `status-text ${text ? (isError ? 'error' : 'success') : ''}`;
+  }
 }
 
 function calcDiscount(price, voucher) {
