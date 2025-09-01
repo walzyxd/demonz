@@ -3,56 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Up Game Murah - Walz Shop</title>
+    <title>Walz Shop - Top Up Murah</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="script.js" defer data-page="index"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-<body>
+<body data-page="index">
 
-    <header class="header">
-        <div class="header-inner container">
-            <a href="index.html" class="logo">WALZ<span>SHOP</span></a>
-            <nav class="nav">
-                <a href="index.html" class="nav-item active">Beranda</a>
-                <a href="#" class="nav-item">Top Up</a>
-                <a href="#" class="nav-item">Diamond</a>
-                <a href="#" class="nav-item">Promo</a>
-            </nav>
-            <button class="nav-toggle">
+    <header class="navbar">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="https://files.catbox.moe/k28lxp.jpg" alt="Logo">
+                Walz Shop
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation">
                 <i class="fa-solid fa-bars"></i>
             </button>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html" class="active">Beranda</a></li>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#">Kontak</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <main class="container">
-        <section class="promo-section">
-            <div class="slider">
-                <div class="slider__track" id="promo-slider">
-                    </div>
-            </div>
-            <div class="slider__dots" id="slider-dots"></div>
-        </section>
+    <main class="main-content">
+        <div class="container">
+            <section class="section">
+                <div class="slider-container">
+                    <div class="slider-track" id="promo-slider"></div>
+                    <div class="slider-dots" id="slider-dots"></div>
+                </div>
+            </section>
 
-        <section class="games-section">
-            <div class="card cta-box">
-                <h3>Selamat Datang di Walz Shop!</h3>
-                <p>Tempat top up game termurah, tercepat, dan terpercaya. Layanan 24 jam dengan berbagai pilihan pembayaran.</p>
-            </div>
-
-            <div class="card">
-                <h2>Pilihan Game</h2>
+            <section class="section">
+                <div class="section-head">
+                    <h2>Pilihan Game</h2>
+                </div>
                 <div class="games-grid" id="games-grid">
                     </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
-    
+
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Walz Shop. Semua hak cipta dilindungi.</p>
+            <p>&copy; 2024 Walz Shop. All rights reserved.</p>
+            <div class="footer-social">
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            </div>
         </div>
     </footer>
 
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal" id="voucher-list-modal"></div>
+    <div class="modal" id="checkout-modal"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>
