@@ -444,6 +444,23 @@ function initGame() {
   } else {
     paymentGrid.innerHTML = `<p class="muted">Metode pembayaran belum tersedia.</p>`;
   }
+  
+  // --- PERBAIKAN: RENDER GAMBAR GAME DI PAGE 2 ---
+  const gameGrid = qs("#game-grid");
+  if (gameGrid) {
+    gameGrid.innerHTML = "";
+    GAMES.forEach(g => {
+      const a = document.createElement("a");
+      a.className = "game-card-small";
+      a.href = `game.html?key=${g.key}`;
+      a.innerHTML = `
+        <img src="${g.img}" alt="${g.name}">
+        <div class="game-title">${g.name}</div>
+      `;
+      gameGrid.appendChild(a);
+    });
+  }
+  // --- AKHIR PERBAIKAN: RENDER GAMBAR GAME DI PAGE 2 ---
 
   // Fungsionalitas Voucher
   const voucherBtn = qs("#voucher-btn");
@@ -555,10 +572,12 @@ function finalPrice() {
   return Math.max(0, base - disc);
 }
 
+// --- PERBAIKAN FUNGSI REFRESHSELECTIONS DAN REFRESHSUMMARY ---
 function refreshSelections() {
   qsa(".product-card").forEach(c => c.classList.toggle("selected", selectedProduct && c.dataset.id === selectedProduct.id));
   qsa(".payment-card").forEach(c => c.classList.toggle("selected", selectedPayment && c.dataset.id === selectedPayment.id));
   
+  // Memastikan harga dan ringkasan diperbarui setiap kali pilihan berubah
   refreshSummary();
 }
 
@@ -586,10 +605,13 @@ function refreshSummary() {
     ${appliedVoucher ? `<div class="row"><span>Voucher</span><span><strong>- ${fmtIDR(discount)}</strong></span></div>` : ""}
   `;
 
+  // --- PERBAIKAN: PASTIKAN JUMLAH HARGA TERLIHAT DI PAYMENT ---
   priceBox.style.display = "flex";
   totalEl.textContent = fmtIDR(total);
   checkoutBtn.disabled = false;
+  // --- AKHIR PERBAIKAN ---
 }
+// --- AKHIR PERBAIKAN FUNGSI REFRESHSELECTIONS DAN REFRESHSUMMARY ---
 
 function setError(sel, text) {
   const el = qs(sel);
