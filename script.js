@@ -14,7 +14,7 @@ const GAMES = [
     { key: "free-fire", name: "Free Fire", img: "https://files.catbox.moe/ldccdf.jpg", hasServerId: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game." },
     { key: "mobile-legends", name: "Mobile Legends", img: "https://files.catbox.moe/6ns43w.jpg", hasServerId: true, guide: "Temukan User ID dan Server ID di bawah nama panggilan saat Anda mengklik avatar profil." },
     { key: "honor-of-kings", name: "Honor of Kings", img: "https://files.catbox.moe/i7ge1c.jpg", hasServerId: false, guide: "User ID Anda ada di bagian bawah layar saat Anda membuka profil." },
-    { key: "genshin-impact", name: "Genshin Impact", img: "https://files.catbox.moe/he48wt.jpg", hasServerId: false, guide: "User ID (9 digit) terletak di sudut kanan bawah layar saat Anda berada di dalam game." }, // Ganti Gambar
+    { key: "genshin-impact", name: "Genshin Impact", img: "https://files.catbox.moe/he48wt.jpg", hasServerId: false, guide: "User ID (9 digit) terletak di sudut kanan bawah layar saat Anda berada di dalam game." },
     { key: "roblox", name: "Roblox", img: "https://files.catbox.moe/k28lxp.jpg", hasServerId: false, guide: "Top up menggunakan Gift Card yang akan dikirim langsung ke akun Anda." },
     { key: "super-sus", name: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", hasServerId: false, guide: "User ID dapat ditemukan di menu profil dalam game." },
     { key: "clash-of-clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", hasServerId: false, guide: "User ID (Tag Pemain) adalah kombinasi huruf dan angka yang dimulai dengan tanda pagar (#)." },
@@ -32,12 +32,11 @@ const PROMOS = [
     { title: "Top Up Starlight MLBB Harga Cuan", img: "https://files.catbox.moe/dpr6d2.jpg", gameKey: "mobile-legends" },
     { title: "Promo UC PUBG Mobile Khusus Member", img: "https://files.catbox.moe/w43dgb.jpg", gameKey: "pubg-mobile" },
     { title: "Blessing of the Welkin Moon Genshin", img: "https://files.catbox.moe/uusd4l.jpg", gameKey: "genshin-impact" },
-    { title: "Top Up Robux Paling Murah!", img: "https://files.catbox.moe/k28lxp.jpg", gameKey: "roblox" },
-]; // Hanya 5 promo, slide terakhir dihapus.
+];
 
 const PAYMENTS = [
     { id: "dana", name: "Dana", img: "https://files.catbox.moe/0j5opw.png", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
-    { id: "gopay", name: "Gopay", img: "https://files.catbox.moe/37vcbe.jpg", type: "ewallet", info: { number: "082116690164", name: "TI** SUT***" } }, // Tambah Gopay
+    { id: "gopay", name: "Gopay", img: "https://files.catbox.moe/37vcbe.jpg", type: "ewallet", info: { number: "082116690164", name: "TI** SUT***" } },
     { id: "qris", name: "QRIS", img: "https://files.catbox.moe/pa0iwo.png", type: "qris", info: { qrisImg: "https://files.catbox.moe/pa0iwo.png" } },
     { id: "krom", name: "Krom Bank", img: "https://files.catbox.moe/mae938.jpg", type: "bank_transfer", info: { number: "770072009565", name: "TI** SUT***" } },
 ];
@@ -246,7 +245,7 @@ function showModal(modalId) {
     const overlay = qs("#modal-overlay");
     const modal = qs(`#${modalId}`);
     if (overlay && modal) {
-        modal.style.display = 'block'; // Changed to block for easier handling
+        modal.style.display = 'block';
         overlay.classList.add("active");
         document.body.style.overflow = 'hidden';
     }
@@ -270,7 +269,7 @@ function copyToClipboard(text, buttonElement) {
         const originalBg = buttonElement.style.backgroundColor;
         
         buttonElement.textContent = "Nomor Tersalin!";
-        buttonElement.style.backgroundColor = "#25D366";
+        buttonElement.style.backgroundColor = "#22c55e"; // Hijau saat tersalin
         
         setTimeout(() => {
             buttonElement.textContent = originalText;
@@ -293,7 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (overlay) {
         overlay.addEventListener("click", (e) => {
             if (e.target.id === "modal-overlay") {
-                const activeModal = qs(".modal-content[style*='display: block']"); // Changed to block
+                const activeModal = qs(".modal-content[style*='display: block']");
                 if (activeModal) {
                     hideModal(activeModal.id);
                 }
@@ -334,8 +333,8 @@ function initIndexPage() {
     function initPromoSlider() {
         if (!promoSlider || !sliderDots) return;
 
-        promoSlider.innerHTML = ""; // Clear existing slides
-        sliderDots.innerHTML = ""; // Clear existing dots
+        promoSlider.innerHTML = "";
+        sliderDots.innerHTML = "";
 
         PROMOS.forEach((promo, index) => {
             const slide = document.createElement("a");
@@ -368,12 +367,13 @@ function initIndexPage() {
         function nextSlide() {
             currentSlide = (currentSlide + 1) % slides.length;
             updateSlider();
+            console.log(`Current slide: ${currentSlide}`);
         }
 
         function goToSlide(index) {
             currentSlide = index;
             updateSlider();
-            clearInterval(slideInterval); // Reset interval on manual navigation
+            clearInterval(slideInterval);
             slideInterval = setInterval(nextSlide, 3000);
         }
 
@@ -411,11 +411,12 @@ function initGamePage() {
     const paymentGrid = qs("#payment-grid");
     const checkoutBtn = qs("#checkout-btn");
     const summaryBox = qs("#summary-box");
-    const summarySection = qs("#summary-section"); // New element for summary section
+    const summarySection = qs("#summary-section");
     const voucherInput = qs("#voucher-input");
     const voucherBtn = qs("#voucher-btn");
     const voucherStatus = qs("#voucher-status");
-    const voucherListBtn = qs("#voucher-list-btn"); // New button for voucher list
+    const voucherListBtn = qs("#voucher-list-btn");
+    const summaryPlaceholder = qs(".summary-placeholder", summaryBox);
 
     let selectedProduct = null;
     let selectedPayment = null;
@@ -447,31 +448,26 @@ function initGamePage() {
             qs(`.payment-card[data-id="${selectedPayment.id}"]`).classList.add('active');
         }
     
-        const finalPrice = calculateFinalPrice();
-        qsa('.payment-card').forEach(card => {
-            const priceEl = qs('.payment-price', card);
-            if (selectedProduct) {
-                priceEl.textContent = fmtIDR(finalPrice);
-                priceEl.style.opacity = '1';
-                priceEl.style.visibility = 'visible';
-            } else {
-                priceEl.style.opacity = '0';
-                priceEl.style.visibility = 'hidden';
-            }
-        });
-        
         updateSummaryVisibility();
         updateSummary();
     }
 
-    // New function for summary visibility
     function updateSummaryVisibility() {
-        if (selectedProduct && selectedPayment) {
+        const isReady = selectedProduct && selectedPayment;
+        if (isReady) {
             summarySection.style.opacity = '1';
-            summarySection.style.pointerEvents = 'auto'; // Enable interactions
+            summarySection.style.pointerEvents = 'auto';
+            summaryBox.style.minHeight = '140px';
+            if (summaryPlaceholder) {
+                summaryPlaceholder.style.display = 'none';
+            }
         } else {
             summarySection.style.opacity = '0';
-            summarySection.style.pointerEvents = 'none'; // Disable interactions
+            summarySection.style.pointerEvents = 'none';
+            summaryBox.style.minHeight = '60px';
+            if (summaryPlaceholder) {
+                summaryPlaceholder.style.display = 'block';
+            }
         }
     }
 
@@ -485,26 +481,16 @@ function initGamePage() {
             card.className = "product-card";
             card.dataset.id = product.id;
     
-            let labelText = product.label;
-            const keywords = ["diamonds", "gems", "uc", "crystals", "tokens", "goldstar", "gold", "points", "coins", "cp"];
-            const hasKeyword = keywords.some(keyword => product.label.toLowerCase().includes(keyword));
-    
-            if (hasKeyword) {
-                const parts = product.label.split(' ');
-                parts.push('💎');
-                labelText = parts.join(' ');
-            }
-    
             let badgeHtml = '';
             if (product.badges && product.badges.length > 0) {
                 const badgeText = product.badges[0];
-                const badgeClass = `badge-${badgeText.toLowerCase().replace(/\s/g, '')}`;
+                const badgeClass = `badge-${badgeText.toLowerCase().replace(/\s/g, '').replace(/\./g, '')}`;
                 badgeHtml = `<div class="product-badge ${badgeClass}">${badgeText}</div>`;
             }
     
             card.innerHTML = `
                 ${badgeHtml}
-                <p class="product-label">${labelText}</p>
+                <p class="product-label">${product.label}</p>
                 <p class="product-price">${fmtIDR(product.price)}</p>
             `;
             
@@ -527,7 +513,6 @@ function initGamePage() {
             card.innerHTML = `
                 <img src="${payment.img}" alt="${payment.name}" class="payment-logo">
                 <p class="payment-name">${payment.name}</p>
-                <p class="payment-price"></p>
             `;
             card.addEventListener("click", () => {
                 selectedPayment = payment;
@@ -556,9 +541,9 @@ function initGamePage() {
         summaryBox.innerHTML = `
             <p>Produk: <span><b>${selectedProduct.label}</b></span></p>
             <p>Harga: <span><b>${fmtIDR(originalPrice)}</b></span></p>
+            <p>Metode Pembayaran: <span><b>${selectedPayment.name}</b></span></p>
             ${voucherInfo}
             <hr style="border-top: 1px dashed var(--border-secondary); margin: 15px 0;">
-            <p>Metode Pembayaran: <span><b>${selectedPayment.name}</b></span></p>
             <p>Total: <span><b>${fmtIDR(finalPriceAfterVoucher)}</b></span></p>
         `;
     }
@@ -594,7 +579,7 @@ function initGamePage() {
                                 <div class="voucher-code">${v.code}</div>
                                 <div class="voucher-desc">${v.description}</div>
                             </div>
-                            <button class="btn-apply-voucher" data-voucher-code="${v.code}">Gunakan</button>
+                            <button class="btn-apply-voucher" data-voucher-code="${v.code}">Pilih</button>
                         </li>
                     `).join('')}
                 </ul>
@@ -606,7 +591,6 @@ function initGamePage() {
                 const code = e.target.dataset.voucherCode;
                 voucherInput.value = code;
                 hideModal('voucher-list-modal');
-                voucherBtn.click(); // Simulate click on apply button
             });
         });
 
@@ -664,6 +648,25 @@ function initGamePage() {
             `Mohon dibantu prosesnya. Terima kasih.`;
 
         const checkoutModalEl = qs("#checkout-modal");
+        let paymentInfoHtml = '';
+
+        if (selectedPayment.type === 'qris') {
+            paymentInfoHtml = `
+                <p class="payment-instruction">Scan QRIS di bawah untuk pembayaran:</p>
+                <img src="${selectedPayment.info.qrisImg}" alt="QRIS" class="qris-image">
+            `;
+        } else {
+            paymentInfoHtml = `
+                <p class="payment-instruction">Transfer ke rekening/e-wallet berikut:</p>
+                <div class="ewallet-info-container">
+                    <img src="${selectedPayment.img}" alt="${selectedPayment.name} Logo">
+                    <span id="account-number" class="ewallet-number">${selectedPayment.info.number}</span>
+                    <p class="ewallet-name-text">A/N: ${selectedPayment.info.name}</p>
+                    <button id="copy-account-btn" class="btn-copy">Salin Nomor ${selectedPayment.name}</button>
+                </div>
+            `;
+        }
+
         checkoutModalEl.innerHTML = `
             <div class="modal-header">
                 <h4 class="modal-title">Konfirmasi Pembelian</h4>
@@ -682,18 +685,7 @@ function initGamePage() {
                 <div class="checkout-total">Total Bayar: <span class="total-price-text">${fmtIDR(finalPrice)}</span></div>
                 
                 <div class="payment-section">
-                    ${selectedPayment.type === 'qris' ?
-                        `<p class="payment-instruction">Scan QRIS di bawah untuk pembayaran:</p>
-                        <img src="${selectedPayment.info.qrisImg}" alt="QRIS" class="qris-image">` :
-                        `
-                        <p class="payment-instruction">Transfer ke rekening/e-wallet berikut:</p>
-                        <div class="ewallet-info-container">
-                            <img src="${selectedPayment.img}" alt="${selectedPayment.name} Logo">
-                            <span id="account-number" class="ewallet-number">${selectedPayment.info.number}</span>
-                            <p class="ewallet-name-text">A/N: ${selectedPayment.info.name}</p>
-                            <button id="copy-account-btn" class="btn-copy">Salin Nomor ${selectedPayment.name}</button>
-                        </div>
-                    `}
+                    ${paymentInfoHtml}
                 </div>
                 
                 <div class="whatsapp-button-container">
@@ -723,5 +715,5 @@ function initGamePage() {
 
     renderProducts();
     renderPayments();
-    updateUI(); // Initial UI update to hide summary
+    updateUI();
 }
