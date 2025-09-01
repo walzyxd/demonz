@@ -441,11 +441,13 @@ function initGamePage() {
         if (!selectedProduct) return 0;
         let finalPrice = selectedProduct.price;
         if (appliedVoucher) {
+            let discountAmount = 0;
             if (appliedVoucher.percent) {
-                finalPrice -= selectedProduct.price * (appliedVoucher.percent / 100);
+                discountAmount = selectedProduct.price * (appliedVoucher.percent / 100);
             } else if (appliedVoucher.fixed) {
-                finalPrice -= appliedVoucher.fixed;
+                discountAmount = appliedVoucher.fixed;
             }
+            finalPrice -= discountAmount;
         }
         return Math.max(0, finalPrice);
     }
@@ -571,9 +573,8 @@ function initGamePage() {
             appliedVoucher = null; // Reset voucher
             
             if (voucher) {
-                // Check min purchase for specific vouchers
                 if (voucher.minPurchase && selectedProduct.price < voucher.minPurchase) {
-                    voucherStatus.textContent = `Voucher tidak memenuhi syarat minimal belanja ${fmtIDR(voucher.minPurchase)}.`;
+                    voucherStatus.textContent = `Voucher ini berlaku untuk minimal belanja ${fmtIDR(voucher.minPurchase)}.`;
                     voucherStatus.className = 'voucher-status error';
                     return;
                 }
