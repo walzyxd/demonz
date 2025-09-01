@@ -400,6 +400,7 @@ function initGamePage() {
     const gameData = GAMES.find(g => g.key === gameKey);
     const productsData = PRODUCTS[gameData.key];
     
+    // Perbaikan utama: Mengakses elemen setelah halaman selesai dimuat
     const gameTitle = qs("#game-title");
     const banner = qs("#game-banner");
     const guideText = qs("#game-guide");
@@ -419,12 +420,15 @@ function initGamePage() {
     let selectedProduct = null;
     let selectedPayment = null;
     let appliedVoucher = null;
-
-    gameTitle.textContent = gameData.name;
-    banner.src = gameData.img;
-    banner.alt = gameData.name;
-    guideText.textContent = `${gameData.guide}`;
-    serverGroup.style.display = gameData.hasServerId ? "block" : "none";
+    
+    // Memastikan elemen ada sebelum diakses
+    if (gameTitle) gameTitle.textContent = gameData.name;
+    if (banner) {
+        banner.src = gameData.img;
+        banner.alt = gameData.name;
+    }
+    if (guideText) guideText.textContent = `${gameData.guide}`;
+    if (serverGroup) serverGroup.style.display = gameData.hasServerId ? "block" : "none";
 
     function calculateFinalPrice() {
         if (!selectedProduct) return 0;
@@ -452,8 +456,10 @@ function initGamePage() {
 
     function updateSummaryVisibility() {
         const isReady = selectedProduct && selectedPayment;
-        summarySection.style.opacity = isReady ? '1' : '0';
-        summarySection.style.pointerEvents = isReady ? 'auto' : 'none';
+        if (summarySection) {
+            summarySection.style.opacity = isReady ? '1' : '0';
+            summarySection.style.pointerEvents = isReady ? 'auto' : 'none';
+        }
     }
 
     function renderProducts() {
@@ -533,171 +539,177 @@ function initGamePage() {
         `;
     }
     
-    voucherBtn.addEventListener("click", () => {
-        const code = voucherInput.value.trim().toUpperCase();
-        const voucher = VOUCHERS.find(v => v.code === code);
-    
-        if (voucher) {
-            appliedVoucher = voucher;
-            voucherStatus.textContent = `Voucher ${voucher.code} berhasil diterapkan! Diskon ${voucher.percent}%`;
-            voucherStatus.className = 'voucher-status success';
-        } else {
-            appliedVoucher = null;
-            voucherStatus.textContent = "Kode voucher tidak valid.";
-            voucherStatus.className = 'voucher-status error';
-        }
-        updateUI();
-    });
-
-    voucherListBtn.addEventListener("click", () => {
-        const modalContent = qs("#voucher-list-modal");
-        modalContent.innerHTML = `
-            <div class="modal-header">
-                <h4 class="modal-title">Daftar Kode Voucher</h4>
-                <button class="modal-close-btn" data-modal-id="voucher-list-modal">&times;</button>
-            </div>
-            <div class="modal-body voucher-list-modal-body">
-                <ul>
-                    ${VOUCHERS.map(v => `
-                        <li>
-                            <div>
-                                <div class="voucher-code">${v.code}</div>
-                                <div class="voucher-desc">${v.description}</div>
-                            </div>
-                            <button class="btn-apply-voucher" data-voucher-code="${v.code}">Pilih</button>
-                        </li>
-                    `).join('')}
-                </ul>
-            </div>
-        `;
-
-        qsa('.btn-apply-voucher', modalContent).forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const code = e.target.dataset.voucherCode;
-                voucherInput.value = code;
-                hideModal('voucher-list-modal');
-                voucherBtn.click(); // Otomatis terapkan voucher
-            });
+    if(voucherBtn) {
+        voucherBtn.addEventListener("click", () => {
+            const code = voucherInput.value.trim().toUpperCase();
+            const voucher = VOUCHERS.find(v => v.code === code);
+        
+            if (voucher) {
+                appliedVoucher = voucher;
+                voucherStatus.textContent = `Voucher ${voucher.code} berhasil diterapkan! Diskon ${voucher.percent}%`;
+                voucherStatus.className = 'voucher-status success';
+            } else {
+                appliedVoucher = null;
+                voucherStatus.textContent = "Kode voucher tidak valid.";
+                voucherStatus.className = 'voucher-status error';
+            }
+            updateUI();
         });
+    }
 
-        const closeBtn = qs('.modal-close-btn', modalContent);
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                hideModal('voucher-list-modal');
-            });
-        }
-        showModal('voucher-list-modal');
-    });
-
-    checkoutBtn.addEventListener("click", () => {
-        const userId = userIdInput.value.trim();
-        const serverId = gameData.hasServerId ? serverIdInput.value.trim() : null;
-
-        if (!userId) {
-            alert("Masukkan User ID Anda.");
-            userIdInput.focus();
-            return;
-        }
-
-        if (gameData.hasServerId && !serverId) {
-            alert("Masukkan Server ID Anda.");
-            serverIdInput.focus();
-            return;
-        }
-
-        if (!selectedProduct) {
-            alert("Pilih nominal top-up.");
-            return;
-        }
-
-        if (!selectedPayment) {
-            alert("Pilih metode pembayaran.");
-            return;
-        }
-
-        const finalPrice = calculateFinalPrice();
-        const encodedData = {
-            game: gameData.name,
-            userId: userId,
-            ...(gameData.hasServerId && { serverId: serverId }),
-            product: selectedProduct.label,
-            totalPrice: fmtIDR(finalPrice)
-        };
-
-        const waMessage = `Halo Admin, saya ingin konfirmasi pesanan top-up saya:\n\n` +
-            `*Game:* ${encodedData.game}\n` +
-            `*User ID:* ${encodedData.userId}\n` +
-            (gameData.hasServerId ? `*Server ID:* ${encodedData.serverId}\n` : '') +
-            `*Produk:* ${encodedData.product}\n` +
-            `*Metode Pembayaran:* ${selectedPayment.name}\n` +
-            `*Total Pembayaran:* ${encodedData.totalPrice}\n\n` +
-            `Mohon dibantu prosesnya. Terima kasih.`;
-
-        const checkoutModalEl = qs("#checkout-modal");
-        let paymentInfoHtml = '';
-
-        if (selectedPayment.type === 'qris') {
-            paymentInfoHtml = `
-                <p class="payment-instruction">Scan QRIS di bawah untuk pembayaran:</p>
-                <img src="${selectedPayment.info.qrisImg}" alt="QRIS" class="qris-image">
-            `;
-        } else {
-            paymentInfoHtml = `
-                <p class="payment-instruction">Transfer ke rekening/e-wallet berikut:</p>
-                <div class="ewallet-info-container">
-                    <img src="${selectedPayment.img}" alt="${selectedPayment.name} Logo">
-                    <span id="account-number" class="ewallet-number">${selectedPayment.info.number}</span>
-                    <p class="ewallet-name-text">A/N: ${selectedPayment.info.name}</p>
-                    <button id="copy-account-btn" class="btn-copy">Salin Nomor ${selectedPayment.name}</button>
+    if(voucherListBtn) {
+        voucherListBtn.addEventListener("click", () => {
+            const modalContent = qs("#voucher-list-modal");
+            modalContent.innerHTML = `
+                <div class="modal-header">
+                    <h4 class="modal-title">Daftar Kode Voucher</h4>
+                    <button class="modal-close-btn" data-modal-id="voucher-list-modal">&times;</button>
+                </div>
+                <div class="modal-body voucher-list-modal-body">
+                    <ul>
+                        ${VOUCHERS.map(v => `
+                            <li>
+                                <div>
+                                    <div class="voucher-code">${v.code}</div>
+                                    <div class="voucher-desc">${v.description}</div>
+                                </div>
+                                <button class="btn-apply-voucher" data-voucher-code="${v.code}">Pilih</button>
+                            </li>
+                        `).join('')}
+                    </ul>
                 </div>
             `;
-        }
+    
+            qsa('.btn-apply-voucher', modalContent).forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const code = e.target.dataset.voucherCode;
+                    voucherInput.value = code;
+                    hideModal('voucher-list-modal');
+                    voucherBtn.click(); // Otomatis terapkan voucher
+                });
+            });
+    
+            const closeBtn = qs('.modal-close-btn', modalContent);
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    hideModal('voucher-list-modal');
+                });
+            }
+            showModal('voucher-list-modal');
+        });
+    }
 
-        checkoutModalEl.innerHTML = `
-            <div class="modal-header">
-                <h4 class="modal-title">Konfirmasi Pembelian</h4>
-                <button class="modal-close-btn" data-modal-id="checkout-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="summary-details">
-                    <p><strong>Detail Pesanan Anda:</strong></p>
-                    <p>Game: <span>${gameData.name}</span></p>
-                    <p>User ID: <span>${userId}</span></p>
-                    ${gameData.hasServerId ? `<p>Server ID: <span>${serverId}</span></p>` : ''}
-                    <p>Produk: <span>${selectedProduct.label}</span></p>
-                    <p>Metode Pembayaran: <span>${selectedPayment.name}</span></p>
+    if(checkoutBtn) {
+        checkoutBtn.addEventListener("click", () => {
+            const userId = userIdInput.value.trim();
+            const serverId = gameData.hasServerId ? serverIdInput.value.trim() : null;
+    
+            if (!userId) {
+                alert("Masukkan User ID Anda.");
+                userIdInput.focus();
+                return;
+            }
+    
+            if (gameData.hasServerId && !serverId) {
+                alert("Masukkan Server ID Anda.");
+                serverIdInput.focus();
+                return;
+            }
+    
+            if (!selectedProduct) {
+                alert("Pilih nominal top-up.");
+                return;
+            }
+    
+            if (!selectedPayment) {
+                alert("Pilih metode pembayaran.");
+                return;
+            }
+    
+            const finalPrice = calculateFinalPrice();
+            const encodedData = {
+                game: gameData.name,
+                userId: userId,
+                ...(gameData.hasServerId && { serverId: serverId }),
+                product: selectedProduct.label,
+                totalPrice: fmtIDR(finalPrice)
+            };
+    
+            const waMessage = `Halo Admin, saya ingin konfirmasi pesanan top-up saya:\n\n` +
+                `*Game:* ${encodedData.game}\n` +
+                `*User ID:* ${encodedData.userId}\n` +
+                (gameData.hasServerId ? `*Server ID:* ${encodedData.serverId}\n` : '') +
+                `*Produk:* ${encodedData.product}\n` +
+                `*Metode Pembayaran:* ${selectedPayment.name}\n` +
+                `*Total Pembayaran:* ${encodedData.totalPrice}\n\n` +
+                `Mohon dibantu prosesnya. Terima kasih.`;
+    
+            const checkoutModalEl = qs("#checkout-modal");
+            let paymentInfoHtml = '';
+    
+            if (selectedPayment.type === 'qris') {
+                paymentInfoHtml = `
+                    <p class="payment-instruction">Scan QRIS di bawah untuk pembayaran:</p>
+                    <img src="${selectedPayment.info.qrisImg}" alt="QRIS" class="qris-image">
+                `;
+            } else {
+                paymentInfoHtml = `
+                    <p class="payment-instruction">Transfer ke rekening/e-wallet berikut:</p>
+                    <div class="ewallet-info-container">
+                        <img src="${selectedPayment.img}" alt="${selectedPayment.name} Logo">
+                        <span id="account-number" class="ewallet-number">${selectedPayment.info.number}</span>
+                        <p class="ewallet-name-text">A/N: ${selectedPayment.info.name}</p>
+                        <button id="copy-account-btn" class="btn-copy">Salin Nomor ${selectedPayment.name}</button>
+                    </div>
+                `;
+            }
+    
+            checkoutModalEl.innerHTML = `
+                <div class="modal-header">
+                    <h4 class="modal-title">Konfirmasi Pembelian</h4>
+                    <button class="modal-close-btn" data-modal-id="checkout-modal">&times;</button>
                 </div>
-                <hr>
-                <div class="checkout-total">Total Bayar: <span class="total-price-text">${fmtIDR(finalPrice)}</span></div>
-                
-                <div class="payment-section">
-                    ${paymentInfoHtml}
+                <div class="modal-body">
+                    <div class="summary-details">
+                        <p><strong>Detail Pesanan Anda:</strong></p>
+                        <p>Game: <span>${gameData.name}</span></p>
+                        <p>User ID: <span>${userId}</span></p>
+                        ${gameData.hasServerId ? `<p>Server ID: <span>${serverId}</span></p>` : ''}
+                        <p>Produk: <span>${selectedProduct.label}</span></p>
+                        <p>Metode Pembayaran: <span>${selectedPayment.name}</span></p>
+                    </div>
+                    <hr>
+                    <div class="checkout-total">Total Bayar: <span class="total-price-text">${fmtIDR(finalPrice)}</span></div>
+                    
+                    <div class="payment-section">
+                        ${paymentInfoHtml}
+                    </div>
+                    
+                    <div class="whatsapp-button-container">
+                        <p class="whatsapp-guide">Setelah melakukan pembayaran, mohon kirim bukti transfer Anda melalui WhatsApp:</p>
+                        <a href="https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(waMessage)}" target="_blank" class="whatsapp-button">
+                            <i class="fab fa-whatsapp"></i> Kirim Bukti Transfer
+                        </a>
+                    </div>
                 </div>
-                
-                <div class="whatsapp-button-container">
-                    <p class="whatsapp-guide">Setelah melakukan pembayaran, mohon kirim bukti transfer Anda melalui WhatsApp:</p>
-                    <a href="https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(waMessage)}" target="_blank" class="whatsapp-button">
-                        <i class="fab fa-whatsapp"></i> Kirim Bukti Transfer
-                    </a>
-                </div>
-            </div>
-        `;
-        
-        const copyButton = qs('#copy-account-btn', checkoutModalEl);
-        if (copyButton) {
-            copyButton.addEventListener('click', () => {
-                copyToClipboard(selectedPayment.info.number, copyButton);
-            });
-        }
-        
-        const closeBtn = qs('.modal-close-btn', checkoutModalEl);
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                hideModal('checkout-modal');
-            });
-        }
-        showModal('checkout-modal');
-    });
+            `;
+            
+            const copyButton = qs('#copy-account-btn', checkoutModalEl);
+            if (copyButton) {
+                copyButton.addEventListener('click', () => {
+                    copyToClipboard(selectedPayment.info.number, copyButton);
+                });
+            }
+            
+            const closeBtn = qs('.modal-close-btn', checkoutModalEl);
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    hideModal('checkout-modal');
+                });
+            }
+            showModal('checkout-modal');
+        });
+    }
 
     renderProducts();
     renderPayments();
