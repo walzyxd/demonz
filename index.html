@@ -12,9 +12,9 @@
     <header class="header">
         <a href="index.html" class="logo">WALZ SHOP</a>
         <nav class="nav">
-            <a href="index.html">Beranda</a>
-            <a href="#">Tentang Kami</a>
-            <a href="#">Kontak</a>
+            <a href="index.html" class="nav-item active">Beranda</a>
+            <a href="#" class="nav-item">Tentang Kami</a>
+            <a href="#" class="nav-item">Kontak</a>
         </nav>
         <button class="nav-toggle">
             <i class="fas fa-bars"></i>
@@ -22,16 +22,22 @@
     </header>
 
     <main class="container">
-        <div class="header-content">
-            <h1 class="main-slogan">Top Up Game Termurah dan Terpercaya</h1>
-            <p class="sub-slogan">Cepat, Aman, dan Instan.</p>
-        </div>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="main-slogan">Top Up Game Termurah dan Terpercaya</h1>
+                <p class="sub-slogan">Cepat, Aman, dan Instan.</p>
+            </div>
+            <div class="hero-image-container">
+                <img src="https://files.catbox.moe/k3c37n.png" alt="Hero Image" class="hero-image">
+            </div>
+        </section>
 
         <section class="promo-section">
+            <h2 class="section-title">Promo Terbaru</h2>
             <div class="slider-container">
                 <div id="promo-slider" class="slider-items"></div>
+                <div id="slider-dots" class="slider-dots"></div>
             </div>
-            <div id="slider-dots" class="slider-dots"></div>
         </section>
 
         <section class="games-section">
