@@ -396,27 +396,45 @@ function initGame(){
   // voucher
   const voucherBtn = qs("#voucher-btn");
   const voucherListBtn = qs("#voucher-list-btn");
+  const voucherInput = qs("#voucher-input");
+
   if(voucherBtn){
     voucherBtn.addEventListener("click",()=>{
       if(!selectedProduct){
         setVoucherStatus("Silakan pilih nominal terlebih dahulu.", true);
         return;
       }
-      const code = qs("#voucher-input").value.trim().toUpperCase();
+      const code = voucherInput.value.trim().toUpperCase();
       const v = VOUCHERS.find(x=>x.code===code);
       appliedVoucher = null;
-      if(!v){ setVoucherStatus("Kode voucher tidak valid.", true); refreshSummary(); return; }
+      if(!v){ 
+        setVoucherStatus("Kode voucher tidak valid.", true); 
+        refreshSummary(); 
+        return; 
+      }
       if(v.minPurchase && selectedProduct.price < v.minPurchase){
         setVoucherStatus(`Minimal transaksi ${fmtIDR(v.minPurchase)}.`, true);
-        refreshSummary(); return;
+        refreshSummary(); 
+        return;
       }
       appliedVoucher = v;
       const discount = calcDiscount(selectedProduct.price, v);
+      
+      // Animasi tombol berhasil
+      const originalText = voucherBtn.textContent;
+      voucherBtn.textContent = "Berhasil!";
+      voucherBtn.classList.add("btn-success");
+      setTimeout(() => {
+        voucherBtn.textContent = originalText;
+        voucherBtn.classList.remove("btn-success");
+      }, 2000);
+
       setVoucherStatus(`Voucher ${v.code} diterapkan. Diskon ${fmtIDR(discount)}.`, false);
       refreshSummary();
     });
   }
 
+  // Perbaikan: Logika tombol "Lihat Kode"
   if(voucherListBtn){
     voucherListBtn.addEventListener("click",()=>{
       const modal = qs("#voucher-list-modal");
@@ -439,7 +457,7 @@ function initGame(){
       `;
       qsa("[data-choose]", modal).forEach(btn=>{
         btn.addEventListener("click",()=>{
-          qs("#voucher-input").value = btn.dataset.choose;
+          voucherInput.value = btn.dataset.choose;
           closeModal("voucher-list-modal");
           voucherBtn.click();
         });
@@ -576,6 +594,7 @@ function setupModalClose(modalEl){
 }
 
 /* ========== CHECKOUT MODAL ========== */
+// Perbaikan: Menampilkan detail transaksi sesuai metode pembayaran
 function openCheckout(game){
   if(!validateForm(game.hasServerId)) return;
 
@@ -583,7 +602,6 @@ function openCheckout(game){
   const serverId = game.hasServerId ? qs("#server-id").value.trim() : null;
   const total = finalPrice();
 
-  // ringkas pesan WA
   const waMsg =
 `Halo Admin, saya ingin konfirmasi pesanan top-up:
 *Game:* ${game.name}
@@ -594,14 +612,18 @@ ${game.hasServerId ? `*Server ID:* ${serverId}\n` : ""}*Produk:* ${selectedProdu
 Terima kasih.`;
 
   const modal = qs("#checkout-modal");
-  const payBlock = selectedPayment.type === "qris"
-    ? `
+  
+  // Perbaikan: Menyesuaikan tampilan pop-up dengan tipe pembayaran
+  let payBlock = '';
+  if (selectedPayment.type === "qris") {
+    payBlock = `
       <div class="copy-wrap" style="align-items:center">
         <div class="muted">Scan QRIS berikut untuk pembayaran</div>
         <img class="qris" src="${selectedPayment.info.qrisImg}" alt="QRIS">
       </div>
-    `
-    : `
+    `;
+  } else {
+    payBlock = `
       <div class="copy-wrap">
         <img class="pay-logo" src="${selectedPayment.img}" alt="${selectedPayment.name}">
         <div style="font-weight:800">${selectedPayment.name}</div>
@@ -610,6 +632,7 @@ Terima kasih.`;
         <button class="copy-btn" id="copy-account">Salin Nomor</button>
       </div>
     `;
+  }
 
   modal.innerHTML = `
     <div class="modal__head">
@@ -641,7 +664,6 @@ Terima kasih.`;
     </div>
   `;
 
-  // copy button (non-QRIS)
   const copyBtn = qs("#copy-account", modal);
   if(copyBtn){
     copyBtn.addEventListener("click",()=>copyToClipboard(selectedPayment.info.number, copyBtn));
