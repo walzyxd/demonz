@@ -12,7 +12,7 @@
     <div id="modal-overlay"></div>
 
     <header class="header">
-        <a href="index.html" class="logo">WALZ STORE</a>
+        <a href="index.html" class="logo">WALZSHOP</a>
         <nav class="nav">
             <a href="index.html#games-section">Top Up Game</a>
             <a href="index.html#promo-section">Promo</a>
@@ -22,13 +22,18 @@
     </header>
 
     <main class="game-page-container">
+        <a href="index.html" class="btn-back">
+            <i class="fas fa-arrow-left"></i> Kembali
+        </a>
+
         <section class="game-info">
             <div class="game-header">
                 <img id="game-banner" class="game-banner" src="" alt="Game Banner">
+                <h1 id="game-title" class="game-title"></h1>
             </div>
         </section>
 
-        <section class="input-section">
+        <section class="step-section">
             <div class="step">
                 <div class="step-header">
                     <span class="step-number">1</span>
@@ -48,7 +53,7 @@
             </div>
         </section>
 
-        <section class="selection-section">
+        <section class="step-section">
             <div class="step">
                 <div class="step-header">
                     <span class="step-number">2</span>
@@ -61,7 +66,7 @@
             </div>
         </section>
 
-        <section class="selection-section">
+        <section class="step-section">
             <div class="step">
                 <div class="step-header">
                     <span class="step-number">3</span>
@@ -74,7 +79,7 @@
             </div>
         </section>
 
-        <section id="summary-section" class="summary-section">
+        <section id="summary-section" class="step-section summary-section">
             <div class="step">
                 <div class="step-header">
                     <span class="step-number">4</span>
@@ -83,7 +88,7 @@
                 <div class="step-content">
                     <div class="voucher-input-group">
                         <input type="text" id="voucher-input" placeholder="Masukkan kode voucher">
-                        <button id="voucher-btn">Gunakan</button>
+                        <button id="voucher-btn" class="btn-secondary">Gunakan</button>
                     </div>
                     <div class="voucher-help">
                         <span id="voucher-status"></span>
@@ -99,9 +104,9 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 Walz Store. All rights reserved.</p>
+        <p>&copy; 2024 Walzshop. All rights reserved.</p>
     </footer>
-    
+
     <div id="checkout-modal" class="modal-content"></div>
     <div id="voucher-list-modal" class="modal-content"></div>
 
