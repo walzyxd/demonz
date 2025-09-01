@@ -363,6 +363,7 @@ function initGame(){
     div.innerHTML = `
       <div class="label">${p.label}</div>
       <div class="price">${fmtIDR(p.price)}</div>
+      ${p.badges ? p.badges.map(b=>`<span class="badge badge-${b}">${b}</span>`).join("") : ""}
     `;
     div.addEventListener("click",()=>{
       selectedProduct = p;
@@ -486,6 +487,25 @@ function refreshSelections(){
   // toggle selected class
   qsa(".product-card").forEach(c=>c.classList.toggle("selected", selectedProduct && c.dataset.id===selectedProduct.id));
   qsa(".payment-card").forEach(c=>c.classList.toggle("selected", selectedPayment && c.dataset.id===selectedPayment.id));
+  
+  // update payment prices in real-time
+  qsa(".payment-card").forEach(card=>{
+    const priceEl = card.querySelector(".price");
+    if(selectedProduct){
+      const currentPrice = finalPrice();
+      if(!priceEl){
+        const newPriceEl = document.createElement("div");
+        newPriceEl.className = "price";
+        newPriceEl.textContent = fmtIDR(currentPrice);
+        card.appendChild(newPriceEl);
+      } else {
+        priceEl.textContent = fmtIDR(currentPrice);
+      }
+    } else {
+      if(priceEl) priceEl.remove();
+    }
+  });
+
 
   // clear errors
   setError("#error-product","");
