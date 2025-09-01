@@ -396,6 +396,7 @@ function initGame() {
   // Render produk
   const productGrid = qs("#product-grid");
   const products = PRODUCTS[game.key] || [];
+  productGrid.classList.add("items-grid");
   productGrid.innerHTML = "";
   if (products.length > 0) {
     products.forEach(p => {
@@ -423,6 +424,7 @@ function initGame() {
 
   // Render metode pembayaran
   const paymentGrid = qs("#payment-grid");
+  paymentGrid.classList.add("items-grid");
   paymentGrid.innerHTML = "";
   if (PAYMENTS.length > 0) {
     PAYMENTS.forEach(pay => {
