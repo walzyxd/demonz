@@ -154,7 +154,7 @@ h2, h3 {
 
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Ukuran card diperbesar */
     gap: 15px;
 }
 
@@ -173,8 +173,8 @@ h2, h3 {
 }
 
 .game-card img {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 12px;
     object-fit: cover;
     aspect-ratio: 1/1;
@@ -225,7 +225,20 @@ h2, h3 {
 .contact-card p {
     margin-top: 0;
 }
-
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+.btn.btn-whatsapp {
+    background-color: #25d366;
+    color: #fff;
+}
+.btn.btn-gmail {
+    background-color: #ea4335;
+    color: #fff;
+}
 /* Game Page Specific */
 .game-page .btn-back {
     margin-bottom: 1.5rem;
