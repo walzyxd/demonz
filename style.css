@@ -46,13 +46,6 @@ body{
   .nav-toggle{display:block}
 }
 
-/* Hero */
-.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:24px;align-items:center}
-.hero__copy h1{font-size:1.8rem;line-height:1.2}
-.hero__copy p{color:var(--muted);margin-top:6px}
-.hero__img img{width:100%;border-radius:16px;border:1px solid var(--border);background:#fff}
-@media (max-width: 900px){.hero{grid-template-columns:1fr;gap:16px}}
-
 /* Promo slider (simple) */
 .promo{margin-top:28px}
 .slider{border:1px solid var(--border);border-radius:14px;background:var(--card);overflow:hidden}
@@ -73,6 +66,29 @@ body{
 .info{margin-top:28px;border:1px solid var(--border);background:var(--card);border-radius:14px;padding:16px}
 .info p{color:var(--muted)}
 
+/* Floating WhatsApp Button */
+.floating-wa {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.floating-wa:hover {
+  transform: scale(1.1);
+}
+
 /* Footer */
 .footer{border-top:1px solid var(--border);margin-top:36px;padding:18px 24px;text-align:center;color:var(--muted)}
 
@@ -81,7 +97,16 @@ body{
 .back-link{display:inline-flex;gap:8px;align-items:center}
 .page-title{font-size:1.35rem;font-weight:800}
 
-.banner img{width:100%;border-radius:14px;border:1px solid var(--border);background:#fff}
+.banner img{
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: #fff;
+  margin: auto;
+  display: block;
+}
 
 .steps{display:flex;flex-direction:column;gap:14px;margin-top:14px}
 .card{border:1px solid var(--border);background:#fff;border-radius:14px;padding:14px}
@@ -122,6 +147,36 @@ body{
 .status-text{min-height:1.3em;margin-top:8px}
 .status-text.success{color:var(--success)}
 .status-text.error{color:var(--error)}
+
+/* Styling untuk modal voucher */
+.modal .voucher-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.modal .voucher-item {
+  border: 1px solid var(--border);
+  padding: 12px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal .voucher-item .voucher-info {
+  display: flex;
+  flex-direction: column;
+}
+.modal .voucher-item .voucher-code {
+  font-weight: 800;
+}
+.modal .voucher-item .voucher-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.modal .voucher-item .btn {
+  padding: 6px 10px;
+  font-size: 0.8rem;
+}
 
 .summary-box{border:1px dashed var(--border);border-radius:12px;padding:12px}
 .summary-box p{display:flex;justify-content:space-between;margin:6px 0}
