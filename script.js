@@ -237,77 +237,70 @@ const PRODUCTS = {
   ]
 };
 
-/* ================== UTILITAS & BANTUAN ================== */
-const qs = (s, p = document) => p.querySelector(s);
-const qsa = (s, p = document) => Array.from(p.querySelectorAll(s));
+/* ================== UTILITAS & HELPERS ================== */
+const qs = (s, p=document) => p.querySelector(s);
+const qsa = (s, p=document) => Array.from(p.querySelectorAll(s));
 const fmtIDR = n => new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(n);
 
-function showOverlay() {
-  qs("#modal-overlay")?.classList.add("active");
-  document.body.style.overflow = "hidden";
-}
+/* ========== MODAL / OVERLAY ========== */
+function showOverlay(){ qs("#modal-overlay")?.classList.add("active"); document.body.style.overflow="hidden"; }
+function hideOverlay(){ qs("#modal-overlay")?.classList.remove("active"); document.body.style.overflow=""; }
 
-function hideOverlay() {
-  qs("#modal-overlay")?.classList.remove("active");
-  document.body.style.overflow = "";
-}
-
-function openModal(id) {
+function openModal(id){
   const m = qs(`#${id}`);
-  if (!m) return;
+  if(!m) return;
   showOverlay();
   m.classList.add("active");
 }
 
-function closeModal(id) {
+function closeModal(id){
   const m = qs(`#${id}`);
-  if (!m) return;
+  if(!m) return;
   m.classList.remove("active");
   const anyOpen = qsa(".modal.active").length > 0;
-  if (!anyOpen) hideOverlay();
+  if(!anyOpen) hideOverlay();
 }
 
-function copyToClipboard(text, btn) {
-  navigator.clipboard.writeText(text).then(() => {
+/* copy helper */
+function copyToClipboard(text, btn){
+  navigator.clipboard?.writeText(text).then(()=>{
     const old = btn.textContent;
     btn.textContent = "Disalin!";
-    setTimeout(() => btn.textContent = old, 1500);
-  });
+    setTimeout(()=> btn.textContent = old, 1400);
+  }).catch(()=> alert("Gagal menyalin"));
 }
 
-/* ================== INISIALISASI ================== */
+/* ========== INISIALISASI ========== */
 document.addEventListener("DOMContentLoaded", () => {
   const page = document.body.dataset.page;
 
-  // Toggle navigasi di perangkat seluler
+  // Mobile nav toggle
   const navToggle = qs(".nav-toggle");
   const nav = qs(".nav");
-  if (navToggle && nav) {
-    navToggle.addEventListener("click", () => nav.classList.toggle("active"));
-  }
+  if(navToggle && nav) navToggle.addEventListener("click", ()=> nav.classList.toggle("active"));
 
-  // Menutup modal saat mengklik overlay
+  // Close modal by clicking overlay
   const overlay = qs("#modal-overlay");
-  if (overlay) {
-    overlay.addEventListener("click", (e) => {
-      if (e.target.id === "modal-overlay") {
+  if(overlay){
+    overlay.addEventListener("click", (e)=>{
+      if(e.target.id === "modal-overlay"){
         qsa(".modal.active").forEach(m => m.classList.remove("active"));
         hideOverlay();
       }
     });
   }
 
-  if (page === "index") initIndex();
-  if (page === "game") initGame();
+  if(page === "index") initIndex();
+  if(page === "game") initGame();
 });
 
-/* ================== LOGIKA HALAMAN BERANDA ================== */
-function initIndex() {
-  // Render grid game
+/* ================== INDEX PAGE LOGIC ================== */
+function initIndex(){
+  // Render game grid
   const grid = qs("#games-grid");
-  if (grid) {
+  if(grid){
     grid.innerHTML = "";
-    GAMES.forEach(g => {
+    GAMES.forEach(g=>{
       const a = document.createElement("a");
       a.className = "game-card";
       a.href = `game.html?key=${g.key}`;
@@ -319,10 +312,10 @@ function initIndex() {
     });
   }
 
-  // Logika slider promo
+  // Promo slider
   const track = qs("#promo-slider");
   const dots = qs("#slider-dots");
-  if (track && dots) {
+  if(track && dots){
     track.innerHTML = "";
     dots.innerHTML = "";
     PROMOS.forEach((p, idx) => {
@@ -341,154 +334,143 @@ function initIndex() {
     const slides = qsa(".slider__item", track);
     const dotEls = qsa(".slider__dot", dots);
     let current = 0;
-
-    function render() {
-      if (slides.length > 0) {
-        track.style.transform = `translateX(-${current * 100}%)`;
-      }
+    function render(){
+      if(slides.length>0) track.style.transform = `translateX(-${current * 100}%)`;
       dotEls.forEach(d => d.classList.remove("active"));
-      if (dotEls[current]) dotEls[current].classList.add("active");
+      if(dotEls[current]) dotEls[current].classList.add("active");
     }
+    function next(){ current = (current + 1) % slides.length; render(); }
+    function go(i){ current = i; render(); if(slides.length>1){ clearInterval(timer); timer = setInterval(next, 4200); } }
 
-    function next() {
-      current = (current + 1) % slides.length;
-      render();
-    }
-    
-    function go(i) {
-      current = i;
-      render();
-      if (slides.length > 1) {
-        clearInterval(timer);
-        timer = setInterval(next, 4000);
-      }
-    }
-
-    let timer = slides.length > 1 ? setInterval(next, 4000) : null;
+    let timer = slides.length>1 ? setInterval(next, 4200) : null;
     render();
   }
 }
 
-/* ================== LOGIKA HALAMAN GAME ================== */
+/* ================== GAME PAGE LOGIC ================== */
 let selectedProduct = null;
 let selectedPayment = null;
 let appliedVoucher = null;
 
-function initGame() {
+function initGame(){
   const url = new URLSearchParams(location.search);
   const key = url.get("key");
   const game = GAMES.find(g => g.key === key);
-  
-  if (!game) {
-    qs(".container.game-page").innerHTML = `<div class="card"><p class="muted">Game tidak ditemukan. Silakan kembali ke beranda.</p><div style="margin-top:8px"><a class="btn btn-ghost" href="index.html">Kembali</a></div></div>`;
+
+  if(!game){
+    qs(".container.game-page").innerHTML = `<div class="step-card"><p class="muted">Game tidak ditemukan. Silakan kembali ke beranda.</p><div style="margin-top:8px"><a class="btn btn-secondary" href="index.html">Kembali</a></div></div>`;
     return;
   }
 
-  // Atur konten halaman
+  // set page contents
   qs("#game-title").textContent = game.name;
   const banner = qs("#game-banner");
   banner.src = game.img;
   banner.alt = game.name;
   qs("#game-guide").textContent = game.guide;
   const serverGroup = qs("#server-group");
-  serverGroup.style.display = game.hasServerId ? "block" : "none";
+  if(serverGroup) serverGroup.style.display = game.hasServerId ? "block" : "none";
 
-  // Render produk
+  // render product grid
   const productGrid = qs("#product-grid");
   const products = PRODUCTS[game.key] || [];
-  productGrid.classList.add("items-grid");
-  productGrid.innerHTML = "";
-  if (products.length > 0) {
-    products.forEach(p => {
-      const div = document.createElement("div");
-      div.className = "item product-card";
-      div.dataset.id = p.id;
-      div.dataset.price = p.price;
-      div.innerHTML = `
-        <div class="label">${p.label}</div>
-        <div class="price">${fmtIDR(p.price)}</div>
-        ${p.badges ? p.badges.map(b => `<span class="badge badge-${b}">${b}</span>`).join("") : ""}
-      `;
-      div.addEventListener("click", () => {
-        selectedProduct = p;
-        appliedVoucher = null; 
-        setVoucherStatus("");
-        qs("#voucher-input").value = "";
-        refreshSelections();
+  if(productGrid){
+    productGrid.classList.add("items-grid");
+    productGrid.innerHTML = "";
+    if(products.length > 0){
+      products.forEach(p=>{
+        const div = document.createElement("div");
+        div.className = "item product-card";
+        div.dataset.id = p.id;
+        div.dataset.price = p.price;
+        div.innerHTML = `
+          <div class="label">${p.label}</div>
+          <div class="price">${fmtIDR(p.price)}</div>
+          ${p.badges ? p.badges.map(b=>`<span class="badge badge-${b}">${b}</span>`).join("") : ""}
+        `;
+        div.addEventListener("click", () => {
+          selectedProduct = p;
+          appliedVoucher = null;
+          setVoucherStatus("");
+          const vin = qs("#voucher-input");
+          if(vin) vin.value = "";
+          refreshSelections();
+        });
+        productGrid.appendChild(div);
       });
-      productGrid.appendChild(div);
-    });
-  } else {
-    productGrid.innerHTML = `<p class="muted">Produk untuk game ini belum tersedia.</p>`;
+    } else {
+      productGrid.innerHTML = `<p class="muted">Produk untuk game ini belum tersedia.</p>`;
+    }
   }
 
-  // Render metode pembayaran
+  // render payments
   const paymentGrid = qs("#payment-grid");
-  paymentGrid.classList.add("items-grid");
-  paymentGrid.innerHTML = "";
-  if (PAYMENTS.length > 0) {
-    PAYMENTS.forEach(pay => {
-      const div = document.createElement("div");
-      div.className = "item payment-card";
-      div.dataset.id = pay.id;
-      div.innerHTML = `
-        <img class="pay-logo" src="${pay.img}" alt="${pay.name}">
-        <div class="label">${pay.name}</div>
-      `;
-      div.addEventListener("click", () => {
-        selectedPayment = pay;
-        refreshSelections();
+  if(paymentGrid){
+    paymentGrid.classList.add("items-grid");
+    paymentGrid.innerHTML = "";
+    if(PAYMENTS.length>0){
+      PAYMENTS.forEach(pay=>{
+        const div = document.createElement("div");
+        div.className = "item payment-card";
+        div.dataset.id = pay.id;
+        div.innerHTML = `
+          <img class="pay-logo" src="${pay.img}" alt="${pay.name}">
+          <div style="flex:1">
+            <div class="label">${pay.name}</div>
+            <div class="muted" style="font-size:0.85rem">${pay.type === 'qris' ? 'Scan QRIS' : pay.info.number || ''}</div>
+          </div>
+        `;
+        div.addEventListener("click", () => {
+          selectedPayment = pay;
+          refreshSelections();
+        });
+        paymentGrid.appendChild(div);
       });
-      paymentGrid.appendChild(div);
-    });
-  } else {
-    paymentGrid.innerHTML = `<p class="muted">Metode pembayaran belum tersedia.</p>`;
+    } else {
+      paymentGrid.innerHTML = `<p class="muted">Metode pembayaran belum tersedia.</p>`;
+    }
   }
 
-  // Fungsionalitas Voucher
+  // voucher logic
   const voucherBtn = qs("#voucher-btn");
   const voucherListBtn = qs("#voucher-list-btn");
   const voucherInput = qs("#voucher-input");
 
-  if (voucherBtn) {
-    voucherBtn.addEventListener("click", () => {
-      if (!selectedProduct) {
+  if(voucherBtn){
+    voucherBtn.addEventListener("click", ()=>{
+      if(!selectedProduct){
         setVoucherStatus("Silakan pilih nominal terlebih dahulu.", true);
         return;
       }
-      const code = voucherInput.value.trim().toUpperCase();
-      const v = VOUCHERS.find(x => x.code === code);
+      const code = (voucherInput.value || "").trim().toUpperCase();
+      const v = VOUCHERS.find(x=> x.code === code);
       appliedVoucher = null;
-      if (!v) {
+      if(!v){
         setVoucherStatus("Kode voucher tidak valid.", true);
         refreshSummary();
         return;
       }
-      if (v.minPurchase && selectedProduct.price < v.minPurchase) {
+      if(v.minPurchase && selectedProduct.price < v.minPurchase){
         setVoucherStatus(`Minimal transaksi ${fmtIDR(v.minPurchase)}.`, true);
         refreshSummary();
         return;
       }
-
       appliedVoucher = v;
       const discount = calcDiscount(selectedProduct.price, v);
-      
+      // feedback small animation
       const originalText = voucherBtn.textContent;
       voucherBtn.textContent = "Berhasil!";
       voucherBtn.classList.add("btn-success");
-      setTimeout(() => {
-        voucherBtn.textContent = originalText;
-        voucherBtn.classList.remove("btn-success");
-      }, 2000);
-
+      setTimeout(()=>{ voucherBtn.textContent = originalText; voucherBtn.classList.remove("btn-success"); }, 1600);
       setVoucherStatus(`Voucher ${v.code} diterapkan. Diskon ${fmtIDR(discount)}.`, false);
       refreshSummary();
     });
   }
 
-  if (voucherListBtn) {
-    voucherListBtn.addEventListener("click", () => {
+  if(voucherListBtn){
+    voucherListBtn.addEventListener("click", ()=>{
       const modal = qs("#voucher-list-modal");
+      if(!modal) return;
       modal.innerHTML = `
         <div class="modal__head">
           <div class="modal__title">Daftar Kode Voucher</div>
@@ -506,11 +488,13 @@ function initGame() {
           `).join("")}
         </div>
       `;
-      qsa("[data-choose]", modal).forEach(btn => {
-        btn.addEventListener("click", () => {
-          voucherInput.value = btn.dataset.choose;
+      // attach choose listeners
+      qsa("[data-choose]", modal).forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+          qs("#voucher-input").value = btn.dataset.choose;
           closeModal("voucher-list-modal");
-          setTimeout(() => voucherBtn.click(), 300); 
+          // apply voucher after a short moment to allow closing animation
+          setTimeout(()=> qs("#voucher-btn")?.click(), 300);
         });
       });
       setupModalClose(modal);
@@ -518,60 +502,57 @@ function initGame() {
     });
   }
 
-  // Tombol checkout
+  // checkout button
   const checkoutBtn = qs("#checkout-btn");
-  checkoutBtn.addEventListener("click", () => openCheckout(game));
+  if(checkoutBtn) checkoutBtn.addEventListener("click", ()=> openCheckout(game));
 
-  // Inisialisasi awal
+  // init state
   refreshSelections();
 }
 
-/* ================== STATE GLOBAL & FUNGSI BANTUAN ================== */
-function setVoucherStatus(text, isError = false) {
+/* ================== STATE & HELPERS ================== */
+function setVoucherStatus(text, isError = false){
   const el = qs("#voucher-status");
-  if (el) {
+  if(el){
     el.textContent = text;
     el.className = `status-text ${text ? (isError ? 'error' : 'success') : ''}`;
   }
 }
 
-function calcDiscount(price, voucher) {
+function calcDiscount(price, voucher){
   let discount = 0;
-  if (voucher.percent) {
-    discount = price * (voucher.percent / 100);
-  } else if (voucher.fixed) {
+  if(voucher.percent){
+    discount = Math.floor(price * (voucher.percent / 100));
+  } else if(voucher.fixed){
     discount = voucher.fixed;
   }
-  if (voucher.maxDiscount && discount > voucher.maxDiscount) {
-    discount = voucher.maxDiscount;
-  }
+  if(voucher.maxDiscount && discount > voucher.maxDiscount) discount = voucher.maxDiscount;
   return Math.floor(discount);
 }
 
-function finalPrice() {
-  if (!selectedProduct) return 0;
+function finalPrice(){
+  if(!selectedProduct) return 0;
   const base = selectedProduct.price;
   const disc = appliedVoucher ? calcDiscount(base, appliedVoucher) : 0;
   return Math.max(0, base - disc);
 }
 
-function refreshSelections() {
+function refreshSelections(){
   qsa(".product-card").forEach(c => c.classList.toggle("selected", selectedProduct && c.dataset.id === selectedProduct.id));
   qsa(".payment-card").forEach(c => c.classList.toggle("selected", selectedPayment && c.dataset.id === selectedPayment.id));
-  
   refreshSummary();
 }
 
-function refreshSummary() {
+function refreshSummary(){
   const summary = qs("#summary-box");
   const priceBox = qs("#price-box");
   const totalEl = qs("#total-price");
   const checkoutBtn = qs("#checkout-btn");
 
-  if (!(selectedProduct && selectedPayment)) {
+  if(!(selectedProduct && selectedPayment)){
     summary.innerHTML = `<p class="muted">Pilih nominal & metode bayar untuk melihat total.</p>`;
-    priceBox.style.display = "none";
-    checkoutBtn.disabled = true;
+    if(priceBox) priceBox.style.display = "none";
+    if(checkoutBtn) checkoutBtn.disabled = true;
     return;
   }
 
@@ -586,63 +567,56 @@ function refreshSummary() {
     ${appliedVoucher ? `<div class="row"><span>Voucher</span><span><strong>- ${fmtIDR(discount)}</strong></span></div>` : ""}
   `;
 
-  priceBox.style.display = "flex";
-  totalEl.textContent = fmtIDR(total);
-  checkoutBtn.disabled = false;
+  if(priceBox) priceBox.style.display = "flex";
+  if(totalEl) totalEl.textContent = fmtIDR(total);
+  if(checkoutBtn) checkoutBtn.disabled = false;
 }
 
-function setError(sel, text) {
+function setError(sel, text){
   const el = qs(sel);
-  if (el) el.textContent = text || "";
+  if(el) el.textContent = text || "";
 }
 
-function validateForm(hasServer) {
+function validateForm(hasServer){
   let ok = true;
-  const user = qs("#user-id").value.trim();
-  const server = hasServer ? qs("#server-id").value.trim() : "";
+  const user = qs("#user-id")?.value.trim();
+  const server = hasServer ? qs("#server-id")?.value.trim() : "";
 
   setError("#error-user", "");
   setError("#error-server", "");
   setError("#error-product", "");
   setError("#error-payment", "");
 
-  if (!user) { setError("#error-user", "User ID wajib diisi."); ok = false; }
-  if (hasServer && !server) { setError("#error-server", "Server ID wajib diisi."); ok = false; }
-  if (!selectedProduct) { setError("#error-product", "Pilih salah satu nominal."); ok = false; }
-  if (!selectedPayment) { setError("#error-payment", "Pilih salah satu metode bayar."); ok = false; }
+  if(!user){ setError("#error-user", "User ID wajib diisi."); ok = false; }
+  if(hasServer && !server){ setError("#error-server", "Server ID wajib diisi."); ok = false; }
+  if(!selectedProduct){ setError("#error-product", "Pilih salah satu nominal."); ok = false; }
+  if(!selectedPayment){ setError("#error-payment", "Pilih salah satu metode bayar."); ok = false; }
 
   return ok;
 }
 
-function setupModalClose(modalEl) {
+function setupModalClose(modalEl){
   const id = modalEl.id;
   const closeBtn = modalEl.querySelector("[data-close]");
-  if (closeBtn) {
-    closeBtn.addEventListener("click", () => closeModal(id));
-  }
+  if(closeBtn) closeBtn.addEventListener("click", ()=> closeModal(id));
 }
 
 /* ================== MODAL CHECKOUT ================== */
-function openCheckout(game) {
-  if (!validateForm(game.hasServerId)) return;
+function openCheckout(game){
+  if(!validateForm(game.hasServerId)) return;
 
   const userId = qs("#user-id").value.trim();
   const serverId = game.hasServerId ? qs("#server-id").value.trim() : null;
   const total = finalPrice();
 
   const waMsg =
-    `Halo Admin, saya ingin konfirmasi pesanan top-up:
-*Game:* ${game.name}
-*User ID:* ${userId}
-${game.hasServerId ? `*Server ID:* ${serverId}\n` : ""}*Produk:* ${selectedProduct.label}
-*Metode:* ${selectedPayment.name}
-*Total:* ${fmtIDR(total)}
-Terima kasih.`;
+    `Halo Admin, saya ingin konfirmasi pesanan top-up:\nGame: ${game.name}\nUser ID: ${userId}\n${game.hasServerId ? `Server ID: ${serverId}\n` : ""}Produk: ${selectedProduct.label}\nMetode: ${selectedPayment.name}\nTotal: ${fmtIDR(total)}\n\nTerima kasih.`;
 
   const modal = qs("#checkout-modal");
-  
+  if(!modal) return;
+
   let payBlock = '';
-  if (selectedPayment.type === "qris") {
+  if(selectedPayment.type === "qris"){
     payBlock = `
       <div class="copy-wrap" style="align-items:center">
         <p class="muted">Scan QRIS berikut untuk pembayaran</p>
@@ -655,8 +629,8 @@ Terima kasih.`;
         <img class="pay-logo" src="${selectedPayment.img}" alt="${selectedPayment.name}">
         <p style="font-weight:800">${selectedPayment.name}</p>
         <p class="muted">A/N: ${selectedPayment.info.name || "-"}</p>
-        <p style="font-weight:800;font-size:1.1rem">${selectedPayment.info.number}</p>
-        <button class="copy-btn" id="copy-account">Salin Nomor</button>
+        <p style="font-weight:800;font-size:1.05rem">${selectedPayment.info.number}</p>
+        <button class="copy-btn btn btn-primary" id="copy-account">Salin Nomor</button>
       </div>
     `;
   }
@@ -674,27 +648,26 @@ Terima kasih.`;
       <div class="row"><span>Produk</span><strong>${selectedProduct.label}</strong></div>
       <div class="row"><span>Metode</span><strong>${selectedPayment.name}</strong></div>
       ${appliedVoucher ? `<div class="row"><span>Voucher</span><span><strong>- ${fmtIDR(selectedProduct.price - finalPrice())}</strong></span></div>` : ""}
-      <div class="row" style="border-top:1px solid var(--border-color);padding-top:8px">
-        <span>Total Bayar</span><strong style="color:var(--primary-color)">${fmtIDR(total)}</strong>
+      <div class="row" style="border-top:1px solid var(--border);padding-top:8px">
+        <span>Total Bayar</span><strong style="color:var(--primary)">${fmtIDR(total)}</strong>
       </div>
     </div>
 
     <div style="margin:12px 0">${payBlock}</div>
 
     <div class="actions">
-      <a class="btn btn-ghost" href="https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(waMsg)}" target="_blank" rel="noopener">
+      <a class="btn btn-secondary" href="https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(waMsg)}" target="_blank" rel="noopener">
         <i class="fa-brands fa-whatsapp"></i> Chat Admin
       </a>
       <button class="btn btn-primary" data-close="checkout-modal">Tutup</button>
     </div>
 
-    <p class="muted" style="margin-top:8px">Setelah bayar, kirim bukti transfer ke Admin agar diproses.</p>
+    <p class="muted" style="margin-top:10px">Setelah bayar, kirim bukti transfer ke Admin agar diproses.</p>
   `;
 
+  // copy button
   const copyBtn = qs("#copy-account", modal);
-  if (copyBtn) {
-    copyBtn.addEventListener("click", () => copyToClipboard(selectedPayment.info.number, copyBtn));
-  }
+  if(copyBtn) copyBtn.addEventListener("click", ()=> copyToClipboard(selectedPayment.info.number, copyBtn));
 
   setupModalClose(modal);
   openModal("checkout-modal");
