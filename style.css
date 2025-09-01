@@ -10,6 +10,18 @@
   --border:#e9e6f5;           /* Border halus */
   --success:#16a34a;
   --error:#ef4444;
+
+  /* Badge Colors */
+  --badge-new: #1e88e5; /* Biru */
+  --badge-hot: #e53935; /* Merah */
+  --badge-sale: #fbc02d; /* Kuning */
+  --badge-member: #689f38; /* Hijau */
+  --badge-weekly: #00acc1; /* Cyan */
+  --badge-monthly: #43a047; /* Hijau tua */
+  --badge-levelup: #9c27b0; /* Ungu */
+  --badge-pass: #00796b; /* Hijau kebiruan */
+  --badge-vip: #ffb300; /* Amber */
+  --badge-welkin: #29b6f6; /* Biru muda */
 }
 
 /* Reset */
@@ -130,12 +142,38 @@ body{
 .item{
   border:1px solid var(--border);background:#fff;border-radius:12px;
   padding:10px;text-align:center;cursor:pointer;user-select:none;
+  position:relative;
 }
 .item .label{font-weight:700}
 .item .price{font-size:.9rem;color:var(--muted);margin-top:6px}
 .item.selected{border-color:var(--primary);box-shadow:0 0 0 2px var(--primary-100) inset}
+.item.selected .label,.item.selected .price{color:var(--primary)}
 .grid-payments .item{display:flex;flex-direction:column;align-items:center;gap:8px}
 .pay-logo{width:56px;height:56px;object-fit:contain}
+
+/* Badges */
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 8px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.badge-new { background-color: var(--badge-new); }
+.badge-hot { background-color: var(--badge-hot); }
+.badge-sale { background-color: var(--badge-sale); }
+.badge-member { background-color: var(--badge-member); }
+.badge-weekly { background-color: var(--badge-weekly); }
+.badge-monthly { background-color: var(--badge-monthly); }
+.badge-levelup { background-color: var(--badge-levelup); }
+.badge-pass { background-color: var(--badge-pass); }
+.badge-vip { background-color: var(--badge-vip); }
+.badge-welkin { background-color: var(--badge-welkin); }
 
 /* Voucher row */
 .voucher-row{display:flex;gap:10px;align-items:center}
