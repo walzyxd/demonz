@@ -5,9 +5,9 @@ const ADMIN_EMAIL = "walzlonely@gmail.com";
 const VOUCHERS = [
     { code: "WALZSHOP", percent: 5, description: "Diskon 5% untuk semua produk" },
     { code: "WALZPROMO", percent: 5, description: "Promo khusus 5% semua produk" },
-    { code: "HEMAT5000", percent: 10, description: "Diskon Rp5.000 (min. belanja Rp50.000)" },
+    { code: "HEMAT5000", percent: 0, fixed: 5000, minPurchase: 50000, description: "Diskon Rp5.000 (min. belanja Rp50.000)" },
     { code: "TOPUPSPECIAL", percent: 15, description: "Diskon 15% untuk top up pertama" },
-    { code: "FREEDIAMOND", percent: 20, description: "Diskon 20% (maks. Rp20.000)" }
+    { code: "FREEDIAMOND", percent: 0, fixed: 20000, maxDiscount: 20000, description: "Diskon Rp20.000 (maks. Rp20.000)" }
 ];
 
 const GAMES = [
@@ -328,12 +328,8 @@ function initIndexPage() {
         GAMES.forEach(game => {
             const card = document.createElement("a");
             card.className = "game-card";
-            card.href = "#";
-            card.addEventListener("click", (e) => {
-                e.preventDefault();
-                selectGame(game.key);
-            });
-
+            card.href = `game.html?key=${game.key}`;
+            
             card.innerHTML = `
                 <div class="game-thumbnail-container">
                     <img src="${game.img}" alt="${game.name}" class="game-thumbnail">
@@ -353,12 +349,8 @@ function initIndexPage() {
         PROMOS.forEach((promo, index) => {
             const slide = document.createElement("a");
             slide.className = "slider-item";
-            slide.href = "#";
+            slide.href = `game.html?key=${promo.gameKey}`;
             slide.style.backgroundImage = `url(${promo.img})`;
-            slide.addEventListener("click", (e) => {
-                e.preventDefault();
-                selectGame(promo.gameKey);
-            });
             promoSlider.appendChild(slide);
 
             const dot = document.createElement("span");
@@ -400,19 +392,20 @@ function initIndexPage() {
     initPromoSlider();
 }
 
-function selectGame(gameKey) {
-    localStorage.setItem("walz_game_key", gameKey);
-    window.location.href = "game.html";
-}
-
 /* ================== FUNGSI UNTUK HALAMAN GAME ================== */
 function initGamePage() {
-    const gameKey = localStorage.getItem("walz_game_key");
+    const urlParams = new URLSearchParams(window.location.search);
+    const gameKey = urlParams.get('key');
     if (!gameKey) {
         window.location.href = "index.html";
         return;
     }
+    
     const gameData = GAMES.find(g => g.key === gameKey);
+    if (!gameData) {
+        document.body.innerHTML = '<p style="text-align: center; margin-top: 50px; font-size: 1.2rem;">Game tidak ditemukan.</p>';
+        return;
+    }
     const productsData = PRODUCTS[gameData.key];
 
     const gameTitleEl = qs("#game-title");
@@ -448,24 +441,13 @@ function initGamePage() {
         if (!selectedProduct) return 0;
         let finalPrice = selectedProduct.price;
         if (appliedVoucher) {
-            let discountAmount = finalPrice * (appliedVoucher.percent / 100);
-
-            if (appliedVoucher.code === "HEMAT5000" && finalPrice < 50000) {
-                // Voucher HEBAT5000 hanya berlaku untuk min belanja 50rb
-                voucherStatus.textContent = "Voucher tidak memenuhi syarat minimal belanja.";
-                voucherStatus.className = 'voucher-status error';
-                appliedVoucher = null;
-            } else {
-                if (appliedVoucher.code === "HEMAT5000") {
-                    discountAmount = Math.min(discountAmount, 5000);
-                }
-                if (appliedVoucher.code === "FREEDIAMOND") {
-                    discountAmount = Math.min(discountAmount, 20000);
-                }
-                finalPrice = finalPrice - discountAmount;
+            if (appliedVoucher.percent) {
+                finalPrice -= selectedProduct.price * (appliedVoucher.percent / 100);
+            } else if (appliedVoucher.fixed) {
+                finalPrice -= appliedVoucher.fixed;
             }
         }
-        return Math.max(0, finalPrice); // Harga tidak boleh negatif
+        return Math.max(0, finalPrice);
     }
 
     function updateUI() {
@@ -520,8 +502,8 @@ function initGamePage() {
 
             card.addEventListener("click", () => {
                 selectedProduct = product;
-                // Reset voucher status saat produk berubah
                 appliedVoucher = null;
+                if(voucherInput) voucherInput.value = '';
                 if(voucherStatus) voucherStatus.textContent = '';
                 updateUI();
             });
@@ -562,7 +544,7 @@ function initGamePage() {
         let discountAmount = originalPrice - finalPrice;
 
         const voucherInfo = appliedVoucher ? `
-            <p>Diskon Voucher (${appliedVoucher.percent}%): <span><b>-${fmtIDR(discountAmount)}</b></span></p>
+            <p>Diskon Voucher: <span><b>-${fmtIDR(discountAmount)}</b></span></p>
         ` : '';
 
         summaryBox.innerHTML = `
@@ -585,26 +567,29 @@ function initGamePage() {
 
             const code = voucherInput.value.trim().toUpperCase();
             const voucher = VOUCHERS.find(v => v.code === code);
-
+            
+            appliedVoucher = null; // Reset voucher
+            
             if (voucher) {
+                // Check min purchase for specific vouchers
+                if (voucher.minPurchase && selectedProduct.price < voucher.minPurchase) {
+                    voucherStatus.textContent = `Voucher tidak memenuhi syarat minimal belanja ${fmtIDR(voucher.minPurchase)}.`;
+                    voucherStatus.className = 'voucher-status error';
+                    return;
+                }
+                
                 appliedVoucher = voucher;
-                updateUI(); // Panggil updateUI untuk kalkulasi ulang dan update UI
                 let finalPrice = calculateFinalPrice();
                 let originalPrice = selectedProduct.price;
                 let discountAmount = originalPrice - finalPrice;
-
-                // Cek apakah voucher berhasil diterapkan
-                if (appliedVoucher) {
-                    const statusText = `Voucher ${voucher.code} berhasil diterapkan! Diskon ${fmtIDR(discountAmount)}`;
-                    voucherStatus.textContent = statusText;
-                    voucherStatus.className = 'voucher-status success';
-                }
+                
+                voucherStatus.textContent = `Voucher ${voucher.code} berhasil diterapkan! Diskon ${fmtIDR(discountAmount)}`;
+                voucherStatus.className = 'voucher-status success';
             } else {
-                appliedVoucher = null;
                 voucherStatus.textContent = "Kode voucher tidak valid.";
                 voucherStatus.className = 'voucher-status error';
-                updateUI();
             }
+            updateUI();
         });
     }
 
