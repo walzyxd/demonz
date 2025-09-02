@@ -3,59 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walz Shop - Top Up Game Online Termurah & Tercepat</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Walz Shop - Top Up Games Termurah & Terpercaya</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg" type="image/x-icon">
 </head>
 <body>
-
-    <header class="main-header">
-        <a href="index.html" class="logo">Walz Shop</a>
-        <div class="header-icons">
-            <a href="https://wa.me/6282298902274" target="_blank" class="header-icon"><i class="fab fa-whatsapp"></i></a>
-            <a href="mailto:walzlonely@gmail.com" class="header-icon"><i class="far fa-envelope"></i></a>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">Walz Shop</a>
+            <nav class="nav">
+                <a href="#games-section">Top Up</a>
+                <a href="#">Bantuan</a>
+            </nav>
         </div>
     </header>
 
-    <main class="container">
-        <section class="banner-section">
-            <div id="promo-slider" class="slider">
+    <main class="main">
+        <div class="container">
+            <section class="promo-section">
+                <div class="slider">
+                    <div class="slider__track" id="promo-slider"></div>
+                    <div class="slider__dots" id="slider-dots"></div>
                 </div>
-            <div id="slider-dots" class="slider-dots">
-                </div>
-        </section>
+            </section>
 
-        <section class="section">
-            <h2 class="section-title">Top Up Game</h2>
-            <div id="games-grid" class="games-grid">
-                </div>
-        </section>
+            <section class="games-section" id="games-section">
+                <h2 class="section-title">Pilih Game</h2>
+                <div class="games-grid" id="games-grid">
+                    </div>
+            </section>
+        </div>
     </main>
 
-    <footer class="main-footer">
-        <div class="footer-content">
-            <div class="footer-info">
-                <h4>Tentang Walz Shop</h4>
-                <p>Walz Shop menyediakan layanan top up game online termurah dan tercepat untuk berbagai game populer. Transaksi aman, mudah, dan terpercaya.</p>
-            </div>
-            <div class="footer-social">
-                <h4>Ikuti Kami</h4>
-                <a href="https://wa.me/6282298902274" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:walzlonely@gmail.com" class="social-icon"><i class="far fa-envelope"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-        <div class="footer-copyright">
+    <footer class="footer">
+        <div class="container">
             <p>&copy; 2024 Walz Shop. All Rights Reserved.</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            renderGameGrid();
-            renderPromoSlider();
-        });
-    </script>
 </body>
 </html>
