@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walz Shop - Top Up Game Termurah</title>
+    <title>Walz Shop - Top Up Termurah, Aman, & Terpercaya</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="https://files.catbox.moe/k3hly0.jpg" type="image/x-icon">
 </head>
-<body id="home-page">
+<body>
 
     <header class="header">
         <div class="container">
@@ -16,40 +16,47 @@
                 <img src="https://files.catbox.moe/k3hly0.jpg" alt="Walz Shop Logo" class="logo-img">
             </a>
             <div class="header-buttons">
-                <button class="btn btn-download">
-                    <i class="fas fa-mobile-alt"></i> Download Sekarang
-                </button>
-                <button class="btn btn-login">
-                    <i class="fas fa-user-circle"></i> Masuk
-                </button>
+                <a href="#" class="btn btn-download"><i class="fas fa-download"></i> Unduh Aplikasi</a>
+                <a href="#" class="btn btn-login"><i class="fas fa-user-circle"></i> Login</a>
             </div>
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
         </div>
     </header>
+    
+    <main class="main-content">
+        <section class="promo">
+            <div class="container">
+                <div class="slider-container">
+                    <div class="slider-track" id="promo-slider">
+                        </div>
+                    <div class="slider-dots" id="slider-dots"></div>
+                </div>
+            </div>
+        </section>
 
-    <main>
-        <section class="hero-slider">
-            <div class="slider__track" id="promo-slider">
-                </div>
-            <div class="slider__dots" id="slider-dots"></div>
+        <section class="game-list">
+            <div class="container">
+                <h2 class="section-title">Semua Game Populer</h2>
+                <div class="games-grid" id="games-grid">
+                    </div>
+            </div>
         </section>
-        
-        <section class="container section">
-            <h2 class="section-title">Temukan Produk Favorit</h2>
-            <div class="games-grid" id="games-grid">
-                </div>
-        </section>
-        
     </main>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Walz Shop. All Rights Reserved.</p>
+            <div class="footer-info">
+                <h3>Walz Shop</h3>
+                <p>Top Up Game & Pulsa Termurah, Aman & Terpercaya</p>
+            </div>
+            <div class="social-media">
+                <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            </div>
         </div>
     </footer>
-
+    
     <script src="script.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
