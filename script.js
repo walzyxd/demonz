@@ -1,7 +1,7 @@
 /* ================== KONFIGURASI ================== */
 const ADMIN_WA = "6282298902274";
 const ADMIN_EMAIL = "walzlonely@gmail.com";
-const QRIS_FULL_IMAGE = "https://i.supaimg.com/5688406c-3c9f-4990-b77a-4f1eaba082ad.png"; // Gambar QRIS baru
+const QRIS_FULL_IMAGE = "https://i.supaimg.com/5688406c-3c9f-4990-b77a-4f1eaba082ad.png";
 
 /* ================== DATA VOUCHER ================== */
 const VOUCHERS = [
@@ -42,7 +42,7 @@ const PROMOS = [
 const PAYMENTS = [
     { id: "dana", name: "DANA", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
     { id: "gopay", name: "GoPay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", type: "ewallet", info: { number: "082116690164", name: "TI** SUT***" } },
-    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/5688406c-3c9f-4990-b77a-4f1eaba082ad.png", type: "qris", info: { qrisImg: "https://i.supaimg.com/5688406c-3c9f-4990-b77a-4f1eaba082ad.png" } }, // Menggunakan gambar QRIS baru
+    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/5688406c-3c9f-4990-b77a-4f1eaba082ad.png", type: "qris", info: { qrisImg: "https://i.supaimg.com/5688406c-3c9f-4990-b77a-4f1eaba082ad.png" } },
     { id: "krom", name: "Krom Bank", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", type: "bank_transfer", info: { number: "770072009565", name: "TI** SUT***" } },
 ];
 
@@ -375,10 +375,10 @@ function renderProducts(gameKey) {
             `;
             div.addEventListener("click", () => {
                 selectedProduct = p;
-                selectedPayment = null; // Reset payment selection when product changes
+                selectedPayment = null;
                 refreshSelections();
                 checkProgress();
-                renderPayments(); // Render payments again to show real-time price
+                renderPayments();
             });
             productGrid.appendChild(div);
         });
@@ -398,10 +398,7 @@ function renderPayments() {
             
             let priceHTML = '';
             if (selectedProduct) {
-                // Tampilkan harga produk yang sudah dipilih di kartu pembayaran
                 priceHTML = `<div class="payment-price-label">${fmtIDR(selectedProduct.price)}</div>`;
-            } else {
-                priceHTML = `<div class="payment-price-label">Pilih produk</div>`;
             }
             
             div.innerHTML = `
@@ -554,7 +551,7 @@ function showVoucherListModal() {
     qsa("[data-choose]", modal).forEach(btn => {
         btn.addEventListener("click", () => {
             qs("#voucher-input").value = btn.dataset.choose;
-            applyVoucher(); // Terapkan voucher otomatis setelah dipilih
+            applyVoucher();
             closeModal("voucher-list-modal");
         });
     });
@@ -706,7 +703,6 @@ function openFullscreenQris(imageUrl) {
     openModal("qris-fullscreen-modal");
 }
 
-
 function showOverlay() {
     qs("#modal-overlay")?.classList.add("active");
     document.body.style.overflow = "hidden";
@@ -717,7 +713,7 @@ function hideOverlay() {
     document.body.style.overflow = "";
     qsa(".modal").forEach(m => {
         m.classList.remove("active");
-        if (m.id === "qris-fullscreen-modal") { // Remove fullscreen QRIS modal
+        if (m.id === "qris-fullscreen-modal") {
             m.remove();
         }
     });
@@ -730,7 +726,7 @@ function openModal(id) {
     m.classList.add("active");
     const closeBtn = m.querySelector("[data-close]");
     if (closeBtn) {
-        closeBtn.onclick = () => closeModal(id); // Use onclick for simplicity
+        closeBtn.onclick = () => closeModal(id);
     }
 }
 
@@ -739,7 +735,7 @@ function closeModal(id) {
     if (!m) return;
     m.classList.remove("active");
     if (id === "qris-fullscreen-modal") {
-        m.remove(); // Remove fullscreen QRIS modal
+        m.remove();
     }
     const anyOpen = qsa(".modal.active").length > 0;
     if (!anyOpen) hideOverlay();
