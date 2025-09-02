@@ -1,6 +1,7 @@
 /* ================== KONFIGURASI ================== */
 const ADMIN_WA = "6282298902274";
 const ADMIN_EMAIL = "walzlonely@gmail.com";
+const QRIS_FULL_IMAGE = "https://i.supaimg.com/5688406c-3c9f-4990-b77a-4f1eaba082ad.png"; // Gambar QRIS baru
 
 /* ================== DATA VOUCHER ================== */
 const VOUCHERS = [
@@ -41,7 +42,7 @@ const PROMOS = [
 const PAYMENTS = [
     { id: "dana", name: "DANA", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
     { id: "gopay", name: "GoPay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", type: "ewallet", info: { number: "082116690164", name: "TI** SUT***" } },
-    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", type: "qris", info: { qrisImg: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg" } },
+    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/5688406c-3c9f-4990-b77a-4f1eaba082ad.png", type: "qris", info: { qrisImg: "https://i.supaimg.com/5688406c-3c9f-4990-b77a-4f1eaba082ad.png" } }, // Menggunakan gambar QRIS baru
     { id: "krom", name: "Krom Bank", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", type: "bank_transfer", info: { number: "770072009565", name: "TI** SUT***" } },
 ];
 
@@ -374,7 +375,7 @@ function renderProducts(gameKey) {
             `;
             div.addEventListener("click", () => {
                 selectedProduct = p;
-                selectedPayment = null;
+                selectedPayment = null; // Reset payment selection when product changes
                 refreshSelections();
                 checkProgress();
                 renderPayments(); // Render payments again to show real-time price
@@ -397,7 +398,10 @@ function renderPayments() {
             
             let priceHTML = '';
             if (selectedProduct) {
-                priceHTML = `<div class="payment-price-label">Harga: <span class="price-payment-realtime">${fmtIDR(selectedProduct.price)}</span></div>`;
+                // Tampilkan harga produk yang sudah dipilih di kartu pembayaran
+                priceHTML = `<div class="payment-price-label">${fmtIDR(selectedProduct.price)}</div>`;
+            } else {
+                priceHTML = `<div class="payment-price-label">Pilih produk</div>`;
             }
             
             div.innerHTML = `
@@ -407,6 +411,10 @@ function renderPayments() {
             `;
             
             div.addEventListener("click", () => {
+                if (!selectedProduct) {
+                    showError("Silakan pilih nominal top-up terlebih dahulu.");
+                    return;
+                }
                 selectedPayment = pay;
                 refreshSelections();
                 checkProgress();
@@ -521,7 +529,7 @@ function setVoucherStatus(text, isError = false) {
     const el = qs("#voucher-status");
     if (el) {
         el.textContent = text;
-        el.className = `status-text ${isError ? 'error' : 'success'}`;
+        el.className = `status-text ${isError ? 'error-text' : 'success-text'}`;
     }
 }
 
@@ -538,7 +546,7 @@ function showVoucherListModal() {
                 <div class="voucher-item">
                     <h4>${v.code}</h4>
                     <p>${v.description}</p>
-                    <button class="btn btn-sm btn-primary btn-choose" data-choose="${v.code}">Pilih</button>
+                    <button class="btn btn-sm btn-choose" data-choose="${v.code}">Pilih</button>
                 </div>
             `).join("")}
         </div>
@@ -546,6 +554,7 @@ function showVoucherListModal() {
     qsa("[data-choose]", modal).forEach(btn => {
         btn.addEventListener("click", () => {
             qs("#voucher-input").value = btn.dataset.choose;
+            applyVoucher(); // Terapkan voucher otomatis setelah dipilih
             closeModal("voucher-list-modal");
         });
     });
@@ -563,7 +572,7 @@ function showError(message) {
         <div class="modal-content" style="text-align: center;">
             <p>${message}</p>
             <div style="margin-top: 1rem;">
-                <button class="btn btn-login" onclick="closeModal('error-modal')">Oke</button>
+                <button class="btn" onclick="closeModal('error-modal')">Oke</button>
             </div>
         </div>
     `;
@@ -618,7 +627,10 @@ function openCheckout() {
         payBlock = `
             <div class="payment-info">
                 <h4>Scan QRIS Berikut</h4>
-                <img src="${selectedPayment.info.qrisImg}" alt="QRIS Code" style="width: 150px; height: auto; display: block; margin: 10px auto; border-radius: 8px;">
+                <div class="qris-image-container">
+                    <img src="${selectedPayment.info.qrisImg}" alt="QRIS Code" class="qris-image">
+                    <button class="btn btn-expand-qris" id="expand-qris-btn"><i class="fas fa-search-plus"></i> Perbesar QRIS</button>
+                </div>
             </div>
         `;
     } else {
@@ -629,7 +641,7 @@ function openCheckout() {
                 <p><strong>A/N:</strong> ${selectedPayment.info.name || "-"}</p>
                 <div class="copy-field">
                     <span id="account-number">${selectedPayment.info.number}</span>
-                    <button id="copy-account-btn">Salin</button>
+                    <button class="btn" id="copy-account-btn">Salin</button>
                 </div>
             </div>
         `;
@@ -668,8 +680,32 @@ function openCheckout() {
     if (copyBtn) {
         copyBtn.addEventListener("click", () => copyToClipboard(selectedPayment.info.number, copyBtn));
     }
+    
+    const expandQrisBtn = qs("#expand-qris-btn", modal);
+    if (expandQrisBtn) {
+        expandQrisBtn.addEventListener("click", () => openFullscreenQris(QRIS_FULL_IMAGE));
+    }
+
     openModal("checkout-modal");
 }
+
+function openFullscreenQris(imageUrl) {
+    const modal = document.createElement("div");
+    modal.id = "qris-fullscreen-modal";
+    modal.classList.add("modal");
+    modal.innerHTML = `
+        <div class="modal-header">
+            <h3>QRIS untuk Scan</h3>
+            <button class="modal-close-btn" data-close>&times;</button>
+        </div>
+        <div class="modal-content">
+            <img src="${imageUrl}" alt="QRIS Fullscreen" style="width: auto; height: auto;">
+        </div>
+    `;
+    qs("#modal-overlay").appendChild(modal);
+    openModal("qris-fullscreen-modal");
+}
+
 
 function showOverlay() {
     qs("#modal-overlay")?.classList.add("active");
@@ -679,7 +715,12 @@ function showOverlay() {
 function hideOverlay() {
     qs("#modal-overlay")?.classList.remove("active");
     document.body.style.overflow = "";
-    qsa(".modal").forEach(m => m.classList.remove("active"));
+    qsa(".modal").forEach(m => {
+        m.classList.remove("active");
+        if (m.id === "qris-fullscreen-modal") { // Remove fullscreen QRIS modal
+            m.remove();
+        }
+    });
 }
 
 function openModal(id) {
@@ -689,7 +730,7 @@ function openModal(id) {
     m.classList.add("active");
     const closeBtn = m.querySelector("[data-close]");
     if (closeBtn) {
-        closeBtn.addEventListener("click", () => closeModal(id));
+        closeBtn.onclick = () => closeModal(id); // Use onclick for simplicity
     }
 }
 
@@ -697,6 +738,9 @@ function closeModal(id) {
     const m = qs(`#${id}`);
     if (!m) return;
     m.classList.remove("active");
+    if (id === "qris-fullscreen-modal") {
+        m.remove(); // Remove fullscreen QRIS modal
+    }
     const anyOpen = qsa(".modal.active").length > 0;
     if (!anyOpen) hideOverlay();
 }
@@ -706,5 +750,8 @@ function copyToClipboard(text, btn) {
         const old = btn.textContent;
         btn.textContent = "Disalin!";
         setTimeout(() => btn.textContent = old, 1500);
+    }).catch(err => {
+        console.error('Failed to copy text: ', err);
+        alert('Gagal menyalin. Silakan salin manual.');
     });
 }
