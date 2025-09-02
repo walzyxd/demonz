@@ -23,18 +23,19 @@ body {
     background-color: var(--dark-bg);
     color: var(--text-color);
     line-height: 1.6;
+    font-size: 14px; /* Default font size for better space management */
 }
 
 .container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 /* --- Header --- */
 .header {
     background: var(--light-bg);
-    padding: 1rem 0;
+    padding: 0.75rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -48,16 +49,16 @@ body {
 }
 
 .logo-img {
-    height: 40px;
+    height: 35px;
 }
 
 .header-buttons {
     display: flex;
-    gap: 10px;
+    gap: 8px;
 }
 
 .btn {
-    padding: 0.75rem 1.5rem;
+    padding: 0.5rem 1rem;
     border-radius: 50px;
     border: none;
     cursor: pointer;
@@ -66,8 +67,9 @@ body {
     color: var(--white);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     text-decoration: none;
+    font-size: 0.8rem;
 }
 
 .btn-download {
@@ -78,7 +80,6 @@ body {
     background-color: var(--secondary-color);
 }
 
-/* Tombol kembali akan selalu ditampilkan */
 .btn-back {
     background-color: #aaa;
     color: var(--white);
@@ -87,11 +88,11 @@ body {
 
 /* --- Main Content --- */
 .main-content {
-    padding: 2rem 0;
+    padding: 1rem 0;
 }
 
 .promo {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .slider-container {
@@ -108,23 +109,23 @@ body {
 
 .slider__item {
     min-width: 100%;
-    height: 200px;
+    height: 150px;
     background-size: cover;
     background-position: center;
 }
 
 .slider-dots {
     position: absolute;
-    bottom: 10px;
+    bottom: 8px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 8px;
+    gap: 6px;
 }
 
 .slider-dots span {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 50%;
     cursor: pointer;
@@ -137,23 +138,22 @@ body {
 }
 
 .section-title {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 700;
     color: var(--primary-color);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     text-align: center;
 }
 
-/* Penyesuaian Grid Kartu Game untuk semua layar */
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Ukuran kartu 100px, bisa menyesuaikan */
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.75rem;
 }
 
 .game-card {
     background-color: var(--light-bg);
-    padding: 1rem;
+    padding: 0.75rem;
     border-radius: var(--border-card-radius);
     text-align: center;
     text-decoration: none;
@@ -172,15 +172,15 @@ body {
 }
 
 .game-card img {
-    width: 80px; /* Lebar gambar disesuaikan */
-    height: 80px; /* Tinggi gambar disesuaikan */
+    width: 60px;
+    height: 60px;
     object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    margin-bottom: 0.25rem;
 }
 
 .game-name {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: 500;
 }
 
@@ -188,8 +188,8 @@ body {
 .footer {
     background-color: var(--primary-color);
     color: var(--white);
-    padding: 3rem 0 1rem;
-    margin-top: 2rem;
+    padding: 2rem 0 0.5rem;
+    margin-top: 1.5rem;
 }
 
 .footer .container {
@@ -197,30 +197,30 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .footer-col {
     flex: 1;
-    min-width: 200px;
+    min-width: 150px;
 }
 
 .footer-col h3 {
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
 }
 
 .footer-col p {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #eee;
 }
 
 .footer-col a {
     color: var(--white);
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     transition: color 0.2s;
 }
 
@@ -229,30 +229,18 @@ body {
 }
 
 .footer-col .fab, .footer-col .fas {
-    margin-right: 8px;
-}
-
-.social-media a {
-    display: inline-block;
-    font-size: 1.5rem;
-    margin-right: 15px;
-    color: var(--white);
-    transition: color 0.2s;
-}
-
-.social-media a:hover {
-    color: var(--accent-color);
+    margin-right: 6px;
 }
 
 .footer-bottom {
     text-align: center;
-    margin-top: 2rem;
-    padding-top: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 0.75rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-bottom p {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: #ccc;
 }
 
@@ -260,48 +248,48 @@ body {
 /* --- Game Page --- */
 .game-info {
     background: var(--light-bg);
-    padding: 2rem 0;
+    padding: 1.5rem 0;
     box-shadow: var(--box-shadow);
 }
 
 .game-header-card {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    padding: 1.5rem;
+    gap: 1rem;
+    padding: 1rem;
     border-radius: var(--border-radius);
     background: var(--dark-bg);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .game-icon-small {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 8px;
 }
 
 .game-name {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     font-weight: 700;
     margin: 0;
     color: var(--primary-color);
 }
 
 .game-description {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: var(--secondary-text);
 }
 
 .topup-form-container {
-    padding-top: 2rem;
+    padding-top: 1.5rem;
 }
 
 .form-step {
     background: var(--light-bg);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: var(--border-radius);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     box-shadow: var(--box-shadow);
     transition: box-shadow 0.3s ease;
 }
@@ -313,8 +301,8 @@ body {
 .step-header {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
     cursor: pointer;
 }
 
@@ -322,428 +310,203 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     background-color: var(--primary-color);
     color: var(--white);
     border-radius: 50%;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .step-label {
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--primary-color);
     margin: 0;
 }
 
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 input[type="text"] {
     width: 100%;
-    padding: 0.75rem 1rem;
+    padding: 0.6rem 0.8rem;
     border: 2px solid #ddd;
     background-color: #fff;
     color: #333;
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-input[type="text"]:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(93, 37, 158, 0.2);
+    border-radius: 8px;
+    font-size: 0.9rem;
 }
 
 .error-text {
-    color: #ff4d4d;
-    font-size: 0.85rem;
-    margin-top: 5px;
-    display: block;
+    font-size: 0.75rem;
+    margin-top: 3px;
 }
 
 .muted {
-    font-size: 0.9rem;
-    color: var(--secondary-text);
-    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
 }
 
 .product-grid, .payment-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.6rem;
 }
 
 .product-card, .payment-card {
-    background-color: var(--dark-bg);
-    border-radius: var(--border-card-radius);
-    border: 2px solid transparent;
-    padding: 1rem;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: var(--primary-color);
-    position: relative;
-}
-
-.product-card.selected, .payment-card.selected {
-    border-color: var(--accent-color);
-    background-color: #e8f5e9;
-    box-shadow: 0 0 0 4px var(--accent-color);
-}
-
-.product-card:hover, .payment-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    padding: 0.75rem;
 }
 
 .product-label {
-    font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 .product-price {
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--primary-color);
-    margin-top: 0.25rem;
+    font-size: 0.9rem;
 }
 
 .payment-card img {
-    width: 100%;
-    max-height: 40px;
-    object-fit: contain;
-    filter: none;
+    max-height: 30px;
 }
 
 .payment-label {
-    margin-top: 0.5rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--primary-color);
+    font-size: 0.7rem;
 }
 
 .payment-price-label {
-    font-size: 0.8rem;
-    color: var(--secondary-text);
-    margin-top: 0.2rem;
+    font-size: 0.7rem;
 }
 
 .voucher-container {
-    display: flex;
-    gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .rounded-input {
-    flex: 1;
-    border-radius: 10px;
+    flex: 1 1 150px;
 }
 
 .btn-voucher {
-    padding: 0.75rem 1rem;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 600;
-    background-color: var(--secondary-color);
-    color: var(--white);
-    transition: background-color 0.2s;
-}
-
-.btn-voucher:hover {
-    background-color: #6a3ca4;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
 }
 
 .btn-voucher-list {
-    background: none;
-    border: 1px solid var(--secondary-color);
-    color: var(--secondary-color);
-    padding: 0.5rem 1rem;
-    border-radius: 10px;
-    margin-top: 1rem;
-    cursor: pointer;
-    font-weight: 600;
-    display: block;
-    width: 100%;
-    transition: all 0.2s;
-}
-
-.btn-voucher-list:hover {
-    background-color: var(--secondary-color);
-    color: var(--white);
-}
-
-.status-text {
-    margin-top: 1rem;
-    font-weight: 500;
-    text-align: center;
-}
-
-.status-text.success {
-    color: var(--accent-color);
-}
-
-.status-text.error {
-    color: #e03c31;
-}
-
-.summary-step {
-    border-left: 5px solid var(--accent-color);
-}
-
-.summary-details {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
 }
 
 .summary-item {
-    display: flex;
-    justify-content: space-between;
-    font-size: 1rem;
-    border-bottom: 1px dashed #ccc;
-    padding-bottom: 0.5rem;
+    font-size: 0.9rem;
+    padding-bottom: 0.4rem;
 }
 
 .summary-total {
-    display: flex;
-    justify-content: space-between;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--primary-color);
-    margin-top: 1rem;
+    font-size: 1rem;
+    margin-top: 0.75rem;
 }
 
 .btn-confirm {
-    background-color: var(--accent-color);
-    color: var(--white);
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    margin-top: 2rem;
-    display: block;
-    width: 100%;
-}
-
-.btn[disabled] {
-    background-color: #ccc;
-    cursor: not-allowed;
+    padding: 0.75rem 1.5rem;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
 }
 
 /* --- Modal --- */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-    backdrop-filter: blur(5px);
-}
-
-.modal-overlay.active {
-    display: flex;
-}
-
 .modal {
-    background: var(--light-bg);
-    padding: 2rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    width: 90%;
-    max-width: 500px;
-    display: none;
-    flex-direction: column;
-    transform: scale(0.9);
-    opacity: 0;
-    transition: all 0.3s ease-out;
-    position: relative; /* Pastikan posisi relatif untuk tombol close */
-}
-
-.modal.active {
-    display: flex;
-    transform: scale(1);
-    opacity: 1;
+    padding: 1.5rem;
+    max-width: 400px;
 }
 
 .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .modal-header h3 {
-    margin: 0;
-    color: var(--primary-color);
+    font-size: 1.2rem;
 }
 
 .modal-close-btn {
-    background: none;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--secondary-text);
-    line-height: 1;
-    transition: color 0.2s;
-    position: absolute; /* Posisikan tombol X di pojok kanan atas */
-    top: 10px;
-    right: 15px;
-}
-
-.modal-close-btn:hover {
-    color: var(--primary-color);
+    font-size: 1.5rem;
 }
 
 .modal-content-list .voucher-item {
-    background-color: var(--dark-bg);
-    padding: 1rem;
-    border-radius: 10px;
-    margin-bottom: 0.75rem;
-    border: 2px solid transparent;
-    transition: all 0.2s;
-}
-
-.modal-content-list .voucher-item:hover {
-    border-color: var(--primary-color);
+    padding: 0.75rem;
 }
 
 .modal-content-list .voucher-item h4 {
-    margin-bottom: 0.25rem;
-    font-size: 1.1rem;
-    color: var(--primary-color);
+    font-size: 1rem;
 }
 
 .modal-content-list .voucher-item p {
-    font-size: 0.9rem;
-    color: var(--secondary-text);
+    font-size: 0.8rem;
 }
 
 .modal-content-list .voucher-item .btn-choose {
-    float: right;
-    padding: 0.5rem 1rem;
-    background-color: var(--accent-color);
-    border-radius: 8px;
-    color: var(--white);
-    cursor: pointer;
-}
-
-/* --- Checkout Modal --- */
-.summary-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
+    padding: 0.4rem 0.8rem;
 }
 
 .summary-table td {
-    padding: 0.75rem 0;
-    border-bottom: 1px solid #ddd;
-}
-
-.summary-table td:first-child {
-    color: var(--secondary-text);
-}
-
-.summary-table td:last-child {
-    text-align: right;
-    font-weight: bold;
-    color: var(--primary-color);
-}
-
-.summary-table tr:last-child td {
-    border-bottom: none;
+    padding: 0.6rem 0;
+    font-size: 0.85rem;
 }
 
 .payment-info {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    background-color: var(--dark-bg);
-    border-radius: var(--border-radius);
-    text-align: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
 }
 
 .payment-info h4 {
-    margin-bottom: 1rem;
-    color: var(--primary-color);
-    font-size: 1.1rem;
-}
-
-.payment-info img {
-    max-height: 50px;
-    margin: 10px 0;
-    max-width: 150px; /* Batasi lebar QRIS */
-    object-fit: contain;
+    font-size: 1rem;
 }
 
 .copy-field {
-    display: flex;
-    align-items: center;
-    background-color: #eee;
-    padding: 0.75rem 1rem;
-    border-radius: 10px;
-    margin-top: 1rem;
+    padding: 0.6rem 0.8rem;
 }
 
 .copy-field span {
-    flex: 1;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-family: monospace;
-    color: var(--primary-color);
+    font-size: 0.8rem;
 }
 
 .copy-field button {
-    background-color: var(--secondary-color);
-    border: none;
-    color: var(--white);
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
 }
 
 .modal-footer {
-    margin-top: 1.5rem;
-    text-align: center;
+    margin-top: 1.2rem;
 }
 
-.modal-footer .btn-block {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 1rem;
-    text-decoration: none;
-    border-radius: 50px;
+.btn-block {
+    padding: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .instruction {
-    font-size: 0.85rem;
-    color: #888;
-    text-align: center;
-    margin-top: 1rem;
+    font-size: 0.75rem;
 }
 
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
-    /* Tombol download dan login disembunyikan di HP, menu toggle muncul */
     .header .header-buttons {
         display: none;
     }
-
+    .header .container {
+        justify-content: center;
+        position: relative;
+    }
+    .btn-back {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 0.5rem 0.75rem;
+    }
+    .logo {
+        margin: 0 auto;
+    }
+    
     .menu-toggle {
         display: block;
     }
@@ -753,9 +516,8 @@ input[type="text"]:focus {
         align-items: center;
         text-align: center;
     }
-    
-    /* Tombol Kembali di halaman game akan selalu terlihat */
-    .btn-back {
-        display: flex;
+
+    .games-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     }
 }
