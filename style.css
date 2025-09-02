@@ -1,15 +1,17 @@
 :root {
-    --primary-color: #5d259e; /* Ungu */
-    --secondary-color: #8c53d9; /* Ungu lebih terang */
-    --accent-color: #4CAF50; /* Hijau */
-    --light-bg: #fff; /* Latar belakang terang */
-    --dark-bg: #f4f4f4; /* Latar belakang abu-abu terang */
+    --primary-color: #5d259e;
+    --secondary-color: #8c53d9;
+    --accent-color: #4CAF50; /* Tetap hijau untuk download */
+    --light-bg: #fff;
+    --dark-bg: #f4f4f4;
     --white: #fff;
-    --text-color: #5d259e; /* Teks ungu */
-    --secondary-text: #666; /* Teks abu-abu */
+    --text-color: #5d259e;
+    --secondary-text: #666;
     --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     --border-radius: 12px;
     --border-card-radius: 12px;
+    --blue-btn: #007bff; /* Warna biru tua cerah untuk tombol */
+    --blue-btn-hover: #0056b3;
 }
 
 * {
@@ -70,20 +72,39 @@ body {
     gap: 6px;
     text-decoration: none;
     font-size: 0.8rem;
+    background-color: var(--blue-btn); /* Warna tombol biru tua */
+}
+
+.btn:hover {
+    background-color: var(--blue-btn-hover);
 }
 
 .btn-download {
-    background-color: var(--accent-color);
+    background-color: var(--accent-color); /* Tetap hijau untuk download */
+}
+.btn-download:hover {
+    background-color: #3e8e41;
 }
 
 .btn-login {
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-color); /* Tetap ungu terang untuk login */
+}
+.btn-login:hover {
+    background-color: #6d42a8;
 }
 
 .btn-back {
-    background-color: #aaa;
+    background-color: var(--blue-btn); /* Tombol kembali biru tua */
     color: var(--white);
     border-radius: 10px;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0.5rem 0.75rem;
+}
+.btn-back:hover {
+    background-color: var(--blue-btn-hover);
 }
 
 /* --- Main Content --- */
@@ -147,7 +168,7 @@ body {
 
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Ukuran game card diperbesar */
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 1rem;
 }
 
@@ -164,7 +185,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    aspect-ratio: 1 / 1.1; /* Membuat rasio mendekati persegi (sedikit lebih tinggi) */
+    height: 150px; /* Tinggi yang sama */
+    width: 100%; /* Lebar mengisi grid */
 }
 
 .game-card:hover {
@@ -173,9 +195,8 @@ body {
 }
 
 .game-card img {
-    width: 80%; /* Ukuran gambar disesuaikan dengan lebar card */
-    max-width: 100px;
-    height: auto;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
     border-radius: 8px;
     margin-bottom: 0.5rem;
@@ -345,74 +366,135 @@ input[type="text"] {
 .error-text {
     font-size: 0.75rem;
     margin-top: 3px;
+    color: red; /* Warna merah untuk error */
+}
+
+.success-text {
+    font-size: 0.75rem;
+    margin-top: 3px;
+    color: var(--accent-color); /* Warna hijau untuk success */
 }
 
 .muted {
     font-size: 0.8rem;
     margin-bottom: 0.75rem;
+    color: var(--secondary-text);
 }
 
 .product-grid, .payment-grid {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); /* Ukuran card produk di halaman game */
     gap: 0.6rem;
 }
 
 .product-card, .payment-card {
     padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+    display: flex; /* Untuk layout internal */
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px; /* Tinggi tetap agar square */
+    aspect-ratio: 1 / 1; /* Membuat kartu persegi */
+}
+
+.product-card:hover, .payment-card:hover,
+.product-card.selected, .payment-card.selected {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(93, 37, 158, 0.2);
 }
 
 .product-label {
     font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 1.2;
+    flex-grow: 1; /* Memastikan label mengisi ruang */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .product-price {
     font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--blue-btn); /* Harga lebih menonjol */
 }
 
 .payment-card img {
     max-height: 30px;
+    margin-bottom: 0.2rem;
+    object-fit: contain;
 }
 
 .payment-label {
     font-size: 0.7rem;
+    font-weight: 500;
+    line-height: 1.2;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .payment-price-label {
     font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--secondary-text);
 }
 
+
 .voucher-container {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
     flex-wrap: wrap;
 }
 
 .rounded-input {
     flex: 1 1 150px;
+    min-width: 0;
 }
 
-.btn-voucher {
+.btn-voucher, .btn-voucher-list {
+    background-color: var(--blue-btn); /* Tombol voucher biru tua */
+    color: var(--white);
     padding: 0.6rem 0.8rem;
     font-size: 0.8rem;
+    border-radius: 8px; /* Bentuk lebih kotak */
 }
-
-.btn-voucher-list {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
+.btn-voucher:hover, .btn-voucher-list:hover {
+    background-color: var(--blue-btn-hover);
 }
 
 .summary-item {
+    display: flex;
+    justify-content: space-between;
     font-size: 0.9rem;
     padding-bottom: 0.4rem;
 }
 
 .summary-total {
+    display: flex;
+    justify-content: space-between;
     font-size: 1rem;
     margin-top: 0.75rem;
+    font-weight: bold;
 }
 
 .btn-confirm {
+    background-color: var(--blue-btn); /* Tombol konfirmasi biru tua */
+    width: 100%;
     padding: 0.75rem 1.5rem;
     margin-top: 1.5rem;
     font-size: 0.9rem;
+    border-radius: 8px; /* Bentuk lebih kotak */
+}
+.btn-confirm:hover {
+    background-color: var(--blue-btn-hover);
 }
 
 /* --- Modal --- */
@@ -487,6 +569,9 @@ input[type="text"] {
 
 .modal-content-list .voucher-item {
     padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    margin-bottom: 0.5rem;
 }
 
 .modal-content-list .voucher-item h4 {
@@ -495,10 +580,24 @@ input[type="text"] {
 
 .modal-content-list .voucher-item p {
     font-size: 0.8rem;
+    color: var(--secondary-text);
 }
 
 .modal-content-list .voucher-item .btn-choose {
+    background-color: var(--blue-btn); /* Tombol pilih voucher biru tua */
+    color: var(--white);
     padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    float: right;
+}
+.modal-content-list .voucher-item .btn-choose:hover {
+    background-color: var(--blue-btn-hover);
+}
+
+
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
 .summary-table td {
@@ -513,32 +612,110 @@ input[type="text"] {
 
 .payment-info h4 {
     font-size: 1rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.payment-info p {
+    font-size: 0.85rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.payment-info strong {
+    color: var(--primary-color);
+}
+
+.qris-image-container {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.qris-image {
+    width: 180px; /* Ukuran QRIS yang pas untuk scan */
+    height: auto;
+    display: block;
+    margin: 0 auto 10px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-expand-qris {
+    background-color: var(--blue-btn); /* Tombol perbesar QRIS biru tua */
+    color: var(--white);
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.btn-expand-qris:hover {
+    background-color: var(--blue-btn-hover);
 }
 
 .copy-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--dark-bg);
     padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    border: 1px solid #eee;
 }
 
 .copy-field span {
     font-size: 0.8rem;
+    font-weight: 500;
+    word-break: break-all;
+    color: #333;
 }
 
 .copy-field button {
+    background-color: var(--blue-btn); /* Tombol salin biru tua */
+    color: var(--white);
     padding: 0.4rem 0.8rem;
     font-size: 0.75rem;
+    border-radius: 5px;
+    margin-left: 10px;
 }
+.copy-field button:hover {
+    background-color: var(--blue-btn-hover);
+}
+
 
 .modal-footer {
     margin-top: 1.2rem;
+    text-align: center;
 }
 
 .btn-block {
-    padding: 0.8rem;
-    font-size: 0.9rem;
+    width: 100%;
+    text-align: center;
 }
 
 .instruction {
     font-size: 0.75rem;
+    text-align: center;
+    color: var(--secondary-text);
+    margin-top: 0.8rem;
+}
+
+/* Modal untuk menampilkan gambar QRIS yang diperbesar */
+#qris-fullscreen-modal {
+    max-width: 90%;
+    width: auto;
+}
+#qris-fullscreen-modal .modal-content {
+    text-align: center;
+}
+#qris-fullscreen-modal img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 /* --- Mobile Responsiveness --- */
@@ -571,23 +748,41 @@ input[type="text"] {
         text-align: center;
     }
     
-    /* Ukuran game card di mobile */
     .games-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: 0.75rem;
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); /* Game card lebih kecil di mobile */
     }
     
     .game-card {
-        aspect-ratio: 1 / 1.1;
-        padding: 0.75rem;
+        height: 110px; /* Tinggi disesuaikan */
+        padding: 0.5rem;
     }
     
     .game-card img {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
+    }
+    .game-name {
+        font-size: 0.75rem;
     }
 
-    .game-name {
+    .product-grid, .payment-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Product card lebih kecil di mobile */
+    }
+    .product-card, .payment-card {
+        height: 90px;
+        padding: 0.5rem;
+    }
+    .product-label, .payment-label {
         font-size: 0.7rem;
+    }
+    .product-price {
+        font-size: 0.8rem;
+    }
+
+    .modal {
+        max-width: 95%;
+    }
+    .qris-image {
+        width: 150px;
     }
 }
