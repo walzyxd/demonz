@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-title">Walz Shop - Top Up</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://files.catbox.moe/k3hly0.jpg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body id="game-page">
     
     <header class="ws-header">
-        <div class="ws-header-row">
+        <div class="ws-header-row container">
             <h1 class="logo">Walz Shop</h1>
             <nav class="ws-nav">
                 <a href="index.html#home">Home</a>
@@ -33,15 +33,12 @@
 
             <div class="grid-container">
                 <div class="left-panel">
-                    
-                    <div class="form-section">
+                    <div class="form-section step-section">
                         <h2>Langkah 1: Masukkan Data Akun</h2>
                         <div class="input-group">
                             <label for="user-id">User ID:</label>
                             <input type="text" id="user-id" placeholder="Masukkan User ID">
-                            <small class="muted">
-                                <i class="fas fa-info-circle"></i> <span class="guide-text"></span>
-                            </small>
+                            <small class="muted guide-text"></small>
                             <span class="status-text error" id="error-user"></span>
                         </div>
                         <div class="input-group" id="server-group">
@@ -51,23 +48,23 @@
                         </div>
                     </div>
 
-                    <div class="form-section">
+                    <div class="form-section step-section">
                         <h2>Langkah 2: Pilih Nominal</h2>
                         <div class="product-grid" id="product-grid">
                             </div>
                     </div>
                     
-                    <div class="form-section">
+                    <div class="form-section step-section">
                         <h2>Langkah 3: Kode Voucher</h2>
-                        <div id="voucher-section">
+                        <div class="voucher-input-container">
                             <input type="text" id="voucher-input" placeholder="Masukkan kode voucher">
-                            <button id="voucher-btn" class="btn btn-secondary">Terapkan</button>
-                            <button id="voucher-list-btn" class="btn btn-secondary">Lihat Kode</button>
+                            <button id="voucher-btn" class="btn btn-secondary btn-apply">Terapkan</button>
                         </div>
+                        <button id="voucher-list-btn" class="btn btn-secondary btn-full">Lihat Kode Voucher</button>
                         <span class="status-text" id="voucher-status"></span>
                     </div>
 
-                    <div class="form-section">
+                    <div class="form-section step-section">
                         <h2>Langkah 4: Pilih Pembayaran</h2>
                         <div class="payment-grid" id="payment-grid">
                             </div>
@@ -75,7 +72,7 @@
                 </div>
 
                 <div class="right-panel">
-                    <div class="form-section sticky-summary">
+                    <div class="form-section summary-panel sticky-summary">
                         <h2>Ringkasan Order</h2>
                         <div class="summary-box" id="summary-box">
                             <p class="muted">Pilih nominal & metode bayar untuk melihat total.</p>
