@@ -325,7 +325,7 @@ function setupGamePage(gameKeyFromUrl) {
     }
     
     qs("#game-banner").src = currentGame.img;
-    qs(".game-name").textContent = currentGame.name;
+    qs(".game-name-h1").textContent = currentGame.name;
     qs("title").textContent = `Walz Shop - Top Up ${currentGame.name}`;
     qs(".game-description").textContent = currentGame.guide;
 
@@ -560,7 +560,7 @@ function showVoucherListModal() {
     qsa("[data-choose]", modal).forEach(btn => {
         btn.addEventListener("click", () => {
             qs("#voucher-input").value = btn.dataset.choose;
-            applyVoucher();
+            // Removed direct application of voucher. User must now click "Gunakan".
             closeModal("voucher-list-modal");
         });
     });
