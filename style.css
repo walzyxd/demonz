@@ -1,13 +1,12 @@
-/* --- Fonts & Base Styles --- */
+/* ================== Fonts & Base Styles ================== */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 :root {
-    --primary-color: #5d259e; /* Purple */
-    --secondary-color: #f4b400; /* Yellow */
-    --text-color-dark: #3a1e5a; /* Darker Purple for text */
+    --primary-color: #5d259e; /* Ungu */
+    --secondary-color: #f4b400; /* Kuning */
+    --text-color-dark: #3a1e5a; /* Ungu gelap untuk teks */
     --text-color-light: #fff;
     --bg-light: #f9f9f9;
-    --bg-dark: #1e1e1e;
     --card-bg: #fff;
     --border-color: #ddd;
     --success-color: #28a745;
@@ -35,7 +34,7 @@ body {
     padding: 1rem;
 }
 
-/* --- Header & Back Button --- */
+/* ================== Header & Back Button ================== */
 .main-header {
     background-color: var(--primary-color);
     color: var(--text-color-light);
@@ -77,7 +76,7 @@ body {
     font-weight: 600;
 }
 
-/* --- Sections & Titles --- */
+/* ================== Sections & Titles ================== */
 .section {
     margin-bottom: 2rem;
 }
@@ -102,7 +101,7 @@ body {
     border-radius: 5px;
 }
 
-/* --- Banner & Slider --- */
+/* ================== Banner & Slider ================== */
 .banner-section {
     margin: 1rem 0 2rem;
     position: relative;
@@ -152,7 +151,7 @@ body {
     height: 12px;
 }
 
-/* --- Game Grid --- */
+/* ================== Game Grid ================== */
 .games-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -189,7 +188,7 @@ body {
     color: var(--text-color-dark);
 }
 
-/* --- Game Page Specific Styles --- */
+/* ================== Game Page Specific Styles ================== */
 .game-info {
     text-align: center;
     margin-bottom: 2rem;
@@ -317,7 +316,7 @@ body {
 }
 
 .btn:disabled {
-    background-color: rgba(93, 37, 158, 0.6); /* Keep color but make it faded */
+    background-color: rgba(93, 37, 158, 0.6);
     cursor: not-allowed;
 }
 
@@ -351,7 +350,7 @@ body {
     color: var(--error-color);
 }
 
-/* --- Product & Payment Grids --- */
+/* ================== Product & Payment Grids ================== */
 .product-grid, .payment-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -431,7 +430,7 @@ body {
     color: var(--primary-color);
 }
 
-/* --- Summary & Checkout --- */
+/* ================== Summary & Checkout ================== */
 .summary-section {
     background-color: var(--bg-light);
     padding: 1.5rem;
@@ -477,7 +476,7 @@ body {
     padding: 0.75rem 2.5rem;
 }
 
-/* --- Footer --- */
+/* ================== Footer ================== */
 .main-footer {
     background-color: var(--primary-color);
     color: var(--text-color-light);
@@ -525,7 +524,7 @@ body {
     color: rgba(255, 255, 255, 0.6);
 }
 
-/* --- Modals --- */
+/* ================== Modals ================== */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -669,31 +668,12 @@ body {
     height: auto;
 }
 
-/* Specific Modal for QRIS */
-#qris-fullscreen-modal .modal {
-    max-width: 500px;
-    padding: 1rem;
-}
-
-#qris-fullscreen-modal .modal-content {
-    text-align: center;
-}
-
-#qris-fullscreen-modal img {
-    max-width: 100%;
-    height: auto;
-}
-
-.btn-expand-qris {
-    display: none;
-}
-
 /* --- Badges for Products --- */
 .product-card .badge {
     position: absolute;
     top: 5px;
     right: 5px;
-    background-color: #5d259e; /* Purple */
+    background-color: var(--primary-color);
     color: white;
     font-size: 0.6rem;
     font-weight: 600;
@@ -704,35 +684,41 @@ body {
 }
 
 .product-card {
-    position: relative; /* Make sure badges can be positioned */
+    position: relative;
 }
 
 .product-card .badge.member {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50;
 }
 
 .product-card .badge.pass {
-    background-color: #f44336; /* Red */
+    background-color: #f44336;
 }
 
 .product-card .badge.weekly {
-    background-color: #ff9800; /* Orange */
+    background-color: #ff9800;
 }
 
 .product-card .badge.hot {
-    background-color: #f44336; /* Red */
+    background-color: #f44336;
 }
 
 .product-card .badge.new {
-    background-color: #2196F3; /* Blue */
+    background-color: #2196F3;
 }
 
 .product-card .badge.sale {
-    background-color: #FF5722; /* Deep Orange */
+    background-color: #FF5722;
 }
 
-/* Responsive Styles */
+/* ================== Media Queries untuk Responsivitas ================== */
+
+/* Untuk layar kecil (Ponsel, ukuran di bawah 768px) */
 @media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
     .container {
         padding: 0.5rem;
     }
@@ -749,13 +735,20 @@ body {
         font-size: 1rem;
         margin-left: 0.8rem;
     }
+
+    .section-title {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
     
     .games-grid {
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 0.8rem;
     }
     
     .game-name {
-        font-size: 0.8rem; /* Smaller font for game name on mobile */
+        font-size: 0.8rem;
+        padding: 0.5rem;
     }
 
     .game-banner-page {
@@ -764,23 +757,7 @@ body {
     }
 
     .game-name-h1 {
-        font-size: 1.5rem; /* Smaller H1 for game name on mobile */
-    }
-    
-    .product-grid, .payment-grid {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    }
-    
-    .product-card {
-        padding: 0.75rem;
-    }
-    
-    .product-label, .payment-label {
-        font-size: 0.8rem;
-    }
-    
-    .product-price, .payment-price-label {
-        font-size: 0.9rem;
+        font-size: 1.5rem;
     }
     
     .form-section {
@@ -789,14 +766,41 @@ body {
     
     .form-step {
         padding: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
     }
     
     .step-title {
         font-size: 0.9rem;
     }
     
+    .product-grid, .payment-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 0.7rem;
+        margin-bottom: 1rem;
+    }
+
+    .product-card, .payment-card {
+        padding: 0.7rem;
+    }
+    
+    .product-label, .payment-label {
+        font-size: 0.8rem;
+    }
+    
+    .product-price {
+        font-size: 0.9rem;
+    }
+    
+    .summary-section {
+        padding: 1rem;
+    }
+
     .summary-total {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
     
     .modal {
@@ -806,6 +810,14 @@ body {
     
     .modal-content table {
         font-size: 0.9rem;
+    }
+
+    .modal-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .modal-close-btn {
+        font-size: 1.3rem;
     }
 
     .voucher-item h4 {
@@ -820,9 +832,7 @@ body {
         font-size: 0.8rem;
         padding: 0.5rem 1rem;
     }
-}
 
-@media (max-width: 576px) {
     .footer-content {
         flex-direction: column;
         align-items: center;
