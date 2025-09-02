@@ -156,7 +156,7 @@ h2.section-title::after {
 .promo-slider {
     position: relative;
     overflow: hidden;
-    height: 200px;
+    height: 150px; /* Ukuran slider lebih kecil */
     border-radius: 10px;
 }
 
@@ -205,17 +205,17 @@ h2.section-title::after {
 
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Ukuran kartu game lebih kecil */
+    gap: 1rem;
 }
 
 .game-card {
     background: var(--card-background);
     color: var(--text-color);
-    border-radius: 10px;
+    border-radius: 8px;
     overflow: hidden;
     text-align: center;
-    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s, box-shadow 0.3s;
     display: block;
@@ -228,15 +228,16 @@ h2.section-title::after {
 
 .game-card img {
     width: 100%;
-    height: 140px;
+    height: 100px; /* Tinggi gambar lebih kecil */
     object-fit: cover;
     display: block;
 }
 
 .game-card span {
     display: block;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     font-weight: 500;
+    font-size: 0.9rem;
 }
 
 /* ================== Info Section ================== */
@@ -247,22 +248,22 @@ h2.section-title::after {
 
 .info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
     text-align: center;
 }
 
 .info-card {
     background: #252e39;
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 1rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .info-icon {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: var(--heading-color);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 /* ================== Contact & Footer ================== */
@@ -273,7 +274,7 @@ h2.section-title::after {
 
 .contact-info p {
     margin: 0.5rem 0;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .footer {
@@ -327,8 +328,8 @@ h2.section-title::after {
 }
 
 .btn-cta {
-    font-size: 1.2rem;
-    padding: 1rem 2rem;
+    font-size: 1rem; /* Ukuran font tombol CTA lebih kecil */
+    padding: 0.75rem 1.5rem; /* Padding lebih kecil */
 }
 
 .btn-sm {
@@ -424,22 +425,22 @@ h2.section-title::after {
 
 .product-grid, .payment-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Ukuran kartu lebih kecil */
+    gap: 0.8rem;
 }
 
 .product-card, .payment-card {
     background-color: #252e39;
     border: 1px solid #45a29e;
-    border-radius: 8px;
-    padding: 1rem;
+    border-radius: 6px; /* Sudut lebih kecil */
+    padding: 0.8rem; /* Padding lebih kecil */
     text-align: center;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .product-card:hover, .payment-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -450,18 +451,18 @@ h2.section-title::after {
 }
 
 .product-label {
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 0.25rem;
-    font-size: 1rem;
+    font-size: 0.9rem; /* Ukuran font lebih kecil */
 }
 
 .product-price {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--heading-color);
 }
 
 .payment-card img {
-    width: 60px;
+    width: 50px; /* Gambar lebih kecil */
     height: auto;
     margin-bottom: 0.5rem;
 }
@@ -494,7 +495,7 @@ h2.section-title::after {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: bold;
     padding: 1rem;
     border-top: 2px solid var(--border-color);
@@ -526,19 +527,18 @@ h2.section-title::after {
 
 .modal {
     background: var(--card-background);
-    padding: 2rem;
+    padding: 1.5rem; /* Padding lebih kecil */
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     width: 90%;
-    max-width: 500px;
-    position: relative;
-    transform: translateY(-50px);
+    max-width: 400px; /* Lebar modal lebih kecil */
+    transform: scale(0.9);
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
     opacity: 0;
 }
 
 .modal-overlay.active .modal {
-    transform: translateY(0);
+    transform: scale(1);
     opacity: 1;
 }
 
@@ -546,18 +546,19 @@ h2.section-title::after {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .modal-header h3 {
     margin: 0;
     color: var(--heading-color);
+    font-size: 1.2rem;
 }
 
 .modal-close-btn {
     background: none;
     border: none;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--secondary-color);
     cursor: pointer;
     transition: color 0.2s;
@@ -568,16 +569,16 @@ h2.section-title::after {
 }
 
 .modal-content-list {
-    max-height: 400px;
+    max-height: 300px;
     overflow-y: auto;
     padding-right: 0.5rem;
 }
 
 .voucher-item {
     border: 1px dashed var(--border-color);
-    border-radius: 8px;
-    padding: 1rem;
-    margin-bottom: 1rem;
+    border-radius: 6px;
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -586,10 +587,11 @@ h2.section-title::after {
 .voucher-item h4 {
     margin: 0;
     color: var(--heading-color);
+    font-size: 1rem;
 }
 
 .payment-info {
-    margin-top: 2rem;
+    margin-top: 1rem;
     text-align: center;
 }
 
@@ -601,10 +603,10 @@ h2.section-title::after {
     justify-content: space-between;
     align-items: center;
     border: 1px solid var(--border-color);
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 
-#copy-account {
+#account-number {
     flex-grow: 1;
     padding: 0 0.5rem;
     word-break: break-all;
@@ -616,7 +618,7 @@ h2.section-title::after {
 
 .modal-footer {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 
 /* ================== Responsive Design ================== */
@@ -638,10 +640,10 @@ h2.section-title::after {
         font-size: 1rem;
     }
     .games-grid {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Grid lebih padat di HP */
     }
     .game-card img {
-        height: 100px;
+        height: 80px;
     }
     .grid-container {
         grid-template-columns: 1fr;
@@ -651,6 +653,6 @@ h2.section-title::after {
         top: auto;
     }
     .product-grid, .payment-grid {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); /* Ukuran kartu lebih kecil di HP */
     }
 }
