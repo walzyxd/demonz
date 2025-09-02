@@ -3,84 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walz Shop - Jasa Top Up Game Termurah & Tercepat</title>
+    <title>Walz Shop - Top Up Termurah</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://files.catbox.moe/k3hly0.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body id="home-page">
 
-    <header class="ws-header">
-        <div class="ws-header-row container">
-            <h1 class="logo">Walz Shop</h1>
-            <nav class="ws-nav">
-                <a href="#home">Home</a>
-                <a href="#games">Games</a>
-                <a href="#about">Tentang</a>
-                <a href="#contact">Kontak</a>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">WALZ SHOP</a>
+            <nav class="nav">
+                <a href="#games-grid">TOP UP</a>
+                <a href="#about">TENTANG KAMI</a>
+                <a href="#contact">KONTAK</a>
             </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </header>
 
-    <main class="main-content">
-        <section class="hero-section" id="home">
-            <div class="hero-content">
-                <h2>Top Up Game</h2>
-                <a href="#games" class="btn btn-primary btn-cta">Mulai Top Up</a>
+    <main>
+        <section class="hero-slider" id="promo-section">
+            <div class="slider-track" id="slider-track">
+                <div class="slider-item" style="background-image: url('https://files.catbox.moe/k3hly0.jpg');"></div>
+                <div class="slider-item" style="background-image: url('https://files.catbox.moe/tatuo9.jpg');"></div>
+                <div class="slider-item" style="background-image: url('https://files.catbox.moe/j61uny.jpg');"></div>
             </div>
+            <div class="slider-dots" id="slider-dots"></div>
         </section>
 
-        <section class="game-list-section" id="games">
-            <div class="container">
-                <h2 class="section-title">Pilih Game</h2>
-                <div class="games-grid" id="games-grid">
-                    </div>
-            </div>
-        </section>
-
-        <section class="info-section" id="about">
-            <div class="container">
-                <h2 class="section-title">Kenapa Pilih Kami?</h2>
-                <div class="info-grid">
-                    <div class="info-card">
-                        <i class="fas fa-bolt info-icon"></i>
-                        <h3>Proses Instan</h3>
-                        <p>Pesanan Anda diproses secepat kilat. Top up langsung masuk dalam hitungan detik.</p>
-                    </div>
-                    <div class="info-card">
-                        <i class="fas fa-shield-alt info-icon"></i>
-                        <h3>100% Aman</h3>
-                        <p>Transaksi dijamin aman. Data pribadi Anda terlindungi dan terenkripsi.</p>
-                    </div>
-                    <div class="info-card">
-                        <i class="fas fa-wallet info-icon"></i>
-                        <h3>Harga Terjangkau</h3>
-                        <p>Kami menawarkan harga termurah dengan berbagai promo menarik setiap harinya.</p>
-                    </div>
-                    <div class="info-card">
-                        <i class="fas fa-headset info-icon"></i>
-                        <h3>Layanan Pelanggan</h3>
-                        <p>Tim support kami siap membantu Anda 24/7 jika ada kendala.</p>
-                    </div>
+        <section class="container section" id="games-section">
+            <h2 class="section-title">Pilih Game Favoritmu</h2>
+            <div class="games-grid" id="games-grid">
                 </div>
+        </section>
+        
+        <section class="container section" id="about">
+            <h2 class="section-title">Tentang Kami</h2>
+            <div class="about-content">
+                <p>Walz Shop adalah toko top up game terpercaya dan termurah di Indonesia. Kami menyediakan berbagai diamond, UC, dan voucher untuk game favorit Anda dengan proses yang cepat dan aman. Kepuasan Anda adalah prioritas kami!</p>
             </div>
         </section>
 
-        <section class="contact-section" id="contact">
-            <div class="container">
-                <h2 class="section-title">Hubungi Kami</h2>
-                <div class="contact-info">
-                    <p>Punya pertanyaan atau butuh bantuan? Hubungi kami melalui:</p>
-                    <p>
-                        <a href="https://wa.me/6282298902274" target="_blank" class="btn btn-primary">
-                            <i class="fab fa-whatsapp"></i> Chat via WhatsApp
-                        </a>
-                        <a href="mailto:walzlonely@gmail.com" target="_blank" class="btn btn-secondary">
-                            <i class="fas fa-envelope"></i> Kirim Email
-                        </a>
-                    </p>
-                </div>
+        <section class="container section" id="contact">
+            <h2 class="section-title">Kontak Kami</h2>
+            <div class="contact-content">
+                <p>Jika ada pertanyaan, silakan hubungi kami:</p>
+                <a href="https://wa.me/6282298902274" class="btn-contact">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
             </div>
         </section>
     </main>
@@ -90,7 +63,7 @@
             <p>&copy; 2024 Walz Shop. All Rights Reserved.</p>
         </div>
     </footer>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
