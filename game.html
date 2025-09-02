@@ -27,45 +27,41 @@
         </section>
 
         <section class="form-section">
-            <div class="form-steps-container">
+            <div class="form-group">
                 <div class="form-step" data-step="1">
                     <span class="step-number">1</span>
                     <span class="step-title">User ID</span>
                 </div>
-                <div class="form-step" data-step="2">
-                    <span class="step-number">2</span>
-                    <span class="step-title">Pilih Produk</span>
-                </div>
-                <div class="form-step" data-step="3">
-                    <span class="step-number">3</span>
-                    <span class="step-title">Pembayaran</span>
-                </div>
-                <div class="form-step" data-step="4">
-                    <span class="step-number">4</span>
-                    <span class="step-title">Voucher</span>
-                </div>
-                <div class="form-step" data-step="5">
-                    <span class="step-number">5</span>
-                    <span class="step-title">Konfirmasi</span>
-                </div>
-            </div>
-            
-            <div class="form-group">
                 <input type="text" id="user-id" placeholder="Masukkan User ID">
             </div>
             <div id="server-group" class="form-group" style="display: none;">
                 <input type="text" id="server-id" placeholder="Masukkan Server ID">
             </div>
 
-            <h2 class="section-title">Pilihan Produk</h2>
+            <h2 class="section-title">
+                <div class="form-step" data-step="2">
+                    <span class="step-number">2</span>
+                    <span class="step-title">Pilih Produk</span>
+                </div>
+            </h2>
             <div id="product-grid" class="product-grid">
                 </div>
 
-            <h2 class="section-title">Pilih Pembayaran</h2>
+            <h2 class="section-title">
+                <div class="form-step" data-step="3">
+                    <span class="step-number">3</span>
+                    <span class="step-title">Pembayaran</span>
+                </div>
+            </h2>
             <div id="payment-grid" class="payment-grid">
                 </div>
             
-            <h2 class="section-title">Kode Voucher</h2>
+            <h2 class="section-title">
+                <div class="form-step" data-step="4">
+                    <span class="step-number">4</span>
+                    <span class="step-title">Kode Voucher</span>
+                </div>
+            </h2>
             <div class="form-group voucher-group">
                 <input type="text" id="voucher-input" placeholder="Masukkan Kode Voucher">
                 <button id="voucher-btn" class="btn btn-apply-voucher">Gunakan</button>
@@ -73,7 +69,12 @@
             </div>
             <div id="voucher-status" class="status-text"></div>
 
-            <h2 class="section-title">Ringkasan & Konfirmasi</h2>
+            <h2 class="section-title">
+                <div class="form-step" data-step="5">
+                    <span class="step-number">5</span>
+                    <span class="step-title">Ringkasan</span>
+                </div>
+            </h2>
             <div class="summary-section">
                 <table class="summary-table">
                     <tr><td>Produk</td><td id="summary-product">-</td></tr>
