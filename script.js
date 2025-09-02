@@ -389,3 +389,271 @@ function renderPayments() {
             div.innerHTML = `
                 <img src="${pay.img}" alt="${pay.name}">
                 <div class="payment-label">${pay.name}</div>
+            `;
+            div.addEventListener("click", () => {
+                selectedPayment = pay;
+                refreshSelections();
+            });
+            paymentGrid.appendChild(div);
+        });
+    } else {
+        paymentGrid.innerHTML = `<p class="empty-message">Metode pembayaran belum tersedia.</p>`;
+    }
+}
+
+function applyVoucher() {
+    if (!selectedProduct) {
+        setVoucherStatus("Pilih nominal terlebih dahulu.", true);
+        return;
+    }
+    const code = qs("#voucher-input").value.trim().toUpperCase();
+    const voucher = VOUCHERS.find(v => v.code === code);
+    appliedVoucher = null;
+    if (!voucher) {
+        setVoucherStatus("Kode voucher tidak valid.", true);
+    } else if (voucher.minPurchase && selectedProduct.price < voucher.minPurchase) {
+        setVoucherStatus(`Minimal transaksi ${fmtIDR(voucher.minPurchase)}.`, true);
+    } else {
+        appliedVoucher = voucher;
+        const discount = calcDiscount(selectedProduct.price, voucher);
+        setVoucherStatus(`Voucher ${voucher.code} diterapkan. Diskon ${fmtIDR(discount)}.`, false);
+    }
+    refreshSummary();
+}
+
+function calcDiscount(price, voucher) {
+    let discount = 0;
+    if (voucher.percent) {
+        discount = price * (voucher.percent / 100);
+    } else if (voucher.fixed) {
+        discount = voucher.fixed;
+    }
+    if (voucher.maxDiscount && discount > voucher.maxDiscount) {
+        discount = voucher.maxDiscount;
+    }
+    return Math.floor(discount);
+}
+
+function finalPrice() {
+    if (!selectedProduct) return 0;
+    let price = selectedProduct.price;
+    if (appliedVoucher) {
+        price -= calcDiscount(price, appliedVoucher);
+    }
+    return Math.max(0, price);
+}
+
+function refreshSelections() {
+    qsa(".product-card").forEach(c => c.classList.toggle("selected", selectedProduct && c.dataset.id === selectedProduct.id));
+    qsa(".payment-card").forEach(c => c.classList.toggle("selected", selectedPayment && c.dataset.id === selectedPayment.id));
+    refreshSummary();
+}
+
+function refreshSummary() {
+    const summaryBox = qs("#summary-box");
+    const totalEl = qs("#total-price");
+    const totalPriceBox = qs("#total-price-box");
+    const checkoutBtn = qs("#checkout-btn");
+    
+    if (!summaryBox || !totalEl || !totalPriceBox || !checkoutBtn) return;
+    
+    if (!selectedProduct) {
+        summaryBox.textContent = `Pilih nominal & metode bayar untuk melihat total.`;
+        totalPriceBox.style.display = "none";
+        checkoutBtn.disabled = true;
+        return;
+    }
+
+    if (!selectedPayment) {
+        summaryBox.textContent = `Pilih metode bayar untuk melihat total.`;
+        totalPriceBox.style.display = "none";
+        checkoutBtn.disabled = true;
+        return;
+    }
+    
+    const base = selectedProduct.price;
+    const total = finalPrice();
+    const discount = base - total;
+    
+    summaryBox.style.display = "none";
+    totalPriceBox.style.display = "flex";
+    totalEl.textContent = fmtIDR(total);
+    checkoutBtn.disabled = false;
+}
+
+function setVoucherStatus(text, isError = false) {
+    const el = qs("#voucher-status");
+    if (el) {
+        el.textContent = text;
+        el.className = `status-text ${isError ? 'error' : 'success'}`;
+    }
+}
+
+function showVoucherListModal() {
+    const modal = qs("#voucher-list-modal");
+    if (!modal) return;
+    modal.innerHTML = `
+        <div class="modal-header">
+            <h3>Daftar Kode Promo</h3>
+            <button class="modal-close-btn" data-close>&times;</button>
+        </div>
+        <div class="modal-content-list">
+            ${VOUCHERS.map(v => `
+                <div class="voucher-item">
+                    <h4>${v.code}</h4>
+                    <p>${v.description}</p>
+                    <button class="btn btn-sm btn-primary btn-choose" data-choose="${v.code}">Pilih</button>
+                </div>
+            `).join("")}
+        </div>
+    `;
+    qsa("[data-choose]", modal).forEach(btn => {
+        btn.addEventListener("click", () => {
+            qs("#voucher-input").value = btn.dataset.choose;
+            closeModal("voucher-list-modal");
+            setTimeout(() => applyVoucher(), 300);
+        });
+    });
+    openModal("voucher-list-modal");
+}
+
+function validateForm() {
+    let isValid = true;
+    const userId = qs("#user-id").value.trim();
+    if (!userId) {
+        qs("#error-user").textContent = "User ID wajib diisi.";
+        isValid = false;
+    } else {
+        qs("#error-user").textContent = "";
+    }
+    if (currentGame.hasServerId) {
+        const serverId = qs("#server-id").value.trim();
+        if (!serverId) {
+            qs("#error-server").textContent = "Server ID wajib diisi.";
+            isValid = false;
+        } else {
+            qs("#error-server").textContent = "";
+        }
+    }
+    if (!selectedProduct) {
+        alert("Pilih nominal top-up.");
+        isValid = false;
+    } else if (!selectedPayment) {
+        alert("Pilih metode pembayaran.");
+        isValid = false;
+    }
+    return isValid;
+}
+
+function openCheckout() {
+    if (!validateForm()) return;
+    const userId = qs("#user-id").value.trim();
+    const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : null;
+    const total = finalPrice();
+    let payBlock = '';
+    
+    const formatWhatsAppMsg = () => {
+        let msg = `Halo Admin, saya ingin konfirmasi pesanan top-up:\n`;
+        msg += `*Game:* ${currentGame.name}\n`;
+        msg += `*User ID:* ${userId}\n`;
+        if (serverId) msg += `*Server ID:* ${serverId}\n`;
+        msg += `*Produk:* ${selectedProduct.label}\n`;
+        msg += `*Metode Pembayaran:* ${selectedPayment.name}\n`;
+        msg += `*Total:* ${fmtIDR(total)}\n\n`;
+        msg += `Terima kasih.`;
+        return encodeURIComponent(msg);
+    };
+
+    if (selectedPayment.type === "qris") {
+        payBlock = `
+            <div class="payment-info">
+                <h4>Scan QRIS Berikut</h4>
+                <img src="${selectedPayment.info.qrisImg}" alt="QRIS Code" style="width: 150px; height: auto; display: block; margin: 10px auto;">
+            </div>
+        `;
+    } else {
+        payBlock = `
+            <div class="payment-info">
+                <h4>Transfer ke Rekening Berikut</h4>
+                <p><strong>Bank:</strong> ${selectedPayment.name}</p>
+                <p><strong>A/N:</strong> ${selectedPayment.info.name || "-"}</p>
+                <div class="copy-field">
+                    <span id="account-number">${selectedPayment.info.number}</span>
+                    <button id="copy-account-btn">Salin</button>
+                </div>
+            </div>
+        `;
+    }
+
+    const modal = qs("#checkout-modal");
+    if (!modal) return;
+    
+    modal.innerHTML = `
+        <div class="modal-header">
+            <h3>Konfirmasi Pembelian</h3>
+            <button class="modal-close-btn" data-close>&times;</button>
+        </div>
+        <div class="modal-content">
+            <table class="summary-table">
+                <tr><td>Game</td><td>${currentGame.name}</td></tr>
+                <tr><td>Player ID</td><td>${userId}</td></tr>
+                ${serverId ? `<tr><td>Server ID</td><td>${serverId}</td></tr>` : ''}
+                <tr><td>Produk</td><td>${selectedProduct.label}</td></tr>
+                <tr><td>Metode Bayar</td><td>${selectedPayment.name}</td></tr>
+                ${appliedVoucher ? `<tr><td>Diskon Voucher</td><td>- ${fmtIDR(selectedProduct.price - finalPrice())}</td></tr>` : ''}
+            </table>
+            <div class="total-price-box">
+                <span class="label">Total Pembayaran</span>
+                <span class="price">${fmtIDR(total)}</span>
+            </div>
+            ${payBlock}
+            <div class="modal-footer">
+                <a href="https://wa.me/${ADMIN_WA}?text=${formatWhatsAppMsg()}" target="_blank" class="btn btn-confirm btn-block">Chat Admin Sekarang</a>
+                <p class="instruction">Setelah bayar, kirim bukti transfer ke Admin agar pesanan segera diproses.</p>
+            </div>
+        </div>
+    `;
+
+    const copyBtn = qs("#copy-account-btn", modal);
+    if (copyBtn) {
+        copyBtn.addEventListener("click", () => copyToClipboard(selectedPayment.info.number, copyBtn));
+    }
+    openModal("checkout-modal");
+}
+
+function showOverlay() {
+    qs("#modal-overlay")?.classList.add("active");
+    document.body.style.overflow = "hidden";
+}
+
+function hideOverlay() {
+    qs("#modal-overlay")?.classList.remove("active");
+    document.body.style.overflow = "";
+}
+
+function openModal(id) {
+    const m = qs(`#${id}`);
+    if (!m) return;
+    showOverlay();
+    m.classList.add("active");
+    const closeBtn = m.querySelector("[data-close]");
+    if (closeBtn) {
+        closeBtn.addEventListener("click", () => closeModal(id));
+    }
+}
+
+function closeModal(id) {
+    const m = qs(`#${id}`);
+    if (!m) return;
+    m.classList.remove("active");
+    const anyOpen = qsa(".modal.active").length > 0;
+    if (!anyOpen) hideOverlay();
+}
+
+function copyToClipboard(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+        const old = btn.textContent;
+        btn.textContent = "Disalin!";
+        setTimeout(() => btn.textContent = old, 1500);
+    });
+}
