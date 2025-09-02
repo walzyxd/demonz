@@ -78,6 +78,7 @@ body {
     background-color: var(--secondary-color);
 }
 
+/* Tombol kembali akan selalu ditampilkan */
 .btn-back {
     background-color: #aaa;
     color: var(--white);
@@ -143,9 +144,10 @@ body {
     text-align: center;
 }
 
+/* Penyesuaian Grid Kartu Game untuk semua layar */
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Ukuran kartu 100px, bisa menyesuaikan */
     gap: 1rem;
 }
 
@@ -170,8 +172,8 @@ body {
 }
 
 .game-card img {
-    width: 80px;
-    height: 80px;
+    width: 80px; /* Lebar gambar disesuaikan */
+    height: 80px; /* Tinggi gambar disesuaikan */
     object-fit: cover;
     border-radius: 10px;
     margin-bottom: 0.5rem;
@@ -566,6 +568,7 @@ input[type="text"]:focus {
     transform: scale(0.9);
     opacity: 0;
     transition: all 0.3s ease-out;
+    position: relative; /* Pastikan posisi relatif untuk tombol close */
 }
 
 .modal.active {
@@ -596,6 +599,9 @@ input[type="text"]:focus {
     color: var(--secondary-text);
     line-height: 1;
     transition: color 0.2s;
+    position: absolute; /* Posisikan tombol X di pojok kanan atas */
+    top: 10px;
+    right: 15px;
 }
 
 .modal-close-btn:hover {
@@ -733,6 +739,7 @@ input[type="text"]:focus {
 
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
+    /* Tombol download dan login disembunyikan di HP, menu toggle muncul */
     .header .header-buttons {
         display: none;
     }
@@ -745,5 +752,10 @@ input[type="text"]:focus {
         flex-direction: column;
         align-items: center;
         text-align: center;
+    }
+    
+    /* Tombol Kembali di halaman game akan selalu terlihat */
+    .btn-back {
+        display: flex;
     }
 }
