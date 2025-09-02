@@ -16,31 +16,70 @@
     </header>
 
     <main>
-        <!-- HERO SECTION -->
         <div class="hero">
             <h2>Walz Shop</h2>
             <p>Solusi top up game tercepat, termurah, dan terpercaya!</p>
         </div>
 
-        <!-- PROMO SLIDER SECTION -->
         <section class="section promo-section">
             <div class="slider-container">
                 <div id="promo-slider" class="slider-track">
                     <img src="https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg" alt="Promo 1">
-                    <img src="https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" alt="Promo 2">
-                    <img src="https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg" alt="Promo 3">
+                    <img src="https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" alt="Promo 3">
+                    <img src="https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg" alt="Promo 2">
                 </div>
                 <div class="slider-dots" id="slider-dots"></div>
             </div>
         </section>
 
-        <!-- GAME LIST SECTION -->
-        <section class="section game-list-section">
+        <section class="section game-list-section" id="game-list-section">
             <h2>Pilih Game</h2>
             <div class="game-grid" id="games-grid"></div>
         </section>
 
-        <!-- CARA TOP UP SECTION -->
+        <section class="section game-detail-section" id="game-detail-section" style="display: none;">
+            <div class="game-banner-container" id="game-banner-container">
+                <img id="game-banner" src="" alt="Game Banner">
+            </div>
+
+            <div class="grid-container">
+                <div class="left-panel">
+                    <div class="form-section">
+                        <h3>1. Masukkan User ID</h3>
+                        <div class="input-group">
+                            <input type="text" id="user-id" placeholder="Masukkan User ID Anda">
+                            <small class="muted">
+                                Contoh: 12345678 (1234), User ID berada di bawah nickname Anda.
+                            </small>
+                        </div>
+                    </div>
+    
+                    <div class="form-section">
+                        <h3>2. Pilih Nominal</h3>
+                        <div class="product-grid" id="product-grid"></div>
+                    </div>
+                </div>
+
+                <div class="right-panel">
+                    <div class="form-section">
+                        <h3>3. Pilih Pembayaran</h3>
+                        <div class="payment-grid" id="payment-grid"></div>
+                    </div>
+    
+                    <div class="form-section">
+                        <h3>4. Beli Sekarang</h3>
+                        <div class="total-price-box">
+                            <span>Total Harga:</span>
+                            <span id="total-price">Rp 0</span>
+                        </div>
+                        <button class="btn btn-primary" id="checkout-btn">
+                            <i class="fa-brands fa-whatsapp"></i> Beli Sekarang
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="section info-section" id="cara-topup">
             <h2>Cara Top Up</h2>
             <div class="card">
@@ -54,7 +93,6 @@
             </div>
         </section>
 
-        <!-- CONTACT SECTION -->
         <section class="section info-section" id="kontak">
             <h2>Kontak Kami</h2>
             <div class="card contact-card">
