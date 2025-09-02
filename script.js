@@ -1,8 +1,7 @@
-/* ================== KONFIGURASI ================== */
+/* ================== KONFIGURASI & DATA (TIDAK BERUBAH) ================== */
 const ADMIN_WA = "6282298902274";
 const ADMIN_EMAIL = "walzlonely@gmail.com";
 
-/* ================== DATA VOUCHER ================== */
 const VOUCHERS = [
     { code: "WALZSHOP", percent: 5, description: "Diskon 5% untuk semua produk" },
     { code: "WALZPROMO", percent: 5, description: "Promo khusus 5% semua produk" },
@@ -11,7 +10,6 @@ const VOUCHERS = [
     { code: "FREEDIAMOND", percent: 0, fixed: 20000, maxDiscount: 20000, description: "Diskon Rp20.000 (maks. Rp20.000)" }
 ];
 
-/* ================== DATA GAMES ================== */
 const GAMES = [
     { key: "free-fire", name: "Free Fire", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", bannerImg: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", hasServerId: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game.", url: "game.html?key=free-fire" },
     { key: "mobile-legends", name: "Mobile Legends", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", bannerImg: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", hasServerId: true, guide: "Temukan User ID dan Server ID di bawah nama panggilan saat Anda mengklik avatar profil.", url: "game.html?key=mobile-legends" },
@@ -29,7 +27,6 @@ const GAMES = [
     { key: "garena-undawn", name: "Garena Undawn", img: "https://files.catbox.moe/o5bto9.webp", bannerImg: "https://files.catbox.moe/o5bto9.webp", hasServerId: false, guide: "Buka menu profil dan User ID Anda akan terlihat.", url: "game.html?key=garena-undawn" },
 ];
 
-/* ================== DATA PROMO ================== */
 const PROMOS = [
     { title: "Top Up Diamond FF Termurah", img: "https://files.catbox.moe/ijvqjo.png", gameKey: "free-fire" },
     { title: "Top Up Starlight MLBB Harga Cuan", img: "https://files.catbox.moe/dpr6d2.jpg", gameKey: "mobile-legends" },
@@ -37,7 +34,6 @@ const PROMOS = [
     { title: "Blessing of the Welkin Moon Genshin", img: "https://files.catbox.moe/uusd4l.jpg", gameKey: "genshin-impact" },
 ];
 
-/* ================== DATA PAYMENT ================== */
 const PAYMENTS = [
     { id: "dana", name: "DANA", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
     { id: "gopay", name: "GoPay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", type: "ewallet", info: { number: "082116690164", name: "TI** SUT***" } },
@@ -45,7 +41,6 @@ const PAYMENTS = [
     { id: "krom", name: "Krom Bank", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", type: "bank_transfer", info: { number: "770072009565", name: "TI** SUT***" } },
 ];
 
-/* ================== DATA PRODUK ================== */
 const PRODUCTS = {
     "free-fire": [
         { id: "ff-5", label: "5 Diamonds", price: 901 },
@@ -248,7 +243,6 @@ let currentGame = null;
 
 /* ================== FUNGSI UTAMA ================== */
 document.addEventListener('DOMContentLoaded', () => {
-    // Cek apakah halaman adalah index.html atau game.html
     if (qs("#games-grid")) {
         renderGameGrid();
         renderPromoSlider();
@@ -366,6 +360,7 @@ function setupEventListeners() {
         appliedVoucher = null;
         setVoucherStatus("");
         refreshSummary();
+        renderPayments();
     });
     qs("#voucher-list-btn").addEventListener("click", showVoucherListModal);
     qs("#checkout-btn").addEventListener("click", openCheckout);
@@ -401,6 +396,9 @@ function renderProducts(gameKey) {
             div.addEventListener("click", () => {
                 selectedProduct = p;
                 selectedPayment = null;
+                appliedVoucher = null;
+                qs("#voucher-input").value = "";
+                setVoucherStatus("");
                 refreshSelections();
                 checkProgress();
                 renderPayments();
@@ -421,9 +419,13 @@ function renderPayments() {
             div.className = "payment-card";
             div.dataset.id = pay.id;
 
+            const price = selectedProduct ? finalPrice() : 0;
+            const priceHtml = `<div class="payment-price">${fmtIDR(price)}</div>`;
+
             div.innerHTML = `
                 <img src="${pay.img}" alt="${pay.name}">
                 <div class="payment-label">${pay.name}</div>
+                ${priceHtml}
             `;
             
             div.addEventListener("click", () => {
@@ -460,6 +462,7 @@ function applyVoucher() {
         setVoucherStatus(`Voucher ${voucher.code} diterapkan. Diskon ${fmtIDR(discount)}.`, false);
     }
     refreshSummary();
+    renderPayments();
 }
 
 function calcDiscount(price, voucher) {
@@ -532,20 +535,18 @@ function checkProgress() {
     
     steps.forEach(step => step.classList.remove('active'));
 
-    let activeStepIndex = 0;
-    if (userId || (currentGame.hasServerId && serverId)) {
-        steps[0].classList.add('active'); // User ID step
+    if (userId && (currentGame.hasServerId ? serverId : true)) {
+        steps[0].classList.add('active');
         if (selectedProduct) {
-            steps[1].classList.add('active'); // Product step
+            steps[1].classList.add('active');
             if (selectedPayment) {
-                steps[2].classList.add('active'); // Payment step
-                steps[3].classList.add('active'); // Voucher step
-                steps[4].classList.add('active'); // Summary step
+                steps[2].classList.add('active');
+                steps[3].classList.add('active');
+                steps[4].classList.add('active');
             }
         }
     }
     
-    // Perbarui status tombol checkout
     const checkoutBtn = qs("#checkout-btn");
     checkoutBtn.disabled = !(userId && (currentGame.hasServerId ? serverId : true) && selectedProduct && selectedPayment);
 }
@@ -582,7 +583,6 @@ function showVoucherListModal() {
         btn.addEventListener("click", () => {
             qs("#voucher-input").value = btn.dataset.choose;
             closeModal("voucher-list-modal");
-            applyVoucher(); // Langsung terapkan voucher setelah dipilih
         });
     });
     openModal("voucher-list-modal");
