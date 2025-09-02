@@ -520,50 +520,14 @@ input[type="text"]:focus {
     margin-top: 1rem;
 }
 
-.sticky-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--light-bg);
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
-    z-index: 999;
-}
-
-.summary-box {
-    font-size: 0.9rem;
-    color: var(--secondary-text);
-    flex: 1;
-}
-
-.total-price-box {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin-left: 1rem;
-}
-
-.total-price-box .label {
-    font-size: 0.9rem;
-    color: var(--secondary-text);
-}
-
-.total-price-box .price {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--primary-color);
-}
-
 .btn-confirm {
     background-color: var(--accent-color);
     color: var(--white);
     padding: 1rem 2rem;
     border-radius: 50px;
-    margin-left: 1rem;
+    margin-top: 2rem;
+    display: block;
+    width: 100%;
 }
 
 .btn[disabled] {
@@ -714,6 +678,8 @@ input[type="text"]:focus {
 .payment-info img {
     max-height: 50px;
     margin: 10px 0;
+    max-width: 150px; /* Batasi lebar QRIS */
+    object-fit: contain;
 }
 
 .copy-field {
@@ -775,27 +741,6 @@ input[type="text"]:focus {
         display: block;
     }
 
-    .sticky-footer {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 0.75rem;
-    }
-
-    .summary-box {
-        text-align: center;
-        margin-bottom: 10px;
-    }
-    
-    .total-price-box {
-        align-items: center;
-        margin-left: 0;
-    }
-
-    .btn-confirm {
-        width: 100%;
-        margin-top: 10px;
-        margin-left: 0;
-    }
     .footer .container {
         flex-direction: column;
         align-items: center;
