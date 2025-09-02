@@ -1,499 +1,408 @@
 /* ================== RESET & BASE ================== */
-:root {
-  /* Warna Dasar */
-  --primary-color: #4f8ef7;
-  --secondary-color: #2563eb;
-  --background-light: #f5f7fa;
-  --background-card: #fff;
-  --text-dark: #333;
-  --text-light: #fff;
-  --border-color: #eee;
-  --shadow-color: rgba(0, 0, 0, 0.08);
-  --success-color: #22c55e;
-  --error-color: #ef4444;
-
-  /* Font */
-  --font-family-primary: "Poppins", Arial, sans-serif;
-}
-
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: var(--font-family-primary);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  background: var(--background-light);
-  color: var(--text-dark);
-  line-height: 1.6;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-img {
-  max-width: 100%;
-  display: block;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f6fb;
+    color: #333;
+    line-height: 1.6;
 }
 
 /* ================== HEADER ================== */
 .ws-header {
-  background: #1e293b;
-  color: var(--text-light);
-  padding: 1rem;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.ws-header-row {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .ws-header h1 {
-  font-size: 1.5rem;
-  font-weight: 600;
+    font-size: 2.2rem;
+    font-weight: 700;
 }
 
 /* ================== HERO ================== */
 .hero {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  color: var(--text-light);
-  padding: 3rem 1rem;
-  text-align: center;
-  border-radius: 0 0 1.5rem 1.5rem;
+    background: url('https://images.unsplash.com/photo-1612832021063-57d417e8c7b1?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+    color: #fff;
+    text-align: center;
+    padding: 120px 20px;
+    position: relative;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: 0;
 }
 
 .hero h2 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
 }
 
 .hero p {
-  font-size: 1.1rem;
-  opacity: 0.9;
+    font-size: 1.2rem;
+    position: relative;
+    z-index: 1;
 }
 
-/* ================== MAIN CONTENT ================== */
-.main-content {
-  max-width: 1200px;
-  margin: 1.5rem auto;
-  padding: 0 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+/* ================== SECTIONS ================== */
+.section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* ================== GRID LAYOUTS ================== */
-.grid-container {
-  display: grid;
-  gap: 1.5rem;
-  align-items: flex-start;
-  grid-template-columns: 2fr 1fr;
+.section h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #222;
 }
 
-.left-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+/* ================== SLIDER ================== */
+.slider-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.right-panel {
-  position: sticky;
-  top: 90px;
+.slider-track {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+}
+
+.slider-dots {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.slider-dots span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.slider-dots .active {
+    background-color: #6a11cb;
 }
 
 /* ================== GAME GRID ================== */
 .game-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 1rem;
-  padding: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
 }
 
-.game-card {
-  background: var(--background-card);
-  border-radius: 1rem;
-  overflow: hidden;
-  box-shadow: 0 3px 8px var(--shadow-color);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  text-align: center;
-  cursor: pointer;
+.game-grid .game-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
 }
 
-.game-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+.game-grid .game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
-.game-card img {
-  border-bottom: 1px solid var(--border-color);
-  height: 100px;
-  object-fit: cover;
+.game-grid .game-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
 }
 
-.game-card h3 {
-  padding: 0.8rem;
-  font-size: 1rem;
-  font-weight: 600;
+.game-grid .game-card span {
+    display: block;
+    font-weight: 600;
+    margin-top: 5px;
 }
 
-/* ================== FORM & INPUT ================== */
-.form-section {
-  background: var(--background-card);
-  padding: 1.5rem;
-  border-radius: 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+/* ================== INFO CARDS ================== */
+.card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 30px 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.form-section h3 {
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
+.card ol {
+    padding-left: 20px;
 }
 
-input[type="text"],
-input[type="number"] {
-  width: 100%;
-  padding: 0.8rem;
-  border-radius: 0.6rem;
-  border: 1px solid #ccc;
-  margin-bottom: 1rem;
-  transition: border-color 0.3s ease;
+.card li {
+    margin-bottom: 15px;
 }
 
-input:focus {
-  border-color: var(--primary-color);
-  outline: none;
+/* ================== CONTACT BUTTONS ================== */
+.contact-card .contact-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
 }
 
-/* ================== PRODUCT GRID ================== */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 1rem;
-}
-
-.product-card {
-  background: var(--background-card);
-  padding: 1rem;
-  text-align: center;
-  border-radius: 0.8rem;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.product-card:hover {
-  border-color: #ddd;
-}
-
-/* ================== PAYMENT GRID ================== */
-.payment-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 1rem;
-}
-
-.payment-card {
-  background: var(--background-card);
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  border-radius: 0.8rem;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.payment-card img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-}
-
-.payment-card span {
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-
-/* ================== ACTIVE SELECTION ANIMASI ================== */
-.product-card.active,
-.payment-card.active {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 12px rgba(79, 142, 247, 0.6);
-  animation: pulse-glow 1.2s infinite;
-}
-
-@keyframes pulse-glow {
-  0% {
-    box-shadow: 0 0 8px rgba(79, 142, 247, 0.6);
-  }
-  50% {
-    box-shadow: 0 0 16px rgba(79, 142, 247, 0.9);
-  }
-  100% {
-    box-shadow: 0 0 8px rgba(79, 142, 247, 0.6);
-  }
-}
-
-/* ================== SUMMARY ================== */
-#summary {
-  background: #f9fafb;
-  border: 1px solid #eee;
-  border-radius: 0.8rem;
-  padding: 1rem;
-  font-size: 0.95rem;
-}
-
-#summary h3 {
-  margin-bottom: 0.8rem;
-}
-
-#summary p {
-  margin: 0.3rem 0;
-  display: flex;
-  justify-content: space-between;
-}
-
-#summary .muted {
-  color: #888;
-  font-style: italic;
-  justify-content: center;
-  text-align: center;
-}
-
-.total-price-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1.2rem;
-  font-weight: bold;
-  padding: 1rem;
-  background-color: var(--primary-color);
-  color: var(--text-light);
-  border-radius: 0.8rem;
-  margin-top: 1rem;
-}
-
-/* ================== VOUCHER ================== */
-#voucher-section {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-#voucher-section input {
-  flex: 1;
-}
-
-#voucher-section button {
-  padding: 0.7rem 1rem;
-  border: none;
-  border-radius: 0.6rem;
-  background: var(--primary-color);
-  color: var(--text-light);
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-#voucher-section button:hover {
-  background: var(--secondary-color);
-}
-
-.status-text {
-  margin-top: -0.5rem;
-  font-size: 0.9rem;
-  min-height: 1.5rem;
-}
-
-.status-text.success {
-  color: var(--success-color);
-}
-
-.status-text.error {
-  color: var(--error-color);
-}
-
-/* ================== BUTTONS ================== */
 .btn {
-  display: inline-block;
-  padding: 0.8rem 1.2rem;
-  border-radius: 0.6rem;
-  font-weight: 600;
-  cursor: pointer;
-  text-align: center;
-  transition: transform 0.2s ease, background 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    color: #fff;
+}
+
+.btn i {
+    font-size: 1.1rem;
 }
 
 .btn-primary {
-  background: var(--primary-color);
-  color: var(--text-light);
-  border: none;
+    background: #25d366;
 }
 
 .btn-primary:hover {
-  background: var(--secondary-color);
-  transform: translateY(-2px);
+    background: #1ebe5d;
 }
 
 .btn-secondary {
-  background: #e2e8f0;
-  border: none;
-  color: var(--text-dark);
+    background: #0072c6;
 }
 
 .btn-secondary:hover {
-  background: #cbd5e1;
-  transform: translateY(-2px);
+    background: #005ea3;
 }
 
-.btn-block {
-  width: 100%;
+/* ================== FOOTER ================== */
+.footer {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+    font-size: 0.9rem;
 }
 
-.btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
+/* ================== GAME PAGE ================== */
+.game-banner-container {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.game-banner-container img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 60px;
+}
+
+.left-panel, .right-panel {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.form-section {
+    margin-bottom: 40px;
+}
+
+.form-section h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: #6a11cb;
+    outline: none;
+}
+
+.status-text {
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: block;
+}
+
+.status-text.error {
+    color: #e74c3c;
+}
+
+.muted {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* ================== PRODUCT & PAYMENT GRID ================== */
+.product-grid, .payment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+}
+
+.product-grid .product-card, .payment-grid .payment-card {
+    padding: 15px;
+    text-align: center;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.product-grid .product-card:hover, .payment-grid .payment-card:hover {
+    background-color: #6a11cb;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.product-grid .product-card.selected, .payment-grid .payment-card.selected {
+    border-color: #6a11cb;
+    background-color: #6a11cb;
+    color: #fff;
+}
+
+/* ================== TOTAL & CHECKOUT ================== */
+.total-price-box {
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    margin-top: 15px;
+    font-size: 1.1rem;
+}
+
+#checkout-btn {
+    width: 100%;
+    padding: 15px 0;
+    font-size: 1.1rem;
+    margin-top: 20px;
+}
+
+/* ================== VOUCHER SECTION ================== */
+#voucher-section {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+#voucher-section input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+#voucher-section button {
+    padding: 12px 20px;
 }
 
 /* ================== MODAL ================== */
 .modal-overlay {
-    display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 2000;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: none;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 200;
 }
 
-.modal-overlay.show {
-    display: flex;
-    opacity: 1;
-    visibility: visible;
-}
-
-.modal-content {
-  background: var(--background-card);
-  border-radius: 1rem;
-  width: 100%;
-  max-width: 500px;
-  padding: 1.5rem;
-  transform: scale(0.9);
-  opacity: 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.modal-overlay.show .modal-content {
-  transform: scale(1);
-  opacity: 1;
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.modal-header h2 {
-  font-size: 1.25rem;
-}
-
-.close-btn {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.modal-footer {
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
-}
-
-.modal .payment-info {
-  background: #f0f4f8;
-  padding: 1rem;
-  border-radius: 0.8rem;
-  margin-top: 1rem;
-  text-align: center;
-}
-
-.modal .payment-info img {
-  max-width: 150px;
-  margin: 1rem auto;
-  border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
-}
-
-.modal .payment-details {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 1rem;
-  text-align: left;
-}
-
-.modal .payment-details img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-}
-
-.modal-actions {
-  margin-top: 1.5rem;
-}
-
-.modal-actions p {
-  font-size: 0.9rem;
-  color: #888;
-  margin-top: 0.5rem;
+.modal {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
 
 /* ================== RESPONSIVE ================== */
+@media (max-width: 1024px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+
+    .left-panel, .right-panel {
+        margin-bottom: 30px;
+    }
+}
+
 @media (max-width: 768px) {
-  .grid-container {
-    grid-template-columns: 1fr;
-  }
+    .hero h2 {
+        font-size: 2.2rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+    .game-grid {
+        gap: 15px;
+    }
+}
 
-  .right-panel {
-    position: static;
-    order: -1;
-  }
+@media (max-width: 480px) {
+    .game-banner-container img {
+        max-width: 100%;
+    }
 
-  .game-grid {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  }
-
-  .payment-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .modal-content {
-    max-width: 90%;
-  }
+    .product-grid, .payment-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
 }
