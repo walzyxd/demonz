@@ -47,10 +47,44 @@ body {
     z-index: 1000;
 }
 
-.ws-header h1 {
+.ws-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.ws-header h1 .logo {
     font-weight: 700;
     font-size: 1.8rem;
-    text-align: center;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.ws-nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.ws-nav a:hover {
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .ws-header-row {
+        flex-direction: column;
+    }
+    .ws-nav {
+        margin-top: 1rem;
+    }
+    .ws-nav a {
+        margin: 0 0.5rem;
+    }
 }
 
 .hero-section {
@@ -123,6 +157,27 @@ body {
 
 .slider__dots span.active {
     background-color: var(--primary-color);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
 }
 
 .games-grid,
