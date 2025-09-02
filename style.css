@@ -221,24 +221,18 @@ body {
     box-shadow: var(--box-shadow);
 }
 
-.form-steps-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
 .form-step {
     background-color: var(--primary-color);
     color: var(--text-color-light);
     border: 1px solid var(--primary-color);
     border-radius: 8px;
     padding: 0.75rem;
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     transition: var(--transition);
+    margin-bottom: 1rem;
 }
 
 .form-step.active {
@@ -769,14 +763,9 @@ body {
         padding: 1rem;
     }
     
-    .form-steps-container {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.5rem;
-        margin-bottom: 0.8rem;
-    }
-    
     .form-step {
         padding: 0.5rem;
+        margin-bottom: 0.8rem;
     }
 
     .step-number {
@@ -822,6 +811,8 @@ body {
     .modal {
         width: 95%;
         padding: 1rem;
+        max-height: 80vh;
+        overflow-y: auto;
     }
     
     .modal-content table {
@@ -853,20 +844,5 @@ body {
         flex-direction: column;
         align-items: center;
         text-align: center;
-    }
-}
-
-/* Tampilan khusus untuk pop-up di ponsel */
-@media (max-width: 500px) {
-    .modal {
-        max-width: 95%;
-        margin: 0.5rem;
-        transform: scale(1);
-    }
-    .modal.active {
-        transform: scale(1);
-    }
-    .modal-overlay {
-        padding: 1rem;
     }
 }
