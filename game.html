@@ -109,9 +109,11 @@
 
     <script src="script.js"></script>
     <script>
-        const currentPageGameKey = "mobile-legends"; // Ganti dengan key game yang sesuai
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentPageGameKey = urlParams.get('key');
+        
         document.addEventListener("DOMContentLoaded", () => {
-            setupGamePage();
+            setupGamePage(currentPageGameKey);
             setupEventListeners();
         });
     </script>
