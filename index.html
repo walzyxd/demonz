@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walz Shop - Top Up Game Murah dan Cepat</title>
+    <title>Walz Shop - Top Up Game</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body data-page="index">
+<body>
 
     <header class="ws-header">
         <div class="ws-header-row">
@@ -15,95 +16,65 @@
         </div>
     </header>
 
-    <main>
-        <div class="hero">
-            <h2>Walz Shop</h2>
-            <p>Solusi top up game tercepat, termurah, dan terpercaya!</p>
-        </div>
-
-        <section class="section promo-section">
-            <div class="slider-container">
-                <div id="promo-slider" class="slider-track">
-                    <img src="https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg" alt="Promo 1">
-                    <img src="https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" alt="Promo 3">
-                    <img src="https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg" alt="Promo 2">
-                </div>
-                <div class="slider-dots" id="slider-dots"></div>
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>Top Up Game Murah, Cepat, dan Terpercaya</h2>
+                <p>Dapatkan diamond, UC, dan mata uang game lainnya dengan harga terbaik hanya di Walz Shop!</p>
+                <a href="#game-list-section" class="btn btn-primary btn-cta">Mulai Sekarang</a>
             </div>
         </section>
-
-        <section class="section game-list-section" id="game-list-section">
-            <h2>Pilih Game</h2>
-            <div class="game-grid" id="games-grid"></div>
-        </section>
-
-        <section class="section game-detail-section" id="game-detail-section" style="display: none;">
-            <div class="game-banner-container" id="game-banner-container">
-                <img id="game-banner" src="" alt="Game Banner">
-            </div>
-
-            <div class="grid-container">
-                <div class="left-panel">
-                    <div class="form-section">
-                        <h3>1. Masukkan User ID</h3>
-                        <div class="input-group">
-                            <input type="text" id="user-id" placeholder="Masukkan User ID Anda">
-                            <small class="muted">
-                                Contoh: 12345678 (1234), User ID berada di bawah nickname Anda.
-                            </small>
-                        </div>
-                    </div>
     
-                    <div class="form-section">
-                        <h3>2. Pilih Nominal</h3>
-                        <div class="product-grid" id="product-grid"></div>
-                    </div>
+        <section class="promo-section">
+            <div class="container">
+                <div class="promo-slider" id="promo-slider-container">
+                    <div class="slider__track" id="promo-slider"></div>
+                    <div class="slider__dots" id="slider-dots"></div>
                 </div>
-
-                <div class="right-panel">
-                    <div class="form-section">
-                        <h3>3. Pilih Pembayaran</h3>
-                        <div class="payment-grid" id="payment-grid"></div>
-                    </div>
+            </div>
+        </section>
     
-                    <div class="form-section">
-                        <h3>4. Beli Sekarang</h3>
-                        <div class="total-price-box">
-                            <span>Total Harga:</span>
-                            <span id="total-price">Rp 0</span>
-                        </div>
-                        <button class="btn btn-primary" id="checkout-btn">
-                            <i class="fa-brands fa-whatsapp"></i> Beli Sekarang
-                        </button>
+        <section class="game-list-section" id="game-list-section">
+            <div class="container">
+                <h2 class="section-title">Pilih Game Anda</h2>
+                <div class="games-grid" id="games-grid"></div>
+            </div>
+        </section>
+    
+        <section class="info-section" id="cara-topup">
+            <div class="container">
+                <h2 class="section-title">Cara Top Up</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fa-solid fa-1"></i></div>
+                        <h3>Pilih Game</h3>
+                        <p>Pilih game favorit Anda dari daftar yang tersedia.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fa-solid fa-2"></i></div>
+                        <h3>Masukkan ID</h3>
+                        <p>Masukkan User ID dan Server ID Anda (jika diperlukan) dengan benar.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fa-solid fa-3"></i></div>
+                        <h3>Pilih Nominal & Bayar</h3>
+                        <p>Pilih nominal dan metode pembayaran, lalu lakukan pembayaran.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fa-solid fa-4"></i></div>
+                        <h3>Selesai!</h3>
+                        <p>Pesanan Anda akan diproses otomatis dan mata uang game akan masuk.</p>
                     </div>
                 </div>
             </div>
         </section>
-
-        <section class="section info-section" id="cara-topup">
-            <h2>Cara Top Up</h2>
-            <div class="card">
-                <ol>
-                    <li>Pilih game favorit Anda di halaman utama.</li>
-                    <li>Masukkan User ID dan Server ID (jika diperlukan).</li>
-                    <li>Pilih nominal top up dan metode pembayaran yang Anda inginkan.</li>
-                    <li>Klik "Beli Sekarang" dan lakukan pembayaran.</li>
-                    <li>Setelah membayar, konfirmasi ke Admin untuk diproses.</li>
-                </ol>
-            </div>
-        </section>
-
-        <section class="section info-section" id="kontak">
-            <h2>Kontak Kami</h2>
-            <div class="card contact-card">
-                <p>Hubungi Admin untuk bantuan dan konfirmasi pembayaran Anda.</p>
-                <div class="contact-buttons">
-                    <a href="https://wa.me/6282298902274" class="btn btn-primary" target="_blank">
-                        <i class="fa-brands fa-whatsapp"></i> Chat via WhatsApp
-                    </a>
-                    <a href="mailto:walzlonely@gmail.com" class="btn btn-secondary" target="_blank">
-                        <i class="fa-solid fa-envelope"></i> Email
-                    </a>
+    
+        <section class="contact-section" id="kontak">
+            <div class="container">
+                <h2 class="section-title">Hubungi Kami</h2>
+                <div class="contact-info">
+                    <p><i class="fa-brands fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/6282298902274">6282298902274</a></p>
+                    <p><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:walzlonely@gmail.com">walzlonely@gmail.com</a></p>
                 </div>
             </div>
         </section>
