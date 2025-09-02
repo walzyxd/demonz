@@ -335,7 +335,7 @@ function setupGamePage(gameKeyFromUrl) {
     currentGame = GAMES.find(g => g.key === gameKeyFromUrl);
 
     if (!currentGame) {
-        showError("Game tidak ditemukan!");
+        showErrorModal("Game tidak ditemukan!");
         setTimeout(() => window.location.href = "index.html", 2000);
         return;
     }
@@ -428,7 +428,7 @@ function renderPayments() {
             
             div.addEventListener("click", () => {
                 if (!selectedProduct) {
-                    showError("Silakan pilih nominal top-up terlebih dahulu.");
+                    showErrorModal("Silakan pilih nominal top-up terlebih dahulu.");
                     return;
                 }
                 selectedPayment = pay;
@@ -521,7 +521,7 @@ function refreshSummary() {
     
     const userId = qs("#user-id").value.trim();
     const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : "ok";
-    checkoutBtn.disabled = !(userId && serverId && selectedProduct && selectedPayment);
+    checkoutBtn.disabled = !(userId && (currentGame.hasServerId ? serverId : true) && selectedProduct && selectedPayment);
 }
 
 
