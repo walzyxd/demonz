@@ -377,6 +377,7 @@ function renderProducts(gameKey) {
                 selectedPayment = null;
                 refreshSelections();
                 checkProgress();
+                renderPayments(); // Render payments again to show real-time price
             });
             productGrid.appendChild(div);
         });
@@ -393,11 +394,18 @@ function renderPayments() {
             const div = document.createElement("div");
             div.className = "payment-card";
             div.dataset.id = pay.id;
+            
+            let priceHTML = '';
+            if (selectedProduct) {
+                priceHTML = `<div class="payment-price-label">Harga: <span class="price-payment-realtime">${fmtIDR(selectedProduct.price)}</span></div>`;
+            }
+            
             div.innerHTML = `
                 <img src="${pay.img}" alt="${pay.name}">
                 <div class="payment-label">${pay.name}</div>
-                <div class="payment-price-label">Harga: <span class="price-payment-realtime">${fmtIDR(selectedProduct ? finalPrice() : 0)}</span></div>
+                ${priceHTML}
             `;
+            
             div.addEventListener("click", () => {
                 selectedPayment = pay;
                 refreshSelections();
@@ -455,40 +463,22 @@ function finalPrice() {
 function refreshSelections() {
     qsa(".product-card").forEach(c => c.classList.toggle("selected", selectedProduct && c.dataset.id === selectedProduct.id));
     qsa(".payment-card").forEach(c => c.classList.toggle("selected", selectedPayment && c.dataset.id === selectedPayment.id));
-    
-    // Update real-time prices on payment cards
-    qsa(".payment-price-label").forEach(el => {
-        el.querySelector(".price-payment-realtime").textContent = fmtIDR(selectedProduct ? selectedProduct.price : 0);
-    });
-
     refreshSummary();
 }
 
 function refreshSummary() {
-    const summaryBox = qs("#summary-box");
-    const totalEl = qs("#total-price");
-    const totalPriceBox = qs("#total-price-box");
-    const checkoutBtn = qs("#checkout-btn");
-    
     const summaryProduct = qs("#summary-product");
     const summaryPayment = qs("#summary-payment");
     const summaryDiscountRow = qs("#summary-discount-row");
     const summaryDiscount = qs("#summary-discount");
     const summaryTotal = qs("#summary-total");
-    
-    if (!summaryBox || !totalEl || !totalPriceBox || !checkoutBtn) return;
+    const checkoutBtn = qs("#checkout-btn");
     
     if (selectedProduct && selectedPayment) {
         const base = selectedProduct.price;
         const total = finalPrice();
         const discount = base - total;
         
-        summaryBox.style.display = "none";
-        totalPriceBox.style.display = "flex";
-        totalEl.textContent = fmtIDR(total);
-        checkoutBtn.disabled = false;
-        
-        // Update summary details in step 5
         summaryProduct.textContent = selectedProduct.label;
         summaryPayment.textContent = selectedPayment.name;
         summaryTotal.textContent = fmtIDR(total);
@@ -498,17 +488,13 @@ function refreshSummary() {
         } else {
             summaryDiscountRow.style.display = "none";
         }
-
+        checkoutBtn.disabled = false;
     } else {
-        summaryBox.textContent = `Pilih nominal & metode bayar untuk melihat total.`;
-        totalPriceBox.style.display = "none";
-        checkoutBtn.disabled = true;
-        
-        // Clear summary details in step 5
         summaryProduct.textContent = "-";
         summaryPayment.textContent = "-";
         summaryDiscountRow.style.display = "none";
         summaryTotal.textContent = fmtIDR(0);
+        checkoutBtn.disabled = true;
     }
 }
 
