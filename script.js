@@ -547,7 +547,6 @@ function showVoucherListModal() {
         btn.addEventListener("click", () => {
             qs("#voucher-input").value = btn.dataset.choose;
             closeModal("voucher-list-modal");
-            setTimeout(() => applyVoucher(), 300);
         });
     });
     openModal("voucher-list-modal");
