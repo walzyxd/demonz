@@ -354,6 +354,15 @@ function setupEventListeners() {
             hideOverlay();
         }
     });
+    
+    document.querySelectorAll(".modal-close-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const modalId = btn.getAttribute("data-close");
+            if (modalId) {
+                closeModal(modalId);
+            }
+        });
+    });
 }
 
 function renderProducts(gameKey) {
@@ -573,7 +582,7 @@ function openCheckout() {
                         <p>A/N: ${selectedPayment.info.name || "-"}</p>
                         <div class="copy-field">
                             <span id="account-number">${selectedPayment.info.number}</span>
-                            <button class="btn btn-secondary btn-sm" id="copy-account">Salin</button>
+                            <button class="btn btn-secondary btn-sm" id="copy-account-btn">Salin</button>
                         </div>
                     </div>`;
         waMsg = `Halo Admin, saya ingin konfirmasi pesanan top-up:\n*Game:* ${currentGame.name}\n*User ID:* ${userId}\n${serverId ? `*Server ID:* ${serverId}\n` : ""}*Produk:* ${selectedProduct.label}\n*Metode Pembayaran:* ${selectedPayment.name}\n*Total:* ${fmtIDR(total)}\n\nTerima kasih.`;
@@ -602,9 +611,12 @@ function openCheckout() {
         </div>
     `;
 
-    const copyBtn = qs("#copy-account", modal);
+    const copyBtn = qs("#copy-account-btn", modal);
     if (copyBtn) {
-        copyBtn.addEventListener("click", () => copyToClipboard(selectedPayment.info.number, copyBtn));
+        copyBtn.addEventListener("click", () => {
+            const accountNumber = qs("#account-number").textContent;
+            copyToClipboard(accountNumber, copyBtn);
+        });
     }
     openModal("checkout-modal");
 }
@@ -624,18 +636,16 @@ function openModal(id) {
     if (!m) return;
     showOverlay();
     m.classList.add("active");
-    const closeBtn = m.querySelector("[data-close]");
-    if (closeBtn) {
-        closeBtn.addEventListener("click", () => closeModal(id));
-    }
 }
 
 function closeModal(id) {
     const m = qs(`#${id}`);
     if (!m) return;
     m.classList.remove("active");
-    const anyOpen = qsa(".modal.active").length > 0;
-    if (!anyOpen) hideOverlay();
+    setTimeout(() => {
+        const anyOpen = qsa(".modal.active").length > 0;
+        if (!anyOpen) hideOverlay();
+    }, 300);
 }
 
 function copyToClipboard(text, btn) {
@@ -645,3 +655,13 @@ function copyToClipboard(text, btn) {
         setTimeout(() => btn.textContent = old, 1500);
     });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (document.body.id === "home-page") {
+        renderGameGrid('game.html?game=');
+        renderPromoSlider('game.html?game=');
+    } else {
+        setupGamePage();
+        setupEventListeners();
+    }
+});
