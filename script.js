@@ -519,16 +519,20 @@ function checkProgress() {
     
     qsa(".form-step").forEach(step => step.classList.remove('active'));
 
-    if (!userId || (currentGame.hasServerId && !serverId)) {
-        steps[0].classList.add('active');
-        qs("#user-id").focus();
-    } else if (!selectedProduct) {
-        steps[1].classList.add('active');
-    } else if (!selectedPayment) {
-        steps[2].classList.add('active');
-    } else {
-        steps[4].classList.add('active');
+    let activeStepIndex = 0;
+    if (userId && (currentGame.hasServerId ? serverId : true)) {
+        if (selectedProduct) {
+            if (selectedPayment) {
+                activeStepIndex = 4;
+            } else {
+                activeStepIndex = 2;
+            }
+        } else {
+            activeStepIndex = 1;
+        }
     }
+    
+    steps[activeStepIndex].classList.add('active');
 }
 
 function setVoucherStatus(text, isError = false) {
