@@ -1,16 +1,11 @@
-/* ================== Base Styles ================== */
 :root {
-    --primary-color: #5d5dff; /* Biru terang */
-    --secondary-color: #a0a0a0;
-    --background-color: #121212;
-    --card-background: #1e1e1e;
-    --text-color: #e0e0e0;
-    --heading-color: #ffffff;
-    --border-color: #333;
-    --success-color: #4caf50;
-    --error-color: #f44336;
-    --modal-bg: rgba(0, 0, 0, 0.8);
-    --hover-card-bg: #282828;
+    --primary-color: #007bff;
+    --secondary-color: #28a745;
+    --text-color: #333;
+    --light-bg: #f8f9fa;
+    --white: #fff;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --border-radius: 8px;
 }
 
 * {
@@ -19,491 +14,514 @@
     padding: 0;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: var(--background-color);
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light-bg);
     color: var(--text-color);
     line-height: 1.6;
 }
 
 .container {
-    max-width: 1200px;
-    margin: auto;
-    overflow: hidden;
-    padding: 0 1rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.main-content {
-    padding: 2rem 0;
-}
-
-a {
-    color: var(--primary-color);
-    text-decoration: none;
-}
-
-h1, h2, h3 {
-    color: var(--heading-color);
-    margin-bottom: 1rem;
-    font-weight: 600;
-}
-
-h2.section-title {
-    text-align: center;
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
-    margin-bottom: 2rem;
-    position: relative;
-    padding-bottom: 0.5rem;
-}
-
-h2.section-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background: var(--primary-color);
-    margin: 0.5rem auto 0;
-}
-
-.muted {
-    color: var(--secondary-color);
-    font-size: 0.9rem;
-}
-
-/* ================== Header & Navigation ================== */
-.ws-header {
-    background: var(--card-background);
+/* --- Header --- */
+.header {
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
     padding: 1rem 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     position: sticky;
     top: 0;
-    z-index: 50;
+    z-index: 1000;
 }
 
-.ws-header-row {
+.header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .logo {
-    font-size: clamp(1.5rem, 3vw, 1.8rem);
+    font-size: 1.5rem;
     font-weight: 700;
-    color: var(--heading-color);
-    text-transform: uppercase;
+    color: var(--primary-color);
+    text-decoration: none;
 }
 
-.ws-nav a {
+.nav a {
     color: var(--text-color);
-    margin-left: 2rem;
+    text-decoration: none;
+    margin-left: 1.5rem;
     font-weight: 500;
-    transition: color 0.3s ease;
+    transition: color 0.3s;
 }
 
-.ws-nav a:hover {
+.nav a:hover {
     color: var(--primary-color);
 }
 
-/* ================== Hero Section ================== */
-.hero-section {
-    background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.7)), url('https://files.catbox.moe/k3hly0.jpg') no-repeat center center/cover;
-    height: 70vh;
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* --- Hero Slider --- */
+.hero-slider {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.slider-track {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slider-item {
+    min-width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.slider-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.slider-dot {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.slider-dot.active {
+    background-color: var(--white);
+}
+
+/* --- Sections --- */
+.section {
+    padding: 4rem 0;
+}
+
+.section-title {
     text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
 }
 
-.hero-content {
-    max-width: 600px;
-    animation: fadeIn 1s ease-in-out;
+.section-title::after {
+    content: '';
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-color);
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.hero-content h2 {
-    font-size: clamp(2rem, 6vw, 4rem);
-    margin-bottom: 1.5rem;
-}
-
-/* ================== Game List & Cards ================== */
-.game-list-section {
-    padding: 3rem 0;
-}
-
+/* --- Games Grid --- */
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1.5rem;
 }
 
 .game-card {
-    background: var(--card-background);
-    border-radius: 10px;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
     overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
-    display: block;
+    text-decoration: none;
+    color: var(--text-color);
 }
 
 .game-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-    background-color: var(--hover-card-bg);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .game-card img {
     width: 100%;
-    height: 120px;
+    height: 150px;
     object-fit: cover;
-    display: block;
 }
 
 .game-card span {
     display: block;
-    padding: 0.75rem 0.5rem;
-    font-weight: 500;
-    font-size: 0.9rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    padding: 0.75rem 0;
+    font-weight: 600;
 }
 
-/* ================== Info & Contact ================== */
-.info-section {
-    padding: 3rem 0;
-    background: var(--card-background);
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2rem;
+/* --- Game Detail Page --- */
+.game-header {
     text-align: center;
+    margin-bottom: 2rem;
 }
 
-.info-card {
-    padding: 2rem 1rem;
-    border-radius: 10px;
-    border: 1px solid var(--border-color);
+.game-banner {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: var(--border-radius);
 }
 
-.info-icon {
-    font-size: 2.5rem;
-    color: var(--primary-color);
+.topup-form {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.form-step {
+    margin-bottom: 2rem;
+}
+
+.step-label {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+
+.form-group {
     margin-bottom: 1rem;
 }
 
-.contact-section {
-    padding: 3rem 0;
-    text-align: center;
-}
-
-.contact-info p {
-    margin: 1rem 0;
-}
-
-/* ================== Footer ================== */
-.footer {
-    background: var(--card-background);
-    color: var(--secondary-color);
-    text-align: center;
-    padding: 1.5rem 0;
-    border-top: 1px solid var(--border-color);
-}
-
-/* ================== Buttons & Forms ================== */
-.btn {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 600;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s, transform 0.2s;
-    border: none;
-    font-family: inherit;
-}
-
-.btn:active {
-    transform: scale(0.98);
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    color: #fff;
-}
-
-.btn-primary:hover {
-    background-color: #4a4afc;
-}
-
-.btn-secondary {
-    background-color: transparent;
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
-}
-
-.btn-secondary:hover {
-    background-color: var(--primary-color);
-    color: #fff;
-}
-
-.btn-block {
+.form-group label {
     display: block;
-    width: 100%;
-}
-
-.btn-cta {
-    font-size: 1.1rem;
-    padding: 1rem 2.5rem;
-    border-radius: 50px;
-}
-
-.btn-sm {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
-    border-radius: 6px;
-}
-
-.btn-apply {
-    width: 100px;
-}
-
-.btn-full {
-    width: 100%;
-}
-
-/* ================== Game Page ================== */
-.btn-back {
-    margin-bottom: 2rem;
-}
-
-.game-banner-container {
-    width: 100%;
-    height: 180px;
-    overflow: hidden;
-    margin-bottom: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-}
-
-.game-banner-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.grid-container {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 2rem;
-    align-items: flex-start;
-}
-
-.left-panel .step-section {
-    background: var(--card-background);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-bottom: 1.5rem;
-}
-
-.right-panel .summary-panel {
-    background: var(--card-background);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    position: sticky;
-    top: 2rem;
-}
-
-.input-group {
-    margin-bottom: 1.5rem;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 0.5rem;
     font-weight: 500;
+    margin-bottom: 0.5rem;
 }
 
-.input-group input {
+.form-group input {
     width: 100%;
-    padding: 0.8rem;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    background-color: #282828;
-    color: var(--text-color);
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
     font-size: 1rem;
-    transition: border-color 0.3s;
-}
-
-.input-group input:focus {
-    outline: none;
-    border-color: var(--primary-color);
 }
 
 .guide-text {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #555;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.product-grid, .payment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+}
+
+.product-card, .payment-card {
+    background-color: #f1f1f1;
+    border-radius: var(--border-radius);
+    border: 2px solid transparent;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.product-card:hover, .payment-card:hover {
+    border-color: var(--primary-color);
+}
+
+.product-card.selected, .payment-card.selected {
+    border-color: var(--primary-color);
+    background-color: #e9f2ff;
+}
+
+.product-label {
+    font-weight: 600;
+}
+
+.product-price {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 0.25rem;
+}
+
+.payment-card img {
+    width: 100%;
+    max-height: 50px;
+    object-fit: contain;
+}
+
+.payment-label {
     margin-top: 0.5rem;
-    display: block;
+    font-size: 0.9rem;
 }
 
-.status-text {
-    display: block;
-    margin-top: 0.5rem;
-    font-size: 0.85rem;
-}
-
-.status-text.success {
-    color: var(--success-color);
-}
-
-.status-text.error {
-    color: var(--error-color);
-}
-
-.voucher-input-container {
+.voucher-container {
     display: flex;
     gap: 0.5rem;
     margin-bottom: 1rem;
 }
 
-.voucher-input-container input {
-    flex-grow: 1;
-    border-radius: 8px;
+.voucher-container input {
+    flex: 1;
 }
 
-.product-grid, .payment-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 1rem;
-}
-
-.product-card, .payment-card {
-    background-color: #282828;
-    border: 2px solid transparent;
-    border-radius: 8px;
-    padding: 1rem;
-    text-align: center;
+.voucher-container button {
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    transition: all 0.2s ease;
+    font-weight: 600;
 }
 
-.product-card:hover, .payment-card:hover {
-    background-color: #333;
+.voucher-container #voucher-btn {
+    background-color: var(--primary-color);
+    color: var(--white);
 }
 
-.product-card.selected, .payment-card.selected {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 10px rgba(93, 93, 255, 0.5);
-    background-color: #333;
+.voucher-container #voucher-list-btn {
+    background-color: #ddd;
 }
 
-.product-label {
+.status-text {
+    margin-bottom: 1rem;
     font-weight: 500;
-    margin-bottom: 0.25rem;
-    font-size: 0.9rem;
 }
 
-.product-price {
-    font-size: 1rem;
-    color: var(--heading-color);
+.status-text.success {
+    color: var(--secondary-color);
 }
 
-.payment-card img {
-    width: 60px;
-    height: auto;
-    margin-bottom: 0.5rem;
+.status-text.error {
+    color: #dc3545;
 }
 
-.summary-box {
-    padding: 1.5rem;
-    border-radius: 8px;
-    background-color: #282828;
-    margin-bottom: 1.5rem;
+.summary-container {
+    background-color: #f1f1f1;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-top: 1rem;
 }
 
 .summary-box p {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.75rem;
-    border-bottom: 1px dashed #444;
-    padding-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
 }
 
-.summary-box p:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-}
-
-.summary-box span:first-child {
-    font-weight: 500;
-    color: var(--text-color);
-}
-
-.summary-box span:last-child {
-    font-weight: 600;
-    color: var(--heading-color);
+.summary-box .muted {
+    text-align: center;
+    color: #777;
+    font-style: italic;
 }
 
 .total-price-box {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    font-size: 1.3rem;
-    font-weight: bold;
-    padding: 1rem 0;
-    border-top: 2px solid var(--border-color);
-    margin-top: 1.5rem;
-    color: var(--primary-color);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed #ccc;
 }
 
-/* ================== Modal Styles (Pop-up) ================== */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.btn[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.btn-contact {
+    background-color: #25d366;
+    color: var(--white);
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+
+/* --- Footer --- */
+.footer {
+    background-color: var(--text-color);
+    color: var(--white);
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+}
+
+/* --- Modal --- */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--modal-bg);
-    display: flex;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 2000;
 }
 
 .modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
+    display: flex;
 }
 
 .modal {
-    background: var(--card-background);
+    background-color: var(--white);
     padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
     width: 90%;
-    max-width: 450px;
-    transform: scale(0.95);
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-    opacity: 0;
+    max-width: 500px;
+    transform: scale(0.9);
+    transition: transform 0.3s ease-in-out;
 }
 
-.modal-overlay.active .modal {
+.modal.active {
     transform: scale(1);
-    opacity: 1;
 }
 
 .modal-header {
     display: flex;
     justify-content: space-between;
-    align-items
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-header h3 {
+    font-size: 1.5rem;
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #777;
+}
+
+.modal-content .summary-box p {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.modal-content .total-price-box {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed #ccc;
+}
+
+.payment-info {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.copy-field {
+    background-color: #e9f2ff;
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    margin-top: 1rem;
+}
+
+.copy-field span {
+    font-weight: 600;
+    user-select: all;
+    word-break: break-all;
+}
+
+.copy-field button {
+    margin-left: 1rem;
+}
+
+.modal-footer {
+    margin-top: 1.5rem;
+}
+
+.modal-content-list .voucher-item {
+    background-color: #f1f1f1;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+
+.modal-content-list .voucher-item h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+/* --- Mobile Nav --- */
+@media (max-width: 768px) {
+    .nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: var(--white);
+        box-shadow: var(--box-shadow);
+    }
+
+    .nav a {
+        margin: 0.5rem 0;
+        padding: 1rem;
+        border-bottom: 1px solid #eee;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .header .container {
+        flex-wrap: wrap;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+}
