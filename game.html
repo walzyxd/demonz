@@ -21,6 +21,7 @@
                     <i class="fas fa-arrow-left"></i> Kembali
                 </a>
             </div>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
         </div>
     </header>
 
@@ -118,23 +119,11 @@
                             <span id="summary-total"></span>
                         </div>
                     </div>
+                    <button class="btn btn-confirm" id="checkout-btn" disabled>Beli Sekarang</button>
                 </div>
             </div>
         </section>
     </main>
-    
-    <footer class="sticky-footer">
-        <div class="container">
-            <div class="summary-box" id="summary-box">
-                Pilih nominal & metode bayar untuk melihat total.
-            </div>
-            <div class="total-price-box" id="total-price-box" style="display: none;">
-                <span class="label">Total Pembayaran</span>
-                <span class="price" id="total-price">Rp0</span>
-            </div>
-            <button class="btn btn-confirm" id="checkout-btn" disabled>Beli Sekarang</button>
-        </div>
-    </footer>
     
     <div class="modal-overlay" id="modal-overlay">
         <div class="modal" id="voucher-list-modal"></div>
