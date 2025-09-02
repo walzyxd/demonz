@@ -557,6 +557,8 @@ body {
     opacity: 0;
     position: relative;
     padding: 1.5rem;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .modal.active {
@@ -660,6 +662,8 @@ body {
     border-radius: 8px;
     display: inline-block;
     background-color: var(--card-bg);
+    width: 100%;
+    max-width: 250px;
 }
 
 .qris-image {
@@ -708,6 +712,30 @@ body {
 
 .product-card .badge.sale {
     background-color: #FF5722;
+}
+
+.voucher-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+}
+
+.voucher-item .voucher-info h4 {
+    margin-bottom: 0.25rem;
+}
+
+.voucher-item .voucher-info p {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.btn-choose {
+    background-color: var(--secondary-color);
+    color: var(--text-color-dark);
 }
 
 /* ================== Media Queries untuk Responsivitas ================== */
