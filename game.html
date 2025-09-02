@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="https://files.catbox.moe/k3hly0.jpg" type="image/x-icon">
 </head>
-<body id="game-page">
+<body>
 
     <header class="header">
         <div class="container">
@@ -16,92 +16,96 @@
                 <img src="https://files.catbox.moe/k3hly0.jpg" alt="Walz Shop Logo" class="logo-img">
             </a>
             <div class="header-buttons">
-                <button class="btn btn-download">
-                    <i class="fas fa-mobile-alt"></i> Download Sekarang
-                </button>
-                <button class="btn btn-login">
-                    <i class="fas fa-user-circle"></i> Masuk
-                </button>
-            </div>
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
+                <a href="index.html" class="btn btn-back">
+                    <i class="fas fa-arrow-left"></i> Kembali
+                </a>
             </div>
         </div>
     </header>
 
-    <main class="container">
-        <div class="game-info">
-            <img src="" alt="Game Banner" class="game-banner" id="game-banner">
-            <h2 class="game-name"></h2>
-            <div class="game-meta">
-                <div class="rating-review">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <span>5</span>
-                    <span class="review-count">1.9rb Review</span>
-                </div>
-                <div class="distributor">
-                    <i class="fas fa-shield-alt"></i> Official Distributor
-                </div>
+    <main class="main-content">
+        <section class="game-info">
+            <div class="container">
+                <img id="game-banner" src="" alt="Game Banner" class="game-banner">
+                <h1 class="game-name">Nama Game</h1>
+                <p class="game-description">Top up termurah, aman, dan terpercaya hanya di Walz Shop!</p>
             </div>
-        </div>
-        
-        <div class="topup-form-container">
-            <div class="form-step active" id="step1">
-                <div class="step-label">1. Masukkan Data Check ID</div>
-                <div class="form-group">
-                    <label for="user-id">Masukkan Player ID</label>
-                    <input type="text" id="user-id" placeholder="Masukkan Player ID Anda" required>
-                    <small class="muted"></small>
-                    <p class="error-text" id="error-user"></p>
+        </section>
+
+        <section class="topup-form-container container">
+            
+            <div class="form-step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <h3 class="step-label">Masukkan ID & Server</h3>
                 </div>
-                <div class="form-group" id="server-group" style="display: none;">
-                    <label for="server-id">Server ID</label>
-                    <input type="text" id="server-id" placeholder="Masukkan Server ID">
-                    <p class="error-text" id="error-server"></p>
+                <div class="step-content">
+                    <p class="muted game-guide"></p>
+                    <div class="form-group">
+                        <input type="text" id="user-id" placeholder="Masukkan User ID">
+                        <span class="error-text" id="error-user"></span>
+                    </div>
+                    <div class="form-group" id="server-group" style="display: none;">
+                        <input type="text" id="server-id" placeholder="Masukkan Server ID (Opsional)">
+                        <span class="error-text" id="error-server"></span>
+                    </div>
                 </div>
             </div>
 
-            <div class="form-step" id="step2">
-                <div class="step-label">2. Pilih Nominal Top Up</div>
-                <div class="product-grid" id="product-grid">
-                    </div>
+            <div class="form-step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <h3 class="step-label">Pilih Nominal Top Up</h3>
+                </div>
+                <div class="step-content">
+                    <div class="product-grid" id="product-grid">
+                        </div>
+                </div>
             </div>
 
-            <div class="form-step" id="step3">
-                <div class="step-label">3. Pilih Pembayaran</div>
-                <div class="payment-grid" id="payment-grid">
-                    </div>
+            <div class="form-step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <h3 class="step-label">Pilih Pembayaran</h3>
+                </div>
+                <div class="step-content">
+                    <div class="payment-grid" id="payment-grid">
+                        </div>
+                </div>
             </div>
             
-            <div class="form-step" id="step4">
-                <div class="step-label">4. Punya Kode Promo?</div>
-                <div class="voucher-container">
-                    <input type="text" id="voucher-input" placeholder="Masukkan kode promo jika ada">
-                    <button class="btn-voucher" id="voucher-btn">Gunakan</button>
-                    <button class="btn-voucher" id="voucher-list-btn">Lihat</button>
+            <div class="form-step">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <h3 class="step-label">Kode Voucher (Opsional)</h3>
                 </div>
-                <p id="voucher-status" class="status-text"></p>
+                <div class="step-content">
+                    <div class="voucher-container">
+                        <input type="text" id="voucher-input" placeholder="Masukkan kode voucher">
+                        <button class="btn-voucher" id="voucher-btn">Terapkan</button>
+                    </div>
+                    <p class="status-text" id="voucher-status"></p>
+                    <button class="btn-voucher-list" id="voucher-list-btn">Lihat Daftar Promo</button>
+                </div>
             </div>
-        </div>
+            
+        </section>
+        
     </main>
-    
-    <div class="sticky-footer" id="sticky-footer">
-        <div class="summary-box" id="summary-box">
-            Pilih nominal & metode bayar untuk melihat total.
-        </div>
-        <div class="total-price-box" id="total-price-box" style="display: none;">
-            <span class="label">Total Pembayaran</span>
-            <span class="price" id="total-price">Rp 0</span>
-        </div>
-        <button class="btn btn-confirm" id="checkout-btn" disabled>Konfirmasi Pesanan</button>
-    </div>
 
+    <footer class="sticky-footer">
+        <div class="container">
+            <div class="summary-box" id="summary-box">
+                Pilih nominal & metode bayar untuk melihat total.
+            </div>
+            <div class="total-price-box" id="total-price-box" style="display: none;">
+                <span class="label">Total Pembayaran</span>
+                <span class="price" id="total-price">Rp0</span>
+            </div>
+            <button class="btn btn-confirm" id="checkout-btn" disabled>Beli Sekarang</button>
+        </div>
+    </footer>
+    
     <div class="modal-overlay" id="modal-overlay">
         <div class="modal" id="voucher-list-modal"></div>
         <div class="modal" id="checkout-modal"></div>
@@ -109,12 +113,15 @@
 
     <script src="script.js"></script>
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const currentPageGameKey = urlParams.get('key');
-        
         document.addEventListener("DOMContentLoaded", () => {
-            setupGamePage(currentPageGameKey);
-            setupEventListeners();
+            const urlParams = new URLSearchParams(window.location.search);
+            const gameKey = urlParams.get('key');
+            if (gameKey) {
+                setupGamePage(gameKey);
+                setupEventListeners();
+            } else {
+                window.location.href = "index.html";
+            }
         });
     </script>
 </body>
