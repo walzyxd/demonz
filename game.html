@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">Walz Shop</title>
+    <title>Walz Shop - Top Up Game</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="https://files.catbox.moe/k3hly0.jpg" type="image/x-icon">
@@ -12,11 +12,17 @@
 
     <header class="header">
         <div class="container">
-            <a href="index.html" class="logo">WALZ SHOP</a>
-            <nav class="nav">
-                <a href="index.html">BERANDA</a>
-                <a href="https://wa.me/6282298902274">KONTAK</a>
-            </nav>
+            <a href="index.html" class="logo">
+                <img src="https://files.catbox.moe/k3hly0.jpg" alt="Walz Shop Logo" class="logo-img">
+            </a>
+            <div class="header-buttons">
+                <button class="btn btn-download">
+                    <i class="fas fa-mobile-alt"></i> Download Sekarang
+                </button>
+                <button class="btn btn-login">
+                    <i class="fas fa-user-circle"></i> Masuk
+                </button>
+            </div>
             <div class="menu-toggle">
                 <i class="fas fa-bars"></i>
             </div>
@@ -24,72 +30,90 @@
     </header>
 
     <main class="container">
-        <div class="game-header">
+        <div class="game-info">
             <img src="" alt="Game Banner" class="game-banner" id="game-banner">
+            <h2 class="game-name"></h2>
+            <div class="game-meta">
+                <div class="rating-review">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span>5</span>
+                    <span class="review-count">1.9rb Review</span>
+                </div>
+                <div class="distributor">
+                    <i class="fas fa-shield-alt"></i> Official Distributor
+                </div>
+            </div>
         </div>
-
-        <div class="topup-form">
-            <div class="form-step">
-                <div class="step-label">Langkah 1: Masukkan User ID</div>
+        
+        <div class="topup-form-container">
+            <div class="form-step active" id="step1">
+                <div class="step-label">1. Masukkan Data Check ID</div>
                 <div class="form-group">
-                    <label for="user-id">User ID</label>
-                    <input type="text" id="user-id" placeholder="Masukkan User ID Anda" required>
+                    <label for="user-id">Masukkan Player ID</label>
+                    <input type="text" id="user-id" placeholder="Masukkan Player ID Anda" required>
+                    <small class="muted"></small>
+                    <p class="error-text" id="error-user"></p>
                 </div>
-                <div class="form-group" id="server-group">
-                    <label for="server-id">Server ID (Zone ID)</label>
-                    <input type="text" id="server-id" placeholder="Masukkan Server ID Anda">
-                </div>
-                <div class="guide-text">
-                    <i class="fas fa-info-circle"></i> 
-                    <p class="guide-text">Temukan User ID Anda di profil game.</p>
+                <div class="form-group" id="server-group" style="display: none;">
+                    <label for="server-id">Server ID</label>
+                    <input type="text" id="server-id" placeholder="Masukkan Server ID">
+                    <p class="error-text" id="error-server"></p>
                 </div>
             </div>
 
-            <div class="form-step">
-                <div class="step-label">Langkah 2: Pilih Nominal</div>
+            <div class="form-step" id="step2">
+                <div class="step-label">2. Pilih Nominal Top Up</div>
                 <div class="product-grid" id="product-grid">
                     </div>
             </div>
 
-            <div class="form-step">
-                <div class="step-label">Langkah 3: Pilih Pembayaran</div>
+            <div class="form-step" id="step3">
+                <div class="step-label">3. Pilih Pembayaran</div>
                 <div class="payment-grid" id="payment-grid">
                     </div>
             </div>
-
-            <div class="form-step">
-                <div class="step-label">Langkah 4: Konfirmasi & Bayar</div>
+            
+            <div class="form-step" id="step4">
+                <div class="step-label">4. Punya Kode Promo?</div>
                 <div class="voucher-container">
-                    <input type="text" id="voucher-input" placeholder="Masukkan kode voucher">
-                    <button id="voucher-btn">Gunakan</button>
-                    <button id="voucher-list-btn">Lihat Voucher</button>
+                    <input type="text" id="voucher-input" placeholder="Masukkan kode promo jika ada">
+                    <button class="btn-voucher" id="voucher-btn">Gunakan</button>
+                    <button class="btn-voucher" id="voucher-list-btn">Lihat</button>
                 </div>
                 <p id="voucher-status" class="status-text"></p>
-                <div class="summary-container">
-                    <div class="summary-box" id="summary-box">
-                        <p class="muted">Pilih nominal & metode bayar untuk melihat total.</p>
-                    </div>
-                    <div class="total-price-box" id="total-price-box" style="display: none;">
-                        <span>Total Pembayaran</span>
-                        <span id="total-price">Rp 0</span>
-                    </div>
-                </div>
-                <button class="btn btn-primary btn-block" id="checkout-btn" disabled>Beli Sekarang</button>
             </div>
         </div>
     </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Walz Shop. All Rights Reserved.</p>
+    
+    <div class="sticky-footer" id="sticky-footer">
+        <div class="summary-box" id="summary-box">
+            Pilih nominal & metode bayar untuk melihat total.
         </div>
-    </footer>
+        <div class="total-price-box" id="total-price-box" style="display: none;">
+            <span class="label">Total Pembayaran</span>
+            <span class="price" id="total-price">Rp 0</span>
+        </div>
+        <button class="btn btn-confirm" id="checkout-btn" disabled>Konfirmasi Pesanan</button>
+    </div>
 
     <div class="modal-overlay" id="modal-overlay">
-        <div class="modal" id="checkout-modal"></div>
         <div class="modal" id="voucher-list-modal"></div>
+        <div class="modal" id="checkout-modal"></div>
     </div>
 
     <script src="script.js"></script>
+    <script>
+        const currentPageGameKey = "mobile-legends"; // Ganti dengan key game yang sesuai
+        document.addEventListener("DOMContentLoaded", () => {
+            setupGamePage();
+            setupEventListeners();
+        });
+    </script>
 </body>
 </html>
