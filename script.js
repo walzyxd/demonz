@@ -1,7 +1,6 @@
 /* ================== KONFIGURASI ================== */
 const ADMIN_WA = "6282298902274";
 const ADMIN_EMAIL = "walzlonely@gmail.com";
-const QRIS_FULL_IMAGE = "https://i.supaimg.com/5688406c-3c9f-4990-b77a-4f1eaba082ad.png";
 
 /* ================== DATA VOUCHER ================== */
 const VOUCHERS = [
@@ -248,6 +247,23 @@ let appliedVoucher = null;
 let currentGame = null;
 
 /* ================== FUNGSI UTAMA ================== */
+document.addEventListener('DOMContentLoaded', () => {
+    // Cek apakah halaman adalah index.html atau game.html
+    if (qs("#games-grid")) {
+        renderGameGrid();
+        renderPromoSlider();
+    } else if (qs("#game-banner")) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const gameKey = urlParams.get('key');
+        if (gameKey) {
+            setupGamePage(gameKey);
+            setupEventListeners();
+        } else {
+            window.location.href = 'index.html';
+        }
+    }
+});
+
 function renderGameGrid() {
     const gameGrid = qs("#games-grid");
     if (!gameGrid) return;
@@ -310,7 +326,7 @@ function renderPromoSlider() {
             timer = setInterval(nextSlide, 4000);
         }
     }
-    
+
     renderSlider();
     resetTimer();
 }
@@ -323,8 +339,8 @@ function setupGamePage(gameKeyFromUrl) {
         setTimeout(() => window.location.href = "index.html", 2000);
         return;
     }
-    
-    qs("#game-banner").src = currentGame.img;
+
+    qs("#game-banner").src = currentGame.bannerImg;
     qs(".game-name-h1").textContent = currentGame.name;
     qs("title").textContent = `Walz Shop - Top Up ${currentGame.name}`;
     qs(".game-description").textContent = currentGame.guide;
@@ -404,16 +420,10 @@ function renderPayments() {
             const div = document.createElement("div");
             div.className = "payment-card";
             div.dataset.id = pay.id;
-            
-            let priceHTML = '';
-            if (selectedProduct) {
-                priceHTML = `<div class="payment-price-label">${fmtIDR(selectedProduct.price)}</div>`;
-            }
-            
+
             div.innerHTML = `
                 <img src="${pay.img}" alt="${pay.name}">
                 <div class="payment-label">${pay.name}</div>
-                ${priceHTML}
             `;
             
             div.addEventListener("click", () => {
@@ -487,52 +497,57 @@ function refreshSummary() {
     const summaryDiscount = qs("#summary-discount");
     const summaryTotal = qs("#summary-total");
     const checkoutBtn = qs("#checkout-btn");
-    
-    if (selectedProduct && selectedPayment) {
+
+    if (selectedProduct) {
         const base = selectedProduct.price;
         const total = finalPrice();
         const discount = base - total;
-        
+
         summaryProduct.textContent = selectedProduct.label;
-        summaryPayment.textContent = selectedPayment.name;
         summaryTotal.textContent = fmtIDR(total);
         if (discount > 0) {
-            summaryDiscountRow.style.display = "flex";
+            summaryDiscountRow.style.display = "table-row";
             summaryDiscount.textContent = `- ${fmtIDR(discount)}`;
         } else {
             summaryDiscountRow.style.display = "none";
         }
-        checkoutBtn.disabled = false;
     } else {
         summaryProduct.textContent = "-";
-        summaryPayment.textContent = "-";
         summaryDiscountRow.style.display = "none";
         summaryTotal.textContent = fmtIDR(0);
-        checkoutBtn.disabled = true;
     }
+    
+    summaryPayment.textContent = selectedPayment ? selectedPayment.name : "-";
+    
+    const userId = qs("#user-id").value.trim();
+    const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : "ok";
+    checkoutBtn.disabled = !(userId && serverId && selectedProduct && selectedPayment);
 }
+
 
 function checkProgress() {
     const userId = qs("#user-id").value.trim();
     const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : "ok";
     const steps = qsa(".form-step");
     
-    qsa(".form-step").forEach(step => step.classList.remove('active'));
+    steps.forEach(step => step.classList.remove('active'));
 
     let activeStepIndex = 0;
     if (userId || (currentGame.hasServerId && serverId)) {
-        activeStepIndex = 1;
+        steps[0].classList.add('active'); // User ID step
         if (selectedProduct) {
-            activeStepIndex = 2;
+            steps[1].classList.add('active'); // Product step
             if (selectedPayment) {
-                activeStepIndex = 4;
-            } else {
-                activeStepIndex = 3;
+                steps[2].classList.add('active'); // Payment step
+                steps[3].classList.add('active'); // Voucher step
+                steps[4].classList.add('active'); // Summary step
             }
         }
     }
     
-    steps[activeStepIndex].classList.add('active');
+    // Perbarui status tombol checkout
+    const checkoutBtn = qs("#checkout-btn");
+    checkoutBtn.disabled = !(userId && (currentGame.hasServerId ? serverId : true) && selectedProduct && selectedPayment);
 }
 
 function setVoucherStatus(text, isError = false) {
@@ -554,8 +569,10 @@ function showVoucherListModal() {
         <div class="modal-content-list">
             ${VOUCHERS.map(v => `
                 <div class="voucher-item">
-                    <h4>${v.code}</h4>
-                    <p>${v.description}</p>
+                    <div class="voucher-info">
+                        <h4>${v.code}</h4>
+                        <p>${v.description}</p>
+                    </div>
                     <button class="btn btn-sm btn-choose" data-choose="${v.code}">Pilih</button>
                 </div>
             `).join("")}
@@ -564,14 +581,14 @@ function showVoucherListModal() {
     qsa("[data-choose]", modal).forEach(btn => {
         btn.addEventListener("click", () => {
             qs("#voucher-input").value = btn.dataset.choose;
-            // Removed direct application of voucher. User must now click "Gunakan".
             closeModal("voucher-list-modal");
+            applyVoucher(); // Langsung terapkan voucher setelah dipilih
         });
     });
     openModal("voucher-list-modal");
 }
 
-function showError(message) {
+function showErrorModal(message) {
     const modal = qs("#error-modal");
     if (!modal) return;
     modal.innerHTML = `
@@ -592,21 +609,21 @@ function showError(message) {
 function validateForm() {
     const userId = qs("#user-id").value.trim();
     const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : "ok";
-    
+
     if (!userId) {
-        showError("User ID wajib diisi.");
+        showErrorModal("User ID wajib diisi.");
         return false;
     }
     if (currentGame.hasServerId && !serverId) {
-        showError("Server ID wajib diisi.");
+        showErrorModal("Server ID wajib diisi.");
         return false;
     }
     if (!selectedProduct) {
-        showError("Pilih nominal top-up.");
+        showErrorModal("Pilih nominal top-up.");
         return false;
     }
     if (!selectedPayment) {
-        showError("Pilih metode pembayaran.");
+        showErrorModal("Pilih metode pembayaran.");
         return false;
     }
     return true;
@@ -617,17 +634,18 @@ function openCheckout() {
     const userId = qs("#user-id").value.trim();
     const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : null;
     const total = finalPrice();
+    const discountAmount = selectedProduct.price - total;
     let payBlock = '';
 
     const formatWhatsAppMsg = () => {
-        let msg = `Halo Admin, saya ingin konfirmasi pesanan top-up:\n`;
+        let msg = `Halo admin, saya mau top-up:\n`;
         msg += `*Game:* ${currentGame.name}\n`;
         msg += `*User ID:* ${userId}\n`;
         if (serverId) msg += `*Server ID:* ${serverId}\n`;
         msg += `*Produk:* ${selectedProduct.label}\n`;
         msg += `*Metode Pembayaran:* ${selectedPayment.name}\n`;
-        msg += `*Total:* ${fmtIDR(total)}\n\n`;
-        msg += `Terima kasih.`;
+        msg += `*Total Pembayaran:* ${fmtIDR(total)}\n\n`;
+        msg += `Mohon konfirmasi pesanan saya. Terima kasih.`;
         return encodeURIComponent(msg);
     };
 
@@ -658,7 +676,7 @@ function openCheckout() {
 
     const modal = qs("#checkout-modal");
     if (!modal) return;
-    
+
     modal.innerHTML = `
         <div class="modal-header">
             <h3>Konfirmasi Pembelian</h3>
@@ -671,7 +689,7 @@ function openCheckout() {
                 ${serverId ? `<tr><td>Server ID</td><td>${serverId}</td></tr>` : ''}
                 <tr><td>Produk</td><td>${selectedProduct.label}</td></tr>
                 <tr><td>Metode Bayar</td><td>${selectedPayment.name}</td></tr>
-                ${appliedVoucher ? `<tr><td>Diskon Voucher</td><td>- ${fmtIDR(selectedProduct.price - finalPrice())}</td></tr>` : ''}
+                ${appliedVoucher ? `<tr><td>Diskon Voucher</td><td>- ${fmtIDR(discountAmount)}</td></tr>` : ''}
             </table>
             <div class="summary-total" style="margin-top: 1.5rem;">
                 <span>Total Pembayaran</span>
@@ -703,9 +721,6 @@ function hideOverlay() {
     document.body.style.overflow = "";
     qsa(".modal").forEach(m => {
         m.classList.remove("active");
-        if (m.id === "qris-fullscreen-modal") {
-            m.remove();
-        }
     });
 }
 
