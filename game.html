@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Walz Shop - Top Up Game</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="https://files.catbox.moe/k3hly0.jpg" type="image/x-icon">
 </head>
@@ -26,15 +27,19 @@
     <main class="main-content">
         <section class="game-info">
             <div class="container">
-                <img id="game-banner" src="" alt="Game Banner" class="game-banner">
-                <h1 class="game-name">Nama Game</h1>
-                <p class="game-description">Top up termurah, aman, dan terpercaya hanya di Walz Shop!</p>
+                <div class="game-header-card">
+                    <img id="game-banner" src="" alt="Game Banner" class="game-icon-small">
+                    <div>
+                        <h1 class="game-name">Nama Game</h1>
+                        <p class="game-description">Top up termurah, aman, dan terpercaya hanya di Walz Shop!</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section class="topup-form-container container">
             
-            <div class="form-step">
+            <div class="form-step" id="step-1">
                 <div class="step-header">
                     <div class="step-number">1</div>
                     <h3 class="step-label">Masukkan ID & Server</h3>
@@ -52,7 +57,7 @@
                 </div>
             </div>
 
-            <div class="form-step">
+            <div class="form-step" id="step-2">
                 <div class="step-header">
                     <div class="step-number">2</div>
                     <h3 class="step-label">Pilih Nominal Top Up</h3>
@@ -63,7 +68,7 @@
                 </div>
             </div>
 
-            <div class="form-step">
+            <div class="form-step" id="step-3">
                 <div class="step-header">
                     <div class="step-number">3</div>
                     <h3 class="step-label">Pilih Pembayaran</h3>
@@ -74,25 +79,50 @@
                 </div>
             </div>
             
-            <div class="form-step">
+            <div class="form-step" id="step-4">
                 <div class="step-header">
                     <div class="step-number">4</div>
                     <h3 class="step-label">Kode Voucher (Opsional)</h3>
                 </div>
                 <div class="step-content">
                     <div class="voucher-container">
-                        <input type="text" id="voucher-input" placeholder="Masukkan kode voucher">
-                        <button class="btn-voucher" id="voucher-btn">Terapkan</button>
+                        <input type="text" id="voucher-input" placeholder="Masukkan kode voucher" class="rounded-input">
+                        <button class="btn-voucher rounded-btn" id="voucher-btn">Terapkan</button>
                     </div>
                     <p class="status-text" id="voucher-status"></p>
-                    <button class="btn-voucher-list" id="voucher-list-btn">Lihat Daftar Promo</button>
+                    <button class="btn-voucher-list rounded-btn" id="voucher-list-btn">Lihat Daftar Promo</button>
                 </div>
             </div>
             
+            <div class="form-step summary-step" id="step-5">
+                <div class="step-header">
+                    <div class="step-number">5</div>
+                    <h3 class="step-label">Ringkasan Pembayaran</h3>
+                </div>
+                <div class="step-content">
+                    <div class="summary-details">
+                        <div class="summary-item">
+                            <span>Produk</span>
+                            <span id="summary-product"></span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Metode Pembayaran</span>
+                            <span id="summary-payment"></span>
+                        </div>
+                        <div class="summary-item" id="summary-discount-row" style="display: none;">
+                            <span>Diskon</span>
+                            <span id="summary-discount"></span>
+                        </div>
+                        <div class="summary-total">
+                            <span>Total Pembayaran</span>
+                            <span id="summary-total"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
-        
     </main>
-
+    
     <footer class="sticky-footer">
         <div class="container">
             <div class="summary-box" id="summary-box">
@@ -109,6 +139,7 @@
     <div class="modal-overlay" id="modal-overlay">
         <div class="modal" id="voucher-list-modal"></div>
         <div class="modal" id="checkout-modal"></div>
+        <div class="modal" id="error-modal"></div>
     </div>
 
     <script src="script.js"></script>
