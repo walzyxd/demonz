@@ -125,6 +125,13 @@ body {
     box-shadow: 0 3px 8px rgba(0,0,0,0.08);
 }
 
+/* Menghilangkan garis bawah pada nama game */
+.game-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
 .game-grid .game-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 16px rgba(0,0,0,0.15);
