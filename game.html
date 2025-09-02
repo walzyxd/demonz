@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">Top Up Game</title>
+    <title>Walz Shop - Top Up Game</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -16,62 +16,63 @@
     </header>
 
     <main class="main-content">
-        <a href="index.html" class="btn btn-secondary" style="margin-bottom: 1.5rem;">
+        <a href="javascript:void(0);" onclick="history.back()" class="btn btn-secondary" style="margin-bottom: 1.5rem;">
             <i class="fa-solid fa-arrow-left"></i> Kembali
         </a>
 
-        <div class="game-banner-container">
-            <img id="game-banner" src="" alt="Game Banner">
-        </div>
-        
-        <div class="grid-container">
-            <div class="left-panel">
-                <section class="form-section">
-                    <h3>Langkah 1: Masukkan User ID</h3>
-                    <p class="muted" id="game-guide"></p>
-                    <div class="input-group">
-                        <input type="text" id="user-id" placeholder="Masukkan User ID">
-                        <span class="status-text error" id="error-user"></span>
-                    </div>
-                    <div class="input-group" id="server-group" style="display:none;">
-                        <input type="text" id="server-id" placeholder="Masukkan Server ID (Opsional)">
-                        <span class="status-text error" id="error-server"></span>
-                    </div>
-                </section>
-
-                <section class="form-section">
-                    <h3>Langkah 2: Pilih Nominal</h3>
-                    <div class="product-grid" id="product-grid"></div>
-                </section>
-
-                <section class="form-section">
-                    <h3>Langkah 3: Pilih Pembayaran</h3>
-                    <div class="payment-grid" id="payment-grid"></div>
-                </section>
-                
-                <section class="form-section">
-                    <h3>Langkah 4: Punya Kode Voucher?</h3>
-                    <div id="voucher-section">
-                        <input type="text" id="voucher-input" placeholder="Masukkan kode voucher">
-                        <button id="voucher-btn" class="btn btn-primary">Terapkan</button>
-                    </div>
-                    <span class="status-text" id="voucher-status"></span>
-                    <button id="voucher-list-btn" class="btn btn-secondary btn-sm mt-3">Lihat Daftar Voucher</button>
-                </section>
+        <div class="game-page-content">
+            <div class="game-banner-container">
+                <img id="game-banner" src="" alt="Game Banner">
             </div>
 
-            <div class="right-panel">
-                <section class="form-section">
-                    <h3>Langkah 5: Detail Pesanan</h3>
-                    <div id="summary">
-                        <p class="muted">Pilih nominal & metode bayar untuk melihat total.</p>
-                    </div>
-                    <div class="total-price-box" id="total-price-box" style="display: none;">
-                        <span>Total Bayar</span>
-                        <span id="final-price"></span>
-                    </div>
-                    <button id="checkout-btn" class="btn btn-primary btn-block" disabled>Beli Sekarang</button>
-                </section>
+            <div class="grid-container">
+                <div class="left-panel">
+                    <section class="form-section">
+                        <h3>Langkah 1: Masukkan User ID</h3>
+                        <p class="muted" id="game-guide"></p>
+                        <div class="input-group">
+                            <input type="text" id="user-id" placeholder="Masukkan User ID">
+                            <small class="status-text error" id="error-user"></small>
+                        </div>
+                        <div class="input-group" id="server-group" style="display:none;">
+                            <input type="text" id="server-id" placeholder="Masukkan Server ID (Opsional)">
+                            <small class="status-text error" id="error-server"></small>
+                        </div>
+                    </section>
+    
+                    <section class="form-section">
+                        <h3>Langkah 2: Pilih Nominal</h3>
+                        <div class="product-grid" id="product-grid"></div>
+                    </section>
+    
+                    <section class="form-section">
+                        <h3>Langkah 3: Pilih Pembayaran</h3>
+                        <div class="payment-grid" id="payment-grid"></div>
+                    </section>
+                </div>
+    
+                <div class="right-panel">
+                    <section class="form-section">
+                        <h3>Langkah 4: Punya Kode Voucher?</h3>
+                        <div class="input-group">
+                            <input type="text" id="voucher-input" placeholder="Masukkan kode voucher">
+                            <small class="status-text" id="voucher-status"></small>
+                        </div>
+                        <button id="voucher-btn" class="btn btn-primary mt-3">Terapkan</button>
+                    </section>
+    
+                    <section class="form-section">
+                        <h3>Langkah 5: Detail Pesanan</h3>
+                        <div class="summary-box" id="summary-box">
+                            <p class="muted">Pilih nominal & metode bayar untuk melihat total.</p>
+                        </div>
+                        <div class="total-price-box">
+                            <span>Total Bayar</span>
+                            <span id="total-price">Rp 0</span>
+                        </div>
+                        <button id="checkout-btn" class="btn btn-primary" disabled>Beli Sekarang</button>
+                    </section>
+                </div>
             </div>
         </div>
     </main>
@@ -83,7 +84,6 @@
     </footer>
 
     <div class="modal-overlay" id="modal-overlay">
-        <div class="modal" id="voucher-list-modal"></div>
         <div class="modal" id="checkout-modal"></div>
     </div>
 
