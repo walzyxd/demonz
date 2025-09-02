@@ -326,7 +326,7 @@ function setupGamePage(gameKeyFromUrl) {
     qs("#game-banner").src = currentGame.bannerImg || currentGame.img;
     qs(".game-name").textContent = currentGame.name;
     qs("title").textContent = `Walz Shop - Top Up ${currentGame.name}`;
-    qs(".muted").textContent = currentGame.guide;
+    qs(".game-guide").textContent = currentGame.guide;
 
     if (currentGame.hasServerId) {
         qs("#server-group").style.display = "block";
