@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walz Shop - Top Up [Nama Game]</title>
+    <title>Walz Shop - Top Up Free Fire</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -20,16 +20,16 @@
         <a href="index.html" class="btn btn-secondary btn-back">
             <i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda
         </a>
-
+        
         <div class="game-banner-container">
-            <img id="game-banner" src="[URL_BANNER_GAME]" alt="Game Banner">
+            <img id="game-banner" src="https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg" alt="Free Fire Banner">
         </div>
 
         <div class="grid-container">
             <div class="left-panel">
                 <section class="form-section">
                     <h3>Langkah 1: Masukkan User ID</h3>
-                    <p class="muted">[Panduan untuk menemukan User ID]</p>
+                    <p class="muted">Temukan User ID Anda di bawah nama panggilan pada menu profil game.</p>
                     <div class="input-group">
                         <input type="text" id="user-id" placeholder="Masukkan User ID">
                         <span class="status-text error" id="error-user"></span>
@@ -42,14 +42,12 @@
 
                 <section class="form-section">
                     <h3>Langkah 2: Pilih Nominal</h3>
-                    <div class="product-grid" id="product-grid">
-                        </div>
+                    <div class="product-grid" id="product-grid"></div>
                 </section>
 
                 <section class="form-section">
                     <h3>Langkah 3: Pilih Pembayaran</h3>
-                    <div class="payment-grid" id="payment-grid">
-                        </div>
+                    <div class="payment-grid" id="payment-grid"></div>
                 </section>
 
                 <section class="form-section">
@@ -91,5 +89,12 @@
     </div>
     
     <script src="script.js"></script>
+    <script>
+        const currentPageGameKey = "free-fire";
+        document.addEventListener("DOMContentLoaded", () => {
+            setupGamePage();
+            setupEventListeners();
+        });
+    </script>
 </body>
 </html>
