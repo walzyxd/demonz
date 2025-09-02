@@ -318,12 +318,12 @@ function setupGamePage(gameKeyFromUrl) {
     currentGame = GAMES.find(g => g.key === gameKeyFromUrl);
 
     if (!currentGame) {
-        alert("Game tidak ditemukan!");
-        window.location.href = "index.html";
+        showError("Game tidak ditemukan!");
+        setTimeout(() => window.location.href = "index.html", 2000);
         return;
     }
     
-    qs("#game-banner").src = currentGame.bannerImg || currentGame.img;
+    qs("#game-banner").src = currentGame.img;
     qs(".game-name").textContent = currentGame.name;
     qs("title").textContent = `Walz Shop - Top Up ${currentGame.name}`;
     qs(".game-guide").textContent = currentGame.guide;
@@ -335,10 +335,15 @@ function setupGamePage(gameKeyFromUrl) {
     renderProducts(currentGame.key);
     renderPayments();
     refreshSelections();
+    checkProgress();
 }
 
 function setupEventListeners() {
     if (!qs("#checkout-btn")) return;
+    qs("#user-id").addEventListener("input", checkProgress);
+    if (currentGame.hasServerId) {
+        qs("#server-id").addEventListener("input", checkProgress);
+    }
     qs("#voucher-btn").addEventListener("click", applyVoucher);
     qs("#voucher-input").addEventListener("input", () => {
         appliedVoucher = null;
@@ -369,7 +374,9 @@ function renderProducts(gameKey) {
             `;
             div.addEventListener("click", () => {
                 selectedProduct = p;
+                selectedPayment = null;
                 refreshSelections();
+                checkProgress();
             });
             productGrid.appendChild(div);
         });
@@ -389,10 +396,12 @@ function renderPayments() {
             div.innerHTML = `
                 <img src="${pay.img}" alt="${pay.name}">
                 <div class="payment-label">${pay.name}</div>
+                <div class="payment-price-label">Harga: <span class="price-payment-realtime">${fmtIDR(selectedProduct ? finalPrice() : 0)}</span></div>
             `;
             div.addEventListener("click", () => {
                 selectedPayment = pay;
                 refreshSelections();
+                checkProgress();
             });
             paymentGrid.appendChild(div);
         });
@@ -446,6 +455,12 @@ function finalPrice() {
 function refreshSelections() {
     qsa(".product-card").forEach(c => c.classList.toggle("selected", selectedProduct && c.dataset.id === selectedProduct.id));
     qsa(".payment-card").forEach(c => c.classList.toggle("selected", selectedPayment && c.dataset.id === selectedPayment.id));
+    
+    // Update real-time prices on payment cards
+    qsa(".payment-price-label").forEach(el => {
+        el.querySelector(".price-payment-realtime").textContent = fmtIDR(selectedProduct ? selectedProduct.price : 0);
+    });
+
     refreshSummary();
 }
 
@@ -455,30 +470,65 @@ function refreshSummary() {
     const totalPriceBox = qs("#total-price-box");
     const checkoutBtn = qs("#checkout-btn");
     
+    const summaryProduct = qs("#summary-product");
+    const summaryPayment = qs("#summary-payment");
+    const summaryDiscountRow = qs("#summary-discount-row");
+    const summaryDiscount = qs("#summary-discount");
+    const summaryTotal = qs("#summary-total");
+    
     if (!summaryBox || !totalEl || !totalPriceBox || !checkoutBtn) return;
     
-    if (!selectedProduct) {
+    if (selectedProduct && selectedPayment) {
+        const base = selectedProduct.price;
+        const total = finalPrice();
+        const discount = base - total;
+        
+        summaryBox.style.display = "none";
+        totalPriceBox.style.display = "flex";
+        totalEl.textContent = fmtIDR(total);
+        checkoutBtn.disabled = false;
+        
+        // Update summary details in step 5
+        summaryProduct.textContent = selectedProduct.label;
+        summaryPayment.textContent = selectedPayment.name;
+        summaryTotal.textContent = fmtIDR(total);
+        if (discount > 0) {
+            summaryDiscountRow.style.display = "flex";
+            summaryDiscount.textContent = `- ${fmtIDR(discount)}`;
+        } else {
+            summaryDiscountRow.style.display = "none";
+        }
+
+    } else {
         summaryBox.textContent = `Pilih nominal & metode bayar untuk melihat total.`;
         totalPriceBox.style.display = "none";
         checkoutBtn.disabled = true;
-        return;
+        
+        // Clear summary details in step 5
+        summaryProduct.textContent = "-";
+        summaryPayment.textContent = "-";
+        summaryDiscountRow.style.display = "none";
+        summaryTotal.textContent = fmtIDR(0);
     }
+}
 
-    if (!selectedPayment) {
-        summaryBox.textContent = `Pilih metode bayar untuk melihat total.`;
-        totalPriceBox.style.display = "none";
-        checkoutBtn.disabled = true;
-        return;
+function checkProgress() {
+    const userId = qs("#user-id").value.trim();
+    const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : "ok";
+    const steps = qsa(".form-step");
+    
+    qsa(".form-step").forEach(step => step.classList.remove('active'));
+
+    if (!userId || (currentGame.hasServerId && !serverId)) {
+        steps[0].classList.add('active');
+        qs("#user-id").focus();
+    } else if (!selectedProduct) {
+        steps[1].classList.add('active');
+    } else if (!selectedPayment) {
+        steps[2].classList.add('active');
+    } else {
+        steps[4].classList.add('active');
     }
-    
-    const base = selectedProduct.price;
-    const total = finalPrice();
-    const discount = base - total;
-    
-    summaryBox.style.display = "none";
-    totalPriceBox.style.display = "flex";
-    totalEl.textContent = fmtIDR(total);
-    checkoutBtn.disabled = false;
 }
 
 function setVoucherStatus(text, isError = false) {
@@ -517,32 +567,47 @@ function showVoucherListModal() {
     openModal("voucher-list-modal");
 }
 
+function showError(message) {
+    const modal = qs("#error-modal");
+    if (!modal) return;
+    modal.innerHTML = `
+        <div class="modal-header">
+            <h3>Peringatan!</h3>
+            <button class="modal-close-btn" data-close>&times;</button>
+        </div>
+        <div class="modal-content" style="text-align: center;">
+            <p>${message}</p>
+            <div style="margin-top: 1rem;">
+                <button class="btn btn-login" onclick="closeModal('error-modal')">Oke</button>
+            </div>
+        </div>
+    `;
+    openModal("error-modal");
+}
+
 function validateForm() {
-    let isValid = true;
     const userId = qs("#user-id").value.trim();
+    const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : "ok";
+    
     if (!userId) {
-        qs("#error-user").textContent = "User ID wajib diisi.";
-        isValid = false;
-    } else {
-        qs("#error-user").textContent = "";
+        showError("User ID wajib diisi.");
+        qs("#user-id").focus();
+        return false;
     }
-    if (currentGame.hasServerId) {
-        const serverId = qs("#server-id").value.trim();
-        if (!serverId) {
-            qs("#error-server").textContent = "Server ID wajib diisi.";
-            isValid = false;
-        } else {
-            qs("#error-server").textContent = "";
-        }
+    if (currentGame.hasServerId && !serverId) {
+        showError("Server ID wajib diisi.");
+        qs("#server-id").focus();
+        return false;
     }
     if (!selectedProduct) {
-        alert("Pilih nominal top-up.");
-        isValid = false;
-    } else if (!selectedPayment) {
-        alert("Pilih metode pembayaran.");
-        isValid = false;
+        showError("Pilih nominal top-up.");
+        return false;
     }
-    return isValid;
+    if (!selectedPayment) {
+        showError("Pilih metode pembayaran.");
+        return false;
+    }
+    return true;
 }
 
 function openCheckout() {
@@ -568,7 +633,7 @@ function openCheckout() {
         payBlock = `
             <div class="payment-info">
                 <h4>Scan QRIS Berikut</h4>
-                <img src="${selectedPayment.info.qrisImg}" alt="QRIS Code" style="width: 150px; height: auto; display: block; margin: 10px auto;">
+                <img src="${selectedPayment.info.qrisImg}" alt="QRIS Code" style="width: 150px; height: auto; display: block; margin: 10px auto; border-radius: 8px;">
             </div>
         `;
     } else {
@@ -602,9 +667,9 @@ function openCheckout() {
                 <tr><td>Metode Bayar</td><td>${selectedPayment.name}</td></tr>
                 ${appliedVoucher ? `<tr><td>Diskon Voucher</td><td>- ${fmtIDR(selectedProduct.price - finalPrice())}</td></tr>` : ''}
             </table>
-            <div class="total-price-box">
-                <span class="label">Total Pembayaran</span>
-                <span class="price">${fmtIDR(total)}</span>
+            <div class="summary-total" style="margin-top: 1.5rem;">
+                <span>Total Pembayaran</span>
+                <span>${fmtIDR(total)}</span>
             </div>
             ${payBlock}
             <div class="modal-footer">
@@ -629,6 +694,7 @@ function showOverlay() {
 function hideOverlay() {
     qs("#modal-overlay")?.classList.remove("active");
     document.body.style.overflow = "";
+    qsa(".modal").forEach(m => m.classList.remove("active"));
 }
 
 function openModal(id) {
