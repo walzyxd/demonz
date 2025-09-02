@@ -1,148 +1,167 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Walz Shop - Top Up Game</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="https://files.catbox.moe/k3hly0.jpg" type="image/x-icon">
 </head>
 <body>
-
     <header class="header">
         <div class="container">
-            <a href="index.html" class="btn btn-back">
-                <i class="fas fa-arrow-left"></i> Kembali
-            </a>
+            <a href="index.html" class="btn btn-back"><i class="fas fa-arrow-left"></i> Kembali</a>
             <a href="index.html" class="logo">
-                <img src="https://files.catbox.moe/k3hly0.jpg" alt="Walz Shop Logo" class="logo-img">
+                <img src="https://i.supaimg.com/1360050d-886f-4054-972f-53c892b15858.png" alt="Walz Shop Logo" class="logo-img">
             </a>
             <div class="header-buttons">
-                <a href="#" class="btn btn-download"><i class="fas fa-download"></i> Unduh Aplikasi</a>
-                <a href="#" class="btn btn-login"><i class="fas fa-user-circle"></i> Login</a>
+                <a href="#" class="btn btn-download"><i class="fas fa-download"></i> Download Aplikasi</a>
+                <a href="#" class="btn btn-login"><i class="fas fa-user-circle"></i> Masuk</a>
             </div>
-            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
         </div>
     </header>
 
     <main class="main-content">
-        <section class="game-info">
-            <div class="container">
+        <div class="container">
+            <section class="game-info">
                 <div class="game-header-card">
-                    <img id="game-banner" src="" alt="Game Banner" class="game-icon-small">
+                    <img id="game-banner" src="" alt="Game Icon" class="game-icon-small">
                     <div>
-                        <h1 class="game-name">Nama Game</h1>
-                        <p class="game-description">Top up termurah, aman, dan terpercaya hanya di Walz Shop!</p>
+                        <h1 class="game-name"></h1>
+                        <p class="game-description">Top up termurah, tercepat, dan terpercaya. Layanan 24 jam dengan CS yang siap membantu.</p>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="topup-form-container container">
-            
-            <div class="form-step" id="step-1">
-                <div class="step-header">
-                    <div class="step-number">1</div>
-                    <h3 class="step-label">Masukkan ID & Server</h3>
-                </div>
-                <div class="step-content">
-                    <p class="muted game-guide"></p>
-                    <div class="form-group">
-                        <input type="text" id="user-id" placeholder="Masukkan User ID">
-                        <span class="error-text" id="error-user"></span>
+            <section class="topup-form-container">
+                <div class="form-step" id="step-1">
+                    <div class="step-header">
+                        <span class="step-number">1</span>
+                        <h3 class="step-label">Masukkan ID Pemain</h3>
                     </div>
-                    <div class="form-group" id="server-group" style="display: none;">
-                        <input type="text" id="server-id" placeholder="Masukkan Server ID (Opsional)">
-                        <span class="error-text" id="error-server"></span>
+                    <div class="form-content">
+                        <div class="form-group">
+                            <input type="text" id="user-id" placeholder="Masukkan ID Pemain">
+                        </div>
+                        <div class="form-group" id="server-group" style="display: none;">
+                            <input type="text" id="server-id" placeholder="Masukkan ID Server">
+                        </div>
+                        <p class="muted game-guide">Cara menemukan ID Pemain.</p>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-step" id="step-2">
-                <div class="step-header">
-                    <div class="step-number">2</div>
-                    <h3 class="step-label">Pilih Nominal Top Up</h3>
+                <div class="form-step" id="step-2">
+                    <div class="step-header">
+                        <span class="step-number">2</span>
+                        <h3 class="step-label">Pilih Nominal Top-up</h3>
+                    </div>
+                    <div class="form-content">
+                        <div class="product-grid" id="product-grid">
+                            </div>
+                    </div>
                 </div>
-                <div class="step-content">
-                    <div class="product-grid" id="product-grid">
-                        </div>
-                </div>
-            </div>
 
-            <div class="form-step" id="step-3">
-                <div class="step-header">
-                    <div class="step-number">3</div>
-                    <h3 class="step-label">Pilih Pembayaran</h3>
-                </div>
-                <div class="step-content">
-                    <div class="payment-grid" id="payment-grid">
-                        </div>
-                </div>
-            </div>
-            
-            <div class="form-step" id="step-4">
-                <div class="step-header">
-                    <div class="step-number">4</div>
-                    <h3 class="step-label">Kode Voucher (Opsional)</h3>
-                </div>
-                <div class="step-content">
-                    <div class="voucher-container">
-                        <input type="text" id="voucher-input" placeholder="Masukkan kode voucher" class="rounded-input">
-                        <button class="btn-voucher rounded-btn" id="voucher-btn">Terapkan</button>
+                <div class="form-step" id="step-3">
+                    <div class="step-header">
+                        <span class="step-number">3</span>
+                        <h3 class="step-label">Pilih Metode Pembayaran</h3>
                     </div>
-                    <p class="status-text" id="voucher-status"></p>
-                    <button class="btn-voucher-list rounded-btn" id="voucher-list-btn">Lihat Daftar Promo</button>
-                </div>
-            </div>
-            
-            <div class="form-step summary-step" id="step-5">
-                <div class="step-header">
-                    <div class="step-number">5</div>
-                    <h3 class="step-label">Ringkasan Pembayaran</h3>
-                </div>
-                <div class="step-content">
-                    <div class="summary-details">
-                        <div class="summary-item">
-                            <span>Produk</span>
-                            <span id="summary-product"></span>
-                        </div>
-                        <div class="summary-item">
-                            <span>Metode Pembayaran</span>
-                            <span id="summary-payment"></span>
-                        </div>
-                        <div class="summary-item" id="summary-discount-row" style="display: none;">
-                            <span>Diskon</span>
-                            <span id="summary-discount"></span>
-                        </div>
-                        <div class="summary-total">
-                            <span>Total Pembayaran</span>
-                            <span id="summary-total"></span>
-                        </div>
+                    <div class="form-content">
+                        <div class="payment-grid" id="payment-grid">
+                            </div>
                     </div>
-                    <button class="btn btn-confirm" id="checkout-btn" disabled>Beli Sekarang</button>
                 </div>
-            </div>
-        </section>
+
+                <div class="form-step" id="step-4">
+                    <div class="step-header">
+                        <span class="step-number">4</span>
+                        <h3 class="step-label">Kode Voucher (Opsional)</h3>
+                    </div>
+                    <div class="form-content">
+                        <p class="muted">Punya kode voucher? Masukkan di sini untuk mendapatkan diskon.</p>
+                        <div class="voucher-container">
+                            <input type="text" id="voucher-input" class="rounded-input" placeholder="Masukkan kode voucher">
+                            <button class="btn btn-voucher" id="voucher-btn">Terapkan</button>
+                        </div>
+                        <button class="btn btn-voucher-list" id="voucher-list-btn">Lihat Daftar Promo</button>
+                        <p id="voucher-status" class="status-text"></p>
+                    </div>
+                </div>
+
+                <div class="form-step" id="step-5">
+                    <div class="step-header">
+                        <span class="step-number">5</span>
+                        <h3 class="step-label">Ringkasan & Konfirmasi</h3>
+                    </div>
+                    <div class="form-content">
+                        <div class="summary">
+                            <div class="summary-item">
+                                <span>Item</span>
+                                <span id="summary-product"></span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Metode Pembayaran</span>
+                                <span id="summary-payment"></span>
+                            </div>
+                            <div class="summary-item" id="summary-discount-row" style="display: none;">
+                                <span>Diskon Voucher</span>
+                                <span id="summary-discount"></span>
+                            </div>
+                            <div class="summary-total">
+                                <span>Total Pembayaran</span>
+                                <span id="summary-total">Rp0</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-confirm" id="checkout-btn" disabled>Beli Sekarang</button>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
-    
-    <div class="modal-overlay" id="modal-overlay">
-        <div class="modal" id="voucher-list-modal"></div>
-        <div class="modal" id="checkout-modal"></div>
-        <div class="modal" id="error-modal"></div>
-    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <h3>Tentang Kami</h3>
+                <p>Walz Shop adalah tempat terpercaya untuk top up game, voucher, dan pulsa dengan harga terbaik dan proses instan.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Layanan</h3>
+                <a href="#"><i class="fas fa-gamepad"></i> Top Up Game</a>
+                <a href="#"><i class="fas fa-mobile-alt"></i> Pulsa & Data</a>
+                <a href="#"><i class="fas fa-gift"></i> Voucher</a>
+            </div>
+            <div class="footer-col">
+                <h3>Bantuan</h3>
+                <a href="#"><i class="fas fa-question-circle"></i> FAQ</a>
+                <a href="#"><i class="fas fa-info-circle"></i> Cara Transaksi</a>
+                <a href="#"><i class="fab fa-whatsapp"></i> Hubungi Kami</a>
+            </div>
+            <div class="footer-col">
+                <h3>Ikuti Kami</h3>
+                <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="#"><i class="fab fa-facebook-square"></i> Facebook</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Walz Shop. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <div id="modal-overlay" class="modal-overlay">
+        <div id="checkout-modal" class="modal"></div>
+        <div id="voucher-list-modal" class="modal"></div>
+        <div id="error-modal" class="modal"></div>
+        </div>
 
     <script src="script.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const gameKey = urlParams.get('key');
             if (gameKey) {
                 setupGamePage(gameKey);
                 setupEventListeners();
-            } else {
-                window.location.href = "index.html";
             }
         });
     </script>
