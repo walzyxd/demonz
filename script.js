@@ -47,7 +47,6 @@ const PAYMENTS = [
 
 /* ================== DATA PRODUK ================== */
 const PRODUCTS = {
-    // Data produk dari kode Anda sebelumnya tetap sama
     "free-fire": [
         { id: "ff-5", label: "5 Diamonds", price: 901 },
         { id: "ff-12", label: "12 Diamonds", price: 1802 },
@@ -249,65 +248,9 @@ let appliedVoucher = null;
 let currentGame = null;
 
 /* ================== FUNGSI UTAMA ================== */
-document.addEventListener("DOMContentLoaded", () => {
-    initPage();
-    setupEventListeners();
-});
-
-// ================================================
-// PENTING: BAGIAN INI HARUS DIUBAH DI SETIAP FILE GAME.HTML
-//
-// Ganti "free-fire" dengan key game yang sesuai,
-// misalnya "mobile-legends", "genshin-impact", dll.
-const currentPageGameKey = "free-fire"; // <-- GANTI INI
-//
-// ================================================
-
-function initPage() {
-    if (qs("#games-grid")) {
-        // Halaman index.html
-        renderGameGrid();
-        renderPromoSlider();
-    } else {
-        // Halaman game.html
-        setupGamePage();
-    }
-}
-
-function setupGamePage() {
-    currentGame = GAMES.find(g => g.key === currentPageGameKey);
-    if (!currentGame) {
-        alert("Game tidak ditemukan!");
-        return;
-    }
-    
-    // Tampilkan data spesifik game
-    qs("#game-banner").src = currentGame.bannerImg || currentGame.img;
-    qs("title").textContent = `Walz Shop - Top Up ${currentGame.name}`;
-    qs(".muted").textContent = currentGame.guide;
-    if (currentGame.hasServerId) {
-        qs("#server-group").style.display = "block";
-    }
-
-    renderProducts(currentGame.key);
-    renderPayments();
-    refreshSelections();
-}
-
-
-function setupEventListeners() {
-    qs("#voucher-btn").addEventListener("click", applyVoucher);
-    qs("#voucher-input").addEventListener("input", () => {
-        appliedVoucher = null;
-        setVoucherStatus("");
-        refreshSummary();
-    });
-    qs("#voucher-list-btn").addEventListener("click", showVoucherListModal);
-    qs("#checkout-btn").addEventListener("click", openCheckout);
-}
-
 function renderGameGrid() {
     const gameGrid = qs("#games-grid");
+    if (!gameGrid) return;
     gameGrid.innerHTML = "";
     GAMES.forEach(g => {
         const gameCard = document.createElement("a");
@@ -370,6 +313,42 @@ function renderPromoSlider() {
     resetTimer();
 }
 
+function setupGamePage() {
+    currentGame = GAMES.find(g => g.key === currentPageGameKey);
+    if (!currentGame) {
+        alert("Game tidak ditemukan!");
+        return;
+    }
+    
+    qs("#game-banner").src = currentGame.bannerImg || currentGame.img;
+    qs("title").textContent = `Walz Shop - Top Up ${currentGame.name}`;
+    qs(".muted").textContent = currentGame.guide;
+    if (currentGame.hasServerId) {
+        qs("#server-group").style.display = "block";
+    }
+
+    renderProducts(currentGame.key);
+    renderPayments();
+    refreshSelections();
+}
+
+function setupEventListeners() {
+    if (!qs("#checkout-btn")) return;
+    qs("#voucher-btn").addEventListener("click", applyVoucher);
+    qs("#voucher-input").addEventListener("input", () => {
+        appliedVoucher = null;
+        setVoucherStatus("");
+        refreshSummary();
+    });
+    qs("#voucher-list-btn").addEventListener("click", showVoucherListModal);
+    qs("#checkout-btn").addEventListener("click", openCheckout);
+    qs("#modal-overlay").addEventListener("click", (e) => {
+        if (e.target.id === "modal-overlay") {
+            hideOverlay();
+        }
+    });
+}
+
 function renderProducts(gameKey) {
     const productGrid = qs("#product-grid");
     const products = PRODUCTS[gameKey] || [];
@@ -383,8 +362,8 @@ function renderProducts(gameKey) {
             div.innerHTML = `<div class="product-label">${p.label}</div><div class="product-price">${fmtIDR(p.price)}</div>`;
             div.addEventListener("click", () => {
                 selectedProduct = p;
-                selectedPayment = null; // Reset pembayaran
-                appliedVoucher = null; // Reset voucher
+                selectedPayment = null;
+                appliedVoucher = null;
                 qs("#voucher-input").value = "";
                 setVoucherStatus("");
                 refreshSelections();
@@ -450,6 +429,15 @@ function calcDiscount(price, voucher) {
     return Math.floor(discount);
 }
 
+function finalPrice() {
+    if (!selectedProduct) return 0;
+    let price = selectedProduct.price;
+    if (appliedVoucher) {
+        price -= calcDiscount(price, appliedVoucher);
+    }
+    return Math.max(0, price);
+}
+
 function refreshSelections() {
     qsa(".product-card").forEach(c => c.classList.toggle("selected", selectedProduct && c.dataset.id === selectedProduct.id));
     qsa(".payment-card").forEach(c => c.classList.toggle("selected", selectedPayment && c.dataset.id === selectedPayment.id));
@@ -461,6 +449,8 @@ function refreshSummary() {
     const totalEl = qs("#total-price");
     const totalPriceBox = qs("#total-price-box");
     const checkoutBtn = qs("#checkout-btn");
+
+    if (!summaryBox || !totalEl || !totalPriceBox || !checkoutBtn) return;
 
     if (!selectedProduct || !selectedPayment) {
         summaryBox.innerHTML = `<p class="muted">Pilih nominal & metode bayar untuk melihat total.</p>`;
@@ -495,6 +485,7 @@ function setVoucherStatus(text, isError = false) {
 
 function showVoucherListModal() {
     const modal = qs("#voucher-list-modal");
+    if (!modal) return;
     modal.innerHTML = `
         <div class="modal-header">
             <h3>Daftar Kode Voucher</h3>
@@ -582,6 +573,7 @@ function openCheckout() {
     }
 
     const modal = qs("#checkout-modal");
+    if (!modal) return;
     modal.innerHTML = `
         <div class="modal-header">
             <h3>Konfirmasi Pembelian</h3>
@@ -610,7 +602,6 @@ function openCheckout() {
     openModal("checkout-modal");
 }
 
-/* ================== FUNGSI MODAL ================== */
 function showOverlay() {
     qs("#modal-overlay")?.classList.add("active");
     document.body.style.overflow = "hidden";
