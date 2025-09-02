@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walz Shop - Top Up Free Fire</title>
+    <title>Walz Shop - Top Up Mobile Legends</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -12,7 +12,12 @@
 
     <header class="ws-header">
         <div class="ws-header-row">
-            <h1>Walz Shop</h1>
+            <h1><a href="index.html" class="logo">Walz Shop</a></h1>
+            <nav class="ws-nav">
+                <a href="#game-list-section">Top Up</a>
+                <a href="#cara-topup">Cara Top Up</a>
+                <a href="#kontak">Kontak</a>
+            </nav>
         </div>
     </header>
 
@@ -22,19 +27,19 @@
         </a>
         
         <div class="game-banner-container">
-            <img id="game-banner" src="https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg" alt="Free Fire Banner">
+            <img id="game-banner" src="https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" alt="Mobile Legends Banner">
         </div>
 
         <div class="grid-container">
             <div class="left-panel">
                 <section class="form-section">
                     <h3>Langkah 1: Masukkan User ID</h3>
-                    <p class="muted">Temukan User ID Anda di bawah nama panggilan pada menu profil game.</p>
+                    <p class="muted">Temukan User ID dan Server ID di bawah nama panggilan saat Anda mengklik avatar profil.</p>
                     <div class="input-group">
                         <input type="text" id="user-id" placeholder="Masukkan User ID">
                         <span class="status-text error" id="error-user"></span>
                     </div>
-                    <div class="input-group" id="server-group" style="display:none;">
+                    <div class="input-group" id="server-group">
                         <input type="text" id="server-id" placeholder="Masukkan Server ID (Opsional)">
                         <span class="status-text error" id="error-server"></span>
                     </div>
@@ -76,7 +81,7 @@
             </div>
         </div>
     </main>
-
+    
     <footer class="footer">
         <div class="container">
             <p>&copy; 2024 Walz Shop. All Rights Reserved.</p>
@@ -90,7 +95,7 @@
     
     <script src="script.js"></script>
     <script>
-        const currentPageGameKey = "free-fire";
+        const currentPageGameKey = "mobile-legends";
         document.addEventListener("DOMContentLoaded", () => {
             setupGamePage();
             setupEventListeners();
