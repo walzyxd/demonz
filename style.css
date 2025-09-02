@@ -183,27 +183,27 @@ a:hover {
 }
 
 .game-banner {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+    background-color: var(--dark-card);
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.game-banner img {
-    width: 100%;
-    height: 100%;
+.game-banner-image {
+    width: 120px;
+    height: 120px;
     object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid var(--dark-border);
 }
 
 .game-name-h1 {
-    position: absolute;
-    bottom: 1rem;
-    left: 1rem;
-    color: var(--dark-text);
     font-size: 2rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-weight: 700;
+    color: var(--dark-text);
 }
 
 .form-container {
@@ -214,7 +214,7 @@ a:hover {
 }
 
 .form-steps-indicator {
-    display: none; /* Hide on mobile first, show on desktop */
+    display: none;
 }
 
 @media (min-width: 768px) {
@@ -247,7 +247,7 @@ a:hover {
         transition: transform 0.3s ease;
     }
     .form-step::before {
-        content: '';
+        content: attr(data-step);
         display: block;
         width: 24px;
         height: 24px;
@@ -274,14 +274,9 @@ a:hover {
         color: var(--dark-text);
         font-weight: 600;
     }
-    .form-group:nth-child(1), .form-group:nth-child(2), .form-group:nth-child(3), .form-group:nth-child(4), .summary-card {
+    .form-group:nth-of-type(1), .form-group:nth-of-type(2), .form-group:nth-of-type(3), .form-group:nth-of-type(4), .summary-card {
         grid-column: 2;
     }
-    .form-step:nth-child(2)::before { content: '1'; }
-    .form-step:nth-child(3)::before { content: '2'; }
-    .form-step:nth-child(4)::before { content: '3'; }
-    .form-step:nth-child(5)::before { content: '4'; }
-    .form-step:nth-child(6)::before { content: '5'; }
 }
 
 
@@ -368,6 +363,14 @@ a:hover {
 .badge.hot { background-color: var(--danger-color); }
 .badge.new { background-color: var(--success-color); }
 .badge.sale { background-color: var(--warning-color); color: #212529;}
+.badge.member { background-color: #8A2BE2; }
+.badge.levelup { background-color: #ff8c00; }
+.badge.pass { background-color: #FF1493; }
+.badge.weekly { background-color: #32CD32; }
+.badge.monthly { background-color: #1E90FF; }
+.badge.welkin { background-color: #48D1CC; }
+.badge.vip { background-color: #FFD700; color: #212529;}
+
 
 .product-label {
     font-size: 1rem;
@@ -420,6 +423,20 @@ a:hover {
     font-size: 1rem;
     font-weight: 600;
 }
+
+.payment-price {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-top: 0.5rem;
+    text-align: center;
+    display: none; /* Sembunyikan secara default */
+    font-weight: 600;
+}
+
+.payment-card.selected .payment-price {
+    display: block; /* Tampilkan jika terpilih */
+}
+
 
 .voucher-input-group {
     display: flex;
@@ -576,24 +593,26 @@ a:hover {
     background-color: var(--dark-card);
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    width: 90%; /* Default lebar 90% */
+    width: 90%;
     max-width: 500px;
     transform: scale(0.9);
     opacity: 0;
     transition: transform 0.3s ease, opacity 0.3s ease;
     overflow: hidden;
     position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
 }
 
 .modal.active {
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
     opacity: 1;
 }
 
-/* Perubahan untuk ukuran modal di desktop */
 @media (min-width: 768px) {
     .modal {
-        max-width: 600px; /* Lebar modal diperbesar untuk desktop */
+        max-width: 600px;
     }
 }
 
@@ -722,8 +741,16 @@ a:hover {
 
     .game-name-h1 {
         font-size: 1.5rem;
-        bottom: 0.5rem;
-        left: 0.5rem;
+    }
+
+    .game-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .game-banner-image {
+        width: 80px;
+        height: 80px;
     }
     
     .form-container {
@@ -742,14 +769,15 @@ a:hover {
     .product-grid, .payment-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-
-    /* Perubahan untuk ukuran modal di mobile */
+    
     .modal {
-        width: 95%; /* Lebar modal 95% untuk mobile */
-        max-width: none;
+        width: 95%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1);
     }
 
     .modal-content-list {
-        max-height: 300px; /* Tinggi modal daftar voucher dikurangi agar tidak terlalu besar */
+        max-height: 300px;
     }
 }
