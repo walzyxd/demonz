@@ -576,7 +576,7 @@ a:hover {
     background-color: var(--dark-card);
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    width: 90%;
+    width: 90%; /* Default lebar 90% */
     max-width: 500px;
     transform: scale(0.9);
     opacity: 0;
@@ -588,6 +588,13 @@ a:hover {
 .modal.active {
     transform: scale(1);
     opacity: 1;
+}
+
+/* Perubahan untuk ukuran modal di desktop */
+@media (min-width: 768px) {
+    .modal {
+        max-width: 600px; /* Lebar modal diperbesar untuk desktop */
+    }
 }
 
 .modal-header {
@@ -734,5 +741,15 @@ a:hover {
 
     .product-grid, .payment-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Perubahan untuk ukuran modal di mobile */
+    .modal {
+        width: 95%; /* Lebar modal 95% untuk mobile */
+        max-width: none;
+    }
+
+    .modal-content-list {
+        max-height: 300px; /* Tinggi modal daftar voucher dikurangi agar tidak terlalu besar */
     }
 }
