@@ -194,7 +194,7 @@ body {
     margin-bottom: 1rem;
 }
 
-.game-name {
+.game-name-h1 { /* Changed from .game-name to .game-name-h1 to avoid conflict */
     font-size: 2rem;
     font-weight: 700;
     color: var(--primary-color);
@@ -693,6 +693,18 @@ body {
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     }
     
+    .game-name {
+        font-size: 0.8rem; /* Smaller font for game name on mobile */
+    }
+
+    .game-banner {
+        max-height: 180px; /* Smaller banner on mobile */
+    }
+
+    .game-name-h1 {
+        font-size: 1.5rem; /* Smaller H1 for game name on mobile */
+    }
+    
     .product-grid, .payment-grid {
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     }
@@ -727,5 +739,23 @@ body {
     
     .modal {
         width: 95%;
+        padding: 1rem;
+    }
+    
+    .modal-content table {
+        font-size: 0.9rem;
+    }
+
+    .voucher-item h4 {
+        font-size: 1rem;
+    }
+
+    .voucher-item p {
+        font-size: 0.8rem;
+    }
+
+    .btn-choose {
+        font-size: 0.8rem;
+        padding: 0.5rem 1rem;
     }
 }
