@@ -6,13 +6,13 @@
 }
 
 :root {
-    --primary-color: #5D3FD3; /* Ungu gelap */
-    --secondary-color: #9370DB; /* Ungu sedang */
-    --light-bg: #F5F5F5; /* Abu-abu terang */
-    --light-card: #FFFFFF; /* Putih */
-    --light-text: #1a1a1a; /* Hitam gelap */
+    --primary-color: #6a1b9a; /* Ungu gelap */
+    --secondary-color: #8e24aa; /* Ungu sedang */
+    --light-bg: #f5f5f5; /* Abu-abu terang */
+    --light-card: #ffffff; /* Putih */
+    --light-text: #212529; /* Hitam gelap */
     --light-text-secondary: #6c757d;
-    --light-border: #E0E0E0; /* Abu-abu muda */
+    --light-border: #e0e0e0; /* Abu-abu muda */
     --success-color: #28a745;
     --danger-color: #dc3545;
     --warning-color: #ffc107;
@@ -66,15 +66,18 @@ a:hover {
     gap: 0.5rem;
 }
 
-.logo-img {
-    height: 30px;
-    width: auto;
+.logo-icon {
+    font-size: 1.8rem;
+    color: var(--primary-color);
 }
 
 .nav a {
     color: var(--light-text);
     margin-left: 1.5rem;
     font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .nav a:hover {
@@ -138,7 +141,7 @@ a:hover {
 .slider__dots span {
     width: 10px;
     height: 10px;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 50%;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -207,6 +210,9 @@ a:hover {
     color: var(--light-text);
     font-weight: 500;
     transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .btn-back:hover {
@@ -283,7 +289,7 @@ a:hover {
 .input-group input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 5px rgba(93, 63, 211, 0.3);
+    box-shadow: 0 0 5px rgba(106, 27, 154, 0.3);
 }
 
 .server-input {
@@ -305,6 +311,11 @@ a:hover {
     transition: all 0.2s ease;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .product-card:hover {
@@ -314,7 +325,8 @@ a:hover {
 
 .product-card.selected {
     border-color: var(--primary-color);
-    box-shadow: 0 0 10px rgba(93, 63, 211, 0.3);
+    box-shadow: 0 0 10px rgba(106, 27, 154, 0.3);
+    background-color: rgba(106, 27, 154, 0.05);
 }
 
 .badge {
@@ -339,7 +351,6 @@ a:hover {
 .badge.monthly { background-color: #1E90FF; }
 .badge.welkin { background-color: #48D1CC; }
 .badge.vip { background-color: #FFD700; color: #212529;}
-
 
 .product-label {
     font-size: 1rem;
@@ -379,7 +390,8 @@ a:hover {
 
 .payment-card.selected {
     border-color: var(--primary-color);
-    box-shadow: 0 0 10px rgba(93, 63, 211, 0.3);
+    box-shadow: 0 0 10px rgba(106, 27, 154, 0.3);
+    background-color: rgba(106, 27, 154, 0.05);
 }
 
 .payment-card img {
@@ -400,7 +412,6 @@ a:hover {
     text-align: center;
     font-weight: 600;
 }
-
 
 .voucher-input-group {
     display: flex;
@@ -455,6 +466,19 @@ a:hover {
 
 .success-text {
     color: var(--success-color);
+}
+
+.text-button {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.text-button:hover {
+    color: var(--secondary-color);
 }
 
 /* --- Summary & Checkout --- */
@@ -564,7 +588,7 @@ a:hover {
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     width: 90%;
-    max-width: 500px;
+    max-width: 600px;
     transform: scale(0.9);
     opacity: 0;
     transition: transform 0.3s ease, opacity 0.3s ease;
@@ -610,7 +634,7 @@ a:hover {
 
 .modal-content-list {
     padding: 0.5rem 1.5rem 1.5rem;
-    max-height: 400px;
+    max-height: 500px;
     overflow-y: auto;
 }
 
@@ -642,6 +666,14 @@ a:hover {
     padding: 0.5rem 1rem;
     font-size: 0.8rem;
     font-weight: 500;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-choose:hover {
+    background-color: var(--secondary-color);
 }
 
 .copy-field {
@@ -659,6 +691,8 @@ a:hover {
     flex: 1;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 600;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 .copy-field .btn {
@@ -684,6 +718,7 @@ a:hover {
     margin-top: 1rem;
 }
 
+/* ================== RESPONSIVE DESIGN ================== */
 @media (max-width: 768px) {
     .container {
         padding: 0 0.5rem;
@@ -704,6 +739,10 @@ a:hover {
     .nav a {
         margin: 0;
         font-size: 0.9rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
     }
 
     .game-name-h1 {
@@ -739,12 +778,10 @@ a:hover {
     
     .modal {
         width: 95%;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(1);
+        max-width: unset;
     }
 
     .modal-content-list {
-        max-height: 300px;
+        max-height: 400px;
     }
 }
