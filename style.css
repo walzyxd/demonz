@@ -8,6 +8,7 @@
     --text-color: #ccc;
     --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     --border-radius: 8px;
+    --border-card-radius: 12px;
 }
 
 * {
@@ -64,6 +65,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    text-decoration: none;
 }
 
 .btn-download {
@@ -74,119 +76,37 @@ body {
     background-color: var(--secondary-color);
 }
 
+.btn-back {
+    background-color: #444;
+}
+
 .menu-toggle {
     display: none;
     font-size: 1.5rem;
     cursor: pointer;
 }
 
-/* --- Hero Slider --- */
-.hero-slider {
-    position: relative;
-    width: 100%;
-    height: 180px;
-    overflow: hidden;
-    margin-bottom: 2rem;
+/* --- Main Content & Game Page --- */
+.main-content {
+    padding-bottom: 80px; /* Space for sticky footer */
 }
 
-.slider__track {
-    display: flex;
-    height: 100%;
-    transition: transform 0.5s ease-in-out;
-}
-
-.slider__item {
-    min-width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-}
-
-.slider__dots {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-}
-
-.slider__dots span {
-    width: 10px;
-    height: 10px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.slider__dots span.active {
-    background-color: var(--white);
-}
-
-/* --- Sections --- */
-.section {
-    padding: 2rem 0;
-}
-
-.section-title {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--white);
-}
-
-.games-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 1rem;
-}
-
-.game-card {
-    background-color: var(--primary-color);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    box-shadow: var(--box-shadow);
-    transition: transform 0.2s, box-shadow 0.2s;
-    text-align: center;
-    text-decoration: none;
-    color: var(--white);
-    position: relative;
-}
-
-.game-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-}
-
-.game-card img {
-    width: 100%;
-    height: 100px;
-    object-fit: cover;
-    border-top-left-radius: var(--border-radius);
-    border-top-right-radius: var(--border-radius);
-}
-
-.game-card .game-name {
-    padding: 0.5rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-/* --- Game Detail Page --- */
 .game-info {
-    background-color: var(--primary-color);
-    padding: 1.5rem;
-    border-radius: var(--border-radius);
-    margin-bottom: 1.5rem;
     position: relative;
-    overflow: hidden;
+    background: var(--primary-color);
+    padding: 1rem 0;
+    text-align: center;
 }
 
 .game-banner {
     width: 100%;
     max-height: 200px;
     object-fit: cover;
-    border-radius: var(--border-radius);
+    display: block;
+}
+
+.game-info .container {
+    padding-top: 1rem;
 }
 
 .game-name {
@@ -195,66 +115,79 @@ body {
     color: var(--white);
 }
 
-.game-meta {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 0.5rem;
-}
-
-.rating-review {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.stars i {
-    color: #ffc107;
-}
-
-.review-count {
-    font-size: 0.8rem;
-}
-
-.distributor {
-    font-size: 0.8rem;
-    color: #999;
+.game-description {
+    font-size: 0.9rem;
+    color: var(--text-color);
 }
 
 .topup-form-container {
-    padding-bottom: 80px; /* Space for sticky footer */
+    padding-top: 2rem;
 }
 
 .form-step {
-    background: var(--primary-color);
-    padding: 1rem;
+    background: var(--light-bg);
+    padding: 1.5rem;
     border-radius: var(--border-radius);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     box-shadow: var(--box-shadow);
 }
 
-.step-label {
-    font-size: 1.1rem;
-    font-weight: 600;
+.step-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     margin-bottom: 1rem;
-    color: var(--white);
 }
 
-.form-group label {
-    display: block;
-    font-size: 0.9rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
+.step-number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background-color: var(--accent-color);
+    color: var(--white);
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.step-label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--white);
+    margin: 0;
+}
+
+.form-group {
+    margin-bottom: 1rem;
 }
 
 .form-group input {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid #444;
-    background-color: var(--light-bg);
+    background-color: var(--dark-bg);
     color: var(--white);
     border-radius: var(--border-radius);
     font-size: 1rem;
+}
+
+.form-group input::placeholder {
+    color: #888;
+}
+
+.error-text {
+    color: #ff4d4d;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: block;
+}
+
+.muted {
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 1rem;
 }
 
 .product-grid, .payment-grid {
@@ -264,8 +197,8 @@ body {
 }
 
 .product-card, .payment-card {
-    background-color: var(--secondary-color);
-    border-radius: var(--border-radius);
+    background-color: #333;
+    border-radius: var(--border-card-radius);
     border: 2px solid transparent;
     padding: 1rem;
     text-align: center;
@@ -276,11 +209,18 @@ body {
     justify-content: center;
     align-items: center;
     color: var(--white);
+    position: relative;
+    overflow: hidden;
 }
 
 .product-card.selected, .payment-card.selected {
     border-color: var(--accent-color);
-    background-color: var(--primary-color);
+    background-color: #444;
+}
+
+.product-card:hover, .payment-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .product-label {
@@ -323,7 +263,30 @@ body {
     border-radius: var(--border-radius);
     cursor: pointer;
     font-weight: 600;
-    background-color: var(--accent-color);
+    background-color: var(--secondary-color);
+    color: var(--white);
+}
+
+.btn-voucher:hover {
+    background-color: #6a3ca4;
+}
+
+.btn-voucher-list {
+    background: none;
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    display: block;
+    width: 100%;
+    transition: all 0.2s;
+}
+
+.btn-voucher-list:hover {
+    background-color: var(--secondary-color);
     color: var(--white);
 }
 
@@ -347,7 +310,7 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: var(--secondary-color);
+    background-color: var(--light-bg);
     padding: 1rem;
     display: flex;
     justify-content: space-between;
@@ -515,7 +478,7 @@ body {
 .copy-field {
     display: flex;
     align-items: center;
-    background-color: var(--light-bg);
+    background-color: var(--dark-bg);
     padding: 0.5rem 1rem;
     border-radius: var(--border-radius);
     margin-top: 0.5rem;
@@ -552,6 +515,13 @@ body {
     text-decoration: none;
 }
 
+.instruction {
+    font-size: 0.8rem;
+    color: #888;
+    text-align: center;
+    margin-top: 1rem;
+}
+
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
     .header .header-buttons {
@@ -565,11 +535,16 @@ body {
     .sticky-footer {
         flex-direction: column;
         align-items: stretch;
+        padding: 0.75rem;
     }
 
+    .summary-box {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    
     .total-price-box {
         align-items: center;
-        margin-top: 10px;
         margin-left: 0;
     }
 
