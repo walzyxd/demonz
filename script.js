@@ -520,15 +520,15 @@ function checkProgress() {
     qsa(".form-step").forEach(step => step.classList.remove('active'));
 
     let activeStepIndex = 0;
-    if (userId && (currentGame.hasServerId ? serverId : true)) {
+    if (userId || (currentGame.hasServerId && serverId)) {
+        activeStepIndex = 1;
         if (selectedProduct) {
+            activeStepIndex = 2;
             if (selectedPayment) {
                 activeStepIndex = 4;
             } else {
-                activeStepIndex = 2;
+                activeStepIndex = 3;
             }
-        } else {
-            activeStepIndex = 1;
         }
     }
     
@@ -595,12 +595,10 @@ function validateForm() {
     
     if (!userId) {
         showError("User ID wajib diisi.");
-        qs("#user-id").focus();
         return false;
     }
     if (currentGame.hasServerId && !serverId) {
         showError("Server ID wajib diisi.");
-        qs("#server-id").focus();
         return false;
     }
     if (!selectedProduct) {
