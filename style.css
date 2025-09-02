@@ -221,32 +221,36 @@ body {
     box-shadow: var(--box-shadow);
 }
 
-.form-step {
-    background-color: var(--bg-light);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    transition: var(--transition);
-    cursor: pointer;
-    color: var(--text-color-dark);
+.form-steps-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
 }
 
-.form-step:hover {
-    border-color: var(--primary-color);
+.form-step {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: var(--transition);
 }
 
 .form-step.active {
-    background-color: var(--primary-color);
-    color: var(--text-color-light);
-    border-color: var(--primary-color);
+    background-color: var(--secondary-color);
+    color: var(--text-color-dark);
+    border-color: var(--secondary-color);
+    transform: scale(1.05);
 }
 
 .form-step.active .step-number {
-    background-color: var(--secondary-color);
-    color: var(--text-color-dark);
+    background-color: var(--text-color-dark);
+    color: var(--text-color-light);
 }
 
 .step-number {
@@ -255,16 +259,17 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #aaa;
+    background-color: var(--text-color-dark);
     color: var(--text-color-light);
     border-radius: 50%;
     font-weight: 700;
-    margin-right: 1rem;
+    margin-bottom: 0.5rem;
     transition: var(--transition);
 }
 
 .step-title {
     font-weight: 600;
+    font-size: 0.9rem;
 }
 
 .form-group {
@@ -764,17 +769,28 @@ body {
         padding: 1rem;
     }
     
+    .form-steps-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+        margin-bottom: 0.8rem;
+    }
+    
     .form-step {
-        padding: 0.75rem;
-        margin-bottom: 1rem;
+        padding: 0.5rem;
+    }
+
+    .step-number {
+        width: 25px;
+        height: 25px;
+        font-size: 0.9rem;
+    }
+
+    .step-title {
+        font-size: 0.75rem;
     }
 
     .form-group {
         margin-bottom: 1rem;
-    }
-    
-    .step-title {
-        font-size: 0.9rem;
     }
     
     .product-grid, .payment-grid {
@@ -837,5 +853,20 @@ body {
         flex-direction: column;
         align-items: center;
         text-align: center;
+    }
+}
+
+/* Tampilan khusus untuk pop-up di ponsel */
+@media (max-width: 500px) {
+    .modal {
+        max-width: 95%;
+        margin: 0.5rem;
+        transform: scale(1);
+    }
+    .modal.active {
+        transform: scale(1);
+    }
+    .modal-overlay {
+        padding: 1rem;
     }
 }
