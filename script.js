@@ -4,44 +4,42 @@ const ADMIN_EMAIL = "walzlonely@gmail.com";
 
 /* ================== DATA VOUCHER ================== */
 const VOUCHERS = [
-  { code: "WALZSHOP", percent: 5, description: "Diskon 5% untuk semua produk" },
-  { code: "WALZPROMO", percent: 5, description: "Promo khusus 5% semua produk" },
-  { code: "HEMAT5000", percent: 0, fixed: 5000, minPurchase: 50000, description: "Diskon Rp5.000 (min. Rp50.000)" },
-  { code: "TOPUPSPECIAL", percent: 15, description: "Diskon 15% untuk top up pertama" },
-  { code: "FREEDIAMOND", percent: 0, fixed: 20000, maxDiscount: 20000, description: "Diskon Rp20.000 (maks. Rp20.000)" }
+    { code: "WALZSHOP", percent: 5, description: "Diskon 5% untuk semua produk" },
+    { code: "WALZPROMO", percent: 5, description: "Promo khusus 5% semua produk" },
+    { code: "HEMAT5000", percent: 0, fixed: 5000, minPurchase: 50000, description: "Diskon Rp5.000 (min. Rp50.000)" },
+    { code: "TOPUPSPECIAL", percent: 15, description: "Diskon 15% untuk top up pertama" },
+    { code: "FREEDIAMOND", percent: 0, fixed: 20000, maxDiscount: 20000, description: "Diskon Rp20.000 (maks. Rp20.000)" }
 ];
 
 /* ================== DATA GAMES ================== */
 const GAMES = [
-  { key: "free-fire", name: "Free Fire", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", hasServerId: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game." },
-  { key: "mobile-legends", name: "Mobile Legends", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", hasServerId: true, guide: "Temukan User ID dan Server ID di bawah nama panggilan saat Anda mengklik avatar profil." },
-  { key: "honor-of-kings", name: "Honor of Kings", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", hasServerId: false, guide: "User ID Anda ada di bagian bawah layar saat Anda membuka profil." },
-  { key: "genshin-impact", name: "Genshin Impact", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", hasServerId: false, guide: "User ID (9 digit) terletak di sudut kanan bawah layar saat Anda berada di dalam game." },
-  { key: "roblox", name: "Roblox", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", hasServerId: false, guide: "Top up menggunakan Gift Card yang akan dikirim langsung ke akun Anda." },
-  { key: "super-sus", name: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", hasServerId: false, guide: "User ID dapat ditemukan di menu profil dalam game." },
-  { key: "clash-of-clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", hasServerId: false, guide: "User ID (Tag Pemain) adalah kombinasi huruf dan angka yang dimulai dengan tanda pagar (#)." },
-  { key: "blood-strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", hasServerId: false, guide: "ID Anda dapat ditemukan di profil dalam game." },
-  { key: "pubg-mobile", name: "PUBG Mobile", img: "https://files.catbox.moe/tatuo9.jpg", hasServerId: false, guide: "Temukan User ID Anda di sudut kanan atas lobi game saat mengklik profil." }
-];
-
-/* ================== DATA PROMO ================== */
-const PROMOS = [
-  { title: "Top Up Diamond FF Termurah", img: "https://files.catbox.moe/ijvqjo.png", gameKey: "free-fire" },
-  { title: "Top Up Starlight MLBB Harga Cuan", img: "https://files.catbox.moe/dpr6d2.jpg", gameKey: "mobile-legends" },
-  { title: "Promo UC PUBG Mobile Khusus Member", img: "https://files.catbox.moe/w43dgb.jpg", gameKey: "pubg-mobile" },
-  { title: "Blessing of the Welkin Moon Genshin", img: "https://files.catbox.moe/uusd4l.jpg", gameKey: "genshin-impact" }
+    { key: "free-fire", name: "Free Fire", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", bannerImg: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", hasServerId: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game." },
+    { key: "mobile-legends", name: "Mobile Legends", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", bannerImg: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", hasServerId: true, guide: "Temukan User ID dan Server ID di bawah nama panggilan saat Anda mengklik avatar profil." },
+    { key: "honor-of-kings", name: "Honor of Kings", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", bannerImg: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", hasServerId: false, guide: "User ID Anda ada di bagian bawah layar saat Anda membuka profil." },
+    { key: "genshin-impact", name: "Genshin Impact", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", bannerImg: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", hasServerId: false, guide: "User ID (9 digit) terletak di sudut kanan bawah layar saat Anda berada di dalam game." },
+    { key: "roblox", name: "Roblox", img: "https://i.supaimg.com/c8d8f1c7-b02c-46a3-a6e5-63a6487d622c.jpg", bannerImg: "https://i.supaimg.com/c8d8f1c7-b02c-46a3-a6e5-63a6487d622c.jpg", hasServerId: false, guide: "Top up menggunakan Gift Card yang akan dikirim langsung ke akun Anda." },
+    { key: "super-sus", name: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", bannerImg: "https://files.catbox.moe/j61uny.jpg", hasServerId: false, guide: "User ID dapat ditemukan di menu profil dalam game." },
+    { key: "clash-of-clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", bannerImg: "https://files.catbox.moe/6aia0n.jpg", hasServerId: false, guide: "User ID (Tag Pemain) adalah kombinasi huruf dan angka yang dimulai dengan tanda pagar (#)." },
+    { key: "blood-strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", bannerImg: "https://files.catbox.moe/3y066i.jpg", hasServerId: false, guide: "ID Anda dapat ditemukan di profil dalam game." },
+    { key: "pubg-mobile", name: "PUBG Mobile", img: "https://files.catbox.moe/tatuo9.jpg", bannerImg: "https://files.catbox.moe/tatuo9.jpg", hasServerId: false, guide: "Temukan User ID Anda di sudut kanan atas lobi game saat mengklik profil." },
+    { key: "garena-delta-force", name: "Garena Delta Force", img: "https://files.catbox.moe/qul2qy.png", bannerImg: "https://files.catbox.moe/qul2qy.png", hasServerId: false, guide: "Buka menu profil di game dan Anda dapat menemukan User ID Anda." },
+    { key: "call-of-duty", name: "Call Of Duty", img: "https://files.catbox.moe/i1kcw5.webp", bannerImg: "https://files.catbox.moe/i1kcw5.webp", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil game." },
+    { key: "valorant", name: "Valorant", img: "https://files.catbox.moe/3h9932.png", bannerImg: "https://files.catbox.moe/3h9932.png", hasServerId: false, guide: "User ID (Riot ID) dapat ditemukan di bawah nama akun Anda di bagian atas layar." },
+    { key: "eggy-party", name: "Eggy Party", img: "https://files.catbox.moe/59mdks.webp", bannerImg: "https://files.catbox.moe/59mdks.webp", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil dalam game." },
+    { key: "garena-undawn", name: "Garena Undawn", img: "https://files.catbox.moe/o5bto9.webp", bannerImg: "https://files.catbox.moe/o5bto9.webp", hasServerId: false, guide: "Buka menu profil dan User ID Anda akan terlihat." },
 ];
 
 /* ================== DATA PAYMENT ================== */
 const PAYMENTS = [
-  { id: "dana", name: "DANA", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
-  { id: "gopay", name: "GoPay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", type: "ewallet", info: { number: "082116690164", name: "TI** SUT***" } },
-  { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", type: "qris", info: { qrisImg: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg" } },
-  { id: "krom", name: "Krom Bank", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", type: "bank_transfer", info: { number: "770072009565", name: "TI** SUT***" } }
+    { id: "dana", name: "DANA", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
+    { id: "gopay", name: "GoPay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", type: "ewallet", info: { number: "082116690164", name: "TI** SUT***" } },
+    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", type: "qris", info: { qrisImg: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg" } },
+    { id: "krom", name: "Krom Bank", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", type: "bank_transfer", info: { number: "770072009565", name: "TI** SUT***" } },
 ];
 
 /* ================== DATA PRODUK ================== */
 const PRODUCTS = {
+    // Data produk dari kode Anda sebelumnya tetap sama
     "free-fire": [
         { id: "ff-5", label: "5 Diamonds", price: 901 },
         { id: "ff-12", label: "12 Diamonds", price: 1802 },
@@ -232,144 +230,303 @@ const PRODUCTS = {
     ]
 };
 
-/* ================== UTILITAS ================== */
+/* ================== UTILITAS & BANTUAN ================== */
 const qs = (s, p = document) => p.querySelector(s);
 const qsa = (s, p = document) => Array.from(p.querySelectorAll(s));
 const fmtIDR = n => new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(n);
 
-function showOverlay() { qs("#modal-overlay")?.classList.add("active"); document.body.style.overflow = "hidden"; }
-function hideOverlay() { qs("#modal-overlay")?.classList.remove("active"); document.body.style.overflow = ""; }
-function openModal(id) { const m = qs(`#${id}`); if (!m) return; showOverlay(); m.classList.add("active"); }
-function closeModal(id) { const m = qs(`#${id}`); if (!m) return; m.classList.remove("active"); if (qsa(".modal.active").length === 0) hideOverlay(); }
-function copyToClipboard(text, btn) { navigator.clipboard.writeText(text).then(() => { const old = btn.textContent; btn.textContent = "Disalin!"; setTimeout(() => btn.textContent = old, 1500); }); }
-
-/* ================== INISIALISASI ================== */
-document.addEventListener("DOMContentLoaded", () => {
-  const page = document.body.dataset.page;
-  const navToggle = qs(".nav-toggle");
-  const nav = qs(".nav");
-  if (navToggle && nav) navToggle.addEventListener("click", () => nav.classList.toggle("active"));
-  const overlay = qs("#modal-overlay");
-  if (overlay) overlay.addEventListener("click", (e) => { if (e.target.id === "modal-overlay") { qsa(".modal.active").forEach(m => m.classList.remove("active")); hideOverlay(); } });
-  if (page === "index") initIndex();
-  if (page === "game") initGame();
-});
-
-/* ================== LOGIKA HALAMAN BERANDA ================== */
-function initIndex() {
-  const grid = qs("#games-grid");
-  if (grid) {
-    grid.innerHTML = "";
-    GAMES.forEach(g => {
-      const a = document.createElement("a");
-      a.className = "game-card";
-      a.href = `game.html?key=${g.key}`;
-      a.innerHTML = `<img src="${g.img}" alt="${g.name}"><p>${g.name}</p>`;
-      grid.appendChild(a);
-    });
-  }
-
-  // Slider Promo
-  const track = qs("#promo-slider");
-  const dots = qs("#slider-dots");
-  if (track && dots) {
-    track.innerHTML = ""; dots.innerHTML = "";
-    PROMOS.forEach((p, idx) => {
-      const item = document.createElement("a");
-      item.className = "slider__item"; item.href = `game.html?key=${p.gameKey}`;
-      item.style.backgroundImage = `url(${p.img})`;
-      track.appendChild(item);
-      const dot = document.createElement("button");
-      dot.className = "slider__dot"; dot.addEventListener("click", () => go(idx));
-      dots.appendChild(dot);
-    });
-    const slides = qsa(".slider__item", track);
-    const dotEls = qsa(".slider__dot", dots);
-    let current = 0;
-    function render() { if (slides.length > 0) track.style.transform = `translateX(-${current * 100}%)`; dotEls.forEach(d => d.classList.remove("active")); if (dotEls[current]) dotEls[current].classList.add("active"); }
-    function next() { current = (current + 1) % slides.length; render(); }
-    function go(i) { current = i; render(); if (slides.length > 1) { clearInterval(timer); timer = setInterval(next, 4000); } }
-    let timer = slides.length > 1 ? setInterval(next, 4000) : null; render();
-  }
-}
-
-/* ================== LOGIKA HALAMAN GAME ================== */
 let selectedProduct = null;
 let selectedPayment = null;
 let appliedVoucher = null;
+let currentGame = null;
 
-function initGame() {
-  const url = new URLSearchParams(location.search);
-  const key = url.get("key");
-  const game = GAMES.find(g => g.key === key);
-  if (!game) { qs(".container.game-page").innerHTML = "<p>Game tidak ditemukan.</p>"; return; }
-  qs("#game-title").textContent = game.name;
-  const banner = qs("#game-banner"); banner.src = game.img; banner.alt = game.name;
-  qs("#game-guide").textContent = game.guide;
-  qs("#server-group").style.display = game.hasServerId ? "block" : "none";
+/* ================== INI HALAMAN UTAMA ================== */
+function initHomepage() {
+    const mainSections = {
+        hero: qs(".hero"),
+        promo: qs(".promo-section"),
+        gameList: qs("#game-list-section"),
+        info: qs("#cara-topup"),
+        contact: qs("#kontak"),
+    };
+    const gameDetailSection = qs("#game-detail-section");
 
-  // Produk
-  const productGrid = qs("#product-grid");
-  const products = PRODUCTS[game.key] || [];
-  productGrid.innerHTML = "";
-  products.forEach(p => {
-    const div = document.createElement("div");
-    div.className = "item product-card"; div.dataset.id = p.id; div.dataset.price = p.price;
-    div.innerHTML = `<p>${p.label}</p><p>${fmtIDR(p.price)}</p>`;
-    div.addEventListener("click", () => { selectedProduct = p; appliedVoucher = null; setVoucherStatus(""); qs("#voucher-input").value = ""; refreshSelections(); });
-    productGrid.appendChild(div);
-  });
+    // Sembunyikan halaman game saat pertama kali load
+    gameDetailSection.style.display = 'none';
 
-  // Metode Pembayaran
-  const paymentGrid = qs("#payment-grid"); paymentGrid.innerHTML = "";
-  PAYMENTS.forEach(pay => {
-    const div = document.createElement("div");
-    div.className = "item payment-card"; div.dataset.id = pay.id;
-    div.innerHTML = `<img src="${pay.img}" alt="${pay.name}"><p>${pay.name}</p>`;
-    div.addEventListener("click", () => { selectedPayment = pay; refreshSelections(); });
-    paymentGrid.appendChild(div);
-  });
+    // Render daftar game di halaman utama
+    const gameGrid = qs("#games-grid");
+    if (gameGrid) {
+        gameGrid.innerHTML = "";
+        GAMES.forEach(g => {
+            const gameCard = document.createElement("div");
+            gameCard.className = "game-card";
+            gameCard.innerHTML = `<img src="${g.img}" alt="${g.name}"><span>${g.name}</span>`;
+            gameCard.addEventListener('click', () => {
+                showGameDetail(g.key);
+            });
+            gameGrid.appendChild(gameCard);
+        });
+    }
 
-  // Voucher
-  qs("#voucher-apply").addEventListener("click", () => {
+    // Logika slider promo
+    const track = qs("#promo-slider");
+    const dots = qs("#slider-dots");
+    const PROMOS = [
+        { title: "Top Up Diamond FF Termurah", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", gameKey: "free-fire" },
+        { title: "Top Up Starlight MLBB Harga Cuan", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", gameKey: "mobile-legends" },
+        { title: "Promo UC PUBG Mobile Khusus Member", img: "https://files.catbox.moe/w43dgb.jpg", gameKey: "pubg-mobile" },
+        { title: "Blessing of the Welkin Moon Genshin", img: "https://files.catbox.moe/uusd4l.jpg", gameKey: "genshin-impact" },
+    ];
+    if (track && dots) {
+        let slides = [];
+        PROMOS.forEach((p, idx) => {
+            const slide = document.createElement("a");
+            slide.href = `javascript:void(0);`; // Menggunakan href non-aktif
+            slide.style.backgroundImage = `url(${p.img})`;
+            slide.classList.add("slider__item");
+            slide.addEventListener('click', () => showGameDetail(p.gameKey));
+            track.appendChild(slide);
+            slides.push(slide);
+
+            const dot = document.createElement("span");
+            dot.addEventListener('click', () => {
+                current = idx;
+                renderSlider();
+                resetTimer();
+            });
+            dots.appendChild(dot);
+        });
+
+        let current = 0;
+        let timer = null;
+
+        function renderSlider() {
+            if (slides.length > 0) {
+                track.style.transform = `translateX(-${current * 100}%)`;
+            }
+            qsa("span", dots).forEach((d, idx) => {
+                d.classList.toggle("active", idx === current);
+            });
+        }
+
+        function nextSlide() {
+            current = (current + 1) % slides.length;
+            renderSlider();
+        }
+
+        function resetTimer() {
+            if (timer) clearInterval(timer);
+            if (slides.length > 1) {
+                timer = setInterval(nextSlide, 4000);
+            }
+        }
+        renderSlider();
+        resetTimer();
+    }
+}
+
+/* ================== INI HALAMAN GAME (DINAMIS) ================== */
+function showGameDetail(gameKey) {
+    const game = GAMES.find(g => g.key === gameKey);
+    if (!game) {
+        alert("Game tidak ditemukan!");
+        return;
+    }
+
+    currentGame = game;
+
+    // Sembunyikan semua section di halaman utama
+    qsa(".section:not(#game-detail-section)").forEach(s => s.style.display = 'none');
+    qs("#hero-section").style.display = 'none';
+
+    // Tampilkan section halaman game
+    qs("#game-detail-section").style.display = 'block';
+
+    // Isi konten halaman game
+    const gameBanner = qs("#game-banner");
+    if (gameBanner) gameBanner.src = game.bannerImg || game.img;
+
+    const gameGuide = qs("#game-guide");
+    if (gameGuide) gameGuide.textContent = game.guide;
+
+    const serverGroup = qs("#server-group");
+    if (serverGroup) serverGroup.style.display = game.hasServerId ? "block" : "none";
+
+    renderProducts(game.key);
+    renderPayments();
+
+    qs("#checkout-btn").addEventListener("click", () => openCheckout());
+    qs("#voucher-btn").addEventListener("click", applyVoucher);
+    qs("#voucher-input").addEventListener("input", () => {
+        appliedVoucher = null;
+        setVoucherStatus("");
+        refreshSelections();
+    });
+}
+
+function renderProducts(gameKey) {
+    const productGrid = qs("#product-grid");
+    const products = PRODUCTS[gameKey] || [];
+    productGrid.innerHTML = "";
+
+    if (products.length > 0) {
+        products.forEach(p => {
+            const div = document.createElement("div");
+            div.className = "product-card";
+            div.dataset.id = p.id;
+            div.dataset.price = p.price;
+            div.innerHTML = `
+                <div class="product-label">${p.label}</div>
+                <div class="product-price">${fmtIDR(p.price)}</div>
+            `;
+            div.addEventListener("click", () => {
+                selectedProduct = p;
+                selectedPayment = null;
+                appliedVoucher = null;
+                qs("#voucher-input").value = "";
+                setVoucherStatus("");
+                refreshSelections();
+            });
+            productGrid.appendChild(div);
+        });
+    } else {
+        productGrid.innerHTML = `<p>Produk untuk game ini belum tersedia.</p>`;
+    }
+}
+
+function renderPayments() {
+    const paymentGrid = qs("#payment-grid");
+    paymentGrid.innerHTML = "";
+    if (PAYMENTS.length > 0) {
+        PAYMENTS.forEach(pay => {
+            const div = document.createElement("div");
+            div.className = "payment-card";
+            div.dataset.id = pay.id;
+            div.innerHTML = `<img src="${pay.img}" alt="${pay.name}"><span>${pay.name}</span>`;
+            div.addEventListener("click", () => {
+                selectedPayment = pay;
+                refreshSelections();
+            });
+            paymentGrid.appendChild(div);
+        });
+    } else {
+        paymentGrid.innerHTML = `<p>Metode pembayaran belum tersedia.</p>`;
+    }
+}
+
+function applyVoucher() {
+    if (!selectedProduct) {
+        setVoucherStatus("Pilih nominal terlebih dahulu.", true);
+        return;
+    }
     const code = qs("#voucher-input").value.trim().toUpperCase();
     const voucher = VOUCHERS.find(v => v.code === code);
-    if (!voucher) { setVoucherStatus("Voucher tidak valid!"); appliedVoucher = null; refreshSelections(); return; }
-    appliedVoucher = voucher; setVoucherStatus(`Voucher ${voucher.code} diterapkan!`); refreshSelections();
-  });
 
-  // Checkout
-  qs("#checkout-btn").addEventListener("click", () => { doCheckout(game); });
+    appliedVoucher = null;
+    if (!voucher) {
+        setVoucherStatus("Kode voucher tidak valid.", true);
+    } else if (voucher.minPurchase && selectedProduct.price < voucher.minPurchase) {
+        setVoucherStatus(`Minimal transaksi ${fmtIDR(voucher.minPurchase)}.`, true);
+    } else {
+        appliedVoucher = voucher;
+        const discount = calcDiscount(selectedProduct.price, voucher);
+        setVoucherStatus(`Voucher ${voucher.code} diterapkan. Diskon ${fmtIDR(discount)}.`, false);
+    }
+    refreshSummary();
 }
 
-function setVoucherStatus(msg) { qs("#voucher-status").textContent = msg; }
+function calcDiscount(price, voucher) {
+    let discount = 0;
+    if (voucher.percent) {
+        discount = price * (voucher.percent / 100);
+    } else if (voucher.fixed) {
+        discount = voucher.fixed;
+    }
+    if (voucher.maxDiscount && discount > voucher.maxDiscount) {
+        discount = voucher.maxDiscount;
+    }
+    return Math.floor(discount);
+}
 
 function refreshSelections() {
-  // Highlight produk
-  qsa(".product-card").forEach(div => { div.classList.toggle("selected", selectedProduct && div.dataset.id === selectedProduct.id); });
-  // Highlight pembayaran
-  qsa(".payment-card").forEach(div => { div.classList.toggle("selected", selectedPayment && div.dataset.id === selectedPayment.id); });
-  // Hitung total
-  let total = selectedProduct ? selectedProduct.price : 0;
-  if (appliedVoucher) {
-    if (appliedVoucher.percent) total -= total * appliedVoucher.percent / 100;
-    else if (appliedVoucher.fixed) total -= appliedVoucher.fixed;
-  }
-  total = Math.max(0, total);
-  qs("#total-price").textContent = fmtIDR(total);
+    qsa(".product-card").forEach(c => c.classList.toggle("selected", selectedProduct && c.dataset.id === selectedProduct.id));
+    qsa(".payment-card").forEach(c => c.classList.toggle("selected", selectedPayment && c.dataset.id === selectedPayment.id));
+    refreshSummary();
 }
 
-function doCheckout(game) {
-  if (!selectedProduct || !selectedPayment) { alert("Pilih produk dan metode pembayaran terlebih dahulu."); return; }
-  const userId = qs("#user-id").value.trim();
-  const serverId = qs("#server-id")?.value.trim();
-  if (!userId) { alert("Masukkan User ID."); return; }
-  if (game.hasServerId && !serverId) { alert("Masukkan Server ID."); return; }
-  const total = selectedProduct.price; // Bisa ditambah kalkulasi voucher lagi jika perlu
-  let message = `Halo Admin,\nSaya ingin melakukan top up:\nGame: ${game.name}\nUser ID: ${userId}`;
-  if (serverId) message += `\nServer ID: ${serverId}`;
-  message += `\nProduk: ${selectedProduct.label} - ${fmtIDR(selectedProduct.price)}\nPembayaran: ${selectedPayment.name}\nTotal: ${fmtIDR(total)}`;
-  if (appliedVoucher) message += `\nVoucher: ${appliedVoucher.code}`;
-  const waLink = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(message)}`;
-  window.open(waLink, "_blank");
+function refreshSummary() {
+    const totalEl = qs("#total-price");
+    const checkoutBtn = qs("#checkout-btn");
+
+    if (!selectedProduct || !selectedPayment) {
+        totalEl.textContent = "Rp 0";
+        checkoutBtn.disabled = true;
+    } else {
+        const total = finalPrice();
+        totalEl.textContent = fmtIDR(total);
+        checkoutBtn.disabled = false;
+    }
 }
+
+function finalPrice() {
+    if (!selectedProduct) return 0;
+    const base = selectedProduct.price;
+    const disc = appliedVoucher ? calcDiscount(base, appliedVoucher) : 0;
+    return Math.max(0, base - disc);
+}
+
+function setVoucherStatus(text, isError = false) {
+    const el = qs("#voucher-status");
+    if (el) {
+        el.textContent = text;
+        el.className = `status-text ${isError ? 'error' : 'success'}`;
+    }
+}
+
+function validateForm() {
+    let isValid = true;
+    const userId = qs("#user-id").value.trim();
+    if (!userId) {
+        alert("User ID wajib diisi.");
+        isValid = false;
+    } else if (currentGame.hasServerId && !qs("#server-id").value.trim()) {
+        alert("Server ID wajib diisi.");
+        isValid = false;
+    } else if (!selectedProduct) {
+        alert("Pilih nominal top-up.");
+        isValid = false;
+    } else if (!selectedPayment) {
+        alert("Pilih metode pembayaran.");
+        isValid = false;
+    }
+    return isValid;
+}
+
+function openCheckout() {
+    if (!validateForm()) return;
+
+    const userId = qs("#user-id").value.trim();
+    const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : null;
+    const total = finalPrice();
+
+    let message = `Halo Admin, saya ingin konfirmasi pesanan top-up:\n`;
+    message += `*Game:* ${currentGame.name}\n`;
+    message += `*User ID:* ${userId}\n`;
+    if (serverId) {
+        message += `*Server ID:* ${serverId}\n`;
+    }
+    message += `*Produk:* ${selectedProduct.label}\n`;
+    message += `*Metode Pembayaran:* ${selectedPayment.name}\n`;
+    message += `*Total:* ${fmtIDR(total)}\n\n`;
+    message += `Terima kasih.`;
+
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/${ADMIN_WA}?text=${encodedMessage}`, '_blank');
+}
+
+/* ================== INI AWAL MUAT HALAMAN ================== */
+document.addEventListener("DOMContentLoaded", () => {
+    initHomepage();
+});
+
