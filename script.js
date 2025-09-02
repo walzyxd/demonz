@@ -18,7 +18,7 @@ const GAMES = [
     { key: "mobile-legends", name: "Mobile Legends", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", bannerImg: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", hasServerId: true, guide: "Temukan User ID dan Server ID di bawah nama panggilan saat Anda mengklik avatar profil.", url: "game.html?key=mobile-legends" },
     { key: "honor-of-kings", name: "Honor of Kings", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", bannerImg: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", hasServerId: false, guide: "User ID Anda ada di bagian bawah layar saat Anda membuka profil.", url: "game.html?key=honor-of-kings" },
     { key: "genshin-impact", name: "Genshin Impact", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", bannerImg: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", hasServerId: false, guide: "User ID (9 digit) terletak di sudut kanan bawah layar saat Anda berada di dalam game.", url: "game.html?key=genshin-impact" },
-    { key: "roblox", name: "Roblox", img: "https://i.supaimg.com/c8d8f1c7-b02c-46a3-a6e5-63a6487d622c.jpg", bannerImg: "https://i.supaimg.com/c8d8f1c7-b02c-46a3-a6e5-63a6487d622c.jpg", hasServerId: false, guide: "Top up menggunakan Gift Card yang akan dikirim langsung ke akun Anda.", url: "game.html?key=roblox" },
+    { key: "roblox", name: "Roblox", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", bannerImg: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", hasServerId: false, guide: "Top up menggunakan Gift Card yang akan dikirim langsung ke akun Anda.", url: "game.html?key=roblox" },
     { key: "super-sus", name: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", bannerImg: "https://files.catbox.moe/j61uny.jpg", hasServerId: false, guide: "User ID dapat ditemukan di menu profil dalam game.", url: "game.html?key=super-sus" },
     { key: "clash-of-clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", bannerImg: "https://files.catbox.moe/6aia0n.jpg", hasServerId: false, guide: "User ID (Tag Pemain) adalah kombinasi huruf dan angka yang dimulai dengan tanda pagar (#).", url: "game.html?key=clash-of-clans" },
     { key: "blood-strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", bannerImg: "https://files.catbox.moe/3y066i.jpg", hasServerId: false, guide: "ID Anda dapat ditemukan di profil dalam game.", url: "game.html?key=blood-strike" },
@@ -42,7 +42,7 @@ const PROMOS = [
 const PAYMENTS = [
     { id: "dana", name: "DANA", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
     { id: "gopay", name: "GoPay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", type: "ewallet", info: { number: "082116690164", name: "TI** SUT***" } },
-    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/5688406c-3c9f-4990-b77a-4f1eaba082ad.png", type: "qris", info: { qrisImg: "https://i.supaimg.com/5688406c-3c9f-4990-b77a-4f1eaba082ad.png" } },
+    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", type: "qris", info: { qrisImg: "https://i.supaimg.com/5688406c-3c9f-4990-b77a-4f1eaba082ad.png" } },
     { id: "krom", name: "Krom Bank", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", type: "bank_transfer", info: { number: "770072009565", name: "TI** SUT***" } },
 ];
 
@@ -327,7 +327,7 @@ function setupGamePage(gameKeyFromUrl) {
     qs("#game-banner").src = currentGame.img;
     qs(".game-name").textContent = currentGame.name;
     qs("title").textContent = `Walz Shop - Top Up ${currentGame.name}`;
-    qs(".game-guide").textContent = currentGame.guide;
+    qs(".game-description").textContent = currentGame.guide;
 
     if (currentGame.hasServerId) {
         qs("#server-group").style.display = "block";
@@ -369,7 +369,16 @@ function renderProducts(gameKey) {
             const div = document.createElement("div");
             div.className = "product-card";
             div.dataset.id = p.id;
+
+            let badgesHtml = '';
+            if (p.badges && p.badges.length > 0) {
+                p.badges.forEach(badge => {
+                    badgesHtml += `<span class="badge ${badge}">${badge.toUpperCase()}</span>`;
+                });
+            }
+
             div.innerHTML = `
+                ${badgesHtml}
                 <div class="product-label">${p.label}</div>
                 <div class="product-price">${fmtIDR(p.price)}</div>
             `;
@@ -607,7 +616,7 @@ function openCheckout() {
     const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : null;
     const total = finalPrice();
     let payBlock = '';
-    
+
     const formatWhatsAppMsg = () => {
         let msg = `Halo Admin, saya ingin konfirmasi pesanan top-up:\n`;
         msg += `*Game:* ${currentGame.name}\n`;
@@ -626,7 +635,6 @@ function openCheckout() {
                 <h4>Scan QRIS Berikut</h4>
                 <div class="qris-image-container">
                     <img src="${selectedPayment.info.qrisImg}" alt="QRIS Code" class="qris-image">
-                    <button class="btn btn-expand-qris" id="expand-qris-btn"><i class="fas fa-search-plus"></i> Perbesar QRIS</button>
                 </div>
             </div>
         `;
@@ -634,7 +642,9 @@ function openCheckout() {
         payBlock = `
             <div class="payment-info">
                 <h4>Transfer ke Rekening Berikut</h4>
-                <p><strong>Bank:</strong> ${selectedPayment.name}</p>
+                <div class="payment-img-container" style="text-align:center; margin-bottom: 1rem;">
+                    <img src="${selectedPayment.img}" alt="${selectedPayment.name}" style="max-width: 120px; height: auto;">
+                </div>
                 <p><strong>A/N:</strong> ${selectedPayment.info.name || "-"}</p>
                 <div class="copy-field">
                     <span id="account-number">${selectedPayment.info.number}</span>
@@ -677,30 +687,8 @@ function openCheckout() {
     if (copyBtn) {
         copyBtn.addEventListener("click", () => copyToClipboard(selectedPayment.info.number, copyBtn));
     }
-    
-    const expandQrisBtn = qs("#expand-qris-btn", modal);
-    if (expandQrisBtn) {
-        expandQrisBtn.addEventListener("click", () => openFullscreenQris(QRIS_FULL_IMAGE));
-    }
 
     openModal("checkout-modal");
-}
-
-function openFullscreenQris(imageUrl) {
-    const modal = document.createElement("div");
-    modal.id = "qris-fullscreen-modal";
-    modal.classList.add("modal");
-    modal.innerHTML = `
-        <div class="modal-header">
-            <h3>QRIS untuk Scan</h3>
-            <button class="modal-close-btn" data-close>&times;</button>
-        </div>
-        <div class="modal-content">
-            <img src="${imageUrl}" alt="QRIS Fullscreen" style="width: auto; height: auto;">
-        </div>
-    `;
-    qs("#modal-overlay").appendChild(modal);
-    openModal("qris-fullscreen-modal");
 }
 
 function showOverlay() {
@@ -734,9 +722,6 @@ function closeModal(id) {
     const m = qs(`#${id}`);
     if (!m) return;
     m.classList.remove("active");
-    if (id === "qris-fullscreen-modal") {
-        m.remove();
-    }
     const anyOpen = qsa(".modal.active").length > 0;
     if (!anyOpen) hideOverlay();
 }
