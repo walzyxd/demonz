@@ -1,4 +1,4 @@
-/* ================== KONFIGURASI & DATA (TIDAK BERUBAH) ================== */
+/* ================== KONFIGURASI & DATA ================== */
 const ADMIN_WA = "6282298902274";
 const ADMIN_EMAIL = "walzlonely@gmail.com";
 
@@ -340,7 +340,9 @@ function setupGamePage(gameKeyFromUrl) {
     qs(".game-description").textContent = currentGame.guide;
 
     if (currentGame.hasServerId) {
-        qs("#server-group").style.display = "block";
+        qs("#server-id").style.display = "block";
+    } else {
+        qs("#server-id").style.display = "none";
     }
 
     renderProducts(currentGame.key);
@@ -363,7 +365,7 @@ function setupEventListeners() {
         renderPayments();
     });
     qs("#voucher-list-btn").addEventListener("click", showVoucherListModal);
-    qs("#checkout-btn").addEventListener("click", openCheckout);
+    qs("#checkout-btn").addEventListener("click", openCheckoutModal);
     qs("#modal-overlay").addEventListener("click", (e) => {
         if (e.target.id === "modal-overlay") {
             hideOverlay();
@@ -544,7 +546,7 @@ function setVoucherStatus(text, isError = false) {
 }
 
 function showVoucherListModal() {
-    const modal = qs("#voucher-list-modal");
+    const modal = qs("#promo-list-modal");
     if (!modal) return;
     modal.innerHTML = `
         <div class="modal-header">
@@ -566,10 +568,11 @@ function showVoucherListModal() {
     qsa("[data-choose]", modal).forEach(btn => {
         btn.addEventListener("click", () => {
             qs("#voucher-input").value = btn.dataset.choose;
-            closeModal("voucher-list-modal");
+            closeModal("promo-list-modal");
+            applyVoucher();
         });
     });
-    openModal("voucher-list-modal");
+    openModal("promo-list-modal");
 }
 
 function showErrorModal(message) {
@@ -583,7 +586,7 @@ function showErrorModal(message) {
         <div class="modal-content" style="text-align: center;">
             <p>${message}</p>
             <div style="margin-top: 1rem;">
-                <button class="btn" onclick="closeModal('error-modal')">Oke</button>
+                <button class="btn btn-confirm" onclick="closeModal('error-modal')">Oke</button>
             </div>
         </div>
     `;
@@ -613,7 +616,7 @@ function validateForm() {
     return true;
 }
 
-function openCheckout() {
+function openCheckoutModal() {
     if (!validateForm()) return;
     const userId = qs("#user-id").value.trim();
     const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : null;
@@ -680,7 +683,7 @@ function openCheckout() {
                 <span>${fmtIDR(total)}</span>
             </div>
             ${payBlock}
-            <div class="modal-footer">
+            <div class="modal-footer" style="margin-top: 1.5rem;">
                 <a href="https://wa.me/${ADMIN_WA}?text=${formatWhatsAppMsg()}" target="_blank" class="btn btn-confirm btn-block">Chat Admin Sekarang</a>
                 <p class="instruction">Setelah bayar, kirim bukti transfer ke Admin agar pesanan segera diproses.</p>
             </div>
