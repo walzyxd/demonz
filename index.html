@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walz Shop - Top Up Termurah</title>
+    <title>Walz Shop - Top Up Game Termurah</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="https://files.catbox.moe/k3hly0.jpg" type="image/x-icon">
@@ -12,12 +12,17 @@
 
     <header class="header">
         <div class="container">
-            <a href="index.html" class="logo">WALZ SHOP</a>
-            <nav class="nav">
-                <a href="#games-grid">TOP UP</a>
-                <a href="#about">TENTANG KAMI</a>
-                <a href="#contact">KONTAK</a>
-            </nav>
+            <a href="index.html" class="logo">
+                <img src="https://files.catbox.moe/k3hly0.jpg" alt="Walz Shop Logo" class="logo-img">
+            </a>
+            <div class="header-buttons">
+                <button class="btn btn-download">
+                    <i class="fas fa-mobile-alt"></i> Download Sekarang
+                </button>
+                <button class="btn btn-login">
+                    <i class="fas fa-user-circle"></i> Masuk
+                </button>
+            </div>
             <div class="menu-toggle">
                 <i class="fas fa-bars"></i>
             </div>
@@ -25,37 +30,18 @@
     </header>
 
     <main>
-        <section class="hero-slider" id="promo-section">
-            <div class="slider-track" id="slider-track">
-                <div class="slider-item" style="background-image: url('https://files.catbox.moe/k3hly0.jpg');"></div>
-                <div class="slider-item" style="background-image: url('https://files.catbox.moe/tatuo9.jpg');"></div>
-                <div class="slider-item" style="background-image: url('https://files.catbox.moe/j61uny.jpg');"></div>
-            </div>
-            <div class="slider-dots" id="slider-dots"></div>
+        <section class="hero-slider">
+            <div class="slider__track" id="promo-slider">
+                </div>
+            <div class="slider__dots" id="slider-dots"></div>
         </section>
-
-        <section class="container section" id="games-section">
-            <h2 class="section-title">Pilih Game Favoritmu</h2>
+        
+        <section class="container section">
+            <h2 class="section-title">Temukan Produk Favorit</h2>
             <div class="games-grid" id="games-grid">
                 </div>
         </section>
         
-        <section class="container section" id="about">
-            <h2 class="section-title">Tentang Kami</h2>
-            <div class="about-content">
-                <p>Walz Shop adalah toko top up game terpercaya dan termurah di Indonesia. Kami menyediakan berbagai diamond, UC, dan voucher untuk game favorit Anda dengan proses yang cepat dan aman. Kepuasan Anda adalah prioritas kami!</p>
-            </div>
-        </section>
-
-        <section class="container section" id="contact">
-            <h2 class="section-title">Kontak Kami</h2>
-            <div class="contact-content">
-                <p>Jika ada pertanyaan, silakan hubungi kami:</p>
-                <a href="https://wa.me/6282298902274" class="btn-contact">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
-            </div>
-        </section>
     </main>
 
     <footer class="footer">
@@ -65,5 +51,11 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            renderGameGrid();
+            renderPromoSlider();
+        });
+    </script>
 </body>
 </html>
