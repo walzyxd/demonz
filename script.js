@@ -6,9 +6,9 @@ const ADMIN_EMAIL = "walzlonely@gmail.com";
 const VOUCHERS = [
     { code: "WALZSHOP", percent: 5, description: "Diskon 5% untuk semua produk" },
     { code: "WALZPROMO", percent: 5, description: "Promo khusus 5% semua produk" },
-    { code: "HEMAT5000", percent: 0, fixed: 5000, minPurchase: 50000, description: "Diskon Rp5.000 (min. Rp50.000)" },
+    { code: "HEMAT5000", fixed: 5000, minPurchase: 50000, description: "Diskon Rp5.000 (min. Rp50.000)" },
     { code: "TOPUPSPECIAL", percent: 15, description: "Diskon 15% untuk top up pertama" },
-    { code: "FREEDIAMOND", percent: 0, fixed: 20000, maxDiscount: 20000, description: "Diskon Rp20.000 (maks. Rp20.000)" }
+    { code: "FREEDIAMOND", fixed: 20000, maxDiscount: 20000, description: "Diskon Rp20.000 (maks. Rp20.000)" }
 ];
 
 /* ================== DATA GAMES ================== */
@@ -241,67 +241,23 @@ const PRODUCTS = {
 const qs = (s, p = document) => p.querySelector(s);
 const qsa = (s, p = document) => Array.from(p.querySelectorAll(s));
 const fmtIDR = n => new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(n);
-
-function showOverlay() {
-    qs("#modal-overlay")?.classList.add("active");
-    document.body.style.overflow = "hidden";
-}
-
-function hideOverlay() {
-    qs("#modal-overlay")?.classList.remove("active");
-    document.body.style.overflow = "";
-}
-
-function openModal(id) {
-    const m = qs(`#${id}`);
-    if (!m) return;
-    showOverlay();
-    m.classList.add("active");
-}
-
-function closeModal(id) {
-    const m = qs(`#${id}`);
-    if (!m) return;
-    m.classList.remove("active");
-    const anyOpen = qsa(".modal.active").length > 0;
-    if (!anyOpen) hideOverlay();
-}
-
-function copyToClipboard(text, btn) {
-    navigator.clipboard.writeText(text).then(() => {
-        const originalText = btn.textContent;
-        const originalBg = btn.style.backgroundColor;
-        const originalColor = btn.style.color;
-
-        btn.textContent = "Disalin!";
-        btn.style.backgroundColor = 'var(--success-color)';
-        btn.style.color = '#fff';
-
-        setTimeout(() => {
-            btn.textContent = originalText;
-            btn.style.backgroundColor = originalBg;
-            btn.style.color = originalColor;
-        }, 1500);
-    });
-}
+function showOverlay() { qs("#modal-overlay")?.classList.add("show"); document.body.style.overflow = "hidden"; }
+function hideOverlay() { qs("#modal-overlay")?.classList.remove("show"); document.body.style.overflow = ""; }
+function openModal(id) { const m = qs(`#${id}`); if (!m) return; showOverlay(); m.classList.add("show"); }
+function closeModal(id) { const m = qs(`#${id}`); if (!m) return; m.classList.remove("show"); const anyOpen = qsa(".modal.show").length > 0; if (!anyOpen) hideOverlay(); }
+function copyToClipboard(text, btn) { navigator.clipboard.writeText(text).then(() => { const old = btn.textContent; btn.textContent = "Disalin!"; setTimeout(() => btn.textContent = old, 1500); }); }
 
 /* ================== INISIALISASI ================== */
 document.addEventListener("DOMContentLoaded", () => {
     const page = document.body.dataset.page;
-
-    // Toggle navigasi di perangkat seluler
     const navToggle = qs(".nav-toggle");
     const nav = qs(".nav");
-    if (navToggle && nav) {
-        navToggle.addEventListener("click", () => nav.classList.toggle("active"));
-    }
-
-    // Menutup modal saat mengklik overlay
+    if (navToggle && nav) { navToggle.addEventListener("click", () => nav.classList.toggle("active")); }
     const overlay = qs("#modal-overlay");
     if (overlay) {
         overlay.addEventListener("click", (e) => {
             if (e.target.id === "modal-overlay") {
-                qsa(".modal.active").forEach(m => closeModal(m.id));
+                qsa(".modal.show").forEach(m => m.classList.remove("show"));
                 hideOverlay();
             }
         });
@@ -313,7 +269,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* ================== LOGIKA HALAMAN BERANDA ================== */
 function initIndex() {
-    // Render grid game
     const grid = qs("#games-grid");
     if (grid) {
         grid.innerHTML = "";
@@ -321,15 +276,11 @@ function initIndex() {
             const a = document.createElement("a");
             a.className = "game-card";
             a.href = `game.html?key=${g.key}`;
-            a.innerHTML = `
-                <img src="${g.img}" alt="${g.name}">
-                <span>${g.name}</span>
-            `;
+            a.innerHTML = `<img src="${g.img}" alt="${g.name}"><h3>${g.name}</h3>`;
             grid.appendChild(a);
         });
     }
 
-    // Logika slider promo
     const track = qs("#promo-slider");
     const dots = qs("#slider-dots");
     if (track && dots) {
@@ -337,42 +288,27 @@ function initIndex() {
         dots.innerHTML = "";
         PROMOS.forEach((p, idx) => {
             const item = document.createElement("a");
-            item.className = "slider-item";
+            item.className = "slider__item";
             item.href = `game.html?key=${p.gameKey}`;
             item.style.backgroundImage = `url(${p.img})`;
             track.appendChild(item);
-
             const dot = document.createElement("button");
-            dot.className = "slider-dot";
+            dot.className = "slider__dot";
             dot.addEventListener("click", () => go(idx));
             dots.appendChild(dot);
         });
 
-        const slides = qsa(".slider-item", track);
-        const dotEls = qsa(".slider-dot", dots);
+        const slides = qsa(".slider__item", track);
+        const dotEls = qsa(".slider__dot", dots);
         let current = 0;
 
         function render() {
-            if (slides.length > 0) {
-                track.style.transform = `translateX(-${current * 100}%)`;
-            }
+            if (slides.length > 0) { track.style.transform = `translateX(-${current * 100}%)`; }
             dotEls.forEach(d => d.classList.remove("active"));
             if (dotEls[current]) dotEls[current].classList.add("active");
         }
-
-        function next() {
-            current = (current + 1) % slides.length;
-            render();
-        }
-
-        function go(i) {
-            current = i;
-            render();
-            if (slides.length > 1) {
-                clearInterval(timer);
-                timer = setInterval(next, 4000);
-            }
-        }
+        function next() { current = (current + 1) % slides.length; render(); }
+        function go(i) { current = i; render(); if (slides.length > 1) { clearInterval(timer); timer = setInterval(next, 4000); } }
         let timer = slides.length > 1 ? setInterval(next, 4000) : null;
         render();
     }
@@ -389,45 +325,47 @@ function initGame() {
     const game = GAMES.find(g => g.key === key);
 
     if (!game) {
-        qs(".container.game-page").innerHTML = `
-            <div class="error-message">
-                <h2>Game tidak ditemukan.</h2>
-                <p>Silakan kembali ke beranda.</p>
-                <a href="index.html" class="btn btn-primary">Kembali ke Beranda</a>
-            </div>
-        `;
+        qs(".container.game-page").innerHTML = `<div class="info-box error">Game tidak ditemukan. Silakan kembali ke beranda.</div><a href="index.html" class="btn btn-primary mt-4">Kembali</a>`;
         return;
     }
 
-    // Atur konten halaman
-    document.title = `Top Up ${game.name} - Walz Shop`;
-    qs("#game-banner").src = game.img;
-    qs("#game-banner").alt = game.name;
+    qs("#game-title").textContent = game.name;
+    const banner = qs("#game-banner");
+    banner.src = game.img;
+    banner.alt = game.name;
     qs("#game-guide").textContent = game.guide;
-
     const serverGroup = qs("#server-group");
-    serverGroup.style.display = game.hasServerId ? "block" : "none";
+    if (serverGroup) serverGroup.style.display = game.hasServerId ? "block" : "none";
 
-    // Event listeners untuk input ID
+    renderProducts(game.key);
+    renderPayments();
+
     qs("#user-id")?.addEventListener("input", refreshSummary);
-    qs("#server-id")?.addEventListener("input", refreshSummary);
+    if (game.hasServerId) qs("#server-id")?.addEventListener("input", refreshSummary);
+    qs("#checkout-btn")?.addEventListener("click", () => openCheckout(game));
+    qs("#voucher-btn")?.addEventListener("click", () => applyVoucher(qs("#voucher-input").value));
+    qs("#voucher-list-btn")?.addEventListener("click", () => openVoucherListModal());
+    refreshSummary();
+}
 
-    // Render produk
+function renderProducts(gameKey) {
     const productGrid = qs("#product-grid");
-    const gameProducts = PRODUCTS[game.key] || [];
-    productGrid.classList.add("items-grid");
     productGrid.innerHTML = "";
-    if (gameProducts.length > 0) {
-        gameProducts.forEach(p => {
+    const products = PRODUCTS[gameKey] || [];
+    if (products.length > 0) {
+        products.forEach(p => {
             const div = document.createElement("div");
-            div.className = "item product-card";
+            div.className = "product-card";
             div.dataset.id = p.id;
-            div.dataset.price = p.price;
-            div.innerHTML = `
-                <div>${p.label}</div>
-                <div class="price">${fmtIDR(p.price)}</div>
-                ${p.badges ? p.badges.map(b => `<span class="badge ${b}">${b.toUpperCase()}</span>`).join("") : ""}
-            `;
+            div.innerHTML = `<span class="label">${p.label}</span><span class="price">${fmtIDR(p.price)}</span>`;
+            if (p.badges) {
+                p.badges.forEach(b => {
+                    const badge = document.createElement("span");
+                    badge.className = `badge ${b}`;
+                    badge.textContent = b;
+                    div.appendChild(badge);
+                });
+            }
             div.addEventListener("click", () => {
                 selectedProduct = p;
                 appliedVoucher = null;
@@ -438,22 +376,19 @@ function initGame() {
             productGrid.appendChild(div);
         });
     } else {
-        productGrid.innerHTML = `<p class="muted">Produk untuk game ini belum tersedia.</p>`;
+        productGrid.innerHTML = `<div class="info-box">Produk untuk game ini belum tersedia.</div>`;
     }
+}
 
-    // Render metode pembayaran
+function renderPayments() {
     const paymentGrid = qs("#payment-grid");
-    paymentGrid.classList.add("items-grid");
     paymentGrid.innerHTML = "";
     if (PAYMENTS.length > 0) {
         PAYMENTS.forEach(pay => {
             const div = document.createElement("div");
-            div.className = "item payment-card";
+            div.className = "payment-card";
             div.dataset.id = pay.id;
-            div.innerHTML = `
-                <img src="${pay.img}" alt="${pay.name} Logo">
-                <span>${pay.name}</span>
-            `;
+            div.innerHTML = `<img src="${pay.img}" alt="${pay.name} Logo"><span>${pay.name}</span>`;
             div.addEventListener("click", () => {
                 selectedPayment = pay;
                 refreshSelections();
@@ -461,116 +396,78 @@ function initGame() {
             paymentGrid.appendChild(div);
         });
     } else {
-        paymentGrid.innerHTML = `<p class="muted">Metode pembayaran belum tersedia.</p>`;
+        paymentGrid.innerHTML = `<div class="info-box">Metode pembayaran belum tersedia.</div>`;
     }
-
-    // Fungsionalitas Voucher
-    const voucherBtn = qs("#voucher-btn");
-    const voucherListBtn = qs("#voucher-list-btn");
-    const voucherInput = qs("#voucher-input");
-    if (voucherBtn) {
-        voucherBtn.addEventListener("click", () => {
-            if (!selectedProduct) {
-                setVoucherStatus("Silakan pilih nominal terlebih dahulu.", true);
-                return;
-            }
-            const code = voucherInput.value.trim().toUpperCase();
-            const v = VOUCHERS.find(x => x.code === code);
-            appliedVoucher = null;
-            if (!v) {
-                setVoucherStatus("Kode voucher tidak valid.", true);
-                refreshSummary();
-                return;
-            }
-            if (v.minPurchase && selectedProduct.price < v.minPurchase) {
-                setVoucherStatus(`Minimal transaksi ${fmtIDR(v.minPurchase)}.`, true);
-                refreshSummary();
-                return;
-            }
-            appliedVoucher = v;
-            const discount = calcDiscount(selectedProduct.price, v);
-            const originalText = voucherBtn.textContent;
-            voucherBtn.textContent = "Berhasil!";
-            voucherBtn.classList.add("btn-success");
-            setTimeout(() => {
-                voucherBtn.textContent = originalText;
-                voucherBtn.classList.remove("btn-success");
-            }, 2000);
-            setVoucherStatus(`Voucher ${v.code} diterapkan. Diskon ${fmtIDR(discount)}.`, false);
-            refreshSummary();
-        });
-    }
-    if (voucherListBtn) {
-        voucherListBtn.addEventListener("click", () => {
-            const modal = qs("#voucher-list-modal");
-            let voucherListHtml = `
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2>Daftar Kode Voucher</h2>
-                        <button class="close-btn" data-close>&times;</button>
-                    </div>
-                    <div class="modal-body">
-            `;
-            if (VOUCHERS.length > 0) {
-                VOUCHERS.forEach(v => {
-                    voucherListHtml += `
-                        <div class="voucher-item">
-                            <strong>${v.code}</strong>
-                            <p>${v.description}</p>
-                            ${v.minPurchase ? `<small>Min. Pembelian: ${fmtIDR(v.minPurchase)}</small>` : ''}
-                            <div class="voucher-actions">
-                                <button class="btn btn-secondary btn-sm" data-choose="${v.code}">Pilih</button>
-                            </div>
-                        </div>
-                    `;
-                });
-            } else {
-                voucherListHtml += `<p class="muted">Tidak ada voucher tersedia saat ini.</p>`;
-            }
-            voucherListHtml += `
-                    </div>
-                </div>
-            `;
-            modal.innerHTML = voucherListHtml;
-            qsa("[data-choose]", modal).forEach(btn => {
-                btn.addEventListener("click", () => {
-                    voucherInput.value = btn.dataset.choose;
-                    closeModal("voucher-list-modal");
-                    setTimeout(() => voucherBtn.click(), 300);
-                });
-            });
-            setupModalClose(modal);
-            openModal("voucher-list-modal");
-        });
-    }
-
-    // Tombol checkout
-    const checkoutBtn = qs("#checkout-btn");
-    checkoutBtn.addEventListener("click", () => openCheckout(game));
-
-    // Inisialisasi awal
-    refreshSelections();
 }
 
-/* ================== STATE GLOBAL & FUNGSI BANTUAN ================== */
-function setVoucherStatus(text, isError = false) {
-    const el = qs("#voucher-status");
-    if (el) {
-        el.textContent = text;
-        el.className = `status-text ${text ? (isError ? 'error' : 'success') : ''}`;
+function applyVoucher(code) {
+    code = code.trim().toUpperCase();
+    const voucher = VOUCHERS.find(v => v.code === code);
+    appliedVoucher = null;
+    const voucherInput = qs("#voucher-input");
+    const voucherBtn = qs("#voucher-btn");
+
+    if (!selectedProduct) {
+        setVoucherStatus("Pilih nominal terlebih dahulu.", true);
+        return;
     }
+    if (!voucher) {
+        setVoucherStatus("Kode voucher tidak valid.", true);
+    } else if (voucher.minPurchase && selectedProduct.price < voucher.minPurchase) {
+        setVoucherStatus(`Minimal belanja ${fmtIDR(voucher.minPurchase)}.`, true);
+    } else {
+        appliedVoucher = voucher;
+        const discount = calcDiscount(selectedProduct.price, voucher);
+        setVoucherStatus(`Voucher berhasil diterapkan. Diskon: ${fmtIDR(discount)}`, false);
+    }
+
+    const originalText = voucherBtn.textContent;
+    voucherBtn.textContent = appliedVoucher ? "Berhasil!" : "Gagal!";
+    voucherBtn.classList.add(appliedVoucher ? "btn-success" : "btn-danger");
+    setTimeout(() => {
+        voucherBtn.textContent = originalText;
+        voucherBtn.classList.remove("btn-success", "btn-danger");
+    }, 2000);
+    refreshSummary();
+}
+
+function openVoucherListModal() {
+    const modal = qs("#voucher-list-modal");
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Daftar Kode Voucher</h2>
+                <button class="close-btn" data-close>&times;</button>
+            </div>
+            <div class="modal-body">
+                ${VOUCHERS.map(v => `
+                    <div class="voucher-item">
+                        <div class="voucher-info">
+                            <span class="voucher-code">${v.code}</span>
+                            <span class="voucher-desc">${v.description}</span>
+                        </div>
+                        <button class="btn btn-primary btn-sm" data-choose="${v.code}">Pilih</button>
+                    </div>
+                `).join("")}
+            </div>
+        </div>
+    `;
+    qsa("[data-choose]", modal).forEach(btn => {
+        btn.addEventListener("click", () => {
+            qs("#voucher-input").value = btn.dataset.choose;
+            closeModal("voucher-list-modal");
+            setTimeout(() => qs("#voucher-btn").click(), 300);
+        });
+    });
+    setupModalClose(modal);
+    openModal("voucher-list-modal");
 }
 
 function calcDiscount(price, voucher) {
     let discount = 0;
-    if (voucher.percent) {
-        discount = price * (voucher.percent / 100);
-    } else if (voucher.fixed) {
-        discount = voucher.fixed;
-    }
-    if (voucher.maxDiscount && discount > voucher.maxDiscount) {
-        discount = voucher.maxDiscount;
-    }
+    if (voucher.percent) discount = price * (voucher.percent / 100);
+    if (voucher.fixed) discount = voucher.fixed;
+    if (voucher.maxDiscount && discount > voucher.maxDiscount) discount = voucher.maxDiscount;
     return Math.floor(discount);
 }
 
@@ -582,53 +479,20 @@ function finalPrice() {
 }
 
 function refreshSelections() {
-    qsa(".product-card").forEach(c => c.classList.toggle("selected", selectedProduct && c.dataset.id === selectedProduct.id));
-    qsa(".payment-card").forEach(c => c.classList.toggle("selected", selectedPayment && c.dataset.id === selectedPayment.id));
+    qsa(".product-card").forEach(c => c.classList.toggle("active", selectedProduct && c.dataset.id === selectedProduct.id));
+    qsa(".payment-card").forEach(c => c.classList.toggle("active", selectedPayment && c.dataset.id === selectedPayment.id));
     refreshSummary();
 }
 
 function refreshSummary() {
-    const summary = qs("#summary-box");
-    const priceBox = qs("#price-box");
-    const totalEl = qs("#total-price");
+    const summary = qs("#summary");
+    const totalBox = qs("#total-price-box");
+    const totalEl = qs("#final-price");
     const checkoutBtn = qs("#checkout-btn");
-    const game = GAMES.find(g => g.key === new URLSearchParams(location.search).get("key"));
 
-    const userIdInput = qs("#user-id");
-    const serverIdInput = qs("#server-id");
-    let isValid = true;
-
-    if (!userIdInput || userIdInput.value.trim() === "") {
-        setWarning("#error-user", "User ID wajib diisi.");
-        isValid = false;
-    } else {
-        setWarning("#error-user", "");
-    }
-
-    if (game && game.hasServerId && (!serverIdInput || serverIdInput.value.trim() === "")) {
-        setWarning("#error-server", "Server ID wajib diisi.");
-        isValid = false;
-    } else {
-        setWarning("#error-server", "");
-    }
-
-    if (!selectedProduct) {
-        setWarning("#error-product", "Pilih salah satu nominal.");
-        isValid = false;
-    } else {
-        setWarning("#error-product", "");
-    }
-
-    if (!selectedPayment) {
-        setWarning("#error-payment", "Pilih salah satu metode bayar.");
-        isValid = false;
-    } else {
-        setWarning("#error-payment", "");
-    }
-
-    if (!(selectedProduct && selectedPayment && isValid)) {
+    if (!(selectedProduct && selectedPayment)) {
         summary.innerHTML = `<p class="muted">Pilih nominal & metode bayar untuk melihat total.</p>`;
-        priceBox.style.display = "none";
+        totalBox.style.display = "none";
         checkoutBtn.disabled = true;
         return;
     }
@@ -643,14 +507,10 @@ function refreshSummary() {
         <p><span>Metode</span><span>${selectedPayment.name}</span></p>
         ${appliedVoucher ? `<p class="discount"><span>Voucher</span><span>- ${fmtIDR(discount)}</span></p>` : ""}
     `;
-    priceBox.style.display = "flex";
+    
+    totalBox.style.display = "flex";
     totalEl.textContent = fmtIDR(total);
     checkoutBtn.disabled = false;
-}
-
-function setWarning(sel, text) {
-    const el = qs(sel);
-    if (el) el.textContent = text || "";
 }
 
 function validateForm(hasServer) {
@@ -658,77 +518,57 @@ function validateForm(hasServer) {
     const user = qs("#user-id").value.trim();
     const server = hasServer ? qs("#server-id").value.trim() : "";
 
-    setWarning("#error-user", "");
-    setWarning("#error-server", "");
-    setWarning("#error-product", "");
-    setWarning("#error-payment", "");
+    const userError = qs("#error-user");
+    const serverError = qs("#error-server");
+    userError.textContent = "";
+    if (hasServer) serverError.textContent = "";
 
-    if (!user) {
-        setWarning("#error-user", "User ID wajib diisi.");
-        ok = false;
-    }
-    if (hasServer && !server) {
-        setWarning("#error-server", "Server ID wajib diisi.");
-        ok = false;
-    }
-    if (!selectedProduct) {
-        setWarning("#error-product", "Pilih salah satu nominal.");
-        ok = false;
-    }
-    if (!selectedPayment) {
-        setWarning("#error-payment", "Pilih salah satu metode bayar.");
-        ok = false;
-    }
+    if (!user) { userError.textContent = "User ID wajib diisi."; ok = false; }
+    if (hasServer && !server) { serverError.textContent = "Server ID wajib diisi."; ok = false; }
+    if (!selectedProduct) { alert("Pilih nominal terlebih dahulu."); ok = false; }
+    if (!selectedPayment) { alert("Pilih metode pembayaran terlebih dahulu."); ok = false; }
     return ok;
 }
 
 function setupModalClose(modalEl) {
-    const id = modalEl.id;
-    const closeBtn = modalEl.querySelector("[data-close]");
-    if (closeBtn) {
-        closeBtn.addEventListener("click", () => closeModal(id));
-    }
+    modalEl.querySelectorAll("[data-close]").forEach(btn => {
+        btn.addEventListener("click", () => closeModal(modalEl.id));
+    });
 }
 
-/* ================== MODAL CHECKOUT ================== */
 function openCheckout(game) {
     if (!validateForm(game.hasServerId)) return;
 
     const userId = qs("#user-id").value.trim();
     const serverId = game.hasServerId ? qs("#server-id").value.trim() : null;
     const total = finalPrice();
-
     const waMsg = `Halo Admin, saya ingin konfirmasi pesanan top-up:
 *Game:* ${game.name}
 *User ID:* ${userId}
-${game.hasServerId ? `*Server ID:* ${serverId}\n` : ""}
-*Produk:* ${selectedProduct.label}
+${game.hasServerId ? `*Server ID:* ${serverId}\n` : ""}*Produk:* ${selectedProduct.label}
 *Metode:* ${selectedPayment.name}
 *Total:* ${fmtIDR(total)}
 Terima kasih.`;
 
     const modal = qs("#checkout-modal");
+    const paymentInfo = selectedPayment.info;
     let payBlock = '';
 
     if (selectedPayment.type === "qris") {
-        payBlock = `
-            <div class="payment-info qris">
-                <h4>Scan QRIS berikut untuk pembayaran</h4>
-                <img src="${selectedPayment.info.qrisImg}" alt="QRIS">
-            </div>
-        `;
+        payBlock = `<div class="payment-info"><p>Scan QRIS berikut untuk pembayaran</p><img src="${paymentInfo.qrisImg}" alt="QRIS Code"></div>`;
     } else {
         payBlock = `
-            <div class="payment-info bank-ewallet">
-                <h4>Informasi Pembayaran</h4>
+            <div class="payment-info">
+                <p>Silakan transfer ke:</p>
                 <div class="payment-details">
-                    <img src="${selectedPayment.img}" alt="${selectedPayment.name} Logo">
+                    <img src="${selectedPayment.img}" alt="${selectedPayment.name}">
                     <div class="account-info">
-                        <p>${selectedPayment.name}</p>
-                        <p>A/N: ${selectedPayment.info.name || "-"}</p>
-                        <p>${selectedPayment.info.number} <button id="copy-account" class="btn btn-secondary btn-sm">Salin</button></p>
+                        <strong>${selectedPayment.name}</strong>
+                        <span id="account-number">${paymentInfo.number}</span>
+                        <span class="account-name">A/N: ${paymentInfo.name || "-"}</span>
                     </div>
                 </div>
+                <button class="btn btn-secondary mt-3 btn-block" id="copy-account">Salin Nomor</button>
             </div>
         `;
     }
@@ -745,8 +585,9 @@ Terima kasih.`;
                     <p><span>User ID</span><span>${userId}</span></p>
                     ${game.hasServerId ? `<p><span>Server ID</span><span>${serverId}</span></p>` : ""}
                     <p><span>Produk</span><span>${selectedProduct.label}</span></p>
-                    <p><span>Metode</span><span>${selectedPayment.name}</span></p>
+                    <p><span>Harga</span><span>${fmtIDR(selectedProduct.price)}</span></p>
                     ${appliedVoucher ? `<p class="discount"><span>Voucher</span><span>- ${fmtIDR(selectedProduct.price - finalPrice())}</span></p>` : ""}
+                    <p><span>Metode Bayar</span><span>${selectedPayment.name}</span></p>
                     <div class="summary-total">
                         <span>Total Bayar</span>
                         <span class="price-final">${fmtIDR(total)}</span>
@@ -757,16 +598,14 @@ Terima kasih.`;
                     <a href="https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(waMsg)}" target="_blank" class="btn btn-primary btn-block">
                         <i class="fa-brands fa-whatsapp"></i> Chat Admin
                     </a>
-                    <p class="instruction">Setelah bayar, kirim bukti transfer ke Admin agar diproses.</p>
+                    <p class="text-sm">Setelah bayar, kirim bukti transfer ke Admin agar diproses.</p>
                 </div>
             </div>
         </div>
     `;
 
     const copyBtn = qs("#copy-account", modal);
-    if (copyBtn) {
-        copyBtn.addEventListener("click", () => copyToClipboard(selectedPayment.info.number, copyBtn));
-    }
+    if (copyBtn) copyBtn.addEventListener("click", () => copyToClipboard(paymentInfo.number, copyBtn));
     setupModalClose(modal);
     openModal("checkout-modal");
 }
