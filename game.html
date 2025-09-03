@@ -30,7 +30,7 @@
 
             <section class="form-section">
                 <div class="form-card">
-                    <h2>Lengkapi Data</h2>
+                    <h2 class="card-title">1. Masukkan Data Akun</h2>
                     <p class="game-description"></p>
                     <div class="form-group">
                         <label for="user-id">User ID</label>
@@ -43,19 +43,31 @@
                 </div>
 
                 <div class="form-card">
-                    <h2>Pilih Nominal</h2>
+                    <h2 class="card-title">2. Pilih Nominal</h2>
                     <div class="product-grid" id="product-grid">
                         </div>
                 </div>
 
                 <div class="form-card">
-                    <h2>Pilih Pembayaran</h2>
+                    <h2 class="card-title">3. Pilih Pembayaran</h2>
                     <div class="payment-grid" id="payment-grid">
                         </div>
                 </div>
 
                 <div class="form-card">
-                    <h2>Ringkasan</h2>
+                    <h2 class="card-title">4. Kode Voucher (Opsional)</h2>
+                    <div class="voucher-section">
+                        <input type="text" id="voucher-input" placeholder="Masukkan Kode Voucher">
+                        <button id="voucher-btn" class="btn btn-apply">Gunakan</button>
+                    </div>
+                    <div class="voucher-status-container">
+                        <span id="voucher-status"></span>
+                        <button id="voucher-list-btn" class="btn btn-sm btn-link">Lihat Daftar Promo</button>
+                    </div>
+                </div>
+
+                <div class="form-card summary-card">
+                    <h2 class="card-title">5. Konfirmasi Pembelian</h2>
                     <table class="summary-table">
                         <tr>
                             <td>Produk</td>
@@ -65,16 +77,6 @@
                             <td>Metode Pembayaran</td>
                             <td id="summary-payment">-</td>
                         </tr>
-                    </table>
-                    <div class="voucher-section">
-                        <input type="text" id="voucher-input" placeholder="Masukkan Kode Voucher">
-                        <button id="voucher-btn" class="btn btn-apply">Gunakan</button>
-                    </div>
-                    <div class="voucher-status-container">
-                        <span id="voucher-status"></span>
-                        <button id="voucher-list-btn" class="btn btn-sm btn-link">Lihat Daftar Promo</button>
-                    </div>
-                    <table class="summary-table">
                         <tr id="summary-discount-row" style="display: none;">
                             <td>Diskon</td>
                             <td id="summary-discount"></td>
