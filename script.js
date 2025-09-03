@@ -11,11 +11,11 @@ const VOUCHERS = [
 ];
 
 const GAMES = [
-    { key: "free-fire", name: "Free Fire", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", bannerImg: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", hasServerId: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game.", url: "game.html?key=free-fire" },
-    { key: "mobile-legends", name: "Mobile Legends", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", bannerImg: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", hasServerId: true, guide: "Temukan User ID dan Server ID di bawah nama panggilan saat Anda mengklik avatar profil.", url: "game.html?key=mobile-legends" },
-    { key: "honor-of-kings", name: "Honor of Kings", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", bannerImg: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", hasServerId: false, guide: "User ID Anda ada di bagian bawah layar saat Anda membuka profil.", url: "game.html?key=honor-of-kings" },
-    { key: "genshin-impact", name: "Genshin Impact", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", bannerImg: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", hasServerId: false, guide: "User ID (9 digit) terletak di sudut kanan bawah layar saat Anda berada di dalam game.", url: "game.html?key=genshin-impact" },
-    { key: "roblox", name: "Roblox", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", bannerImg: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", hasServerId: false, guide: "Top up menggunakan Gift Card yang akan dikirim langsung ke akun Anda.", url: "game.html?key=roblox" },
+    { key: "free-fire", name: "Free Fire", img: "https://i.supaimg.com/e0be7254-ecdb-4164-a645-8eed8c3aca26.jpg", bannerImg: "https://i.supaimg.com/e0be7254-ecdb-4164-a645-8eed8c3aca26.jpg", hasServerId: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game.", url: "game.html?key=free-fire" },
+    { key: "mobile-legends", name: "Mobile Legends", img: "https://i.supaimg.com/3509117b-d657-4bef-8800-5f81c107801c.jpg", bannerImg: "https://i.supaimg.com/3509117b-d657-4bef-8800-5f81c107801c.jpg", hasServerId: true, guide: "Temukan User ID dan Server ID di bawah nama panggilan saat Anda mengklik avatar profil.", url: "game.html?key=mobile-legends" },
+    { key: "honor-of-kings", name: "Honor of Kings", img: "https://i.supaimg.com/61a87635-261c-456f-b1c7-702232587aa7.png", bannerImg: "https://i.supaimg.com/61a87635-261c-456f-b1c7-702232587aa7.png", hasServerId: false, guide: "User ID Anda ada di bagian bawah layar saat Anda membuka profil.", url: "game.html?key=honor-of-kings" },
+    { key: "genshin-impact", name: "Genshin Impact", img: "https://i.supaimg.com/6e96cc62-78cc-4c6c-992c-a37e723dd2dc.jpg", bannerImg: "https://i.supaimg.com/6e96cc62-78cc-4c6c-992c-a37e723dd2dc.jpg", hasServerId: false, guide: "User ID (9 digit) terletak di sudut kanan bawah layar saat Anda berada di dalam game.", url: "game.html?key=genshin-impact" },
+    { key: "roblox", name: "Roblox", img: "https://i.supaimg.com/cb1d99c5-3cbb-4eae-b1f3-6c6ad4f7d791.jpg", bannerImg: "https://i.supaimg.com/cb1d99c5-3cbb-4eae-b1f3-6c6ad4f7d791.jpg", hasServerId: false, guide: "Top up menggunakan Gift Card yang akan dikirim langsung ke akun Anda.", url: "game.html?key=roblox" },
     { key: "super-sus", name: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", bannerImg: "https://files.catbox.moe/j61uny.jpg", hasServerId: false, guide: "User ID dapat ditemukan di menu profil dalam game.", url: "game.html?key=super-sus" },
     { key: "clash-of-clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", bannerImg: "https://files.catbox.moe/6aia0n.jpg", hasServerId: false, guide: "User ID (Tag Pemain) adalah kombinasi huruf dan angka yang dimulai dengan tanda pagar (#).", url: "game.html?key=clash-of-clans" },
     { key: "blood-strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", bannerImg: "https://files.catbox.moe/3y066i.jpg", hasServerId: false, guide: "ID Anda dapat ditemukan di profil dalam game.", url: "game.html?key=blood-strike" },
@@ -28,10 +28,11 @@ const GAMES = [
 ];
 
 const PROMOS = [
-    { title: "Top Up Diamond FF Termurah", img: "https://files.catbox.moe/wz282d.png", gameKey: "free-fire" },
-    { title: "Top Up Starlight MLBB Harga Cuan", img: "https://files.catbox.moe/97a2w3.jpg", gameKey: "mobile-legends" },
-    { title: "Promo UC PUBG Mobile Khusus Member", img: "https://files.catbox.moe/c4c51z.jpg", gameKey: "pubg-mobile" },
-    { title: "Blessing of the Welkin Moon Genshin", img: "https://files.catbox.moe/o3d2x9.jpg", gameKey: "genshin-impact" },
+    { title: "Top Up Free Fire Termurah", img: "https://i.supaimg.com/e0be7254-ecdb-4164-a645-8eed8c3aca26.jpg", gameKey: "free-fire" },
+    { title: "Top Up MLBB Termurah", img: "https://i.supaimg.com/3509117b-d657-4bef-8800-5f81c107801c.jpg", gameKey: "mobile-legends" },
+    { title: "Top Up Honor of Kings Termurah", img: "https://i.supaimg.com/61a87635-261c-456f-b1c7-702232587aa7.png", gameKey: "honor-of-kings" },
+    { title: "Promo Genshin Impact", img: "https://i.supaimg.com/6e96cc62-78cc-4c6c-992c-a37e723dd2dc.jpg", gameKey: "genshin-impact" },
+    { title: "Promo Roblox", img: "https://i.supaimg.com/cb1d99c5-3cbb-4eae-b1f3-6c6ad4f7d791.jpg", gameKey: "roblox" },
 ];
 
 const PAYMENTS = [
@@ -702,7 +703,8 @@ function openCheckoutModal() {
 
     const copyBtn = qs("#copy-account-btn", modal);
     if (copyBtn) {
-        copyBtn.addEventListener("click", () => copyToClipboard(selectedPayment.info.number, copyBtn));
+        const accountNumber = qs("#account-number", modal).textContent;
+        copyBtn.addEventListener("click", () => copyToClipboard(accountNumber, copyBtn));
     }
 
     openModal("checkout-modal");
@@ -742,9 +744,11 @@ function closeModal(id) {
 
 function copyToClipboard(text, btn) {
     navigator.clipboard.writeText(text).then(() => {
-        const old = btn.textContent;
+        const originalText = btn.textContent;
         btn.textContent = "Disalin!";
-        setTimeout(() => btn.textContent = old, 1500);
+        setTimeout(() => {
+            btn.textContent = originalText;
+        }, 1500); // Durasi animasi 1.5 detik
     }).catch(err => {
         console.error('Failed to copy text: ', err);
         alert('Gagal menyalin. Silakan salin manual.');
