@@ -37,7 +37,7 @@ const PROMOS = [
 const PAYMENTS = [
     { id: "dana", name: "DANA", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
     { id: "gopay", name: "GoPay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", type: "ewallet", info: { number: "082116690164", name: "TI** SUT***" } },
-    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", type: "qris", info: { qrisImg: "https://files.catbox.moe/5688406c-3c9f-4990-b77a-4f1eaba082ad.png" } },
+    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", type: "qris", info: { qrisImg: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg" } },
     { id: "krom", name: "Krom Bank", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", type: "bank_transfer", info: { number: "770072009565", name: "TI** SUT***" } },
 ];
 
@@ -340,9 +340,9 @@ function setupGamePage(gameKeyFromUrl) {
     qs(".game-description").textContent = currentGame.guide;
 
     if (currentGame.hasServerId) {
-        qs("#server-id").style.display = "block";
+        qs("#server-id-group").style.display = "block";
     } else {
-        qs("#server-id").style.display = "none";
+        qs("#server-id-group").style.display = "none";
     }
 
     renderProducts(currentGame.key);
@@ -353,17 +353,25 @@ function setupGamePage(gameKeyFromUrl) {
 
 function setupEventListeners() {
     if (!qs("#checkout-btn")) return;
+    const voucherInput = qs("#voucher-input");
+    const voucherApplyBtn = qs("#voucher-apply-btn");
+
     qs("#user-id").addEventListener("input", checkProgress);
     if (currentGame.hasServerId) {
         qs("#server-id").addEventListener("input", checkProgress);
     }
-    qs("#voucher-btn").addEventListener("click", applyVoucher);
-    qs("#voucher-input").addEventListener("input", () => {
+    
+    // Logic untuk mengaktifkan/menonaktifkan tombol terapkan voucher
+    voucherInput.addEventListener("input", () => {
+        voucherApplyBtn.disabled = voucherInput.value.trim() === "";
         appliedVoucher = null;
         setVoucherStatus("");
         refreshSummary();
         renderPayments();
     });
+
+    voucherApplyBtn.addEventListener("click", applyVoucher);
+    
     qs("#voucher-list-btn").addEventListener("click", showVoucherListModal);
     qs("#checkout-btn").addEventListener("click", openCheckoutModal);
     qs("#modal-overlay").addEventListener("click", (e) => {
@@ -400,6 +408,7 @@ function renderProducts(gameKey) {
                 selectedPayment = null;
                 appliedVoucher = null;
                 qs("#voucher-input").value = "";
+                qs("#voucher-apply-btn").disabled = true;
                 setVoucherStatus("");
                 refreshSelections();
                 checkProgress();
@@ -643,6 +652,7 @@ function openCheckoutModal() {
                 <div class="qris-image-container">
                     <img src="${selectedPayment.info.qrisImg}" alt="QRIS Code" class="qris-image">
                 </div>
+                <p class="instruction">Scan kode QRIS ini dengan aplikasi e-wallet atau mobile banking Anda.</p>
             </div>
         `;
     } else {
