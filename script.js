@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderPromoSlider();
     } else if (el.gameBanner) {
         const urlParams = new URLSearchParams(window.location.search);
-        const gameKey = url.Params.get('key');
+        const gameKey = urlParams.get('key');
         if (gameKey) {
             setupGamePage(gameKey);
             setupEventListeners();
