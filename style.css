@@ -448,6 +448,13 @@ a:hover {
     background-color: var(--secondary-color);
 }
 
+.voucher-input-group button[disabled] {
+    background-color: var(--light-border);
+    color: var(--light-text-secondary);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
 .voucher-extra {
     display: flex;
     justify-content: space-between;
@@ -659,6 +666,8 @@ a:hover {
 .modal-content {
     padding: 1.5rem;
     text-align: left;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .modal-content-list {
