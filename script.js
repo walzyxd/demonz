@@ -342,8 +342,7 @@ function setupGamePage(gameKeyFromUrl) {
     el.gameDescription.textContent = currentGame.guide;
     el.serverIdGroup.style.display = currentGame.hasServerId ? "block" : "none";
     renderProducts(currentGame.key);
-    renderPayments();
-    refreshSelections();
+    refreshSelections(); // Call to set initial state of summary
     checkProgress();
 }
 
@@ -358,7 +357,7 @@ function setupEventListeners() {
         appliedVoucher = null;
         setVoucherStatus("");
         refreshSummary();
-        renderPayments();
+        renderPayments(); // Re-render payments to show base prices
     });
     el.voucherListBtn.addEventListener("click", showVoucherListModal);
     el.checkoutBtn.addEventListener("click", openCheckoutModal);
@@ -400,22 +399,18 @@ function handleProductClick(e) {
 }
 
 function renderPayments() {
-    if (PAYMENTS.length > 0) {
-        el.paymentGrid.innerHTML = PAYMENTS.map(pay => {
-            const price = selectedProduct ? finalPrice() : 0;
-            const priceHtml = selectedProduct ? `<div class="payment-price">${fmtIDR(price)}</div>` : '';
-            return `
-                <div class="payment-card-modern" data-id="${pay.id}">
-                    <img src="${pay.img}" alt="${pay.name}">
-                    <div class="payment-label">${pay.name}</div>
-                    ${priceHtml}
-                </div>
-            `;
-        }).join("");
-        qsa(".payment-card-modern", el.paymentGrid).forEach(card => card.addEventListener("click", handlePaymentClick));
-    } else {
-        el.paymentGrid.innerHTML = `<p class="empty-message">Metode pembayaran belum tersedia.</p>`;
-    }
+    const paymentsHtml = PAYMENTS.map(pay => {
+        const priceHtml = selectedProduct ? `<div class="payment-price">${fmtIDR(finalPrice())}</div>` : '';
+        return `
+            <div class="payment-card-modern" data-id="${pay.id}">
+                <img src="${pay.img}" alt="${pay.name}">
+                <div class="payment-label">${pay.name}</div>
+                ${priceHtml}
+            </div>
+        `;
+    }).join("");
+    el.paymentGrid.innerHTML = paymentsHtml;
+    qsa(".payment-card-modern", el.paymentGrid).forEach(card => card.addEventListener("click", handlePaymentClick));
 }
 
 function handlePaymentClick(e) {
@@ -537,4 +532,25 @@ function showErrorModal(message) {
             <h3>Peringatan!</h3>
             <button class="modal-close-btn" data-close>&times;</button>
         </div>
-        
+        <div class="modal-content" style="text-align: center;">
+            <p>${message}</p>
+            <div style="margin-top: 1rem;"><button class="btn btn-confirm" onclick="closeModal(el.errorModal)">Oke</button></div>
+        </div>
+    `;
+    openModal(el.errorModal);
+}
+
+function validateForm() {
+    const userId = el.userIdInput?.value.trim();
+    const serverId = currentGame?.hasServerId ? el.serverIdInput?.value.trim() : "ok";
+    if (!userId) { showErrorModal("User ID wajib diisi."); return false; }
+    if (currentGame?.hasServerId && !serverId) { showErrorModal("Server ID wajib diisi."); return false; }
+    if (!selectedProduct) { showErrorModal("Pilih nominal top-up."); return false; }
+    if (!selectedPayment) { showErrorModal("Pilih metode pembayaran."); return false; }
+    return true;
+}
+
+function openCheckoutModal() {
+    if (!validateForm()) return;
+    const userId = el.userIdInput.value.trim();
+    const serverId = currentGame.hasServerId ? el.serverId
