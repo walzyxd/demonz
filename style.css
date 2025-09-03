@@ -626,6 +626,8 @@ a:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.9);
+    display: flex;
+    flex-direction: column;
 }
 
 .modal.active {
@@ -659,12 +661,21 @@ a:hover {
 .modal-content {
     padding: 1.5rem;
     text-align: left;
+    overflow-y: auto; /* Memungkinkan konten digulir */
+    max-height: 70vh; /* Batas tinggi konten */
 }
 
 .modal-content-list {
     padding: 0.5rem 1.5rem 1.5rem;
     max-height: 500px;
     overflow-y: auto;
+}
+
+.modal-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--light-border);
+    background-color: var(--light-bg);
+    text-align: center;
 }
 
 .voucher-item {
@@ -818,8 +829,7 @@ a:hover {
     .footer-links a {
         margin: 0;
     }
-
-    /* Perbaikan utama untuk modal di HP */
+    
     .modal {
         width: 95%;
         max-width: unset;
@@ -827,12 +837,12 @@ a:hover {
         left: 50%;
         transform: translate(-50%, -50%) scale(1);
         position: fixed;
-        max-height: 90vh;
-        overflow-y: auto;
+        max-height: 90vh; /* Memungkinkan seluruh modal digulir jika terlalu tinggi */
     }
 
-    .modal-content, .modal-content-list {
-        max-height: 70vh; /* Konten modal jadi scrollable */
+    /* Memungkinkan konten di dalam modal digulir, menjaga header dan footer tetap di tempatnya */
+    .modal-content {
+        max-height: 70vh;
         overflow-y: auto;
     }
     
