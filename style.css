@@ -496,6 +496,8 @@ input[type="text"]:focus {
     max-width: 500px;
     transform: translateY(-20px);
     transition: transform 0.3s ease;
+    max-height: 90vh; /* Make modal scrollable */
+    overflow-y: auto;
 }
 
 .modal.active {
@@ -508,6 +510,9 @@ input[type="text"]:focus {
     align-items: center;
     padding: 1rem 1.5rem;
     border-bottom: 1px solid var(--border-color);
+    position: sticky; /* Make header sticky */
+    top: 0;
+    background-color: var(--card-bg-color);
 }
 
 .modal-header h3 {
@@ -535,8 +540,6 @@ input[type="text"]:focus {
 
 .modal-content-list {
     padding: 1rem 1.5rem;
-    max-height: 70vh;
-    overflow-y: auto;
 }
 
 .voucher-item {
