@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walz Shop - Top Up Game</title>
+    <title>Top Up - Walz Shop</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg" type="image/x-icon">
@@ -11,7 +11,7 @@
 <body>
     <header class="header">
         <div class="container">
-            <a href="index.html" class="logo">Walz Shop</a>
+            <h1 class="logo">Walz Shop</h1>
             <nav class="nav-menu">
                 <a href="index.html" class="nav-link">Beranda</a>
                 <a href="#" class="nav-link">Tentang Kami</a>
@@ -21,81 +21,72 @@
     </header>
 
     <main class="main-content">
-        <div class="container game-page-container">
-            <div class="game-banner-area">
-                <img id="game-banner" class="game-banner" src="" alt="Game Banner">
-            </div>
-
-            <div class="top-up-flow">
-                <section class="step-card">
-                    <div class="step-header">
-                        <span class="step-number">1</span>
-                        <h3>Masukkan Data Akun</h3>
-                    </div>
-                    <div class="step-content">
-                        <p class="game-description"></p>
-                        <div class="input-group">
-                            <label for="user-id">User ID</label>
-                            <input type="text" id="user-id" placeholder="Masukkan User ID Anda">
-                        </div>
-                        <div class="input-group" id="server-id-group">
-                            <label for="server-id">Server ID</label>
-                            <input type="text" id="server-id" placeholder="Masukkan Server ID Anda">
-                        </div>
-                    </div>
-                </section>
-
-                <section class="step-card">
-                    <div class="step-header">
-                        <span class="step-number">2</span>
-                        <h3>Pilih Nominal</h3>
-                    </div>
-                    <div class="step-content">
-                        <div class="product-grid" id="product-grid">
-                            </div>
-                    </div>
-                </section>
-
-                <section class="step-card">
-                    <div class="step-header">
-                        <span class="step-number">3</span>
-                        <h3>Pilih Pembayaran</h3>
-                    </div>
-                    <div class="step-content">
-                        <div class="payment-grid" id="payment-grid">
-                            </div>
-                    </div>
-                </section>
-
-                <section class="step-card">
-                    <div class="step-header">
-                        <span class="step-number">4</span>
-                        <h3>Masukkan Kode Voucher (Opsional)</h3>
-                    </div>
-                    <div class="step-content">
-                        <div class="voucher-input-group">
-                            <input type="text" id="voucher-input" placeholder="Masukkan kode voucher">
-                            <button id="voucher-btn" class="btn btn-sm">Gunakan</button>
-                        </div>
-                        <p id="voucher-status" class="status-text"></p>
-                        <button id="voucher-list-btn" class="btn btn-list">Lihat Daftar Promo</button>
-                    </div>
-                </section>
-            </div>
-            
-            <aside class="summary-card">
-                <h3>Ringkasan Pembelian</h3>
-                <table class="summary-table">
-                    <tr><td>Produk</td><td id="summary-product">-</td></tr>
-                    <tr id="summary-discount-row" style="display: none;"><td>Diskon</td><td id="summary-discount" class="discount-value">-</td></tr>
-                    <tr><td>Metode Bayar</td><td id="summary-payment">-</td></tr>
-                </table>
-                <div class="summary-total">
-                    <span>Total Pembayaran</span>
-                    <span id="summary-total">Rp0</span>
+        <div class="container">
+            <section class="game-top-section">
+                <div class="game-banner-container">
+                    <img id="game-banner" src="" alt="Game Banner" class="game-banner">
                 </div>
-                <button id="checkout-btn" class="btn btn-confirm" disabled>Bayar Sekarang</button>
-            </aside>
+            </section>
+
+            <section class="form-section">
+                <div class="form-card">
+                    <h2>Lengkapi Data</h2>
+                    <p class="game-description"></p>
+                    <div class="form-group">
+                        <label for="user-id">User ID</label>
+                        <input type="text" id="user-id" placeholder="Masukkan User ID Anda" required>
+                    </div>
+                    <div class="form-group" id="server-id-group" style="display: none;">
+                        <label for="server-id">Server ID</label>
+                        <input type="text" id="server-id" placeholder="Masukkan Server ID Anda" required>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <h2>Pilih Nominal</h2>
+                    <div class="product-grid" id="product-grid">
+                        </div>
+                </div>
+
+                <div class="form-card">
+                    <h2>Pilih Pembayaran</h2>
+                    <div class="payment-grid" id="payment-grid">
+                        </div>
+                </div>
+
+                <div class="form-card">
+                    <h2>Ringkasan</h2>
+                    <table class="summary-table">
+                        <tr>
+                            <td>Produk</td>
+                            <td id="summary-product">-</td>
+                        </tr>
+                        <tr>
+                            <td>Metode Pembayaran</td>
+                            <td id="summary-payment">-</td>
+                        </tr>
+                    </table>
+                    <div class="voucher-section">
+                        <input type="text" id="voucher-input" placeholder="Masukkan Kode Voucher">
+                        <button id="voucher-btn" class="btn btn-apply">Gunakan</button>
+                    </div>
+                    <div class="voucher-status-container">
+                        <span id="voucher-status"></span>
+                        <button id="voucher-list-btn" class="btn btn-sm btn-link">Lihat Daftar Promo</button>
+                    </div>
+                    <table class="summary-table">
+                        <tr id="summary-discount-row" style="display: none;">
+                            <td>Diskon</td>
+                            <td id="summary-discount"></td>
+                        </tr>
+                    </table>
+                    <div class="summary-total">
+                        <span>Total Pembayaran</span>
+                        <span id="summary-total">Rp0</span>
+                    </div>
+                    <button id="checkout-btn" class="btn btn-checkout" disabled>Beli Sekarang</button>
+                </div>
+            </section>
         </div>
     </main>
 
@@ -105,10 +96,10 @@
         </div>
     </footer>
 
-    <div class="modal-overlay" id="modal-overlay">
-        <div class="modal" id="checkout-modal"></div>
-        <div class="modal" id="promo-list-modal"></div>
-        <div class="modal" id="error-modal"></div>
+    <div id="modal-overlay" class="modal-overlay">
+        <div id="promo-list-modal" class="modal"></div>
+        <div id="error-modal" class="modal"></div>
+        <div id="checkout-modal" class="modal"></div>
     </div>
 
     <script src="script.js"></script>
