@@ -28,11 +28,11 @@ const GAMES = [
 ];
 
 const PROMOS = [
-    { title: "Top Up Free Fire Termurah", img: "https://i.supaimg.com/e0be7254-ecdb-4164-a645-8eed8c3aca26.jpg", gameKey: "free-fire" },
-    { title: "Top Up MLBB Termurah", img: "https://i.supaimg.com/3509117b-d657-4bef-8800-5f81c107801c.jpg", gameKey: "mobile-legends" },
-    { title: "Top Up Honor of Kings Termurah", img: "https://i.supaimg.com/61a87635-261c-456f-b1c7-702232587aa7.png", gameKey: "honor-of-kings" },
-    { title: "Promo Genshin Impact", img: "https://i.supaimg.com/6e96cc62-78cc-4c6c-992c-a37e723dd2dc.jpg", gameKey: "genshin-impact" },
-    { title: "Promo Roblox", img: "https://i.supaimg.com/cb1d99c5-3cbb-4eae-b1f3-6c6ad4f7d791.jpg", gameKey: "roblox" },
+    { title: "Top Up Free Fire Termurah", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", gameKey: "free-fire" },
+    { title: "Top Up MLBB Termurah", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", gameKey: "mobile-legends" },
+    { title: "Top Up Honor of Kings Termurah", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", gameKey: "honor-of-kings" },
+    { title: "Promo Genshin Impact", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", gameKey: "genshin-impact" },
+    { title: "Promo Roblox", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", gameKey: "roblox" },
 ];
 
 const PAYMENTS = [
@@ -235,11 +235,11 @@ const PRODUCTS = {
 
 /* --- GAMBAR UNTUK SLIDER OTOMATIS SAJA --- */
 const PROMOS_SLIDER = [
-    { title: "Top Up Free Fire Termurah", img: "https://i.supaimg.com/e0be7254-ecdb-4164-a645-8eed8c3aca26.jpg", gameKey: "free-fire" },
-    { title: "Top Up MLBB Termurah", img: "https://i.supaimg.com/3509117b-d657-4bef-8800-5f81c107801c.jpg", gameKey: "mobile-legends" },
-    { title: "Top Up Honor of Kings Termurah", img: "https://i.supaimg.com/61a87635-261c-456f-b1c7-702232587aa7.png", gameKey: "honor-of-kings" },
-    { title: "Promo Genshin Impact", img: "https://i.supaimg.com/6e96cc62-78cc-4c6c-992c-a37e723dd2dc.jpg", gameKey: "genshin-impact" },
-    { title: "Promo Roblox", img: "https://i.supaimg.com/cb1d99c5-3cbb-4eae-b1f3-6c6ad4f7d791.jpg", gameKey: "roblox" },
+    { title: "Top Up Free Fire Termurah", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", gameKey: "free-fire" },
+    { title: "Top Up MLBB Termurah", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", gameKey: "mobile-legends" },
+    { title: "Top Up Honor of Kings Termurah", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", gameKey: "honor-of-kings" },
+    { title: "Promo Genshin Impact", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", gameKey: "genshin-impact" },
+    { title: "Promo Roblox", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", gameKey: "roblox" },
 ];
 
 
@@ -292,7 +292,7 @@ function renderPromoSlider() {
     let slides = [];
     track.innerHTML = "";
     dots.innerHTML = "";
-    PROMOS_SLIDER.forEach((p, idx) => {
+    PROMOS.forEach((p, idx) => {
         const slide = document.createElement("a");
         slide.href = GAMES.find(g => g.key === p.gameKey)?.url || "#";
         slide.style.backgroundImage = `url(${p.img})`;
@@ -754,7 +754,7 @@ function closeModal(id) {
 
 function copyToClipboard(text, btn) {
     if (!navigator.clipboard) {
-        // Fallback for older browsers
+        // Fallback untuk browser lama
         const textarea = document.createElement('textarea');
         textarea.value = text;
         document.body.appendChild(textarea);
