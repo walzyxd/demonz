@@ -3,56 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walz Shop - Top Up Games Murah & Cepat</title>
+    <title>Walz Shop - Top Up Game Murah dan Terpercaya</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="https://files.catbox.moe/g2447o.png" type="image/x-icon">
 </head>
 <body>
-
-    <header class="header">
-        <div class="container">
-            <a href="index.html" class="logo">
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo">
                 <i class="fas fa-gem logo-icon"></i>
-                <span class="logo-text">Walz Shop</span>
-            </a>
-            <nav class="nav">
-                <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
-                <a href="#"><i class="fas fa-info-circle"></i> Tentang</a>
-                <a href="#"><i class="fas fa-headset"></i> Kontak</a>
+                <a href="index.html">Walz Shop</a>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html" class="active">Beranda</a>
+                <a href="#games">Top Up</a>
+                <a href="#about-us">Tentang Kami</a>
             </nav>
         </div>
     </header>
 
-    <main class="main">
-        <div class="container">
-            <section class="promo-section">
-                <div class="slider" id="promo-slider-container">
-                    <div class="slider__track" id="promo-slider"></div>
-                    <div class="slider__dots" id="slider-dots"></div>
-                </div>
-            </section>
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <h1>Top Up Game Cepat, Aman, dan Murah</h1>
+                <p>Ribuan gamer telah mempercayai kami. Dapatkan Diamond, UC, dan Credits untuk game favorit Anda dengan harga terbaik!</p>
+                <a href="#games" class="btn btn-primary">Top Up Sekarang</a>
+            </div>
+        </section>
 
-            <section class="games-section">
-                <h2 class="section-title">Pilih Game Favoritmu</h2>
-                <div class="games-grid" id="games-grid">
+        <section id="promo" class="promo-section container">
+            <div class="slider">
+                <div class="slider__track" id="promo-slider"></div>
+                <div class="slider__dots" id="slider-dots"></div>
+            </div>
+        </section>
+        
+        <section id="games" class="games-section container">
+            <h2 class="section-title">Pilih Game Favoritmu</h2>
+            <div class="games-grid" id="games-grid">
+                </div>
+        </section>
+
+        <section id="about-us" class="about-us-section">
+            <div class="container">
+                <h2 class="section-title">Tentang Walz Shop</h2>
+                <p>Walz Shop adalah tempat terbaik untuk melakukan top up game favorit Anda. Kami menyediakan berbagai macam produk game dengan harga yang sangat terjangkau, proses yang cepat, dan jaminan keamanan transaksi. Kepuasan Anda adalah prioritas kami.</p>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Aman dan Terpercaya</h3>
+                        <p>Transaksi dijamin aman, tanpa risiko penipuan atau banned. Kami menjaga data Anda dengan baik.</p>
                     </div>
-            </section>
-        </div>
+                    <div class="feature-item">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Proses Cepat</h3>
+                        <p>Setelah pembayaran dikonfirmasi, produk akan langsung masuk ke akun game Anda dalam hitungan menit.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <h3>Harga Termurah</h3>
+                        <p>Dapatkan harga paling kompetitif di pasar. Kami selalu memberikan promo dan diskon spesial.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Walz Shop. Semua hak dilindungi.</p>
-            <div class="footer-links">
-                <a href="#">Kebijakan Privasi</a>
-                <a href="#">Syarat & Ketentuan</a>
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-col about-col">
+                <h3>Walz Shop</h3>
+                <p>Top Up Game Murah, Cepat, dan Terpercaya</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
             </div>
-            <div class="social-media">
-                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+            <div class="footer-col">
+                <h3>Layanan</h3>
+                <ul>
+                    <li><a href="#games">Top Up Diamond</a></li>
+                    <li><a href="#">Top Up UC</a></li>
+                    <li><a href="#">Bantuan</a></li>
+                </ul>
             </div>
+            <div class="footer-col">
+                <h3>Informasi</h3>
+                <ul>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                    <li><a href="#">Syarat dan Ketentuan</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col contact-col">
+                <h3>Kontak</h3>
+                <p><i class="fas fa-envelope"></i> walzlonely@gmail.com</p>
+                <p><i class="fab fa-whatsapp"></i> +62 822-9890-2274</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Walz Shop. All Rights Reserved.</p>
         </div>
     </footer>
 
