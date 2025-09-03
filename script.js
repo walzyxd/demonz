@@ -3,11 +3,11 @@ const ADMIN_WA = "6282298902274";
 const ADMIN_EMAIL = "walzlonely@gmail.com";
 
 const VOUCHERS = [
-    { code: "WALZSHOP", percent: 5, description: "Diskon 5% untuk semua produk" },
-    { code: "WALZPROMO", percent: 5, description: "Promo khusus 5% semua produk" },
-    { code: "HEMAT5000", percent: 0, fixed: 5000, minPurchase: 50000, description: "Diskon Rp5.000 (min. Rp50.000)" },
-    { code: "TOPUPSPECIAL", percent: 15, description: "Diskon 15% untuk top up pertama" },
-    { code: "FREEDIAMOND", percent: 0, fixed: 20000, maxDiscount: 20000, description: "Diskon Rp20.000 (maks. Rp20.000)" }
+    { code: "WALZSHOP", percent: 2, description: "Diskon 2% untuk semua produk" },
+    { code: "WALZPROMO", percent: 3, description: "Promo khusus 3% semua produk" },
+    { code: "HEMAT2000", percent: 0, fixed: 2000, minPurchase: 50000, description: "Diskon Rp2.000 (min. Rp50.000)" },
+    { code: "TOPUPSPECIAL", percent: 5, description: "Diskon 5% untuk top up pertama" },
+    { code: "FREEDIAMOND", percent: 0, fixed: 5000, maxDiscount: 5000, description: "Diskon Rp5.000 (maks. Rp5.000)" }
 ];
 
 const GAMES = [
@@ -20,11 +20,11 @@ const GAMES = [
     { key: "clash-of-clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", bannerImg: "https://files.catbox.moe/6aia0n.jpg", hasServerId: false, guide: "User ID (Tag Pemain) adalah kombinasi huruf dan angka yang dimulai dengan tanda pagar (#).", url: "game.html?key=clash-of-clans" },
     { key: "blood-strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", bannerImg: "https://files.catbox.moe/3y066i.jpg", hasServerId: false, guide: "ID Anda dapat ditemukan di profil dalam game.", url: "game.html?key=blood-strike" },
     { key: "pubg-mobile", name: "PUBG Mobile", img: "https://files.catbox.moe/tatuo9.jpg", bannerImg: "https://files.catbox.moe/tatuo9.jpg", hasServerId: false, guide: "Temukan User ID Anda di sudut kanan atas lobi game saat mengklik profil.", url: "game.html?key=pubg-mobile" },
-    { key: "garena-delta-force", name: "Garena Delta Force", img: "https://files.catbox.moe/k3b8d0.png", bannerImg: "https://files.catbox.moe/k3b8d0.png", hasServerId: false, guide: "Buka menu profil di game dan Anda dapat menemukan User ID Anda.", url: "game.html?key=garena-delta-force" },
-    { key: "call-of-duty", name: "Call Of Duty", img: "https://files.catbox.moe/k3b8d0.png", bannerImg: "https://files.catbox.moe/k3b8d0.png", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil game.", url: "game.html?key=call-of-duty" },
-    { key: "valorant", name: "Valorant", img: "https://files.catbox.moe/k3b8d0.png", bannerImg: "https://files.catbox.moe/k3b8d0.png", hasServerId: false, guide: "User ID (Riot ID) dapat ditemukan di bawah nama akun Anda di bagian atas layar.", url: "game.html?key=valorant" },
-    { key: "eggy-party", name: "Eggy Party", img: "https://files.catbox.moe/k3b8d0.png", bannerImg: "https://files.catbox.moe/k3b8d0.png", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil dalam game.", url: "game.html?key=eggy-party" },
-    { key: "garena-undawn", name: "Garena Undawn", img: "https://files.catbox.moe/k3b8d0.png", bannerImg: "https://files.catbox.moe/k3b8d0.png", hasServerId: false, guide: "Buka menu profil dan User ID Anda akan terlihat.", url: "game.html?key=garena-undawn" },
+    { key: "garena-delta-force", name: "Garena Delta Force", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", bannerImg: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", hasServerId: false, guide: "Buka menu profil di game dan Anda dapat menemukan User ID Anda.", url: "game.html?key=garena-delta-force" },
+    { key: "call-of-duty", name: "Call Of Duty", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", bannerImg: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil game.", url: "game.html?key=call-of-duty" },
+    { key: "valorant", name: "Valorant", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", bannerImg: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", hasServerId: false, guide: "User ID (Riot ID) dapat ditemukan di bawah nama akun Anda di bagian atas layar.", url: "game.html?key=valorant" },
+    { key: "eggy-party", name: "Eggy Party", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", bannerImg: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil dalam game.", url: "game.html?key=eggy-party" },
+    { key: "garena-undawn", name: "Garena Undawn", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", bannerImg: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", hasServerId: false, guide: "Buka menu profil dan User ID Anda akan terlihat.", url: "game.html?key=garena-undawn" },
 ];
 
 const PROMOS = [
