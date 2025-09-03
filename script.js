@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderPromoSlider();
     } else if (el.gameBanner) {
         const urlParams = new URLSearchParams(window.location.search);
-        const gameKey = urlParams.get('key');
+        const gameKey = url.Params.get('key');
         if (gameKey) {
             setupGamePage(gameKey);
             setupEventListeners();
@@ -553,4 +553,67 @@ function validateForm() {
 function openCheckoutModal() {
     if (!validateForm()) return;
     const userId = el.userIdInput.value.trim();
-    const serverId = currentGame.hasServerId ? el.serverId
+    const serverId = currentGame.hasServerId ? el.serverIdInput.value.trim() : null;
+    const total = finalPrice();
+    const discountAmount = selectedProduct.price - total;
+    const waMsg = encodeURIComponent(`Halo admin, saya mau top-up:\n*Game:* ${currentGame.name}\n*User ID:* ${userId}\n${serverId ? `*Server ID:* ${serverId}\n` : ''}*Produk:* ${selectedProduct.label}\n*Metode Pembayaran:* ${selectedPayment.name}\n*Total Pembayaran:* ${fmtIDR(total)}\n\nMohon konfirmasi pesanan saya. Terima kasih.`);
+    let payBlock = '';
+    if (selectedPayment.type === "qris") {
+        payBlock = `<div class="payment-info"><h4>Scan QRIS Berikut</h4><div class="qris-image-container"><img src="${selectedPayment.info.qrisImg}" alt="QRIS Code" class="qris-image"></div></div>`;
+    } else {
+        payBlock = `<div class="payment-info"><h4>Transfer ke Rekening Berikut</h4><div class="payment-img-container" style="text-align:center; margin-bottom: 1rem;"><img src="${selectedPayment.img}" alt="${selectedPayment.name}" style="max-width: 120px; height: auto;"></div><p><strong>A/N:</strong> ${selectedPayment.info.name || "-"}</p><div class="copy-field"><span id="account-number">${selectedPayment.info.number}</span><button class="btn" id="copy-account-btn">Salin</button></div></div>`;
+    }
+    el.checkoutModal.innerHTML = `
+        <div class="modal-header"><h3>Konfirmasi Pembelian</h3><button class="modal-close-btn" data-close>&times;</button></div>
+        <div class="modal-content">
+            <table class="summary-table">
+                <tr><td>Game</td><td>${currentGame.name}</td></tr>
+                <tr><td>Player ID</td><td>${userId}</td></tr>
+                ${serverId ? `<tr><td>Server ID</td><td>${serverId}</td></tr>` : ''}
+                <tr><td>Produk</td><td>${selectedProduct.label}</td></tr>
+                <tr><td>Metode Bayar</td><td>${selectedPayment.name}</td></tr>
+                ${appliedVoucher ? `<tr><td>Diskon Voucher</td><td>- ${fmtIDR(discountAmount)}</td></tr>` : ''}
+            </table>
+            <div class="summary-total" style="margin-top: 1.5rem;"><span>Total Pembayaran</span><span>${fmtIDR(total)}</span></div>
+            ${payBlock}
+            <div class="modal-footer" style="margin-top: 1.5rem;"><a href="https://wa.me/${ADMIN_WA}?text=${waMsg}" target="_blank" class="btn btn-confirm btn-block">Chat Admin Sekarang</a><p class="instruction">Setelah bayar, kirim bukti transfer ke Admin agar pesanan segera diproses.</p></div>
+        </div>
+    `;
+    const copyBtn = qs("#copy-account-btn", el.checkoutModal);
+    if (copyBtn) copyBtn.addEventListener("click", () => copyToClipboard(selectedPayment.info.number, copyBtn));
+    openModal(el.checkoutModal);
+}
+
+function showOverlay() {
+    el.modalOverlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+}
+
+function hideOverlay() {
+    el.modalOverlay.classList.remove("active");
+    document.body.style.overflow = "";
+    qsa(".modal").forEach(m => m.classList.remove("active"));
+}
+
+function openModal(modalElement) {
+    showOverlay();
+    modalElement.classList.add("active");
+    modalElement.querySelector("[data-close]")?.addEventListener('click', () => closeModal(modalElement));
+}
+
+function closeModal(modalElement) {
+    modalElement.classList.remove("active");
+    const anyOpen = qsa(".modal.active").length > 0;
+    if (!anyOpen) hideOverlay();
+}
+
+function copyToClipboard(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+        const old = btn.textContent;
+        btn.textContent = "Disalin!";
+        setTimeout(() => btn.textContent = old, 1500);
+    }).catch(err => {
+        console.error('Failed to copy text: ', err);
+        alert('Gagal menyalin. Silakan salin manual.');
+    });
+}
