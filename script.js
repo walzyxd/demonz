@@ -37,7 +37,7 @@ const PROMOS = [
 const PAYMENTS = [
     { id: "dana", name: "DANA", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
     { id: "gopay", name: "GoPay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", type: "ewallet", info: { number: "082116690164", name: "TI** SUT***" } },
-    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", type: "qris", info: { qrisImg: "https://i.supaimg.com/5688406c-3c9f-4990-b77a-4f1eaba082ad.png" } },
+    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", type: "qris", info: { qrisImg: "https://files.catbox.moe/5688406c-3c9f-4990-b77a-4f1eaba082ad.png" } },
     { id: "krom", name: "Krom Bank", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", type: "bank_transfer", info: { number: "770072009565", name: "TI** SUT***" } },
 ];
 
@@ -340,9 +340,9 @@ function setupGamePage(gameKeyFromUrl) {
     qs(".game-description").textContent = currentGame.guide;
 
     if (currentGame.hasServerId) {
-        qs("#server-id-group").style.display = "flex";
+        qs("#server-id").style.display = "block";
     } else {
-        qs("#server-id-group").style.display = "none";
+        qs("#server-id").style.display = "none";
     }
 
     renderProducts(currentGame.key);
@@ -358,7 +358,12 @@ function setupEventListeners() {
         qs("#server-id").addEventListener("input", checkProgress);
     }
     qs("#voucher-btn").addEventListener("click", applyVoucher);
-    // Hapus event listener input voucher
+    qs("#voucher-input").addEventListener("input", () => {
+        appliedVoucher = null;
+        setVoucherStatus("");
+        refreshSummary();
+        renderPayments();
+    });
     qs("#voucher-list-btn").addEventListener("click", showVoucherListModal);
     qs("#checkout-btn").addEventListener("click", openCheckoutModal);
     qs("#modal-overlay").addEventListener("click", (e) => {
@@ -393,6 +398,9 @@ function renderProducts(gameKey) {
             div.addEventListener("click", () => {
                 selectedProduct = p;
                 selectedPayment = null;
+                appliedVoucher = null;
+                qs("#voucher-input").value = "";
+                setVoucherStatus("");
                 refreshSelections();
                 checkProgress();
                 renderPayments();
@@ -412,7 +420,7 @@ function renderPayments() {
             const div = document.createElement("div");
             div.className = "payment-card";
             div.dataset.id = pay.id;
-
+            
             const price = selectedProduct ? finalPrice() : 0;
             const priceHtml = selectedProduct ? `<div class="payment-price">${fmtIDR(price)}</div>` : '';
 
@@ -421,7 +429,7 @@ function renderPayments() {
                 <div class="payment-label">${pay.name}</div>
                 ${priceHtml}
             `;
-
+            
             div.addEventListener("click", () => {
                 if (!selectedProduct) {
                     showErrorModal("Silakan pilih nominal top-up terlebih dahulu.");
@@ -513,9 +521,9 @@ function refreshSummary() {
         summaryDiscountRow.style.display = "none";
         summaryTotal.textContent = fmtIDR(0);
     }
-
+    
     summaryPayment.textContent = selectedPayment ? selectedPayment.name : "-";
-
+    
     const userId = qs("#user-id").value.trim();
     const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : "ok";
     checkoutBtn.disabled = !(userId && (currentGame.hasServerId ? serverId : true) && selectedProduct && selectedPayment);
@@ -628,15 +636,40 @@ function openCheckoutModal() {
         return encodeURIComponent(msg);
     };
 
-    const isQrisPayment = selectedPayment.id === 'qris';
+    if (selectedPayment.type === "qris") {
+        payBlock = `
+            <div class="payment-info">
+                <h4>Scan QRIS Berikut</h4>
+                <div class="qris-image-container">
+                    <img src="${selectedPayment.info.qrisImg}" alt="QRIS Code" class="qris-image">
+                </div>
+            </div>
+        `;
+    } else {
+        payBlock = `
+            <div class="payment-info">
+                <h4>Transfer ke Rekening Berikut</h4>
+                <div class="payment-img-container" style="text-align:center; margin-bottom: 1rem;">
+                    <img src="${selectedPayment.img}" alt="${selectedPayment.name}" style="max-width: 120px; height: auto;">
+                </div>
+                <p><strong>A/N:</strong> ${selectedPayment.info.name || "-"}</p>
+                <div class="copy-field">
+                    <span id="account-number">${selectedPayment.info.number}</span>
+                    <button class="btn" id="copy-account-btn">Salin</button>
+                </div>
+            </div>
+        `;
+    }
 
-    let modalContent = `
+    const modal = qs("#checkout-modal");
+    if (!modal) return;
+
+    modal.innerHTML = `
         <div class="modal-header">
             <h3>Konfirmasi Pembelian</h3>
             <button class="modal-close-btn" data-close>&times;</button>
         </div>
         <div class="modal-content">
-            <p>Pastikan data di bawah ini sudah benar sebelum melanjutkan.</p>
             <table class="summary-table">
                 <tr><td>Game</td><td>${currentGame.name}</td></tr>
                 <tr><td>Player ID</td><td>${userId}</td></tr>
@@ -649,36 +682,13 @@ function openCheckoutModal() {
                 <span>Total Pembayaran</span>
                 <span>${fmtIDR(total)}</span>
             </div>
-            ${isQrisPayment ? `
-                <div class="payment-info">
-                    <h4>Scan QRIS Berikut</h4>
-                    <div class="qris-image-container">
-                        <img src="${selectedPayment.info.qrisImg}" alt="QRIS Code" class="qris-image">
-                    </div>
-                </div>
-            ` : `
-                <div class="payment-info">
-                    <h4>Transfer ke Rekening Berikut</h4>
-                    <div class="payment-img-container" style="text-align:center; margin-bottom: 1rem;">
-                        <img src="${selectedPayment.img}" alt="${selectedPayment.name}" style="max-width: 120px; height: auto;">
-                    </div>
-                    <p><strong>A/N:</strong> ${selectedPayment.info.name || "-"}</p>
-                    <div class="copy-field">
-                        <span id="account-number">${selectedPayment.info.number}</span>
-                        <button class="btn" id="copy-account-btn">Salin</button>
-                    </div>
-                </div>
-            `}
+            ${payBlock}
             <div class="modal-footer" style="margin-top: 1.5rem;">
                 <a href="https://wa.me/${ADMIN_WA}?text=${formatWhatsAppMsg()}" target="_blank" class="btn btn-confirm btn-block">Chat Admin Sekarang</a>
                 <p class="instruction">Setelah bayar, kirim bukti transfer ke Admin agar pesanan segera diproses.</p>
             </div>
         </div>
     `;
-
-    const modal = qs("#checkout-modal");
-    if (!modal) return;
-    modal.innerHTML = modalContent;
 
     const copyBtn = qs("#copy-account-btn", modal);
     if (copyBtn) {
