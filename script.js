@@ -225,14 +225,6 @@ const PRODUCTS = {
         { id: "undawn-prep", label: "Quick Battle Prep", price: 94379, badges: ["sale"] },
     ]
 };
-const PAYMENTS = [
-    { id: "dana", name: "DANA", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
-    { id: "gopay", name: "GoPay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", type: "ewallet", info: { number: "082116690164", name: "TI** SUT***" } },
-    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", type: "qris", info: { qrisImg: "https://files.catbox.moe/5688406c-3c9f-4990-b77a-4f1eaba082ad.png" } },
-    { id: "krom", name: "Krom Bank", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", type: "bank_transfer", info: { number: "770072009565", name: "TI** SUT***" } },
-];
-const PRODUCTS = { /* Data Produk tetap sama */ };
-const PROMOS = [ /* Data Promosi tetap sama */ ];
 
 /* ================== UTILITAS & BANTUAN ================== */
 const qs = (s, p = document) => p.querySelector(s);
@@ -244,28 +236,28 @@ let selectedPayment = null;
 let appliedVoucher = null;
 let currentGame = null;
 
-// Cache DOM elements
+// Caching DOM elements for performance
 const el = {
     gamesGrid: qs("#games-grid"),
     promoSlider: qs("#promo-slider"),
     sliderDots: qs("#slider-dots"),
     gameBanner: qs("#game-banner"),
-    gameNameH1: qs(".game-name-h1"),
     gameDescription: qs(".game-description"),
+    serverIdGroup: qs("#server-id-group"),
+    userIdInput: qs("#user-id"),
     serverIdInput: qs("#server-id"),
     productGrid: qs("#product-grid"),
     paymentGrid: qs("#payment-grid"),
     checkoutBtn: qs("#checkout-btn"),
-    userIdInput: qs("#user-id"),
     voucherBtn: qs("#voucher-btn"),
     voucherInput: qs("#voucher-input"),
     voucherListBtn: qs("#voucher-list-btn"),
-    modalOverlay: qs("#modal-overlay"),
     summaryProduct: qs("#summary-product"),
     summaryPayment: qs("#summary-payment"),
     summaryDiscountRow: qs("#summary-discount-row"),
     summaryDiscount: qs("#summary-discount"),
     summaryTotal: qs("#summary-total"),
+    modalOverlay: qs("#modal-overlay"),
     promoListModal: qs("#promo-list-modal"),
     errorModal: qs("#error-modal"),
     checkoutModal: qs("#checkout-modal")
@@ -341,15 +333,14 @@ function renderPromoSlider() {
 function setupGamePage(gameKeyFromUrl) {
     currentGame = GAMES.find(g => g.key === gameKeyFromUrl);
     if (!currentGame) {
-        showModal(el.errorModal, "Game tidak ditemukan!", "Peringatan!");
+        showErrorModal("Game tidak ditemukan!");
         setTimeout(() => window.location.href = "index.html", 2000);
         return;
     }
-    el.gameBanner.src = currentGame.bannerImg;
-    el.gameNameH1.textContent = currentGame.name;
     document.title = `Walz Shop - Top Up ${currentGame.name}`;
+    el.gameBanner.src = currentGame.bannerImg;
     el.gameDescription.textContent = currentGame.guide;
-    el.serverIdInput.style.display = currentGame.hasServerId ? "block" : "none";
+    el.serverIdGroup.style.display = currentGame.hasServerId ? "block" : "none";
     renderProducts(currentGame.key);
     renderPayments();
     refreshSelections();
@@ -382,14 +373,14 @@ function renderProducts(gameKey) {
         el.productGrid.innerHTML = products.map(p => {
             const badgesHtml = p.badges ? p.badges.map(b => `<span class="badge ${b}">${b.toUpperCase()}</span>`).join("") : '';
             return `
-                <div class="product-card" data-id="${p.id}">
+                <div class="product-card-modern" data-id="${p.id}">
                     ${badgesHtml}
                     <div class="product-label">${p.label}</div>
                     <div class="product-price">${fmtIDR(p.price)}</div>
                 </div>
             `;
         }).join("");
-        qsa(".product-card", el.productGrid).forEach(card => card.addEventListener("click", handleProductClick));
+        qsa(".product-card-modern", el.productGrid).forEach(card => card.addEventListener("click", handleProductClick));
     } else {
         el.productGrid.innerHTML = `<p class="empty-message">Produk untuk game ini belum tersedia.</p>`;
     }
@@ -414,14 +405,14 @@ function renderPayments() {
             const price = selectedProduct ? finalPrice() : 0;
             const priceHtml = selectedProduct ? `<div class="payment-price">${fmtIDR(price)}</div>` : '';
             return `
-                <div class="payment-card" data-id="${pay.id}">
+                <div class="payment-card-modern" data-id="${pay.id}">
                     <img src="${pay.img}" alt="${pay.name}">
                     <div class="payment-label">${pay.name}</div>
                     ${priceHtml}
                 </div>
             `;
         }).join("");
-        qsa(".payment-card", el.paymentGrid).forEach(card => card.addEventListener("click", handlePaymentClick));
+        qsa(".payment-card-modern", el.paymentGrid).forEach(card => card.addEventListener("click", handlePaymentClick));
     } else {
         el.paymentGrid.innerHTML = `<p class="empty-message">Metode pembayaran belum tersedia.</p>`;
     }
@@ -429,7 +420,7 @@ function renderPayments() {
 
 function handlePaymentClick(e) {
     if (!selectedProduct) {
-        showModal(el.errorModal, "Silakan pilih nominal top-up terlebih dahulu.", "Peringatan!");
+        showErrorModal("Silakan pilih nominal top-up terlebih dahulu.");
         return;
     }
     const card = e.currentTarget;
@@ -483,8 +474,8 @@ function finalPrice() {
 }
 
 function refreshSelections() {
-    qsa(".product-card").forEach(c => c.classList.toggle("selected", selectedProduct && c.dataset.id === selectedProduct.id));
-    qsa(".payment-card").forEach(c => c.classList.toggle("selected", selectedPayment && c.dataset.id === selectedPayment.id));
+    qsa(".product-card-modern").forEach(c => c.classList.toggle("selected", selectedProduct && c.dataset.id === selectedProduct.id));
+    qsa(".payment-card-modern").forEach(c => c.classList.toggle("selected", selectedPayment && c.dataset.id === selectedPayment.id));
     refreshSummary();
 }
 
@@ -497,12 +488,14 @@ function refreshSummary() {
     el.summaryDiscountRow.style.display = discount > 0 ? "table-row" : "none";
     el.summaryDiscount.textContent = `- ${fmtIDR(discount)}`;
     el.summaryPayment.textContent = selectedPayment?.name || "-";
+    checkProgress();
 }
 
 function checkProgress() {
-    const userId = el.userIdInput.value.trim();
-    const serverId = currentGame.hasServerId ? el.serverIdInput.value.trim() : "ok";
-    el.checkoutBtn.disabled = !(userId && (currentGame.hasServerId ? serverId : true) && selectedProduct && selectedPayment);
+    const userId = el.userIdInput?.value.trim() || "";
+    const serverId = currentGame?.hasServerId ? el.serverIdInput?.value.trim() : "ok";
+    const isFormValid = userId && (currentGame?.hasServerId ? serverId : true) && selectedProduct && selectedPayment;
+    el.checkoutBtn.disabled = !isFormValid;
 }
 
 function setVoucherStatus(text, isError = false) {
@@ -514,22 +507,21 @@ function setVoucherStatus(text, isError = false) {
 }
 
 function showVoucherListModal() {
+    const modalContent = VOUCHERS.map(v => `
+        <div class="voucher-item">
+            <div class="voucher-info">
+                <h4>${v.code}</h4>
+                <p>${v.description}</p>
+            </div>
+            <button class="btn btn-sm btn-choose" data-choose="${v.code}">Pilih</button>
+        </div>
+    `).join("");
     el.promoListModal.innerHTML = `
         <div class="modal-header">
             <h3>Daftar Kode Promo</h3>
             <button class="modal-close-btn" data-close>&times;</button>
         </div>
-        <div class="modal-content-list">
-            ${VOUCHERS.map(v => `
-                <div class="voucher-item">
-                    <div class="voucher-info">
-                        <h4>${v.code}</h4>
-                        <p>${v.description}</p>
-                    </div>
-                    <button class="btn btn-sm btn-choose" data-choose="${v.code}">Pilih</button>
-                </div>
-            `).join("")}
-        </div>
+        <div class="modal-content-list">${modalContent}</div>
     `;
     qsa("[data-choose]", el.promoListModal).forEach(btn => btn.addEventListener("click", () => {
         el.voucherInput.value = btn.dataset.choose;
@@ -539,38 +531,42 @@ function showVoucherListModal() {
     openModal(el.promoListModal);
 }
 
+function showErrorModal(message) {
+    el.errorModal.innerHTML = `
+        <div class="modal-header">
+            <h3>Peringatan!</h3>
+            <button class="modal-close-btn" data-close>&times;</button>
+        </div>
+        <div class="modal-content" style="text-align: center;">
+            <p>${message}</p>
+            <div style="margin-top: 1rem;"><button class="btn btn-confirm" onclick="closeModal(el.errorModal)">Oke</button></div>
+        </div>
+    `;
+    openModal(el.errorModal);
+}
+
+function validateForm() {
+    const userId = el.userIdInput?.value.trim();
+    const serverId = currentGame?.hasServerId ? el.serverIdInput?.value.trim() : "ok";
+    if (!userId) { showErrorModal("User ID wajib diisi."); return false; }
+    if (currentGame?.hasServerId && !serverId) { showErrorModal("Server ID wajib diisi."); return false; }
+    if (!selectedProduct) { showErrorModal("Pilih nominal top-up."); return false; }
+    if (!selectedPayment) { showErrorModal("Pilih metode pembayaran."); return false; }
+    return true;
+}
+
 function openCheckoutModal() {
     if (!validateForm()) return;
     const userId = el.userIdInput.value.trim();
     const serverId = currentGame.hasServerId ? el.serverIdInput.value.trim() : null;
     const total = finalPrice();
     const discountAmount = selectedProduct.price - total;
-    const waMsg = encodeURIComponent(
-        `Halo admin, saya mau top-up:\n` +
-        `*Game:* ${currentGame.name}\n` +
-        `*User ID:* ${userId}\n` +
-        (serverId ? `*Server ID:* ${serverId}\n` : '') +
-        `*Produk:* ${selectedProduct.label}\n` +
-        `*Metode Pembayaran:* ${selectedPayment.name}\n` +
-        `*Total Pembayaran:* ${fmtIDR(total)}\n\n` +
-        `Mohon konfirmasi pesanan saya. Terima kasih.`
-    );
+    const waMsg = encodeURIComponent(`Halo admin, saya mau top-up:\n*Game:* ${currentGame.name}\n*User ID:* ${userId}\n${serverId ? `*Server ID:* ${serverId}\n` : ''}*Produk:* ${selectedProduct.label}\n*Metode Pembayaran:* ${selectedPayment.name}\n*Total Pembayaran:* ${fmtIDR(total)}\n\nMohon konfirmasi pesanan saya. Terima kasih.`);
     let payBlock = '';
     if (selectedPayment.type === "qris") {
         payBlock = `<div class="payment-info"><h4>Scan QRIS Berikut</h4><div class="qris-image-container"><img src="${selectedPayment.info.qrisImg}" alt="QRIS Code" class="qris-image"></div></div>`;
     } else {
-        payBlock = `
-            <div class="payment-info">
-                <h4>Transfer ke Rekening Berikut</h4>
-                <div class="payment-img-container" style="text-align:center; margin-bottom: 1rem;">
-                    <img src="${selectedPayment.img}" alt="${selectedPayment.name}" style="max-width: 120px; height: auto;">
-                </div>
-                <p><strong>A/N:</strong> ${selectedPayment.info.name || "-"}</p>
-                <div class="copy-field">
-                    <span id="account-number">${selectedPayment.info.number}</span>
-                    <button class="btn" id="copy-account-btn">Salin</button>
-                </div>
-            </div>`;
+        payBlock = `<div class="payment-info"><h4>Transfer ke Rekening Berikut</h4><div class="payment-img-container" style="text-align:center; margin-bottom: 1rem;"><img src="${selectedPayment.img}" alt="${selectedPayment.name}" style="max-width: 120px; height: auto;"></div><p><strong>A/N:</strong> ${selectedPayment.info.name || "-"}</p><div class="copy-field"><span id="account-number">${selectedPayment.info.number}</span><button class="btn" id="copy-account-btn">Salin</button></div></div>`;
     }
     el.checkoutModal.innerHTML = `
         <div class="modal-header"><h3>Konfirmasi Pembelian</h3><button class="modal-close-btn" data-close>&times;</button></div>
@@ -585,49 +581,12 @@ function openCheckoutModal() {
             </table>
             <div class="summary-total" style="margin-top: 1.5rem;"><span>Total Pembayaran</span><span>${fmtIDR(total)}</span></div>
             ${payBlock}
-            <div class="modal-footer" style="margin-top: 1.5rem;">
-                <a href="https://wa.me/${ADMIN_WA}?text=${waMsg}" target="_blank" class="btn btn-confirm btn-block">Chat Admin Sekarang</a>
-                <p class="instruction">Setelah bayar, kirim bukti transfer ke Admin agar pesanan segera diproses.</p>
-            </div>
+            <div class="modal-footer" style="margin-top: 1.5rem;"><a href="https://wa.me/${ADMIN_WA}?text=${waMsg}" target="_blank" class="btn btn-confirm btn-block">Chat Admin Sekarang</a><p class="instruction">Setelah bayar, kirim bukti transfer ke Admin agar pesanan segera diproses.</p></div>
         </div>
     `;
     const copyBtn = qs("#copy-account-btn", el.checkoutModal);
     if (copyBtn) copyBtn.addEventListener("click", () => copyToClipboard(selectedPayment.info.number, copyBtn));
     openModal(el.checkoutModal);
-}
-
-function showModal(modalElement, message, title = "Peringatan!") {
-    modalElement.innerHTML = `
-        <div class="modal-header">
-            <h3>${title}</h3>
-            <button class="modal-close-btn" data-close>&times;</button>
-        </div>
-        <div class="modal-content" style="text-align: center;">
-            <p>${message}</p>
-            <div style="margin-top: 1rem;">
-                <button class="btn btn-confirm" onclick="closeModal(el.errorModal)">Oke</button>
-            </div>
-        </div>
-    `;
-    openModal(modalElement);
-}
-
-function validateForm() {
-    const userId = el.userIdInput.value.trim();
-    const serverId = currentGame.hasServerId ? el.serverIdInput.value.trim() : "ok";
-    if (!userId) {
-        showModal(el.errorModal, "User ID wajib diisi."); return false;
-    }
-    if (currentGame.hasServerId && !serverId) {
-        showModal(el.errorModal, "Server ID wajib diisi."); return false;
-    }
-    if (!selectedProduct) {
-        showModal(el.errorModal, "Pilih nominal top-up."); return false;
-    }
-    if (!selectedPayment) {
-        showModal(el.errorModal, "Pilih metode pembayaran."); return false;
-    }
-    return true;
 }
 
 function showOverlay() {
