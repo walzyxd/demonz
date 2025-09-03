@@ -3,125 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walz Shop - Top Up Game Murah & Aman</title>
+    <title>Walz Shop - Top Up Game Murah dan Cepat</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg" type="image/x-icon">
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <a href="index.html" class="logo">Walz Shop</a>
-            <nav class="main-nav">
-                <a href="index.html">Beranda</a>
-                <a href="#">Daftar Harga</a>
-                <a href="#">Tentang Kami</a>
+            <h1 class="logo">Walz Shop</h1>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link active">Beranda</a>
+                <a href="#" class="nav-link">Tentang Kami</a>
+                <a href="#" class="nav-link">Kontak</a>
             </nav>
-            <div class="menu-toggle" id="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
         </div>
     </header>
 
     <main class="main-content">
         <div class="container">
-            <section class="hero-section">
-                <div class="hero-content">
-                    <h1>Top Up Game Instan, Aman, dan Termurah!</h1>
-                    <p>Dapatkan diamond, UC, dan item game favoritmu dengan harga terbaik dan proses secepat kilat. Tersedia 24/7!</p>
-                    <a href="#games-section" class="btn btn-primary-hero">Mulai Top Up Sekarang <i class="fas fa-arrow-down"></i></a>
-                </div>
-            </section>
-
             <section class="promo-section">
-                <h2 class="section-title">Promo Terbaru</h2>
                 <div class="slider-container">
-                    <div class="slider__track" id="promo-slider">
-                        </div>
+                    <div class="slider-track" id="promo-slider"></div>
                     <div class="slider-dots" id="slider-dots"></div>
                 </div>
             </section>
 
-            <section class="games-section" id="games-section">
-                <h2 class="section-title">Pilih Game Anda</h2>
-                <div class="games-grid" id="games-grid">
+            <section class="game-section">
+                <h2>Pilih Game Favoritmu</h2>
+                <div class="game-list" id="games-grid">
                     </div>
-            </section>
-
-            <section class="why-us-section">
-                <h2 class="section-title">Kenapa Memilih Kami?</h2>
-                <div class="why-us-grid">
-                    <div class="why-us-item">
-                        <i class="fas fa-shield-alt icon-large"></i>
-                        <h3>Aman & Terpercaya</h3>
-                        <p>Transaksi dijamin aman, cepat, dan 100% legal.</p>
-                    </div>
-                    <div class="why-us-item">
-                        <i class="fas fa-bolt icon-large"></i>
-                        <h3>Proses Cepat</h3>
-                        <p>Pesanan langsung diproses setelah pembayaran terkonfirmasi.</p>
-                    </div>
-                    <div class="why-us-item">
-                        <i class="fas fa-tag icon-large"></i>
-                        <h3>Harga Termurah</h3>
-                        <p>Kami menawarkan harga top up yang paling kompetitif.</p>
-                    </div>
-                    <div class="why-us-item">
-                        <i class="fas fa-headset icon-large"></i>
-                        <h3>Layanan 24/7</h3>
-                        <p>Dukungan pelanggan siap membantu kapan saja.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="testimonials-section">
-                <h2 class="section-title">Apa Kata Mereka?</h2>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <p>"Prosesnya cepat banget! Gak sampai 5 menit diamond sudah masuk. Rekomended banget!"</p>
-                        <div class="testimonial-author">
-                            <img src="https://i.pravatar.cc/150?u=a" alt="Author" class="author-img">
-                            <div class="author-info">
-                                <h4>Budi Santoso</h4>
-                                <span>Player Mobile Legends</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <p>"Harga di sini paling murah dibanding tempat lain. Adminnya ramah dan fast respon. Sukses terus!"</p>
-                        <div class="testimonial-author">
-                            <img src="https://i.pravatar.cc/150?u=b" alt="Author" class="author-img">
-                            <div class="author-info">
-                                <h4>Siti Aminah</h4>
-                                <span>Player Free Fire</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <p>"Top up Genshin Impact di sini ga pernah gagal. Pelayanannya top!"</p>
-                        <div class="testimonial-author">
-                            <img src="https://i.pravatar.cc/150?u=c" alt="Author" class="author-img">
-                            <div class="author-info">
-                                <h4>Agus Setiawan</h4>
-                                <span>Player Genshin Impact</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </section>
         </div>
     </main>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Walz Shop. Hak Cipta Dilindungi.</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-            </div>
+            <p>&copy; 2025 Walz Shop. All rights reserved.</p>
         </div>
     </footer>
 
