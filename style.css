@@ -3,8 +3,8 @@
     --secondary-color: #6c757d;
     --success-color: #28a745;
     --danger-color: #dc3545;
-    --dark-bg: #1e1e1e;
-    --card-bg: #2a2a2a;
+    --dark-bg: #1a1a1a;
+    --card-bg: #282828;
     --input-bg: #3c3c3c;
     --border-color: #4a4a4a;
     --text-color: #f0f0f0;
@@ -23,6 +23,7 @@ body {
     background-color: var(--dark-bg);
     color: var(--text-color);
     line-height: 1.6;
+    scroll-behavior: smooth;
 }
 
 .container {
