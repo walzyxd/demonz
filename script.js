@@ -342,6 +342,7 @@ function setupGamePage(gameKeyFromUrl) {
     el.gameDescription.textContent = currentGame.guide;
     el.serverIdGroup.style.display = currentGame.hasServerId ? "block" : "none";
     renderProducts(currentGame.key);
+    renderPayments(); // Selalu tampilkan metode pembayaran
     refreshSelections(); // Call to set initial state of summary
     checkProgress();
 }
@@ -357,7 +358,7 @@ function setupEventListeners() {
         appliedVoucher = null;
         setVoucherStatus("");
         refreshSummary();
-        renderPayments(); // Re-render payments to show base prices
+        renderPayments();
     });
     el.voucherListBtn.addEventListener("click", showVoucherListModal);
     el.checkoutBtn.addEventListener("click", openCheckoutModal);
