@@ -9,6 +9,7 @@
 <body>
     <header class="header">
         <div class="container">
+            <a href="index.html" class="back-link">&lt; Kembali</a>
             <h1 class="logo"><a href="index.html">Walz Shop</a></h1>
             <nav class="main-nav">
                 <a href="index.html">Beranda</a>
@@ -30,7 +31,9 @@
                     <h3>Langkah 1: Masukkan User ID</h3>
                     <p class="game-description"></p>
                     <input type="text" id="user-id" placeholder="Masukkan User ID Anda" required>
-                    <input type="text" id="server-id" placeholder="Masukkan Server ID (jika ada)" style="display: none;">
+                    <div id="server-id-container">
+                        <input type="text" id="server-id" placeholder="Masukkan Server ID Anda">
+                    </div>
                 </div>
 
                 <div class="step-card">
