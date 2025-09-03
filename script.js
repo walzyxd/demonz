@@ -21,18 +21,23 @@ const GAMES = [
     { key: "blood-strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", bannerImg: "https://files.catbox.moe/3y066i.jpg", hasServerId: false, guide: "ID Anda dapat ditemukan di profil dalam game.", url: "game.html?key=blood-strike" },
     { key: "pubg-mobile", name: "PUBG Mobile", img: "https://files.catbox.moe/tatuo9.jpg", bannerImg: "https://files.catbox.moe/tatuo9.jpg", hasServerId: false, guide: "Temukan User ID Anda di sudut kanan atas lobi game saat mengklik profil.", url: "game.html?key=pubg-mobile" },
     { key: "garena-delta-force", name: "Garena Delta Force", img: "https://files.catbox.moe/t1676s.jpg", bannerImg: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", hasServerId: false, guide: "Buka menu profil di game dan Anda dapat menemukan User ID Anda.", url: "game.html?key=garena-delta-force" },
-    { key: "call-of-duty", name: "Call Of Duty", img: "https://files.catbox.moe/x92o5d.jpg", bannerImg: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil game.", url: "game.html?key=call-of-duty" },
+    { key: "call-of-duty", name: "Call Of Duty", img: "https://files.catbox.moe/x92o5d.jpg", bannerImg: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1515.webp", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil game.", url: "game.html?key=call-of-duty" },
     { key: "valorant", name: "Valorant", img: "https://files.catbox.moe/422l3o.jpg", bannerImg: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", hasServerId: false, guide: "User ID (Riot ID) dapat ditemukan di bawah nama akun Anda di bagian atas layar.", url: "game.html?key=valorant" },
     { key: "eggy-party", name: "Eggy Party", img: "https://files.catbox.moe/y399d3.jpg", bannerImg: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil dalam game.", url: "game.html?key=eggy-party" },
     { key: "garena-undawn", name: "Garena Undawn", img: "https://files.catbox.moe/a87g6f.jpg", bannerImg: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", hasServerId: false, guide: "Buka menu profil dan User ID Anda akan terlihat.", url: "game.html?key=garena-undawn" },
 ];
 
 const PROMOS = [
-    { title: "Promo 1", img: "https://i.supaimg.com/3509117b-d657-4bef-8800-5f81c107801c.jpg", gameKey: "free-fire" },
-    { title: "Promo 2", img: "https://i.supaimg.com/e0be7254-ecdb-4164-a645-8eed8c3aca26.jpg", gameKey: "mobile-legends" },
-    { title: "Promo 3", img: "https://i.supaimg.com/61a87635-261c-456f-b1c7-702232587aa7.png", gameKey: "honor-of-kings" },
-    { title: "Promo 4", img: "https://i.supaimg.com/cb1d99c5-3cbb-4eae-b1f3-6c6ad4f7d791.jpg", gameKey: "genshin-impact" },
-    { title: "Promo 5", img: "https://i.supaimg.com/6e96cc62-78cc-4c6c-992c-a37e723dd2dc.jpg", gameKey: "roblox" },
+    { title: "Top Up Free Fire Termurah", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", gameKey: "free-fire" },
+    { title: "Top Up MLBB Termurah", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", gameKey: "mobile-legends" },
+    { title: "Top Up Honor of Kings Termurah", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", gameKey: "honor-of-kings" },
+    { title: "Promo Genshin Impact", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", gameKey: "genshin-impact" },
+    { title: "Promo Roblox", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", gameKey: "roblox" },
+    { title: "Promo Delta Force", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", gameKey: "garena-delta-force" },
+    { title: "Promo Undawn", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", gameKey: "garena-undawn" },
+    { title: "Promo Valorant", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", gameKey: "valorant" },
+    { title: "Promo COD", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1515.webp", gameKey: "call-of-duty" },
+    { title: "Promo Eggy Party", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", gameKey: "eggy-party" },
 ];
 
 const PAYMENTS = [
@@ -340,14 +345,13 @@ function setupGamePage(gameKeyFromUrl) {
     qs("title").textContent = `Walz Shop - Top Up ${currentGame.name}`;
     qs(".game-description").textContent = currentGame.guide;
 
-    // Ensure step cards are visible
-    qsa(".step-card").forEach(card => card.style.display = 'block');
-
     if (currentGame.hasServerId) {
         qs("#server-id-group").style.display = "block";
     } else {
         qs("#server-id-group").style.display = "none";
     }
+
+    qsa('.step-card').forEach(el => el.style.display = 'block');
 
     renderProducts(currentGame.key);
     renderPayments();
@@ -365,13 +369,12 @@ function setupEventListeners() {
         qs("#server-id").addEventListener("input", checkProgress);
     }
     
-    // Logic untuk mengaktifkan/menonaktifkan tombol terapkan voucher
     voucherInput.addEventListener("input", () => {
         voucherApplyBtn.disabled = voucherInput.value.trim() === "";
         appliedVoucher = null;
         setVoucherStatus("");
         refreshSummary();
-        renderPayments(); // Re-render payments to update prices if needed
+        renderPayments();
     });
 
     voucherApplyBtn.addEventListener("click", applyVoucher);
@@ -409,14 +412,14 @@ function renderProducts(gameKey) {
             `;
             div.addEventListener("click", () => {
                 selectedProduct = p;
-                selectedPayment = null; // Reset selected payment on product change
-                appliedVoucher = null; // Reset voucher on product change
+                selectedPayment = null;
+                appliedVoucher = null;
                 qs("#voucher-input").value = "";
                 qs("#voucher-apply-btn").disabled = true;
                 setVoucherStatus("");
                 refreshSelections();
                 checkProgress();
-                renderPayments(); // Re-render payments to update prices
+                renderPayments();
             });
             productGrid.appendChild(div);
         });
@@ -477,7 +480,7 @@ function applyVoucher() {
         setVoucherStatus(`Voucher ${voucher.code} diterapkan. Diskon ${fmtIDR(discount)}.`, false);
     }
     refreshSummary();
-    renderPayments(); // Re-render payments to update prices with discount
+    renderPayments();
 }
 
 function calcDiscount(price, voucher) {
@@ -747,7 +750,6 @@ function closeModal(id) {
 
 function copyToClipboard(text, btn) {
     if (!navigator.clipboard) {
-        // Fallback untuk browser lama
         const textarea = document.createElement('textarea');
         textarea.value = text;
         document.body.appendChild(textarea);
