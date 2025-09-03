@@ -342,7 +342,7 @@ function setupGamePage(gameKeyFromUrl) {
     el.gameDescription.textContent = currentGame.guide;
     el.serverIdGroup.style.display = currentGame.hasServerId ? "block" : "none";
     renderProducts(currentGame.key);
-    renderPayments(); // Render payments so they are always visible
+    renderPayments();
     refreshSelections(); 
     checkProgress();
 }
@@ -358,7 +358,7 @@ function setupEventListeners() {
         appliedVoucher = null;
         setVoucherStatus("");
         refreshSummary();
-        renderPayments(); // Re-render payments to show base prices
+        renderPayments();
     });
     el.voucherListBtn.addEventListener("click", showVoucherListModal);
     el.checkoutBtn.addEventListener("click", openCheckoutModal);
@@ -503,6 +503,8 @@ function setVoucherStatus(text, isError = false) {
 }
 
 function showVoucherListModal() {
+    // Check if any modal is active, if so, close it first
+    hideOverlay();
     const modalContent = VOUCHERS.map(v => `
         <div class="voucher-item">
             <div class="voucher-info">
@@ -528,6 +530,8 @@ function showVoucherListModal() {
 }
 
 function showErrorModal(message) {
+    // Check if any modal is active, if so, close it first
+    hideOverlay();
     el.errorModal.innerHTML = `
         <div class="modal-header">
             <h3>Peringatan!</h3>
@@ -553,6 +557,7 @@ function validateForm() {
 
 function openCheckoutModal() {
     if (!validateForm()) return;
+    hideOverlay(); // Ensure any other modal is closed
     const userId = el.userIdInput.value.trim();
     const serverId = currentGame.hasServerId ? el.serverIdInput.value.trim() : null;
     const total = finalPrice();
