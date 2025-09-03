@@ -489,13 +489,14 @@ input[type="text"]:focus {
     max-width: 500px;
     transform: translateY(-20px);
     transition: transform 0.3s ease;
-    max-height: 90vh; /* Agar bisa di-scroll */
-    display: flex;
+    max-height: 90vh;
+    display: none; /* Default hidden */
     flex-direction: column;
 }
 
 .modal.active {
     transform: translateY(0);
+    display: flex;
 }
 
 .modal-header {
@@ -528,7 +529,7 @@ input[type="text"]:focus {
 .modal-content {
     padding: 1.5rem;
     font-size: 0.9rem;
-    overflow-y: auto; /* Memungkinkan scrolling */
+    overflow-y: auto;
     flex-grow: 1;
 }
 
