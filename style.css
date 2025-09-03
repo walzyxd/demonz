@@ -10,14 +10,12 @@
     --danger-color: #dc3545;
     --light-color: #f8f9fa;
     --dark-color: #343a40;
-
     --bg-color: #f0f2f5;
     --card-bg-color: #ffffff;
     --text-color: #333;
     --heading-color: #111;
     --border-color: #e0e0e0;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
     --font-poppins: 'Poppins', sans-serif;
     --font-roboto: 'Roboto', sans-serif;
 }
@@ -87,13 +85,15 @@ body {
     padding: 2rem 0;
 }
 
-h2 {
+.card-title {
     font-family: var(--font-poppins);
-    font-size: 1.7rem;
+    font-size: 1.3rem;
     color: var(--heading-color);
     font-weight: 600;
-    margin-bottom: 1.5rem;
-    text-align: center;
+    margin: 0 0 1rem;
+    text-align: left;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
 }
 
 /* --- GAME LIST (INDEX PAGE) --- */
@@ -101,7 +101,7 @@ h2 {
     margin-top: 2rem;
 }
 
-.game-list {
+.game-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 1.2rem;
@@ -225,13 +225,6 @@ h2 {
     padding: 1.5rem;
     border-radius: 12px;
     box-shadow: var(--shadow);
-}
-
-.form-card h2 {
-    margin-top: 0;
-    text-align: left;
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
 }
 
 .game-description {
@@ -496,8 +489,9 @@ input[type="text"]:focus {
     max-width: 500px;
     transform: translateY(-20px);
     transition: transform 0.3s ease;
-    max-height: 90vh; /* Make modal scrollable */
-    overflow-y: auto;
+    max-height: 90vh; /* Agar bisa di-scroll */
+    display: flex;
+    flex-direction: column;
 }
 
 .modal.active {
@@ -510,9 +504,7 @@ input[type="text"]:focus {
     align-items: center;
     padding: 1rem 1.5rem;
     border-bottom: 1px solid var(--border-color);
-    position: sticky; /* Make header sticky */
-    top: 0;
-    background-color: var(--card-bg-color);
+    flex-shrink: 0;
 }
 
 .modal-header h3 {
@@ -536,10 +528,14 @@ input[type="text"]:focus {
 .modal-content {
     padding: 1.5rem;
     font-size: 0.9rem;
+    overflow-y: auto; /* Memungkinkan scrolling */
+    flex-grow: 1;
 }
 
 .modal-content-list {
     padding: 1rem 1.5rem;
+    max-height: 70vh;
+    overflow-y: auto;
 }
 
 .voucher-item {
@@ -650,11 +646,11 @@ input[type="text"]:focus {
         padding: 1rem;
     }
 
-    .form-card h2 {
+    .card-title {
         font-size: 1.2rem;
     }
 
-    .game-list {
+    .game-grid {
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
         gap: 1rem;
     }
