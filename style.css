@@ -831,10 +831,11 @@ a:hover {
         overflow-y: auto;
     }
 
-    .modal-content-list {
-        max-height: 70vh;
+    .modal-content, .modal-content-list {
+        max-height: 70vh; /* Konten modal jadi scrollable */
+        overflow-y: auto;
     }
-
+    
     .qris-image {
         max-width: 100%;
         height: auto;
