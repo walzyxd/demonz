@@ -342,7 +342,7 @@ function setupGamePage(gameKeyFromUrl) {
     if (currentGame.hasServerId) {
         qs("#server-id-group").style.display = "block";
     } else {
-        qs("#server-id-group").style.display = "none";
+        qs("#server-id").style.display = "none";
     }
 
     renderProducts(currentGame.key);
