@@ -3,104 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walz Shop - Top Up</title>
+    <title>Top Up Game - Game Name</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
     <header class="header">
         <div class="container">
-            <a href="index.html" class="logo">
-                <i class="fas fa-gem logo-icon"></i>
-                <span class="logo-text">Walz Shop</span>
-            </a>
-            <nav class="nav">
-                <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
-                <a href="#"><i class="fas fa-info-circle"></i> Tentang</a>
-                <a href="#"><i class="fas fa-headset"></i> Kontak</a>
-            </nav>
+            <h1 class="logo"><a href="index.html">My TopUp</a></h1>
         </div>
     </header>
 
-    <main class="main">
-        <div class="container">
-            <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali</a>
+    <main class="container">
+        <img id="game-banner" src="..." alt="Game Banner" class="game-banner">
 
-            <div class="game-banner">
-                <img id="game-banner" class="game-banner-image" src="" alt="Game Banner">
-                <h1 class="game-name-h1"></h1>
+        <div class="topup-form">
+            <div class="section">
+                <h2>1. Masukkan ID Pengguna</h2>
+                <input type="text" id="user-id" placeholder="Masukkan ID Pengguna">
             </div>
 
-            <div class="form-container">
-                <form id="topup-form">
-                    <div class="form-group">
-                        <label for="user-id"><i class="fas fa-user"></i> Masukkan User ID</label>
-                        <p class="game-description"></p>
-                        <div class="input-group">
-                            <input type="text" id="user-id" placeholder="Contoh: 12345678" required>
-                            <input type="text" id="server-id" placeholder="Server ID (Opsional)" class="server-input">
-                        </div>
+            <div class="section">
+                <h2>2. Pilih Nominal Top Up</h2>
+                <div class="product-grid" id="product-grid">
                     </div>
+            </div>
 
-                    <div class="form-group">
-                        <label><i class="fas fa-dollar-sign"></i> Pilih Nominal Top Up</label>
-                        <div class="product-grid" id="product-grid">
-                            </div>
+            <div class="section">
+                <h2>3. Pilih Metode Pembayaran</h2>
+                <div class="payment-grid" id="payment-grid">
                     </div>
-                    
-                    <div class="form-group">
-                        <label><i class="fas fa-credit-card"></i> Pilih Metode Pembayaran</label>
-                        <div class="payment-grid" id="payment-grid">
-                            </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label><i class="fas fa-receipt"></i> Ringkasan Pembayaran</label>
-                        <div class="summary-card">
-                            <table class="summary-table">
-                                <tr><td>Produk</td><td id="summary-product">-</td></tr>
-                                <tr><td>Metode Bayar</td><td id="summary-payment">-</td></tr>
-                                <tr id="summary-discount-row" style="display:none;"><td>Diskon Voucher</td><td id="summary-discount">-</td></tr>
-                            </table>
-                            <div class="summary-total">
-                                <span>Total Pembayaran</span>
-                                <span id="summary-total">Rp 0</span>
-                            </div>
-                        </div>
-                    </div>
+            </div>
 
-                    <div class="form-group">
-                        <label><i class="fas fa-tag"></i> Kode Voucher (Opsional)</label>
-                        <div class="voucher-input-group">
-                            <input type="text" id="voucher-input" placeholder="Masukkan kode voucher">
-                            <button type="button" id="voucher-btn">Terapkan</button>
-                        </div>
-                        <div class="voucher-extra">
-                            <span id="voucher-status" class="status-text"></span>
-                            <button type="button" id="voucher-list-btn" class="text-button">Lihat Daftar Promo</button>
-                        </div>
-                    </div>
+            <div class="section">
+                <h2>4. Punya Kode Voucher?</h2>
+                <div class="voucher-input-group">
+                    <input type="text" id="voucher-code" placeholder="Masukkan kode voucher">
+                    <button class="btn btn-primary btn-sm" id="btn-apply-voucher">Terapkan</button>
+                </div>
+                <p id="voucher-status" class="status-text"></p>
+            </div>
 
-                    <button type="button" id="checkout-btn" class="btn btn-block btn-confirm" disabled>Beli Sekarang</button>
-                </form>
+            <div class="section">
+                <h2>5. Ringkasan Pembelian</h2>
+                <table class="summary-table">
+                    <tr>
+                        <td>Produk</td>
+                        <td id="summary-product" class="text-right">-</td>
+                    </tr>
+                    <tr>
+                        <td>Harga</td>
+                        <td id="summary-price" class="text-right">-</td>
+                    </tr>
+                    <tr>
+                        <td>Diskon</td>
+                        <td id="summary-discount" class="text-right">0</td>
+                    </tr>
+                </table>
+                <div class="summary-total">
+                    <span>Total Pembayaran</span>
+                    <span id="summary-total" class="text-right">-</span>
+                </div>
+                <div class="checkout-btn-container">
+                    <button class="btn btn-primary btn-block" id="btn-checkout">Checkout</button>
+                </div>
             </div>
         </div>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Walz Shop. Semua hak dilindungi.</p>
+    <div class="modal-overlay" id="checkout-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Konfirmasi Pembelian</h3>
+                <button class="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-content">
+                <p><strong>ID Pengguna:</strong> <span id="modal-user-id"></span></p>
+                <p><strong>Produk:</strong> <span id="modal-product"></span></p>
+                <p><strong>Harga:</strong> <span id="modal-price"></span></p>
+                <p><strong>Metode Pembayaran:</strong> <span id="modal-payment"></span></p>
+                <div class="payment-info">
+                    <p>Silakan bayar melalui:</p>
+                    <div class="qris-image-container">
+                        <img id="qris-image" src="..." alt="QRIS Code" class="qris-image">
+                    </div>
+                    <p class="instruction">Scan QR Code di atas dengan aplikasi pembayaran Anda.</p>
+                    <p>Atau transfer ke nomor rekening:</p>
+                    <div class="copy-field">
+                        <span id="account-number">1234567890</span>
+                        <button class="btn btn-sm" onclick="copyToClipboard('1234567890')">Salin</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-confirm" id="btn-confirm-payment">Konfirmasi Pembayaran</button>
+            </div>
         </div>
-    </footer>
-    
-    <div id="modal-overlay" class="modal-overlay">
-        <div id="checkout-modal" class="modal"></div>
-        <div id="promo-list-modal" class="modal"></div>
-        <div id="error-modal" class="modal"></div>
     </div>
-    
+
+    <div class="modal-overlay" id="voucher-list-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Daftar Voucher</h3>
+                <button class="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-content" id="voucher-list-content">
+                </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+
 </body>
 </html>
