@@ -254,7 +254,6 @@ document.addEventListener('DOMContentLoaded', () => {
             setupGamePage(gameKey);
             setupEventListeners();
         } else {
-            // Jika tidak ada parameter game, kembali ke halaman utama
             window.location.href = 'index.html';
         }
     }
@@ -355,10 +354,9 @@ function setupGamePage(gameKeyFromUrl) {
     qs("title").textContent = `Walz Shop - Top Up ${currentGame.name}`;
     qs(".game-description").textContent = currentGame.guide;
 
-    if (currentGame.hasServerId) {
-        qs("#server-id-container").style.display = "block";
-    } else {
-        qs("#server-id-container").style.display = "none";
+    const serverIdContainer = qs("#server-id-container");
+    if (serverIdContainer) {
+        serverIdContainer.style.display = currentGame.hasServerId ? "block" : "none";
     }
 
     renderProducts(currentGame.key);
@@ -373,8 +371,11 @@ function setupGamePage(gameKeyFromUrl) {
 function setupEventListeners() {
     if (!qs("#checkout-btn")) return;
     qs("#user-id").addEventListener("input", checkProgress);
-    if (currentGame.hasServerId) {
-        qs("#server-id").addEventListener("input", checkProgress);
+    if (currentGame && currentGame.hasServerId) {
+        const serverIdInput = qs("#server-id");
+        if(serverIdInput) {
+             serverIdInput.addEventListener("input", checkProgress);
+        }
     }
     qs("#voucher-btn").addEventListener("click", applyVoucher);
     qs("#voucher-input").addEventListener("input", () => {
@@ -576,10 +577,14 @@ function refreshSummary() {
  * Memeriksa kemajuan pengisian form dan mengaktifkan/menonaktifkan tombol checkout.
  */
 function checkProgress() {
-    const userId = qs("#user-id").value.trim();
-    const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : "ok";
+    const userId = qs("#user-id")?.value.trim();
+    const serverId = currentGame && currentGame.hasServerId ? qs("#server-id")?.value.trim() : "ok";
     const checkoutBtn = qs("#checkout-btn");
-    checkoutBtn.disabled = !(userId && (currentGame.hasServerId ? serverId : true) && selectedProduct && selectedPayment);
+    
+    if (checkoutBtn) {
+        const isFormValid = userId && (currentGame.hasServerId ? serverId : true) && selectedProduct && selectedPayment;
+        checkoutBtn.disabled = !isFormValid;
+    }
 }
 
 /**
@@ -655,14 +660,14 @@ function showErrorModal(message) {
  * @returns {boolean} True jika form valid.
  */
 function validateForm() {
-    const userId = qs("#user-id").value.trim();
-    const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : "ok";
+    const userId = qs("#user-id")?.value.trim();
+    const serverId = currentGame && currentGame.hasServerId ? qs("#server-id")?.value.trim() : "ok";
 
     if (!userId) {
         showErrorModal("User ID wajib diisi.");
         return false;
     }
-    if (currentGame.hasServerId && !serverId) {
+    if (currentGame && currentGame.hasServerId && !serverId) {
         showErrorModal("Server ID wajib diisi.");
         return false;
     }
