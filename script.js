@@ -21,29 +21,23 @@ const GAMES = [
     { key: "blood-strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", bannerImg: "https://files.catbox.moe/3y066i.jpg", hasServerId: false, guide: "ID Anda dapat ditemukan di profil dalam game.", url: "game.html?key=blood-strike" },
     { key: "pubg-mobile", name: "PUBG Mobile", img: "https://files.catbox.moe/tatuo9.jpg", bannerImg: "https://files.catbox.moe/tatuo9.jpg", hasServerId: false, guide: "Temukan User ID Anda di sudut kanan atas lobi game saat mengklik profil.", url: "game.html?key=pubg-mobile" },
     { key: "garena-delta-force", name: "Garena Delta Force", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", bannerImg: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", hasServerId: false, guide: "Buka menu profil di game dan Anda dapat menemukan User ID Anda.", url: "game.html?key=garena-delta-force" },
-    { key: "call-of-duty", name: "Call Of Duty", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1515.webp", bannerImg: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1515.webp", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil game.", url: "game.html?key=call-of-duty" },
+    { key: "call-of-duty", name: "Call Of Duty", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", bannerImg: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil game.", url: "game.html?key=call-of-duty" },
     { key: "valorant", name: "Valorant", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", bannerImg: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", hasServerId: false, guide: "User ID (Riot ID) dapat ditemukan di bawah nama akun Anda di bagian atas layar.", url: "game.html?key=valorant" },
     { key: "eggy-party", name: "Eggy Party", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", bannerImg: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil dalam game.", url: "game.html?key=eggy-party" },
     { key: "garena-undawn", name: "Garena Undawn", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", bannerImg: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", hasServerId: false, guide: "Buka menu profil dan User ID Anda akan terlihat.", url: "game.html?key=garena-undawn" },
 ];
 
 const PROMOS = [
-    { title: "Top Up Free Fire Termurah", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", gameKey: "free-fire" },
-    { title: "Top Up MLBB Termurah", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", gameKey: "mobile-legends" },
-    { title: "Top Up Honor of Kings Termurah", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", gameKey: "honor-of-kings" },
-    { title: "Promo Genshin Impact", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", gameKey: "genshin-impact" },
-    { title: "Promo Roblox", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", gameKey: "roblox" },
-    { title: "Promo Delta Force", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", gameKey: "garena-delta-force" },
-    { title: "Promo Undawn", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", gameKey: "garena-undawn" },
-    { title: "Promo Valorant", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", gameKey: "valorant" },
-    { title: "Promo COD", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1515.webp", gameKey: "call-of-duty" },
-    { title: "Promo Eggy Party", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", gameKey: "eggy-party" },
+    { title: "Top Up Diamond FF Termurah", img: "https://files.catbox.moe/wz282d.png", gameKey: "free-fire" },
+    { title: "Top Up Starlight MLBB Harga Cuan", img: "https://files.catbox.moe/97a2w3.jpg", gameKey: "mobile-legends" },
+    { title: "Promo UC PUBG Mobile Khusus Member", img: "https://files.catbox.moe/c4c51z.jpg", gameKey: "pubg-mobile" },
+    { title: "Blessing of the Welkin Moon Genshin", img: "https://files.catbox.moe/o3d2x9.jpg", gameKey: "genshin-impact" },
 ];
 
 const PAYMENTS = [
     { id: "dana", name: "DANA", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
     { id: "gopay", name: "GoPay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", type: "ewallet", info: { number: "082116690164", name: "TI** SUT***" } },
-    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", type: "qris", info: { qrisImg: "https://files.catbox.moe/pa0iwo.png" } },
+    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", type: "qris", info: { qrisImg: "https://files.catbox.moe/5688406c-3c9f-4990-b77a-4f1eaba082ad.png" } },
     { id: "krom", name: "Krom Bank", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", type: "bank_transfer", info: { number: "770072009565", name: "TI** SUT***" } },
 ];
 
@@ -247,17 +241,9 @@ let selectedPayment = null;
 let appliedVoucher = null;
 let currentGame = null;
 
-/* ================== FUNGSI UTAMA ================== */
+/* ================== INITIATION ================== */
 document.addEventListener('DOMContentLoaded', () => {
-    const mobileMenu = qs("#mobile-menu");
-    const mainNav = qs(".main-nav");
-    if (mobileMenu) {
-        mobileMenu.addEventListener("click", () => {
-            mobileMenu.classList.toggle("active");
-            mainNav.classList.toggle("active");
-        });
-    }
-
+    // Memeriksa apakah ini halaman utama (index.html) atau halaman game
     if (qs("#games-grid")) {
         renderGameGrid();
         renderPromoSlider();
@@ -268,11 +254,17 @@ document.addEventListener('DOMContentLoaded', () => {
             setupGamePage(gameKey);
             setupEventListeners();
         } else {
+            // Jika tidak ada parameter game, kembali ke halaman utama
             window.location.href = 'index.html';
         }
     }
 });
 
+/* ================== FUNGSI UNTUK HALAMAN UTAMA (INDEX.HTML) ================== */
+
+/**
+ * Merender daftar game ke dalam grid.
+ */
 function renderGameGrid() {
     const gameGrid = qs("#games-grid");
     if (!gameGrid) return;
@@ -289,6 +281,9 @@ function renderGameGrid() {
     });
 }
 
+/**
+ * Merender slider promosi dan mengaktifkan fungsionalitasnya.
+ */
 function renderPromoSlider() {
     const track = qs("#promo-slider");
     const dots = qs("#slider-dots");
@@ -340,6 +335,12 @@ function renderPromoSlider() {
     resetTimer();
 }
 
+/* ================== FUNGSI UNTUK HALAMAN GAME ================== */
+
+/**
+ * Menyiapkan halaman game berdasarkan parameter URL.
+ * @param {string} gameKeyFromUrl Kunci game dari URL.
+ */
 function setupGamePage(gameKeyFromUrl) {
     currentGame = GAMES.find(g => g.key === gameKeyFromUrl);
 
@@ -355,12 +356,10 @@ function setupGamePage(gameKeyFromUrl) {
     qs(".game-description").textContent = currentGame.guide;
 
     if (currentGame.hasServerId) {
-        qs("#server-id-group").style.display = "block";
+        qs("#server-id-container").style.display = "block";
     } else {
-        qs("#server-id-group").style.display = "none";
+        qs("#server-id-container").style.display = "none";
     }
-
-    qsa('.step-card').forEach(el => el.style.display = 'block');
 
     renderProducts(currentGame.key);
     renderPayments();
@@ -368,28 +367,22 @@ function setupGamePage(gameKeyFromUrl) {
     checkProgress();
 }
 
+/**
+ * Menyiapkan semua event listener yang diperlukan di halaman game.
+ */
 function setupEventListeners() {
     if (!qs("#checkout-btn")) return;
-    const userIdInput = qs("#user-id");
-    const serverIdInput = qs("#server-id");
-    const voucherInput = qs("#voucher-input");
-    const voucherApplyBtn = qs("#voucher-apply-btn");
-
-    userIdInput.addEventListener("input", checkProgress);
+    qs("#user-id").addEventListener("input", checkProgress);
     if (currentGame.hasServerId) {
-        serverIdInput.addEventListener("input", checkProgress);
+        qs("#server-id").addEventListener("input", checkProgress);
     }
-    
-    voucherInput.addEventListener("input", () => {
-        voucherApplyBtn.disabled = voucherInput.value.trim() === "";
+    qs("#voucher-btn").addEventListener("click", applyVoucher);
+    qs("#voucher-input").addEventListener("input", () => {
         appliedVoucher = null;
         setVoucherStatus("");
         refreshSummary();
         renderPayments();
     });
-
-    voucherApplyBtn.addEventListener("click", applyVoucher);
-    
     qs("#voucher-list-btn").addEventListener("click", showVoucherListModal);
     qs("#checkout-btn").addEventListener("click", openCheckoutModal);
     qs("#modal-overlay").addEventListener("click", (e) => {
@@ -399,6 +392,10 @@ function setupEventListeners() {
     });
 }
 
+/**
+ * Merender daftar produk (nominal top-up) untuk game yang dipilih.
+ * @param {string} gameKey Kunci game.
+ */
 function renderProducts(gameKey) {
     const productGrid = qs("#product-grid");
     const products = PRODUCTS[gameKey] || [];
@@ -426,7 +423,6 @@ function renderProducts(gameKey) {
                 selectedPayment = null;
                 appliedVoucher = null;
                 qs("#voucher-input").value = "";
-                qs("#voucher-apply-btn").disabled = true;
                 setVoucherStatus("");
                 refreshSelections();
                 checkProgress();
@@ -439,6 +435,9 @@ function renderProducts(gameKey) {
     }
 }
 
+/**
+ * Merender daftar metode pembayaran.
+ */
 function renderPayments() {
     const paymentGrid = qs("#payment-grid");
     paymentGrid.innerHTML = "";
@@ -448,7 +447,8 @@ function renderPayments() {
             div.className = "payment-card";
             div.dataset.id = pay.id;
             
-            const priceHtml = selectedProduct ? `<div class="payment-price">${fmtIDR(finalPrice())}</div>` : '';
+            const price = selectedProduct ? finalPrice() : 0;
+            const priceHtml = selectedProduct ? `<div class="payment-price">${fmtIDR(price)}</div>` : '';
 
             div.innerHTML = `
                 <img src="${pay.img}" alt="${pay.name}">
@@ -472,6 +472,9 @@ function renderPayments() {
     }
 }
 
+/**
+ * Menerapkan voucher yang dimasukkan pengguna.
+ */
 function applyVoucher() {
     if (!selectedProduct) {
         setVoucherStatus("Pilih nominal terlebih dahulu.", true);
@@ -493,6 +496,12 @@ function applyVoucher() {
     renderPayments();
 }
 
+/**
+ * Menghitung jumlah diskon dari voucher.
+ * @param {number} price Harga produk.
+ * @param {object} voucher Objek voucher.
+ * @returns {number} Jumlah diskon.
+ */
 function calcDiscount(price, voucher) {
     let discount = 0;
     if (voucher.percent) {
@@ -506,6 +515,10 @@ function calcDiscount(price, voucher) {
     return Math.floor(discount);
 }
 
+/**
+ * Menghitung harga final setelah diskon voucher.
+ * @returns {number} Harga final.
+ */
 function finalPrice() {
     if (!selectedProduct) return 0;
     let price = selectedProduct.price;
@@ -515,12 +528,18 @@ function finalPrice() {
     return Math.max(0, price);
 }
 
+/**
+ * Memperbarui tampilan produk dan metode pembayaran yang dipilih.
+ */
 function refreshSelections() {
     qsa(".product-card").forEach(c => c.classList.toggle("selected", selectedProduct && c.dataset.id === selectedProduct.id));
     qsa(".payment-card").forEach(c => c.classList.toggle("selected", selectedPayment && c.dataset.id === selectedPayment.id));
     refreshSummary();
 }
 
+/**
+ * Memperbarui ringkasan total pembelian.
+ */
 function refreshSummary() {
     const summaryProduct = qs("#summary-product");
     const summaryPayment = qs("#summary-payment");
@@ -550,12 +569,12 @@ function refreshSummary() {
     
     summaryPayment.textContent = selectedPayment ? selectedPayment.name : "-";
     
-    const userId = qs("#user-id").value.trim();
-    const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : "ok";
-    checkoutBtn.disabled = !(userId && (currentGame.hasServerId ? serverId : true) && selectedProduct && selectedPayment);
+    checkProgress();
 }
 
-
+/**
+ * Memeriksa kemajuan pengisian form dan mengaktifkan/menonaktifkan tombol checkout.
+ */
 function checkProgress() {
     const userId = qs("#user-id").value.trim();
     const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : "ok";
@@ -563,6 +582,11 @@ function checkProgress() {
     checkoutBtn.disabled = !(userId && (currentGame.hasServerId ? serverId : true) && selectedProduct && selectedPayment);
 }
 
+/**
+ * Menampilkan status voucher (berhasil atau gagal).
+ * @param {string} text Pesan status.
+ * @param {boolean} isError True jika pesan error.
+ */
 function setVoucherStatus(text, isError = false) {
     const el = qs("#voucher-status");
     if (el) {
@@ -571,6 +595,9 @@ function setVoucherStatus(text, isError = false) {
     }
 }
 
+/**
+ * Menampilkan modal berisi daftar voucher yang tersedia.
+ */
 function showVoucherListModal() {
     const modal = qs("#promo-list-modal");
     if (!modal) return;
@@ -601,6 +628,10 @@ function showVoucherListModal() {
     openModal("promo-list-modal");
 }
 
+/**
+ * Menampilkan modal error dengan pesan tertentu.
+ * @param {string} message Pesan error.
+ */
 function showErrorModal(message) {
     const modal = qs("#error-modal");
     if (!modal) return;
@@ -619,6 +650,10 @@ function showErrorModal(message) {
     openModal("error-modal");
 }
 
+/**
+ * Memvalidasi form sebelum membuka modal checkout.
+ * @returns {boolean} True jika form valid.
+ */
 function validateForm() {
     const userId = qs("#user-id").value.trim();
     const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : "ok";
@@ -642,6 +677,9 @@ function validateForm() {
     return true;
 }
 
+/**
+ * Membuka modal konfirmasi checkout.
+ */
 function openCheckoutModal() {
     if (!validateForm()) return;
     const userId = qs("#user-id").value.trim();
@@ -669,7 +707,6 @@ function openCheckoutModal() {
                 <div class="qris-image-container">
                     <img src="${selectedPayment.info.qrisImg}" alt="QRIS Code" class="qris-image">
                 </div>
-                <p class="instruction">Scan kode QRIS ini dengan aplikasi e-wallet atau mobile banking Anda.</p>
             </div>
         `;
     } else {
@@ -719,18 +756,23 @@ function openCheckoutModal() {
 
     const copyBtn = qs("#copy-account-btn", modal);
     if (copyBtn) {
-        const accountNumber = qs("#account-number", modal).textContent;
-        copyBtn.addEventListener("click", () => copyToClipboard(accountNumber, copyBtn));
+        copyBtn.addEventListener("click", () => copyToClipboard(selectedPayment.info.number, copyBtn));
     }
 
     openModal("checkout-modal");
 }
 
+/**
+ * Menampilkan overlay modal.
+ */
 function showOverlay() {
     qs("#modal-overlay")?.classList.add("active");
     document.body.style.overflow = "hidden";
 }
 
+/**
+ * Menyembunyikan overlay modal.
+ */
 function hideOverlay() {
     qs("#modal-overlay")?.classList.remove("active");
     document.body.style.overflow = "";
@@ -739,6 +781,10 @@ function hideOverlay() {
     });
 }
 
+/**
+ * Membuka modal dengan ID tertentu.
+ * @param {string} id ID modal.
+ */
 function openModal(id) {
     const m = qs(`#${id}`);
     if (!m) return;
@@ -750,6 +796,10 @@ function openModal(id) {
     }
 }
 
+/**
+ * Menutup modal dengan ID tertentu.
+ * @param {string} id ID modal.
+ */
 function closeModal(id) {
     const m = qs(`#${id}`);
     if (!m) return;
@@ -758,33 +808,18 @@ function closeModal(id) {
     if (!anyOpen) hideOverlay();
 }
 
+/**
+ * Menyalin teks ke clipboard dan memberikan feedback visual.
+ * @param {string} text Teks yang akan disalin.
+ * @param {HTMLElement} btn Tombol yang memicu aksi.
+ */
 function copyToClipboard(text, btn) {
-    if (!navigator.clipboard) {
-        const textarea = document.createElement('textarea');
-        textarea.value = text;
-        document.body.appendChild(textarea);
-        textarea.select();
-        try {
-            document.execCommand('copy');
-            const originalText = btn.textContent;
-            btn.textContent = "Disalin!";
-            setTimeout(() => {
-                btn.textContent = originalText;
-            }, 1500);
-        } catch (err) {
-            alert('Gagal menyalin. Silakan salin manual.');
-        }
-        document.body.removeChild(textarea);
-        return;
-    }
-
     navigator.clipboard.writeText(text).then(() => {
-        const originalText = btn.textContent;
+        const old = btn.textContent;
         btn.textContent = "Disalin!";
-        setTimeout(() => {
-            btn.textContent = originalText;
-        }, 1500);
+        setTimeout(() => btn.textContent = old, 1500);
     }).catch(err => {
+        console.error('Failed to copy text: ', err);
         alert('Gagal menyalin. Silakan salin manual.');
     });
 }
