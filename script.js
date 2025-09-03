@@ -20,11 +20,11 @@ const GAMES = [
     { key: "clash-of-clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", bannerImg: "https://files.catbox.moe/6aia0n.jpg", hasServerId: false, guide: "User ID (Tag Pemain) adalah kombinasi huruf dan angka yang dimulai dengan tanda pagar (#).", url: "game.html?key=clash-of-clans" },
     { key: "blood-strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", bannerImg: "https://files.catbox.moe/3y066i.jpg", hasServerId: false, guide: "ID Anda dapat ditemukan di profil dalam game.", url: "game.html?key=blood-strike" },
     { key: "pubg-mobile", name: "PUBG Mobile", img: "https://files.catbox.moe/tatuo9.jpg", bannerImg: "https://files.catbox.moe/tatuo9.jpg", hasServerId: false, guide: "Temukan User ID Anda di sudut kanan atas lobi game saat mengklik profil.", url: "game.html?key=pubg-mobile" },
-    { key: "garena-delta-force", name: "Garena Delta Force", img: "https://files.catbox.moe/t1676s.jpg", bannerImg: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", hasServerId: false, guide: "Buka menu profil di game dan Anda dapat menemukan User ID Anda.", url: "game.html?key=garena-delta-force" },
-    { key: "call-of-duty", name: "Call Of Duty", img: "https://files.catbox.moe/x92o5d.jpg", bannerImg: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1515.webp", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil game.", url: "game.html?key=call-of-duty" },
-    { key: "valorant", name: "Valorant", img: "https://files.catbox.moe/422l3o.jpg", bannerImg: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", hasServerId: false, guide: "User ID (Riot ID) dapat ditemukan di bawah nama akun Anda di bagian atas layar.", url: "game.html?key=valorant" },
-    { key: "eggy-party", name: "Eggy Party", img: "https://files.catbox.moe/y399d3.jpg", bannerImg: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil dalam game.", url: "game.html?key=eggy-party" },
-    { key: "garena-undawn", name: "Garena Undawn", img: "https://files.catbox.moe/a87g6f.jpg", bannerImg: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", hasServerId: false, guide: "Buka menu profil dan User ID Anda akan terlihat.", url: "game.html?key=garena-undawn" },
+    { key: "garena-delta-force", name: "Garena Delta Force", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", bannerImg: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", hasServerId: false, guide: "Buka menu profil di game dan Anda dapat menemukan User ID Anda.", url: "game.html?key=garena-delta-force" },
+    { key: "call-of-duty", name: "Call Of Duty", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1515.webp", bannerImg: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1515.webp", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil game.", url: "game.html?key=call-of-duty" },
+    { key: "valorant", name: "Valorant", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", bannerImg: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", hasServerId: false, guide: "User ID (Riot ID) dapat ditemukan di bawah nama akun Anda di bagian atas layar.", url: "game.html?key=valorant" },
+    { key: "eggy-party", name: "Eggy Party", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", bannerImg: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil dalam game.", url: "game.html?key=eggy-party" },
+    { key: "garena-undawn", name: "Garena Undawn", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", bannerImg: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", hasServerId: false, guide: "Buka menu profil dan User ID Anda akan terlihat.", url: "game.html?key=garena-undawn" },
 ];
 
 const PROMOS = [
@@ -249,6 +249,15 @@ let currentGame = null;
 
 /* ================== FUNGSI UTAMA ================== */
 document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenu = qs("#mobile-menu");
+    const mainNav = qs(".main-nav");
+    if (mobileMenu) {
+        mobileMenu.addEventListener("click", () => {
+            mobileMenu.classList.toggle("active");
+            mainNav.classList.toggle("active");
+        });
+    }
+
     if (qs("#games-grid")) {
         renderGameGrid();
         renderPromoSlider();
@@ -361,12 +370,14 @@ function setupGamePage(gameKeyFromUrl) {
 
 function setupEventListeners() {
     if (!qs("#checkout-btn")) return;
+    const userIdInput = qs("#user-id");
+    const serverIdInput = qs("#server-id");
     const voucherInput = qs("#voucher-input");
     const voucherApplyBtn = qs("#voucher-apply-btn");
 
-    qs("#user-id").addEventListener("input", checkProgress);
+    userIdInput.addEventListener("input", checkProgress);
     if (currentGame.hasServerId) {
-        qs("#server-id").addEventListener("input", checkProgress);
+        serverIdInput.addEventListener("input", checkProgress);
     }
     
     voucherInput.addEventListener("input", () => {
@@ -437,8 +448,7 @@ function renderPayments() {
             div.className = "payment-card";
             div.dataset.id = pay.id;
             
-            const price = selectedProduct ? finalPrice() : 0;
-            const priceHtml = selectedProduct ? `<div class="payment-price">${fmtIDR(price)}</div>` : '';
+            const priceHtml = selectedProduct ? `<div class="payment-price">${fmtIDR(finalPrice())}</div>` : '';
 
             div.innerHTML = `
                 <img src="${pay.img}" alt="${pay.name}">
