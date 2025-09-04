@@ -513,19 +513,20 @@ function showVoucherListModal() {
                 <h4>${v.code}</h4>
                 <p>${v.description}</p>
             </div>
-            <button class="btn btn-sm btn-choose" data-choose="${v.code}">Pilih</button>
+            <button class="btn btn-sm btn-choose" data-choose="${v.code}"><i class="fa-solid fa-hand-pointer"></i>Pilih</button>
         </div>
     `).join("");
     el.promoListModal.innerHTML = `
         <div class="modal-header">
             <h3>Daftar Kode Promo</h3>
-            <button class="modal-close-btn" data-close>&times;</button>
+            <button class="modal-close-btn" data-close><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="modal-content-list">${modalContent}</div>
     `;
     qsa("[data-choose]", el.promoListModal).forEach(btn => btn.addEventListener("click", () => {
         el.voucherInput.value = btn.dataset.choose;
         closeModal(el.promoListModal);
+        applyVoucher(); // Apply voucher automatically after selection
     }));
     openModal(el.promoListModal);
 }
@@ -534,8 +535,8 @@ function showErrorModal(message) {
     hideOverlay();
     el.errorModal.innerHTML = `
         <div class="modal-header">
-            <h3>Peringatan!</h3>
-            <button class="modal-close-btn" data-close>&times;</button>
+            <h3><i class="fa-solid fa-circle-exclamation"></i> Peringatan!</h3>
+            <button class="modal-close-btn" data-close><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="modal-content" style="text-align: center;">
             <p>${message}</p>
@@ -567,10 +568,10 @@ function openCheckoutModal() {
     if (selectedPayment.type === "qris") {
         payBlock = `<div class="payment-info"><h4>Scan QRIS Berikut</h4><div class="qris-image-container"><img src="${selectedPayment.info.qrisImg}" alt="QRIS Code" class="qris-image"></div></div>`;
     } else {
-        payBlock = `<div class="payment-info"><h4>Transfer ke Rekening Berikut</h4><div class="payment-img-container" style="text-align:center; margin-bottom: 1rem;"><img src="${selectedPayment.img}" alt="${selectedPayment.name}" style="max-width: 120px; height: auto;"></div><p><strong>A/N:</strong> ${selectedPayment.info.name || "-"}</p><div class="copy-field"><span id="account-number">${selectedPayment.info.number}</span><button class="btn" id="copy-account-btn">Salin</button></div></div>`;
+        payBlock = `<div class="payment-info"><h4>Transfer ke Rekening Berikut</h4><div class="payment-img-container" style="text-align:center; margin-bottom: 1rem;"><img src="${selectedPayment.img}" alt="${selectedPayment.name}" style="max-width: 120px; height: auto;"></div><p><strong>A/N:</strong> ${selectedPayment.info.name || "-"}</p><div class="copy-field"><span id="account-number">${selectedPayment.info.number}</span><button class="btn" id="copy-account-btn"><i class="fa-solid fa-copy"></i>Salin</button></div></div>`;
     }
     el.checkoutModal.innerHTML = `
-        <div class="modal-header"><h3>Konfirmasi Pembelian</h3><button class="modal-close-btn" data-close>&times;</button></div>
+        <div class="modal-header"><h3><i class="fa-solid fa-circle-check"></i> Konfirmasi Pembelian</h3><button class="modal-close-btn" data-close><i class="fa-solid fa-xmark"></i></button></div>
         <div class="modal-content">
             <table class="summary-table">
                 <tr><td>Game</td><td>${currentGame.name}</td></tr>
@@ -582,7 +583,7 @@ function openCheckoutModal() {
             </table>
             <div class="summary-total" style="margin-top: 1.5rem;"><span>Total Pembayaran</span><span>${fmtIDR(total)}</span></div>
             ${payBlock}
-            <div class="modal-footer" style="margin-top: 1.5rem;"><a href="https://wa.me/${ADMIN_WA}?text=${waMsg}" target="_blank" class="btn btn-confirm btn-block">Chat Admin Sekarang</a><p class="instruction">Setelah bayar, kirim bukti transfer ke Admin agar pesanan segera diproses.</p></div>
+            <div class="modal-footer" style="margin-top: 1.5rem;"><a href="https://wa.me/${ADMIN_WA}?text=${waMsg}" target="_blank" class="btn btn-confirm btn-block"><i class="fa-brands fa-whatsapp"></i>Chat Admin Sekarang</a><p class="instruction">Setelah bayar, kirim bukti transfer ke Admin agar pesanan segera diproses.</p></div>
         </div>
     `;
     const copyBtn = qs("#copy-account-btn", el.checkoutModal);
@@ -622,9 +623,9 @@ function closeModal(modalElement) {
 
 function copyToClipboard(text, btn) {
     navigator.clipboard.writeText(text).then(() => {
-        const old = btn.textContent;
-        btn.textContent = "Disalin!";
-        setTimeout(() => btn.textContent = old, 1500);
+        const old = btn.innerHTML;
+        btn.innerHTML = `<i class="fa-solid fa-check"></i>Disalin!`;
+        setTimeout(() => btn.innerHTML = old, 1500);
     }).catch(err => {
         console.error('Failed to copy text: ', err);
         alert('Gagal menyalin. Silakan salin manual.');
