@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top Up - Walz Shop</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg" type="image/x-icon">
 </head>
 <body>
@@ -26,12 +26,18 @@
                 <div class="game-banner-container">
                     <img id="game-banner" src="" alt="Game Banner" class="game-banner">
                 </div>
+                <div class="game-details">
+                    <h1 id="game-title">Nama Game</h1>
+                    <p id="game-description" class="game-description"></p>
+                </div>
             </section>
 
             <section class="form-section">
                 <div class="form-card">
-                    <h2 class="card-title">1. Masukkan Data Akun</h2>
-                    <p class="game-description"></p>
+                    <h3 class="form-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 14C4 12.3431 5.34315 11 7 11H17C18.6569 11 20 12.3431 20 14V17C20 18.6569 18.6569 20 17 20H7C5.34315 20 4 18.6569 4 17V14Z"></path><path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z"></path></svg>
+                        Masukkan Data Akun
+                    </h3>
                     <div class="form-group">
                         <label for="user-id">User ID</label>
                         <input type="text" id="user-id" placeholder="Masukkan User ID Anda" required>
@@ -43,31 +49,28 @@
                 </div>
 
                 <div class="form-card">
-                    <h2 class="card-title">2. Pilih Nominal</h2>
+                    <h3 class="form-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21V21H3V3ZM5 5V19H19V5H5ZM11 7H13V17H11V7ZM7 7H9V17H7V7ZM15 7H17V17H15V7Z"></path></svg>
+                        Pilih Nominal Top Up
+                    </h3>
                     <div class="product-grid" id="product-grid">
-                        </div>
-                </div>
-
-                <div class="form-card">
-                    <h2 class="card-title">3. Pilih Pembayaran</h2>
-                    <div class="payment-grid" id="payment-grid">
-                        </div>
-                </div>
-
-                <div class="form-card">
-                    <h2 class="card-title">4. Kode Voucher (Opsional)</h2>
-                    <div class="voucher-section">
-                        <input type="text" id="voucher-input" placeholder="Masukkan Kode Voucher">
-                        <button id="voucher-btn" class="btn btn-apply">Gunakan</button>
                     </div>
-                    <div class="voucher-status-container">
-                        <span id="voucher-status"></span>
-                        <button id="voucher-list-btn" class="btn btn-sm btn-link">Lihat Daftar Promo</button>
+                </div>
+
+                <div class="form-card">
+                    <h3 class="form-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21 4H3C1.89543 4 1 4.89543 1 6V18C1 19.1046 1.89543 20 3 20H21C22.1046 20 23 19.1046 23 18V6C23 4.89543 22.1046 4 21 4ZM3 6V18H21V6H3Z"></path><path d="M5 14H19V16H5V14Z"></path><path d="M5 8H15V10H5V8Z"></path></svg>
+                        Pilih Metode Pembayaran
+                    </h3>
+                    <div class="payment-grid" id="payment-grid">
                     </div>
                 </div>
 
                 <div class="form-card summary-card">
-                    <h2 class="card-title">5. Konfirmasi Pembelian</h2>
+                    <h3 class="form-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.5 16.5H12C11.45 16.5 11 16.05 11 15.5V9.5C11 8.95 11.45 8.5 12 8.5H13C13.55 8.5 14 8.95 14 9.5V11.5H16.5C17.05 11.5 17.5 11.95 17.5 12.5C17.5 13.05 17.05 13.5 16.5 13.5H14V15.5C14 16.05 13.55 16.5 13 16.5H12V16.5H16.5Z"></path></svg>
+                        Konfirmasi Pembelian
+                    </h3>
                     <table class="summary-table">
                         <tr>
                             <td>Produk</td>
@@ -86,7 +89,7 @@
                         <span>Total Pembayaran</span>
                         <span id="summary-total">Rp0</span>
                     </div>
-                    <button id="checkout-btn" class="btn btn-checkout" disabled>Beli Sekarang</button>
+                    <button id="checkout-btn" class="btn btn-checkout btn-block" disabled>Beli Sekarang</button>
                 </div>
             </section>
         </div>
