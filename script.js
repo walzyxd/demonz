@@ -526,7 +526,6 @@ function showVoucherListModal() {
     qsa("[data-choose]", el.promoListModal).forEach(btn => btn.addEventListener("click", () => {
         el.voucherInput.value = btn.dataset.choose;
         closeModal(el.promoListModal);
-        applyVoucher();
     }));
     openModal(el.promoListModal);
 }
