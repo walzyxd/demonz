@@ -249,6 +249,15 @@ body {
     font-weight: 600;
     margin-bottom: 1rem;
     color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.form-title svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--primary-color);
 }
 
 .form-group {
@@ -335,6 +344,14 @@ input[type="text"]:focus {
 
 .badge.hot { background-color: #dc2626; }
 .badge.new { background-color: #16a34a; }
+
+.payment-card-modern {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
 
 .payment-card-modern img {
     max-height: 35px;
