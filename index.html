@@ -3,45 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walz Shop - Beranda</title>
+    <title>Walz Shop - Top Up Termurah</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg" type="image/x-icon">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <h1 class="logo">Walz Shop</h1>
-            <nav class="nav-menu">
-                <a href="index.html" class="nav-link active">Beranda</a>
-                <a href="#" class="nav-link">Tentang Kami</a>
-                <a href="#" class="nav-link">Kontak</a>
-            </nav>
-        </div>
-    </header>
+    <div class="container">
+        <header class="header">
+            <img src="https://i.ibb.co/6Pz3KqB/logo-walzshop.png" alt="Logo Walz Shop" class="logo">
+        </header>
 
-    <main class="main-content">
-        <div class="container">
-            <section class="promo-section">
-                <div class="slider-container">
-                    <div id="promo-slider" class="slider-track"></div>
-                    <div id="slider-dots" class="slider-dots"></div>
+        <section class="slider-container">
+            <div class="slider" id="promo-slider"></div>
+            <div class="slider-dots" id="slider-dots"></div>
+        </section>
+        
+        <section class="grid-section">
+            <h2 class="grid-title">Pilih Game</h2>
+            <div class="game-grid" id="games-grid">
                 </div>
-            </section>
-
-            <section class="game-section">
-                <h2 class="section-title">Pilih Game Anda</h2>
-                <div id="games-grid" class="game-grid">
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Walz Shop. All rights reserved.</p>
-        </div>
-    </footer>
+        </section>
+    </div>
 
     <script src="script.js"></script>
 </body>
