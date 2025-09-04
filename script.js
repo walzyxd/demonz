@@ -241,6 +241,7 @@ const el = {
     gamesGrid: qs("#games-grid"),
     promoSlider: qs("#promo-slider"),
     sliderDots: qs("#slider-dots"),
+    gameTitle: qs("#game-title"),
     gameBanner: qs("#game-banner"),
     gameDescription: qs(".game-description"),
     serverIdGroup: qs("#server-id-group"),
@@ -296,10 +297,10 @@ function renderPromoSlider() {
     el.promoSlider.innerHTML = PROMOS.map(p => `
         <a href="${GAMES.find(g => g.key === p.gameKey)?.url || "#"}" class="slider__item" style="background-image: url(${p.img});"></a>
     `).join("");
-    el.sliderDots.innerHTML = PROMOS.map((_, idx) => `<span data-index="${idx}"></span>`).join("");
+    el.sliderDots.innerHTML = PROMOS.map((_, idx) => `<span class="dot" data-index="${idx}"></span>`).join("");
 
     const slides = qsa(".slider__item");
-    const dots = qsa("span", el.sliderDots);
+    const dots = qsa(".dot", el.sliderDots);
 
     function renderSlider() {
         if (slides.length > 0) {
@@ -338,6 +339,7 @@ function setupGamePage(gameKeyFromUrl) {
         return;
     }
     document.title = `Walz Shop - Top Up ${currentGame.name}`;
+    el.gameTitle.textContent = currentGame.name;
     el.gameBanner.src = currentGame.bannerImg;
     el.gameDescription.textContent = currentGame.guide;
     el.serverIdGroup.style.display = currentGame.hasServerId ? "block" : "none";
@@ -362,6 +364,7 @@ function setupEventListeners() {
     });
     el.voucherListBtn.addEventListener("click", showVoucherListModal);
     el.checkoutBtn.addEventListener("click", openCheckoutModal);
+    qsa("[data-close]").forEach(btn => btn.addEventListener("click", hideOverlay));
     el.modalOverlay.addEventListener("click", (e) => {
         if (e.target.id === "modal-overlay") hideOverlay();
     });
@@ -503,7 +506,6 @@ function setVoucherStatus(text, isError = false) {
 }
 
 function showVoucherListModal() {
-    // Check if any modal is active, if so, close it first
     hideOverlay();
     const modalContent = VOUCHERS.map(v => `
         <div class="voucher-item">
@@ -530,7 +532,6 @@ function showVoucherListModal() {
 }
 
 function showErrorModal(message) {
-    // Check if any modal is active, if so, close it first
     hideOverlay();
     el.errorModal.innerHTML = `
         <div class="modal-header">
@@ -557,7 +558,7 @@ function validateForm() {
 
 function openCheckoutModal() {
     if (!validateForm()) return;
-    hideOverlay(); // Ensure any other modal is closed
+    hideOverlay();
     const userId = el.userIdInput.value.trim();
     const serverId = currentGame.hasServerId ? el.serverIdInput.value.trim() : null;
     const total = finalPrice();
@@ -604,7 +605,14 @@ function hideOverlay() {
 function openModal(modalElement) {
     showOverlay();
     modalElement.classList.add("active");
-    modalElement.querySelector("[data-close]")?.addEventListener('click', () => closeModal(modalElement));
+    const closeBtn = modalElement.querySelector("[data-close]");
+    if (closeBtn) {
+        closeBtn.onclick = () => {
+            modalElement.classList.remove("active");
+            const anyOpen = qsa(".modal.active").length > 0;
+            if (!anyOpen) hideOverlay();
+        };
+    }
 }
 
 function closeModal(modalElement) {
