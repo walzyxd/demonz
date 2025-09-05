@@ -1,7 +1,6 @@
 /* ================== GLOBAL STYLES ================== */
 :root {
-    /* New Light Theme Colors */
-    --primary-color: #7b43a8; /* A vibrant violet */
+    --primary-color: #7b43a8; 
     --primary-hover: #6a3a92;
     --light-bg: #ffffff;
     --card-bg: #f0f0f0;
@@ -533,7 +532,7 @@ h3 {
     padding: 20px;
     border-radius: var(--border-radius);
     width: 90%;
-    max-width: 400px;
+    max-width: 500px; /* Diperlebar agar lebih besar */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     transform: scale(0.9);
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -580,7 +579,7 @@ h3 {
 
 .modal-content-list {
     max-height: 250px;
-    overflow-y: auto;
+    overflow-y: auto; /* Memungkinkan scroll vertikal */
     padding-right: 8px;
 }
 
