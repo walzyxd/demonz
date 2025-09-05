@@ -242,7 +242,7 @@ const el = {
     promoSlider: qs("#promo-slider"),
     sliderDots: qs("#slider-dots"),
     gameTitle: qs("#game-title"),
-    gameBanner: qs("#game-banner"),
+    gameIcon: qs("#game-icon"),
     gameDescription: qs(".game-description"),
     serverIdGroup: qs("#server-id-group"),
     userIdInput: qs("#user-id"),
@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (el.gamesGrid) {
         renderGameGrid();
         renderPromoSlider();
-    } else if (el.gameBanner) {
+    } else if (el.gameTitle) {
         const urlParams = new URLSearchParams(window.location.search);
         const gameKey = urlParams.get('key');
         if (gameKey) {
@@ -340,7 +340,7 @@ function setupGamePage(gameKeyFromUrl) {
     }
     document.title = `Walz Shop - Top Up ${currentGame.name}`;
     el.gameTitle.textContent = currentGame.name;
-    el.gameBanner.src = currentGame.bannerImg;
+    el.gameIcon.src = currentGame.img;
     el.gameDescription.textContent = currentGame.guide;
     el.serverIdGroup.style.display = currentGame.hasServerId ? "block" : "none";
     renderProducts(currentGame.key);
