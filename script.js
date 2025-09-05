@@ -233,12 +233,9 @@ const PRODUCTS = {
 };
 
 /* ================== UTILITAS & BANTUAN ================== */
-// Fungsi-fungsi helper untuk mempermudah manipulasi DOM dan formatting
 const qs = (s, p = document) => p.querySelector(s);
 const qsa = (s, p = document) => Array.from(p.querySelectorAll(s));
 const fmtIDR = n => new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(n);
-
-// Variabel untuk menyimpan pilihan pengguna
 let selectedProduct = null;
 let selectedPayment = null;
 let appliedVoucher = null;
@@ -246,7 +243,6 @@ let currentGame = null;
 
 /* ================== FUNGSI UTAMA ================== */
 document.addEventListener('DOMContentLoaded', () => {
-    // Menjalankan fungsi sesuai halaman yang dimuat
     if (qs("#games-grid")) {
         renderGameGrid();
         renderPromoSlider();
@@ -257,7 +253,6 @@ document.addEventListener('DOMContentLoaded', () => {
             setupGamePage(gameKey);
             setupEventListeners();
         } else {
-            // Redirect jika tidak ada game yang dipilih
             window.location.href = 'index.html';
         }
     }
