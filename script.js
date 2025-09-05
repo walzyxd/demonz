@@ -305,7 +305,7 @@ function renderPromoSlider() {
     function renderSlider() {
         if (slides.length > 0) {
             el.promoSlider.style.transform = `translateX(-${current * 100}%)`;
-            el.promoSlider.style.transition = `transform 0.5s ease-in-out`; // Add smooth transition
+            el.promoSlider.style.transition = `transform 0.5s ease-in-out`;
         }
         dots.forEach((d, idx) => d.classList.toggle("active", idx === current));
     }
@@ -365,12 +365,14 @@ function setupEventListeners() {
     });
     el.voucherListBtn.addEventListener("click", showVoucherListModal);
     el.checkoutBtn.addEventListener("click", openCheckoutModal);
+
+    // Tutup modal
     qsa("[data-close]").forEach(btn => btn.addEventListener("click", hideOverlay));
     el.modalOverlay.addEventListener("click", (e) => {
         if (e.target.id === "modal-overlay") hideOverlay();
     });
 
-    // Validasi input hanya angka
+    // Validasi input hanya angka (kalau perlu karakter khusus, hapus regex ini)
     el.userIdInput.addEventListener("input", (e) => {
         e.target.value = e.target.value.replace(/\D/g, '');
     });
@@ -409,7 +411,7 @@ function handleProductClick(e) {
     el.voucherInput.value = "";
     setVoucherStatus("");
     refreshSelections();
-    updatePaymentsPrice(); // Update payment prices immediately
+    updatePaymentsPrice();
     checkProgress();
 }
 
@@ -473,7 +475,7 @@ function applyVoucher() {
         setVoucherStatus(`Voucher ${voucher.code} diterapkan. Diskon ${fmtIDR(discount)}.`, false);
     }
     refreshSummary();
-    updatePaymentsPrice(); // Update payment prices after applying voucher
+    updatePaymentsPrice();
 }
 
 function calcDiscount(price, voucher) {
@@ -535,9 +537,11 @@ function showVoucherListModal() {
         <div class="voucher-item">
             <div class="voucher-info">
                 <h4>${v.code}</h4>
-                <p>${v.description}</p>
+                <p>${v.description || ""}</p>
             </div>
-            <button class="btn btn-sm btn-choose" data-choose="${v.code}"><i class="fa-solid fa-hand-pointer"></i>Pilih</button>
+            <button class="btn btn-sm btn-choose" data-choose="${v.code}">
+                <i class="fa-solid fa-hand-pointer"></i>Pilih
+            </button>
         </div>
     `).join("");
     el.promoListModal.innerHTML = `
@@ -545,11 +549,15 @@ function showVoucherListModal() {
             <h3><i class="fa-solid fa-gift"></i> Daftar Kode Promo</h3>
             <button class="modal-close-btn" data-close><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <div class="modal-content-list">${modalContent}</div>
+        <div class="modal-content modal-list">${modalContent}</div>
+        <div class="modal-footer">
+            <button class="btn btn-primary btn-block" data-close>Tutup</button>
+        </div>
     `;
     qsa("[data-choose]", el.promoListModal).forEach(btn => btn.addEventListener("click", () => {
         el.voucherInput.value = btn.dataset.choose;
-        closeModal(el.promoListModal);
+        applyVoucher();                 // auto-apply voucher
+        closeModal(el.promoListModal);  // tutup list
     }));
     openModal(el.promoListModal);
 }
@@ -563,7 +571,9 @@ function showErrorModal(message) {
         </div>
         <div class="modal-content" style="text-align: center;">
             <p>${message}</p>
-            <div style="margin-top: 1rem;"><button class="btn btn-confirm" onclick="closeModal(el.errorModal)">Oke</button></div>
+            <div style="margin-top: 1rem;">
+                <button class="btn btn-confirm" data-close>Oke</button>
+            </div>
         </div>
     `;
     openModal(el.errorModal);
@@ -586,15 +596,46 @@ function openCheckoutModal() {
     const serverId = currentGame.hasServerId ? el.serverIdInput.value.trim() : null;
     const total = finalPrice();
     const discountAmount = selectedProduct.price - total;
-    const waMsg = encodeURIComponent(`Halo admin, saya mau top-up:\n*Game:* ${currentGame.name}\n*User ID:* ${userId}\n${serverId ? `*Server ID:* ${serverId}\n` : ''}*Produk:* ${selectedProduct.label}\n*Metode Pembayaran:* ${selectedPayment.name}\n*Total Pembayaran:* ${fmtIDR(total)}\n\nMohon konfirmasi pesanan saya. Terima kasih.`);
+    const waMsg = encodeURIComponent(
+`Halo admin, saya mau top-up:
+*Game:* ${currentGame.name}
+*User ID:* ${userId}
+${serverId ? `*Server ID:* ${serverId}\n` : ''}*Produk:* ${selectedProduct.label}
+*Metode Pembayaran:* ${selectedPayment.name}
+*Total Pembayaran:* ${fmtIDR(total)}
+
+Mohon konfirmasi pesanan saya. Terima kasih.`
+    );
+
     let payBlock = '';
     if (selectedPayment.type === "qris") {
-        payBlock = `<div class="payment-info"><h4><i class="fa-solid fa-qrcode"></i> Scan QRIS Berikut</h4><div class="qris-image-container"><img src="${selectedPayment.info.qrisImg}" alt="QRIS Code" class="qris-image"></div></div>`;
-    } else {
-        payBlock = `<div class="payment-info"><h4><i class="fa-solid fa-money-bill-transfer"></i> Transfer ke Rekening Berikut</h4><div class="payment-img-container" style="text-align:center; margin-bottom: 1rem;"><img src="${selectedPayment.img}" alt="${selectedPayment.name}" style="max-width: 120px; height: auto;"></div><p><strong>A/N:</strong> ${selectedPayment.info.name || "-"}</p><div class="copy-field"><span id="account-number">${selectedPayment.info.number}</span><button class="btn" id="copy-account-btn"><i class="fa-solid fa-copy"></i>Salin</button></div></div>`;
+        payBlock = `
+            <div class="payment-info">
+                <h4><i class="fa-solid fa-qrcode"></i> Scan QRIS Berikut</h4>
+                <div class="qris-image-container">
+                    <img src="${selectedPayment.info.qrisImg}" alt="QRIS Code" class="qris-image">
+                </div>
+            </div>`;
+    } else if (selectedPayment.type === "bank_transfer" || selectedPayment.type === "ewallet") {
+        payBlock = `
+            <div class="payment-info">
+                <h4><i class="fa-solid fa-money-bill-transfer"></i> Transfer ke Rekening Berikut</h4>
+                <div class="payment-img-container" style="text-align:center; margin-bottom: 1rem;">
+                    <img src="${selectedPayment.img}" alt="${selectedPayment.name}" style="max-width: 120px; height: auto;">
+                </div>
+                <p><strong>A/N:</strong> ${selectedPayment.info.name || "-"}</p>
+                <div class="copy-field">
+                    <span id="account-number">${selectedPayment.info.number}</span>
+                    <button class="btn" id="copy-account-btn"><i class="fa-solid fa-copy"></i>Salin</button>
+                </div>
+            </div>`;
     }
+
     el.checkoutModal.innerHTML = `
-        <div class="modal-header"><h3><i class="fa-solid fa-circle-check"></i> Konfirmasi Pembelian</h3><button class="modal-close-btn" data-close><i class="fa-solid fa-xmark"></i></button></div>
+        <div class="modal-header">
+            <h3><i class="fa-solid fa-circle-check"></i> Konfirmasi Pembelian</h3>
+            <button class="modal-close-btn" data-close><i class="fa-solid fa-xmark"></i></button>
+        </div>
         <div class="modal-content">
             <table class="summary-table">
                 <tr><td>Game</td><td>${currentGame.name}</td></tr>
@@ -604,9 +645,20 @@ function openCheckoutModal() {
                 <tr><td>Metode Bayar</td><td>${selectedPayment.name}</td></tr>
                 ${appliedVoucher ? `<tr><td>Diskon Voucher</td><td>- ${fmtIDR(discountAmount)}</td></tr>` : ''}
             </table>
-            <div class="summary-total" style="margin-top: 1.5rem;"><span>Total Pembayaran</span><span>${fmtIDR(total)}</span></div>
+
+            <div class="summary-total" style="margin-top: 1.5rem;">
+                <span>Total Pembayaran</span>
+                <span>${fmtIDR(total)}</span>
+            </div>
+
             ${payBlock}
-            <div class="modal-footer" style="margin-top: 1.5rem;"><a href="https://wa.me/${ADMIN_WA}?text=${waMsg}" target="_blank" class="btn btn-confirm btn-block"><i class="fa-brands fa-whatsapp"></i>Chat Admin Sekarang</a><p class="instruction">Setelah bayar, kirim bukti transfer ke Admin agar pesanan segera diproses.</p></div>
+
+            <div class="modal-footer" style="margin-top: 1.5rem;">
+                <a href="https://wa.me/${ADMIN_WA}?text=${waMsg}" target="_blank" class="btn btn-confirm btn-block">
+                    <i class="fa-brands fa-whatsapp"></i>Chat Admin Sekarang
+                </a>
+                <p class="instruction">Setelah bayar, kirim bukti transfer ke Admin agar pesanan segera diproses.</p>
+            </div>
         </div>
     `;
     const copyBtn = qs("#copy-account-btn", el.checkoutModal);
@@ -614,14 +666,17 @@ function openCheckoutModal() {
     openModal(el.checkoutModal);
 }
 
+/* ================== MODAL HELPERS ================== */
 function showOverlay() {
     el.modalOverlay.classList.add("active");
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";           // kunci scroll background
+    document.body.style.touchAction = "none";          // anti “geser” di HP
 }
 
 function hideOverlay() {
     el.modalOverlay.classList.remove("active");
     document.body.style.overflow = "";
+    document.body.style.touchAction = "";
     qsa(".modal").forEach(m => m.classList.remove("active"));
 }
 
@@ -636,6 +691,11 @@ function openModal(modalElement) {
             if (!anyOpen) hideOverlay();
         };
     }
+    // Fokus awal ke modal agar aksesibilitas & keyboard trap ringan
+    setTimeout(() => {
+        modalElement.setAttribute("tabindex", "-1");
+        modalElement.focus({ preventScroll: true });
+    }, 0);
 }
 
 function closeModal(modalElement) {
@@ -644,6 +704,7 @@ function closeModal(modalElement) {
     if (!anyOpen) hideOverlay();
 }
 
+/* ================== CLIPBOARD ================== */
 function copyToClipboard(text, btn) {
     navigator.clipboard.writeText(text).then(() => {
         const old = btn.innerHTML;
