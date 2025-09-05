@@ -6,7 +6,6 @@ const VOUCHERS = [
     { code: "TOPUPSPECIAL", percent: 5, description: "Diskon 5% untuk top up pertama" },
     { code: "FREEDIAMOND", percent: 0, fixed: 5000, maxDiscount: 5000, description: "Diskon Rp5.000 (maks. Rp5.000)" }
 ];
-
 const GAMES = [
     { key: "freefire", name: "Free Fire", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", bannerImg: "https://files.catbox.moe/e87yj3.png", hasServerId: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game.", url: "game.html?game=freefire" },
     { key: "mlbb", name: "Mobile Legends", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", bannerImg: "https://files.catbox.moe/8g41jj.jpg", hasServerId: true, guide: "Temukan User ID dan Server ID di bawah nama panggilan saat Anda mengklik avatar profil.", url: "game.html?game=mlbb" },
@@ -23,21 +22,18 @@ const GAMES = [
     { key: "eggy-party", name: "Eggy Party", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", bannerImg: "images/banner_eggy.webp", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil dalam game.", url: "game.html?game=eggy-party" },
     { key: "garena-undawn", name: "Garena Undawn", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", bannerImg: "images/banner_undawn.webp", hasServerId: false, guide: "Buka menu profil dan User ID Anda akan terlihat.", url: "game.html?game=garena-undawn" },
 ];
-
 const PROMOS = [
     { title: "Walz Shop", img: "https://files.catbox.moe/dpr6d2.jpg" },
     { title: "Top Up Diamond FF Termurah", img: "https://files.catbox.moe/e87yj3.png", gameKey: "freefire" },
     { title: "Top Up Starlight MLBB Harga Cuan", img: "https://files.catbox.moe/8g41jj.jpg", gameKey: "mlbb" },
     { title: "Promo UC PUBG Mobile Khusus Member", img: "https://files.catbox.moe/hrtpys.jpg", gameKey: "pubgm" },
 ];
-
 const PAYMENTS = [
     { id: "dana", name: "DANA", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" }, adminNumber: ADMIN_WA, instruction: "Lakukan pembayaran melalui aplikasi DANA." },
     { id: "gopay", name: "GoPay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", type: "ewallet", info: { number: "082116690164", name: "TI** SUT***" }, adminNumber: ADMIN_WA, instruction: "Lakukan pembayaran melalui aplikasi GoPay." },
     { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", type: "qris", info: { qrisImg: "https://i.supaimg.com/855540e8-78eb-4290-93f1-38cbf82f51bb.png" }, adminNumber: ADMIN_WA, instruction: "Lakukan pembayaran dengan scan QRIS di atas." },
     { id: "krom", name: "Krom Bank", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", type: "bank_transfer", info: { number: "770072009565", name: "TI** SUT***" }, adminNumber: ADMIN_WA, instruction: "Lakukan pembayaran melalui transfer bank." },
 ];
-
 const PRODUCTS = {
     "freefire": [
         { id: "ff-5", label: "5 Diamonds", price: 901 },
@@ -228,16 +224,13 @@ const PRODUCTS = {
         { id: "undawn-prep", label: "Quick Battle Prep", price: 94379, badges: ["sale"] },
     ]
 };
-
 const qs = (s, p = document) => p.querySelector(s);
 const qsa = (s, p = document) => Array.from(p.querySelectorAll(s));
 const fmtIDR = n => new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(n);
-
 let selectedProduct = null;
 let selectedPayment = null;
 let appliedVoucher = null;
 let currentGame = null;
-
 const el = {
     navToggle: qs("#navToggle"),
     navLinks: qs(".nav-links"),
@@ -264,26 +257,21 @@ const el = {
     voucherModal: qs("#voucherModal"),
     modalOverlay: qs("#modalOverlay"),
 };
-
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const gameKey = urlParams.get('game');
-    
     if (el.gameGrid) {
         renderGameGrid();
         setupPromoSlider();
     }
-    
     if (gameKey && el.buyBtn) {
         setupGamePage(gameKey);
         setupEventListeners();
     }
-
     el.navToggle.addEventListener('click', () => {
         el.navLinks.classList.toggle('active');
     });
 });
-
 function setupEventListeners() {
     el.userIdInput.addEventListener("input", updateSummary);
     el.voucherCode.addEventListener("input", () => {
@@ -293,16 +281,13 @@ function setupEventListeners() {
     el.applyVoucherBtn.addEventListener("click", applyVoucher);
     el.openVoucherList.addEventListener("click", showVoucherList);
     el.buyBtn.addEventListener("click", openPaymentModal);
-    
     el.modalOverlay.addEventListener("click", (e) => {
         if (e.target.classList.contains("modal-overlay")) {
             closeModal();
         }
     });
-    
     qsa("[data-close]").forEach(btn => btn.addEventListener("click", () => closeModal()));
 }
-
 function renderGameGrid() {
     el.gameGrid.innerHTML = GAMES.map(g => `
         <a href="${g.url}" class="game-card">
@@ -311,41 +296,34 @@ function renderGameGrid() {
         </a>
     `).join('');
 }
-
 function setupPromoSlider() {
     if (!el.sliderContainer) return;
     const slider = qs(".slider", el.sliderContainer);
     const dotsContainer = qs(".slider-dots", el.sliderContainer);
-    
     PROMOS.forEach((promo, index) => {
         const slideItem = document.createElement('a');
         slideItem.href = promo.gameKey ? GAMES.find(g => g.key === promo.gameKey)?.url : '#';
         slideItem.classList.add('slider__item');
         slideItem.style.backgroundImage = `url('${promo.img}')`;
         slider.appendChild(slideItem);
-        
         const dot = document.createElement('div');
         dot.classList.add('dot');
         dot.dataset.index = index;
         dotsContainer.appendChild(dot);
     });
-    
     const slides = qsa(".slider__item", slider);
     const dots = qsa(".dot", dotsContainer);
     let currentIndex = 0;
-    
     const updateSlider = () => {
         slider.style.transform = `translateX(-${currentIndex * 100}%)`;
         dots.forEach((dot, index) => {
             dot.classList.toggle('active', index === currentIndex);
         });
     };
-    
     const nextSlide = () => {
         currentIndex = (currentIndex + 1) % slides.length;
         updateSlider();
     };
-    
     dots.forEach(dot => {
         dot.addEventListener('click', (e) => {
             currentIndex = parseInt(e.target.dataset.index);
@@ -353,33 +331,27 @@ function setupPromoSlider() {
             resetAutoSlide();
         });
     });
-    
     let autoSlideTimer = setInterval(nextSlide, 5000);
     const resetAutoSlide = () => {
         clearInterval(autoSlideTimer);
         autoSlideTimer = setInterval(nextSlide, 5000);
     };
-    
     updateSlider();
 }
-
 function setupGamePage(gameKey) {
     currentGame = GAMES.find(g => g.key === gameKey);
     if (!currentGame) {
         window.location.href = 'index.html';
         return;
     }
-    
     document.title = `WalzShop - Top Up ${currentGame.name}`;
     if(el.gameBanner) el.gameBanner.style.backgroundImage = `url('${currentGame.bannerImg}')`;
     el.gameIcon.src = currentGame.img;
     el.gameTitle.textContent = currentGame.name;
     el.guideText.textContent = currentGame.guide;
-    
     renderProducts();
     renderPayments();
 }
-
 function renderProducts() {
     const products = PRODUCTS[currentGame.key] || [];
     el.productGrid.innerHTML = products.map(p => {
@@ -392,7 +364,6 @@ function renderProducts() {
             </div>
         `;
     }).join("");
-    
     qsa(".product-card-modern", el.productGrid).forEach(card => {
         card.addEventListener("click", () => {
             selectedProduct = products.find(p => p.id === card.dataset.id);
@@ -402,7 +373,6 @@ function renderProducts() {
         });
     });
 }
-
 function renderPayments() {
     el.paymentGrid.innerHTML = PAYMENTS.map(p => `
         <div class="payment-card-modern" data-id="${p.id}">
@@ -410,7 +380,6 @@ function renderPayments() {
             <span class="payment-label">${p.name}</span>
         </div>
     `).join("");
-    
     qsa(".payment-card-modern", el.paymentGrid).forEach(card => {
         card.addEventListener("click", () => {
             selectedPayment = PAYMENTS.find(p => p.id === card.dataset.id);
@@ -420,29 +389,23 @@ function renderPayments() {
         });
     });
 }
-
 function updateSummary() {
     const userId = el.userIdInput.value.trim();
     el.summaryUserId.textContent = userId || "-";
     el.summaryProduct.textContent = selectedProduct ? selectedProduct.label : "-";
     el.summaryPayment.textContent = selectedPayment ? selectedPayment.name : "-";
     el.summaryPrice.textContent = selectedProduct ? fmtIDR(selectedProduct.price) : "-";
-    
     const discount = selectedProduct && appliedVoucher ? calculateDiscount(selectedProduct.price, appliedVoucher) : 0;
     const finalPrice = selectedProduct ? Math.max(0, selectedProduct.price - discount) : 0;
-    
     el.summaryDiscount.textContent = `- ${fmtIDR(discount)}`;
     const discountRow = qs(".summary-discount-row");
     if(discountRow) discountRow.style.display = discount > 0 ? "table-row" : "none";
     el.summaryTotal.textContent = fmtIDR(finalPrice);
-    
     el.buyBtn.disabled = !(userId && selectedProduct && selectedPayment);
 }
-
 function applyVoucher() {
     const code = el.voucherCode.value.trim().toUpperCase();
     const voucher = VOUCHERS.find(v => v.code === code);
-    
     if (code === "") {
         appliedVoucher = null;
         alert("Masukkan kode voucher terlebih dahulu.");
@@ -458,7 +421,6 @@ function applyVoucher() {
     }
     updateSummary();
 }
-
 function calculateDiscount(price, voucher) {
     let discount = 0;
     if (voucher.percent) {
@@ -471,7 +433,6 @@ function calculateDiscount(price, voucher) {
     }
     return Math.floor(discount);
 }
-
 function showVoucherList() {
     el.modalOverlay.classList.add('active');
     el.voucherModal.classList.add('active');
@@ -485,7 +446,6 @@ function showVoucherList() {
             <button class="btn btn-choose btn-sm" data-code="${v.code}">Pilih</button>
         </div>
     `).join('');
-    
     qsa(".btn-choose", voucherListEl).forEach(btn => {
         btn.addEventListener("click", () => {
             el.voucherCode.value = btn.dataset.code;
@@ -494,20 +454,16 @@ function showVoucherList() {
         });
     });
 }
-
 function openPaymentModal() {
     if (!el.userIdInput.value || !selectedProduct || !selectedPayment) {
         alert("Harap lengkapi semua data: User ID, Nominal, dan Metode Pembayaran.");
         return;
     }
-    
     const userId = el.userIdInput.value.trim();
     const total = selectedProduct.price - (appliedVoucher ? calculateDiscount(selectedProduct.price, appliedVoucher) : 0);
     const paymentInfo = selectedPayment.info;
-    
     let infoContent = '';
     let copyText = '';
-    
     if (selectedPayment.type === 'qris') {
         infoContent = `
             <div class="text-center">
@@ -532,34 +488,26 @@ function openPaymentModal() {
         `;
         copyText = paymentInfo.number;
     }
-
     const waMsg = encodeURIComponent(
         `Halo admin, saya mau top-up:\n\n*Game:* ${currentGame.name}\n*User ID:* ${userId}\n*Produk:* ${selectedProduct.label}\n*Metode Pembayaran:* ${selectedPayment.name}\n*Total Bayar:* ${fmtIDR(total)}\n\nTerima kasih.`
     );
-    
     const modalBody = qs("#paymentModal .modal-body");
     const modalFooter = qs("#paymentModal .modal-footer");
-    
     modalBody.innerHTML = infoContent;
-    
     if (copyText) {
         const copyBtn = qs("#copyBtn");
         copyBtn.addEventListener("click", () => {
             copyToClipboard(copyText, copyBtn);
         });
     }
-
     qs("#paymentModal .btn-confirm").href = `https://wa.me/${selectedPayment.adminNumber}?text=${waMsg}`;
-    
     el.modalOverlay.classList.add('active');
     el.paymentModal.classList.add('active');
 }
-
 function closeModal() {
     el.modalOverlay.classList.remove('active');
     qsa('.modal').forEach(m => m.classList.remove('active'));
 }
-
 function copyToClipboard(text, btn) {
     navigator.clipboard.writeText(text).then(() => {
         const originalText = btn.textContent;
