@@ -482,7 +482,7 @@ input[type="text"]:focus {
     border-radius: 15px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
     width: 90%;
-    max-width: 500px; /* Ukuran pop-up lebih lebar */
+    max-width: 500px;
     padding: 20px;
     transform: scale(0.95);
     opacity: 0;
@@ -524,6 +524,19 @@ input[type="text"]:focus {
     cursor: pointer;
     padding: 5px;
     line-height: 1;
+}
+
+/* Penyesuaian untuk gambar QRIS agar mudah di-scan */
+.qris-image-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.qris-image {
+    max-width: 250px; /* Ukuran yang pas untuk di-scan */
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
 }
 
 .copy-field {
@@ -634,5 +647,20 @@ input[type="text"]:focus {
 
     .product-grid, .payment-grid {
         grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    }
+    
+    /* Penyesuaian modal untuk perangkat seluler */
+    .modal {
+        width: calc(100% - 40px);
+        margin: 20px;
+        max-height: 90vh;
+    }
+
+    .modal-header {
+        top: -10px;
+    }
+
+    .modal-footer {
+        bottom: -10px;
     }
 }
