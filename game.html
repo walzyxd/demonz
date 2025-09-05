@@ -6,8 +6,12 @@
     <title>WalzShop - Top Up Game</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <header class="navbar">
         <a href="index.html" class="logo">WalzShop</a>
         <div class="nav-links">
@@ -20,52 +24,57 @@
         </div>
     </header>
 
-    <main class="game-page-container">
-        <section class="game-info">
-            <img id="gameIcon" src="" alt="Game Icon" class="game-icon">
-            <h1 id="gameTitle"></h1>
-            <p class="guide-text"></p>
+    <main>
+        <section class="game-hero">
+            <div id="gameBanner" class="game-banner"></div>
+            <div class="game-info-overlay">
+                <img id="gameIcon" src="" alt="Game Icon" class="game-icon">
+                <h1 id="gameTitle" class="game-title"></h1>
+                <p id="guideText" class="guide-text"></p>
+            </div>
         </section>
 
-        <div class="form-container">
-            <section class="form-section">
-                <h3>1. Masukkan User ID</h3>
-                <input type="text" id="userId" placeholder="Masukkan User ID Anda">
-            </section>
-
-            <section class="form-section">
-                <h3>2. Pilih Nominal Top Up</h3>
-                <div class="product-grid" id="productGrid">
+        <div class="container game-page-container">
+            <div class="form-container">
+                <section class="form-section">
+                    <h3>1. Masukkan User ID</h3>
+                    <input type="text" id="userId" placeholder="Masukkan User ID Anda">
+                </section>
+                
+                <section class="form-section">
+                    <h3>2. Pilih Nominal Top Up</h3>
+                    <div class="product-grid" id="productGrid">
+                        </div>
+                </section>
+                
+                <section id="payments" class="form-section">
+                    <h3>3. Pilih Metode Pembayaran</h3>
+                    <div class="payment-grid" id="paymentGrid">
+                        </div>
+                </section>
+                
+                <section class="form-section">
+                    <h3>4. Tambah Voucher (Opsional)</h3>
+                    <div class="voucher-input-group">
+                        <input type="text" id="voucherCode" placeholder="Masukkan kode voucher">
+                        <button class="btn btn-primary" id="applyVoucherBtn">Terapkan</button>
+                        <button class="btn btn-secondary" id="openVoucherList">Lihat Voucher</button>
                     </div>
-            </section>
-
-            <section id="payments" class="form-section">
-                <h3>3. Pilih Metode Pembayaran</h3>
-                <div class="payment-grid" id="paymentGrid">
-                    </div>
-            </section>
-            
-            <section class="form-section">
-                <h3>4. Tambah Voucher (Opsional)</h3>
-                <div class="voucher-input-group">
-                    <input type="text" id="voucherCode" placeholder="Masukkan kode voucher">
-                    <button class="btn btn-primary" id="applyVoucherBtn">Terapkan</button>
-                    <button class="btn btn-secondary" id="openVoucherList">Lihat Voucher</button>
-                </div>
-            </section>
-
-            <section class="summary-section">
-                <h3>Ringkasan Pesanan</h3>
-                <table class="summary-table">
-                    <tr><td>User ID</td><td id="summaryUserId">-</td></tr>
-                    <tr><td>Produk</td><td id="summaryProduct">-</td></tr>
-                    <tr><td>Pembayaran</td><td id="summaryPayment">-</td></tr>
-                    <tr><td>Harga</td><td id="summaryPrice">-</td></tr>
-                    <tr class="summary-discount-row"><td>Diskon Voucher</td><td id="summaryDiscount">- Rp0</td></tr>
-                    <tr class="summary-total-row"><td>Total Bayar</td><td id="summaryTotal">Rp0</td></tr>
-                </table>
-                <button class="btn btn-primary btn-block" id="buyBtn" disabled>Beli Sekarang</button>
-            </section>
+                </section>
+                
+                <section class="summary-section">
+                    <h3>Ringkasan Pesanan</h3>
+                    <table class="summary-table">
+                        <tr><td>User ID</td><td id="summaryUserId">-</td></tr>
+                        <tr><td>Produk</td><td id="summaryProduct">-</td></tr>
+                        <tr><td>Pembayaran</td><td id="summaryPayment">-</td></tr>
+                        <tr><td>Harga</td><td id="summaryPrice">-</td></tr>
+                        <tr class="summary-discount-row"><td>Diskon Voucher</td><td id="summaryDiscount">- Rp0</td></tr>
+                        <tr class="summary-total-row"><td>Total Bayar</td><td id="summaryTotal">Rp0</td></tr>
+                    </table>
+                    <button class="btn btn-primary btn-block" id="buyBtn" disabled>Beli Sekarang</button>
+                </section>
+            </div>
         </div>
     </main>
 
@@ -86,7 +95,7 @@
                 <p class="instruction">Setelah bayar, kirim bukti transfer ke Admin.</p>
             </div>
         </div>
-
+        
         <div class="modal" id="voucherModal">
             <div class="modal-header">
                 <h3>Daftar Kode Promo</h3>
