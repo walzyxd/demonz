@@ -1,44 +1,61 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walz Shop - Top Up Games Murah</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Walz Shop - Top Up Games Murah</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                <a href="index.html" class="logo">Walz Shop</a>
-            </nav>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="index.html" class="logo">Walz Shop</a>
+        <div class="cart-icon-container">
+          <button id="cart-icon" class="cart-icon">🛒</button>
+          <span id="cart-count" class="cart-count">0</span>
         </div>
-    </header>
+      </nav>
+    </div>
+  </header>
 
-    <main class="main">
-        <div class="container">
-            <section class="promo-section">
-                <div class="slider-container">
-                    <div class="slider-track" id="promo-slider"></div>
-                    <div class="slider-dots" id="slider-dots"></div>
-                </div>
-            </section>
-
-            <section class="games-section">
-                <h2 class="section-title">Pilih Game Favoritmu</h2>
-                <div class="games-grid" id="games-grid">
-                    </div>
-            </section>
+  <!-- MAIN CONTENT -->
+  <main class="main">
+    <div class="container">
+      <!-- SLIDER PROMO -->
+      <section class="promo-section">
+        <div class="slider-container">
+          <div class="slider-track" id="promo-slider"></div>
+          <div class="slider-dots" id="slider-dots"></div>
         </div>
-    </main>
+      </section>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Walz Shop. All rights reserved.</p>
-        </div>
-    </footer>
+      <!-- GAMES -->
+      <section class="games-section">
+        <h2 class="section-title">Pilih Game Favoritmu</h2>
+        <div class="games-grid" id="games-grid"></div>
+      </section>
+    </div>
+  </main>
 
-    <script src="script.js"></script>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Walz Shop. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- MINI CART MODAL -->
+  <div id="mini-cart-modal" class="modal mini-cart">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <h2>Keranjang</h2>
+      <div id="mini-cart-items" class="mini-cart-items"></div>
+      <a href="cart.html" class="btn-primary" style="margin-top:10px;">Lihat Keranjang</a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
