@@ -47,6 +47,7 @@ body {
 .logo {
     max-width: 150px;
     height: auto;
+    border-radius: 10px; /* Tambahan agar logo tidak terlalu kotak */
 }
 
 .back-btn {
@@ -342,7 +343,7 @@ input[type="text"]:focus {
 .payment-card-modern img {
     max-height: 40px;
     margin-bottom: 5px;
-    filter: brightness(0.8) grayscale(0.2);
+    filter: none; /* Hilangkan filter brightness/grayscale */
     transition: filter 0.3s;
 }
 
@@ -651,7 +652,8 @@ input[type="text"]:focus {
     
     /* Penyesuaian modal untuk perangkat seluler */
     .modal {
-        width: calc(100% - 40px);
+        width: 90%; /* Tetapkan lebar 90% dari viewport */
+        max-width: 90%; /* Perbesar batas maksimum lebar */
         margin: 20px;
         max-height: 90vh;
     }
