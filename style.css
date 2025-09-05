@@ -135,7 +135,7 @@ h3 {
 }
 
 .logo {
-    width: 120px; /* Ukuran logo lebih kecil */
+    width: 120px;
     height: auto;
 }
 
@@ -144,23 +144,29 @@ h3 {
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--text-color);
-    font-size: 0.9rem;
     display: flex;
     align-items: center;
-    gap: 6px;
-    transition: color 0.3s ease;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 1rem;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .back-btn:hover {
-    color: var(--primary-color);
+    background-color: var(--primary-hover);
+    transform: translateY(-50%) scale(1.1);
 }
 
 /* ================== PROMO SLIDER ================== */
 .slider-container {
     position: relative;
     width: 100%;
-    height: 120px; /* Tinggi slider lebih kecil */
+    height: 120px;
     overflow: hidden;
     border-radius: var(--border-radius);
     box-shadow: 0 4px 10px var(--shadow-color);
@@ -332,7 +338,7 @@ h3 {
 
 .input-group input {
     width: 100%;
-    padding: 10px; /* Padding input lebih kecil */
+    padding: 10px;
     background-color: #fff;
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -419,10 +425,11 @@ h3 {
 }
 
 .payment-card-modern img {
+    display: block;
+    margin: 0 auto 5px;
     width: 50px;
     height: 25px;
     object-fit: contain;
-    margin-bottom: 5px;
 }
 
 .payment-label {
@@ -526,7 +533,7 @@ h3 {
     padding: 20px;
     border-radius: var(--border-radius);
     width: 90%;
-    max-width: 400px; /* Ukuran modal lebih kecil */
+    max-width: 400px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     transform: scale(0.9);
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
