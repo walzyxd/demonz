@@ -531,7 +531,7 @@ function showVoucherListModal() {
     `).join("");
     el.promoListModal.innerHTML = `
         <div class="modal-header">
-            <h3>Daftar Kode Promo</h3>
+            <h3><i class="fa-solid fa-gift"></i> Daftar Kode Promo</h3>
             <button class="modal-close-btn" data-close><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="modal-content-list">${modalContent}</div>
@@ -539,7 +539,7 @@ function showVoucherListModal() {
     qsa("[data-choose]", el.promoListModal).forEach(btn => btn.addEventListener("click", () => {
         el.voucherInput.value = btn.dataset.choose;
         closeModal(el.promoListModal);
-        applyVoucher(); // Apply voucher automatically after selection
+        // Do not apply voucher automatically, user must click 'Gunakan'
     }));
     openModal(el.promoListModal);
 }
