@@ -469,7 +469,7 @@ input[type="text"]:focus {
     background-color: rgba(0, 0, 0, 0.7);
     display: none;
     justify-content: center;
-    align-items: flex-end;   /* muncul dari bawah */
+    align-items: center;
     z-index: 1000;
 }
 
@@ -479,15 +479,15 @@ input[type="text"]:focus {
 
 .modal {
     background-color: var(--light-bg);
-    border-radius: 15px 15px 0 0;
-    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.5);
-    width: 100%;
-    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+    width: 350px;
+    max-width: 90%;
     padding: 20px;
-    transform: translateY(100%);
+    transform: translateY(30px);
     opacity: 0;
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-    max-height: 90vh;
+    max-height: 80vh;
     overflow-y: auto;
     position: relative;
 }
@@ -649,11 +649,22 @@ input[type="text"]:focus {
         grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
     }
 
+    /* Mobile modal → jadi bottom sheet */
+    .modal-overlay {
+        align-items: flex-end;
+    }
+
     .modal {
         width: 100%;
         max-width: 100%;
-        border-radius: 15px 15px 0 0;
+        border-radius: 20px 20px 0 0;
         margin: 0;
-        max-height: 95vh;
+        transform: translateY(100%);
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    }
+
+    .modal.active {
+        transform: translateY(0);
+        opacity: 1;
     }
 }
