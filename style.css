@@ -176,33 +176,6 @@ img {
     text-overflow: ellipsis;
 }
 
-/* Payment Section on Index Page */
-.payment-grid-static {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-}
-
-.payment-card-static {
-    background-color: #fff;
-    padding: 1rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    text-align: center;
-    width: 120px;
-}
-
-.payment-card-static img {
-    height: 40px;
-    object-fit: contain;
-    margin-bottom: 0.5rem;
-}
-
-.payment-card-static span {
-    font-weight: 600;
-}
-
 /* Contact Section */
 .contact-card {
     text-align: center;
