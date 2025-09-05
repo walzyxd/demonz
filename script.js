@@ -265,7 +265,7 @@ const el = {
     // Modals
     paymentModal: qs("#paymentModal"),
     voucherModal: qs("#voucherModal"),
-    modalOverlay: qs(".modal-overlay"),
+    modalOverlay: qs("#modalOverlay"),
     copyBtn: qs("#copyBtn"),
 };
 
@@ -296,14 +296,11 @@ function setupEventListeners() {
     el.buyBtn.addEventListener("click", openPaymentModal);
     el.modalOverlay.addEventListener("click", (e) => {
         if (e.target.classList.contains("modal-overlay")) {
-            closeModal(e.target.querySelector('.modal'));
+            closeModal();
         }
     });
     
-    qsa("[data-close]").forEach(btn => btn.addEventListener("click", (e) => {
-        const modal = e.target.closest('.modal-overlay');
-        if (modal) modal.classList.remove('active');
-    }));
+    qsa("[data-close]").forEach(btn => btn.addEventListener("click", () => closeModal()));
     
     if (el.copyBtn) {
         el.copyBtn.addEventListener("click", () => {
@@ -407,8 +404,6 @@ function renderProducts() {
     qsa(".product-card-modern").forEach(card => {
         card.addEventListener("click", () => {
             selectedProduct = products.find(p => p.id === card.dataset.id);
-            selectedPayment = null;
-            applyVoucher();
             qsa(".product-card-modern").forEach(c => c.classList.remove('selected'));
             card.classList.add('selected');
             updateSummary();
@@ -456,7 +451,7 @@ function applyVoucher() {
     
     if (code === "" || !voucher) {
         appliedVoucher = null;
-    } else if (voucher.minPurchase && selectedProduct.price < voucher.minPurchase) {
+    } else if (voucher.minPurchase && selectedProduct && selectedProduct.price < voucher.minPurchase) {
         appliedVoucher = null;
         alert(`Minimal transaksi untuk voucher ini adalah ${fmtIDR(voucher.minPurchase)}.`);
     } else {
@@ -479,6 +474,7 @@ function calculateDiscount(price, voucher) {
 }
 
 function showVoucherList() {
+    el.modalOverlay.classList.add('active');
     el.voucherModal.classList.add('active');
     const voucherListEl = qs("#voucherList", el.voucherModal);
     voucherListEl.innerHTML = VOUCHERS.map(v => `
@@ -495,7 +491,7 @@ function showVoucherList() {
         btn.addEventListener("click", () => {
             el.voucherCode.value = btn.dataset.code;
             applyVoucher();
-            closeModal(el.voucherModal);
+            closeModal();
         });
     });
 }
@@ -518,7 +514,7 @@ function openPaymentModal() {
                 <img src="${paymentInfo.qrisImg}" alt="QRIS" class="qris-image">
             </div>
             <div class="copy-field">
-                <span id="paymentCode">QRIS Kode</span>
+                <span id="paymentCode">Kode QRIS</span>
                 <button id="copyBtn">Salin</button>
             </div>
         `;
@@ -543,30 +539,25 @@ function openPaymentModal() {
         *Metode Pembayaran:* ${selectedPayment.name}
         *Total Pembayaran:* ${fmtIDR(total)}`
     );
-
-    el.paymentModal.classList.add('active');
     
-    // Perbarui isi modal secara dinamis
-    qs("#paymentModal .modal-body").innerHTML = infoContent + `
-        <p class="instruction">Setelah bayar, kirim bukti via WhatsApp admin.</p>
-    `;
-    
-    qs("#paymentModal .btn-confirm").onclick = () => {
-        window.open(`https://wa.me/${ADMIN_WA}?text=${waMsg}`, '_blank');
-    };
+    qs("#paymentModal .modal-body").innerHTML = infoContent;
     
     const modalCopyBtn = qs("#paymentModal #copyBtn");
     if (modalCopyBtn) {
-    modalCopyBtn.addEventListener("click", () => {
-        copyToClipboard(qs("#paymentCode").textContent, modalCopyBtn);
-    });
+        modalCopyBtn.addEventListener("click", () => {
+            copyToClipboard(qs("#paymentCode").textContent, modalCopyBtn);
+        });
     }
+
+    qs("#paymentModal .btn-confirm").href = `https://wa.me/${ADMIN_WA}?text=${waMsg}`;
+    el.modalOverlay.classList.add('active');
+    el.paymentModal.classList.add('active');
 }
 
-function closeModal(modalElement) {
-    if (modalElement && modalElement.classList.contains('active')) {
-        modalElement.classList.remove('active');
-    }
+function closeModal() {
+    el.modalOverlay.classList.remove('active');
+    el.paymentModal.classList.remove('active');
+    el.voucherModal.classList.remove('active');
 }
 
 function copyToClipboard(text, btn) {
