@@ -1,15 +1,16 @@
 /* ================== GLOBAL STYLES ================== */
 :root {
-    --primary-color: #f7a61d;
-    --primary-hover: #e0971b;
-    --dark-bg: #1e1e1e;
-    --light-bg: #2a2a2a;
-    --card-bg: #333333;
-    --text-color: #e0e0e0;
-    --sub-text-color: #a0a0a0;
-    --border-color: #444;
+    /* New Light Theme Colors */
+    --primary-color: #7b43a8; /* A vibrant violet */
+    --primary-hover: #6a3a92;
+    --light-bg: #ffffff;
+    --card-bg: #f0f0f0;
+    --text-color: #333333;
+    --sub-text-color: #666666;
+    --border-color: #e0e0e0;
+    --border-focus: #7b43a8;
+    --shadow-color: rgba(0, 0, 0, 0.1);
     --border-radius: 12px;
-    --shadow-color: rgba(0, 0, 0, 0.4);
 }
 
 * {
@@ -19,13 +20,15 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background-color: var(--dark-bg);
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light-bg);
     color: var(--text-color);
     line-height: 1.6;
     display: flex;
     justify-content: center;
     min-height: 100vh;
+    font-size: 16px;
+    padding-bottom: 50px; /* Add space for footer */
 }
 
 .container {
@@ -67,7 +70,7 @@ h2 {
 
 .btn-primary {
     background-color: var(--primary-color);
-    color: var(--dark-bg);
+    color: #fff;
 }
 
 .btn-primary:hover {
@@ -89,7 +92,7 @@ h2 {
 }
 
 .btn-secondary:hover {
-    background-color: var(--light-bg);
+    background-color: #e8e8e8;
 }
 
 .btn-confirm {
@@ -285,7 +288,7 @@ h2 {
 }
 
 .step-section {
-    background-color: var(--light-bg);
+    background-color: var(--card-bg);
     padding: 20px;
     border-radius: var(--border-radius);
     margin-bottom: 20px;
@@ -321,7 +324,7 @@ h2 {
 .input-group input {
     width: 100%;
     padding: 12px;
-    background-color: var(--dark-bg);
+    background-color: #fff;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     color: var(--text-color);
@@ -332,7 +335,7 @@ h2 {
 
 .input-group input:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(247, 166, 29, 0.3);
+    box-shadow: 0 0 0 2px rgba(123, 67, 168, 0.3);
 }
 
 .input-info {
@@ -346,7 +349,7 @@ h2 {
 }
 
 .product-card-modern, .payment-card-modern {
-    background-color: var(--card-bg);
+    background-color: #fff;
     border: 2px solid var(--border-color);
     border-radius: var(--border-radius);
     padding: 15px;
@@ -366,8 +369,8 @@ h2 {
 
 .product-card-modern.selected, .payment-card-modern.selected {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(247, 166, 29, 0.5);
-    background-color: #403625;
+    box-shadow: 0 0 0 3px rgba(123, 67, 168, 0.5);
+    background-color: #f7f3fb;
 }
 
 .product-label {
@@ -390,7 +393,7 @@ h2 {
     border-radius: 8px;
     font-size: 0.7rem;
     font-weight: bold;
-    color: var(--dark-bg);
+    color: #fff;
 }
 
 .badge.member { background-color: #1a75ff; }
@@ -513,17 +516,16 @@ h2 {
     border-radius: var(--border-radius);
     width: 90%;
     max-width: 450px;
-    box-shadow: 0 8px 20px var(--shadow-color);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     transform: scale(0.9);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     opacity: 0;
     pointer-events: none;
-    transform: translateY(20px);
 }
 
 .modal.active {
-    transform: translateY(0);
+    transform: scale(1);
     opacity: 1;
     pointer-events: all;
 }
@@ -589,7 +591,7 @@ h2 {
 .qris-image-container {
     text-align: center;
     padding: 15px;
-    background-color: #222;
+    background-color: #f5f5f5;
     border-radius: var(--border-radius);
     margin-top: 15px;
 }
@@ -629,7 +631,7 @@ h2 {
 
 .copy-field .btn {
     background-color: var(--primary-color);
-    color: var(--dark-bg);
+    color: #fff;
     padding: 6px 10px;
     font-size: 0.85rem;
 }
@@ -651,11 +653,11 @@ h2 {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--light-bg);
+    background: var(--card-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--border-color);
+    background-color: #ccc;
     border-radius: 10px;
     border: 2px solid var(--light-bg);
 }
