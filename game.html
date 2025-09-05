@@ -22,29 +22,32 @@
                 <img src="" alt="Game Icon" class="game-icon" id="game-icon">
                 <h2 id="game-title"></h2>
             </div>
-            <p class="game-description" id="game-description"></p>
+            <p class="guide-text" id="game-description"><i class="fa-solid fa-circle-info"></i> </p>
         </section>
 
         <section class="step-section">
             <h3><i class="fa-solid fa-user"></i> Langkah 1: Masukkan User ID</h3>
+            <p class="guide-text"><i class="fa-solid fa-circle-check"></i> Masukkan ID akun Anda dengan benar.</p>
             <div class="input-group">
                 <label for="user-id">User ID</label>
-                <input type="text" id="user-id" placeholder="Masukkan User ID Anda" required>
+                <input type="number" id="user-id" placeholder="Masukkan User ID Anda" required>
             </div>
             <div class="input-group" id="server-id-group" style="display: none;">
                 <label for="server-id">Server ID</label>
-                <input type="text" id="server-id" placeholder="Masukkan Server ID Anda">
+                <input type="number" id="server-id" placeholder="Masukkan Server ID Anda">
             </div>
         </section>
 
         <section class="step-section">
             <h3><i class="fa-solid fa-gem"></i> Langkah 2: Pilih Nominal</h3>
+            <p class="guide-text"><i class="fa-solid fa-circle-check"></i> Pilih nominal yang Anda inginkan.</p>
             <div class="product-grid" id="product-grid">
                 </div>
         </section>
 
         <section class="step-section">
             <h3><i class="fa-solid fa-tags"></i> Langkah 3: Gunakan Voucher (Opsional)</h3>
+            <p class="guide-text"><i class="fa-solid fa-circle-check"></i> Jika memiliki voucher, masukkan kodenya dan klik **Gunakan**.</p>
             <div class="voucher-group">
                 <div class="input-group">
                     <input type="text" id="voucher-input" placeholder="Masukkan kode voucher">
@@ -59,6 +62,7 @@
 
         <section class="step-section">
             <h3><i class="fa-solid fa-credit-card"></i> Langkah 4: Pilih Pembayaran</h3>
+            <p class="guide-text"><i class="fa-solid fa-circle-check"></i> Pilih metode pembayaran favorit Anda.</p>
             <div class="payment-grid" id="payment-grid">
                 </div>
         </section>
@@ -96,6 +100,24 @@
         <div class="modal" id="error-modal"></div>
         <div class="modal" id="checkout-modal"></div>
     </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Walz Shop. Semua Hak Dilindungi.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <ul class="footer-links">
+                <li><a href="#">Tentang Kami</a></li>
+                <li><a href="#">Syarat & Ketentuan</a></li>
+                <li><a href="#">Kebijakan Privasi</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
