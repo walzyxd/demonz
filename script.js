@@ -8,7 +8,7 @@ const VOUCHERS = [
     { code: "FREEDIAMOND", percent: 0, fixed: 5000, maxDiscount: 5000, description: "Diskon Rp5.000 (maks. Rp5.000)" }
 ];
 const GAMES = [
-    { key: "free-fire", name: "Free Fire", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", bannerImg: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", hasServerId: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game.", url: "game.html?key=free-fire" },
+    { key: "free-fire", name: "Free Fire", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", bannerImg: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", hasServerId: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game." , url: "game.html?key=free-fire"},
     { key: "mobile-legends", name: "Mobile Legends", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", bannerImg: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", hasServerId: true, guide: "Temukan User ID dan Server ID di bawah nama panggilan saat Anda mengklik avatar profil.", url: "game.html?key=mobile-legends" },
     { key: "honor-of-kings", name: "Honor of Kings", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", bannerImg: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", hasServerId: false, guide: "User ID Anda ada di bagian bawah layar saat Anda membuka profil.", url: "game.html?key=honor-of-kings" },
     { key: "genshin-impact", name: "Genshin Impact", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", bannerImg: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", hasServerId: false, guide: "User ID (9 digit) terletak di sudut kanan bawah layar saat Anda berada di dalam game.", url: "game.html?key=genshin-impact" },
@@ -243,7 +243,7 @@ const el = {
     sliderDots: qs("#slider-dots"),
     gameTitle: qs("#game-title"),
     gameIcon: qs("#game-icon"),
-    gameDescription: qs(".game-description"),
+    gameDescription: qs("#game-description"),
     serverIdGroup: qs("#server-id-group"),
     userIdInput: qs("#user-id"),
     serverIdInput: qs("#server-id"),
@@ -341,7 +341,7 @@ function setupGamePage(gameKeyFromUrl) {
     document.title = `Walz Shop - Top Up ${currentGame.name}`;
     el.gameTitle.textContent = currentGame.name;
     el.gameIcon.src = currentGame.img;
-    el.gameDescription.textContent = currentGame.guide;
+    el.gameDescription.innerHTML = `<i class="fa-solid fa-circle-info"></i> ${currentGame.guide}`;
     el.serverIdGroup.style.display = currentGame.hasServerId ? "block" : "none";
     renderProducts(currentGame.key);
     renderPayments();
@@ -368,6 +368,16 @@ function setupEventListeners() {
     el.modalOverlay.addEventListener("click", (e) => {
         if (e.target.id === "modal-overlay") hideOverlay();
     });
+
+    // Validasi input hanya angka
+    el.userIdInput.addEventListener("input", (e) => {
+        e.target.value = e.target.value.replace(/\D/g, '');
+    });
+    if (el.serverIdInput) {
+        el.serverIdInput.addEventListener("input", (e) => {
+            e.target.value = e.target.value.replace(/\D/g, '');
+        });
+    }
 }
 
 function renderProducts(gameKey) {
@@ -562,8 +572,8 @@ function showErrorModal(message) {
 function validateForm() {
     const userId = el.userIdInput?.value.trim();
     const serverId = currentGame?.hasServerId ? el.serverIdInput?.value.trim() : "ok";
-    if (!userId) { showErrorModal("User ID wajib diisi."); return false; }
-    if (currentGame?.hasServerId && !serverId) { showErrorModal("Server ID wajib diisi."); return false; }
+    if (!userId || userId.length < 5) { showErrorModal("User ID wajib diisi dan minimal 5 karakter."); return false; }
+    if (currentGame?.hasServerId && (!serverId || serverId.length < 1)) { showErrorModal("Server ID wajib diisi."); return false; }
     if (!selectedProduct) { showErrorModal("Pilih nominal top-up."); return false; }
     if (!selectedPayment) { showErrorModal("Pilih metode pembayaran."); return false; }
     return true;
@@ -579,9 +589,9 @@ function openCheckoutModal() {
     const waMsg = encodeURIComponent(`Halo admin, saya mau top-up:\n*Game:* ${currentGame.name}\n*User ID:* ${userId}\n${serverId ? `*Server ID:* ${serverId}\n` : ''}*Produk:* ${selectedProduct.label}\n*Metode Pembayaran:* ${selectedPayment.name}\n*Total Pembayaran:* ${fmtIDR(total)}\n\nMohon konfirmasi pesanan saya. Terima kasih.`);
     let payBlock = '';
     if (selectedPayment.type === "qris") {
-        payBlock = `<div class="payment-info"><h4>Scan QRIS Berikut</h4><div class="qris-image-container"><img src="${selectedPayment.info.qrisImg}" alt="QRIS Code" class="qris-image"></div></div>`;
+        payBlock = `<div class="payment-info"><h4><i class="fa-solid fa-qrcode"></i> Scan QRIS Berikut</h4><div class="qris-image-container"><img src="${selectedPayment.info.qrisImg}" alt="QRIS Code" class="qris-image"></div></div>`;
     } else {
-        payBlock = `<div class="payment-info"><h4>Transfer ke Rekening Berikut</h4><div class="payment-img-container" style="text-align:center; margin-bottom: 1rem;"><img src="${selectedPayment.img}" alt="${selectedPayment.name}" style="max-width: 120px; height: auto;"></div><p><strong>A/N:</strong> ${selectedPayment.info.name || "-"}</p><div class="copy-field"><span id="account-number">${selectedPayment.info.number}</span><button class="btn" id="copy-account-btn"><i class="fa-solid fa-copy"></i>Salin</button></div></div>`;
+        payBlock = `<div class="payment-info"><h4><i class="fa-solid fa-money-bill-transfer"></i> Transfer ke Rekening Berikut</h4><div class="payment-img-container" style="text-align:center; margin-bottom: 1rem;"><img src="${selectedPayment.img}" alt="${selectedPayment.name}" style="max-width: 120px; height: auto;"></div><p><strong>A/N:</strong> ${selectedPayment.info.name || "-"}</p><div class="copy-field"><span id="account-number">${selectedPayment.info.number}</span><button class="btn" id="copy-account-btn"><i class="fa-solid fa-copy"></i>Salin</button></div></div>`;
     }
     el.checkoutModal.innerHTML = `
         <div class="modal-header"><h3><i class="fa-solid fa-circle-check"></i> Konfirmasi Pembelian</h3><button class="modal-close-btn" data-close><i class="fa-solid fa-xmark"></i></button></div>
