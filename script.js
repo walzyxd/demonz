@@ -24,10 +24,10 @@ const GAMES = [
     { key: "garena-undawn", name: "Garena Undawn", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", bannerImg: "images/banner_undawn.webp", hasServerId: false, guide: "Buka menu profil dan User ID Anda akan terlihat.", url: "game.html?key=garena-undawn" },
 ];
 const PROMOS = [
-    { title: "Top Up Diamond FF Termurah", img: "images/banner1.png", gameKey: "free-fire" },
-    { title: "Top Up Starlight MLBB Harga Cuan", img: "images/banner2.png", gameKey: "mobile-legends" },
-    { title: "Promo UC PUBG Mobile Khusus Member", img: "images/banner3.png", gameKey: "pubg-mobile" },
-    { title: "Blessing of the Welkin Moon Genshin", img: "images/banner4.png", gameKey: "genshin-impact" },
+    { title: "Top Up Diamond FF Termurah", img: "https://files.catbox.moe/e87yj3.png", gameKey: "free-fire" },
+    { title: "Top Up Starlight MLBB Harga Cuan", img: "https://files.catbox.moe/8g41jj.jpg", gameKey: "mobile-legends" },
+    { title: "Promo UC PUBG Mobile Khusus Member", img: "https://files.catbox.moe/hrtpys.jpg", gameKey: "pubg-mobile" },
+    { title: "Blessing of the Welkin Moon Genshin", img: "images/banner4.webp", gameKey: "genshin-impact" },
 ];
 const PAYMENTS = [
     { id: "dana", name: "DANA", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
@@ -305,6 +305,7 @@ function renderPromoSlider() {
     function renderSlider() {
         if (slides.length > 0) {
             el.promoSlider.style.transform = `translateX(-${current * 100}%)`;
+            el.promoSlider.style.transition = `transform 0.5s ease-in-out`; // Add smooth transition
         }
         dots.forEach((d, idx) => d.classList.toggle("active", idx === current));
     }
