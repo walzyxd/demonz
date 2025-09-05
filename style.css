@@ -47,7 +47,7 @@ body {
 .logo {
     max-width: 150px;
     height: auto;
-    border-radius: 10px; /* Tambahan agar logo tidak terlalu kotak */
+    border-radius: 10px;
 }
 
 .back-btn {
@@ -343,7 +343,7 @@ input[type="text"]:focus {
 .payment-card-modern img {
     max-height: 40px;
     margin-bottom: 5px;
-    filter: none; /* Hilangkan filter brightness/grayscale */
+    filter: none;
     transition: filter 0.3s;
 }
 
@@ -450,7 +450,6 @@ input[type="text"]:focus {
 .badge.sale { background-color: var(--green-badge); }
 .badge.member, .badge.weekly, .badge.pass, .badge.vip, .badge.monthly, .badge.levelup, .badge.welkin { background-color: #9b59b6; }
 
-
 .status-text {
     font-size: 0.9rem;
     margin-top: 5px;
@@ -458,7 +457,6 @@ input[type="text"]:focus {
 }
 .success-text { color: var(--success-text); }
 .error-text { color: var(--error-text); }
-
 
 /* ================= MODALS ================= */
 .modal-overlay {
@@ -482,14 +480,15 @@ input[type="text"]:focus {
     background-color: var(--light-bg);
     border-radius: 15px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
-    width: 90%;
-    max-width: 500px;
+    width: 320px;          /* sekitar 3.5cm */
+    max-width: 90%;        /* agar tetap responsif */
     padding: 20px;
     transform: scale(0.95);
     opacity: 0;
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
     max-height: 80vh;
     overflow-y: auto;
+    position: relative;
 }
 
 .modal.active {
@@ -505,15 +504,15 @@ input[type="text"]:focus {
     padding-bottom: 10px;
     margin-bottom: 20px;
     position: sticky;
-    top: -20px;
+    top: 0;
     background-color: var(--light-bg);
     z-index: 10;
-    padding: 20px 0 10px;
+    padding: 15px 0 10px;
 }
 
 .modal-header h3 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: #fff;
 }
 
@@ -521,20 +520,19 @@ input[type="text"]:focus {
     background: none;
     border: none;
     color: #aaa;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     cursor: pointer;
     padding: 5px;
     line-height: 1;
 }
 
-/* Penyesuaian untuk gambar QRIS agar mudah di-scan */
 .qris-image-container {
     text-align: center;
     margin: 20px 0;
 }
 
 .qris-image {
-    max-width: 250px; /* Ukuran yang pas untuk di-scan */
+    max-width: 250px;
     height: auto;
     border-radius: 8px;
     border: 1px solid var(--border-color);
@@ -566,9 +564,9 @@ input[type="text"]:focus {
     text-align: center;
     margin-top: 20px;
     position: sticky;
-    bottom: -20px;
+    bottom: 0;
     background-color: var(--light-bg);
-    padding: 20px 0 0;
+    padding: 15px 0 0;
     z-index: 10;
 }
 
@@ -641,7 +639,7 @@ input[type="text"]:focus {
     .game-name {
         font-size: 0.8rem;
     }
-    
+
     .game-title {
         font-size: 1.5rem;
     }
@@ -649,20 +647,11 @@ input[type="text"]:focus {
     .product-grid, .payment-grid {
         grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
     }
-    
-    /* Penyesuaian modal untuk perangkat seluler */
+
     .modal {
-        width: 90%; /* Tetapkan lebar 90% dari viewport */
-        max-width: 90%; /* Perbesar batas maksimum lebar */
+        width: 90%;
+        max-width: 350px;
         margin: 20px;
         max-height: 90vh;
-    }
-
-    .modal-header {
-        top: -10px;
-    }
-
-    .modal-footer {
-        bottom: -10px;
     }
 }
