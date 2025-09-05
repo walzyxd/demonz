@@ -122,11 +122,32 @@ h2 {
 .header {
     text-align: center;
     padding: 20px 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .logo {
     width: 150px;
     height: auto;
+}
+
+.back-btn {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-color);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+}
+
+.back-btn:hover {
+    color: var(--primary-color);
 }
 
 /* ================== PROMO SLIDER ================== */
@@ -235,13 +256,32 @@ h2 {
 }
 
 /* ================== GAME PAGE STYLES ================== */
-.game-banner {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 10px var(--shadow-color);
+.game-info {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.game-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 20px;
+}
+
+.game-icon {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+.game-title {
+    margin-top: 15px;
+    font-size: 2rem;
+    font-weight: 700;
 }
 
 .step-section {
@@ -474,11 +514,12 @@ h2 {
     width: 90%;
     max-width: 450px;
     box-shadow: 0 8px 20px var(--shadow-color);
-    transform: translateY(20px);
+    transform: scale(0.9);
     transition: transform 0.3s ease;
     position: relative;
     opacity: 0;
     pointer-events: none;
+    transform: translateY(20px);
 }
 
 .modal.active {
@@ -617,4 +658,14 @@ h2 {
     background-color: var(--border-color);
     border-radius: 10px;
     border: 2px solid var(--light-bg);
+}
+
+/* ================== MEDIA QUERIES ================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    .modal {
+        margin: 10px;
+    }
 }
