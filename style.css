@@ -1,6 +1,7 @@
 /* ================== GLOBAL STYLES ================== */
 :root {
-    --primary-color: #7b43a8; 
+    /* New Light Theme Colors */
+    --primary-color: #7b43a8; /* A vibrant violet */
     --primary-hover: #6a3a92;
     --light-bg: #ffffff;
     --card-bg: #f0f0f0;
@@ -532,7 +533,6 @@ h3 {
     padding: 20px;
     border-radius: var(--border-radius);
     width: 90%;
-    max-width: 500px; /* Diperlebar agar lebih besar */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     transform: scale(0.9);
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -545,6 +545,15 @@ h3 {
     transform: scale(1);
     opacity: 1;
     pointer-events: all;
+}
+
+/* Ukuran pop-up yang berbeda */
+.modal-promo {
+    max-width: 600px;
+}
+
+.modal-konfirmasi {
+    max-width: 350px;
 }
 
 .modal-header {
@@ -758,5 +767,11 @@ h3 {
     }
     .modal {
         padding: 15px;
+    }
+    .modal-promo {
+        max-width: 500px;
+    }
+    .modal-konfirmasi {
+        max-width: 320px;
     }
 }
