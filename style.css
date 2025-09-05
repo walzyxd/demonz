@@ -38,6 +38,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px 0;
+    position: relative;
 }
 
 .logo-link {
@@ -468,7 +469,7 @@ input[type="text"]:focus {
     background-color: rgba(0, 0, 0, 0.7);
     display: none;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;   /* muncul dari bawah */
     z-index: 1000;
 }
 
@@ -478,21 +479,21 @@ input[type="text"]:focus {
 
 .modal {
     background-color: var(--light-bg);
-    border-radius: 15px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
-    width: 320px;          /* sekitar 3.5cm */
-    max-width: 90%;        /* agar tetap responsif */
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 500px;
     padding: 20px;
-    transform: scale(0.95);
+    transform: translateY(100%);
     opacity: 0;
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-    max-height: 80vh;
+    max-height: 90vh;
     overflow-y: auto;
     position: relative;
 }
 
 .modal.active {
-    transform: scale(1);
+    transform: translateY(0);
     opacity: 1;
 }
 
@@ -649,9 +650,10 @@ input[type="text"]:focus {
     }
 
     .modal {
-        width: 90%;
-        max-width: 350px;
-        margin: 20px;
-        max-height: 90vh;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 15px 15px 0 0;
+        margin: 0;
+        max-height: 95vh;
     }
 }
