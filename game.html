@@ -37,27 +37,20 @@
                 <section class="form-section">
                     <h3>1. Masukkan User ID</h3>
                     <input type="text" id="userId" placeholder="Masukkan User ID Anda">
-                    <div class="form-description hidden-element">
-                        <p>Pastikan User ID yang Anda masukkan sudah benar untuk menghindari kesalahan top up.</p>
-                    </div>
-                    <div class="hidden-fields">
-                        <label for="serverId" class="hidden-label">Server ID (Opsional)</label>
-                        <input type="text" id="serverId" placeholder="Server ID" class="hidden-input">
-                    </div>
                 </section>
                 
                 <section class="form-section">
                     <h3>2. Pilih Nominal Top Up</h3>
                     <p class="section-subtitle">Pilih nominal sesuai kebutuhan Anda.</p>
                     <div class="product-grid" id="productGrid">
-                        </div>
+                    </div>
                 </section>
                 
                 <section id="payments" class="form-section">
                     <h3>3. Pilih Metode Pembayaran</h3>
                     <p class="section-subtitle">Tersedia berbagai metode pembayaran yang mudah.</p>
                     <div class="payment-grid" id="paymentGrid">
-                        </div>
+                    </div>
                 </section>
                 
                 <section class="form-section">
@@ -80,9 +73,6 @@
                             <tr class="summary-discount-row"><td>Diskon Voucher</td><td id="summaryDiscount">- Rp0</td></tr>
                             <tr class="summary-total-row"><td>Total Bayar</td><td id="summaryTotal">Rp0</td></tr>
                         </table>
-                        <div class="additional-summary-info hidden-info">
-                            <p>Ringkasan ini akan diperbarui secara otomatis saat Anda memilih opsi.</p>
-                        </div>
                     </div>
                     <button class="btn btn-primary btn-block" id="buyBtn" disabled>Beli Sekarang</button>
                 </section>
@@ -94,10 +84,6 @@
     <footer class="footer">
         <div class="footer-content">
             <p>&copy; 2024 WalzShop. All Rights Reserved.</p>
-            <div class="footer-links hidden-links">
-                <a href="#">Kebijakan Privasi</a>
-                <a href="#">Syarat dan Ketentuan</a>
-            </div>
         </div>
     </footer>
 
@@ -109,7 +95,7 @@
                 <button class="modal-close-btn" data-close>&times;</button>
             </div>
             <div class="modal-body">
-                </div>
+            </div>
             <div class="modal-footer">
                 <a href="#" target="_blank" class="btn btn-confirm btn-block">Chat Admin</a>
                 <p class="instruction">Setelah bayar, kirim bukti transfer ke Admin.</p>
@@ -123,7 +109,7 @@
             </div>
             <div class="modal-body">
                 <div class="voucher-list" id="voucherList">
-                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary btn-block" data-close>Tutup</button>
@@ -133,39 +119,5 @@
     </div>
     
     <script src="script.js"></script>
-    <script>
-        // Placeholder script for additional functionality
-        console.log("Game page scripts loaded.");
-        function validateUserId(id) {
-            // A long validation function that is not fully implemented
-            if (id === null || id.length === 0) {
-                return false;
-            }
-            if (id.length < 5 || id.length > 20) {
-                return false;
-            }
-            if (!/^[a-zA-Z0-9]+$/.test(id)) {
-                return false;
-            }
-            let valid = true;
-            for (let i = 0; i < id.length; i++) {
-                if (id.charCodeAt(i) > 127) {
-                    valid = false;
-                    break;
-                }
-            }
-            return valid;
-        }
-        // Even more lines of code
-        function handleProductClick(event) {
-            const element = event.target;
-            // A simple check to prevent propagation
-            if (element.tagName === 'DIV') {
-                console.log('Div clicked');
-            } else if (element.tagName === 'SPAN') {
-                console.log('Span clicked');
-            }
-        }
-    </script>
 </body>
 </html>
