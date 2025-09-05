@@ -2,50 +2,74 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Walz Shop - Top Up Game Murah dan Cepat</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>WalzShop — Top Up Game</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script defer src="script.js"></script>
 </head>
 <body>
-  <div class="container">
-    <header class="header">
-      <a href="index.html" class="logo-link">
-        <img src="https://files.catbox.moe/dpr6d2.jpg" alt="Walz Shop Logo" class="logo">
-      </a>
-    </header>
+  <!-- HEADER -->
+  <header class="header">
+    <a href="#" class="logo-link">
+      <img src="assets/logo.png" alt="WalzShop" class="logo">
+    </a>
+  </header>
 
+  <main class="container">
+    <!-- PROMO SLIDER -->
     <section class="promo-slider">
       <div class="slider-container">
-        <div id="promo-slider" class="slider"></div>
-        <div id="slider-dots" class="slider-dots"></div>
+        <div class="slider">
+          <a href="#" class="slider__item" style="background-image:url('assets/promo1.jpg')"></a>
+          <a href="#" class="slider__item" style="background-image:url('assets/promo2.jpg')"></a>
+          <a href="#" class="slider__item" style="background-image:url('assets/promo3.jpg')"></a>
+        </div>
+        <div class="slider-dots"></div>
       </div>
     </section>
 
-    <section class="grid-section game-list-section">
+    <!-- GAME GRID -->
+    <section class="grid-section">
       <h2 class="grid-title">Pilih Game</h2>
-      <div id="games-grid" class="game-grid"></div>
+      <div class="game-grid">
+        <a href="game.html?game=freefire" class="game-card">
+          <span class="badge hot">HOT</span>
+          <img src="assets/freefire.png" alt="Free Fire">
+          <span class="game-name">Free Fire</span>
+        </a>
+        <a href="game.html?game=mlbb" class="game-card">
+          <span class="badge new">NEW</span>
+          <img src="assets/mlbb.png" alt="Mobile Legends">
+          <span class="game-name">Mobile Legends</span>
+        </a>
+        <a href="game.html?game=genshin" class="game-card">
+          <img src="assets/genshin.png" alt="Genshin Impact">
+          <span class="game-name">Genshin Impact</span>
+        </a>
+        <a href="game.html?game=pubgm" class="game-card">
+          <img src="assets/pubgm.png" alt="PUBG Mobile">
+          <span class="game-name">PUBG Mobile</span>
+        </a>
+        <!-- Tambahkan game lain -->
+      </div>
     </section>
-  </div>
+  </main>
 
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-content">
       <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
       </div>
       <ul class="footer-links">
-        <li><a href="#">Tentang Kami</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Kebijakan Privasi</a></li>
         <li><a href="#">Syarat & Ketentuan</a></li>
+        <li><a href="#">Privasi</a></li>
+        <li><a href="#">Kontak</a></li>
       </ul>
-      <p>&copy; 2024 Walz Shop. All Rights Reserved.</p>
+      <p>© 2025 WalzShop. Semua Hak Dilindungi.</p>
     </div>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
