@@ -1,5 +1,5 @@
 /* ================== KONFIGURASI & DATA ================== */
-const ADMIN_WA = "6282298902274";
+const ADMIN_WA = "6282298902274"; // Ganti dengan nomor WhatsApp Anda
 const VOUCHERS = [
     { code: "WALZSHOP", percent: 2, description: "Diskon 2% untuk semua produk" },
     { code: "WALZPROMO", percent: 3, description: "Promo khusus 3% semua produk" },
@@ -8,32 +8,32 @@ const VOUCHERS = [
     { code: "FREEDIAMOND", percent: 0, fixed: 5000, maxDiscount: 5000, description: "Diskon Rp5.000 (maks. Rp5.000)" }
 ];
 const GAMES = [
-    { key: "free-fire", name: "Free Fire", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", bannerImg: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", hasServerId: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game." , url: "game.html?key=free-fire"},
-    { key: "mobile-legends", name: "Mobile Legends", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", bannerImg: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", hasServerId: true, guide: "Temukan User ID dan Server ID di bawah nama panggilan saat Anda mengklik avatar profil.", url: "game.html?key=mobile-legends" },
-    { key: "honor-of-kings", name: "Honor of Kings", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", bannerImg: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", hasServerId: false, guide: "User ID Anda ada di bagian bawah layar saat Anda membuka profil.", url: "game.html?key=honor-of-kings" },
-    { key: "genshin-impact", name: "Genshin Impact", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", bannerImg: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", hasServerId: false, guide: "User ID (9 digit) terletak di sudut kanan bawah layar saat Anda berada di dalam game.", url: "game.html?key=genshin-impact" },
-    { key: "roblox", name: "Roblox", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", bannerImg: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", hasServerId: false, guide: "Top up menggunakan Gift Card yang akan dikirim langsung ke akun Anda.", url: "game.html?key=roblox" },
-    { key: "super-sus", name: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", bannerImg: "https://files.catbox.moe/j61uny.jpg", hasServerId: false, guide: "User ID dapat ditemukan di menu profil dalam game.", url: "game.html?key=super-sus" },
-    { key: "clash-of-clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", bannerImg: "https://files.catbox.moe/6aia0n.jpg", hasServerId: false, guide: "User ID (Tag Pemain) adalah kombinasi huruf dan angka yang dimulai dengan tanda pagar (#).", url: "game.html?key=clash-of-clans" },
-    { key: "blood-strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", bannerImg: "https://files.catbox.moe/3y066i.jpg", hasServerId: false, guide: "ID Anda dapat ditemukan di profil dalam game.", url: "game.html?key=blood-strike" },
-    { key: "pubg-mobile", name: "PUBG Mobile", img: "https://files.catbox.moe/tatuo9.jpg", bannerImg: "https://files.catbox.moe/tatuo9.jpg", hasServerId: false, guide: "Temukan User ID Anda di sudut kanan atas lobi game saat mengklik profil.", url: "game.html?key=pubg-mobile" },
-    { key: "garena-delta-force", name: "Garena Delta Force", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", bannerImg: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", hasServerId: false, guide: "Buka menu profil di game dan Anda dapat menemukan User ID Anda.", url: "game.html?key=garena-delta-force" },
-    { key: "call-of-duty", name: "Call Of Duty", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", bannerImg: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil game.", url: "game.html?key=call-of-duty" },
-    { key: "valorant", name: "Valorant", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", bannerImg: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", hasServerId: false, guide: "User ID (Riot ID) dapat ditemukan di bawah nama akun Anda di bagian atas layar.", url: "game.html?key=valorant" },
-    { key: "eggy-party", name: "Eggy Party", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", bannerImg: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil dalam game.", url: "game.html?key=eggy-party" },
-    { key: "garena-undawn", name: "Garena Undawn", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", bannerImg: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", hasServerId: false, guide: "Buka menu profil dan User ID Anda akan terlihat.", url: "game.html?key=garena-undawn" },
+    { key: "free-fire", name: "Free Fire", img: "images/ff.png", bannerImg: "images/banner_ff.webp", hasServerId: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game." , url: "game.html?key=free-fire"},
+    { key: "mobile-legends", name: "Mobile Legends", img: "images/ml.png", bannerImg: "images/banner_ml.webp", hasServerId: true, guide: "Temukan User ID dan Server ID di bawah nama panggilan saat Anda mengklik avatar profil.", url: "game.html?key=mobile-legends" },
+    { key: "honor-of-kings", name: "Honor of Kings", img: "images/hok.png", bannerImg: "images/banner_hok.webp", hasServerId: false, guide: "User ID Anda ada di bagian bawah layar saat Anda membuka profil.", url: "game.html?key=honor-of-kings" },
+    { key: "genshin-impact", name: "Genshin Impact", img: "images/genshin.png", bannerImg: "images/banner_genshin.webp", hasServerId: false, guide: "User ID (9 digit) terletak di sudut kanan bawah layar saat Anda berada di dalam game.", url: "game.html?key=genshin-impact" },
+    { key: "roblox", name: "Roblox", img: "images/roblox.png", bannerImg: "images/banner_roblox.webp", hasServerId: false, guide: "Top up menggunakan Gift Card yang akan dikirim langsung ke akun Anda.", url: "game.html?key=roblox" },
+    { key: "super-sus", name: "Super Sus", img: "images/supersus.png", bannerImg: "images/banner_supersus.webp", hasServerId: false, guide: "User ID dapat ditemukan di menu profil dalam game.", url: "game.html?key=super-sus" },
+    { key: "clash-of-clans", name: "Clash of Clans", img: "images/coc.png", bannerImg: "images/banner_coc.webp", hasServerId: false, guide: "User ID (Tag Pemain) adalah kombinasi huruf dan angka yang dimulai dengan tanda pagar (#).", url: "game.html?key=clash-of-clans" },
+    { key: "blood-strike", name: "Blood Strike", img: "images/bs.png", bannerImg: "images/banner_bs.webp", hasServerId: false, guide: "ID Anda dapat ditemukan di profil dalam game.", url: "game.html?key=blood-strike" },
+    { key: "pubg-mobile", name: "PUBG Mobile", img: "images/pubg.png", bannerImg: "images/banner_pubg.webp", hasServerId: false, guide: "Temukan User ID Anda di sudut kanan atas lobi game saat mengklik profil.", url: "game.html?key=pubg-mobile" },
+    { key: "garena-delta-force", name: "Garena Delta Force", img: "images/delta.png", bannerImg: "images/banner_delta.webp", hasServerId: false, guide: "Buka menu profil di game dan Anda dapat menemukan User ID Anda.", url: "game.html?key=garena-delta-force" },
+    { key: "call-of-duty", name: "Call Of Duty", img: "images/cod.png", bannerImg: "images/banner_cod.webp", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil game.", url: "game.html?key=call-of-duty" },
+    { key: "valorant", name: "Valorant", img: "images/valorant.png", bannerImg: "images/banner_valorant.webp", hasServerId: false, guide: "User ID (Riot ID) dapat ditemukan di bawah nama akun Anda di bagian atas layar.", url: "game.html?key=valorant" },
+    { key: "eggy-party", name: "Eggy Party", img: "images/eggy.png", bannerImg: "images/banner_eggy.webp", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil dalam game.", url: "game.html?key=eggy-party" },
+    { key: "garena-undawn", name: "Garena Undawn", img: "images/undawn.png", bannerImg: "images/banner_undawn.webp", hasServerId: false, guide: "Buka menu profil dan User ID Anda akan terlihat.", url: "game.html?key=garena-undawn" },
 ];
 const PROMOS = [
-    { title: "Top Up Diamond FF Termurah", img: "https://files.catbox.moe/wz282d.png", gameKey: "free-fire" },
-    { title: "Top Up Starlight MLBB Harga Cuan", img: "https://files.catbox.moe/97a2w3.jpg", gameKey: "mobile-legends" },
-    { title: "Promo UC PUBG Mobile Khusus Member", img: "https://files.catbox.moe/c4c51z.jpg", gameKey: "pubg-mobile" },
-    { title: "Blessing of the Welkin Moon Genshin", img: "https://files.catbox.moe/o3d2x9.jpg", gameKey: "genshin-impact" },
+    { title: "Top Up Diamond FF Termurah", img: "images/banner1.png", gameKey: "free-fire" },
+    { title: "Top Up Starlight MLBB Harga Cuan", img: "images/banner2.png", gameKey: "mobile-legends" },
+    { title: "Promo UC PUBG Mobile Khusus Member", img: "images/banner3.png", gameKey: "pubg-mobile" },
+    { title: "Blessing of the Welkin Moon Genshin", img: "images/banner4.png", gameKey: "genshin-impact" },
 ];
 const PAYMENTS = [
-    { id: "dana", name: "DANA", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
-    { id: "gopay", name: "GoPay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", type: "ewallet", info: { number: "082116690164", name: "TI** SUT***" } },
-    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", type: "qris", info: { qrisImg: "https://files.catbox.moe/5688406c-3c9f-4990-b77a-4f1eaba082ad.png" } },
-    { id: "krom", name: "Krom Bank", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", type: "bank_transfer", info: { number: "770072009565", name: "TI** SUT***" } },
+    { id: "dana", name: "DANA", img: "images/dana.png", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
+    { id: "gopay", name: "GoPay", img: "images/gopay.png", type: "ewallet", info: { number: "082116690164", name: "TI** SUT***" } },
+    { id: "qris", name: "QRIS", img: "images/qris.png", type: "qris", info: { qrisImg: "images/qris_example.png" } },
+    { id: "krom", name: "Krom Bank", img: "images/krom.png", type: "bank_transfer", info: { number: "770072009565", name: "TI** SUT***" } },
 ];
 const PRODUCTS = {
     "free-fire": [
@@ -549,7 +549,6 @@ function showVoucherListModal() {
     qsa("[data-choose]", el.promoListModal).forEach(btn => btn.addEventListener("click", () => {
         el.voucherInput.value = btn.dataset.choose;
         closeModal(el.promoListModal);
-        // Do not apply voucher automatically, user must click 'Gunakan'
     }));
     openModal(el.promoListModal);
 }
