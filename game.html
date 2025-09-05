@@ -1,65 +1,76 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Detail Game - WalzShop</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Walz Shop - Top Up</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <header class="navbar">
-    <a href="index.html" class="back-btn">⬅ Kembali</a>
-    <h1 class="logo">WalzShop</h1>
-    <nav>
-      <a href="cart.html" class="cart-link">🛒 Keranjang</a>
-    </nav>
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <i class="fas fa-gem logo-icon"></i>
+        <span class="logo-text">Walz Shop</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
+        <a href="#"><i class="fas fa-info-circle"></i> Tentang</a>
+        <a href="#"><i class="fas fa-headset"></i> Kontak</a>
+      </nav>
+    </div>
   </header>
 
-  <main class="container">
-    <section class="game-detail">
-      <img id="game-banner" class="game-banner" src="" alt="Game Banner">
-      <h1 class="game-name-h1"></h1>
-      <p class="game-description"></p>
-    </section>
+  <main class="main">
+    <div class="container">
+      <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali</a>
+      <div class="game-banner fade-in">
+        <img id="game-banner" class="game-banner-image skeleton" src="" alt="Game Banner">
+        <h1 class="game-name-h1 skeleton-text"></h1>
+      </div>
 
-    <section>
-      <h2>Pilih Nominal</h2>
-      <div id="product-grid" class="grid"></div>
-    </section>
+      <div class="form-container">
+        <form id="topup-form">
+          <div class="form-group">
+            <label for="user-id"><i class="fas fa-user"></i> Masukkan User ID</label>
+            <div class="input-group">
+              <input type="text" id="user-id" placeholder="Contoh: 12345678" required>
+              <input type="text" id="server-id" placeholder="Server ID (Opsional)">
+            </div>
+          </div>
 
-    <section>
-      <h2>Pilih Metode Pembayaran</h2>
-      <div id="payment-grid" class="grid"></div>
-    </section>
+          <div class="form-group">
+            <label><i class="fas fa-dollar-sign"></i> Pilih Nominal Top Up</label>
+            <div class="product-grid" id="product-grid">
+              <div class="skeleton skeleton-card"></div>
+              <div class="skeleton skeleton-card"></div>
+              <div class="skeleton skeleton-card"></div>
+            </div>
+          </div>
 
-    <section class="voucher-section">
-      <input type="text" id="voucher-input" placeholder="Masukkan Kode Voucher">
-      <button id="voucher-btn">Terapkan</button>
-      <p id="voucher-status"></p>
-    </section>
+          <div class="form-group">
+            <label><i class="fas fa-credit-card"></i> Pilih Metode Pembayaran</label>
+            <div class="payment-grid" id="payment-grid">
+              <div class="skeleton skeleton-card"></div>
+              <div class="skeleton skeleton-card"></div>
+              <div class="skeleton skeleton-card"></div>
+            </div>
+          </div>
 
-    <section class="summary-section">
-      <h2>Ringkasan Pesanan</h2>
-      <table class="summary-table">
-        <tr>
-          <td>Produk:</td>
-          <td id="summary-product">-</td>
-        </tr>
-        <tr>
-          <td>Pembayaran:</td>
-          <td id="summary-payment">-</td>
-        </tr>
-        <tr>
-          <td>Total:</td>
-          <td id="summary-total">Rp 0</td>
-        </tr>
-      </table>
-      <input type="text" id="user-id" placeholder="Masukkan User ID Anda">
-      <button id="checkout-btn" disabled>Tambah ke Keranjang</button>
-    </section>
+          <button type="button" id="checkout-btn" class="btn btn-block btn-confirm" disabled>Beli Sekarang</button>
+        </form>
+      </div>
+    </div>
   </main>
 
-  <div id="toast-container"></div>
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Walz Shop. Semua hak dilindungi.</p>
+    </div>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
