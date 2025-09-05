@@ -398,8 +398,8 @@ function handleProductClick(e) {
     el.voucherInput.value = "";
     setVoucherStatus("");
     refreshSelections();
+    updatePaymentsPrice(); // Update payment prices immediately
     checkProgress();
-    renderPayments();
 }
 
 function renderPayments() {
@@ -415,6 +415,21 @@ function renderPayments() {
     }).join("");
     el.paymentGrid.innerHTML = paymentsHtml;
     qsa(".payment-card-modern", el.paymentGrid).forEach(card => card.addEventListener("click", handlePaymentClick));
+}
+
+function updatePaymentsPrice() {
+    const finalP = finalPrice();
+    qsa(".payment-card-modern").forEach(card => {
+        let priceEl = card.querySelector(".payment-price");
+        if (priceEl) {
+            priceEl.textContent = fmtIDR(finalP);
+        } else {
+            priceEl = document.createElement("div");
+            priceEl.classList.add("payment-price");
+            priceEl.textContent = fmtIDR(finalP);
+            card.appendChild(priceEl);
+        }
+    });
 }
 
 function handlePaymentClick(e) {
@@ -447,7 +462,7 @@ function applyVoucher() {
         setVoucherStatus(`Voucher ${voucher.code} diterapkan. Diskon ${fmtIDR(discount)}.`, false);
     }
     refreshSummary();
-    renderPayments();
+    updatePaymentsPrice(); // Update payment prices after applying voucher
 }
 
 function calcDiscount(price, voucher) {
@@ -464,12 +479,10 @@ function calcDiscount(price, voucher) {
 }
 
 function finalPrice() {
-    if (!selectedProduct) return 0;
-    let price = selectedProduct.price;
-    if (appliedVoucher) {
-        price -= calcDiscount(price, appliedVoucher);
-    }
-    return Math.max(0, price);
+    const price = selectedProduct?.price || 0;
+    if (!appliedVoucher) return price;
+    const discount = calcDiscount(price, appliedVoucher);
+    return Math.max(0, price - discount);
 }
 
 function refreshSelections() {
