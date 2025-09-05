@@ -1,4 +1,3 @@
-/* Core Styles */
 :root {
     --primary-color: #3b82f6;
     --primary-color-dark: #2563eb;
@@ -13,7 +12,6 @@
     --radius-md: 0.5rem;
     --radius-lg: 1rem;
 }
-
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-color);
@@ -23,17 +21,14 @@ body {
     padding: 0;
     scroll-behavior: smooth;
 }
-
 .container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 1.5rem;
 }
-
 .section {
     padding: 3rem 0;
 }
-
 .section-title {
     font-size: 2rem;
     font-weight: 700;
@@ -41,14 +36,11 @@ body {
     margin-bottom: 0.5rem;
     color: var(--primary-color-dark);
 }
-
 .section-subtitle {
     text-align: center;
     color: var(--text-color-light);
     margin-bottom: 2rem;
 }
-
-/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -60,57 +52,47 @@ body {
     top: 0;
     z-index: 1000;
 }
-
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-color-dark);
     text-decoration: none;
 }
-
 .nav-links {
     display: flex;
     gap: 1.5rem;
 }
-
 .nav-links a {
     color: var(--text-color);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
 }
-
 .nav-links a:hover {
     color: var(--primary-color);
 }
-
 .nav-toggle {
     display: none;
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--text-color);
 }
-
-/* Hero Section */
 .hero {
     height: 400px;
     position: relative;
     overflow: hidden;
     background: #e2e8f0;
 }
-
 .slider-container {
     position: relative;
     width: 100%;
     height: 100%;
 }
-
 .slider {
     display: flex;
     height: 100%;
     transition: transform 0.5s ease-in-out;
 }
-
 .slider__item {
     min-width: 100%;
     height: 100%;
@@ -122,7 +104,6 @@ body {
     justify-content: center;
     text-decoration: none;
 }
-
 .slider-dots {
     position: absolute;
     bottom: 1.5rem;
@@ -131,7 +112,6 @@ body {
     display: flex;
     gap: 0.5rem;
 }
-
 .dot {
     width: 10px;
     height: 10px;
@@ -140,21 +120,17 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-
 .dot.active {
     background-color: var(--primary-color);
     width: 25px;
     border-radius: 5px;
 }
-
-/* Game Grid */
 .game-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 1rem;
     padding: 0 1rem;
 }
-
 .game-card {
     background-color: var(--card-bg);
     border-radius: var(--radius-md);
@@ -165,27 +141,22 @@ body {
     color: var(--text-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .game-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-md);
 }
-
 .game-card img {
     width: 100%;
     height: auto;
     display: block;
     border-bottom: 1px solid var(--border-color);
 }
-
 .game-card .game-name {
     display: block;
     padding: 0.75rem 0.5rem;
     font-weight: 500;
     font-size: 0.9rem;
 }
-
-/* Contact Section */
 .contact-card {
     max-width: 500px;
     margin: 0 auto;
@@ -195,7 +166,6 @@ body {
     box-shadow: var(--shadow-md);
     text-align: center;
 }
-
 .btn {
     display: inline-flex;
     align-items: center;
@@ -208,39 +178,30 @@ body {
     border: none;
     cursor: pointer;
 }
-
 .btn-primary {
     background-color: var(--primary-color);
     color: white;
 }
-
 .btn-primary:hover {
     background-color: var(--primary-color-dark);
 }
-
 .btn-secondary {
     background-color: #e5e7eb;
     color: var(--text-color);
 }
-
 .btn-secondary:hover {
     background-color: #d1d5db;
 }
-
 .btn-whatsapp {
     background-color: #25d366;
     color: white;
 }
-
 .btn-whatsapp:hover {
     background-color: #1ea852;
 }
-
 .btn-icon {
     margin-right: 0.5rem;
 }
-
-/* Footer */
 .footer {
     background-color: var(--text-color);
     color: white;
@@ -248,15 +209,12 @@ body {
     text-align: center;
     margin-top: 3rem;
 }
-
-/* Game Page Specific Styles */
 .game-page-container {
     padding-top: 2rem;
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
 }
-
 .game-hero {
     position: relative;
     height: 200px;
@@ -265,7 +223,6 @@ body {
     border-bottom-right-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
 }
-
 .game-banner {
     width: 100%;
     height: 100%;
@@ -273,7 +230,6 @@ body {
     background-position: center;
     filter: brightness(0.7);
 }
-
 .game-info-overlay {
     position: absolute;
     bottom: 1rem;
@@ -282,7 +238,6 @@ body {
     align-items: center;
     color: white;
 }
-
 .game-icon {
     width: 60px;
     height: 60px;
@@ -290,30 +245,25 @@ body {
     margin-right: 1rem;
     border: 2px solid white;
 }
-
 .game-title {
     font-size: 1.5rem;
     font-weight: 700;
     margin: 0;
 }
-
 .guide-text {
     font-size: 0.9rem;
     margin: 0;
     color: #cbd5e1;
 }
-
 .form-container {
     background-color: var(--card-bg);
     padding: 1.5rem;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
 }
-
 .form-section {
     margin-bottom: 2rem;
 }
-
 .form-section h3 {
     font-size: 1.25rem;
     margin-top: 0;
@@ -322,7 +272,6 @@ body {
     display: inline-block;
     padding-bottom: 0.5rem;
 }
-
 input[type="text"] {
     width: 100%;
     padding: 0.75rem;
@@ -331,15 +280,12 @@ input[type="text"] {
     font-size: 1rem;
     box-sizing: border-box;
 }
-
-/* New Product and Payment Card Styles */
 .product-grid,
 .payment-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
     gap: 1rem;
 }
-
 .product-card-modern,
 .payment-card-modern {
     background-color: var(--bg-color);
@@ -351,45 +297,38 @@ input[type="text"] {
     transition: all 0.2s ease;
     position: relative;
 }
-
 .product-card-modern:hover,
 .payment-card-modern:hover {
     border-color: var(--primary-color);
     transform: translateY(-3px);
     box-shadow: var(--shadow-sm);
 }
-
 .product-card-modern.selected,
 .payment-card-modern.selected {
     background-color: #e0f2fe;
     border-color: var(--primary-color);
     box-shadow: var(--shadow-md);
 }
-
 .product-label {
     font-weight: 600;
     display: block;
     font-size: 0.95rem;
     margin-bottom: 0.25rem;
 }
-
 .product-price {
     font-weight: 700;
     color: var(--primary-color-dark);
     font-size: 1.1rem;
 }
-
 .payment-card-modern img {
     width: 60px;
     height: 30px;
     object-fit: contain;
     margin-bottom: 0.5rem;
 }
-
 .payment-label {
     font-weight: 600;
 }
-
 .badge {
     position: absolute;
     top: 0;
@@ -402,7 +341,6 @@ input[type="text"] {
     border-bottom-left-radius: var(--radius-md);
     z-index: 10;
 }
-
 .badge.hot { background-color: #f59e0b; }
 .badge.sale { background-color: #10b981; }
 .badge.new { background-color: #3b82f6; }
@@ -413,75 +351,58 @@ input[type="text"] {
 .badge.levelup { background-color: #d946ef; }
 .badge.vip { background-color: #7c3aed; }
 .badge.welkin { background-color: #22d3ee; }
-
-/* Voucher */
 .voucher-input-group {
     display: flex;
     gap: 0.5rem;
     margin-top: 1rem;
     flex-wrap: wrap;
 }
-
 .voucher-input-group input {
     flex-grow: 1;
     min-width: 150px;
 }
-
 .voucher-input-group .btn {
     min-width: 100px;
 }
-
-/* Summary */
 .summary-section {
     margin-top: 2rem;
 }
-
 .summary-details {
     background-color: var(--bg-color);
     border-radius: var(--radius-md);
     padding: 1.5rem;
     border: 1px solid var(--border-color);
 }
-
 .summary-table {
     width: 100%;
     border-collapse: collapse;
 }
-
 .summary-table td {
     padding: 0.5rem 0;
 }
-
 .summary-table tr:last-child {
     border-top: 2px solid var(--border-color);
     font-size: 1.2rem;
     font-weight: 700;
 }
-
 .summary-table td:first-child {
     color: var(--text-color-light);
 }
-
 .summary-table td:last-child {
     text-align: right;
     font-weight: 600;
 }
-
 .summary-total-row td:last-child {
     color: var(--primary-color-dark);
 }
-
 .btn-block {
     width: 100%;
     margin-top: 1.5rem;
 }
-
 .btn-block[disabled] {
     opacity: 0.5;
     cursor: not-allowed;
 }
-
-/* Modal */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -497,12 +418,10 @@ input[type="text"] {
     transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 2000;
 }
-
 .modal-overlay.active {
     opacity: 1;
     visibility: visible;
 }
-
 .modal {
     background-color: var(--card-bg);
     border-radius: var(--radius-lg);
@@ -512,11 +431,9 @@ input[type="text"] {
     transform: translateY(-50px);
     transition: transform 0.3s ease;
 }
-
 .modal-overlay.active .modal {
     transform: translateY(0);
 }
-
 .modal-header {
     display: flex;
     justify-content: space-between;
@@ -524,13 +441,11 @@ input[type="text"] {
     padding: 1.5rem;
     border-bottom: 1px solid var(--border-color);
 }
-
 .modal-header h3 {
     margin: 0;
     font-size: 1.25rem;
     color: var(--primary-color-dark);
 }
-
 .modal-close-btn {
     background: none;
     border: none;
@@ -538,24 +453,20 @@ input[type="text"] {
     cursor: pointer;
     color: var(--text-color-light);
 }
-
 .modal-body {
     padding: 1.5rem;
 }
-
 .modal-footer {
     padding: 1.5rem;
     border-top: 1px solid var(--border-color);
     text-align: center;
 }
-
 .qris-image {
     max-width: 250px;
     width: 100%;
     height: auto;
     border-radius: var(--radius-md);
 }
-
 .copy-field {
     display: flex;
     align-items: center;
@@ -567,7 +478,6 @@ input[type="text"] {
     color: var(--text-color);
     border: 1px solid var(--border-color);
 }
-
 .voucher-item {
     display: flex;
     justify-content: space-between;
@@ -577,24 +487,19 @@ input[type="text"] {
     border-radius: var(--radius-md);
     margin-bottom: 0.75rem;
 }
-
 .voucher-item h4 {
     margin: 0;
     font-size: 1rem;
     color: var(--primary-color-dark);
 }
-
 .voucher-item p {
     margin: 0.25rem 0 0;
     font-size: 0.85rem;
     color: var(--text-color-light);
 }
-
-/* Utilities and Responsive */
 .text-center { text-align: center; }
 .mt-sm { margin-top: 0.5rem; }
 .mt-md { margin-top: 1rem; }
-
 @media (max-width: 768px) {
     .navbar {
         flex-wrap: wrap;
@@ -616,7 +521,6 @@ input[type="text"] {
         display: block;
     }
 }
-
 @media (min-width: 769px) {
     .game-page-container {
         grid-template-columns: 2fr 1fr;
