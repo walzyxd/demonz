@@ -3,71 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walz Shop - Top Up Game</title>
+    <title>Walz Shop - Top Up Termurah</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/20+vP9gqV0A0zN+T1g+lH3L6Q8lK8c8A+tC6L0wL4j0f/p8/p/j/y/s=" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <a href="index.html" class="back-btn">&#x2190; Kembali</a>
-            <h1 id="game-title"></h1>
+            <a href="index.html">
+                <img src="https://i.ibb.co/6Pz3KqB/logo-walzshop.png" alt="Logo Walz Shop" class="logo">
+            </a>
         </header>
 
-        <img src="" alt="Game Banner" class="game-banner" id="game-banner">
-        
-        <section class="form-card">
-            <h2 class="grid-title">Langkah 1: Masukkan ID</h2>
-            <p class="game-description"></p>
-            <div class="form-group">
-                <label for="user-id">User ID</label>
-                <div class="input-group">
-                    <input type="text" id="user-id" placeholder="Masukkan User ID">
-                </div>
-            </div>
-            <div class="form-group" id="server-id-group" style="display: none;">
-                <label for="server-id">Server ID (Optional)</label>
-                <div class="input-group">
-                    <input type="text" id="server-id" placeholder="Masukkan Server ID">
-                </div>
-            </div>
+        <section class="game-info">
+            <img src="" alt="Game Banner" class="game-banner" id="game-banner">
+            <h2 id="game-title"></h2>
         </section>
 
-        <section class="grid-section">
-            <h2 class="grid-title">Langkah 2: Pilih Nominal</h2>
+        <section class="step-section">
+            <h3><i class="fa-solid fa-user"></i> Langkah 1: Masukkan User ID</h3>
+            <div class="input-group">
+                <label for="user-id">User ID</label>
+                <input type="text" id="user-id" placeholder="Masukkan User ID Anda" required>
+            </div>
+            <div class="input-group" id="server-id-group" style="display: none;">
+                <label for="server-id">Server ID</label>
+                <input type="text" id="server-id" placeholder="Masukkan Server ID Anda">
+            </div>
+            <p class="game-description" id="game-description"></p>
+        </section>
+
+        <section class="step-section">
+            <h3><i class="fa-solid fa-gem"></i> Langkah 2: Pilih Nominal</h3>
             <div class="product-grid" id="product-grid">
                 </div>
         </section>
 
-        <section class="form-card">
-            <h2 class="grid-title">Langkah 3: Kode Voucher</h2>
-            <div class="form-group">
+        <section class="step-section">
+            <h3><i class="fa-solid fa-tags"></i> Langkah 3: Gunakan Voucher (Opsional)</h3>
+            <div class="voucher-group">
                 <div class="input-group">
                     <input type="text" id="voucher-input" placeholder="Masukkan kode voucher">
-                    <button class="btn btn-secondary" id="voucher-btn">Terapkan</button>
+                    <span id="voucher-status" class="status-text"></span>
                 </div>
-                <span id="voucher-status" class="status-text"></span>
+                <button class="btn btn-primary" id="voucher-btn">Gunakan</button>
             </div>
-            <button class="btn btn-block btn-secondary" id="voucher-list-btn">Lihat Daftar Voucher</button>
+            <p style="text-align: right; margin-top: 10px;">
+                <a href="#" id="voucher-list-btn">Lihat semua promo <i class="fa-solid fa-arrow-right"></i></a>
+            </p>
         </section>
 
-        <section class="grid-section">
-            <h2 class="grid-title">Langkah 4: Pilih Pembayaran</h2>
+        <section class="step-section">
+            <h3><i class="fa-solid fa-credit-card"></i> Langkah 4: Pilih Pembayaran</h3>
             <div class="payment-grid" id="payment-grid">
                 </div>
         </section>
 
-        <section class="form-card">
-            <h2 class="grid-title">Langkah 5: Konfirmasi Pembelian</h2>
+        <section class="step-section">
+            <h3><i class="fa-solid fa-receipt"></i> Langkah 5: Konfirmasi Pembelian</h3>
             <table class="summary-table">
-                <tr><td>Produk</td><td id="summary-product">-</td></tr>
-                <tr><td>Metode Bayar</td><td id="summary-payment">-</td></tr>
-                <tr id="summary-discount-row" style="display: none;"><td>Diskon</td><td id="summary-discount">-</td></tr>
+                <tbody>
+                    <tr>
+                        <td>Game</td>
+                        <td id="summary-product">-</td>
+                    </tr>
+                    <tr id="summary-discount-row" style="display: none;">
+                        <td>Diskon</td>
+                        <td id="summary-discount">Rp0</td>
+                    </tr>
+                    <tr>
+                        <td>Metode Pembayaran</td>
+                        <td id="summary-payment">-</td>
+                    </tr>
+                </tbody>
             </table>
             <div class="summary-total">
                 <span>Total Pembayaran</span>
                 <span id="summary-total">Rp0</span>
             </div>
-            <button class="btn btn-confirm btn-block" id="checkout-btn" disabled>Beli Sekarang</button>
+            <button class="btn btn-confirm btn-block checkout-btn" id="checkout-btn" disabled>
+                Beli Sekarang
+            </button>
         </section>
     </div>
 
