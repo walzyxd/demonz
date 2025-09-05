@@ -17,7 +17,7 @@ const GAMES = [
     { key: "clash-of-clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", bannerImg: "images/banner_coc.webp", hasServerId: false, guide: "User ID (Tag Pemain) adalah kombinasi huruf dan angka yang dimulai dengan tanda pagar (#).", url: "game.html?game=clash-of-clans" },
     { key: "blood-strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", bannerImg: "images/banner_bs.webp", hasServerId: false, guide: "ID Anda dapat ditemukan di profil dalam game.", url: "game.html?game=blood-strike" },
     { key: "pubgm", name: "PUBG Mobile", img: "https://files.catbox.moe/tatuo9.jpg", bannerImg: "https://files.catbox.moe/hrtpys.jpg", hasServerId: false, guide: "Temukan User ID Anda di sudut kanan atas lobi game saat mengklik profil.", url: "game.html?game=pubgm" },
-    { key: "garena-delta-force", name: "Garena Delta Force", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", bannerImg: "images/banner_delta.webp", hasServerId: false, guide: "Buka menu profil di game dan Anda dapat menemukan User ID Anda.", url: "game.html?game=garena-delta-force" },
+    { key: "garena-delta-force", name: "Garena Delta Force", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b375d7b5d12.png", bannerImg: "images/banner_delta.webp", hasServerId: false, guide: "Buka menu profil di game dan Anda dapat menemukan User ID Anda.", url: "game.html?game=garena-delta-force" },
     { key: "call-of-duty", name: "Call Of Duty", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil game.", url: "game.html?game=call-of-duty" },
     { key: "valorant", name: "Valorant", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", bannerImg: "images/banner_valorant.webp", hasServerId: false, guide: "User ID (Riot ID) dapat ditemukan di bawah nama akun Anda di bagian atas layar.", url: "game.html?game=valorant" },
     { key: "eggy-party", name: "Eggy Party", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", bannerImg: "images/banner_eggy.webp", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil dalam game.", url: "game.html?game=eggy-party" },
@@ -266,7 +266,6 @@ const el = {
     paymentModal: qs("#paymentModal"),
     voucherModal: qs("#voucherModal"),
     modalOverlay: qs("#modalOverlay"),
-    copyBtn: qs("#copyBtn"),
 };
 
 // ======================= Initialisasi =======================
@@ -301,13 +300,6 @@ function setupEventListeners() {
     });
     
     qsa("[data-close]").forEach(btn => btn.addEventListener("click", () => closeModal()));
-    
-    if (el.copyBtn) {
-        el.copyBtn.addEventListener("click", () => {
-            const codeToCopy = qs("#paymentCode").textContent;
-            copyToClipboard(codeToCopy, el.copyBtn);
-        });
-    }
 }
 
 // ======================= Halaman Utama =======================
@@ -451,11 +443,13 @@ function applyVoucher() {
     
     if (code === "" || !voucher) {
         appliedVoucher = null;
-    } else if (voucher.minPurchase && selectedProduct && selectedProduct.price < voucher.minPurchase) {
+        alert("Kode voucher tidak valid.");
+    } else if (selectedProduct && voucher.minPurchase && selectedProduct.price < voucher.minPurchase) {
         appliedVoucher = null;
         alert(`Minimal transaksi untuk voucher ini adalah ${fmtIDR(voucher.minPurchase)}.`);
     } else {
         appliedVoucher = voucher;
+        alert(`Voucher ${voucher.code} berhasil diterapkan!`);
     }
     updateSummary();
 }
