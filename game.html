@@ -3,119 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walz Shop - Top Up Termurah</title>
+    <title>Top Up Mobile Legends - Game Store</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/20+vP9gqV0A0zN+T1g+lH3L6Q8lK8c8A+tC6L0wL4j0f/p8/p/j/y/s=" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Kembali</a>
-            <img src="https://i.ibb.co/6Pz3KqB/logo-walzshop.png" alt="Logo Walz Shop" class="logo">
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+            <a href="index.html" class="logo-link">
+                <img src="images/logo.png" alt="Game Store Logo" class="logo">
+            </a>
         </header>
 
         <section class="game-info">
             <div class="game-header">
-                <img src="" alt="Game Icon" class="game-icon" id="game-icon">
-                <h2 id="game-title"></h2>
-            </div>
-            <p class="guide-text" id="game-description"><i class="fa-solid fa-circle-info"></i> </p>
-        </section>
-
-        <section class="step-section">
-            <h3><i class="fa-solid fa-user"></i> Langkah 1: Masukkan User ID</h3>
-            <p class="guide-text"><i class="fa-solid fa-circle-check"></i> Masukkan ID akun Anda dengan benar.</p>
-            <div class="input-group">
-                <label for="user-id">User ID</label>
-                <input type="number" id="user-id" placeholder="Masukkan User ID Anda" required>
-            </div>
-            <div class="input-group" id="server-id-group" style="display: none;">
-                <label for="server-id">Server ID</label>
-                <input type="number" id="server-id" placeholder="Masukkan Server ID Anda">
+                <img src="images/ml.png" alt="Mobile Legends Icon" class="game-icon">
+                <h1 class="game-title">Mobile Legends</h1>
             </div>
         </section>
 
-        <section class="step-section">
-            <h3><i class="fa-solid fa-gem"></i> Langkah 2: Pilih Nominal</h3>
-            <p class="guide-text"><i class="fa-solid fa-circle-check"></i> Pilih nominal yang Anda inginkan.</p>
-            <div class="product-grid" id="product-grid">
-                </div>
-        </section>
-
-        <section class="step-section">
-            <h3><i class="fa-solid fa-tags"></i> Langkah 3: Gunakan Voucher (Opsional)</h3>
-            <p class="guide-text"><i class="fa-solid fa-circle-check"></i> Jika memiliki voucher, masukkan kodenya dan klik **Gunakan**.</p>
-            <div class="voucher-group">
+        <main>
+            <section class="step-section" id="step1">
+                <h3><i class="fas fa-user"></i> Masukkan User ID</h3>
+                <p class="guide-text">
+                    <i class="fas fa-info-circle"></i> Untuk menemukan User ID Anda, klik avatar Anda di sudut kiri atas layar. User ID terletak di bawah nama panggilan Anda (misalnya: 12345678 (1234)).
+                </p>
                 <div class="input-group">
-                    <input type="text" id="voucher-input" placeholder="Masukkan kode voucher">
-                    <span id="voucher-status" class="status-text"></span>
+                    <label for="userID">User ID</label>
+                    <input type="text" id="userID" name="userID" placeholder="Masukkan User ID Anda" required>
                 </div>
-                <button class="btn btn-primary" id="voucher-btn">Gunakan</button>
-            </div>
-            <p style="text-align: right; margin-top: 10px;">
-                <a href="#" id="voucher-list-btn">Lihat semua promo <i class="fa-solid fa-arrow-right"></i></a>
-            </p>
-        </section>
-
-        <section class="step-section">
-            <h3><i class="fa-solid fa-credit-card"></i> Langkah 4: Pilih Pembayaran</h3>
-            <p class="guide-text"><i class="fa-solid fa-circle-check"></i> Pilih metode pembayaran favorit Anda.</p>
-            <div class="payment-grid" id="payment-grid">
+                <div class="input-group">
+                    <label for="zoneID">Zone ID</label>
+                    <input type="text" id="zoneID" name="zoneID" placeholder="Masukkan Zone ID Anda (opsional)">
+                    <small class="input-info">* Zone ID diperlukan untuk beberapa game</small>
                 </div>
-        </section>
+            </section>
 
-        <section class="step-section">
-            <h3><i class="fa-solid fa-receipt"></i> Langkah 5: Konfirmasi Pembelian</h3>
-            <table class="summary-table">
-                <tbody>
+            <section class="step-section" id="step2">
+                <h3><i class="fas fa-gem"></i> Pilih Nominal Top Up</h3>
+                <div class="product-grid">
+                    <div class="product-card-modern" data-price="2500" data-value="10 Diamonds">
+                        <span class="product-label">10 Diamonds</span>
+                        <span class="product-price">Rp 2.500</span>
+                    </div>
+                    <div class="product-card-modern" data-price="5000" data-value="25 Diamonds">
+                        <span class="product-label">25 Diamonds</span>
+                        <span class="product-price">Rp 5.000</span>
+                    </div>
+                    <div class="product-card-modern" data-price="10000" data-value="50 Diamonds">
+                        <span class="product-label">50 Diamonds</span>
+                        <span class="product-price">Rp 10.000</span>
+                    </div>
+                    <div class="product-card-modern" data-price="20000" data-value="100 Diamonds">
+                        <span class="product-label">100 Diamonds</span>
+                        <span class="product-price">Rp 20.000</span>
+                    </div>
+                    <div class="product-card-modern" data-price="50000" data-value="250 Diamonds">
+                        <span class="product-label">250 Diamonds</span>
+                        <span class="product-price">Rp 50.000</span>
+                        <span class="badge new">New</span>
+                    </div>
+                    <div class="product-card-modern" data-price="100000" data-value="500 Diamonds">
+                        <span class="product-label">500 Diamonds</span>
+                        <span class="product-price">Rp 100.000</span>
+                    </div>
+                    <div class="product-card-modern" data-price="200000" data-value="1000 Diamonds">
+                        <span class="product-label">1000 Diamonds</span>
+                        <span class="product-price">Rp 200.000</span>
+                        <span class="badge hot">Hot</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="step-section" id="step3">
+                <h3><i class="fas fa-credit-card"></i> Pilih Metode Pembayaran</h3>
+                <div class="payment-grid">
+                    <div class="payment-card-modern" data-method="dana">
+                        <img src="images/dana.png" alt="DANA">
+                        <span class="payment-label">DANA</span>
+                    </div>
+                    <div class="payment-card-modern" data-method="gopay">
+                        <img src="images/gopay.png" alt="Gopay">
+                        <span class="payment-label">Gopay</span>
+                    </div>
+                    <div class="payment-card-modern" data-method="ovo">
+                        <img src="images/ovo.png" alt="OVO">
+                        <span class="payment-label">OVO</span>
+                    </div>
+                    <div class="payment-card-modern" data-method="shopeepay">
+                        <img src="images/shopeepay.png" alt="ShopeePay">
+                        <span class="payment-label">ShopeePay</span>
+                    </div>
+                    <div class="payment-card-modern" data-method="qris">
+                        <img src="images/qris.png" alt="QRIS">
+                        <span class="payment-label">QRIS</span>
+                    </div>
+                    <div class="payment-card-modern" data-method="bca">
+                        <img src="images/bca.png" alt="BCA">
+                        <span class="payment-label">BCA</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="checkout-summary step-section">
+                <h3>Ringkasan Pembelian</h3>
+                <table class="summary-table">
                     <tr>
-                        <td>Game</td>
-                        <td id="summary-product">-</td>
+                        <td>User ID</td>
+                        <td id="summary-userid">...</td>
                     </tr>
-                    <tr id="summary-discount-row" style="display: none;">
-                        <td>Diskon</td>
-                        <td id="summary-discount">Rp0</td>
+                    <tr>
+                        <td>Nominal Top Up</td>
+                        <td id="summary-product">...</td>
                     </tr>
                     <tr>
                         <td>Metode Pembayaran</td>
-                        <td id="summary-payment">-</td>
+                        <td id="summary-payment">...</td>
                     </tr>
-                </tbody>
-            </table>
-            <div class="summary-total">
-                <span>Total Pembayaran</span>
-                <span id="summary-total">Rp0</span>
-            </div>
-            <button class="btn btn-confirm btn-block checkout-btn" id="checkout-btn" disabled>
-                Beli Sekarang
-            </button>
-        </section>
+                </table>
+                <div class="summary-total">
+                    <span>Total Harga</span>
+                    <span id="summary-total-price">Rp 0</span>
+                </div>
+                <button class="btn btn-primary btn-block checkout-btn" id="checkout-btn" disabled>Beli Sekarang</button>
+            </section>
+        </main>
     </div>
 
-    <div class="modal-overlay" id="modal-overlay">
-        <div class="modal" id="promo-list-modal"></div>
-        <div class="modal" id="error-modal"></div>
-        <div class="modal" id="checkout-modal"></div>
+    <div id="checkoutModal" class="modal-overlay">
+        <div class="modal modal-konfirmasi">
+            <div class="modal-header">
+                <h3>Konfirmasi Pembelian</h3>
+                <button class="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <table class="summary-table">
+                    <tr>
+                        <td>Game</td>
+                        <td>Mobile Legends</td>
+                    </tr>
+                    <tr>
+                        <td>User ID</td>
+                        <td id="confirm-userid">...</td>
+                    </tr>
+                    <tr>
+                        <td>Nominal</td>
+                        <td id="confirm-product">...</td>
+                    </tr>
+                    <tr>
+                        <td>Harga</td>
+                        <td id="confirm-price">...</td>
+                    </tr>
+                    <tr>
+                        <td>Pembayaran</td>
+                        <td id="confirm-payment">...</td>
+                    </tr>
+                </table>
+                <p class="instruction">Mohon periksa kembali detail pembelian Anda sebelum melanjutkan.</p>
+                <div class="modal-footer">
+                    <button class="btn btn-confirm" id="confirm-purchase-btn">Konfirmasi & Bayar</button>
+                </div>
+            </div>
+        </div>
     </div>
-    
+
+    <div id="qrisModal" class="modal-overlay">
+        <div class="modal modal-konfirmasi">
+            <div class="modal-header">
+                <h3>QR Code Pembayaran</h3>
+                <button class="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="qris-image-container">
+                    <img src="images/qris_example.png" alt="QRIS Code" class="qris-image">
+                </div>
+                <div class="payment-info">
+                    <h4>Total Pembayaran: <span id="qris-total-price">Rp 0</span></h4>
+                    <p class="instruction">Scan kode QR di atas dengan aplikasi pembayaran Anda.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary modal-close-btn">Selesai</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="thankYouModal" class="modal-overlay">
+        <div class="modal modal-konfirmasi">
+            <div class="modal-header">
+                <h3>Terima Kasih!</h3>
+                <button class="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center;">Pembelian Anda sedang diproses. Diamond akan segera masuk ke akun Anda.</p>
+                <div class="modal-footer">
+                    <button class="btn btn-primary modal-close-btn">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2024 Walz Shop. Semua Hak Dilindungi.</p>
             <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-tiktok"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
             </div>
             <ul class="footer-links">
                 <li><a href="#">Tentang Kami</a></li>
-                <li><a href="#">Syarat & Ketentuan</a></li>
-                <li><a href="#">Kebijakan Privasi</a></li>
                 <li><a href="#">FAQ</a></li>
+                <li><a href="#">Kebijakan Privasi</a></li>
+                <li><a href="#">Syarat dan Ketentuan</a></li>
             </ul>
+            <p>&copy; 2024 Game Store. All Rights Reserved.</p>
         </div>
     </footer>
 
