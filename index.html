@@ -3,46 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walz Shop - Top Up Termurah</title>
+    <title>Top Up Game - Game Store</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/20+vP9gqV0A0zN+T1g+lH3L6Q8lK8c8A+tC6L0wL4j0f/p8/p/j/y/s=" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <img src="https://i.ibb.co/6Pz3KqB/logo-walzshop.png" alt="Logo Walz Shop" class="logo">
+            <a href="index.html" class="logo-link">
+                <img src="images/logo.png" alt="Game Store Logo" class="logo">
+            </a>
         </header>
 
-        <section class="slider-container">
-            <div class="slider" id="promo-slider"></div>
-            <div class="slider-dots" id="slider-dots"></div>
+        <section class="promo-slider">
+            <div class="slider-container">
+                <div class="slider">
+                    <div class="slider__item" style="background-image: url('images/banner1.png');"></div>
+                    <div class="slider__item" style="background-image: url('images/banner2.png');"></div>
+                    <div class="slider__item" style="background-image: url('images/banner3.png');"></div>
+                </div>
+                <div class="slider-dots"></div>
+            </div>
         </section>
 
-        <section class="grid-section">
+        <section class="grid-section game-list-section">
             <h2 class="grid-title">Pilih Game</h2>
-            <div class="game-grid" id="games-grid">
-                </div>
+            <div class="game-grid">
+                <a href="game.html" class="game-card">
+                    <img src="images/ml.png" alt="Mobile Legends">
+                    <span class="game-name">Mobile Legends</span>
+                </a>
+                <a href="game.html" class="game-card">
+                    <img src="images/ff.png" alt="Free Fire">
+                    <span class="game-name">Free Fire</span>
+                </a>
+                <a href="game.html" class="game-card">
+                    <img src="images/pubg.png" alt="PUBG Mobile">
+                    <span class="game-name">PUBG Mobile</span>
+                </a>
+                <a href="game.html" class="game-card">
+                    <img src="images/valorant.png" alt="Valorant">
+                    <span class="game-name">Valorant</span>
+                </a>
+                <a href="game.html" class="game-card">
+                    <img src="images/genshin.png" alt="Genshin Impact">
+                    <span class="game-name">Genshin Impact</span>
+                </a>
+                <a href="game.html" class="game-card">
+                    <img src="images/hago.png" alt="HAGO">
+                    <span class="game-name">HAGO</span>
+                </a>
+                <a href="game.html" class="game-card">
+                    <img src="images/apex.png" alt="Apex Legends">
+                    <span class="game-name">Apex Legends</span>
+                </a>
+                <a href="game.html" class="game-card">
+                    <img src="images/cod.png" alt="Call of Duty Mobile">
+                    <span class="game-name">COD Mobile</span>
+                </a>
+            </div>
         </section>
     </div>
 
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2024 Walz Shop. Semua Hak Dilindungi.</p>
             <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-tiktok"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
             </div>
             <ul class="footer-links">
                 <li><a href="#">Tentang Kami</a></li>
-                <li><a href="#">Syarat & Ketentuan</a></li>
-                <li><a href="#">Kebijakan Privasi</a></li>
                 <li><a href="#">FAQ</a></li>
+                <li><a href="#">Kebijakan Privasi</a></li>
+                <li><a href="#">Syarat dan Ketentuan</a></li>
             </ul>
+            <p>&copy; 2024 Game Store. All Rights Reserved.</p>
         </div>
     </footer>
 
