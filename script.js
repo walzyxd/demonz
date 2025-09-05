@@ -32,10 +32,10 @@ const PROMOS = [
 ];
 
 const PAYMENTS = [
-    { id: "dana", name: "DANA", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
-    { id: "gopay", name: "GoPay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", type: "ewallet", info: { number: "082116690164", name: "TI** SUT***" } },
-    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", type: "qris", info: { qrisImg: "https://i.supaimg.com/855540e8-78eb-4290-93f1-38cbf82f51bb.png" } },
-    { id: "krom", name: "Krom Bank", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", type: "bank_transfer", info: { number: "770072009565", name: "TI** SUT***" } },
+    { id: "dana", name: "DANA", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" }, adminNumber: ADMIN_WA, instruction: "Lakukan pembayaran melalui aplikasi DANA." },
+    { id: "gopay", name: "GoPay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", type: "ewallet", info: { number: "082116690164", name: "TI** SUT***" }, adminNumber: ADMIN_WA, instruction: "Lakukan pembayaran melalui aplikasi GoPay." },
+    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", type: "qris", info: { qrisImg: "https://i.supaimg.com/855540e8-78eb-4290-93f1-38cbf82f51bb.png" }, adminNumber: ADMIN_WA, instruction: "Lakukan pembayaran dengan scan QRIS di atas." },
+    { id: "krom", name: "Krom Bank", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", type: "bank_transfer", info: { number: "770072009565", name: "TI** SUT***" }, adminNumber: ADMIN_WA, instruction: "Lakukan pembayaran melalui transfer bank." },
 ];
 
 const PRODUCTS = {
@@ -229,7 +229,6 @@ const PRODUCTS = {
     ]
 };
 
-// ======================= Elemen dan Utility =======================
 const qs = (s, p = document) => p.querySelector(s);
 const qsa = (s, p = document) => Array.from(p.querySelectorAll(s));
 const fmtIDR = n => new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(n);
@@ -240,14 +239,14 @@ let appliedVoucher = null;
 let currentGame = null;
 
 const el = {
-    // Index Page
-    sliderContainer: qs(".slider-container"),
-    gameGrid: qs(".game-grid"),
-    
-    // Game Page
+    navToggle: qs("#navToggle"),
+    navLinks: qs(".nav-links"),
+    sliderContainer: qs(".hero .slider-container"),
+    gameGrid: qs("#games .game-grid"),
+    gameBanner: qs("#gameBanner"),
     gameIcon: qs("#gameIcon"),
     gameTitle: qs("#gameTitle"),
-    guideText: qs(".guide-text"),
+    guideText: qs("#guideText"),
     userIdInput: qs("#userId"),
     productGrid: qs("#productGrid"),
     paymentGrid: qs("#paymentGrid"),
@@ -261,14 +260,11 @@ const el = {
     summaryDiscount: qs("#summaryDiscount"),
     summaryTotal: qs("#summaryTotal"),
     buyBtn: qs("#buyBtn"),
-    
-    // Modals
     paymentModal: qs("#paymentModal"),
     voucherModal: qs("#voucherModal"),
     modalOverlay: qs("#modalOverlay"),
 };
 
-// ======================= Initialisasi =======================
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const gameKey = urlParams.get('game');
@@ -282,6 +278,10 @@ document.addEventListener('DOMContentLoaded', () => {
         setupGamePage(gameKey);
         setupEventListeners();
     }
+
+    el.navToggle.addEventListener('click', () => {
+        el.navLinks.classList.toggle('active');
+    });
 });
 
 function setupEventListeners() {
@@ -293,6 +293,7 @@ function setupEventListeners() {
     el.applyVoucherBtn.addEventListener("click", applyVoucher);
     el.openVoucherList.addEventListener("click", showVoucherList);
     el.buyBtn.addEventListener("click", openPaymentModal);
+    
     el.modalOverlay.addEventListener("click", (e) => {
         if (e.target.classList.contains("modal-overlay")) {
             closeModal();
@@ -302,7 +303,6 @@ function setupEventListeners() {
     qsa("[data-close]").forEach(btn => btn.addEventListener("click", () => closeModal()));
 }
 
-// ======================= Halaman Utama =======================
 function renderGameGrid() {
     el.gameGrid.innerHTML = GAMES.map(g => `
         <a href="${g.url}" class="game-card">
@@ -324,7 +324,7 @@ function setupPromoSlider() {
         slideItem.style.backgroundImage = `url('${promo.img}')`;
         slider.appendChild(slideItem);
         
-        const dot = document.createElement('span');
+        const dot = document.createElement('div');
         dot.classList.add('dot');
         dot.dataset.index = index;
         dotsContainer.appendChild(dot);
@@ -354,16 +354,15 @@ function setupPromoSlider() {
         });
     });
     
-    let autoSlideTimer = setInterval(nextSlide, 3000);
+    let autoSlideTimer = setInterval(nextSlide, 5000);
     const resetAutoSlide = () => {
         clearInterval(autoSlideTimer);
-        autoSlideTimer = setInterval(nextSlide, 3000);
+        autoSlideTimer = setInterval(nextSlide, 5000);
     };
     
     updateSlider();
 }
 
-// ======================= Halaman Game =======================
 function setupGamePage(gameKey) {
     currentGame = GAMES.find(g => g.key === gameKey);
     if (!currentGame) {
@@ -371,7 +370,8 @@ function setupGamePage(gameKey) {
         return;
     }
     
-    document.title = `WalzShop — Top Up ${currentGame.name}`;
+    document.title = `WalzShop - Top Up ${currentGame.name}`;
+    if(el.gameBanner) el.gameBanner.style.backgroundImage = `url('${currentGame.bannerImg}')`;
     el.gameIcon.src = currentGame.img;
     el.gameTitle.textContent = currentGame.name;
     el.guideText.textContent = currentGame.guide;
@@ -387,16 +387,16 @@ function renderProducts() {
         return `
             <div class="product-card-modern" data-id="${p.id}">
                 ${badgesHtml}
-                <div class="product-label">${p.label}</div>
-                <div class="product-price">${fmtIDR(p.price)}</div>
+                <span class="product-label">${p.label}</span>
+                <span class="product-price">${fmtIDR(p.price)}</span>
             </div>
         `;
     }).join("");
     
-    qsa(".product-card-modern").forEach(card => {
+    qsa(".product-card-modern", el.productGrid).forEach(card => {
         card.addEventListener("click", () => {
             selectedProduct = products.find(p => p.id === card.dataset.id);
-            qsa(".product-card-modern").forEach(c => c.classList.remove('selected'));
+            qsa(".product-card-modern", el.productGrid).forEach(c => c.classList.remove('selected'));
             card.classList.add('selected');
             updateSummary();
         });
@@ -407,14 +407,14 @@ function renderPayments() {
     el.paymentGrid.innerHTML = PAYMENTS.map(p => `
         <div class="payment-card-modern" data-id="${p.id}">
             <img src="${p.img}" alt="${p.name}">
-            <div class="payment-label">${p.name}</div>
+            <span class="payment-label">${p.name}</span>
         </div>
     `).join("");
     
-    qsa(".payment-card-modern").forEach(card => {
+    qsa(".payment-card-modern", el.paymentGrid).forEach(card => {
         card.addEventListener("click", () => {
             selectedPayment = PAYMENTS.find(p => p.id === card.dataset.id);
-            qsa(".payment-card-modern").forEach(c => c.classList.remove('selected'));
+            qsa(".payment-card-modern", el.paymentGrid).forEach(c => c.classList.remove('selected'));
             card.classList.add('selected');
             updateSummary();
         });
@@ -422,18 +422,20 @@ function renderPayments() {
 }
 
 function updateSummary() {
-    const userId = el.userIdInput.value;
+    const userId = el.userIdInput.value.trim();
     el.summaryUserId.textContent = userId || "-";
     el.summaryProduct.textContent = selectedProduct ? selectedProduct.label : "-";
     el.summaryPayment.textContent = selectedPayment ? selectedPayment.name : "-";
-    el.summaryPrice.textContent = selectedProduct ? fmtIDR(selectedProduct.price) : fmtIDR(0);
+    el.summaryPrice.textContent = selectedProduct ? fmtIDR(selectedProduct.price) : "-";
     
     const discount = selectedProduct && appliedVoucher ? calculateDiscount(selectedProduct.price, appliedVoucher) : 0;
     const finalPrice = selectedProduct ? Math.max(0, selectedProduct.price - discount) : 0;
     
     el.summaryDiscount.textContent = `- ${fmtIDR(discount)}`;
-    el.summaryDiscount.parentElement.style.display = discount > 0 ? "table-row" : "none";
+    const discountRow = qs(".summary-discount-row");
+    if(discountRow) discountRow.style.display = discount > 0 ? "table-row" : "none";
     el.summaryTotal.textContent = fmtIDR(finalPrice);
+    
     el.buyBtn.disabled = !(userId && selectedProduct && selectedPayment);
 }
 
@@ -441,7 +443,10 @@ function applyVoucher() {
     const code = el.voucherCode.value.trim().toUpperCase();
     const voucher = VOUCHERS.find(v => v.code === code);
     
-    if (code === "" || !voucher) {
+    if (code === "") {
+        appliedVoucher = null;
+        alert("Masukkan kode voucher terlebih dahulu.");
+    } else if (!voucher) {
         appliedVoucher = null;
         alert("Kode voucher tidak valid.");
     } else if (selectedProduct && voucher.minPurchase && selectedProduct.price < voucher.minPurchase) {
@@ -477,7 +482,7 @@ function showVoucherList() {
                 <h4>${v.code}</h4>
                 <p>${v.description}</p>
             </div>
-            <button class="btn btn-choose" data-code="${v.code}">Pilih</button>
+            <button class="btn btn-choose btn-sm" data-code="${v.code}">Pilih</button>
         </div>
     `).join('');
     
@@ -496,72 +501,73 @@ function openPaymentModal() {
         return;
     }
     
-    const userId = el.userIdInput.value;
+    const userId = el.userIdInput.value.trim();
     const total = selectedProduct.price - (appliedVoucher ? calculateDiscount(selectedProduct.price, appliedVoucher) : 0);
     const paymentInfo = selectedPayment.info;
     
     let infoContent = '';
+    let copyText = '';
+    
     if (selectedPayment.type === 'qris') {
         infoContent = `
-            <p><strong>Scan QRIS di bawah ini:</strong></p>
-            <div class="qris-image-container">
-                <img src="${paymentInfo.qrisImg}" alt="QRIS" class="qris-image">
+            <div class="text-center">
+                <img src="${paymentInfo.qrisImg}" alt="QRIS Code" class="qris-image">
             </div>
-            <div class="copy-field">
-                <span id="paymentCode">Kode QRIS</span>
-                <button id="copyBtn">Salin</button>
-            </div>
+            <p class="mt-sm text-center">Scan kode QR di atas untuk menyelesaikan pembayaran.</p>
         `;
     } else {
         infoContent = `
-            <p><strong>Silakan transfer ke:</strong></p>
-            <p>${selectedPayment.name}</p>
-            <p><strong>No. Rekening:</strong> ${paymentInfo.number}</p>
-            <p><strong>Atas Nama:</strong> ${paymentInfo.name}</p>
-            <div class="copy-field">
-                <span id="paymentCode">${paymentInfo.number}</span>
-                <button id="copyBtn">Salin</button>
+            <div class="summary-table">
+                <table>
+                    <tr><td>Metode</td><td>${selectedPayment.name}</td></tr>
+                    <tr><td>No. Rekening</td><td>${paymentInfo.number}</td></tr>
+                    <tr><td>Atas Nama</td><td>${paymentInfo.name}</td></tr>
+                </table>
             </div>
+            <div class="copy-field mt-md">
+                <span id="paymentCode">${paymentInfo.number}</span>
+                <button class="btn btn-primary btn-sm" id="copyBtn">Salin</button>
+            </div>
+            <p class="instruction mt-sm">${selectedPayment.instruction}</p>
         `;
+        copyText = paymentInfo.number;
     }
 
     const waMsg = encodeURIComponent(
-        `Halo admin, saya mau top-up:
-        *Game:* ${currentGame.name}
-        *User ID:* ${userId}
-        *Produk:* ${selectedProduct.label}
-        *Metode Pembayaran:* ${selectedPayment.name}
-        *Total Pembayaran:* ${fmtIDR(total)}`
+        `Halo admin, saya mau top-up:\n\n*Game:* ${currentGame.name}\n*User ID:* ${userId}\n*Produk:* ${selectedProduct.label}\n*Metode Pembayaran:* ${selectedPayment.name}\n*Total Bayar:* ${fmtIDR(total)}\n\nTerima kasih.`
     );
     
-    qs("#paymentModal .modal-body").innerHTML = infoContent;
+    const modalBody = qs("#paymentModal .modal-body");
+    const modalFooter = qs("#paymentModal .modal-footer");
     
-    const modalCopyBtn = qs("#paymentModal #copyBtn");
-    if (modalCopyBtn) {
-        modalCopyBtn.addEventListener("click", () => {
-            copyToClipboard(qs("#paymentCode").textContent, modalCopyBtn);
+    modalBody.innerHTML = infoContent;
+    
+    if (copyText) {
+        const copyBtn = qs("#copyBtn");
+        copyBtn.addEventListener("click", () => {
+            copyToClipboard(copyText, copyBtn);
         });
     }
 
-    qs("#paymentModal .btn-confirm").href = `https://wa.me/${ADMIN_WA}?text=${waMsg}`;
+    qs("#paymentModal .btn-confirm").href = `https://wa.me/${selectedPayment.adminNumber}?text=${waMsg}`;
+    
     el.modalOverlay.classList.add('active');
     el.paymentModal.classList.add('active');
 }
 
 function closeModal() {
     el.modalOverlay.classList.remove('active');
-    el.paymentModal.classList.remove('active');
-    el.voucherModal.classList.remove('active');
+    qsa('.modal').forEach(m => m.classList.remove('active'));
 }
 
 function copyToClipboard(text, btn) {
     navigator.clipboard.writeText(text).then(() => {
-        const originalText = btn.innerHTML;
-        btn.innerHTML = 'Disalin!';
+        const originalText = btn.textContent;
+        btn.textContent = 'Disalin!';
         setTimeout(() => {
-            btn.innerHTML = originalText;
+            btn.textContent = originalText;
         }, 1500);
     }).catch(err => {
-        console.error('Failed to copy: ', err);
+        console.error('Gagal menyalin: ', err);
     });
 }
