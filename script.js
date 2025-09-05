@@ -24,10 +24,10 @@ const GAMES = [
     { key: "garena-undawn", name: "Garena Undawn", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", bannerImg: "images/banner_undawn.webp", hasServerId: false, guide: "Buka menu profil dan User ID Anda akan terlihat.", url: "game.html?key=garena-undawn" },
 ];
 const PROMOS = [
+    { title: "Walz Shop", img: "https://files.catbox.moe/dpr6d2.jpg" },
     { title: "Top Up Diamond FF Termurah", img: "https://files.catbox.moe/e87yj3.png", gameKey: "free-fire" },
     { title: "Top Up Starlight MLBB Harga Cuan", img: "https://files.catbox.moe/8g41jj.jpg", gameKey: "mobile-legends" },
     { title: "Promo UC PUBG Mobile Khusus Member", img: "https://files.catbox.moe/hrtpys.jpg", gameKey: "pubg-mobile" },
-    { title: "Blessing of the Welkin Moon Genshin", img: "images/banner4.webp", gameKey: "genshin-impact" },
 ];
 const PAYMENTS = [
     { id: "dana", name: "DANA", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
@@ -295,7 +295,7 @@ function renderPromoSlider() {
     let current = 0;
     let timer = null;
     el.promoSlider.innerHTML = PROMOS.map(p => `
-        <a href="${GAMES.find(g => g.key === p.gameKey)?.url || "#"}" class="slider__item" style="background-image: url(${p.img});"></a>
+        <a href="${p.gameKey ? GAMES.find(g => g.key === p.gameKey)?.url : "#"}" class="slider__item" style="background-image: url(${p.img});"></a>
     `).join("");
     el.sliderDots.innerHTML = PROMOS.map((_, idx) => `<span class="dot" data-index="${idx}"></span>`).join("");
 
