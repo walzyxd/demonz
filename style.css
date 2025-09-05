@@ -618,14 +618,3 @@ body.dark .nav a:hover { color: var(--accent-2); }
 
 /* helper for hidden visually (for accessibility) */
 .sr-only { position: absolute !important; height: 1px; width: 1px; overflow: hidden; clip: rect(1px,1px,1px,1px); white-space: nowrap; }
-
-/* =========================
-   END OF FILE
-   ========================= */
-
-/* Notes:
- - This stylesheet aims to be immediately usable with the HTML files.
- - Toggle dark mode by adding `class="dark"` to <body> if desired.
- - JS controls classes like `.active`, `.selected`, `.modal-overlay.active`, `.option-card.active`.
- - All animations & transitions use CSS variables for quick theming.
-*/
