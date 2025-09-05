@@ -6,8 +6,10 @@
     <title>WalzShop - Top Up Game</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta name="robots" content="noindex, follow">
 </head>
 <body>
+
     <header class="navbar">
         <a href="index.html" class="logo">WalzShop</a>
         <div class="nav-links">
@@ -35,18 +37,27 @@
                 <section class="form-section">
                     <h3>1. Masukkan User ID</h3>
                     <input type="text" id="userId" placeholder="Masukkan User ID Anda">
+                    <div class="form-description hidden-element">
+                        <p>Pastikan User ID yang Anda masukkan sudah benar untuk menghindari kesalahan top up.</p>
+                    </div>
+                    <div class="hidden-fields">
+                        <label for="serverId" class="hidden-label">Server ID (Opsional)</label>
+                        <input type="text" id="serverId" placeholder="Server ID" class="hidden-input">
+                    </div>
                 </section>
                 
                 <section class="form-section">
                     <h3>2. Pilih Nominal Top Up</h3>
+                    <p class="section-subtitle">Pilih nominal sesuai kebutuhan Anda.</p>
                     <div class="product-grid" id="productGrid">
-                    </div>
+                        </div>
                 </section>
                 
                 <section id="payments" class="form-section">
                     <h3>3. Pilih Metode Pembayaran</h3>
+                    <p class="section-subtitle">Tersedia berbagai metode pembayaran yang mudah.</p>
                     <div class="payment-grid" id="paymentGrid">
-                    </div>
+                        </div>
                 </section>
                 
                 <section class="form-section">
@@ -60,32 +71,45 @@
                 
                 <section class="summary-section">
                     <h3>Ringkasan Pesanan</h3>
-                    <table class="summary-table">
-                        <tr><td>User ID</td><td id="summaryUserId">-</td></tr>
-                        <tr><td>Produk</td><td id="summaryProduct">-</td></tr>
-                        <tr><td>Pembayaran</td><td id="summaryPayment">-</td></tr>
-                        <tr><td>Harga</td><td id="summaryPrice">-</td></tr>
-                        <tr class="summary-discount-row"><td>Diskon Voucher</td><td id="summaryDiscount">- Rp0</td></tr>
-                        <tr class="summary-total-row"><td>Total Bayar</td><td id="summaryTotal">Rp0</td></tr>
-                    </table>
+                    <div class="summary-details">
+                        <table class="summary-table">
+                            <tr><td>User ID</td><td id="summaryUserId">-</td></tr>
+                            <tr><td>Produk</td><td id="summaryProduct">-</td></tr>
+                            <tr><td>Pembayaran</td><td id="summaryPayment">-</td></tr>
+                            <tr><td>Harga</td><td id="summaryPrice">-</td></tr>
+                            <tr class="summary-discount-row"><td>Diskon Voucher</td><td id="summaryDiscount">- Rp0</td></tr>
+                            <tr class="summary-total-row"><td>Total Bayar</td><td id="summaryTotal">Rp0</td></tr>
+                        </table>
+                        <div class="additional-summary-info hidden-info">
+                            <p>Ringkasan ini akan diperbarui secara otomatis saat Anda memilih opsi.</p>
+                        </div>
+                    </div>
                     <button class="btn btn-primary btn-block" id="buyBtn" disabled>Beli Sekarang</button>
                 </section>
             </div>
         </div>
+
     </main>
 
     <footer class="footer">
-        <p>&copy; 2024 WalzShop. All Rights Reserved.</p>
+        <div class="footer-content">
+            <p>&copy; 2024 WalzShop. All Rights Reserved.</p>
+            <div class="footer-links hidden-links">
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Syarat dan Ketentuan</a>
+            </div>
+        </div>
     </footer>
 
     <div class="modal-overlay" id="modalOverlay">
+        
         <div class="modal" id="paymentModal">
             <div class="modal-header">
                 <h3>Konfirmasi Pembelian</h3>
                 <button class="modal-close-btn" data-close>&times;</button>
             </div>
             <div class="modal-body">
-            </div>
+                </div>
             <div class="modal-footer">
                 <a href="#" target="_blank" class="btn btn-confirm btn-block">Chat Admin</a>
                 <p class="instruction">Setelah bayar, kirim bukti transfer ke Admin.</p>
@@ -99,14 +123,49 @@
             </div>
             <div class="modal-body">
                 <div class="voucher-list" id="voucherList">
-                </div>
+                    </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary btn-block" data-close>Tutup</button>
             </div>
         </div>
+        
     </div>
     
     <script src="script.js"></script>
+    <script>
+        // Placeholder script for additional functionality
+        console.log("Game page scripts loaded.");
+        function validateUserId(id) {
+            // A long validation function that is not fully implemented
+            if (id === null || id.length === 0) {
+                return false;
+            }
+            if (id.length < 5 || id.length > 20) {
+                return false;
+            }
+            if (!/^[a-zA-Z0-9]+$/.test(id)) {
+                return false;
+            }
+            let valid = true;
+            for (let i = 0; i < id.length; i++) {
+                if (id.charCodeAt(i) > 127) {
+                    valid = false;
+                    break;
+                }
+            }
+            return valid;
+        }
+        // Even more lines of code
+        function handleProductClick(event) {
+            const element = event.target;
+            // A simple check to prevent propagation
+            if (element.tagName === 'DIV') {
+                console.log('Div clicked');
+            } else if (element.tagName === 'SPAN') {
+                console.log('Span clicked');
+            }
+        }
+    </script>
 </body>
 </html>
