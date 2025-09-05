@@ -25,16 +25,17 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     min-height: 100vh;
-    font-size: 16px;
-    padding-bottom: 50px; /* Add space for footer */
+    font-size: 14px; /* Ukuran font lebih kecil */
 }
 
 .container {
     width: 100%;
     max-width: 900px;
-    padding: 20px;
+    padding: 15px; /* Padding lebih kecil */
+    margin: 0 auto;
 }
 
 a {
@@ -48,19 +49,23 @@ a:hover {
 }
 
 h2 {
-    color: var(--text-color);
-    font-size: 1.8rem;
-    margin: 30px 0 20px;
+    color: var(--primary-color);
+    font-size: 1.6rem;
+    margin: 25px 0 15px;
     font-weight: 600;
 }
 
+h3 {
+    font-size: 1.1rem;
+}
+
 .btn {
-    padding: 12px 24px;
+    padding: 10px 20px; /* Ukuran tombol lebih kecil */
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 0.9rem;
     transition: background-color 0.3s ease, transform 0.1s ease;
     display: inline-flex;
     align-items: center;
@@ -111,20 +116,18 @@ h2 {
 
 .btn-sm {
     padding: 8px 12px;
-    font-size: 0.875rem;
+    font-size: 0.8rem;
 }
 
 .icon-copy {
-    width: 16px;
-    height: 16px;
-    vertical-align: middle;
-    margin-left: 8px;
+    width: 14px;
+    height: 14px;
 }
 
 /* ================== HEADER & LOGO ================== */
 .header {
     text-align: center;
-    padding: 20px 0;
+    padding: 15px 0;
     position: relative;
     display: flex;
     justify-content: center;
@@ -132,20 +135,20 @@ h2 {
 }
 
 .logo {
-    width: 150px;
+    width: 120px; /* Ukuran logo lebih kecil */
     height: auto;
 }
 
 .back-btn {
     position: absolute;
-    left: 0;
+    left: 15px;
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-color);
-    font-size: 1rem;
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     transition: color 0.3s ease;
 }
 
@@ -157,7 +160,7 @@ h2 {
 .slider-container {
     position: relative;
     width: 100%;
-    height: 150px;
+    height: 120px; /* Tinggi slider lebih kecil */
     overflow: hidden;
     border-radius: var(--border-radius);
     box-shadow: 0 4px 10px var(--shadow-color);
@@ -180,16 +183,16 @@ h2 {
 .slider-dots {
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
     position: absolute;
-    bottom: 10px;
+    bottom: 8px;
     left: 50%;
     transform: translateX(-50%);
 }
 
 .dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 50%;
     cursor: pointer;
@@ -202,7 +205,7 @@ h2 {
 
 /* ================== GRID SECTIONS ================== */
 .grid-section {
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 .grid-title {
@@ -211,13 +214,13 @@ h2 {
 
 .game-grid, .product-grid, .payment-grid {
     display: grid;
-    gap: 15px;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
 }
 
 @media (min-width: 600px) {
     .game-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
     }
 }
 
@@ -226,7 +229,7 @@ h2 {
     border-radius: var(--border-radius);
     overflow: hidden;
     text-align: center;
-    padding: 10px;
+    padding: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -240,16 +243,16 @@ h2 {
 }
 
 .game-card img {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     object-fit: cover;
     border-radius: 8px;
     border: 1px solid var(--border-color);
 }
 
 .game-name {
-    margin-top: 10px;
-    font-size: 0.9rem;
+    margin-top: 8px;
+    font-size: 0.8rem;
     font-weight: 500;
     color: var(--text-color);
     white-space: nowrap;
@@ -273,8 +276,8 @@ h2 {
 }
 
 .game-icon {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
     border-radius: 12px;
     border: 2px solid var(--primary-color);
@@ -282,53 +285,59 @@ h2 {
 }
 
 .game-title {
-    margin-top: 15px;
-    font-size: 2rem;
+    margin-top: 10px;
+    font-size: 1.8rem;
     font-weight: 700;
+    color: var(--text-color);
 }
 
 .step-section {
     background-color: var(--card-bg);
-    padding: 20px;
+    padding: 15px;
     border-radius: var(--border-radius);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     box-shadow: 0 2px 8px var(--shadow-color);
 }
 
 .step-section h3 {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     color: var(--primary-color);
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     border-bottom: 2px solid var(--border-color);
-    padding-bottom: 10px;
+    padding-bottom: 8px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
-.step-section p {
-    font-size: 0.9rem;
+.step-section p.guide-text {
+    font-size: 0.8rem;
     color: var(--sub-text-color);
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .input-group {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .input-group label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     font-weight: 500;
+    font-size: 0.9rem;
 }
 
 .input-group input {
     width: 100%;
-    padding: 12px;
+    padding: 10px; /* Padding input lebih kecil */
     background-color: #fff;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     color: var(--text-color);
-    font-size: 1rem;
+    font-size: 0.9rem;
     outline: none;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -339,20 +348,20 @@ h2 {
 }
 
 .input-info {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: var(--sub-text-color);
-    margin-top: 5px;
+    margin-top: 4px;
 }
 
 .product-grid {
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
 }
 
 .product-card-modern, .payment-card-modern {
     background-color: #fff;
     border: 2px solid var(--border-color);
     border-radius: var(--border-radius);
-    padding: 15px;
+    padding: 12px;
     text-align: center;
     cursor: pointer;
     position: relative;
@@ -360,6 +369,7 @@ h2 {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-height: 80px;
 }
 
 .product-card-modern:hover, .payment-card-modern:hover {
@@ -375,13 +385,13 @@ h2 {
 
 .product-label {
     font-weight: 600;
-    margin-bottom: 5px;
-    font-size: 1rem;
+    margin-bottom: 3px;
+    font-size: 0.9rem;
     color: var(--text-color);
 }
 
 .product-price {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: var(--sub-text-color);
 }
 
@@ -389,9 +399,9 @@ h2 {
     position: absolute;
     top: -8px;
     right: -8px;
-    padding: 4px 8px;
+    padding: 3px 6px;
     border-radius: 8px;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     font-weight: bold;
     color: #fff;
 }
@@ -405,23 +415,23 @@ h2 {
 .badge.sale { background-color: #cc00ff; }
 
 .payment-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
 }
 
 .payment-card-modern img {
-    width: 60px;
-    height: 30px;
+    width: 50px;
+    height: 25px;
     object-fit: contain;
     margin-bottom: 5px;
 }
 
 .payment-label {
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 .payment-price {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: var(--primary-color);
     font-weight: bold;
     margin-top: 5px;
@@ -429,8 +439,8 @@ h2 {
 
 .voucher-group {
     display: flex;
-    gap: 10px;
-    margin-top: 15px;
+    gap: 8px;
+    margin-top: 12px;
     align-items: flex-end;
 }
 
@@ -441,11 +451,12 @@ h2 {
 
 .voucher-group .btn {
     align-self: stretch;
+    padding: 8px 15px;
 }
 
 .status-text {
-    font-size: 0.8rem;
-    padding-top: 5px;
+    font-size: 0.75rem;
+    padding-top: 4px;
     font-weight: 500;
 }
 
@@ -456,12 +467,12 @@ h2 {
 .summary-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
-    font-size: 0.9rem;
+    margin-bottom: 15px;
+    font-size: 0.8rem;
 }
 
 .summary-table td {
-    padding: 10px 0;
+    padding: 8px 0;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -477,15 +488,15 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
     color: var(--primary-color);
-    padding: 15px 0;
+    padding: 12px 0;
     border-top: 2px solid var(--border-color);
 }
 
 .checkout-btn {
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 /* ================== MODAL STYLES ================== */
@@ -512,10 +523,10 @@ h2 {
 
 .modal {
     background-color: var(--light-bg);
-    padding: 25px;
+    padding: 20px;
     border-radius: var(--border-radius);
     width: 90%;
-    max-width: 450px;
+    max-width: 400px; /* Ukuran modal lebih kecil */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     transform: scale(0.9);
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -534,24 +545,24 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     border-bottom: 1px solid var(--border-color);
-    padding-bottom: 15px;
+    padding-bottom: 10px;
 }
 
 .modal-header h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: var(--primary-color);
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .modal-close-btn {
     background: none;
     border: none;
     color: var(--sub-text-color);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     cursor: pointer;
     transition: color 0.2s ease;
 }
@@ -561,44 +572,45 @@ h2 {
 }
 
 .modal-content-list {
-    max-height: 300px;
+    max-height: 250px;
     overflow-y: auto;
-    padding-right: 10px;
+    padding-right: 8px;
 }
 
 .voucher-item {
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 10px;
+    padding: 12px;
+    margin-bottom: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .voucher-info h4 {
     color: var(--primary-color);
-    margin-bottom: 5px;
+    font-size: 0.9rem;
+    margin-bottom: 3px;
 }
 
 .voucher-info p {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: var(--sub-text-color);
 }
 
 .qris-image-container {
     text-align: center;
-    padding: 15px;
+    padding: 12px;
     background-color: #f5f5f5;
     border-radius: var(--border-radius);
-    margin-top: 15px;
+    margin-top: 12px;
 }
 
 .qris-image {
     width: 100%;
-    max-width: 250px;
+    max-width: 200px;
     height: auto;
 }
 
@@ -610,21 +622,22 @@ h2 {
 .payment-info h4 {
     margin-bottom: 0.5rem;
     color: var(--primary-color);
+    font-size: 1.1rem;
 }
 
 .copy-field {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     background-color: var(--card-bg);
     border-radius: 8px;
-    padding: 8px 12px;
-    margin-top: 10px;
+    padding: 6px 10px;
+    margin-top: 8px;
 }
 
 .copy-field span {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: var(--text-color);
     font-weight: bold;
 }
@@ -632,19 +645,76 @@ h2 {
 .copy-field .btn {
     background-color: var(--primary-color);
     color: #fff;
-    padding: 6px 10px;
-    font-size: 0.85rem;
+    padding: 5px 8px;
+    font-size: 0.8rem;
 }
 
 .modal-footer {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .instruction {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--sub-text-color);
-    margin-top: 10px;
+    margin-top: 8px;
+}
+
+/* ================== FOOTER ================== */
+.footer {
+    background-color: #f0f0f0;
+    color: var(--sub-text-color);
+    padding: 25px 0;
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.footer p {
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+
+.social-icons {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.social-icons a {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+}
+
+.footer-links a {
+    color: var(--sub-text-color);
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
 }
 
 /* ================== SCROLLBAR STYLES ================== */
@@ -664,10 +734,23 @@ h2 {
 
 /* ================== MEDIA QUERIES ================== */
 @media (max-width: 768px) {
-    .container {
-        padding: 10px;
+    h2 {
+        font-size: 1.4rem;
+    }
+    .game-card img {
+        width: 60px;
+        height: 60px;
+    }
+    .game-name {
+        font-size: 0.7rem;
+    }
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+    .payment-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
     }
     .modal {
-        margin: 10px;
+        padding: 15px;
     }
 }
