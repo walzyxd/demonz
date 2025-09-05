@@ -1,75 +1,76 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>WalzShop — Top Up Game</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WalzShop - Top Up Game Murah dan Cepat</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-  <!-- HEADER -->
-  <header class="header">
-    <a href="#" class="logo-link">
-      <img src="assets/logo.png" alt="WalzShop" class="logo">
-    </a>
-  </header>
-
-  <main class="container">
-    <!-- PROMO SLIDER -->
-    <section class="promo-slider">
-      <div class="slider-container">
-        <div class="slider">
-          <a href="#" class="slider__item" style="background-image:url('assets/promo1.jpg')"></a>
-          <a href="#" class="slider__item" style="background-image:url('assets/promo2.jpg')"></a>
-          <a href="#" class="slider__item" style="background-image:url('assets/promo3.jpg')"></a>
+    <header class="navbar">
+        <a href="index.html" class="logo">WalzShop</a>
+        <div class="nav-links">
+            <a href="#games">Top Up</a>
+            <a href="#payments">Pembayaran</a>
+            <a href="#contact">Hubungi Kami</a>
         </div>
-        <div class="slider-dots"></div>
-      </div>
-    </section>
+        <div class="nav-toggle" id="navToggle">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
 
-    <!-- GAME GRID -->
-    <section class="grid-section">
-      <h2 class="grid-title">Pilih Game</h2>
-      <div class="game-grid">
-        <a href="game.html?game=freefire" class="game-card">
-          <span class="badge hot">HOT</span>
-          <img src="assets/freefire.png" alt="Free Fire">
-          <span class="game-name">Free Fire</span>
-        </a>
-        <a href="game.html?game=mlbb" class="game-card">
-          <span class="badge new">NEW</span>
-          <img src="assets/mlbb.png" alt="Mobile Legends">
-          <span class="game-name">Mobile Legends</span>
-        </a>
-        <a href="game.html?game=genshin" class="game-card">
-          <img src="assets/genshin.png" alt="Genshin Impact">
-          <span class="game-name">Genshin Impact</span>
-        </a>
-        <a href="game.html?game=pubgm" class="game-card">
-          <img src="assets/pubgm.png" alt="PUBG Mobile">
-          <span class="game-name">PUBG Mobile</span>
-        </a>
-        <!-- Tambahkan game lain -->
-      </div>
-    </section>
-  </main>
+    <main>
+        <section class="hero">
+            <div class="slider-container">
+                <div class="slider"></div>
+                <div class="slider-dots"></div>
+            </div>
+        </section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-whatsapp"></i></a>
-      </div>
-      <ul class="footer-links">
-        <li><a href="#">Syarat & Ketentuan</a></li>
-        <li><a href="#">Privasi</a></li>
-        <li><a href="#">Kontak</a></li>
-      </ul>
-      <p>© 2025 WalzShop. Semua Hak Dilindungi.</p>
-    </div>
-  </footer>
+        <section id="games" class="section">
+            <h2 class="section-title">Pilih Game Favoritmu</h2>
+            <div class="game-grid">
+                </div>
+        </section>
+
+        <section id="payments" class="section">
+            <h2 class="section-title">Metode Pembayaran</h2>
+            <div class="payment-grid-static">
+                <div class="payment-card-static">
+                    <img src="https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg" alt="DANA">
+                    <span>DANA</span>
+                </div>
+                <div class="payment-card-static">
+                    <img src="https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg" alt="GoPay">
+                    <span>GoPay</span>
+                </div>
+                <div class="payment-card-static">
+                    <img src="https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg" alt="QRIS">
+                    <span>QRIS</span>
+                </div>
+                <div class="payment-card-static">
+                    <img src="https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg" alt="Krom Bank">
+                    <span>Krom Bank</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <div class="contact-card">
+                <p>Ada pertanyaan atau butuh bantuan? Hubungi kami melalui WhatsApp.</p>
+                <a href="https://wa.me/6282298902274" class="btn-whatsapp" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Chat via WhatsApp
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 WalzShop. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
