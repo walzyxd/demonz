@@ -1,79 +1,90 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>WalzShop — Detail Game</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WalzShop — Game</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="header">
-    <div class="container">
-      <a href="index.html" class="logo"><span class="logo-icon">🎮</span> WalzShop</a>
-      <nav class="nav">
-        <a href="index.html">Beranda</a>
-        <a href="#">Promo</a>
-        <a href="#">Bantuan</a>
-      </nav>
-    </div>
-  </header>
-  <main class="main">
-    <div class="container">
-      <a href="index.html" class="btn-back">← Kembali</a>
-      <div class="game-banner">
-        <img id="game-banner" src="" alt="">
-        <h1 class="game-name-h1"></h1>
-        <p class="game-description"></p>
+
+<header class="header">
+  <div class="container">
+    <div class="logo">WalzShop</div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="game.html">Games</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+  </div>
+</header>
+
+<main class="main">
+  <section class="games-section">
+    <h2 class="section-title scroll-reveal">Top Up Mobile Legends</h2>
+    <div class="game-page-container">
+      <button class="btn btn-back scroll-reveal" onclick="window.history.back()">← Kembali</button>
+
+      <div class="game-banner scroll-reveal">
+        <img src="https://i.ibb.co/fdqVhL6/ml.png" class="game-banner-image" alt="Mobile Legends">
+        <h1 class="game-name-h1">Mobile Legends</h1>
       </div>
-      <div class="form-container">
+
+      <div class="form-container scroll-reveal">
         <div class="form-group">
-          <label>User ID</label>
-          <div class="input-group">
-            <input type="text" id="user-id" placeholder="Masukkan User ID">
-            <input type="text" id="server-id" placeholder="Server ID" style="display:none;">
+          <label>Masukkan ID Server</label>
+          <input type="text" class="server-input" placeholder="Contoh: 12345678">
+        </div>
+
+        <div class="form-group">
+          <label>Pilih Voucher</label>
+          <div class="product-grid">
+            <div class="product-card scroll-reveal" onclick="selectProduct(this)">
+              <div class="product-label">Diamond 12</div>
+              <div class="product-price">Rp 12.000</div>
+            </div>
+            <div class="product-card scroll-reveal" onclick="selectProduct(this)">
+              <div class="product-label">Diamond 50</div>
+              <div class="product-price">Rp 50.000</div>
+            </div>
+            <div class="product-card scroll-reveal" onclick="selectProduct(this)">
+              <div class="product-label">Diamond 100</div>
+              <div class="product-price">Rp 100.000</div>
+            </div>
           </div>
         </div>
+
         <div class="form-group">
-          <label>Pilih Produk</label>
-          <div class="product-grid" id="product-grid"></div>
-        </div>
-        <div class="form-group">
-          <label>Pilih Pembayaran</label>
-          <div class="payment-grid" id="payment-grid"></div>
-        </div>
-        <div class="form-group">
-          <label>Ringkasan</label>
-          <div class="summary-card">
-            <table class="summary-table">
-              <tr><td>Game</td><td id="summary-game">-</td></tr>
-              <tr><td>User ID</td><td id="summary-user">-</td></tr>
-              <tr><td>Produk</td><td id="summary-product">-</td></tr>
-              <tr><td>Pembayaran</td><td id="summary-payment">-</td></tr>
-            </table>
-            <div class="summary-total"><span>Total</span><span id="summary-price">Rp 0</span></div>
+          <label>Pilih Metode Pembayaran</label>
+          <div class="payment-grid">
+            <div class="payment-card scroll-reveal" onclick="selectPayment(this)">
+              <img src="https://i.ibb.co/7YQR2qL/qris.png" alt="QRIS">
+              <div class="payment-label">QRIS</div>
+            </div>
+            <div class="payment-card scroll-reveal" onclick="selectPayment(this)">
+              <img src="https://i.ibb.co/1QYcW2M/dana.png" alt="Dana">
+              <div class="payment-label">Dana</div>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <label>Voucher</label>
-          <div class="voucher-input-group">
-            <input type="text" id="voucher-code" placeholder="Masukkan kode voucher">
-            <button id="apply-voucher">Gunakan</button>
-          </div>
-          <div class="voucher-extra">
-            <button id="random-voucher" class="text-button">Gunakan Voucher Acak</button>
-            <span id="voucher-status" class="status-text"></span>
-          </div>
-        </div>
-        <button id="pay-btn" class="btn btn-block">Bayar Sekarang</button>
+
+        <button class="btn btn-confirm btn-block scroll-reveal">Beli Sekarang</button>
       </div>
     </div>
-  </main>
-  <footer class="footer">
-    <div class="container">
-      <p>© 2025 WalzShop. All rights reserved.</p>
+  </section>
+</main>
+
+<footer class="footer scroll-reveal">
+  <div class="container">
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a> | 
+      <a href="#">Terms</a> | 
+      <a href="#">Contact</a>
     </div>
-  </footer>
-  <script src="script.js"></script>
+    <p>&copy; 2025 WalzShop. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
