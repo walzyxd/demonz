@@ -553,6 +553,13 @@ a {
     margin-bottom: 10px;
 }
 
+.payment-info-section .qr-code-image {
+    width: 200px;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
 .payment-info-section h4 {
     color: #333;
     font-size: 1.1em;
