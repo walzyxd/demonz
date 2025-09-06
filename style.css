@@ -434,7 +434,7 @@ a {
 }
 
 .voucher-input-group input::placeholder {
-    padding-left: 20px; /* Adjust padding for placeholder text */
+    padding-left: 10px; 
 }
 
 .voucher-button {
