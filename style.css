@@ -14,7 +14,7 @@
     --price-color: #ff3b30;
     --accent-gradient: linear-gradient(135deg, #a745ff, #8a2be2);
     --button-gradient: linear-gradient(135deg, #6230b0, #7b36d6);
-    --selected-border: #00e69b; 
+    --selected-border: #00e69b;
     --special-badge-bg: #ff3b30;
     --voucher-btn-bg: #8a2be2;
     --header-bg-rgba: rgba(32, 10, 64, 0.7);
@@ -197,9 +197,10 @@ a {
 .game-info-header h2 {
     font-size: 1.8em;
     font-weight: 700;
-    background: var(--accent-gradient);
+    background: linear-gradient(135deg, #FF6B6B, #F9D423);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(255, 230, 0, 0.5);
 }
 
 .game-info-details {
@@ -402,8 +403,9 @@ a {
     align-items: center;
 }
 
-.voucher-input-group input {
+.voucher-input-group .voucher-input {
     flex-grow: 1;
+    padding-left: 45px;
 }
 
 .voucher-input-group .input-icon {
@@ -643,12 +645,15 @@ a {
     left: 50%;
     transform: translateX(-50%);
     z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .notification-popup {
     background-color: #333;
     color: #fff;
-    padding: 15px 25px;
+    padding: 15px 30px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     display: flex;
@@ -657,6 +662,9 @@ a {
     opacity: 0;
     transform: translateY(-20px);
     animation: fade-in-up 0.5s forwards;
+    min-width: 250px; /* Lebar minimum untuk pop-up */
+    text-align: center;
+    justify-content: center;
 }
 
 .notification-popup.fade-out {
@@ -683,7 +691,6 @@ a {
 
 .notification-popup .icon {
     font-size: 1.5em;
-    color: var(--selected-border);
 }
 
 .notification-popup .message {
