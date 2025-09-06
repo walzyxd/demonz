@@ -244,6 +244,28 @@ function selectOption(element, type) {
         sibling.classList.remove('selected');
     });
     element.classList.add('selected');
+    checkSelections();
+}
+
+function checkSelections() {
+    const selectedProduct = document.querySelector('.option-card.selected');
+    const selectedPayment = document.querySelector('.payment-card.selected');
+    const submitButton = document.querySelector('.submit-button');
+    const userIdInput = document.getElementById('user-id');
+    const serverIdInput = document.getElementById('server-id');
+
+    if (selectedProduct && selectedPayment && userIdInput.value.length > 0) {
+        if (serverIdInput && serverIdInput.value.length === 0) {
+            submitButton.classList.remove('active');
+            submitButton.disabled = true;
+            return;
+        }
+        submitButton.classList.add('active');
+        submitButton.disabled = false;
+    } else {
+        submitButton.classList.remove('active');
+        submitButton.disabled = true;
+    }
 }
 
 // --- Logika untuk Setiap Halaman ---
@@ -257,10 +279,10 @@ document.addEventListener("DOMContentLoaded", () => {
             gameCard.classList.add("game-card");
             gameCard.innerHTML = `
                 <a href="${game.url}">
-                    <img src="${game.img}" alt="${game.name}">
+                    <img class="game-card-img" src="${game.img}" alt="${game.name}">
                     <div class="game-card-content">
                         <h3>${game.name}</h3>
-                        <div class="topup-button">Top-Up</div>
+                        <a href="${game.url}">Top-Up</a>
                     </div>
                 </a>
             `;
@@ -269,19 +291,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (promoListContainer) {
         PROMOS.forEach(promo => {
-            const promoCard = document.createElement("div");
+            const promoCard = document.createElement("a");
             promoCard.classList.add("promo-card");
             
             const relatedGame = GAMES.find(game => game.key === promo.gameKey);
-            const promoUrl = relatedGame ? relatedGame.url : '#';
+            promoCard.href = relatedGame ? relatedGame.url : '#';
             
             promoCard.innerHTML = `
-                <a href="${promoUrl}">
-                    <img src="${promo.img}" alt="${promo.title}">
-                    <div class="promo-overlay">
-                        <h3>${promo.title}</h3>
-                    </div>
-                </a>
+                <img src="${promo.img}" alt="${promo.title}">
+                <div class="promo-overlay">
+                    <h3>${promo.title}</h3>
+                </div>
             `;
             promoListContainer.appendChild(promoCard);
         });
@@ -294,73 +314,77 @@ document.addEventListener("DOMContentLoaded", () => {
     const paymentMethods = PAYMENTS;
     const container = document.getElementById("game-page-container");
 
-    if (container && game && products) {
+    if (container && game) {
         // Game Info Section
-        const gameDetailSection = document.createElement("div");
-        gameDetailSection.classList.add("game-detail");
-        gameDetailSection.innerHTML = `
-            <div class="image-section" style="background-image: url('${game.bannerImg}');"></div>
-            <div class="info-section">
-                <h1>${game.name}</h1>
-                <p>${game.guide}</p>
+        const detailCard = document.createElement("div");
+        detailCard.classList.add("detail-card");
+        detailCard.innerHTML = `
+            <div class="detail-header">
+                <img src="${game.img}" alt="${game.name}">
+                <div class="detail-header-content">
+                    <h1>${game.name}</h1>
+                    <p>${game.guide}</p>
+                </div>
             </div>
         `;
-        container.appendChild(gameDetailSection);
+        container.appendChild(detailCard);
 
         // Top-up Form Section
         const formSection = document.createElement("form");
-        formSection.classList.add("form-section");
+        formSection.classList.add("topup-form");
         formSection.action = "cart.html";
         formSection.method = "GET";
 
-        let userIdInput = `
-            <div class="form-group">
-                <label for="user-id">1. Masukkan User ID</label>
-                <input type="text" id="user-id" name="user_id" placeholder="Masukkan ID Akun" required>
-            </div>
+        let userIdStep = `
+            <div class="step-card">
+                <h3>1. Masukkan User ID</h3>
+                <div class="input-group">
+                    <label for="user-id">User ID</label>
+                    <input type="text" id="user-id" name="user_id" placeholder="Masukkan ID Akun" required>
+                </div>
         `;
         if (game.hasServerId) {
-            userIdInput += `
-                <div class="form-group">
-                    <label for="server-id">Masukkan Server ID</label>
+            userIdStep += `
+                <div class="input-group">
+                    <label for="server-id">Server ID</label>
                     <input type="text" id="server-id" name="server_id" placeholder="Masukkan Server ID" required>
                 </div>
             `;
         }
-        
-        formSection.innerHTML += `<h2 class="section-title">Langkah-langkah Top-Up</h2>` + userIdInput;
-        
+        userIdStep += `</div>`;
+        formSection.innerHTML += userIdStep;
+
         // Form: Products
+        const productStep = document.createElement("div");
+        productStep.classList.add("step-card");
         const productOptionsContainer = document.createElement("div");
-        productOptionsContainer.classList.add("item-options");
+        productOptionsContainer.classList.add("options-grid");
         products.forEach(product => {
-            const badgeHtml = product.badges ? product.badges.map(b => `<span class="badge ${b}">${b.toUpperCase()}</span>`).join('') : '';
             const productDiv = document.createElement("div");
-            productDiv.classList.add("item-option");
+            productDiv.classList.add("option-card", "product-option");
             productDiv.innerHTML = `
                 <input type="radio" name="product_id" value="${product.id}" style="display:none;" required>
-                <strong>${product.label} ${badgeHtml}</strong>
-                <p class="price">${formatRupiah(product.price)}</p>
+                <strong>${product.label}</strong>
+                <span class="price">${formatRupiah(product.price)}</span>
             `;
             productDiv.onclick = () => {
-                selectOption(productDiv, 'item');
+                selectOption(productDiv, 'product');
                 productDiv.querySelector('input').checked = true;
             };
             productOptionsContainer.appendChild(productDiv);
         });
-        formSection.innerHTML += `
-            <div class="form-group">
-                <label>2. Pilih Nominal</label>
-                ${productOptionsContainer.outerHTML}
-            </div>
-        `;
+        productStep.innerHTML += `<h3>2. Pilih Nominal</h3>`;
+        productStep.appendChild(productOptionsContainer);
+        formSection.appendChild(productStep);
 
         // Form: Payments
+        const paymentStep = document.createElement("div");
+        paymentStep.classList.add("step-card");
         const paymentOptionsContainer = document.createElement("div");
-        paymentOptionsContainer.classList.add("payment-options");
+        paymentOptionsContainer.classList.add("payment-grid");
         paymentMethods.forEach(payment => {
             const paymentDiv = document.createElement("div");
-            paymentDiv.classList.add("payment-option");
+            paymentDiv.classList.add("payment-card", "payment-option");
             paymentDiv.innerHTML = `
                 <input type="radio" name="payment_id" value="${payment.id}" style="display:none;" required>
                 <img src="${payment.img}" alt="${payment.name}">
@@ -371,22 +395,32 @@ document.addEventListener("DOMContentLoaded", () => {
             };
             paymentOptionsContainer.appendChild(paymentDiv);
         });
-        formSection.innerHTML += `
-            <div class="form-group">
-                <label>3. Pilih Metode Pembayaran</label>
-                ${paymentOptionsContainer.outerHTML}
-            </div>
-        `;
+        paymentStep.innerHTML += `<h3>3. Pilih Metode Pembayaran</h3>`;
+        paymentStep.appendChild(paymentOptionsContainer);
+        formSection.appendChild(paymentStep);
         
-        // Add hidden inputs for game key to pass to cart page
         const hiddenInputGameKey = document.createElement('input');
         hiddenInputGameKey.type = 'hidden';
         hiddenInputGameKey.name = 'key';
         hiddenInputGameKey.value = gameKey;
         formSection.appendChild(hiddenInputGameKey);
 
-        formSection.innerHTML += `<button type="submit" class="submit-button">Beli Sekarang</button>`;
+        const submitButton = document.createElement('button');
+        submitButton.type = 'submit';
+        submitButton.classList.add('submit-button');
+        submitButton.disabled = true;
+        submitButton.innerText = 'Beli Sekarang';
+        formSection.appendChild(submitButton);
+
         container.appendChild(formSection);
+        
+        document.querySelectorAll('.option-card, .payment-card').forEach(el => {
+            el.addEventListener('click', checkSelections);
+        });
+        document.getElementById('user-id').addEventListener('input', checkSelections);
+        if (game.hasServerId) {
+            document.getElementById('server-id').addEventListener('input', checkSelections);
+        }
     }
 
     // Logika untuk halaman cart.html
