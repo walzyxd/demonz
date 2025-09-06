@@ -1,53 +1,77 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>WalzShop — Top Up Game</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WalzShop — Top Up</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="header">
-    <div class="container">
-      <a href="index.html" class="logo"><span class="logo-icon">🎮</span> WalzShop</a>
-      <nav class="nav">
-        <a href="index.html">Beranda</a>
-        <a href="#">Promo</a>
-        <a href="#">Bantuan</a>
-      </nav>
-    </div>
-  </header>
-  <main class="main">
-    <div class="container">
-      <section class="slider">
-        <div class="slider__track" id="slider-track">
-          <img src="https://i.ibb.co/6b6kz1q/promo1.jpg" class="slider__item">
-          <img src="https://i.ibb.co/7rF3LRw/promo2.jpg" class="slider__item">
-          <img src="https://i.ibb.co/4Zr9Kx8/promo3.jpg" class="slider__item">
-        </div>
-        <div class="slider__dots" id="slider-dots"></div>
-      </section>
-      <section class="games-section">
-        <h2 class="section-title">Pilih Game</h2>
-        <div class="games-grid" id="games-grid"></div>
-      </section>
-    </div>
-  </main>
-  <footer class="footer">
-    <div class="container">
-      <p>© 2025 WalzShop. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="#">Kebijakan Privasi</a>
-        <a href="#">Syarat & Ketentuan</a>
+
+<header class="header">
+  <div class="container">
+    <div class="logo">WalzShop</div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="game.html">Games</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+  </div>
+</header>
+
+<main class="main">
+  <!-- Promo Slider -->
+  <section class="promo-section scroll-reveal">
+    <h2 class="section-title">Promo Terbaru</h2>
+    <div class="slider">
+      <div class="slider__track">
+        <div class="slider__item" style="background-image:url('https://i.ibb.co/9yX1GHp/promo1.jpg')"></div>
+        <div class="slider__item" style="background-image:url('https://i.ibb.co/Kq8P1rK/promo2.jpg')"></div>
+        <div class="slider__item" style="background-image:url('https://i.ibb.co/3d2D0fZ/promo3.jpg')"></div>
       </div>
-      <div class="social-media">
-        <a href="#">Facebook</a>
-        <a href="#">Instagram</a>
-        <a href="#">WhatsApp</a>
+      <div class="slider__dots">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
       </div>
     </div>
-  </footer>
-  <script src="script.js"></script>
+  </section>
+
+  <!-- Games Section -->
+  <section class="games-section scroll-reveal">
+    <h2 class="section-title">Pilihan Game</h2>
+    <div class="games-grid">
+      <div class="game-card scroll-reveal">
+        <img src="https://i.ibb.co/fdqVhL6/ml.png" alt="Mobile Legends">
+        <div class="game-name">Mobile Legends</div>
+      </div>
+      <div class="game-card scroll-reveal">
+        <img src="https://i.ibb.co/0Jr1v4F/pubg.png" alt="PUBG Mobile">
+        <div class="game-name">PUBG Mobile</div>
+      </div>
+      <div class="game-card scroll-reveal">
+        <img src="https://i.ibb.co/B2jZ9wF/freefire.png" alt="Free Fire">
+        <div class="game-name">Free Fire</div>
+      </div>
+      <div class="game-card scroll-reveal">
+        <img src="https://i.ibb.co/jyYyKzP/valorant.png" alt="Valorant">
+        <div class="game-name">Valorant</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer scroll-reveal">
+  <div class="container">
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a> | 
+      <a href="#">Terms</a> | 
+      <a href="#">Contact</a>
+    </div>
+    <p>&copy; 2025 WalzShop. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
