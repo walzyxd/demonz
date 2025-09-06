@@ -1,90 +1,30 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WalzShop — Game</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top-Up Game - WalzShop</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<header class="header">
-  <div class="container">
-    <div class="logo">WalzShop</div>
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="game.html">Games</a>
-      <a href="cart.html">Cart</a>
-    </nav>
-  </div>
-</header>
-
-<main class="main">
-  <section class="games-section">
-    <h2 class="section-title scroll-reveal">Top Up Mobile Legends</h2>
-    <div class="game-page-container">
-      <button class="btn btn-back scroll-reveal" onclick="window.history.back()">← Kembali</button>
-
-      <div class="game-banner scroll-reveal">
-        <img src="https://i.ibb.co/fdqVhL6/ml.png" class="game-banner-image" alt="Mobile Legends">
-        <h1 class="game-name-h1">Mobile Legends</h1>
-      </div>
-
-      <div class="form-container scroll-reveal">
-        <div class="form-group">
-          <label>Masukkan ID Server</label>
-          <input type="text" class="server-input" placeholder="Contoh: 12345678">
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">TopUpKuy</a>
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="#">Promo</a>
+                <a href="#">Kontak</a>
+            </nav>
         </div>
+    </header>
 
-        <div class="form-group">
-          <label>Pilih Voucher</label>
-          <div class="product-grid">
-            <div class="product-card scroll-reveal" onclick="selectProduct(this)">
-              <div class="product-label">Diamond 12</div>
-              <div class="product-price">Rp 12.000</div>
-            </div>
-            <div class="product-card scroll-reveal" onclick="selectProduct(this)">
-              <div class="product-label">Diamond 50</div>
-              <div class="product-price">Rp 50.000</div>
-            </div>
-            <div class="product-card scroll-reveal" onclick="selectProduct(this)">
-              <div class="product-label">Diamond 100</div>
-              <div class="product-price">Rp 100.000</div>
-            </div>
-          </div>
-        </div>
+    <main class="container" id="game-page-container">
+        </main>
 
-        <div class="form-group">
-          <label>Pilih Metode Pembayaran</label>
-          <div class="payment-grid">
-            <div class="payment-card scroll-reveal" onclick="selectPayment(this)">
-              <img src="https://i.ibb.co/7YQR2qL/qris.png" alt="QRIS">
-              <div class="payment-label">QRIS</div>
-            </div>
-            <div class="payment-card scroll-reveal" onclick="selectPayment(this)">
-              <img src="https://i.ibb.co/1QYcW2M/dana.png" alt="Dana">
-              <div class="payment-label">Dana</div>
-            </div>
-          </div>
-        </div>
+    <footer class="footer">
+        <p>&copy; 2025 TopUpKuy. Semua Hak Cipta Dilindungi.</p>
+    </footer>
 
-        <button class="btn btn-confirm btn-block scroll-reveal">Beli Sekarang</button>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="footer scroll-reveal">
-  <div class="container">
-    <div class="footer-links">
-      <a href="#">Privacy Policy</a> | 
-      <a href="#">Terms</a> | 
-      <a href="#">Contact</a>
-    </div>
-    <p>&copy; 2025 WalzShop. All Rights Reserved.</p>
-  </div>
-</footer>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
