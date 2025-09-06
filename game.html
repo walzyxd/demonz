@@ -36,9 +36,9 @@
                         <label for="user-id">User ID</label>
                         <input type="text" id="user-id" placeholder="Masukkan User ID Anda">
                     </div>
-                    <div class="input-group">
+                    <div class="input-group" id="server-id-group">
                         <label for="server-id">Server ID</label>
-                        <input type="text" id="server-id" placeholder="Masukkan Server ID Anda (jika ada)">
+                        <input type="text" id="server-id" placeholder="Masukkan Server ID Anda">
                     </div>
                     <span id="error-user" class="error-text"></span>
                 </section>
@@ -62,11 +62,15 @@
                     <div class="summary-details">
                         <div class="summary-item">
                             <span class="summary-label">Produk</span>
-                            <span id="summary-product" class="summary-value"></span>
+                            <span id="summary-product" class="summary-value">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Metode Pembayaran</span>
+                            <span id="summary-payment" class="summary-value">-</span>
                         </div>
                         <div class="summary-item">
                             <span class="summary-label">Harga</span>
-                            <span id="summary-price" class="summary-value"></span>
+                            <span id="summary-price" class="summary-value">-</span>
                         </div>
                     </div>
                     <button id="checkout-btn" class="btn btn-confirm" disabled>Bayar Sekarang</button>
@@ -77,7 +81,31 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Walz Shop. All rights reserved.</p>
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h4>Walz Shop</h4>
+                    <p>Layanan top up game terpercaya, cepat, dan aman.</p>
+                    <a href="#" class="social-icon"><img src="https://i.ibb.co/Ld1752D/Walz-Shop-1.png" alt="Logo"></a>
+                </div>
+                <div class="footer-column">
+                    <h4>Navigasi</h4>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="#about">Tentang Kami</a></li>
+                        <li><a href="#payments">Pembayaran</a></li>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Hubungi Kami</h4>
+                    <p>Email: walzshop@gmail.com</p>
+                    <p>WhatsApp: 082298902274</p>
+                    <p>Jam Kerja: 08.00 - 22.00 WIB</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Walz Shop. All Rights Reserved.</p>
+            </div>
         </div>
     </footer>
 
