@@ -1,26 +1,26 @@
 // --- Data Website Anda ---
 const GAMES = [
-    { key: "free-fire", name: "Free Fire", publisher: "Garena", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=free-fire", needsServerId: false },
-    { key: "mobile-legends", name: "Mobile Legends", publisher: "Moonton", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=mobile-legends", needsServerId: true },
-    { key: "honor-of-kings", name: "Honor of Kings", publisher: "Level Infinite", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=honor-of-kings", needsServerId: true },
-    { key: "genshin-impact", name: "Genshin Impact", publisher: "Hoyoverse", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=genshin-impact", needsServerId: true },
-    { key: "roblox", name: "Roblox", publisher: "Roblox Corporation", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=roblox", needsServerId: false },
-    { key: "super-sus", name: "Super Sus", publisher: "Super Sus", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=super-sus", needsServerId: true },
-    { key: "coc", name: "Clash of Clans", publisher: "Supercell", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=coc", needsServerId: false },
-    { key: "blood-strike", name: "Blood Strike", publisher: "NetEase", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=blood-strike", needsServerId: false },
-    { key: "pubg", name: "PUBG Mobile", publisher: "Semua Region", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=pubg", needsServerId: false },
-    { key: "garena-delta", name: "Garena Delta Force", publisher: "Garena Delta...", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=garena-delta", needsServerId: false },
-    { key: "garena-undawn", name: "Garena Undawn", publisher: "Garena", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=garena-undawn", needsServerId: false },
-    { key: "valorant", name: "Valorant", publisher: "Riot Games", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=valorant", needsServerId: false },
-    { key: "call-of-duty", name: "Call Of Duty", publisher: "Activision", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=call-of-duty", needsServerId: false },
-    { key: "eggy-party", name: "Eggy Party", publisher: "NetEase Games", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=eggy-party", needsServerId: false },
+    { key: "free-fire", name: "Free Fire", publisher: "Garena", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", url: "game.html?key=free-fire", needsServerId: false },
+    { key: "mobile-legends", name: "Mobile Legends", publisher: "Moonton", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", url: "game.html?key=mobile-legends", needsServerId: true },
+    { key: "honor-of-kings", name: "Honor of Kings", publisher: "Level Infinite", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", url: "game.html?key=honor-of-kings", needsServerId: true },
+    { key: "genshin-impact", name: "Genshin Impact", publisher: "Hoyoverse", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", url: "game.html?key=genshin-impact", needsServerId: true },
+    { key: "roblox", name: "Roblox", publisher: "Roblox Corporation", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", url: "game.html?key=roblox", needsServerId: false },
+    { key: "super-sus", name: "Super Sus", publisher: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", url: "game.html?key=super-sus", needsServerId: true },
+    { key: "coc", name: "Clash of Clans", publisher: "Supercell", img: "https://files.catbox.moe/6aia0n.jpg", url: "game.html?key=coc", needsServerId: false },
+    { key: "blood-strike", name: "Blood Strike", publisher: "NetEase", img: "https://files.catbox.moe/3y066i.jpg", url: "game.html?key=blood-strike", needsServerId: false },
+    { key: "pubg", name: "PUBG Mobile", publisher: "Semua Region", img: "https://files.catbox.moe/tatuo9.jpg", url: "game.html?key=pubg", needsServerId: false },
+    { key: "garena-delta", name: "Garena Delta Force", publisher: "Garena Delta...", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", url: "game.html?key=garena-delta", needsServerId: false },
+    { key: "garena-undawn", name: "Garena Undawn", publisher: "Garena", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", url: "game.html?key=garena-undawn", needsServerId: false },
+    { key: "valorant", name: "Valorant", publisher: "Riot Games", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", url: "game.html?key=valorant", needsServerId: false },
+    { key: "call-of-duty", name: "Call Of Duty", publisher: "Activision", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", url: "game.html?key=call-of-duty", needsServerId: false },
+    { key: "eggy-party", name: "Eggy Party", publisher: "NetEase Games", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", url: "game.html?key=eggy-party", needsServerId: false },
 ];
 
 const PAYMENTS = [
-    { id: "qris", name: "QRIS", img: "https://i.ibb.co/680pD67/walzshop-logo.png", qr: "https://i.ibb.co/680pD67/walzshop-logo.png" },
-    { id: "krom", name: "Bank Krom", img: "https://i.ibb.co/680pD67/walzshop-logo.png", number: "770072009565", holder: "Walzshop ID" },
-    { id: "dana", name: "Dana", img: "https://i.ibb.co/680pD67/walzshop-logo.png", number: "083139243389", holder: "Anom" },
-    { id: "gopay", name: "Gopay", img: "https://i.ibb.co/680pD67/walzshop-logo.png", number: "082298902274", holder: "Anom" }
+    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", qr: "https://i.ibb.co/680pD67/walzshop-logo.png" },
+    { id: "krom", name: "Bank Krom", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", number: "770072009565", holder: "Walzshop ID" },
+    { id: "dana", name: "Dana", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", number: "083139243389", holder: "Anom" },
+    { id: "gopay", name: "Gopay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", number: "082298902274", holder: "Anom" }
 ];
 
 const PRODUCTS = {
@@ -540,13 +540,6 @@ function setupCartPage() {
                 <span class="value">${userId}${serverId ? ` (${serverId})` : ''}</span>
             </div>
             <div class="summary-detail-item">
-                <span class="label"><i class="fas fa-wallet"></i> Metode Pembayaran</span>
-                <span class="value">
-                    <img src="${payment.img}" alt="${payment.name}" class="payment-image">
-                    ${payment.name}
-                </span>
-            </div>
-            <div class="summary-detail-item">
                 <span class="label"><i class="fab fa-whatsapp"></i> Nomor WhatsApp</span>
                 <span class="value">${whatsappNumber}</span>
             </div>
@@ -556,23 +549,31 @@ function setupCartPage() {
             </div>
         `;
 
-        let paymentContent = '';
+        let paymentContent = `<h4>Pembayaran Via ${payment.name}</h4>`;
         if (payment.qr) {
-            paymentContent = `
-                <h4>Scan untuk Bayar</h4>
-                <img src="${payment.qr}" alt="QR Code" class="qr-code-image">
-                <div class="qr-caption">Silakan scan kode QR di atas untuk melakukan pembayaran. Setelah berhasil, klik **Bayar Sekarang**.</div>
+            paymentContent += `
+                <div class="payment-info-item">
+                    <img src="${payment.img}" alt="${payment.name}" class="payment-image">
+                    <div class="payment-number-container">
+                        <span class="payment-info-text">Silakan scan kode QR di bawah ini</span>
+                        <img src="${payment.qr}" alt="QR Code" class="qr-code-image">
+                    </div>
+                </div>
             `;
         } else if (payment.number) {
-            paymentContent = `
-                <h4>Transfer ke ${payment.name}</h4>
-                <img src="${payment.img}" alt="${payment.name}" class="payment-image">
-                <div class="payment-caption">A.N. ${payment.holder}</div>
-                <div class="payment-number">${payment.number}</div>
-                <button class="copy-button" onclick="copyToClipboard('${payment.number}')">Salin Nomor</button>
+            paymentContent += `
+                <div class="payment-info-item">
+                    <img src="${payment.img}" alt="${payment.name}" class="payment-image">
+                    <div class="payment-number-container">
+                        <span class="payment-info-text">Nomor Rekening/Akun</span>
+                        <div class="payment-number">${payment.number}</div>
+                        <span class="payment-info-text">A.N. ${payment.holder}</span>
+                    </div>
+                    <button class="copy-button" onclick="copyToClipboard('${payment.number}')">Salin Nomor</button>
+                </div>
             `;
         }
-
+        
         paymentInfoSection.innerHTML = paymentContent;
         
         // Logika pop-up rating
