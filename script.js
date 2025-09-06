@@ -1,19 +1,19 @@
 // --- Data Website Anda ---
 const GAMES = [
-    { key: "free-fire", name: "Free Fire", publisher: "Garena", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", url: "game.html?key=free-fire" },
-    { key: "mobile-legends", name: "Mobile Legends", publisher: "Moonton", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", url: "game.html?key=mobile-legends" },
-    { key: "honor-of-kings", name: "Honor of Kings", publisher: "Level Infinite", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", url: "game.html?key=honor-of-kings" },
-    { key: "genshin-impact", name: "Genshin Impact", publisher: "Hoyoverse", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", url: "game.html?key=genshin-impact" },
-    { key: "roblox", name: "Roblox", publisher: "Roblox Corporation", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", url: "game.html?key=roblox" },
-    { key: "super-sus", name: "Super Sus", publisher: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", url: "game.html?key=super-sus" },
-    { key: "coc", name: "Clash of Clans", publisher: "Supercell", img: "https://files.catbox.moe/6aia0n.jpg", url: "game.html?key=coc" },
-    { key: "blood-strike", name: "Blood Strike", publisher: "NetEase", img: "https://files.catbox.moe/3y066i.jpg", url: "game.html?key=blood-strike" },
-    { key: "pubg", name: "PUBG Mobile", publisher: "Semua Region", img: "https://files.catbox.moe/tatuo9.jpg", url: "game.html?key=pubg" },
-    { key: "garena-delta", name: "Garena Delta Force", publisher: "Garena Delta...", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", url: "game.html?key=garena-delta" },
-    { key: "garena-undawn", name: "Garena Undawn", publisher: "Garena", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", url: "game.html?key=garena-undawn" },
-    { key: "valorant", name: "Valorant", publisher: "Riot Games", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", url: "game.html?key=valorant" },
-    { key: "call-of-duty", name: "Call Of Duty", publisher: "Activision", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", url: "game.html?key=call-of-duty" },
-    { key: "eggy-party", name: "Eggy Party", publisher: "NetEase Games", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", url: "game.html?key=eggy-party" },
+    { key: "free-fire", name: "Free Fire", publisher: "Garena", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", url: "game.html?key=free-fire", needsServerId: false },
+    { key: "mobile-legends", name: "Mobile Legends", publisher: "Moonton", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", url: "game.html?key=mobile-legends", needsServerId: true },
+    { key: "honor-of-kings", name: "Honor of Kings", publisher: "Level Infinite", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", url: "game.html?key=honor-of-kings", needsServerId: true },
+    { key: "genshin-impact", name: "Genshin Impact", publisher: "Hoyoverse", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", url: "game.html?key=genshin-impact", needsServerId: true },
+    { key: "roblox", name: "Roblox", publisher: "Roblox Corporation", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", url: "game.html?key=roblox", needsServerId: false },
+    { key: "super-sus", name: "Super Sus", publisher: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", url: "game.html?key=super-sus", needsServerId: true },
+    { key: "coc", name: "Clash of Clans", publisher: "Supercell", img: "https://files.catbox.moe/6aia0n.jpg", url: "game.html?key=coc", needsServerId: false },
+    { key: "blood-strike", name: "Blood Strike", publisher: "NetEase", img: "https://files.catbox.moe/3y066i.jpg", url: "game.html?key=blood-strike", needsServerId: false },
+    { key: "pubg", name: "PUBG Mobile", publisher: "Semua Region", img: "https://files.catbox.moe/tatuo9.jpg", url: "game.html?key=pubg", needsServerId: false },
+    { key: "garena-delta", name: "Garena Delta Force", publisher: "Garena Delta...", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", url: "game.html?key=garena-delta", needsServerId: false },
+    { key: "garena-undawn", name: "Garena Undawn", publisher: "Garena", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", url: "game.html?key=garena-undawn", needsServerId: false },
+    { key: "valorant", name: "Valorant", publisher: "Riot Games", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", url: "game.html?key=valorant", needsServerId: false },
+    { key: "call-of-duty", name: "Call Of Duty", publisher: "Activision", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", url: "game.html?key=call-of-duty", needsServerId: false },
+    { key: "eggy-party", name: "Eggy Party", publisher: "NetEase Games", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", url: "game.html?key=eggy-party", needsServerId: false },
 ];
 
 const PAYMENTS = [
@@ -250,18 +250,27 @@ function updateSummary() {
     const confirmButton = document.getElementById('confirm-button');
     const userIdInput = document.getElementById('user-id');
     const whatsappInput = document.getElementById('whatsapp-number');
+    const serverIdContainer = document.getElementById('server-id-container');
+    const serverIdInput = document.getElementById('server-id');
+
+    const gameKey = getUrlParameter('key');
+    const game = GAMES.find(g => g.key === gameKey);
     
     const isProductSelected = !!selectedProductCard;
     const isPaymentSelected = !!selectedPaymentCard;
     const isIdValid = userIdInput && userIdInput.value.length > 0;
     const isWhatsappValid = whatsappInput && whatsappInput.value.length > 0;
+
+    let isServerIdValid = true;
+    if (game && game.needsServerId) {
+        isServerIdValid = serverIdInput && serverIdInput.value.length > 0;
+    }
     
-    if (isProductSelected && isPaymentSelected && isIdValid && isWhatsappValid) {
+    if (isProductSelected && isPaymentSelected && isIdValid && isWhatsappValid && isServerIdValid) {
         summaryCard.style.display = 'flex';
         confirmButton.disabled = false;
         
         const productId = selectedProductCard.dataset.id;
-        const gameKey = getUrlParameter('key');
         const product = PRODUCTS[gameKey].find(p => p.id === productId);
 
         document.getElementById('summary-product-details').innerHTML = `
@@ -328,8 +337,8 @@ function setupGamePage() {
     const game = GAMES.find(g => g.key === gameKey);
     const productListContainer = document.getElementById("product-list");
     const paymentListContainer = document.getElementById("payment-list");
-    const gameKeyInput = document.getElementById("game-key-input");
     const gameInfoHeader = document.getElementById("game-info-header");
+    const serverIdContainer = document.getElementById("server-id-container");
 
     if (!game || !productListContainer || !paymentListContainer) {
         window.location.href = 'index.html';
@@ -351,6 +360,16 @@ function setupGamePage() {
             </div>
         </div>
     `;
+
+    // Tampilkan input server ID jika diperlukan
+    if (game.needsServerId) {
+        serverIdContainer.innerHTML = `
+            <i class="fas fa-server input-icon"></i>
+            <input type="number" id="server-id" placeholder="Masukkan Server ID">
+        `;
+    } else {
+        serverIdContainer.innerHTML = '';
+    }
 
     // Render products
     const products = PRODUCTS[gameKey];
@@ -397,7 +416,9 @@ function setupGamePage() {
 
     // Event listeners for inputs to update summary
     document.getElementById('user-id').addEventListener('input', updateSummary);
-    document.getElementById('server-id').addEventListener('input', updateSummary);
+    if (game.needsServerId) {
+        document.getElementById('server-id').addEventListener('input', updateSummary);
+    }
     document.getElementById('whatsapp-number').addEventListener('input', updateSummary);
     
     // Voucher button logic
@@ -418,7 +439,7 @@ function setupGamePage() {
         const productId = selectedProductCard ? selectedProductCard.dataset.id : '';
         const paymentId = selectedPaymentCard ? selectedPaymentCard.dataset.id : '';
         const userId = document.getElementById('user-id').value;
-        const serverId = document.getElementById('server-id').value;
+        const serverId = game.needsServerId ? document.getElementById('server-id').value : '';
         const whatsappNumber = document.getElementById('whatsapp-number').value;
 
         // Ensure all required fields are filled before navigating
