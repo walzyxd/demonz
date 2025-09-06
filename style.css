@@ -1,6 +1,6 @@
 /* ================== GLOBAL STYLES ================== */
 :root {
-    --primary-color: #f7931a; /* Orange Codashop */
+    --primary-color: #f7931a;
     --secondary-color: #6c757d;
     --background-color: #f0f2f5;
     --card-bg: #fff;
@@ -89,6 +89,18 @@ img {
 .btn-primary:hover {
     background-color: #cc7a15;
     transform: translateY(-2px);
+}
+
+.btn-whatsapp {
+    background-color: #25d366;
+    color: #fff;
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 1rem;
+}
+
+.btn-whatsapp:hover {
+    background-color: #128c7e;
 }
 
 .btn-confirm {
@@ -393,10 +405,9 @@ header {
 }
 
 .payment-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 .grid-item {
@@ -434,7 +445,6 @@ header {
 }
 
 .payment-item {
-    flex: 1 1 120px;
     background-color: #f1f1f1;
     border: 2px solid transparent;
     border-radius: 10px;
@@ -449,16 +459,15 @@ header {
     background-color: #fff6e6;
 }
 
-.payment-item img {
-    height: 40px;
-    width: auto;
-    object-fit: contain;
-    margin: 0 auto 0.5rem;
-}
-
 .payment-item .label {
     font-weight: 600;
     color: var(--heading-color);
+}
+
+.payment-item .price {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-top: 0.5rem;
 }
 
 /* Summary Section */
@@ -517,21 +526,99 @@ header {
     color: var(--primary-color);
 }
 
+.payment-guide {
+    background-color: #f8f9fa;
+    border: 1px solid #e2e6ea;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.payment-guide h4 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.payment-guide ol {
+    text-align: left;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.payment-guide li {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
 /* ================== FOOTER ================== */
 footer {
-    background-color: var(--heading-color);
-    color: #fff;
-    padding: 2rem 0;
+    background-color: #1a1a1a;
+    color: #f1f1f1;
+    padding: 3rem 0;
     text-align: center;
 }
 
-footer .container {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 2rem;
+.footer-columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: left;
+    margin-bottom: 2rem;
 }
 
-footer p {
-    margin: 0;
+.footer-column {
+    flex: 1;
+    padding: 1rem;
+    min-width: 250px;
+}
+
+.footer-column h4 {
+    color: #fff;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    position: relative;
+}
+
+.footer-column h4::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin-top: 5px;
+}
+
+.footer-column p {
     font-size: 0.9rem;
     opacity: 0.8;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-column a {
+    color: #f1f1f1;
+    font-size: 0.9rem;
+}
+
+.footer-column a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.6;
 }
