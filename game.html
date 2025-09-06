@@ -57,18 +57,18 @@
                         <p class="step-description">Jika Anda memiliki kode voucher, masukkan di sini.</p>
                         <div class="input-group-voucher">
                             <input type="text" id="voucher-code" name="voucher_code" placeholder="Masukkan Kode Voucher">
-                            <button type="button" class="use-voucher-button">Gunakan</button>
+                            <button type="button" class="use-voucher-button" id="use-voucher-btn">Gunakan</button>
                         </div>
                     </div>
                     
-                    <div class="summary-card" id="summary-card">
+                    <div class="summary-card" id="summary-card" style="display:none;">
                         <div class="summary-details">
                             <div class="summary-product" id="summary-product-details">
                             </div>
                             <div class="summary-price" id="summary-price">
                             </div>
                         </div>
-                        <button type="submit" class="confirm-button" id="confirm-button" disabled>Konfirmasi Pesanan</button>
+                        <button type="button" class="confirm-button" id="confirm-button">Konfirmasi Pesanan</button>
                     </div>
                     
                     <input type="hidden" id="game-key-input" name="key">
@@ -85,6 +85,16 @@
             <div class="modal-buttons">
                 <button id="cancel-modal-btn" class="modal-btn">Batal</button>
                 <button id="confirm-modal-btn" class="modal-btn confirm">Ya, Benar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="voucher-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h3 class="modal-title" id="voucher-modal-title"></h3>
+            <p class="modal-text" id="voucher-modal-message"></p>
+            <div class="modal-buttons">
+                <button class="modal-btn confirm" onclick="closeModal('voucher-modal')">OK</button>
             </div>
         </div>
     </div>
