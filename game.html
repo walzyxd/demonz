@@ -17,53 +17,46 @@
                 <h1 class="website-name">WALZSHOP</h1>
             </a>
             <div class="header-right">
-                <a href="#" class="header-link">
+                <a href="search.html" class="header-link">
                     <i class="fas fa-search"></i>
                 </a>
-                <a href="#" class="header-link">
+                <a href="profile.html" class="header-link">
                     <i class="fas fa-user"></i>
                 </a>
             </div>
         </header>
 
         <main class="game-page-container">
-            <a href="index.html" class="back-button-top" aria-label="Kembali"><i class="fas fa-arrow-left"></i></a>
+            <a href="index.html" class="back-button-top"><i class="fas fa-arrow-left"></i></a>
+            
+            <div id="game-info-header" class="game-info-header">
+                </div>
 
-            <form id="topup-form">
-                <input type="hidden" id="game-key-input" name="game_key">
-
-                <section class="game-info-header" id="game-info-header">
-                    </section>
-
+            <form id="topup-form" onsubmit="return false;">
                 <section class="section-card">
                     <div class="section-header">
                         <div class="section-number">1</div>
-                        <h3>Masukkan ID Game</h3>
+                        <h3>Lengkapi Data Akun</h3>
                     </div>
-                    <p class="section-description">
-                        Untuk mengetahui User ID Anda, silakan klik menu profil di dalam game Anda.
-                    </p>
-                    <div class="input-group-grid">
-                        <div class="input-group">
-                            <i class="fas fa-id-card input-icon"></i>
-                            <input type="text" id="user-id" name="user_id" placeholder="Masukkan User ID" required>
-                        </div>
-                        <div class="input-group">
-                            <i class="fas fa-server input-icon"></i>
-                            <input type="text" id="server-id" name="server_id" placeholder="Masukkan Zone ID (jika ada)">
-                        </div>
+                    <div class="input-group">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" id="user-id" placeholder="Masukkan ID">
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-server input-icon"></i>
+                        <input type="text" id="server-id" placeholder="Masukkan Server ID (Opsional)">
                     </div>
                 </section>
-    
+
                 <section class="section-card">
                     <div class="section-header">
                         <div class="section-number">2</div>
-                        <h3>Pilih Nominal Diamonds</h3>
+                        <h3>Pilih Nominal Top Up</h3>
                     </div>
                     <div id="product-list" class="options-grid">
                         </div>
                 </section>
-    
+                
                 <section class="section-card">
                     <div class="section-header">
                         <div class="section-number">3</div>
@@ -72,47 +65,35 @@
                     <div id="payment-list" class="options-grid">
                         </div>
                 </section>
-    
+                
                 <section class="section-card">
                     <div class="section-header">
                         <div class="section-number">4</div>
-                        <h3>Punya Kode Voucher?</h3>
+                        <h3>Lengkapi Kontak & Voucher</h3>
                     </div>
-                    <p class="section-description">
-                        Masukkan kode voucher yang Anda miliki untuk mendapatkan diskon.
-                    </p>
-                    <div class="voucher-input-group">
-                        <div class="input-group" style="margin: 0;">
-                            <i class="fas fa-tag input-icon"></i>
-                            <input type="text" id="promo-code" name="promo_code" placeholder="masukkan kode voucher" class="voucher-input">
-                        </div>
-                        <button type="button" id="use-voucher-btn" class="voucher-button">Gunakan</button>
-                    </div>
-                </section>
-                
-                <section class="summary-section">
-                    <div class="section-header">
-                        <div class="section-number">5</div>
-                        <h3>Ringkasan & Checkout</h3>
-                    </div>
-                    <p class="section-description">
-                        Pastikan semua data sudah benar sebelum melanjutkan ke pembayaran.
-                    </p>
                     <div class="input-group">
                         <i class="fab fa-whatsapp input-icon"></i>
-                        <input type="tel" id="whatsapp-number" name="whatsapp_number" placeholder="Masukkan Nomor WhatsApp" required>
+                        <input type="tel" id="whatsapp-number" placeholder="Masukkan Nomor WhatsApp">
+                    </div>
+                    <div class="input-group voucher-input-group">
+                        <i class="fas fa-ticket-alt input-icon" style="left: 10px;"></i>
+                        <input type="text" id="promo-code" class="voucher-input" placeholder="Masukkan Kode Voucher">
+                        <button type="button" id="use-voucher-btn" class="voucher-button">Gunakan</button>
                     </div>
                 </section>
             </form>
 
-            <div class="summary-card" id="summary-card" style="display: none;">
+            <div id="summary-card" class="summary-card" style="display:none;">
                 <div class="summary-product" id="summary-product-details"></div>
                 <div class="summary-price" id="summary-price"></div>
             </div>
-            <button type="button" id="confirm-button" class="confirm-button" disabled>Konfirmasi Pesanan</button>
+
+            <button type="button" id="confirm-button" class="confirm-button" disabled>Beli Sekarang</button>
+            
+            <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
         </main>
     </div>
-
+    
     <footer class="footer">
         <div class="footer-socials">
             <a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
@@ -127,6 +108,7 @@
         <p>&copy; 2024 WALZSHOP. All rights reserved.</p>
     </footer>
 
+    <div class="notification-container"></div>
     <script src="script.js"></script>
 </body>
 </html>
