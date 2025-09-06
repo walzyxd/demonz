@@ -188,6 +188,16 @@ a {
     padding: 20px 0;
 }
 
+.guide-text {
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 3px solid var(--accent-color);
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    color: var(--text-light);
+}
+
 .step-card {
     background: linear-gradient(135deg, rgba(76, 23, 130, 0.5), rgba(31, 11, 64, 0.5));
     backdrop-filter: blur(5px);
@@ -218,6 +228,13 @@ a {
     font-size: 1.2em;
     font-weight: 500;
     margin-left: 55px;
+    margin-bottom: 5px;
+}
+
+.step-description {
+    font-size: 0.8em;
+    color: var(--text-light);
+    margin-left: 55px;
     margin-bottom: 20px;
 }
 
@@ -246,80 +263,49 @@ a {
 }
 
 /* Diamond Product Card */
-.option-card.diamond {
+.option-card {
     background-color: var(--diamond-bg);
     border-radius: 15px;
     text-align: center;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     border: 2px solid transparent;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.option-card.diamond .label {
+.option-card .label {
     color: var(--diamond-text);
+    font-weight: 500;
 }
 
-.option-card.diamond .price {
+.option-card .price {
     color: var(--diamond-price);
-    -webkit-text-fill-color: var(--diamond-price);
+    font-weight: bold;
+    font-size: 1.1em;
 }
 
-.option-card.diamond .diamond-icon {
+.option-card .icon {
     width: 40px;
     height: auto;
     margin-bottom: 5px;
 }
 
-/* Other Products */
-.option-card:not(.diamond) {
-    background: linear-gradient(135deg, var(--card-bg-dark), var(--card-bg-light));
-    border-radius: 15px;
-    padding: 15px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    border: 2px solid transparent;
-}
-
-.option-card:not(.diamond) .label {
-    font-size: 0.9em;
-    font-weight: 500;
-    margin-bottom: 5px;
-}
-
-.option-card:not(.diamond) .price {
-    font-size: 1.1em;
-    font-weight: bold;
-    color: #fff;
-    background: linear-gradient(45deg, #a745ff, #eb83ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* Badge Glow for non-diamond products */
-@keyframes glowing {
-    0% { box-shadow: 0 0 5px #a745ff, 0 0 10px #a745ff; }
-    50% { box-shadow: 0 0 20px #a745ff, 0 0 30px #a745ff; }
-    100% { box-shadow: 0 0 5px #a745ff, 0 0 10px #a745ff; }
-}
-
-.option-card:not(.diamond).selected {
-    border-color: #fff;
-    box-shadow: 0 0 15px rgba(235, 131, 255, 0.5);
-    animation: glowing 1.5s infinite;
-}
-
-.option-card.diamond.selected {
-    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
-    border-color: #888;
-    box-shadow: 0 0 15px rgba(235, 131, 255, 0.5);
-}
-
-/* Efek Selected Baru */
+/* Selected effect */
 .option-card.selected {
     background: linear-gradient(135deg, #38255d, #422d6b);
     border-color: var(--accent-color);
     box-shadow: 0 0 15px rgba(235, 131, 255, 0.5);
+}
+
+.option-card.selected .label,
+.option-card.selected .price {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(to right, #a745ff, #eb83ff);
 }
 
 .option-card.selected.diamond {
@@ -361,6 +347,25 @@ a {
 .option-card.payment .price {
     font-size: 1em;
     text-align: right;
+}
+
+/* Voucher */
+.input-group-voucher {
+    display: flex;
+    gap: 10px;
+}
+.input-group-voucher input {
+    flex-grow: 1;
+    border-radius: 15px;
+}
+.use-voucher-button {
+    padding: 10px 15px;
+    background: var(--accent-gradient);
+    border: none;
+    border-radius: 15px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 /* Pop-up and Summary */
@@ -436,53 +441,86 @@ a {
     cursor: not-allowed;
 }
 
-/* Notifikasi Pop-up */
-.notification-popup {
+/* Notifikasi Pop-up (modal) */
+.modal-overlay {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 1000;
-    width: 90%;
-    max-width: 350px;
+}
+
+.modal-content {
     background-color: #3d1b64;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.notification-content {
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
     text-align: center;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 0.3s ease-out;
 }
 
-.notification-icon {
-    font-size: 2em;
-    color: #ffcc00;
-    margin-bottom: 10px;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-.notification-text {
-    font-weight: bold;
-    font-size: 1.1em;
-    margin-bottom: 5px;
+.modal-title {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.notification-message {
-    font-size: 0.9em;
+#modal-summary-details {
+    text-align: left;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.modal-text {
+    font-size: 1em;
     color: var(--text-light);
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
-.close-button {
+.modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+}
+
+.modal-btn {
+    padding: 12px 25px;
+    border-radius: 15px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.modal-btn:hover {
+    transform: translateY(-2px);
+}
+
+#cancel-modal-btn {
+    background-color: #555;
+    color: white;
+}
+
+#confirm-modal-btn {
     background: var(--accent-gradient);
     color: white;
-    border: none;
-    padding: 8px 20px;
-    border-radius: 10px;
-    cursor: pointer;
 }
-
 
 /* --- New Cart Styles --- */
 .cart-summary-card {
