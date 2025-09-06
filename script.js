@@ -1,44 +1,66 @@
 // --- Data Website Anda ---
 const GAMES = [
-    { key: "mobile-legends", name: "Mobile Legends", description: "Moonton", img: "https://files.catbox.moe/97a2w3.jpg", url: "game.html?key=mobile-legends" },
+    { key: "mobile-legends", name: "Mobile Legends", description: "Moonton", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", url: "game.html?key=mobile-legends" },
     { key: "mobile-legends-global", name: "Mobile Legends", description: "Global", img: "https://i.supaimg.com/00e12727-4a11-4475-8120-d3acb70d4e9c.jpg", url: "game.html?key=mobile-legends-global" },
     { key: "magic-chess", name: "Magic Chess GG", description: "Vizta Games", img: "https://files.catbox.moe/k37o1s.jpg", url: "game.html?key=magic-chess" },
     { key: "pubg-mobile", name: "PUBG Mobile", description: "Semua Region", img: "https://files.catbox.moe/tatuo9.jpg", url: "game.html?key=pubg-mobile" },
-    { key: "garena-free-fire", name: "Garena Free Fire", description: "Garena", img: "https://files.catbox.moe/lq69d9.jpg", url: "game.html?key=garena-free-fire" },
+    { key: "garena-free-fire", name: "Garena Free Fire", description: "Garena", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", url: "game.html?key=garena-free-fire" },
     { key: "free-fire-max", name: "Free Fire MAX", description: "Garena", img: "https://files.catbox.moe/wz282d.png", url: "game.html?key=free-fire-max" },
     { key: "genshin-impact", name: "Genshin Crystal", description: "Termurah", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", url: "game.html?key=genshin-impact" },
     { key: "honkai-star-rail", name: "Honkai: Star Rail", description: "Hoyoverse", img: "https://files.catbox.moe/o3d2x9.jpg", url: "game.html?key=honkai-star-rail" },
     { key: "zenless-zone-zero", name: "Zenless Zone Zero", description: "Termurah", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", url: "game.html?key=zenless-zone-zero" },
-    { key: "garena-delta", name: "Delta Force", description: "Garena Delta...", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", url: "game.html?key=garena-delta" },
+    { key: "garena-delta", name: "Garena Delta Force", description: "Garena Delta...", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", url: "game.html?key=garena-delta" },
     { key: "call-of-duty", name: "Call of Duty", description: "Activision", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", url: "game.html?key=call-of-duty" },
+    { key: "honor-of-kings", name: "Honor of Kings", description: "Tencent", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", url: "game.html?key=honor-of-kings" },
+    { key: "roblox", name: "Roblox", description: "Roblox Corp", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", url: "game.html?key=roblox" },
+    { key: "super-sus", name: "Super Sus", description: "Happyverse", img: "https://files.catbox.moe/j61uny.jpg", url: "game.html?key=super-sus" },
+    { key: "clash-of-clans", name: "Clash of Clans", description: "Supercell", img: "https://files.catbox.moe/6aia0n.jpg", url: "game.html?key=clash-of-clans" },
+    { key: "blood-strike", name: "Blood Strike", description: "NetEase Games", img: "https://files.catbox.moe/3y066i.jpg", url: "game.html?key=blood-strike" },
+    { key: "garena-undawn", name: "Garena Undawn", description: "Garena", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", url: "game.html?key=garena-undawn" },
+    { key: "valorant", name: "Valorant", description: "Riot Games", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", url: "game.html?key=valorant" },
+    { key: "eggy-party", name: "Eggy Party", description: "NetEase Games", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", url: "game.html?key=eggy-party" },
 ];
 
 const PAYMENTS = {
     "bank_transfer": [
         { id: "bca", name: "BCA", subLabel: "", img: "https://files.catbox.moe/u74p8c.png", price: 3829 },
+        { id: "bank-krom", name: "Bank Krom", subLabel: "", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", price: 3829 },
         { id: "bank-lain", name: "Pembayaran tidak...", subLabel: "", img: "https://files.catbox.moe/0v4c4m.png", price: 3829 },
     ],
     "qris": [
-        { id: "qris-all", name: "QRIS", subLabel: "(Semua Pembayaran)", img: "https://files.catbox.moe/113xkr.png", price: 3896 },
-        { id: "qris-dana", name: "QRIS Dana", subLabel: "", img: "https://files.catbox.moe/h5t4r3.png", price: 3896 },
+        { id: "qris-all", name: "QRIS", subLabel: "(Semua Pembayaran)", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", price: 3896 },
+        { id: "qris-dana", name: "QRIS Dana", subLabel: "", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", price: 3896 },
     ],
     "e-wallet": [
+        { id: "gopay", name: "Gopay", subLabel: "", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", price: 3925 },
         { id: "lintas-negara", name: "Lintas Negara", subLabel: "(Asia Tenggara)", img: "https://files.catbox.moe/p4b6f1.png", price: 3925 },
     ]
 };
 
 const PRODUCTS = {
     "mobile-legends": [
-        { id: "ml-14-bonus", label: "14 (13 + 1 Bonus) Diamonds", price: 3829, img: "https://files.catbox.moe/97a2w3.jpg" },
-        { id: "ml-28-bonus", label: "28 (26 + 2 Bonus) Diamonds", price: 7659, img: "https://files.catbox.moe/97a2w3.jpg" },
-        { id: "ml-42-bonus", label: "42 (38 + 4 Bonus) Diamonds", price: 11487, img: "https://files.catbox.moe/97a2w3.jpg" },
-        { id: "ml-56-bonus", label: "56 (51 + 5 Bonus) Diamonds", price: 15317, img: "https://files.catbox.moe/97a2w3.jpg" },
-        { id: "ml-70-bonus", label: "70 (64 + 6 Bonus) Diamonds", price: 19147, img: "https://files.catbox.moe/97a2w3.jpg" },
-        { id: "ml-84-bonus", label: "84 (77 + 7 Bonus) Diamonds", price: 22977, img: "https://files.catbox.moe/97a2w3.jpg" },
-        { id: "ml-weekly-pass", label: "Weekly Diamond Pass", price: 30000, img: "https://files.catbox.moe/97a2w3.jpg" },
-        { id: "ml-twilight-pass", label: "Twilight Pass", price: 150000, img: "https://files.catbox.moe/97a2w3.jpg" },
+        { id: "ml-14-bonus", label: "14 (13 + 1 Bonus) Diamonds", price: 3829, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
+        { id: "ml-28-bonus", label: "28 (26 + 2 Bonus) Diamonds", price: 7659, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
+        { id: "ml-42-bonus", label: "42 (38 + 4 Bonus) Diamonds", price: 11487, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
+        { id: "ml-56-bonus", label: "56 (51 + 5 Bonus) Diamonds", price: 15317, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
+        { id: "ml-70-bonus", label: "70 (64 + 6 Bonus) Diamonds", price: 19147, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
+        { id: "ml-84-bonus", label: "84 (77 + 7 Bonus) Diamonds", price: 22977, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
+        { id: "ml-weekly-pass", label: "Weekly Diamond Pass", price: 30000, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
+        { id: "ml-twilight-pass", label: "Twilight Pass", price: 150000, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
     ],
+    // Tambahkan produk untuk game lain di sini jika diperlukan
 };
+
+// --- Carousel Data ---
+const carouselImages = [
+    "https://files.catbox.moe/hrtpys.jpg",
+    "https://files.catbox.moe/8g41jj.jpg",
+    "https://files.catbox.moe/e87yj3.png",
+    "https://files.catbox.moe/uusd4l.jpg"
+];
+
+let currentSlide = 0;
+let slideInterval;
 
 // --- Fungsi Global ---
 function formatRupiah(number) {
@@ -127,12 +149,76 @@ function renderGameCards() {
     });
 }
 
+// --- Carousel Functions ---
+function initializeCarousel() {
+    const carouselSlide = document.getElementById('carousel-slide');
+    const carouselDots = document.getElementById('carousel-dots');
+
+    if (!carouselSlide || !carouselDots) return;
+
+    // Load images into carousel
+    carouselImages.forEach((src, index) => {
+        const img = document.createElement('img');
+        img.src = src;
+        carouselSlide.appendChild(img);
+
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        dot.addEventListener('click', () => {
+            goToSlide(index);
+            resetSlideInterval();
+        });
+        carouselDots.appendChild(dot);
+    });
+
+    // Set initial slide and start auto-slide
+    goToSlide(0);
+    startSlideInterval();
+}
+
+function goToSlide(index) {
+    const carouselSlide = document.getElementById('carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dots .dot');
+
+    if (!carouselSlide || !dots) return;
+
+    currentSlide = index;
+    if (currentSlide >= carouselImages.length) {
+        currentSlide = 0;
+    } else if (currentSlide < 0) {
+        currentSlide = carouselImages.length - 1;
+    }
+
+    carouselSlide.style.transform = `translateX(${-currentSlide * 100}%)`;
+
+    dots.forEach((dot, i) => {
+        if (i === currentSlide) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
+}
+
+function nextSlide() {
+    goToSlide(currentSlide + 1);
+}
+
+function startSlideInterval() {
+    slideInterval = setInterval(nextSlide, 3000); // Change slide every 3 seconds
+}
+
+function resetSlideInterval() {
+    clearInterval(slideInterval);
+    startSlideInterval();
+}
 
 // --- Logika Halaman ---
 document.addEventListener("DOMContentLoaded", () => {
     // Check if it's the home page
     if (document.getElementById('game-list')) {
         renderGameCards();
+        initializeCarousel(); // Initialize carousel on home page
     }
 
     // Check if it's the game top-up page
@@ -249,8 +335,10 @@ document.addEventListener("DOMContentLoaded", () => {
             let paymentInfoHtml = '';
             const paymentInfoData = {
                 "bca": { number: "8009123456", name: "TI** SUT***" },
+                "bank-krom": { number: "8009123456", name: "TI** SUT***" },
                 "qris-all": { qrisImg: "https://files.catbox.moe/5688406c-3c9f-4990-b77a-4f1eaba082ad.png" },
                 "qris-dana": { qrisImg: "https://files.catbox.moe/5688406c-3c9f-4990-b77a-4f1eaba082ad.png" },
+                "gopay": { number: "08123456789", name: "TI** SUT***" },
                 "lintas-negara": { number: "1234567890", name: "TI** SUT***" }
             };
 
