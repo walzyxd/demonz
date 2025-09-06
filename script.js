@@ -214,6 +214,10 @@ const PRODUCTS = {
     ]
 };
 
+// --- Variable untuk menyimpan harga asli produk dan status voucher
+let originalPrices = {};
+let isVoucherApplied = false;
+
 // --- Fungsi Global ---
 function formatRupiah(number) {
     return new Intl.NumberFormat('id-ID', {
@@ -228,6 +232,45 @@ function getUrlParameter(name) {
     const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
     const results = regex.exec(location.search);
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+function renderProducts(gameKey) {
+    const productListContainer = document.getElementById("product-list");
+    if (!productListContainer) return;
+
+    productListContainer.innerHTML = '';
+    const products = PRODUCTS[gameKey];
+
+    if (products) {
+        products.forEach(product => {
+            const productDiv = document.createElement("div");
+            productDiv.classList.add("option-card");
+            productDiv.setAttribute('data-id', product.id);
+            
+            let badgeHtml = '';
+            if (product.badges && product.badges.length > 0) {
+                const badgeText = product.badges[0].charAt(0).toUpperCase() + product.badges[0].slice(1);
+                badgeHtml = `<span class="special-badge">${badgeText}</span>`;
+            }
+
+            const currentPrice = isVoucherApplied ? Math.max(0, product.price - 5000) : product.price;
+
+            productDiv.innerHTML = `
+                ${badgeHtml}
+                <i class="fas fa-gem icon"></i>
+                <div class="label">${product.label}</div>
+                <div class="price-group">
+                    ${isVoucherApplied ? `<div class="original-price">${formatRupiah(product.price)}</div>` : ''}
+                    <div class="price">${formatRupiah(currentPrice)}</div>
+                </div>
+            `;
+            
+            productDiv.onclick = () => {
+                selectOption(productDiv);
+            };
+            productListContainer.appendChild(productDiv);
+        });
+    }
 }
 
 function selectOption(element) {
@@ -272,12 +315,13 @@ function updateSummary() {
         
         const productId = selectedProductCard.dataset.id;
         const product = PRODUCTS[gameKey].find(p => p.id === productId);
+        const finalPrice = isVoucherApplied ? Math.max(0, product.price - 5000) : product.price;
 
         document.getElementById('summary-product-details').innerHTML = `
             <i class="fas fa-gem" style="color:var(--accent-color);"></i>
             <span class="product-text">${product.label}</span>
         `;
-        document.getElementById('summary-price').innerText = formatRupiah(product.price);
+        document.getElementById('summary-price').innerText = formatRupiah(finalPrice);
     } else {
         summaryCard.style.display = 'none';
         confirmButton.disabled = true;
@@ -375,33 +419,15 @@ function setupGamePage() {
         serverIdContainer.innerHTML = '';
     }
 
-    // Render products
-    const products = PRODUCTS[gameKey];
-    if (products) {
-        products.forEach(product => {
-            const productDiv = document.createElement("div");
-            productDiv.classList.add("option-card");
-            productDiv.setAttribute('data-id', product.id);
-            
-            let badgeHtml = '';
-            if (product.badges && product.badges.length > 0) {
-                const badgeText = product.badges[0].charAt(0).toUpperCase() + product.badges[0].slice(1);
-                badgeHtml = `<span class="special-badge">${badgeText}</span>`;
-            }
-
-            productDiv.innerHTML = `
-                ${badgeHtml}
-                <i class="fas fa-gem icon"></i>
-                <div class="label">${product.label}</div>
-                <div class="price">${formatRupiah(product.price)}</div>
-            `;
-            
-            productDiv.onclick = () => {
-                selectOption(productDiv);
-            };
-            productListContainer.appendChild(productDiv);
+    // Simpan harga asli sebelum render
+    if (PRODUCTS[gameKey]) {
+        PRODUCTS[gameKey].forEach(p => {
+            originalPrices[p.id] = p.price;
         });
     }
+
+    // Render products
+    renderProducts(gameKey);
 
     // Render payments
     PAYMENTS.forEach(payment => {
@@ -430,8 +456,14 @@ function setupGamePage() {
         const promoCode = promoCodeInput.value.toUpperCase(); // Ubah ke huruf besar untuk validasi
         if (promoCode === "WALZPROMO") {
             const discount = 5000;
+            isVoucherApplied = true;
+            renderProducts(gameKey); // Render ulang produk dengan harga diskon
+            updateSummary(); // Update ringkasan
             showNotification(`Voucher Berhasil digunakan! Potongan: ${formatRupiah(discount)}`, true);
         } else {
+            isVoucherApplied = false;
+            renderProducts(gameKey); // Render ulang produk dengan harga normal
+            updateSummary(); // Update ringkasan
             showNotification('Voucher Tidak valid', false);
         }
     });
@@ -448,7 +480,7 @@ function setupGamePage() {
 
         // Ensure all required fields are filled before navigating
         if (productId && paymentId && userId && whatsappNumber) {
-            const url = `cart.html?game_key=${gameKey}&product_id=${productId}&payment_id=${paymentId}&user_id=${userId}&server_id=${serverId}&whatsapp_number=${whatsappNumber}`;
+            const url = `cart.html?game_key=${gameKey}&product_id=${productId}&payment_id=${paymentId}&user_id=${userId}&server_id=${serverId}&whatsapp_number=${whatsappNumber}&voucher_applied=${isVoucherApplied}`;
             window.location.href = url;
         } else {
             alert('Mohon lengkapi semua data pesanan terlebih dahulu.');
@@ -465,6 +497,7 @@ function setupCartPage() {
     const userId = params.get('user_id');
     const serverId = params.get('server_id');
     const whatsappNumber = params.get('whatsapp_number');
+    const voucherApplied = params.get('voucher_applied') === 'true';
     
     const game = GAMES.find(g => g.key === gameKey);
     const product = PRODUCTS[gameKey] ? PRODUCTS[gameKey].find(p => p.id === productId) : null;
@@ -475,6 +508,8 @@ function setupCartPage() {
     const payButton = document.getElementById('pay-button');
     
     if (game && product && payment && cartSummaryCard) {
+        const finalPrice = voucherApplied ? Math.max(0, product.price - 5000) : product.price;
+
         cartSummaryCard.innerHTML = `
             <h3>Rincian Pesanan</h3>
             <div class="summary-detail-item">
@@ -502,7 +537,7 @@ function setupCartPage() {
             </div>
             <div class="summary-total">
                 <span class="label">Total Pembayaran</span>
-                <span class="value">${formatRupiah(product.price)}</span>
+                <span class="value">${formatRupiah(finalPrice)}</span>
             </div>
         `;
 
