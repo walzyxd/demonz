@@ -510,9 +510,9 @@ async function checkGameId(gameCode, userId) {
         return;
     }
 
-    // Ganti dengan kredensial API Anda
-    const merchantId = "M250907JZZY9386TE"; // GANTI DENGAN MERCHANT ID ANDA
-    const signature = "2cbefb6a1e0a229d12c318747c59e36d0c6a38827e5984c077ec143a26471986"; // GANTI DENGAN SIGNATURE ANDA
+    // KREDENSIAL API APIGAMES.ID ANDA
+    const merchantId = "M250907JZZY9386TE";
+    const signature = "30c48fa4678c8a429ad7978ebada54eb";
     const apiURL = `https://v1.apigames.id/merchant/${merchantId}/cek-username/${gameCode}?user_id=${userId}&signature=${signature}`;
 
     idCheckResult.textContent = "Memeriksa...";
@@ -541,9 +541,9 @@ async function checkGameId(gameCode, userId) {
 
 // --- Logika Halaman Cart ---
 // Tambahkan kredensial API Anda di sini. Ini hanya simulasi, dalam produksi HARUS disimpan di sisi server.
-const API_KEY = "7X-VyEtH6tt";
-const TENANT_ID = "7X-VyEtH6tt";
-const DOMAIN = "8392A491389F4152841A5DE101D7D6D3";
+const API_KEY = "M250907JZZY9386TE";
+const TENANT_ID = "M250907JZZY9386TE";
+const DOMAIN = "30c48fa4678c8a429ad7978ebada54eb";
 
 let userRating = 0;
 let reviewText = "";
