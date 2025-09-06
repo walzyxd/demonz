@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konfirmasi Pesanan</title>
+    <title>Pembayaran Berhasil</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +19,6 @@
             <nav class="nav">
                 <a href="index.html">Beranda</a>
                 <a href="index.html#about">Tentang Kami</a>
-                <a href="index.html#payments">Pembayaran</a>
             </nav>
         </div>
     </header>
@@ -27,16 +26,16 @@
     <main class="main">
         <div class="container">
             <section class="card summary-box">
-                <h2>Konfirmasi Pesanan</h2>
-                <p>Game: <span id="summary-game" class="info"></span></p>
-                <p>User ID: <span id="summary-user" class="info"></span></p>
-                <p id="server-row" style="display: none;">Server ID: <span id="summary-server" class="info"></span></p>
-                <p>Produk: <span id="summary-product" class="info"></span></p>
-                <p>Metode Pembayaran: <span id="summary-payment" class="info"></span></p>
-                <p id="voucher-row" style="display: none;">Diskon Voucher: <span id="summary-voucher" class="info"></span></p>
-                <h3>Total Pembayaran: <span id="summary-total" class="info"></span></h3>
-                <button id="buy-btn" class="btn btn-confirm">Bayar Sekarang</button>
-                <a id="back-to-game" href="index.html" class="btn btn-secondary" style="margin-top: 10px;">Kembali</a>
+                <h2>Pembayaran Berhasil!</h2>
+                <div class="success-icon">&#10003;</div>
+                <p>Pesanan Anda telah kami terima dan sedang diproses.</p>
+                <div class="summary-details">
+                    <p>ID Transaksi: <span id="summary-id" class="info">#WL20240906-ABCDE</span></p>
+                    <p>Produk: <span id="summary-product" class="info"></span></p>
+                    <p>Metode Pembayaran: <span id="summary-payment" class="info"></span></p>
+                    <h3>Total Pembayaran: <span id="summary-total" class="info"></span></h3>
+                </div>
+                <a href="index.html" class="btn btn-primary" style="margin-top: 20px;">Kembali ke Beranda</a>
             </section>
         </div>
     </main>
