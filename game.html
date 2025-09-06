@@ -12,6 +12,7 @@
     <div class="notification-container"></div>
     
     <header class="header">
+        <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i></a>
         <a href="index.html" class="logo">Walzshop</a>
     </header>
 
@@ -98,15 +99,31 @@
     </main>
     
     <footer class="footer">
-        <p>&copy; 2024 Walzshop. Semua hak dilindungi.</p>
-        <div class="footer-links">
-            <a href="#">Kebijakan Privasi</a>
-            <a href="#">Syarat & Ketentuan</a>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>Tentang Walzshop</h3>
+                <p>Tempat top-up game favoritmu dengan harga termurah dan proses tercepat. Dijamin aman dan terpercaya!</p>
+            </div>
+            <div class="footer-section links">
+                <h3>Tautan Cepat</h3>
+                <ul>
+                    <li><a href="#">Beranda</a></li>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-section social">
+                <h3>Ikuti Kami</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
         </div>
-        <div class="social-links">
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Walzshop. Semua hak dilindungi.</p>
         </div>
     </footer>
     
@@ -125,7 +142,7 @@
             if(window.iti.isValidNumber()){
                 input.style.borderColor = 'green';
             } else {
-                input.style.borderColor = 'var(--text-light)';
+                input.style.borderColor = 'var(--border-color)';
             }
             updateSummary();
         });
