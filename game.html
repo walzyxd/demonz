@@ -6,13 +6,21 @@
     <title>WALZSHOP</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="main-container">
 
         <main class="game-selection-main">
             <div class="container game-page-container" id="game-page-container">
-                
+
+                <div class="back-button-container">
+                    <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i></a>
+                </div>
+
+                <div class="game-info-header" id="game-info-header">
+                    </div>
+
                 <div id="notification-popup" class="notification-popup" style="display:none;">
                     <div class="notification-content">
                         <span class="notification-icon">⚠️</span>
@@ -23,6 +31,7 @@
                 </div>
 
                 <form class="topup-form" onsubmit="event.preventDefault(); window.location.href = 'cart.html?key=' + this.querySelector('[name=key]').value + '&user_id=' + this.querySelector('[name=user_id]').value + '&server_id=' + (this.querySelector('[name=server_id]') ? this.querySelector('[name=server_id]').value : '') + '&product_id=' + this.querySelector('[name=product_id]:checked').value + '&payment_id=' + this.querySelector('[name=payment_id]:checked').value;">
+                    
                     <div class="step-card">
                         <div class="step-number">1</div>
                         <h3 class="step-title">Masukkan User ID</h3>
@@ -36,24 +45,32 @@
 
                     <div class="step-card">
                         <div class="step-number">2</div>
-                        <h3 class="step-title">Pilih Nominal Top Up</h3>
+                        <h3 class="step-title">Pilih Diamonds</h3>
                         <div class="options-grid" id="product-list">
-                            </div>
+                        </div>
                     </div>
 
                     <div class="step-card">
                         <div class="step-number">3</div>
-                        <h3 class="step-title">Pilih pembayaran</h3>
+                        <h3 class="step-title">Pilih Metode Pembayaran</h3>
                         <div class="options-grid" id="payment-list">
-                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-card optional-voucher">
+                        <div class="step-number">4</div>
+                        <h3 class="step-title">Kode Voucher (Opsional)</h3>
+                        <div class="input-group">
+                            <input type="text" id="voucher-code" name="voucher_code" placeholder="Masukkan Kode Voucher">
+                        </div>
                     </div>
                     
                     <div class="summary-card" id="summary-card">
                         <div class="summary-details">
                             <div class="summary-product" id="summary-product-details">
-                                </div>
+                            </div>
                             <div class="summary-price" id="summary-price">
-                                </div>
+                            </div>
                         </div>
                         <button type="submit" class="confirm-button" id="confirm-button" disabled>Konfirmasi Pesanan</button>
                     </div>
