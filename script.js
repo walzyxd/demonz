@@ -3,15 +3,20 @@ const ADMIN_WA = "6282298902274";
 const ADMIN_EMAIL = "walzlonely@gmail.com";
 
 const GAMES = [
-  { key: "free-fire", name: "Free Fire", img: "https://files.catbox.moe/ldccdf.jpg", hasServerId: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game." },
-  { key: "mobile-legends", name: "Mobile Legends", img: "https://files.catbox.moe/6ns43w.jpg", hasServerId: true, guide: "Temukan User ID dan Server ID di bawah nama panggilan saat Anda mengklik avatar profil." },
-  { key: "genshin-impact", name: "Genshin Impact", img: "https://files.catbox.moe/he48wt.jpg", hasServerId: false, guide: "User ID (9 digit) terletak di sudut kanan bawah layar saat Anda berada di dalam game." },
-  { key: "pubg-mobile", name: "PUBG Mobile", img: "https://files.catbox.moe/tatuo9.jpg", hasServerId: false, guide: "Temukan User ID Anda di sudut kanan atas lobi game saat mengklik profil." },
-  { key: "valorant", name: "Valorant", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", hasServerId: false, guide: "User ID (Riot ID) dapat ditemukan di bawah nama akun Anda di bagian atas layar." },
-  { key: "garena-delta-force", name: "Garena Delta Force", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", hasServerId: false, guide: "Temukan User ID Anda di profil game." },
-  { key: "garena-undawn", name: "Garena Undawn", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", hasServerId: true, guide: "Temukan User ID dan Server ID di profil game Anda." },
-  { key: "call-of-duty", name: "Call of Duty", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", hasServerId: false, guide: "Temukan User ID Anda di profil game." },
-  { key: "eggy-party", name: "Eggy Party", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", hasServerId: true, guide: "Temukan User ID dan Server ID di profil game Anda." },
+  { key: "free-fire", name: "Free Fire", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", bannerImg: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", hasServerId: false, guide: "Temukan User ID Anda di profil game.", url: "game.html?game=free-fire" },
+  { key: "mobile-legends", name: "Mobile Legends", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", bannerImg: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", hasServerId: true, guide: "User ID & Server dapat ditemukan di profil.", url: "game.html?game=mobile-legends" },
+  { key: "pubg-mobile", name: "PUBG Mobile", img: "https://i.supaimg.com/00a77c87-f6b5-4e54-b325-bd3ac3d3e441.jpg", bannerImg: "https://i.supaimg.com/00a77c87-f6b5-4e54-b325-bd3ac3d3e441.jpg", hasServerId: false, guide: "User ID di profil game.", url: "game.html?game=pubg-mobile" },
+  { key: "genshin-impact", name: "Genshin Impact", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", bannerImg: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", hasServerId: false, guide: "User ID (9 digit) di pojok kanan bawah.", url: "game.html?game=genshin-impact" },
+  { key: "valorant", name: "Valorant", img: "https://i.supaimg.com/8bb768c4-d3f6-40e9-a267-90b7c6c62c24.jpg", bannerImg: "https://i.supaimg.com/8bb768c4-d3f6-40e9-a267-90b7c6c62c24.jpg", hasServerId: false, guide: "Riot ID (Nama#1234) di profil.", url: "game.html?game=valorant" },
+  { key: "call-of-duty", name: "Call of Duty Mobile", img: "https://i.supaimg.com/55dcf25d-935f-4091-b445-9a1686bd6575.jpg", bannerImg: "https://i.supaimg.com/55dcf25d-935f-4091-b445-9a1686bd6575.jpg", hasServerId: false, guide: "User ID di profil game.", url: "game.html?game=call-of-duty" },
+  { key: "honor-of-kings", name: "Honor of Kings", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", bannerImg: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", hasServerId: false, guide: "User ID di bagian profil.", url: "game.html?game=honor-of-kings" },
+  { key: "roblox", name: "Roblox", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", bannerImg: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", hasServerId: false, guide: "Top up via gift card.", url: "game.html?game=roblox" },
+  { key: "clash-of-clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", bannerImg: "https://files.catbox.moe/6aia0n.jpg", hasServerId: false, guide: "Player Tag dimulai '#'.", url: "game.html?game=clash-of-clans" },
+  { key: "eggy-party", name: "Eggy Party", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", bannerImg: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", hasServerId: false, guide: "User ID di profil game.", url: "game.html?game=eggy-party" },
+  { key: "garena-delta-force", name: "Garena Delta Force", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", bannerImg: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", hasServerId: false, guide: "User ID di profil.", url: "game.html?game=garena-delta-force" },
+  { key: "garena-undawn", name: "Garena Undawn", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", bannerImg: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", hasServerId: false, guide: "User ID di profil.", url: "game.html?game=garena-undawn" },
+  { key: "blood-strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", bannerImg: "https://files.catbox.moe/3y066i.jpg", hasServerId: false, guide: "User ID di profil.", url: "game.html?game=blood-strike" }
+  // kamu bisa tambahkan lagi di sini jika ingin
 ];
 
 const PROMOS = [
@@ -31,10 +36,19 @@ const PRODUCTS = {
   "free-fire": [
     { id: "ff-5", label: "5 Diamonds", price: 901 },
     { id: "ff-12", label: "12 Diamonds", price: 1802 },
+    { id: "ff-50", label: "50 Diamonds", price: 7207 },
     { id: "ff-70", label: "70 Diamonds", price: 9009 },
     { id: "ff-140", label: "140 Diamonds", price: 18018 },
     { id: "ff-355", label: "355 Diamonds", price: 45045 },
     { id: "ff-720", label: "720 Diamonds", price: 90090 },
+    { id: "ff-1450", label: "1450 Diamonds", price: 180180 },
+    { id: "ff-2180", label: "2180 Diamonds", price: 270270 },
+    { id: "ff-3640", label: "3640 Diamonds", price: 450450 },
+    { id: "ff-mw", label: "Membership Mingguan", price: 30500, badges: ["member"] },
+    { id: "ff-mb", label: "Membership Bulanan", price: 90000, badges: ["member"] },
+    { id: "ff-lvl6", label: "Level Up Pass Lv.6", price: 5500, badges: ["levelup"] },
+    { id: "ff-lvl10", label: "Level Up Pass Lv.10", price: 8800, badges: ["levelup"] },
+    { id: "ff-booyah", label: "BooYah Pass", price: 50000, badges: ["pass"] }
   ],
   "mobile-legends": [
     { id: "ml-3", label: "3 Diamonds", price: 1171 },
@@ -42,37 +56,80 @@ const PRODUCTS = {
     { id: "ml-12", label: "12 Diamonds", price: 3323 },
     { id: "ml-19", label: "19 Diamonds", price: 5223 },
     { id: "ml-28", label: "28 Diamonds", price: 7600 },
-  ],
-  "genshin-impact": [
-    { id: "gi-60", label: "60 Genesis Crystals", price: 14865 },
-    { id: "gi-330", label: "330 Genesis Crystals", price: 72973 },
-    { id: "gi-welkin", label: "Blessing of the Welkin Moon", price: 72973, badges: ["welkin"] },
+    { id: "ml-44", label: "44 Diamonds", price: 11400 },
+    { id: "ml-59", label: "59 Diamonds", price: 15200 },
+    { id: "ml-85", label: "85 Diamonds", price: 21850 },
+    { id: "ml-170", label: "170 Diamonds", price: 43700 },
+    { id: "ml-240", label: "240 Diamonds", price: 61750 },
+    { id: "ml-296", label: "296 Diamonds", price: 76000 },
+    { id: "ml-408", label: "408 Diamonds", price: 104500 },
+    { id: "ml-568", label: "568 Diamonds", price: 142500 },
+    { id: "ml-875", label: "875 Diamonds", price: 218500 },
+    { id: "ml-2010", label: "2010 Diamonds", price: 475000 },
+    { id: "ml-wdp", label: "Weekly Diamond Pass", price: 28000, badges: ["weekly"] },
+    { id: "ml-twilight", label: "Twilight Pass", price: 150000, badges: ["pass"] }
   ],
   "pubg-mobile": [
     { id: "pubg-30", label: "30 UC", price: 7000 },
     { id: "pubg-60", label: "60 UC", price: 14000 },
     { id: "pubg-300", label: "300 + 25 UC", price: 70000 },
+    { id: "pubg-600", label: "600 + 60 UC", price: 140000 },
+    { id: "pubg-1500", label: "1500 + 300 UC", price: 350000 },
+    { id: "pubg-3000", label: "3000 + 850 UC", price: 700000 }
+  ],
+  "genshin-impact": [
+    { id: "gi-60", label: "60 Genesis Crystals", price: 14865 },
+    { id: "gi-330", label: "330 Genesis Crystals", price: 72973 },
+    { id: "gi-1090", label: "1090 Genesis Crystals", price: 229730 },
+    { id: "gi-2240", label: "2240 Genesis Crystals", price: 440541 },
+    { id: "gi-3880", label: "3880 Genesis Crystals", price: 734234 }
   ],
   "valorant": [
     { id: "val-475", label: "475 Points", price: 54349 },
     { id: "val-1000", label: "1000 Points", price: 108799 },
-  ],
-  "garena-delta-force": [
-    { id: "gdf-50", label: "50 G-Coin", price: 15000 },
-    { id: "gdf-100", label: "100 G-Coin", price: 30000 },
-  ],
-  "garena-undawn": [
-    { id: "gu-30", label: "30 Coupons", price: 10000 },
-    { id: "gu-100", label: "100 Coupons", price: 32000 },
+    { id: "val-2050", label: "2050 Points", price: 217499 },
+    { id: "val-3650", label: "3650 Points", price: 372199 }
   ],
   "call-of-duty": [
-    { id: "cod-80", label: "80 CP", price: 15000 },
-    { id: "cod-400", label: "400 CP", price: 70000 },
+    { id: "codm-31", label: "31 CP", price: 4899 },
+    { id: "codm-63", label: "63 CP", price: 9699 },
+    { id: "codm-128", label: "128 CP", price: 19399 },
+    { id: "codm-321", label: "321 CP", price: 48499 }
+  ],
+  "honor-of-kings": [
+    { id: "hok-16", label: "16 Tokens", price: 3300 },
+    { id: "hok-80", label: "80 Tokens", price: 16500 },
+    { id: "hok-240", label: "240 Tokens", price: 51000 }
+  ],
+  "roblox": [
+    { id: "rbx-50k", label: "Gift Card Rp50.000", price: 48440 },
+    { id: "rbx-100k", label: "Gift Card Rp100.000", price: 96500 },
+    { id: "rbx-200k", label: "Gift Card Rp200.000", price: 193000 }
+  ],
+  "clash-of-clans": [
+    { id: "coc-500", label: "500 Gems", price: 75299 },
+    { id: "coc-1200", label: "1200 Gems", price: 150499 }
   ],
   "eggy-party": [
-    { id: "ep-60", label: "60 Egg Coins", price: 10000 },
-    { id: "ep-120", label: "120 Egg Coins", price: 20000 },
+    { id: "eggy-60", label: "60 + 3 Bonus", price: 13999 },
+    { id: "eggy-120", label: "120 + 6 Bonus", price: 26999 },
+    { id: "eggy-300", label: "300 + 24 Bonus", price: 68499 }
   ],
+  "garena-delta-force": [
+    { id: "delta-30", label: "30 + 2", price: 7499 },
+    { id: "delta-60", label: "60 + 3", price: 14999 },
+    { id: "delta-300", label: "300 + 36", price: 74999 }
+  ],
+  "garena-undawn": [
+    { id: "undawn-rc80", label: "RC 80", price: 14599 },
+    { id: "undawn-rc250", label: "RC 250", price: 43699 },
+    { id: "undawn-rc920", label: "RC 920", price: 144599 }
+  ],
+  "blood-strike": [
+    { id: "bs-100", label: "100 + 5 Gold", price: 11999 },
+    { id: "bs-300", label: "300 + 20 Gold", price: 34999 }
+  ]
+  // Tambahkan game/produk lain di sini jika perlu
 };
 
 const VOUCHERS = [
@@ -313,6 +370,7 @@ function initGamePage() {
 
   qs("#game-banner").src = game.img;
   qs("#game-title").textContent = game.name;
+  qs("#user-guide").textContent = game.guide;
   
   const serverIdInput = qs("#server-id");
   if (!game.hasServerId) {
