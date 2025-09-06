@@ -8,8 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
-  <!-- HEADER -->
+<body data-page="index">
   <header class="header">
     <div class="container">
       <a href="index.html" class="logo">
@@ -17,29 +16,26 @@
         <span class="logo-text">Walz Shop</span>
       </a>
       <nav class="nav">
-        <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
-        <a href="#"><i class="fas fa-info-circle"></i> Tentang</a>
-        <a href="#"><i class="fas fa-headset"></i> Kontak</a>
+        <a href="index.html" class="nav-item active"><i class="fas fa-home"></i> Beranda</a>
+        <a href="#" class="nav-item"><i class="fas fa-info-circle"></i> Tentang</a>
+        <a href="#" class="nav-item"><i class="fas fa-headset"></i> Kontak</a>
       </nav>
+      <button class="nav-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
   </header>
 
-  <!-- MAIN -->
   <main class="main">
     <div class="container">
-      <!-- PROMO SLIDER -->
       <section class="promo-section">
         <div class="slider" id="promo-slider-container">
           <div class="slider__track" id="promo-slider">
-            <div class="slider__item"><img src="https://i.supaimg.com/8d5cdb59-812b-485a-9e46-6bb9d08754a2.jpg" alt="Promo 1"></div>
-            <div class="slider__item"><img src="https://i.supaimg.com/243f4a14-875d-423d-89e7-9f75c5a8f72f.jpg" alt="Promo 2"></div>
-            <div class="slider__item"><img src="https://i.supaimg.com/50d5cbec-5c9e-4e85-bf86-84f681c8c684.jpg" alt="Promo 3"></div>
-          </div>
+            </div>
           <div class="slider__dots" id="slider-dots"></div>
         </div>
       </section>
 
-      <!-- GAME GRID -->
       <section class="games-section">
         <h2 class="section-title">Pilih Game Favoritmu</h2>
         <div class="games-grid" id="games-grid"></div>
@@ -47,7 +43,6 @@
     </div>
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
       <p>&copy; 2025 Walz Shop. Semua hak dilindungi.</p>
