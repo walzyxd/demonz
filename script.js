@@ -27,49 +27,51 @@ const PAYMENTS = {
 
 const PRODUCTS = {
     "free-fire": [
-        { id: "ff-140-diamonds", label: "140 Diamonds", price: 15317, img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg" },
-        { id: "ff-70-diamonds", label: "70 Diamonds", price: 10000, img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg" },
+        { id: "ff-140-diamonds", label: "140 Diamonds", type: "diamond", price: 15317, icon: "https://files.catbox.moe/k37o1s.jpg" },
+        { id: "ff-70-diamonds", label: "70 Diamonds", type: "diamond", price: 10000, icon: "https://files.catbox.moe/k37o1s.jpg" },
     ],
     "mobile-legends": [
-        { id: "ml-14-bonus", label: "14 Diamonds", subLabel: "13 + 1 Bonus", price: 3829, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
-        { id: "ml-28-bonus", label: "28 Diamonds", subLabel: "26 + 2 Bonus", price: 7659, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
-        { id: "ml-42-bonus", label: "42 Diamonds", subLabel: "38 + 4 Bonus", price: 11487, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
+        { id: "ml-14-bonus", label: "14 Diamonds", subLabel: "13 + 1 Bonus", type: "diamond", price: 3829, icon: "https://i.supaimg.com/e5f3f01c-6d81-426b-80a5-f48259d6e4b8.png" },
+        { id: "ml-28-bonus", label: "28 Diamonds", subLabel: "26 + 2 Bonus", type: "diamond", price: 7659, icon: "https://i.supaimg.com/e5f3f01c-6d81-426b-80a5-f48259d6e4b8.png" },
+        { id: "ml-42-bonus", label: "42 Diamonds", subLabel: "38 + 4 Bonus", type: "diamond", price: 11487, icon: "https://i.supaimg.com/e5f3f01c-6d81-426b-80a5-f48259d6e4b8.png" },
+        { id: "ml-weekly-pass", label: "Weekly Diamond Pass", type: "special", price: 30000, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
+        { id: "ml-twilight-pass", label: "Twilight Pass", type: "special", price: 150000, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
     ],
     "honor-of-kings": [
-        { id: "hok-6-voucher", label: "6 Voucher", price: 2000, img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg" },
+        { id: "hok-6-voucher", label: "6 Voucher", type: "special", price: 2000, img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg" },
     ],
     "genshin-impact": [
-        { id: "gi-60-genesis", label: "60 Genesis Crystal", price: 15000, img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg" },
+        { id: "gi-60-genesis", label: "60 Genesis Crystal", type: "special", price: 15000, img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg" },
     ],
     "roblox": [
-        { id: "rb-100-robux", label: "100 Robux", price: 20000, img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg" },
+        { id: "rb-100-robux", label: "100 Robux", type: "special", price: 20000, img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg" },
     ],
     "super-sus": [
-        { id: "ss-60-stars", label: "60 Stars", price: 10000, img: "https://files.catbox.moe/j61uny.jpg" },
+        { id: "ss-60-stars", label: "60 Stars", type: "special", price: 10000, img: "https://files.catbox.moe/j61uny.jpg" },
     ],
     "clash-of-clans": [
-        { id: "coc-80-gems", label: "80 Gems", price: 15000, img: "https://files.catbox.moe/6aia0n.jpg" },
+        { id: "coc-80-gems", label: "80 Gems", type: "special", price: 15000, img: "https://files.catbox.moe/6aia0n.jpg" },
     ],
     "blood-strike": [
-        { id: "bs-60-gold", label: "60 Gold", price: 10000, img: "https://files.catbox.moe/3y066i.jpg" },
+        { id: "bs-60-gold", label: "60 Gold", type: "special", price: 10000, img: "https://files.catbox.moe/3y066i.jpg" },
     ],
     "pubg": [
-        { id: "pubg-60-uc", label: "60 UC", price: 15000, img: "https://files.catbox.moe/tatuo9.jpg" },
+        { id: "pubg-60-uc", label: "60 UC", type: "special", price: 15000, img: "https://files.catbox.moe/tatuo9.jpg" },
     ],
     "garena-delta": [
-        { id: "gd-125-diamonds", label: "125 Diamonds", price: 10000, img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png" },
+        { id: "gd-125-diamonds", label: "125 Diamonds", type: "diamond", price: 10000, icon: "https://files.catbox.moe/k37o1s.jpg" },
     ],
     "garena-undawn": [
-        { id: "gu-60-credits", label: "60 Credits", price: 10000, img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png" },
+        { id: "gu-60-credits", label: "60 Credits", type: "special", price: 10000, img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png" },
     ],
     "valorant": [
-        { id: "val-125-points", label: "125 VP", price: 15000, img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png" },
+        { id: "val-125-points", label: "125 VP", type: "special", price: 15000, img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png" },
     ],
     "call-of-duty": [
-        { id: "cod-80-cp", label: "80 CP", price: 15000, img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp" },
+        { id: "cod-80-cp", label: "80 CP", type: "special", price: 15000, img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp" },
     ],
     "eggy-party": [
-        { id: "ep-100-gems", label: "100 Gems", price: 10000, img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg" },
+        { id: "ep-100-gems", label: "100 Gems", type: "special", price: 10000, img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg" },
     ],
 };
 
@@ -131,7 +133,7 @@ function updateSummary() {
         const totalHarga = product.price;
 
         summaryProductDetails.innerHTML = `
-            <img src="${product.img}" alt="Product Icon">
+            <img src="${product.type === 'diamond' ? product.icon : product.img}" alt="Product Icon">
             <span class="product-text">${product.label}</span>
         `;
         summaryPrice.innerHTML = `<span class="price-text">${formatRupiah(totalHarga)}</span>`;
@@ -252,13 +254,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (game && productListContainer && paymentListContainer) {
         gameKeyInput.value = gameKey;
 
-        // Display game info header
         gameInfoHeader.innerHTML = `
             <img src="${game.img}" alt="${game.name}" class="game-img">
             <h2>${game.name}</h2>
         `;
 
-        // Check for games that need server ID
         if (game.key === 'genshin-impact' || game.key === 'pubg') {
             document.getElementById('server-id-group').style.display = 'block';
         }
@@ -269,13 +269,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 const productDiv = document.createElement("div");
                 productDiv.classList.add("option-card");
                 productDiv.setAttribute('data-id', product.id);
-                productDiv.innerHTML = `
-                    <input type="radio" name="product_id" value="${product.id}" style="display:none;" required>
-                    <img src="${product.img}" alt="${product.label}">
-                    <div class="label">${product.label}</div>
-                    ${product.subLabel ? `<div class="sub-label">${product.subLabel}</div>` : ''}
-                    <div class="price">${formatRupiah(product.price)}</div>
-                `;
+
+                if (product.type === "diamond") {
+                    productDiv.classList.add("diamond");
+                    productDiv.innerHTML = `
+                        <input type="radio" name="product_id" value="${product.id}" style="display:none;" required>
+                        <img src="${product.icon}" alt="Diamond Icon" class="diamond-icon">
+                        <div class="label">${product.label}</div>
+                        ${product.subLabel ? `<div class="sub-label">${product.subLabel}</div>` : ''}
+                        <div class="price">${formatRupiah(product.price)}</div>
+                    `;
+                } else {
+                    productDiv.innerHTML = `
+                        <input type="radio" name="product_id" value="${product.id}" style="display:none;" required>
+                        <img src="${product.img}" alt="${product.label}">
+                        <div class="label">${product.label}</div>
+                        <div class="price">${formatRupiah(product.price)}</div>
+                    `;
+                }
+
                 productDiv.onclick = () => {
                     selectOption(productDiv, 'product');
                     productDiv.querySelector('input').checked = true;
@@ -285,14 +297,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         for (const category in PAYMENTS) {
-            const categoryTitle = document.createElement("h4");
-            categoryTitle.innerText = category.replace(/_/g, ' ').toUpperCase();
-            categoryTitle.classList.add('category-title');
-            paymentListContainer.appendChild(categoryTitle);
-
             PAYMENTS[category].forEach(payment => {
                 const paymentDiv = document.createElement("div");
-                paymentDiv.classList.add("option-card");
+                paymentDiv.classList.add("option-card", "payment");
                 paymentDiv.setAttribute('data-id', payment.id);
                 paymentDiv.innerHTML = `
                     <input type="radio" name="payment_id" value="${payment.id}" style="display:none;" required>
@@ -337,7 +344,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const userId = getUrlParameter('user_id');
     const serverId = getUrlParameter('server_id');
 
-    if (document.getElementById('cart-summary') && gameKeyCart && productId && paymentId && userId) {
+    if (document.getElementById('cart-summary-card') && gameKeyCart && productId && paymentId && userId) {
         const game = GAMES.find(g => g.key === gameKeyCart);
         const product = PRODUCTS[gameKeyCart].find(p => p.id === productId);
         let payment = null;
@@ -362,7 +369,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById('cart-payment-name').innerText = payment.name;
 
             const paymentInfoContainer = document.getElementById('cart-payment-info');
-            paymentInfoContainer.innerHTML = ''; // Clear previous content
+            paymentInfoContainer.innerHTML = '';
 
             const paymentInfoData = {
                 "bank-krom": { number: "8009123456", name: "TI** SUT***" },
@@ -376,7 +383,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (selectedPaymentInfo.number) {
                     paymentInfoContainer.innerHTML = `
                         <div class="payment-details-info">
-                            Nomor Rekening: <span id="account-number">${selectedPaymentInfo.number}</span>
+                            <p>Nomor Rekening: <span id="account-number">${selectedPaymentInfo.number}</span></p>
                             <p>A.n: ${selectedPaymentInfo.name}</p>
                             <button class="copy-button" onclick="copyToClipboard('account-number')">Salin Nomor</button>
                         </div>
