@@ -1,4 +1,3 @@
-// --- Data Website Anda ---
 const GAMES = [
     { key: "free-fire", name: "Free Fire", description: "Garena", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", url: "game.html?key=free-fire" },
     { key: "mobile-legends", name: "Mobile Legends", description: "Moonton", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", url: "game.html?key=mobile-legends" },
@@ -329,7 +328,7 @@ function renderGameCards() {
     gameListContainer.innerHTML = '';
     GAMES.forEach(game => {
         const gameCard = document.createElement('div');
-        gameCard.classList.add('game-card-custom');
+        gameCard.classList.add("game-card-custom");
         gameCard.innerHTML = `
             <a href="${game.url}">
                 <img src="${game.img}" alt="${game.name}" class="game-card-img">
@@ -480,6 +479,11 @@ function setupGamePage() {
         const userId = userIdInput.value;
         const serverId = serverIdInput ? serverIdInput.value : '';
 
+        if (!userId || !selectedProductCard || !selectedPaymentCard) {
+            alert("Harap lengkapi semua data: ID pengguna, produk, dan pembayaran.");
+            return;
+        }
+
         const productId = selectedProductCard.dataset.id;
         const paymentId = selectedPaymentCard.dataset.id;
         const product = PRODUCTS[gameKey].find(p => p.id === productId);
@@ -532,7 +536,7 @@ function setupCartPage() {
     if (!cartSummaryCard) return;
 
     const game = GAMES.find(g => g.key === gameKeyCart);
-    const product = PRODUCTS[gameKeyCart].find(p => p.id === productId);
+    const product = PRODUCTS[gameKeyCart] ? PRODUCTS[gameKeyCart].find(p => p.id === productId) : null;
     let payment = null;
     for (const category in PAYMENTS) {
         const foundPayment = PAYMENTS[category].find(p => p.id === paymentId);
