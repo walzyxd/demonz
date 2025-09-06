@@ -1,23 +1,23 @@
 /* ======================== */
 /* General Styles & Fonts  */
 /* ======================== */
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 :root {
     --purple-dark: #200a40;
-    --purple-mid: #4a218d; /* Ungu lebih cerah */
-    --card-bg: #5d2eab;   /* Ungu lebih cerah */
+    --purple-mid: #4a218d;
+    --card-bg: #5d2eab;
     --text-color: #ffffff;
     --text-dark: #333333;
     --text-light: #d4c5e3;
-    --accent-color: #ffd700; /* Kuning Emas untuk Diamond */
-    --price-color: #ff3b30;  /* Merah untuk harga */
-    --accent-gradient: linear-gradient(135deg, #a745ff, #8a2be2); /* Ungu gradien */
+    --accent-color: #ffd700;
+    --price-color: #ff3b30;
+    --accent-gradient: linear-gradient(135deg, #a745ff, #8a2be2);
     --button-gradient: linear-gradient(135deg, #6230b0, #7b36d6);
-    --selected-border: #ffd700; /* Border kuning */
-    --special-badge-bg: #ff3b30; /* Merah untuk badge */
+    --selected-border: #ffd700;
+    --special-badge-bg: #ff3b30;
     --voucher-btn-bg: #8a2be2;
+    --header-bg-rgba: rgba(32, 10, 64, 0.7);
 }
 
 * {
@@ -51,12 +51,19 @@ a {
 /* ======================== */
 /* Header */
 /* ======================== */
-
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--header-bg-rgba);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .header .logo-link {
@@ -88,7 +95,6 @@ a {
 /* ======================== */
 /* Game List & Cards (Home) */
 /* ======================== */
-
 .game-grid-custom {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
@@ -98,7 +104,7 @@ a {
 
 .game-card-custom {
     background: var(--card-bg);
-    border-radius: 15px; /* Kotak bundar */
+    border-radius: 15px;
     overflow: hidden;
     position: relative;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -137,7 +143,6 @@ a {
 /* ======================== */
 /* Game Page Styles */
 /* ======================== */
-
 .game-page-container {
     position: relative;
 }
@@ -165,7 +170,7 @@ a {
     background: var(--card-bg);
     border-radius: 15px;
     margin-bottom: 20px;
-    margin-top: 30px; /* Jarak dari tombol kembali */
+    margin-top: 30px;
 }
 
 .game-info-header .game-img {
@@ -246,6 +251,16 @@ a {
 
 .input-group {
     margin-bottom: 15px;
+    position: relative;
+}
+
+.input-group .input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    font-size: 1em;
 }
 
 .input-group-grid {
@@ -253,13 +268,14 @@ a {
     gap: 10px;
 }
 
-.input-group-grid input {
-    width: 100%;
+.input-group-grid .input-group {
+    flex-grow: 1;
 }
 
 .input-group input, .input-group-grid input {
     width: 100%;
     padding: 12px 15px;
+    padding-left: 45px;
     background-color: var(--card-bg);
     border: 1px solid transparent;
     border-radius: 10px;
@@ -284,8 +300,8 @@ a {
 }
 
 .option-card {
-    background: var(--card-bg);
-    border-radius: 15px; /* Kotak bundar */
+    background: #ffffff;
+    border-radius: 15px;
     text-align: center;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
@@ -302,21 +318,31 @@ a {
 
 .option-card.selected {
     border-color: var(--selected-border);
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-    background: linear-gradient(135deg, #4d2691, #612fbd);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    transform: scale(1.05);
+    animation: pulse-border 1s infinite alternate;
+}
+
+@keyframes pulse-border {
+    from {
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 1);
+    }
 }
 
 .option-card .label {
     font-size: 0.9em;
     font-weight: 500;
     margin-bottom: 5px;
-    color: var(--text-dark); /* Teks Diamonds hitam */
+    color: var(--text-dark);
 }
 
 .option-card .price {
     font-size: 1em;
     font-weight: bold;
-    color: var(--price-color); /* Harga merah */
+    color: var(--price-color);
 }
 
 .option-card .icon {
@@ -325,23 +351,8 @@ a {
     margin-bottom: 5px;
 }
 
-.option-card.diamond {
-    background-color: #ffffff; /* Latar belakang putih */
-}
-
-.special-badge {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: var(--special-badge-bg);
-    color: white;
-    font-size: 0.7em;
-    padding: 2px 8px;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
 .option-card.payment {
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -360,12 +371,24 @@ a {
 .option-card.payment .label {
     margin: 0;
     font-size: 0.85em;
-    color: var(--text-color);
+    color: var(--text-dark);
 }
 
 .option-card.payment .sub-label {
     font-size: 0.7em;
-    color: var(--text-light);
+    color: #888;
+}
+
+.special-badge {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: var(--special-badge-bg);
+    color: white;
+    font-size: 0.7em;
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-weight: bold;
 }
 
 .voucher-input-group {
@@ -376,6 +399,7 @@ a {
 
 .voucher-input {
     flex-grow: 1;
+    padding-left: 15px !important;
 }
 
 .voucher-button {
@@ -443,7 +467,6 @@ a {
 /* ======================== */
 /* Cart Page Styles */
 /* ======================== */
-
 .cart-page-container {
     display: flex;
     flex-direction: column;
@@ -491,6 +514,11 @@ a {
     font-weight: 500;
 }
 
+.summary-detail-item .payment-image {
+    height: 25px;
+    vertical-align: middle;
+}
+
 .summary-total {
     display: flex;
     justify-content: space-between;
@@ -502,7 +530,6 @@ a {
 /* ======================== */
 /* Footer */
 /* ======================== */
-
 .footer {
     background-color: #200a40;
     padding: 20px 0;
