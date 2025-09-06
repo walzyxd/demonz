@@ -108,8 +108,34 @@ function closeNotification() {
     document.getElementById('notification-popup').style.display = 'none';
 }
 
-// Logika untuk halaman game.html
+function renderGameCards() {
+    const gameListContainer = document.getElementById('game-list');
+    if (!gameListContainer) return;
+
+    GAMES.forEach(game => {
+        const gameCard = document.createElement('a');
+        gameCard.classList.add('game-card-custom');
+        gameCard.href = game.url;
+        gameCard.innerHTML = `
+            <img src="${game.img}" alt="${game.name}" class="game-card-img">
+            <div class="game-card-content-custom">
+                <h3>${game.name}</h3>
+                <p>${game.description}</p>
+            </div>
+        `;
+        gameListContainer.appendChild(gameCard);
+    });
+}
+
+
+// --- Logika Halaman ---
 document.addEventListener("DOMContentLoaded", () => {
+    // Check if it's the home page
+    if (document.getElementById('game-list')) {
+        renderGameCards();
+    }
+
+    // Check if it's the game top-up page
     const gameKey = getUrlParameter('key');
     const game = GAMES.find(g => g.key === gameKey);
     const productListContainer = document.getElementById("product-list");
@@ -119,12 +145,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (game && productListContainer && paymentListContainer) {
         gameKeyInput.value = gameKey;
 
-        // Tampilkan Server ID jika game membutuhkannya
         if (game.hasServerId) {
             document.getElementById('server-id-group').style.display = 'block';
         }
 
-        // Render Product Options
         const products = PRODUCTS[gameKey];
         if (products) {
             products.forEach(product => {
@@ -145,7 +169,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Render Payment Options
         for (const category in PAYMENTS) {
             const categoryTitle = document.createElement("h4");
             categoryTitle.innerText = category.replace(/_/g, ' ').toUpperCase();
@@ -175,22 +198,15 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
         
-        // Atur event listener untuk input User ID
         const userIdInput = document.getElementById('user-id');
         const serverIdInput = document.getElementById('server-id');
-        userIdInput.addEventListener('input', () => {
-            updateSummary();
-        });
+        userIdInput.addEventListener('input', updateSummary);
         if (serverIdInput) {
-            serverIdInput.addEventListener('input', () => {
-                updateSummary();
-            });
+            serverIdInput.addEventListener('input', updateSummary);
         }
 
-        // Sembunyikan summary card secara default
         document.getElementById('summary-card').style.display = 'none';
         
-        // Atur logika notifikasi
         document.getElementById('confirm-button').addEventListener('click', (e) => {
             if (!document.querySelector('#payment-list .option-card.selected')) {
                 e.preventDefault();
@@ -199,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Logika untuk halaman cart.html
+    // Check if it's the cart page
     const gameKeyCart = getUrlParameter('key');
     const productId = getUrlParameter('product_id');
     const paymentId = getUrlParameter('payment_id');
