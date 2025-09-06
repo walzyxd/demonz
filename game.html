@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="game-title-page">Top Up Game</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body data-page="game">
 
@@ -31,30 +32,61 @@
 
         <div class="form-container">
             <section class="form-section">
-                <h2>1. Masukkan User ID</h2>
+                <div class="step-header">
+                    <span class="step-number">1</span>
+                    <h2>Masukkan User ID</h2>
+                </div>
                 <p class="guide-text" id="user-guide"></p>
                 <div class="input-group">
-                    <input type="text" id="user-id" placeholder="Masukkan User ID" required>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user icon"></i>
+                        <input type="text" id="user-id" placeholder="Masukkan User ID" required>
+                    </div>
                 </div>
                 <div class="input-group" id="server-id-group">
-                    <input type="text" id="server-id" placeholder="Masukkan Server ID">
+                    <div class="input-with-icon">
+                        <i class="fas fa-server icon"></i>
+                        <input type="text" id="server-id" placeholder="Masukkan Server ID (Opsional)">
+                    </div>
                 </div>
             </section>
 
             <section class="form-section">
-                <h2>2. Pilih Nominal Top Up</h2>
+                <div class="step-header">
+                    <span class="step-number">2</span>
+                    <h2>Pilih Nominal Top Up</h2>
+                </div>
                 <div class="grid-container products-grid" id="product-grid">
                     </div>
             </section>
 
             <section class="form-section">
-                <h2>3. Pilih Metode Pembayaran</h2>
+                <div class="step-header">
+                    <span class="step-number">3</span>
+                    <h2>Pilih Metode Pembayaran</h2>
+                </div>
                 <div class="grid-container payments-grid" id="payment-grid">
                     </div>
             </section>
 
+            <section class="form-section">
+                <div class="step-header">
+                    <span class="step-number">4</span>
+                    <h2>Kode Voucher</h2>
+                </div>
+                <div class="input-group">
+                    <div class="input-with-icon">
+                        <i class="fas fa-ticket-alt icon"></i>
+                        <input type="text" id="voucher-code" placeholder="Masukkan Kode Voucher (Opsional)">
+                    </div>
+                </div>
+            </section>
+
             <section class="form-section summary-section">
-                <h2>Ringkasan Pesanan</h2>
+                <div class="step-header">
+                    <span class="step-number">5</span>
+                    <h2>Ringkasan Pesanan</h2>
+                </div>
                 <div class="summary-box">
                     <div class="summary-item">
                         <span>Produk:</span>
