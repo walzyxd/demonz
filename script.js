@@ -564,7 +564,7 @@ function setupCartPage() {
         paymentInfoSection.innerHTML = paymentContent;
         
         payButton.addEventListener('click', () => {
-            const adminWhatsapp = '6282298902274'; 
+            const adminWhatsapp = '6282298902274'; // GANTI dengan nomor WhatsApp Anda
             const message = `Halo Admin, saya ingin konfirmasi pesanan saya.\n\n*Detail Pesanan:*\nGame: ${game.name}\nProduk: ${product.label}\nPlayer ID: ${userId}${serverId ? ` (${serverId})` : ''}\nMetode Pembayaran: ${payment.name}\nTotal: ${formatRupiah(finalPrice)}\n\nNomor WA saya: ${whatsappNumber}\n\nMohon bantuannya untuk diproses, terima kasih.`;
             const encodedMessage = encodeURIComponent(message);
             window.location.href = `https://wa.me/${adminWhatsapp}?text=${encodedMessage}`;
