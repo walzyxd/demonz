@@ -1,76 +1,96 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Walz Shop - Top Up</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Walz Shop — Top Up</title>
+
+  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="header">
+  <!-- HEADER -->
+  <header class="header" role="banner">
     <div class="container">
-      <a href="index.html" class="logo">
-        <i class="fas fa-gem logo-icon"></i>
-        <span class="logo-text">Walz Shop</span>
-      </a>
-      <nav class="nav">
-        <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
-        <a href="#"><i class="fas fa-info-circle"></i> Tentang</a>
-        <a href="#"><i class="fas fa-headset"></i> Kontak</a>
+      <a class="logo" href="index.html" aria-label="Walz Shop"><i class="fas fa-gem logo-icon"></i> Walz Shop</a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html" class="animated-underline"><i class="fas fa-home"></i> Beranda</a>
+        <button id="voucher-list-btn" class="text-button" type="button"><i class="fas fa-tags"></i> Voucher</button>
+        <a href="#" class="animated-underline"><i class="fas fa-headset"></i> Bantuan</a>
       </nav>
     </div>
   </header>
 
-  <main class="main">
+  <!-- MAIN -->
+  <main class="main" role="main">
     <div class="container">
       <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali</a>
-      <div class="game-banner fade-in">
-        <img id="game-banner" class="game-banner-image skeleton" src="" alt="Game Banner">
-        <h1 class="game-name-h1 skeleton-text"></h1>
-      </div>
 
-      <div class="form-container">
-        <form id="topup-form">
+      <!-- Banner -->
+      <section class="game-banner">
+        <img id="game-banner" class="game-banner-image skeleton" src="" alt="Game Banner" />
+        <div>
+          <h1 class="game-name-h1">Loading...</h1>
+          <p class="game-description lead" style="max-width:520px;"></p>
+        </div>
+      </section>
+
+      <!-- Form -->
+      <section class="form-container" aria-label="Form Top Up">
+        <form id="topup-form" novalidate>
           <div class="form-group">
             <label for="user-id"><i class="fas fa-user"></i> Masukkan User ID</label>
             <div class="input-group">
-              <input type="text" id="user-id" placeholder="Contoh: 12345678" required>
-              <input type="text" id="server-id" placeholder="Server ID (Opsional)">
+              <input id="user-id" type="text" inputmode="numeric" placeholder="Contoh: 12345678" aria-required="true" />
+              <input id="server-id" type="text" inputmode="numeric" placeholder="Server ID (Opsional)" />
             </div>
+            <p class="section-description">Pastikan User ID & Server ID (jika diperlukan) sesuai.</p>
           </div>
 
           <div class="form-group">
-            <label><i class="fas fa-dollar-sign"></i> Pilih Nominal Top Up</label>
-            <div class="product-grid" id="product-grid">
-              <div class="skeleton skeleton-card"></div>
-              <div class="skeleton skeleton-card"></div>
-              <div class="skeleton skeleton-card"></div>
+            <label><i class="fas fa-cubes"></i> Pilih Nominal Top Up</label>
+            <div id="product-grid" class="product-grid">
+              <!-- populated by script.js -->
             </div>
           </div>
 
           <div class="form-group">
             <label><i class="fas fa-credit-card"></i> Pilih Metode Pembayaran</label>
-            <div class="payment-grid" id="payment-grid">
-              <div class="skeleton skeleton-card"></div>
-              <div class="skeleton skeleton-card"></div>
-              <div class="skeleton skeleton-card"></div>
+            <div id="payment-grid" class="payment-grid">
+              <!-- populated by script.js -->
             </div>
           </div>
 
-          <button type="button" id="checkout-btn" class="btn btn-block btn-confirm" disabled>Beli Sekarang</button>
+          <button id="checkout-btn" type="button" class="btn btn-block btn-confirm" disabled>
+            <i class="fas fa-cart-shopping"></i> Beli Sekarang
+          </button>
         </form>
-      </div>
+
+        <p class="section-description" style="margin-top:.8rem"><i class="fas fa-lock"></i> Transaksi aman & otomatis. Simpan bukti pembayaran untuk klaim.</p>
+      </section>
     </div>
   </main>
 
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2025 Walz Shop. Semua hak dilindungi.</p>
+      <p>&copy; <span id="year"></span> Walz Shop. Semua hak dilindungi.</p>
     </div>
   </footer>
 
+  <!-- MODAL OVERLAY -->
+  <div id="modal-overlay" class="modal-overlay" aria-hidden="true">
+    <div id="promo-list-modal" class="modal" role="dialog" aria-modal="true"></div>
+    <div id="checkout-modal" class="modal" role="dialog" aria-modal="true"></div>
+    <div id="error-modal" class="modal" role="dialog" aria-modal="true"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   <script src="script.js"></script>
 </body>
 </html>
