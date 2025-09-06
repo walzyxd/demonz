@@ -4,9 +4,9 @@
     --bg-color-card: #27293d;
     --text-color-light: #f5f6f7;
     --text-color-dark: #b8b8d1;
-    --accent-color: #5d5dff;
+    --accent-color: #A350E7;
     --price-color: #ff3d85;
-    --selected-border: #5d5dff;
+    --selected-border: #A350E7;
     --shadow-light: rgba(0, 0, 0, 0.1);
     --shadow-dark: rgba(0, 0, 0, 0.25);
     --border-color: #3f4159;
@@ -44,6 +44,7 @@ a {
     padding: 20px 20px;
     background-color: var(--bg-color-card);
     box-shadow: 0 4px 12px var(--shadow-dark);
+    position: relative;
 }
 
 .logo {
@@ -51,6 +52,20 @@ a {
     font-weight: 700;
     color: var(--text-color-light);
     text-shadow: 2px 2px 4px var(--shadow-dark);
+}
+
+.back-button {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.8em;
+    color: var(--text-color-light);
+    transition: color 0.3s ease;
+}
+
+.back-button:hover {
+    color: var(--accent-color);
 }
 
 /* Main Content */
@@ -167,29 +182,74 @@ a {
 
 /* Footer */
 .footer {
-    text-align: center;
-    padding: 20px;
     background-color: var(--bg-color-card);
+    color: var(--text-color-light);
+    padding: 40px 20px;
     margin-top: 40px;
     box-shadow: 0 -4px 12px var(--shadow-dark);
-    font-size: 0.9em;
 }
 
-.footer-links a,
-.social-links a {
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-section h3 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+}
+
+.footer-section p, .footer-section ul {
+    font-size: 0.9em;
     color: var(--text-color-dark);
-    margin: 0 10px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section a {
+    color: var(--text-color-dark);
     transition: color 0.3s ease;
 }
 
-.footer-links a:hover,
+.footer-section a:hover {
+    color: var(--text-color-light);
+}
+
+.social-links a {
+    font-size: 1.5em;
+    margin-right: 15px;
+    color: var(--text-color-dark);
+    transition: color 0.3s ease;
+}
+
 .social-links a:hover {
     color: var(--accent-color);
 }
 
-.social-links {
-    margin-top: 15px;
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
 }
+
 
 /* Game Page Styles (game.html) */
 .game-info {
@@ -429,19 +489,20 @@ input[type="text"]:focus {
     border: none;
     border-radius: 6px;
     background-color: var(--accent-color);
-    color: var(--text-color-light);
+    color: white;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .input-group .apply-btn:hover {
-    background-color: #4b4bbd;
+    background-color: #794ACF; /* slightly darker purple */
 }
 
 /* Summary Card */
 .summary-card {
     display: none;
+    flex-direction: column;
     background-color: var(--bg-color-card);
     padding: 20px;
     border-radius: 12px;
@@ -508,7 +569,7 @@ input[type="text"]:focus {
 }
 
 .confirm-button:hover:not(:disabled) {
-    background-color: #4b4bbd;
+    background-color: #794ACF;
 }
 
 .confirm-button:disabled {
@@ -760,7 +821,7 @@ input[type="text"]:focus {
 }
 
 .modal-button:hover {
-    background-color: #4b4bbd;
+    background-color: #794ACF;
 }
 
 /* Notification Pop-up */
@@ -816,6 +877,10 @@ input[type="text"]:focus {
 @media (max-width: 768px) {
     .header {
         padding: 15px;
+    }
+    .back-button {
+        left: 10px;
+        font-size: 1.5em;
     }
 
     .logo {
