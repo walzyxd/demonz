@@ -9,7 +9,7 @@ const GAMES = [
     { key: "coc", name: "Clash of Clans", publisher: "Supercell", img: "https://files.catbox.moe/6aia0n.jpg", url: "game.html?key=coc", needsServerId: false },
     { key: "blood-strike", name: "Blood Strike", publisher: "NetEase", img: "https://files.catbox.moe/3y066i.jpg", url: "game.html?key=blood-strike", needsServerId: false },
     { key: "pubg", name: "PUBG Mobile", publisher: "Semua Region", img: "https://files.catbox.moe/tatuo9.jpg", url: "game.html?key=pubg", needsServerId: false },
-    { key: "garena-delta", name: "Garena Delta Force", publisher: "Garena Delta...", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", url: "game.html?key=garena-delta", needsServerId: false },
+    { key: "garena-delta", name: "Garena Delta Force", publisher: "Garena Delta...", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b39a5bd976.png", url: "game.html?key=garena-delta", needsServerId: false },
     { key: "garena-undawn", name: "Garena Undawn", publisher: "Garena", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", url: "game.html?key=garena-undawn", needsServerId: false },
     { key: "valorant", name: "Valorant", publisher: "Riot Games", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", url: "game.html?key=valorant", needsServerId: false },
     { key: "call-of-duty", name: "Call Of Duty", publisher: "Activision", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", url: "game.html?key=call-of-duty", needsServerId: false },
@@ -240,6 +240,7 @@ function renderProducts(gameKey) {
 
     productListContainer.innerHTML = '';
     const products = PRODUCTS[gameKey];
+    const voucherDiscount = 100; // Harga diskon voucher
 
     if (products) {
         products.forEach(product => {
@@ -253,7 +254,7 @@ function renderProducts(gameKey) {
                 badgeHtml = `<span class="special-badge">${badgeText}</span>`;
             }
 
-            const currentPrice = isVoucherApplied ? Math.max(0, product.price - 5000) : product.price;
+            const currentPrice = isVoucherApplied ? Math.max(0, product.price - voucherDiscount) : product.price;
 
             productDiv.innerHTML = `
                 ${badgeHtml}
@@ -315,7 +316,8 @@ function updateSummary() {
         
         const productId = selectedProductCard.dataset.id;
         const product = PRODUCTS[gameKey].find(p => p.id === productId);
-        const finalPrice = isVoucherApplied ? Math.max(0, product.price - 5000) : product.price;
+        const voucherDiscount = 100; // Harga diskon voucher
+        const finalPrice = isVoucherApplied ? Math.max(0, product.price - voucherDiscount) : product.price;
 
         document.getElementById('summary-product-details').innerHTML = `
             <i class="fas fa-gem" style="color:var(--accent-color);"></i>
@@ -454,12 +456,12 @@ function setupGamePage() {
     // Voucher button logic
     document.getElementById('use-voucher-btn').addEventListener('click', () => {
         const promoCode = promoCodeInput.value.toUpperCase(); // Ubah ke huruf besar untuk validasi
+        const voucherDiscount = 100;
         if (promoCode === "WALZPROMO") {
-            const discount = 5000;
             isVoucherApplied = true;
             renderProducts(gameKey); // Render ulang produk dengan harga diskon
             updateSummary(); // Update ringkasan
-            showNotification(`Voucher Berhasil digunakan! Potongan: ${formatRupiah(discount)}`, true);
+            showNotification(`Voucher Berhasil digunakan! Potongan: ${formatRupiah(voucherDiscount)}`, true);
         } else {
             isVoucherApplied = false;
             renderProducts(gameKey); // Render ulang produk dengan harga normal
@@ -508,7 +510,8 @@ function setupCartPage() {
     const payButton = document.getElementById('pay-button');
     
     if (game && product && payment && cartSummaryCard) {
-        const finalPrice = voucherApplied ? Math.max(0, product.price - 5000) : product.price;
+        const voucherDiscount = 100; // Harga diskon voucher
+        const finalPrice = voucherApplied ? Math.max(0, product.price - voucherDiscount) : product.price;
 
         cartSummaryCard.innerHTML = `
             <h3>Rincian Pesanan</h3>
@@ -561,8 +564,10 @@ function setupCartPage() {
         paymentInfoSection.innerHTML = paymentContent;
         
         payButton.addEventListener('click', () => {
-            alert('Pesanan Anda akan diproses! Silakan lakukan pembayaran.');
-            window.location.href = 'index.html';
+            const adminWhatsapp = '6282298902274'; 
+            const message = `Halo Admin, saya ingin konfirmasi pesanan saya.\n\n*Detail Pesanan:*\nGame: ${game.name}\nProduk: ${product.label}\nPlayer ID: ${userId}${serverId ? ` (${serverId})` : ''}\nMetode Pembayaran: ${payment.name}\nTotal: ${formatRupiah(finalPrice)}\n\nNomor WA saya: ${whatsappNumber}\n\nMohon bantuannya untuk diproses, terima kasih.`;
+            const encodedMessage = encodeURIComponent(message);
+            window.location.href = `https://wa.me/${adminWhatsapp}?text=${encodedMessage}`;
         });
     } else {
         cartSummaryCard.innerHTML = `
