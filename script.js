@@ -116,6 +116,13 @@ function renderGamePage() {
     renderPayments();
 
     setupCheckoutLogic(gameKey);
+
+    const backButton = document.getElementById('back-button');
+    if (backButton) {
+        backButton.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    }
 }
 
 function renderProducts(gameKey) {
