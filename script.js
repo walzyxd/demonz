@@ -1,5 +1,7 @@
 /* ================== KONFIGURASI ================== */
 const ADMIN_WA = "6282298902274";
+const QRIS_IMAGE = "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg"; // URL QRIS Anda
+const BANK_ACCOUNT = "1234567890"; // Nomor rekening Anda
 
 const GAMES = [
     { key: "free-fire", name: "Free Fire", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", bannerImg: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", hasServerId: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game.", url: "game.html?key=free-fire" },
@@ -26,10 +28,10 @@ const PROMOS = [
 ];
 
 const PAYMENTS = [
-    { id: "dana", name: "DANA", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg" },
-    { id: "gopay", name: "GoPay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg" },
-    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg" },
-    { id: "krom-bank", name: "Krom Bank", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg" }
+    { id: "dana", name: "DANA", fee: 1000 },
+    { id: "gopay", name: "GoPay", fee: 1500 },
+    { id: "qris", name: "QRIS", fee: 0 },
+    { id: "krom-bank", name: "Krom Bank", fee: 0 }
 ];
 
 const PRODUCTS = {
@@ -231,6 +233,7 @@ const PRODUCTS = {
     ]
 };
 
+
 /* ================== HELPERS ================== */
 const qs = (s, p = document) => p.querySelector(s);
 const qsa = (s, p = document) => Array.from(p.querySelectorAll(s));
@@ -241,14 +244,26 @@ let selectedPayment = null;
 
 function refreshSummary() {
     const summaryProductEl = qs("#summary-product");
+    const summaryPaymentEl = qs("#summary-payment");
     const summaryPriceEl = qs("#summary-price");
     const checkoutBtn = qs("#checkout-btn");
 
     if (selectedProduct) {
         summaryProductEl.textContent = selectedProduct.label;
-        summaryPriceEl.textContent = fmtIDR(selectedProduct.price);
     } else {
         summaryProductEl.textContent = "-";
+    }
+    
+    if (selectedPayment) {
+        summaryPaymentEl.textContent = selectedPayment.name;
+    } else {
+        summaryPaymentEl.textContent = "-";
+    }
+
+    if (selectedProduct && selectedPayment) {
+        const totalPrice = selectedProduct.price + selectedPayment.fee;
+        summaryPriceEl.textContent = fmtIDR(totalPrice);
+    } else {
         summaryPriceEl.textContent = "-";
     }
 
@@ -257,6 +272,21 @@ function refreshSummary() {
     } else {
         checkoutBtn.disabled = true;
     }
+}
+
+function updatePaymentPrices() {
+    qsa(".payment-item").forEach(item => {
+        const paymentId = item.dataset.id;
+        const payment = PAYMENTS.find(p => p.id === paymentId);
+        
+        const priceEl = item.querySelector(".price");
+        if (selectedProduct && payment) {
+            const totalPrice = selectedProduct.price + payment.fee;
+            priceEl.textContent = fmtIDR(totalPrice);
+        } else {
+            priceEl.textContent = "-";
+        }
+    });
 }
 
 function validateForm(hasServer) {
@@ -283,13 +313,15 @@ function validateForm(hasServer) {
 function saveTransactionData(game) {
     const userId = qs("#user-id").value.trim();
     const serverId = game.hasServerId ? qs("#server-id").value.trim() : null;
+    const totalPrice = selectedProduct.price + selectedPayment.fee;
+
     const transactionData = {
         game: game.name,
         userId: userId,
         serverId: serverId,
         product: selectedProduct.label,
         payment: selectedPayment.name,
-        price: selectedProduct.price
+        price: totalPrice
     };
     localStorage.setItem("walzShopTransaction", JSON.stringify(transactionData));
 }
@@ -305,15 +337,22 @@ function updateCartPage() {
     qs("#summary-payment").textContent = data.payment;
     qs("#summary-total").textContent = fmtIDR(data.price);
     
-    // Kirim data ke WhatsApp
+    // Siapkan pesan WhatsApp
     const waMsg = `Halo Admin, saya ingin konfirmasi pesanan top-up:
 *Game:* ${data.game}
 *User ID:* ${data.userId}
 ${data.serverId ? `*Server ID:* ${data.serverId}\n` : ""}*Produk:* ${data.product}
 *Metode:* ${data.payment}
 *Total:* ${fmtIDR(data.price)}
-Terima kasih.`;
-    window.open(`https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(waMsg)}`, '_blank');
+${data.payment === 'QRIS' ? `*Silakan scan QRIS berikut untuk melakukan pembayaran:* ${QRIS_IMAGE}` : `*Silakan transfer ke rekening ini:* ${BANK_ACCOUNT}`}
+Terima kasih, mohon segera diproses setelah bukti transfer dikirim.`;
+
+    const waBtn = qs("#wa-btn");
+    waBtn.href = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(waMsg)}`;
+    waBtn.addEventListener('click', (e) => {
+        // Hapus data transaksi setelah dikirim ke WA
+        localStorage.removeItem("walzShopTransaction");
+    });
 }
 
 /* ================== INIT ================== */
@@ -404,10 +443,9 @@ function initGamePage() {
     qs("#game-title").textContent = game.name;
     qs("#user-guide").textContent = game.guide;
     
-    const serverIdInput = qs("#server-id");
+    const serverIdGroup = qs("#server-id-group");
     if (!game.hasServerId) {
-        serverIdInput.style.display = "none";
-        qs("label[for='server-id']").style.display = "none";
+        serverIdGroup.style.display = "none";
     }
 
     const productGrid = qs("#product-grid");
@@ -425,8 +463,8 @@ function initGamePage() {
     if (paymentGrid) {
         paymentGrid.innerHTML = PAYMENTS.map(pay => `
             <div class="payment-item" data-id="${pay.id}">
-              <img src="${pay.img}" alt="${pay.name}">
               <div class="label">${pay.name}</div>
+              <div class="price">-</div>
             </div>
         `).join("");
     }
@@ -440,6 +478,7 @@ function initGamePage() {
                 label: item.querySelector(".label").textContent,
                 price: parseInt(item.dataset.price)
             };
+            updatePaymentPrices();
             refreshSummary();
         });
     });
@@ -465,5 +504,6 @@ function initGamePage() {
         }
     });
     
+    updatePaymentPrices();
     refreshSummary();
 }
