@@ -1,26 +1,26 @@
 // --- Data Website Anda ---
 const GAMES = [
-    { key: "free-fire", name: "Free Fire", publisher: "Garena", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", url: "game.html?key=free-fire", needsServerId: false },
-    { key: "mobile-legends", name: "Mobile Legends", publisher: "Moonton", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", url: "game.html?key=mobile-legends", needsServerId: true },
-    { key: "honor-of-kings", name: "Honor of Kings", publisher: "Level Infinite", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", url: "game.html?key=honor-of-kings", needsServerId: true },
-    { key: "genshin-impact", name: "Genshin Impact", publisher: "Hoyoverse", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", url: "game.html?key=genshin-impact", needsServerId: true },
-    { key: "roblox", name: "Roblox", publisher: "Roblox Corporation", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", url: "game.html?key=roblox", needsServerId: false },
-    { key: "super-sus", name: "Super Sus", publisher: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", url: "game.html?key=super-sus", needsServerId: true },
-    { key: "coc", name: "Clash of Clans", publisher: "Supercell", img: "https://files.catbox.moe/6aia0n.jpg", url: "game.html?key=coc", needsServerId: false },
-    { key: "blood-strike", name: "Blood Strike", publisher: "NetEase", img: "https://files.catbox.moe/3y066i.jpg", url: "game.html?key=blood-strike", needsServerId: false },
-    { key: "pubg", name: "PUBG Mobile", publisher: "Semua Region", img: "https://files.catbox.moe/tatuo9.jpg", url: "game.html?key=pubg", needsServerId: false },
-    { key: "garena-delta", name: "Garena Delta Force", publisher: "Garena Delta...", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b39a5bd976.png", url: "game.html?key=garena-delta", needsServerId: false },
-    { key: "garena-undawn", name: "Garena Undawn", publisher: "Garena", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", url: "game.html?key=garena-undawn", needsServerId: false },
-    { key: "valorant", name: "Valorant", publisher: "Riot Games", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", url: "game.html?key=valorant", needsServerId: false },
-    { key: "call-of-duty", name: "Call Of Duty", publisher: "Activision", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", url: "game.html?key=call-of-duty", needsServerId: false },
-    { key: "eggy-party", name: "Eggy Party", publisher: "NetEase Games", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", url: "game.html?key=eggy-party", needsServerId: false },
+    { key: "free-fire", name: "Free Fire", publisher: "Garena", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=free-fire", needsServerId: false },
+    { key: "mobile-legends", name: "Mobile Legends", publisher: "Moonton", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=mobile-legends", needsServerId: true },
+    { key: "honor-of-kings", name: "Honor of Kings", publisher: "Level Infinite", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=honor-of-kings", needsServerId: true },
+    { key: "genshin-impact", name: "Genshin Impact", publisher: "Hoyoverse", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=genshin-impact", needsServerId: true },
+    { key: "roblox", name: "Roblox", publisher: "Roblox Corporation", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=roblox", needsServerId: false },
+    { key: "super-sus", name: "Super Sus", publisher: "Super Sus", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=super-sus", needsServerId: true },
+    { key: "coc", name: "Clash of Clans", publisher: "Supercell", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=coc", needsServerId: false },
+    { key: "blood-strike", name: "Blood Strike", publisher: "NetEase", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=blood-strike", needsServerId: false },
+    { key: "pubg", name: "PUBG Mobile", publisher: "Semua Region", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=pubg", needsServerId: false },
+    { key: "garena-delta", name: "Garena Delta Force", publisher: "Garena Delta...", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=garena-delta", needsServerId: false },
+    { key: "garena-undawn", name: "Garena Undawn", publisher: "Garena", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=garena-undawn", needsServerId: false },
+    { key: "valorant", name: "Valorant", publisher: "Riot Games", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=valorant", needsServerId: false },
+    { key: "call-of-duty", name: "Call Of Duty", publisher: "Activision", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=call-of-duty", needsServerId: false },
+    { key: "eggy-party", name: "Eggy Party", publisher: "NetEase Games", img: "https://i.ibb.co/680pD67/walzshop-logo.png", url: "game.html?key=eggy-party", needsServerId: false },
 ];
 
 const PAYMENTS = [
-    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", qr: "https://files.catbox.moe/pa0iwo.png" },
-    { id: "krom", name: "Bank Krom", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", number: "770072009565", holder: "Walzshop ID" },
-    { id: "dana", name: "Dana", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", number: "083139243389", holder: "Anom" },
-    { id: "gopay", name: "Gopay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", number: "082298902274", holder: "Anom" }
+    { id: "qris", name: "QRIS", img: "https://i.ibb.co/680pD67/walzshop-logo.png", qr: "https://i.ibb.co/680pD67/walzshop-logo.png" },
+    { id: "krom", name: "Bank Krom", img: "https://i.ibb.co/680pD67/walzshop-logo.png", number: "770072009565", holder: "Walzshop ID" },
+    { id: "dana", name: "Dana", img: "https://i.ibb.co/680pD67/walzshop-logo.png", number: "083139243389", holder: "Anom" },
+    { id: "gopay", name: "Gopay", img: "https://i.ibb.co/680pD67/walzshop-logo.png", number: "082298902274", holder: "Anom" }
 ];
 
 const PRODUCTS = {
@@ -240,7 +240,7 @@ function renderProducts(gameKey) {
 
     productListContainer.innerHTML = '';
     const products = PRODUCTS[gameKey];
-    const voucherDiscount = 100; // Harga diskon voucher
+    const voucherDiscount = 100;
 
     if (products) {
         products.forEach(product => {
@@ -303,7 +303,7 @@ function updateSummary() {
     const isProductSelected = !!selectedProductCard;
     const isPaymentSelected = !!selectedPaymentCard;
     const isIdValid = userIdInput && userIdInput.value.length > 0;
-    const isWhatsappValid = whatsappInput && whatsappInput.value.length > 0;
+    const isWhatsappValid = whatsappInput && window.iti.isValidNumber();
 
     let isServerIdValid = true;
     if (game && game.needsServerId) {
@@ -316,7 +316,7 @@ function updateSummary() {
         
         const productId = selectedProductCard.dataset.id;
         const product = PRODUCTS[gameKey].find(p => p.id === productId);
-        const voucherDiscount = 100; // Harga diskon voucher
+        const voucherDiscount = 100;
         const finalPrice = isVoucherApplied ? Math.max(0, product.price - voucherDiscount) : product.price;
 
         document.getElementById('summary-product-details').innerHTML = `
@@ -334,7 +334,6 @@ function showNotification(message, isSuccess = true) {
     const container = document.querySelector('.notification-container') || document.body.appendChild(document.createElement('div'));
     container.classList.add('notification-container');
     
-    // Hapus notifikasi yang sudah ada
     container.innerHTML = '';
 
     const popup = document.createElement('div');
@@ -389,6 +388,7 @@ function setupGamePage() {
     const gameInfoHeader = document.getElementById("game-info-header");
     const serverIdContainer = document.getElementById("server-id-container");
     const promoCodeInput = document.getElementById('promo-code');
+    const whatsappInput = document.getElementById('whatsapp-number');
 
     if (!game || !productListContainer || !paymentListContainer) {
         window.location.href = 'index.html';
@@ -451,7 +451,7 @@ function setupGamePage() {
     if (game.needsServerId) {
         document.getElementById('server-id').addEventListener('input', updateSummary);
     }
-    document.getElementById('whatsapp-number').addEventListener('input', updateSummary);
+    whatsappInput.addEventListener('input', updateSummary);
     
     // Voucher button logic
     document.getElementById('use-voucher-btn').addEventListener('click', () => {
@@ -478,10 +478,10 @@ function setupGamePage() {
         const paymentId = selectedPaymentCard ? selectedPaymentCard.dataset.id : '';
         const userId = document.getElementById('user-id').value;
         const serverId = game.needsServerId ? document.getElementById('server-id').value : '';
-        const whatsappNumber = document.getElementById('whatsapp-number').value;
+        const whatsappNumber = window.iti.getNumber(); // Dapatkan nomor lengkap dari intl-tel-input
 
         // Ensure all required fields are filled before navigating
-        if (productId && paymentId && userId && whatsappNumber) {
+        if (productId && paymentId && userId && window.iti.isValidNumber() && (game.needsServerId ? serverId : true)) {
             const url = `cart.html?game_key=${gameKey}&product_id=${productId}&payment_id=${paymentId}&user_id=${userId}&server_id=${serverId}&whatsapp_number=${whatsappNumber}&voucher_applied=${isVoucherApplied}`;
             window.location.href = url;
         } else {
@@ -491,6 +491,14 @@ function setupGamePage() {
 }
 
 // --- Logika Halaman Cart ---
+// Tambahkan kredensial API Anda di sini. Ini hanya simulasi, dalam produksi HARUS disimpan di sisi server.
+const API_KEY = "7X-VyEtH6tt";
+const TENANT_ID = "7X-VyEtH6tt";
+const DOMAIN = "8392A491389F4152841A5DE101D7D6D3";
+
+let userRating = 0;
+let reviewText = "";
+
 function setupCartPage() {
     const params = new URLSearchParams(window.location.search);
     const gameKey = params.get('game_key');
@@ -508,9 +516,13 @@ function setupCartPage() {
     const cartSummaryCard = document.getElementById('cart-summary-card');
     const paymentInfoSection = document.getElementById('payment-info-section');
     const payButton = document.getElementById('pay-button');
+    const ratingModal = document.getElementById('rating-modal');
+    const closeModalBtn = document.getElementById('close-modal');
+    const closeAndPayBtn = document.getElementById('close-and-pay-btn');
+    const reviewTextarea = document.getElementById('review-text');
     
     if (game && product && payment && cartSummaryCard) {
-        const voucherDiscount = 100; // Harga diskon voucher
+        const voucherDiscount = 100;
         const finalPrice = voucherApplied ? Math.max(0, product.price - voucherDiscount) : product.price;
 
         cartSummaryCard.innerHTML = `
@@ -563,12 +575,41 @@ function setupCartPage() {
 
         paymentInfoSection.innerHTML = paymentContent;
         
+        // Logika pop-up rating
         payButton.addEventListener('click', () => {
-            const adminWhatsapp = '6282298902274'; // GANTI dengan nomor WhatsApp Anda
-            const message = `Halo Admin, saya ingin konfirmasi pesanan saya.\n\n*Detail Pesanan:*\nGame: ${game.name}\nProduk: ${product.label}\nPlayer ID: ${userId}${serverId ? ` (${serverId})` : ''}\nMetode Pembayaran: ${payment.name}\nTotal: ${formatRupiah(finalPrice)}\n\nNomor WA saya: ${whatsappNumber}\n\nMohon bantuannya untuk diproses, terima kasih.`;
-            const encodedMessage = encodeURIComponent(message);
-            window.location.href = `https://wa.me/${adminWhatsapp}?text=${encodedMessage}`;
+            ratingModal.style.display = 'flex';
         });
+
+        // Event listener untuk tombol 'Kirim Ulasan' di modal
+        closeAndPayBtn.addEventListener('click', () => {
+            // Dapatkan data rating dan ulasan
+            userRating = document.querySelectorAll('.rating-stars .fa-star.rated').length;
+            reviewText = reviewTextarea.value;
+            
+            sendReviewToAPI(userId, game.name, userRating, reviewText);
+        });
+
+        // Event listener untuk tombol tutup modal
+        closeModalBtn.addEventListener('click', () => {
+            ratingModal.style.display = 'none';
+        });
+
+        // Event listener untuk rating bintang
+        const starContainer = document.querySelector('.rating-stars');
+        starContainer.addEventListener('click', (e) => {
+            if (e.target.tagName === 'I') {
+                userRating = parseInt(e.target.dataset.rating);
+                document.querySelectorAll('.rating-stars .fa-star').forEach(star => {
+                    const rating = parseInt(star.dataset.rating);
+                    if (rating <= userRating) {
+                        star.classList.add('rated');
+                    } else {
+                        star.classList.remove('rated');
+                    }
+                });
+            }
+        });
+        
     } else {
         cartSummaryCard.innerHTML = `
             <h3>Terjadi Kesalahan</h3>
@@ -577,6 +618,76 @@ function setupCartPage() {
         if(payButton) payButton.style.display = 'none';
         if(paymentInfoSection) paymentInfoSection.style.display = 'none';
     }
+}
+
+// FUNGSI BARU: Mengirim ulasan ke API
+async function sendReviewToAPI(userId, gameName, rating, review) {
+    // URL API Anda. Ganti dengan endpoint yang sesungguhnya.
+    const apiUrl = "https://your-backend-server.com/api/submit-review"; 
+    
+    // Data yang akan dikirim ke API
+    const dataToSend = {
+        api_key: API_KEY, // Ini hanya untuk simulasi, jangan lakukan di produksi!
+        tenant_id: TENANT_ID,
+        domain: DOMAIN,
+        player_id: userId,
+        game_name: gameName,
+        rating: rating,
+        review: review,
+        timestamp: new Date().toISOString()
+    };
+    
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                // Anda juga bisa menambahkan API key di header untuk keamanan tambahan
+                // 'Authorization': `Bearer ${API_KEY}`
+            },
+            body: JSON.stringify(dataToSend)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            showNotification('Ulasan berhasil dikirim!', true);
+            // Lanjutkan ke WhatsApp setelah sukses
+            redirectToWhatsApp();
+        } else {
+            // Jika ada error dari API
+            showNotification(`Gagal mengirim ulasan: ${result.message || 'Terjadi kesalahan.'}`, false);
+        }
+    } catch (error) {
+        // Jika ada masalah koneksi
+        showNotification('Gagal terhubung ke server. Silakan coba lagi.', false);
+        console.error('Error:', error);
+    }
+}
+
+// FUNGSI BARU: Mengarahkan pengguna ke WhatsApp
+function redirectToWhatsApp() {
+    const params = new URLSearchParams(window.location.search);
+    const gameKey = params.get('game_key');
+    const productId = params.get('product_id');
+    const paymentId = params.get('payment_id');
+    const userId = params.get('user_id');
+    const serverId = params.get('server_id');
+    const whatsappNumber = params.get('whatsapp_number');
+    const voucherApplied = params.get('voucher_applied') === 'true';
+    
+    const game = GAMES.find(g => g.key === gameKey);
+    const product = PRODUCTS[gameKey] ? PRODUCTS[gameKey].find(p => p.id === productId) : null;
+    const payment = PAYMENTS.find(p => p.id === paymentId);
+    
+    const voucherDiscount = 100;
+    const finalPrice = voucherApplied ? Math.max(0, product.price - voucherDiscount) : product.price;
+
+    const adminWhatsapp = '6282298902274'; // GANTI dengan nomor WhatsApp Anda
+    const message = `Halo Admin, saya ingin konfirmasi pesanan saya.\n\n*Detail Pesanan:*\nGame: ${game.name}\nProduk: ${product.label}\nPlayer ID: ${userId}${serverId ? ` (${serverId})` : ''}\nMetode Pembayaran: ${payment.name}\nTotal: ${formatRupiah(finalPrice)}\n\nNomor WA saya: ${whatsappNumber}\n\nMohon bantuannya untuk diproses, terima kasih.`;
+    const encodedMessage = encodeURIComponent(message);
+    
+    window.location.href = `https://wa.me/${adminWhatsapp}?text=${encodedMessage}`;
 }
 
 function copyToClipboard(text) {
