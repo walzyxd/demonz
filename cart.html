@@ -1,63 +1,66 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>WalzShop — Keranjang</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keranjang Belanja</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <header class="header">
-    <div class="container">
-      <a href="index.html" class="logo"><span class="logo-icon">🎮</span> WalzShop</a>
-      <nav class="nav">
-        <a href="index.html">Beranda</a>
-        <a href="#">Promo</a>
-        <a href="#">Bantuan</a>
-      </nav>
-    </div>
-  </header>
 
-  <main class="main">
-    <div class="container">
-      <h1>Ringkasan Pesanan</h1>
-      <div class="summary-card">
-        <table class="summary-table">
-          <tr><td>Game</td><td id="cart-game">-</td></tr>
-          <tr><td>User ID</td><td id="cart-user">-</td></tr>
-          <tr><td>Produk</td><td id="cart-product">-</td></tr>
-          <tr><td>Pembayaran</td><td id="cart-payment">-</td></tr>
-        </table>
-        <div class="summary-total"><span>Total</span><span id="cart-price">Rp 0</span></div>
-      </div>
-      <div class="cart-actions">
-        <a href="game.html" class="btn">Ubah Pesanan</a>
-        <button id="checkout-wa" class="btn btn-confirm">Checkout via WhatsApp</button>
-      </div>
-    </div>
-  </main>
+    <header class="header">
+        <nav class="navbar">
+            <a href="index.html" class="nav-item">Beranda</a>
+            <a href="game.html" class="nav-item">Koleksi</a>
+            <a href="cart.html" class="nav-item"><i class="fas fa-shopping-cart"></i> Keranjang</a>
+        </nav>
+    </header>
 
-  <footer class="footer">
-    <div class="container">
-      <p>© 2025 WalzShop. All rights reserved.</p>
-    </div>
-  </footer>
+    <main class="main-content cart-page">
+        <h1 class="page-title">Keranjang Belanja Anda</h1>
+        
+        <section class="cart-container">
+            <div class="cart-items" id="cart-items-list">
+                <div class="empty-cart-message" id="empty-cart-message">
+                    <i class="fas fa-box-open empty-icon"></i>
+                    <p>Keranjang belanja Anda masih kosong.</p>
+                    <a href="game.html" class="btn-primary">Mulai Belanja</a>
+                </div>
+            </div>
 
-  <script>
-    const order=JSON.parse(localStorage.getItem("order"))
-    if(order){
-      document.getElementById("cart-game").textContent=order.game
-      document.getElementById("cart-user").textContent=order.user
-      document.getElementById("cart-product").textContent=order.product
-      document.getElementById("cart-payment").textContent=order.payment
-      document.getElementById("cart-price").textContent=order.price
-    }
-    document.getElementById("checkout-wa").addEventListener("click",()=>{
-      if(!order)return
-      const message=`Halo, saya ingin top up:\nGame: ${order.game}\nUser: ${order.user}\nProduk: ${order.product}\nPembayaran: ${order.payment}\nTotal: ${order.price}`
-      window.open("https://wa.me/6281234567890?text="+encodeURIComponent(message),"_blank")
-    })
-  </script>
+            <div class="checkout-summary" id="checkout-summary">
+                <div class="summary-box">
+                    <h3>Ringkasan Belanja</h3>
+                    <div class="summary-row">
+                        <span>Total Item:</span>
+                        <span id="total-items">0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Total Harga:</span>
+                        <span id="total-price">Rp 0</span>
+                    </div>
+                </div>
+
+                <div class="payment-section">
+                    <h3>Metode Pembayaran</h3>
+                    <div class="qris-container">
+                        <p class="scan-text">Scan QRIS di bawah ini untuk menyelesaikan pembayaran Anda.</p>
+                        <img src="https://files.catbox.moe/pa0iwo.png" alt="QRIS Code" class="qris-image">
+                        <button class="btn-checkout">Bayar Sekarang</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2024 Toko Game. Semua Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
