@@ -3,84 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pembayaran Berhasil</title>
+    <title>Keranjang Belanja</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body data-page="cart">
 
-    <header>
-        <div class="container flex-row">
-            <a href="index.html" class="logo">
-                <img src="https://i.ibb.co/Ld1752D/Walz-Shop-1.png" alt="Walz Shop Logo">
-            </a>
-            <nav class="nav">
-                <a href="index.html">Beranda</a>
-                <a href="index.html#about">Tentang Kami</a>
-            </nav>
-        </div>
+    <header class="header">
+        <a href="index.html" class="logo">💎 Diamonds Store</a>
+        <button class="nav-toggle" aria-label="toggle navigation">
+            <span class="hamburger"></span>
+        </button>
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__item"><a href="index.html" class="nav__link">Beranda</a></li>
+                <li class="nav__item"><a href="#" class="nav__link">Cara Beli</a></li>
+                <li class="nav__item"><a href="#" class="nav__link">Promo</a></li>
+                <li class="nav__item"><a href="cart.html" class="nav__link">Keranjang</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main class="main">
-        <div class="container">
-            <section class="card summary-box">
-                <h2>Pembayaran Berhasil!</h2>
-                <div class="success-icon">&#10003;</div>
-                <p>Pesanan Anda telah kami terima.</p>
-                
-                <div class="summary-details">
-                    <p>Produk: <span id="summary-product" class="info"></span></p>
-                    <p>Metode Pembayaran: <span id="summary-payment" class="info"></span></p>
-                    <h3>Total Pembayaran: <span id="summary-total" class="info"></span></h3>
+    <main class="main-content">
+        <section class="form-section summary-section">
+            <h2>Konfirmasi Pesanan</h2>
+            <div class="summary-box">
+                <p>Silakan lakukan pembayaran melalui WhatsApp untuk memproses pesanan Anda.</p>
+                <div class="summary-item">
+                    <span>Produk:</span>
+                    <span id="summary-product">-</span>
                 </div>
-
-                <div class="payment-guide">
-                    <h4>Langkah Selanjutnya:</h4>
-                    <ol>
-                        <li>Lakukan transfer ke rekening yang telah disediakan.</li>
-                        <li>Tekan tombol di bawah ini untuk mengirim bukti transfer.</li>
-                        <li>Pesanan akan diproses setelah bukti transfer diverifikasi.</li>
-                    </ol>
+                <div class="summary-item">
+                    <span>Metode Pembayaran:</span>
+                    <span id="summary-payment">-</span>
                 </div>
-
-                <a id="wa-btn" href="#" class="btn btn-whatsapp">Kirim Bukti Transfer</a>
-                <a href="index.html" class="btn btn-primary" style="margin-top: 10px;">Kembali ke Beranda</a>
-            </section>
-        </div>
+                <div class="summary-item total">
+                    <span>Total Harga:</span>
+                    <span id="summary-total">-</span>
+                </div>
+            </div>
+            <a href="#" id="wa-btn" class="btn btn-success" target="_blank">Bayar Via WhatsApp</a>
+            <a href="index.html" class="btn btn-secondary">Kembali ke Beranda</a>
+        </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="footer-columns">
-                <div class="footer-column">
-                    <h4>Walz Shop</h4>
-                    <p>Layanan top up game terpercaya, cepat, dan aman.</p>
-                    <a href="#" class="social-icon"><img src="https://i.ibb.co/Ld1752D/Walz-Shop-1.png" alt="Logo"></a>
-                </div>
-                <div class="footer-column">
-                    <h4>Navigasi</h4>
-                    <ul>
-                        <li><a href="index.html">Beranda</a></li>
-                        <li><a href="#about">Tentang Kami</a></li>
-                        <li><a href="#payments">Pembayaran</a></li>
-                        <li><a href="#">Syarat & Ketentuan</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Hubungi Kami</h4>
-                    <p>Email: walzshop@gmail.com</p>
-                    <p>WhatsApp: 082298902274</p>
-                    <p>Jam Kerja: 08.00 - 22.00 WIB</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Walz Shop. All Rights Reserved.</p>
-            </div>
-        </div>
+    <footer class="footer">
+        <p>&copy; 2024 Diamonds Store. All Rights Reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js" type="module"></script>
 </body>
 </html>
