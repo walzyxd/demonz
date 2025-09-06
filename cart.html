@@ -8,61 +8,54 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <h1 class="logo"><a href="index.html">NexGen TopUp</a></h1>
-            <nav class="nav">
-                <a href="index.html">Home</a>
-                <a href="#">Promo</a>
-                <a href="#">Kontak</a>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <section class="page-container">
-            <div class="container">
-                <h2 class="section-title">Ringkasan Pembelian</h2>
-                <div class="cart-summary" id="cart-summary">
-                    <div class="cart-item">
-                        <img id="cart-game-img" src="" alt="Game Image" class="cart-item-img">
-                        <div class="cart-details">
-                            <h3 id="cart-game-name"></h3>
-                            <p id="cart-user-id"></p>
-                            <p id="cart-server-id" style="display:none;"></p>
-                        </div>
-                    </div>
-                    
-                    <div class="cart-item">
-                        <img src="https://via.placeholder.com/80" alt="Product Icon" class="cart-item-img" style="border:none;">
-                        <div class="cart-details">
-                            <h3>Produk</h3>
-                            <p id="cart-product-label"></p>
-                        </div>
-                    </div>
-
-                    <div class="cart-item">
-                        <img id="cart-payment-img" src="" alt="Payment Logo" class="cart-item-img">
-                        <div class="cart-details">
-                            <h3>Metode Pembayaran</h3>
-                            <p id="cart-payment-name"></p>
-                            <div id="cart-payment-info"></div>
-                        </div>
-                    </div>
-
-                    <div id="cart-total-price" class="total-price"></div>
-
-                    <a href="#" class="submit-button active" style="text-align: center;">Konfirmasi Pembayaran</a>
-                </div>
+    <div class="main-container">
+        <header class="custom-header">
+            <div class="header-content">
+                <span class="header-text">aplikasi Lapakhuda</span>
+                <span class="header-text-sub">Hadir di Playstore</span>
             </div>
-        </section>
-    </main>
+            <a href="#" class="download-button">Download Sekarang</a>
+        </header>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 NexGen TopUp. All rights reserved.</p>
-        </div>
-    </footer>
+        <main class="game-selection-main">
+            <section class="page-container">
+                <div class="container">
+                    <h2 class="section-title">Ringkasan Pembelian</h2>
+                    <div class="cart-summary" id="cart-summary">
+                        <div class="cart-item">
+                            <img id="cart-game-img" src="" alt="Game Image" class="cart-item-img">
+                            <div class="cart-details">
+                                <h3 id="cart-game-name"></h3>
+                                <p id="cart-user-id"></p>
+                                <p id="cart-server-id" style="display:none;"></p>
+                            </div>
+                        </div>
+                        
+                        <div class="cart-item">
+                            <img src="https://via.placeholder.com/80" alt="Product Icon" class="cart-item-img" style="border:none;">
+                            <div class="cart-details">
+                                <h3>Produk</h3>
+                                <p id="cart-product-label"></p>
+                            </div>
+                        </div>
+
+                        <div class="cart-item">
+                            <img id="cart-payment-img" src="" alt="Payment Logo" class="cart-item-img">
+                            <div class="cart-details">
+                                <h3>Metode Pembayaran</h3>
+                                <p id="cart-payment-name"></p>
+                                <div id="cart-payment-info"></div>
+                            </div>
+                        </div>
+
+                        <div id="cart-total-price" class="total-price"></div>
+
+                        <a href="#" class="submit-button active" style="text-align: center;">Konfirmasi Pembayaran</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <script src="script.js"></script>
 </body>
