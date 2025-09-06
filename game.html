@@ -3,142 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Up Game Murah - Walzshop ID</title>
+    <title>Top-Up Game</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
 </head>
 <body>
-
+    <div class="notification-container"></div>
+    
     <header class="header">
-        <div class="header-left">
-            <a href="index.html" class="logo-link">
-                <img src="https://i.supaimg.com/e285a86d-1768-45be-b94f-d002f6186414.jpg" alt="Logo Walzshop ID" class="logo">
-                <span class="website-name">Walzshop ID</span>
-            </a>
-        </div>
-        <div class="header-right">
-            <a href="#" class="header-link"><i class="fas fa-bell"></i></a>
-            <a href="https://wa.me/6282298902274" target="_blank" class="header-link"><i class="fab fa-whatsapp"></i></a>
-        </div>
+        <a href="index.html" class="logo">Walzshop</a>
     </header>
 
-    <main class="main-container game-page-container">
-        <a href="index.html" class="back-button-top">
-            <i class="fas fa-arrow-left"></i> Kembali
-        </a>
-        
-        <div class="game-info-header" id="game-info-header">
-            </div>
+    <main class="container">
+        <section class="game-info" id="game-info-header">
+            </section>
 
-        <form id="topup-form">
-            <div class="section-card">
-                <div class="section-header">
-                    <span class="section-number">1</span>
-                    <h3>Masukkan Data Akun</h3>
+        <form id="topup-form" class="topup-form-grid">
+            <section class="step-card">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <h2 class="step-title">Masukkan Data Akun</h2>
                 </div>
-                <p class="section-description">
-                    Pastikan ID Akun yang dimasukkan sudah benar. Kesalahan input ID Akun adalah tanggung jawab pembeli.
-                </p>
-                <div class="input-group">
-                    <i class="fas fa-user input-icon"></i>
-                    <input type="number" id="user-id" placeholder="Masukkan Player ID">
-                </div>
-                <div class="input-group" id="server-id-container">
+                <div class="step-content">
+                    <div class="input-group">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="number" id="user-id" placeholder="Masukkan Player ID">
                     </div>
-            </div>
+                    <div class="input-group" id="server-id-container">
+                        </div>
+                    <p class="input-hint">Temukan ID Anda di profil dalam game.</p>
+                </div>
+            </section>
 
-            <div class="section-card">
-                <div class="section-header">
-                    <span class="section-number">2</span>
-                    <h3>Pilih Produk</h3>
+            <section class="step-card">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <h2 class="step-title">Pilih Produk</h2>
                 </div>
                 <div class="options-grid" id="product-list">
                     </div>
-            </div>
-
-            <div class="section-card">
-                <div class="section-header">
-                    <span class="section-number">3</span>
-                    <h3>Pilih Pembayaran</h3>
+            </section>
+            
+            <section class="step-card">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <h2 class="step-title">Pilih Pembayaran</h2>
                 </div>
-                <p class="section-description">
-                    Pilih metode pembayaran yang Anda inginkan.
-                </p>
-                <div class="options-grid" id="payment-list">
+                <div class="options-grid payment-options" id="payment-list">
                     </div>
-            </div>
-
-            <div class="section-card">
-                <div class="section-header">
-                    <span class="section-number">4</span>
-                    <h3>Kode Voucher (Opsional)</h3>
+            </section>
+            
+            <section class="step-card">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <h2 class="step-title">Masukkan Nomor WhatsApp</h2>
                 </div>
-                <div class="voucher-input-group">
-                    <div class="input-group voucher-input">
-                        <i class="fas fa-ticket-alt input-icon"></i>
-                        <input type="text" id="promo-code" placeholder="Masukkan Kode Voucher">
+                <div class="step-content">
+                    <div class="input-group">
+                        <input id="whatsapp-number" type="tel">
                     </div>
-                    <button type="button" class="voucher-button" id="use-voucher-btn">Pakai</button>
+                    <p class="input-hint">Nomor WhatsApp diperlukan untuk pengiriman bukti pembayaran dan konfirmasi.</p>
                 </div>
-            </div>
+            </section>
 
-            <div class="section-card">
-                <div class="section-header">
-                    <span class="section-number">5</span>
-                    <h3>Masukkan Nomor WhatsApp</h3>
+            <section class="step-card">
+                <div class="step-header">
+                    <div class="step-number">5</div>
+                    <h2 class="step-title">Voucher (Opsional)</h2>
                 </div>
-                <p class="section-description">
-                    Nomor WhatsApp aktif untuk menerima notifikasi pesanan.
-                </p>
-                <div class="input-group">
-                    <i class="fab fa-whatsapp input-icon"></i>
-                    <input type="tel" id="whatsapp-number" placeholder="Contoh: 08123456789">
+                <div class="step-content">
+                    <div class="input-group">
+                        <i class="fas fa-tag input-icon"></i>
+                        <input type="text" id="promo-code" placeholder="Masukkan kode promo">
+                        <button type="button" class="apply-btn" id="use-voucher-btn">Gunakan</button>
+                    </div>
                 </div>
-            </div>
-
-            <div class="section-card">
-                <div class="section-header">
-                    <h3>Rating & Review</h3>
+            </section>
+            
+            <section class="summary-card" id="summary-card" style="display:none;">
+                <h3 class="summary-title">Ringkasan Pesanan</h3>
+                <div class="summary-detail">
+                    <span class="label">Produk</span>
+                    <span class="value" id="summary-product-details"></span>
                 </div>
-                <div id="fastcomments-widget"></div>
-            </div>
-
+                <div class="summary-detail total-price">
+                    <span class="label">Total</span>
+                    <span class="value" id="summary-price"></span>
+                </div>
+            </section>
+            
+            <button type="button" class="confirm-button" id="confirm-button" disabled>Beli Sekarang</button>
         </form>
-
     </main>
     
-    <div class="summary-card" id="summary-card" style="display:none;">
-        <div class="summary-product" id="summary-product-details">
-            </div>
-        <div class="summary-price" id="summary-price">
-            </div>
-        <button type="button" class="confirm-button" id="confirm-button">Beli Sekarang</button>
-    </div>
-
-    <div class="notification-container"></div>
-    
-    <footer>
-        <div class="footer">
-            <div class="footer-socials">
-                <a href="https://www.instagram.com/walzshop.id/" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://wa.me/6282298902274" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            </div>
-            <p>&copy; 2024 Walzshop ID. All rights reserved.</p>
+    <footer class="footer">
+        <p>&copy; 2024 Walzshop. Semua hak dilindungi.</p>
+        <div class="footer-links">
+            <a href="#">Kebijakan Privasi</a>
+            <a href="#">Syarat & Ketentuan</a>
+        </div>
+        <div class="social-links">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
         </div>
     </footer>
-
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
     <script src="script.js"></script>
-
     <script>
-        window.FastComments.render({
-            tenantId: "{7X-VyEtH6tt}", // <-- Ganti dengan ID Penyewa Anda
-            domain: "{8392A491389F4152841A5DE101D7D6D3}", // <-- Ganti dengan Kode Domain Anda
-            defaultSortBy: "NEWEST",
-            showCommentsCount: true,
-            pageUrl: window.location.href
+        const input = document.querySelector("#whatsapp-number");
+        window.iti = intlTelInput(input, {
+            initialCountry: "id",
+            separateDialCode: true,
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js",
+        });
+
+        // Update summary on input change
+        input.addEventListener('input', () => {
+            if(window.iti.isValidNumber()){
+                input.style.borderColor = 'green';
+            } else {
+                input.style.borderColor = 'var(--text-light)';
+            }
+            updateSummary();
         });
     </script>
-    <script src="https://js.fastcomments.com/all.js"></script>
-
 </body>
 </html>
