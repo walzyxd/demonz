@@ -6,8 +6,8 @@
     --accent-color: #3498db;
     --light-gray: #e9ecef;
     --dark-gray: #6c757d;
-    --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.08);
-    --shadow-subtle: 0 1px 4px rgba(0, 0, 0, 0.05);
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-subtle: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 * {
@@ -18,11 +18,11 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    line-height: 1.4;
+    line-height: 1.6;
     color: var(--secondary-color);
     background-color: var(--primary-color);
     font-size: 0.9rem;
-    padding-bottom: 60px;
+    padding-bottom: 80px;
 }
 
 /* Header & Navigasi */
@@ -137,7 +137,61 @@ body {
     padding: 1rem 0.75rem;
 }
 
+.section-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+}
+
 /* Home Page */
+.promo-section {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.slider-container {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+}
+
+.slider {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slider__item {
+    flex: 0 0 100%;
+}
+
+.slider__item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.slider__dots {
+    margin-top: 0.75rem;
+}
+
+.slider__dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: var(--dark-gray);
+    border-radius: 50%;
+    margin: 0 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.slider__dot.active {
+    background-color: var(--accent-color);
+}
+
 .games-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -149,8 +203,15 @@ body {
     padding: 0.75rem;
     border-radius: 8px;
     text-align: center;
+    text-decoration: none;
+    color: var(--secondary-color);
     box-shadow: var(--shadow-subtle);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .game-card img {
@@ -158,6 +219,8 @@ body {
     height: 60px;
     border-radius: 8px;
     margin-bottom: 0.5rem;
+    object-fit: cover;
+    box-shadow: var(--shadow-subtle);
 }
 
 .game-card p {
@@ -182,6 +245,7 @@ body {
 
 .game-title {
     font-size: 1.8rem;
+    font-weight: 700;
 }
 
 .form-container {
@@ -202,18 +266,26 @@ body {
 }
 
 .step-number {
+    display: inline-block;
     width: 25px;
     height: 25px;
-    font-size: 0.8rem;
+    background-color: var(--accent-color);
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
     line-height: 25px;
+    font-weight: bold;
     margin-right: 0.75rem;
 }
 
 .form-section h2 {
     font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--secondary-color);
 }
 
 .guide-text {
+    color: var(--dark-gray);
     font-size: 0.8rem;
     margin-left: 2.5rem;
 }
@@ -225,7 +297,9 @@ body {
 }
 
 .input-with-icon .icon {
+    position: absolute;
     left: 1rem;
+    color: var(--dark-gray);
     font-size: 1rem;
 }
 
@@ -235,12 +309,16 @@ body {
     border: 1px solid var(--light-gray);
     border-radius: 6px;
     font-size: 0.9rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .input-with-icon input:focus {
+    outline: none;
+    border-color: var(--accent-color);
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
 
+/* Perbaikan Grid Card: Menjaga agar konten tetap di dalam kotak */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -248,23 +326,63 @@ body {
 }
 
 .grid-item {
+    background-color: var(--light-gray);
     padding: 1rem;
     border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     min-height: 75px;
+}
+
+.grid-item:hover {
+    background-color: #e3e6e9;
+    transform: translateY(-3px);
+}
+
+.grid-item.selected {
+    background-color: var(--accent-color);
+    color: #fff;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+}
+
+.grid-item.selected .label,
+.grid-item.selected .price,
+.grid-item.selected .diamond-icon {
+    color: #fff;
 }
 
 .diamond-icon {
     font-size: 1rem;
     margin-right: 4px;
+    color: var(--secondary-color);
+    transition: color 0.2s ease;
 }
 
 .grid-item .label {
+    font-weight: 600;
     font-size: 0.85rem;
+    color: var(--secondary-color);
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     width: 100%;
 }
 
 .grid-item .price {
     font-size: 0.75rem;
+    color: var(--dark-gray);
+    transition: color 0.2s ease;
 }
 
 .payment-item img {
@@ -272,54 +390,145 @@ body {
     margin-bottom: 0.25rem;
 }
 
+.payment-item .label {
+    display: block;
+}
+
 .badge {
+    position: absolute;
     top: 3px;
     right: 3px;
     padding: 0.1rem 0.4rem;
     border-radius: 1rem;
     font-size: 0.6rem;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
 }
 
+.badge-member { background-color: #f1c40f; }
+.badge-pass { background-color: #9b59b6; }
+.badge-weekly { background-color: #2ecc71; }
+.badge-hot { background-color: #e74c3c; }
+.badge-new { background-color: #3498db; }
+.badge-sale { background-color: #e67e22; }
+.badge-welkin { background-color: #34495e; }
+
 .summary-box {
+    background-color: var(--light-gray);
     padding: 1rem;
     border-radius: 6px;
+    border: 1px solid #dee2e6;
+    margin-bottom: 1.5rem;
 }
 
 .summary-item {
+    display: flex;
+    justify-content: space-between;
     padding: 0.5rem 0;
+    border-bottom: 1px dashed #ced4da;
+}
+
+.summary-item:last-child {
+    border-bottom: none;
 }
 
 .summary-item.total {
+    font-weight: bold;
     font-size: 1rem;
+    color: var(--secondary-color);
     padding-top: 0.75rem;
 }
 
 .btn {
+    display: block;
+    width: 100%;
     padding: 0.75rem;
     font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
     border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn:disabled {
+    background-color: #adb5bd;
+    cursor: not-allowed;
+    color: #f8f9fa;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.btn-primary:not(:disabled):hover {
+    background-color: #2980b9;
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4);
 }
 
 .back-btn {
+    width: auto;
+    background-color: #e6e6e6;
+    color: var(--secondary-color);
     padding: 0.5rem 1rem;
     margin-bottom: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 0.85rem;
+}
+
+.back-btn:hover {
+    background-color: #d6d6d6;
 }
 
 /* Floating WhatsApp Button */
 .floating-wa {
+    position: fixed;
     bottom: 15px;
     right: 15px;
+    background-color: #25d366;
+    color: white;
     width: 50px;
     height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 1.5rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-/* Footer Baru */
+.floating-wa:hover {
+    transform: scale(1.1);
+    background-color: #128c7e;
+}
+
+/* Footer */
 .footer {
+    background-color: var(--secondary-color);
+    color: #fff;
     padding: 1.5rem 1rem;
     font-size: 0.8rem;
+    margin-top: 2rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .footer-section {
@@ -329,20 +538,167 @@ body {
 .footer-section h2 {
     font-size: 1rem;
     margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--light-gray);
 }
 
 .footer-section p {
     font-size: 0.8rem;
     margin-bottom: 0.25rem;
+    line-height: 1.4;
+}
+
+.footer-section p i {
+    margin-right: 0.5rem;
+    color: var(--accent-color);
 }
 
 .footer-section.social a {
+    color: #fff;
     font-size: 1.2rem;
     margin: 0 0.4rem;
+    transition: color 0.3s ease;
+}
+
+.footer-section.social a:hover {
+    color: var(--accent-color);
 }
 
 .footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 0.75rem;
     margin-top: 0.75rem;
     font-size: 0.7rem;
+}
+
+@media (min-width: 768px) {
+    body {
+        font-size: 1rem;
+    }
+
+    .main-content {
+        padding: 2rem 1rem;
+    }
+
+    .header {
+        padding: 1rem 2rem;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .nav__link {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .game-card img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .game-card p {
+        font-size: 1rem;
+    }
+
+    .game-banner {
+        max-height: 200px;
+    }
+
+    .game-title {
+        font-size: 2.5rem;
+    }
+
+    .form-container {
+        padding: 2.5rem;
+    }
+
+    .form-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .guide-text {
+        font-size: 0.9rem;
+    }
+
+    .input-with-icon .icon {
+        font-size: 1.1rem;
+    }
+
+    .input-with-icon input {
+        padding: 0.9rem 1.25rem 0.9rem 3.5rem;
+        font-size: 1rem;
+    }
+
+    .grid-item {
+        padding: 1.25rem;
+        min-height: 90px;
+    }
+
+    .diamond-icon {
+        font-size: 1.2rem;
+    }
+
+    .grid-item .label {
+        font-size: 1rem;
+    }
+
+    .grid-item .price {
+        font-size: 0.9rem;
+    }
+
+    .payment-item img {
+        height: 30px;
+    }
+
+    .summary-item.total {
+        font-size: 1.25rem;
+    }
+
+    .btn {
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .back-btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    .floating-wa {
+        bottom: 25px;
+        right: 25px;
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
+
+    .footer {
+        padding: 2rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .footer-content {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .footer-section {
+        flex: 1;
+        margin-right: 2rem;
+        margin-bottom: 0;
+    }
+
+    .footer-section h2 {
+        font-size: 1.1rem;
+    }
+
+    .footer-section.social a {
+        font-size: 1.5rem;
+    }
 }
