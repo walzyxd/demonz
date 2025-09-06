@@ -132,400 +132,161 @@ const PRODUCTS = {
   // Tambahkan game/produk lain di sini jika perlu
 };
 
-/* ---------- PAYMENTS (ikon optional) ---------- */
-const PAYMENTS = [
-  { id: "qris", label: "QRIS" },
-  { id: "gopay", label: "GoPay" },
-  { id: "shopeepay", label: "ShopeePay" },
-  { id: "dana", label: "DANA" }
+const payments = [
+  { id: "qris", name: "QRIS", logo: "https://i.ibb.co/pJxHd9c/qris.png" },
+  { id: "dana", name: "Dana", logo: "https://i.ibb.co/z7WdV3j/dana.png" },
+  { id: "ovo", name: "OVO", logo: "https://i.ibb.co/wKqZzNv/ovo.png" },
+  { id: "gopay", name: "GoPay", logo: "https://i.ibb.co/VjzjrvQ/gopay.png" },
+  { id: "shopeepay", name: "ShopeePay", logo: "https://i.ibb.co/sb3pbDK/shopeepay.png" },
 ];
 
-/* ---------- PROMOS (slider images) ---------- */
-const PROMOS = [
-  "https://i.ibb.co/2tqX1wC/promo1.jpg",
-  "https://i.ibb.co/4sNsyFQ/promo2.jpg",
-  "https://i.ibb.co/F77xBsz/promo3.jpg"
-];
-
-/* ---------- HELPERS ---------- */
-function formatIDR(val) {
-  if (typeof val !== "number") val = Number(val) || 0;
-  return "Rp " + val.toLocaleString("id-ID");
-}
-
-function getQueryParam(param) {
-  return new URLSearchParams(window.location.search).get(param);
-}
-
-function shakeElement(el) {
-  if (!el) return;
-  el.style.animation = "shake 0.6s";
-  setTimeout(() => { el.style.animation = ""; }, 650);
-}
-
-/* ---------- SLIDER ---------- */
-let slideIndex = 0;
-let slideTimer = null;
-function initSlider() {
-  const track = document.getElementById("promo-slider");
-  const dots = document.getElementById("slider-dots");
-  if (!track || !dots) return;
-
-  // populate slides
-  track.innerHTML = "";
-  dots.innerHTML = "";
-  PROMOS.forEach((url, idx) => {
-    const item = document.createElement("div");
-    item.className = "slider__item";
-    item.innerHTML = `<img src="${url}" alt="Promo ${idx + 1}" />`;
-    track.appendChild(item);
-
-    const dot = document.createElement("button");
-    dot.className = "slider__dot";
-    if (idx === 0) dot.classList.add("active");
-    dot.addEventListener("click", () => {
-      setSlide(idx);
-      resetSlideTimer();
-    });
-    dots.appendChild(dot);
-  });
-
-  setSlide(0);
-  resetSlideTimer();
-}
-function setSlide(idx) {
-  const track = document.getElementById("promo-slider");
-  const dots = document.querySelectorAll(".slider__dot");
-  if (!track) return;
-  track.style.transform = `translateX(-${idx * 100}%)`;
-  dots.forEach((d,i) => d.classList.toggle("active", i === idx));
-  slideIndex = idx;
-}
-function nextSlide() {
-  const total = PROMOS.length;
-  setSlide((slideIndex + 1) % total);
-}
-function resetSlideTimer() {
-  clearInterval(slideTimer);
-  slideTimer = setInterval(nextSlide, SLIDE_INTERVAL_MS);
-}
-
-/* ---------- INDEX: render games list ---------- */
-function renderGamesGrid() {
-  const grid = document.getElementById("games-grid");
-  if (!grid) return;
-  grid.innerHTML = "";
-  GAMES.forEach(g => {
+// ================= RENDER GAMES =================
+if (document.getElementById("games-grid")) {
+  const gameGrid = document.getElementById("games-grid");
+  games.forEach((g) => {
     const card = document.createElement("div");
     card.className = "game-card fade-in";
     card.innerHTML = `
-      <a href="${g.url}" aria-label="Top up ${g.name}">
-        <img src="${g.img}" alt="${g.name}">
-        <h3>${g.name}</h3>
-        <p>Top up cepat & aman</p>
-      </a>
+      <img src="${g.banner}" alt="${g.name}">
+      <h3>${g.name}</h3>
     `;
-    grid.appendChild(card);
+    card.addEventListener("click", () => {
+      localStorage.setItem("selectedGame", g.id);
+      window.location.href = "game.html";
+    });
+    gameGrid.appendChild(card);
   });
 }
 
-/* ---------- GAME PAGE: render products & payments ---------- */
-let selectedProduct = null;
-let selectedPayment = null;
+// ================= GAME DETAIL =================
+if (document.getElementById("product-grid")) {
+  const selectedGameId = localStorage.getItem("selectedGame");
+  const game = games.find((g) => g.id === selectedGameId);
 
-function renderGameDetail() {
-  const gameKey = getQueryParam("game");
-  if (!gameKey) return;
-  const game = GAMES.find(g => g.key === gameKey);
-  if (!game) return;
+  if (game) {
+    document.getElementById("game-banner").src = game.banner;
+    document.querySelector(".game-name-h1").textContent = game.name;
 
-  // header/banner
-  const banner = document.getElementById("game-banner");
-  const nameH1 = document.querySelector(".game-name-h1");
-  const descP = document.querySelector(".game-description");
-  if (banner) banner.src = game.bannerImg || game.img || "";
-  if (nameH1) nameH1.textContent = game.name;
-  if (descP) descP.textContent = game.guide || "";
-
-  // show/hide server input
-  const serverInput = document.getElementById("server-id");
-  if (serverInput) serverInput.style.display = game.hasServerId ? "block" : "none";
-
-  // products
-  const productGrid = document.getElementById("product-grid");
-  if (productGrid) {
-    productGrid.innerHTML = "";
-    const items = PRODUCTS[gameKey] || [];
-    if (!items.length) productGrid.innerHTML = `<p class="section-description">Produk belum tersedia untuk game ini.</p>`;
-    items.forEach(p => {
-      const el = document.createElement("div");
-      el.className = "product-card";
-      el.tabIndex = 0;
-      el.dataset.id = p.id;
-      el.dataset.price = p.price;
-      el.innerHTML = `<h4>${p.label || p.name}</h4><p>${formatIDR(p.price)}</p>`;
-      el.addEventListener("click", () => {
-        document.querySelectorAll(".product-card").forEach(x => x.classList.remove("selected"));
-        el.classList.add("selected");
-        selectedProduct = { id: p.id, label: p.label || p.name, price: p.price };
-        updateSummaryPreview();
-      });
-      el.addEventListener("keydown", e => { if (e.key === "Enter") el.click(); });
-      productGrid.appendChild(el);
-    });
-  }
-
-  // payments
-  const paymentGrid = document.getElementById("payment-grid");
-  if (paymentGrid) {
-    paymentGrid.innerHTML = "";
-    PAYMENTS.forEach(pm => {
-      const el = document.createElement("div");
-      el.className = "payment-card";
-      el.tabIndex = 0;
-      el.dataset.id = pm.id;
-      el.innerHTML = `<p>${pm.label}</p>`;
-      el.addEventListener("click", () => {
-        document.querySelectorAll(".payment-card").forEach(x => x.classList.remove("selected"));
-        el.classList.add("selected");
-        selectedPayment = { id: pm.id, label: pm.label };
-        updateSummaryPreview();
-      });
-      el.addEventListener("keydown", e => { if (e.key === "Enter") el.click(); });
-      paymentGrid.appendChild(el);
-    });
-  }
-
-  // checkout button
-  const btn = document.getElementById("checkout-btn");
-  if (btn) {
-    btn.addEventListener("click", onCheckoutFromGame);
-  }
-
-  // voucher list button (in header)
-  document.getElementById("voucher-list-btn")?.addEventListener("click", showVoucherListModal);
-  document.getElementById("voucher-list-btn")?.addEventListener("keydown", e => { if(e.key === "Enter") showVoucherListModal(); });
-}
-
-/* update small preview in game page (if using summary preview) */
-function updateSummaryPreview() {
-  // optional small UI update, for now we just set checkout button state
-  const btn = document.getElementById("checkout-btn");
-  const userId = document.getElementById("user-id")?.value?.trim();
-  if (btn) btn.disabled = !(selectedProduct && selectedPayment && userId);
-}
-
-/* ---------- CHECKOUT (on game page) ---------- */
-function onCheckoutFromGame() {
-  const userInput = document.getElementById("user-id");
-  const userId = userInput?.value?.trim();
-  const serverInput = document.getElementById("server-id");
-  const serverId = serverInput?.value?.trim();
-
-  if (!userId) {
-    // focus + shake + modal error
-    userInput?.focus();
-    shakeElement(userInput);
-    showErrorModal("User ID wajib diisi.");
-    return;
-  }
-  if (!selectedProduct) {
-    const prodFirst = document.querySelector(".product-card");
-    prodFirst?.scrollIntoView({ behavior: "smooth", block: "center" });
-    showErrorModal("Pilih nominal top up terlebih dahulu.");
-    return;
-  }
-  if (!selectedPayment) {
-    const payFirst = document.querySelector(".payment-card");
-    payFirst?.scrollIntoView({ behavior: "smooth", block: "center" });
-    showErrorModal("Pilih metode pembayaran terlebih dahulu.");
-    return;
-  }
-
-  // assemble cart
-  const gameKey = getQueryParam("game");
-  const game = GAMES.find(g => g.key === gameKey) || {};
-  const cart = {
-    gameKey,
-    gameName: game.name || "",
-    userId,
-    serverId,
-    product: selectedProduct,
-    payment: selectedPayment,
-    subtotal: selectedProduct.price,
-    voucher: null,
-    total: selectedProduct.price
-  };
-
-  localStorage.setItem("walz_cart", JSON.stringify(cart));
-  // redirect to cart page
-  window.location.href = "cart.html";
-}
-
-/* ---------- CART PAGE ---------- */
-function renderCartPage() {
-  const cart = JSON.parse(localStorage.getItem("walz_cart") || "null");
-  if (!cart) return;
-
-  // fill account
-  const userInput = document.getElementById("user-id");
-  const serverInput = document.getElementById("server-id");
-  if (userInput) { userInput.value = cart.userId || ""; userInput.readOnly = true; }
-  if (serverInput) { serverInput.value = cart.serverId || ""; serverInput.readOnly = true; }
-
-  // summary
-  document.getElementById("summary-product") && (document.getElementById("summary-product").textContent = cart.product?.label || "-");
-  document.getElementById("summary-payment") && (document.getElementById("summary-payment").textContent = cart.payment?.label || "-");
-  document.getElementById("summary-total") && (document.getElementById("summary-total").textContent = formatIDR(cart.total || cart.subtotal || 0));
-
-  // enable checkout on cart page
-  const checkoutBtn = document.getElementById("checkout-btn");
-  if (checkoutBtn) {
-    checkoutBtn.disabled = false;
-    checkoutBtn.addEventListener("click", () => {
-      // final confirmation modal with WA link
-      const modalContent = `
-        <div class="success-icon"><i class="fas fa-check-circle"></i></div>
-        <h2>Siap untuk Pembayaran</h2>
-        <p>Produk: <strong>${cart.product?.label}</strong></p>
-        <p>Metode: <strong>${cart.payment?.label}</strong></p>
-        <p>Total: <strong>${formatIDR(cart.total || cart.subtotal)}</strong></p>
-        <div style="margin-top:10px;">
-          <a href="https://wa.me/${ADMIN_WA}?text=Saya%20ingin%20membeli%20${encodeURIComponent(cart.product?.label)}%20untuk%20${encodeURIComponent(cart.gameName || "")}%20(ID:%20${encodeURIComponent(cart.userId)})" target="_blank" class="btn btn-primary" style="display:inline-block;width:100%">Bayar via WhatsApp</a>
-        </div>
+    // Produk
+    const productGrid = document.getElementById("product-grid");
+    game.products.forEach((p) => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.innerHTML = `
+        <span>${p.name}</span>
+        <span class="price">Rp ${p.price.toLocaleString()}</span>
       `;
-      showCheckoutModal(modalContent);
+      card.addEventListener("click", () => {
+        document.querySelectorAll(".product-card").forEach(c => c.classList.remove("active"));
+        card.classList.add("active");
+        localStorage.setItem("selectedProduct", JSON.stringify(p));
+        enableCheckout();
+      });
+      productGrid.appendChild(card);
+    });
+
+    // Pembayaran
+    const paymentGrid = document.getElementById("payment-grid");
+    payments.forEach((pm) => {
+      const card = document.createElement("div");
+      card.className = "payment-card";
+      card.innerHTML = `
+        <img src="${pm.logo}" alt="${pm.name}">
+        <span>${pm.name}</span>
+      `;
+      card.addEventListener("click", () => {
+        document.querySelectorAll(".payment-card").forEach(c => c.classList.remove("active"));
+        card.classList.add("active");
+        localStorage.setItem("selectedPayment", JSON.stringify(pm));
+        enableCheckout();
+      });
+      paymentGrid.appendChild(card);
+    });
+
+    // Checkout
+    const checkoutBtn = document.getElementById("checkout-btn");
+    checkoutBtn.addEventListener("click", () => {
+      const userId = document.getElementById("user-id").value.trim();
+      const serverId = document.getElementById("server-id").value.trim();
+      if (!userId) {
+        const input = document.getElementById("user-id");
+        input.classList.add("shake");
+        setTimeout(() => input.classList.remove("shake"), 500);
+        alert("User ID wajib diisi!");
+        return;
+      }
+      localStorage.setItem("userId", userId);
+      localStorage.setItem("serverId", serverId);
+      window.location.href = "cart.html";
+    });
+
+    function enableCheckout() {
+      if (localStorage.getItem("selectedProduct") && localStorage.getItem("selectedPayment")) {
+        checkoutBtn.disabled = false;
+      }
+    }
+  }
+}
+
+// ================= CART =================
+if (document.getElementById("summary-game")) {
+  const gameId = localStorage.getItem("selectedGame");
+  const product = JSON.parse(localStorage.getItem("selectedProduct") || "{}");
+  const payment = JSON.parse(localStorage.getItem("selectedPayment") || "{}");
+  const userId = localStorage.getItem("userId");
+  const serverId = localStorage.getItem("serverId");
+  const game = games.find((g) => g.id === gameId);
+
+  if (game && product && payment) {
+    document.getElementById("summary-game").textContent = game.name;
+    document.getElementById("summary-user").textContent = userId || "-";
+    document.getElementById("summary-server").textContent = serverId || "-";
+    document.getElementById("summary-product").textContent = product.name;
+    document.getElementById("summary-payment").textContent = payment.name;
+    document.getElementById("summary-total").textContent = "Rp " + product.price.toLocaleString();
+
+    document.getElementById("buy-btn").addEventListener("click", () => {
+      const waNumber = "6281234567890"; // ganti dengan nomor admin
+      const pesan = `Halo Admin, saya ingin top up:
+
+Game: ${game.name}
+User ID: ${userId}
+Server: ${serverId}
+Produk: ${product.name}
+Metode Bayar: ${payment.name}
+Total: Rp ${product.price.toLocaleString()}
+
+Terima kasih 🙏`;
+
+      const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(pesan)}`;
+      window.open(url, "_blank");
     });
   }
-
-  // voucher apply
-  document.getElementById("voucher-btn")?.addEventListener("click", () => {
-    const code = document.getElementById("voucher-input")?.value?.trim().toUpperCase();
-    const statusEl = document.getElementById("voucher-status");
-    const discountRow = document.getElementById("summary-discount-row");
-    const discountCell = document.getElementById("summary-discount");
-    const totalCell = document.getElementById("summary-total");
-
-    if (!code) {
-      statusEl && (statusEl.textContent = "Masukkan kode voucher dulu.");
-      return;
-    }
-
-    const found = VOUCHERS.find(v => v.code === code);
-    if (!found) {
-      statusEl && (statusEl.textContent = "Voucher tidak valid.");
-      statusEl?.classList.add("status-error");
-      return;
-    }
-
-    // compute discount
-    const base = cart.subtotal;
-    let discount = 0;
-    if (found.percent) discount = Math.floor(base * found.percent / 100);
-    else if (found.amount) discount = found.amount;
-    const newTotal = Math.max(0, base - discount);
-
-    // update cart in localStorage
-    cart.voucher = found;
-    cart.total = newTotal;
-    localStorage.setItem("walz_cart", JSON.stringify(cart));
-
-    // update UI
-    discountRow && (discountRow.style.display = "table-row");
-    discountCell && (discountCell.textContent = `- ${formatIDR(discount)}`);
-    totalCell && (totalCell.textContent = formatIDR(newTotal));
-    statusEl && (statusEl.textContent = `Voucher ${found.code} diterapkan!`);
-    statusEl && statusEl.classList.remove("status-error");
-    statusEl && statusEl.classList.add("status-success");
-  });
-
-  document.getElementById("voucher-list-btn")?.addEventListener("click", showVoucherListModal);
 }
 
-/* ---------- MODALS ---------- */
-function showErrorModal(message) {
-  const modal = document.getElementById("error-modal");
-  const overlay = document.getElementById("modal-overlay");
-  if (!modal || !overlay) return;
-  modal.innerHTML = `<div class="error-icon"><i class="fas fa-times-circle"></i></div>
-                     <h2>Terjadi Kesalahan</h2>
-                     <p>${message}</p>
-                     <div class="modal-footer"><button class="btn btn-secondary" onclick="closeOverlay()">Tutup</button></div>`;
-  overlay.classList.add("active");
-  overlay.style.display = "flex";
-  // auto focus on close button accessible
-}
-function showCheckoutModal(contentHTML) {
-  const modal = document.getElementById("checkout-modal");
-  const overlay = document.getElementById("modal-overlay");
-  if (!modal || !overlay) return;
-  modal.innerHTML = contentHTML + `<div style="margin-top:12px;text-align:right"><button class="btn btn-secondary" onclick="closeOverlay()">Tutup</button></div>`;
-  overlay.classList.add("active");
-  overlay.style.display = "flex";
-}
-function showVoucherListModal() {
-  const modal = document.getElementById("promo-list-modal");
-  const overlay = document.getElementById("modal-overlay");
-  if (!modal || !overlay) return;
-  modal.innerHTML = `<h2 id="promo-list-title">Daftar Voucher</h2>
-    <ul style="margin-top:.6rem;padding-left:1rem">
-      ${VOUCHERS.map(v => `<li><strong>${v.code}</strong> — ${v.percent? v.percent + "%": (v.amount? formatIDR(v.amount): "")}</li>`).join("")}
-    </ul>
-    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeOverlay()">Tutup</button></div>`;
-  overlay.classList.add("active");
-  overlay.style.display = "flex";
-}
-function closeOverlay() {
-  const overlay = document.getElementById("modal-overlay");
-  if (!overlay) return;
-  overlay.classList.remove("active");
-  overlay.style.display = "none";
-}
+// ================= SLIDER =================
+if (document.getElementById("promo-slider")) {
+  const track = document.getElementById("promo-slider");
+  const dotsContainer = document.getElementById("slider-dots");
+  const slides = track.children;
+  let currentIndex = 0;
 
-/* ---------- UTILS: rendering & init ---------- */
-function initPage() {
-  // set year(s)
-  document.querySelectorAll("#year").forEach(el => { el.textContent = new Date().getFullYear(); });
-
-  // Init slider & index if present
-  if (document.getElementById("promo-slider")) initSlider();
-  if (document.getElementById("games-grid")) renderGamesGrid();
-
-  // If on game page
-  if (document.getElementById("product-grid")) {
-    renderGameDetail();
-    // keep user-id input listener to enable checkout button as user types
-    const userid = document.getElementById("user-id");
-    userid?.addEventListener("input", () => {
-      const btn = document.getElementById("checkout-btn");
-      if (!btn) return;
-      btn.disabled = !(userid.value.trim() && selectedProduct && selectedPayment);
-    });
+  for (let i = 0; i < slides.length; i++) {
+    const dot = document.createElement("span");
+    dot.className = "dot" + (i === 0 ? " active" : "");
+    dot.addEventListener("click", () => goToSlide(i));
+    dotsContainer.appendChild(dot);
   }
 
-  // If on cart page
-  if (document.getElementById("summary-product")) renderCartPage();
-
-  // close overlay on background click (optional)
-  document.getElementById("modal-overlay")?.addEventListener("click", (e) => {
-    if (e.target === document.getElementById("modal-overlay")) closeOverlay();
-  });
-
-  // voucher-list btn at top of index
-  document.getElementById("voucher-list-btn")?.addEventListener("click", showVoucherListModal);
-}
-
-/* ---------- init DOMContentLoaded ---------- */
-document.addEventListener("DOMContentLoaded", () => {
-  try {
-    initPage();
-  } catch (err) {
-    console.error("Init error:", err);
+  function goToSlide(index) {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dotsContainer.querySelectorAll(".dot").forEach(d => d.classList.remove("active"));
+    dotsContainer.children[index].classList.add("active");
+    currentIndex = index;
   }
-});
 
-/* ---------- Exports to global (so HTML buttons can call) ---------- */
-window.showVoucherListModal = showVoucherListModal;
-window.closeOverlay = closeOverlay;
-window.showErrorModal = showErrorModal;
-window.showCheckoutModal = showCheckoutModal;
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    goToSlide(currentIndex);
+  }, 4000);
+}
