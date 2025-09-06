@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Walz Shop - Keranjang</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <i class="fas fa-gem logo-icon"></i>
+        <span class="logo-text">Walz Shop</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
+        <a href="#"><i class="fas fa-info-circle"></i> Tentang</a>
+        <a href="#"><i class="fas fa-headset"></i> Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== MAIN ========== -->
+  <main class="main">
+    <div class="container">
+      <a href="game.html" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali</a>
+
+      <h2 class="section-title">Ringkasan Transaksi</h2>
+
+      <div class="summary-card">
+        <table class="summary-table">
+          <tr><td>Game</td><td id="cart-game">-</td></tr>
+          <tr><td>User ID</td><td id="cart-user">-</td></tr>
+          <tr id="cart-server-row" style="display:none;"><td>Server ID</td><td id="cart-server">-</td></tr>
+          <tr><td>Produk</td><td id="cart-product">-</td></tr>
+          <tr><td>Metode Bayar</td><td id="cart-payment">-</td></tr>
+          <tr id="cart-discount-row" style="display:none;"><td>Diskon Voucher</td><td id="cart-discount">-</td></tr>
+        </table>
+        <div class="summary-total">
+          <span>Total Pembayaran</span>
+          <span id="cart-total">Rp 0</span>
+        </div>
+      </div>
+
+      <div class="form-container" style="margin-top:2rem;">
+        <label><i class="fas fa-phone"></i> Nomor WhatsApp</label>
+        <input type="text" id="cart-whatsapp" placeholder="Contoh: 6281234567890" style="margin-bottom:1rem;">
+
+        <button id="cart-checkout-btn" class="btn btn-block btn-confirm">
+          <i class="fab fa-whatsapp"></i> Lanjut ke WhatsApp
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Walz Shop. Semua hak dilindungi.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
