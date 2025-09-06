@@ -336,8 +336,6 @@ function setupGamePage() {
         return;
     }
 
-    gameKeyInput.value = gameKey;
-
     // Render game info header
     gameInfoHeader.innerHTML = `
         <img src="${game.img}" alt="${game.name}" class="game-img">
