@@ -7,8 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderIndexPage();
     } else if (page === 'game') {
         renderGamePage();
-    } else if (page === 'cart') {
-        renderCartPage();
     }
 
     const navToggle = document.querySelector('.nav-toggle');
@@ -75,7 +73,7 @@ function renderGamePage() {
     const game = GAMES.find(g => g.key === gameKey);
 
     if (!game) {
-        document.querySelector('main').innerHTML = '<h1 style="text-align: center; margin-top: 5rem; color: #4a235a;">Game tidak ditemukan.</h1>';
+        document.querySelector('main').innerHTML = '<h1 style="text-align: center; margin-top: 5rem; color: var(--secondary-color);">Game tidak ditemukan.</h1>';
         return;
     }
 
@@ -110,11 +108,21 @@ function renderProducts(gameKey) {
 
     productGrid.innerHTML = products.map(product => `
         <div class="grid-item product-item" data-id="${product.id}" data-label="${product.label}" data-price="${product.price}">
-            <span class="label"><i class="fas fa-gem diamond-icon"></i>${product.label}</span>
+            <div class="label-container">
+                <span class="label"><i class="fas fa-gem diamond-icon"></i>${product.label}</span>
+            </div>
             <span class="price">Rp${parseInt(product.price).toLocaleString('id-ID')}</span>
             ${product.badges ? product.badges.map(badge => `<span class="badge badge-${badge}">${badge}</span>`).join('') : ''}
         </div>
     `).join('');
+
+    // Logic to add 'long-text' class for animation
+    document.querySelectorAll('.product-item').forEach(item => {
+        const label = item.querySelector('.label');
+        if (label.scrollWidth > label.clientWidth) {
+            label.classList.add('long-text');
+        }
+    });
 
     document.querySelectorAll('.product-item').forEach(item => {
         item.addEventListener('click', () => {
@@ -180,7 +188,6 @@ function setupCheckoutLogic(gameKey) {
     checkoutBtn.addEventListener('click', () => {
         const userId = document.getElementById('user-id').value;
         const serverId = document.getElementById('server-id').value;
-        const voucherCode = document.getElementById('voucher-code').value;
         const selectedProduct = document.querySelector('.product-item.selected');
         const selectedPayment = document.querySelector('.payment-item.selected');
 
@@ -196,7 +203,6 @@ function setupCheckoutLogic(gameKey) {
             productLabel: selectedProduct.dataset.label,
             productPrice: parseInt(selectedProduct.dataset.price),
             paymentName: selectedPayment.dataset.name,
-            voucherCode: voucherCode || null
         };
         
         const waText = `Halo admin, saya ingin konfirmasi pesanan.\n\n` +
@@ -206,7 +212,6 @@ function setupCheckoutLogic(gameKey) {
                        `Produk: ${orderData.productLabel}\n` +
                        `Total: Rp${orderData.productPrice.toLocaleString('id-ID')}\n` +
                        `Metode Pembayaran: ${orderData.paymentName}\n\n` +
-                       (orderData.voucherCode ? `Kode Voucher: ${orderData.voucherCode}\n\n` : '') +
                        `Terima kasih.`;
 
         window.location.href = `https://wa.me/6282298902274?text=${encodeURIComponent(waText)}`;
