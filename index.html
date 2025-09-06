@@ -1,81 +1,105 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Walz Shop - Top Up Games Murah & Cepat</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Walz Shop — Top Up Games Murah & Cepat</title>
+
+  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <meta name="description" content="Walz Shop — Top up game (Free Fire, ML, PUBG, Genshin, Valorant) cepat, murah, aman." />
 </head>
 <body>
   <!-- HEADER -->
-  <header class="header">
+  <header class="header" role="banner">
     <div class="container">
-      <a href="index.html" class="logo">
-        <i class="fas fa-gem logo-icon"></i>
+      <a class="logo" href="index.html" aria-label="Walz Shop">
+        <i class="fas fa-gem logo-icon" aria-hidden="true"></i>
         <span class="logo-text">Walz Shop</span>
       </a>
-      <nav class="nav">
-        <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
-        <a href="#"><i class="fas fa-info-circle"></i> Tentang</a>
-        <a href="#"><i class="fas fa-headset"></i> Kontak</a>
+
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html" class="animated-underline"><i class="fas fa-home" aria-hidden="true"></i> Beranda</a>
+        <button id="voucher-list-btn" class="text-button" type="button"><i class="fas fa-tags"></i> Voucher</button>
+        <a href="#" class="animated-underline"><i class="fas fa-headset"></i> Bantuan</a>
       </nav>
     </div>
   </header>
 
   <!-- MAIN -->
-  <main class="main">
+  <main class="main" role="main">
     <div class="container">
-      <!-- PROMO SLIDER -->
-      <section class="promo-section">
+      <!-- Promo slider -->
+      <section class="promo-section" aria-label="Promo">
         <div class="slider" id="promo-slider-container">
           <div class="slider__track" id="promo-slider">
-            <div class="slider__item skeleton skeleton-card"></div>
-            <div class="slider__item skeleton skeleton-card"></div>
-            <div class="slider__item skeleton skeleton-card"></div>
+            <!-- slides injected by script -->
           </div>
-          <div class="slider__dots" id="slider-dots"></div>
+          <div class="slider__dots" id="slider-dots" role="tablist" aria-label="Kontrol slide"></div>
         </div>
       </section>
 
-      <!-- GAME GRID -->
-      <section class="games-section">
-        <h2 class="section-title">Pilih Game Favoritmu</h2>
-        <div class="games-grid" id="games-grid">
-          <div>
-            <div class="skeleton skeleton-card"></div>
-            <div class="skeleton skeleton-text"></div>
-          </div>
-          <div>
-            <div class="skeleton skeleton-card"></div>
-            <div class="skeleton skeleton-text"></div>
-          </div>
-          <div>
-            <div class="skeleton skeleton-card"></div>
-            <div class="skeleton skeleton-text"></div>
-          </div>
+      <!-- USP -->
+      <section class="usp-grid" aria-label="Keunggulan">
+        <article class="usp-card">
+          <i class="fas fa-bolt" aria-hidden="true"></i>
+          <h3>Proses Kilat</h3>
+          <p class="lead">Top up langsung masuk, tanpa ribet.</p>
+        </article>
+        <article class="usp-card">
+          <i class="fas fa-shield-alt" aria-hidden="true"></i>
+          <h3>Aman & Terpercaya</h3>
+          <p class="lead">Transaksi aman dan dukungan cepat.</p>
+        </article>
+        <article class="usp-card">
+          <i class="fas fa-tags" aria-hidden="true"></i>
+          <h3>Harga Kompetitif</h3>
+          <p class="lead">Voucher & promo rutin setiap minggu.</p>
+        </article>
+      </section>
+
+      <!-- Games grid -->
+      <section class="games-section" aria-labelledby="games-title">
+        <div class="flex-between" style="margin-bottom:.5rem">
+          <h2 id="games-title" class="section-title">Pilih Game Favoritmu</h2>
+          <p class="lead">Klik game untuk mulai top up</p>
+        </div>
+
+        <div id="games-grid" class="games-grid" role="list">
+          <!-- populated by script.js -->
         </div>
       </section>
     </div>
   </main>
 
   <!-- FOOTER -->
-  <footer class="footer">
+  <footer class="footer" role="contentinfo">
     <div class="container">
-      <p>&copy; 2025 Walz Shop. Semua hak dilindungi.</p>
-      <div class="footer-links">
-        <a href="#">Kebijakan Privasi</a>
-        <a href="#">Syarat & Ketentuan</a>
-      </div>
-      <div class="social-media">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
+      <div class="flex-between">
+        <p>&copy; <span id="year"></span> Walz Shop. Semua hak dilindungi.</p>
+        <div>
+          <a href="#" class="animated-underline">Kebijakan Privasi</a>
+          <span style="margin:0 .5rem">•</span>
+          <a href="#" class="animated-underline">Syarat & Ketentuan</a>
+        </div>
       </div>
     </div>
   </footer>
 
+  <!-- MODAL OVERLAY (shared) -->
+  <div id="modal-overlay" class="modal-overlay" aria-hidden="true">
+    <div id="promo-list-modal" class="modal" role="dialog" aria-modal="true"></div>
+    <div id="checkout-modal" class="modal" role="dialog" aria-modal="true"></div>
+    <div id="error-modal" class="modal" role="dialog" aria-modal="true"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   <script src="script.js"></script>
 </body>
 </html>
