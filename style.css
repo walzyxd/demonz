@@ -1,15 +1,15 @@
 /* ================== Base & Utility ================== */
 :root {
-  --primary-color: #007bff;
-  --primary-hover: #0056b3;
-  --text-color: #2c3e50;
-  --muted-text: #7f8c8d;
-  --bg-color: #f8f9fa;
-  --card-bg: #ffffff;
-  --border-color: #e9ecef;
-  --success-color: #27ae60;
-  --error-color: #e74c3c;
-  --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --primary-color: #bb86fc;
+  --primary-hover: #9e64e5;
+  --text-color: #e0e0e0;
+  --muted-text: #a0a0a0;
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --border-color: #333333;
+  --success-color: #03dac6;
+  --error-color: #cf6679;
+  --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 body {
@@ -136,7 +136,7 @@ body {
 .slider__dot {
   height: 10px;
   width: 10px;
-  background-color: #bbb;
+  background-color: #555;
   border-radius: 50%;
   margin: 0 5px;
   cursor: pointer;
@@ -153,7 +153,7 @@ body {
 }
 .games-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 15px;
   text-align: center;
 }
@@ -165,12 +165,12 @@ body {
   background-color: var(--card-bg);
   border-radius: 12px;
   padding: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .game-card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-light);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 .game-card img {
@@ -182,9 +182,12 @@ body {
 }
 
 .game-card p {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 500;
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ================== Game Page ================== */
@@ -240,7 +243,7 @@ body {
 
 .step-number {
   background-color: var(--primary-color);
-  color: white;
+  color: var(--bg-color);
   font-weight: bold;
   border-radius: 50%;
   width: 28px;
@@ -269,13 +272,15 @@ body {
   padding: 12px 15px;
   border: 1px solid var(--border-color);
   border-radius: 8px;
+  background-color: #2a2a2a;
+  color: var(--text-color);
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .input-group input:focus {
   outline: none;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+  box-shadow: 0 0 0 3px rgba(187, 134, 252, 0.2);
 }
 
 .user-guide {
@@ -303,24 +308,27 @@ body {
 
 .product-grid, .payment-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 10px;
 }
 
 .grid-item {
-  background-color: var(--bg-color);
+  background-color: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 10px;
+  padding: 15px 10px;
   text-align: center;
   cursor: pointer;
   transition: all 0.2s ease;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .grid-item:hover, .grid-item.selected {
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 0 0 2px rgba(187, 134, 252, 0.3);
   transform: translateY(-3px);
 }
 
@@ -333,20 +341,13 @@ body {
   padding: 3px 6px;
   border-radius: 4px;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--bg-color);
 }
 
+.badge-member, .badge-levelup, .badge-pass, .badge-weekly { background: #03dac6; }
 .badge-hot { background: #ff4d4f; }
 .badge-new { background: #52c41a; }
 .badge-sale { background: #faad14; }
-.badge-pass, .badge-member, .badge-weekly, .badge-monthly, .badge-levelup, .badge-vip, .badge-welkin { background: #1890ff; }
-
-.grid-item img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  margin-bottom: 5px;
-}
 
 .grid-item .label {
   font-size: 0.9rem;
@@ -356,7 +357,28 @@ body {
 .grid-item .price {
   font-size: 0.8rem;
   color: var(--muted-text);
+  margin-top: 5px;
 }
+
+.payment-grid .grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.payment-grid .label {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 0;
+}
+
+.payment-grid .price {
+  color: var(--success-color);
+  font-weight: 700;
+}
+
 
 .voucher-input-group {
   display: flex;
@@ -368,7 +390,7 @@ body {
 }
 
 .summary-box {
-  background-color: var(--bg-color);
+  background-color: #2a2a2a;
   padding: 20px;
   border-radius: 10px;
   margin-top: 20px;
@@ -377,7 +399,7 @@ body {
 .summary-title {
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--text-color);
+  color: var(--primary-color);
   margin: 0 0 15px 0;
   text-align: center;
 }
@@ -395,7 +417,7 @@ body {
 .summary-item.total-price {
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--primary-color);
+  color: var(--success-color);
   padding-top: 10px;
   margin-top: 10px;
 }
@@ -428,7 +450,7 @@ body {
 
 .btn-confirm {
   background-color: var(--primary-color);
-  color: #fff;
+  color: var(--bg-color);
   margin-top: 20px;
 }
 
@@ -444,7 +466,7 @@ body {
 
 .btn-apply {
   background-color: var(--primary-color);
-  color: #fff;
+  color: var(--bg-color);
 }
 
 .btn-apply:hover {
@@ -453,6 +475,7 @@ body {
 
 .btn-apply.btn-success {
   background-color: var(--success-color);
+  color: var(--bg-color);
 }
 
 /* ================== Cart Page ================== */
@@ -501,15 +524,16 @@ body {
   align-items: center;
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--primary-color);
+  color: var(--success-color);
 }
 
 /* ================== Footer ================== */
 .footer {
-  background-color: var(--text-color);
+  background-color: var(--card-bg);
   color: #ecf0f1;
   padding: 40px 0 20px 0;
   margin-top: 50px;
+  border-top: 1px solid var(--border-color);
 }
 
 .footer .container {
@@ -580,7 +604,7 @@ body {
 .footer-bottom {
   text-align: center;
   padding-top: 20px;
-  border-top: 1px solid #34495e;
+  border-top: 1px solid var(--border-color);
 }
 
 .footer-bottom p {
@@ -606,17 +630,13 @@ body {
     padding: 10px 0;
   }
   .nav a { margin: 5px 0; padding: 10px 15px; }
-  .games-grid { grid-template-columns: repeat(2, 1fr); }
+  .games-grid { grid-template-columns: repeat(3, 1fr); }
   .game-name-h1 { font-size: 1.5rem; }
   .footer-content { flex-direction: column; }
 }
 
-@media (max-width: 420px) {
-  .input-group {
-    flex-direction: column;
-    gap: 0;
-  }
-  .input-group input {
-    margin-bottom: 10px;
-  }
+@media (max-width: 500px) {
+  .games-grid { grid-template-columns: repeat(2, 1fr); }
+  .game-card p { font-size: 0.9rem; }
+  .product-grid, .payment-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
 }
