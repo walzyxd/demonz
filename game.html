@@ -27,10 +27,14 @@
                     <h2 class="step-title">Masukkan Data Akun</h2>
                 </div>
                 <div class="step-content">
-                    <div class="input-group">
-                        <i class="fas fa-user input-icon"></i>
-                        <input type="number" id="user-id" placeholder="Masukkan Player ID">
+                    <div class="input-group-with-button">
+                        <div class="input-container">
+                            <i class="fas fa-user input-icon"></i>
+                            <input type="number" id="user-id" placeholder="Masukkan Player ID">
+                        </div>
+                        <button type="button" class="check-id-btn" id="check-id-btn">Cek</button>
                     </div>
+                    <p id="id-check-result" class="input-hint"></p>
                     <div class="input-group" id="server-id-container">
                         </div>
                     <p class="input-hint">Temukan ID Anda di profil dalam game.</p>
