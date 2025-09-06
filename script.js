@@ -288,6 +288,9 @@ function showNotification(message, isSuccess = true) {
     const container = document.querySelector('.notification-container') || document.body.appendChild(document.createElement('div'));
     container.classList.add('notification-container');
     
+    // Hapus notifikasi yang sudah ada
+    container.innerHTML = '';
+
     const popup = document.createElement('div');
     popup.classList.add('notification-popup');
     
@@ -339,6 +342,7 @@ function setupGamePage() {
     const paymentListContainer = document.getElementById("payment-list");
     const gameInfoHeader = document.getElementById("game-info-header");
     const serverIdContainer = document.getElementById("server-id-container");
+    const promoCodeInput = document.getElementById('promo-code');
 
     if (!game || !productListContainer || !paymentListContainer) {
         window.location.href = 'index.html';
@@ -423,12 +427,12 @@ function setupGamePage() {
     
     // Voucher button logic
     document.getElementById('use-voucher-btn').addEventListener('click', () => {
-        const promoCode = document.getElementById('promo-code').value;
-        if (promoCode) {
+        const promoCode = promoCodeInput.value.toUpperCase(); // Ubah ke huruf besar untuk validasi
+        if (promoCode === "WALZPROMO") {
             const discount = 5000;
-            showNotification(`Voucher Berhasil digunakan✅, Potongan: ${formatRupiah(discount)}`, true);
+            showNotification(`Voucher Berhasil digunakan! Potongan: ${formatRupiah(discount)}`, true);
         } else {
-            showNotification('Masukkan kode voucher terlebih dahulu.', false);
+            showNotification('Voucher Tidak valid', false);
         }
     });
 
