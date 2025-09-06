@@ -258,8 +258,10 @@ document.addEventListener("DOMContentLoaded", () => {
             gameCard.innerHTML = `
                 <a href="${game.url}">
                     <img src="${game.img}" alt="${game.name}">
-                    <h3>${game.name}</h3>
-                    <div class="topup-button">Top-Up</div>
+                    <div class="game-card-content">
+                        <h3>${game.name}</h3>
+                        <div class="topup-button">Top-Up</div>
+                    </div>
                 </a>
             `;
             gameListContainer.appendChild(gameCard);
@@ -313,19 +315,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let userIdInput = `
             <div class="form-group">
-                <label>1. Masukkan User ID</label>
-                <input type="text" name="user_id" placeholder="Masukkan ID Akun" required>
+                <label for="user-id">1. Masukkan User ID</label>
+                <input type="text" id="user-id" name="user_id" placeholder="Masukkan ID Akun" required>
             </div>
         `;
         if (game.hasServerId) {
             userIdInput += `
                 <div class="form-group">
-                    <label>Masukkan Server ID</label>
-                    <input type="text" name="server_id" placeholder="Masukkan Server ID" required>
+                    <label for="server-id">Masukkan Server ID</label>
+                    <input type="text" id="server-id" name="server_id" placeholder="Masukkan Server ID" required>
                 </div>
             `;
         }
-        formSection.innerHTML += `<h2>Langkah-langkah Top-Up</h2>` + userIdInput;
+        
+        formSection.innerHTML += `<h2 class="section-title">Langkah-langkah Top-Up</h2>` + userIdInput;
         
         // Form: Products
         const productOptionsContainer = document.createElement("div");
@@ -374,6 +377,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 ${paymentOptionsContainer.outerHTML}
             </div>
         `;
+        
+        // Add hidden inputs for game key to pass to cart page
+        const hiddenInputGameKey = document.createElement('input');
+        hiddenInputGameKey.type = 'hidden';
+        hiddenInputGameKey.name = 'key';
+        hiddenInputGameKey.value = gameKey;
+        formSection.appendChild(hiddenInputGameKey);
 
         formSection.innerHTML += `<button type="submit" class="submit-button">Beli Sekarang</button>`;
         container.appendChild(formSection);
@@ -386,7 +396,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const userId = getUrlParameter('user_id');
     const serverId = getUrlParameter('server_id');
 
-    if (gameKeyCart && productId && paymentId) {
+    if (document.getElementById('cart-summary') && gameKeyCart && productId && paymentId && userId) {
         const game = GAMES.find(g => g.key === gameKeyCart);
         const product = PRODUCTS[gameKeyCart].find(p => p.id === productId);
         const payment = PAYMENTS.find(p => p.id === paymentId);
@@ -405,7 +415,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             let paymentInfoHtml = '';
             if (payment.type === 'ewallet' || payment.type === 'bank_transfer') {
-                paymentInfoHtml = `No. ${payment.info.number} a.n ${payment.info.name}`;
+                paymentInfoHtml = `<p>Nomor: ${payment.info.number}</p><p>A.n: ${payment.info.name}</p>`;
             } else if (payment.type === 'qris') {
                 paymentInfoHtml = `<img src="${payment.info.qrisImg}" alt="QRIS Code" style="max-width: 150px; margin-top: 1rem;">`;
             }
