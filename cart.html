@@ -1,80 +1,75 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Walz Shop - Keranjang Top Up</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Walz Shop — Keranjang Top Up</title>
+
+  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- HEADER -->
   <header class="header">
     <div class="container">
-      <a href="index.html" class="logo">
-        <i class="fas fa-gem logo-icon"></i>
-        <span class="logo-text">Walz Shop</span>
-      </a>
+      <a class="logo" href="index.html"><i class="fas fa-gem logo-icon"></i> Walz Shop</a>
       <nav class="nav">
         <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
-        <a href="#"><i class="fas fa-info-circle"></i> Tentang</a>
-        <a href="#"><i class="fas fa-headset"></i> Kontak</a>
+        <button id="voucher-list-btn" class="text-button" type="button"><i class="fas fa-tags"></i> Voucher</button>
       </nav>
     </div>
   </header>
 
+  <!-- MAIN -->
   <main class="main">
     <div class="container">
       <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali</a>
 
-      <div class="game-banner fade-in">
-        <img id="game-banner" class="game-banner-image skeleton" src="" alt="Game Banner">
+      <section class="game-banner">
+        <img id="game-banner" class="game-banner-image skeleton" src="" alt="Banner Game" />
         <div class="game-info">
-          <h1 class="game-name-h1 skeleton-text"></h1>
-          <p class="game-description skeleton-text"></p>
+          <h1 class="game-name-h1">Ringkasan Pesanan</h1>
+          <p class="game-description lead">Periksa kembali sebelum pembayaran.</p>
         </div>
-      </div>
+      </section>
 
-      <div class="form-container">
+      <section class="form-container">
         <form id="topup-form">
-          <section class="form-section fade-in">
+          <section class="form-section">
             <fieldset>
-              <legend><span class="step-number">1</span> Masukkan User ID & Server</legend>
+              <legend><span class="step-number">1</span> Data Akun</legend>
               <div class="input-group">
-                <input type="text" id="user-id" placeholder="Contoh: 12345678" required>
-                <input type="text" id="server-id" placeholder="Server ID (Opsional)">
+                <input id="user-id" type="text" placeholder="User ID" readonly />
+                <input id="server-id" type="text" placeholder="Server ID" readonly />
               </div>
             </fieldset>
           </section>
 
-          <section class="form-section fade-in">
+          <section class="form-section">
             <fieldset>
-              <legend><span class="step-number">2</span> Pilih Nominal Top Up</legend>
-              <div class="product-grid" id="product-grid">
-                <div class="skeleton skeleton-card"></div>
-                <div class="skeleton skeleton-card"></div>
-              </div>
-            </fieldset>
-          </section>
-
-          <section class="form-section fade-in">
-            <fieldset>
-              <legend><span class="step-number">3</span> Pilih Metode Pembayaran</legend>
-              <div class="payment-grid" id="payment-grid">
-                <div class="skeleton skeleton-card"></div>
-                <div class="skeleton skeleton-card"></div>
-              </div>
-            </fieldset>
-          </section>
-
-          <section class="form-section fade-in">
-            <fieldset>
-              <legend><span class="step-number">4</span> Ringkasan Pembayaran</legend>
+              <legend><span class="step-number">2</span> Ringkasan Pembayaran</legend>
               <div class="summary-card">
-                <table class="summary-table">
+                <table class="summary-table" aria-describedby="summary-total">
                   <tr><td>Produk</td><td id="summary-product">-</td></tr>
                   <tr><td>Metode Bayar</td><td id="summary-payment">-</td></tr>
+                  <tr id="summary-discount-row" style="display:none;"><td>Diskon</td><td id="summary-discount">-</td></tr>
                 </table>
+
+                <div class="voucher-input-group">
+                  <input id="voucher-input" type="text" placeholder="Masukkan kode voucher (opsional)" />
+                  <button id="voucher-btn" type="button" class="btn btn-primary">Terapkan</button>
+                </div>
+
+                <div class="voucher-extra">
+                  <span id="voucher-status" class="status-text">Punya kode voucher? Terapkan di sini.</span>
+                  <button id="voucher-list-btn" class="text-button" type="button"><i class="fas fa-tags"></i> Lihat Voucher</button>
+                </div>
+
+                <hr class="soft-divider" />
                 <div class="summary-total">
                   <span>Total Pembayaran</span>
                   <span id="summary-total">Rp 0</span>
@@ -83,24 +78,34 @@
             </fieldset>
           </section>
 
-          <button type="button" id="checkout-btn" class="btn btn-block btn-confirm" disabled>Beli Sekarang</button>
+          <section class="form-section">
+            <fieldset>
+              <legend><span class="step-number">3</span> Selesaikan Pembelian</legend>
+              <button id="checkout-btn" type="button" class="btn btn-block btn-confirm" disabled>Bayar Sekarang</button>
+              <p class="section-description">Anda akan diarahkan ke WhatsApp untuk menyelesaikan pembayaran secara manual.</p>
+            </fieldset>
+          </section>
         </form>
-      </div>
+      </section>
     </div>
   </main>
 
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2025 Walz Shop. Semua hak dilindungi.</p>
+      <p>&copy; <span id="year"></span> Walz Shop. Semua hak dilindungi.</p>
     </div>
   </footer>
 
-  <div id="modal-overlay" class="modal-overlay">
-    <div id="checkout-modal" class="modal"></div>
-    <div id="promo-list-modal" class="modal"></div>
-    <div id="error-modal" class="modal"></div>
+  <!-- MODAL OVERLAY -->
+  <div id="modal-overlay" class="modal-overlay" aria-hidden="true">
+    <div id="promo-list-modal" class="modal" role="dialog" aria-modal="true"></div>
+    <div id="checkout-modal" class="modal" role="dialog" aria-modal="true"></div>
+    <div id="error-modal" class="modal" role="dialog" aria-modal="true"></div>
   </div>
 
+  <!-- Scripts -->
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   <script src="script.js"></script>
 </body>
 </html>
