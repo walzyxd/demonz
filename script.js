@@ -1,509 +1,249 @@
-/* ================== KONFIGURASI ================== */
-const ADMIN_WA = "6282298902274";
-const QRIS_IMAGE = "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg"; // URL QRIS Anda
-const BANK_ACCOUNT = "1234567890"; // Nomor rekening Anda
+import { GAMES, PRODUCTS, PAYMENTS, PROMOS } from './produk.js';
 
-const GAMES = [
-    { key: "free-fire", name: "Free Fire", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", bannerImg: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", hasServerId: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game.", url: "game.html?key=free-fire" },
-    { key: "mobile-legends", name: "Mobile Legends", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", bannerImg: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", hasServerId: true, guide: "Temukan User ID dan Server ID di bawah nama panggilan saat Anda mengklik avatar profil.", url: "game.html?key=mobile-legends" },
-    { key: "honor-of-kings", name: "Honor of Kings", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", bannerImg: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", hasServerId: false, guide: "User ID Anda ada di bagian bawah layar saat Anda membuka profil.", url: "game.html?key=honor-of-kings" },
-    { key: "genshin-impact", name: "Genshin Impact", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", bannerImg: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", hasServerId: false, guide: "User ID (9 digit) terletak di sudut kanan bawah layar saat Anda berada di dalam game.", url: "game.html?key=genshin-impact" },
-    { key: "roblox", name: "Roblox", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", bannerImg: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", hasServerId: false, guide: "Top up menggunakan Gift Card yang akan dikirim langsung ke akun Anda.", url: "game.html?key=roblox" },
-    { key: "super-sus", name: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", bannerImg: "https://files.catbox.moe/j61uny.jpg", hasServerId: false, guide: "User ID dapat ditemukan di menu profil dalam game.", url: "game.html?key=super-sus" },
-    { key: "clash-of-clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", bannerImg: "https://files.catbox.moe/6aia0n.jpg", hasServerId: false, guide: "User ID (Tag Pemain) adalah kombinasi huruf dan angka yang dimulai dengan tanda pagar (#).", url: "game.html?key=clash-of-clans" },
-    { key: "blood-strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", bannerImg: "https://files.catbox.moe/3y066i.jpg", hasServerId: false, guide: "ID Anda dapat ditemukan di profil dalam game.", url: "game.html?key=blood-strike" },
-    { key: "pubg-mobile", name: "PUBG Mobile", img: "https://files.catbox.moe/tatuo9.jpg", bannerImg: "https://files.catbox.moe/tatuo9.jpg", hasServerId: false, guide: "Temukan User ID Anda di sudut kanan atas lobi game saat mengklik profil.", url: "game.html?key=pubg-mobile" },
-    { key: "garena-delta-force", name: "Garena Delta Force", img: "https://files.catbox.moe/k3b8d0.png", bannerImg: "https://files.catbox.moe/k3b8d0.png", hasServerId: false, guide: "Buka menu profil di game dan Anda dapat menemukan User ID Anda.", url: "game.html?key=garena-delta-force" },
-    { key: "call-of-duty", name: "Call Of Duty", img: "https://files.catbox.moe/k3b8d0.png", bannerImg: "https://files.catbox.moe/k3b8d0.png", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil game.", url: "game.html?key=call-of-duty" },
-    { key: "valorant", name: "Valorant", img: "https://files.catbox.moe/k3b8d0.png", bannerImg: "https://files.catbox.moe/k3b8d0.png", hasServerId: false, guide: "User ID (Riot ID) dapat ditemukan di bawah nama akun Anda di bagian atas layar.", url: "game.html?key=valorant" },
-    { key: "eggy-party", name: "Eggy Party", img: "https://files.catbox.moe/k3b8d0.png", bannerImg: "https://files.catbox.moe/k3b8d0.png", hasServerId: false, guide: "User ID Anda dapat ditemukan di profil dalam game.", url: "game.html?key=eggy-party" },
-    { key: "garena-undawn", name: "Garena Undawn", img: "https://files.catbox.moe/k3b8d0.png", bannerImg: "https://files.catbox.moe/k3b8d0.png", hasServerId: false, guide: "Buka menu profil dan User ID Anda akan terlihat.", url: "game.html?key=garena-undawn" },
-];
+document.addEventListener('DOMContentLoaded', () => {
+    const page = document.body.getAttribute('data-page');
 
-const PROMOS = [
-    { title: "Top Up Diamond FF Termurah", img: "https://files.catbox.moe/wz282d.png", gameKey: "free-fire" },
-    { title: "Top Up Starlight MLBB Harga Cuan", img: "https://files.catbox.moe/97a2w3.jpg", gameKey: "mobile-legends" },
-    { title: "Promo UC PUBG Mobile Khusus Member", img: "https://files.catbox.moe/c4c51z.jpg", gameKey: "pubg-mobile" },
-    { title: "Blessing of the Welkin Moon Genshin", img: "https://files.catbox.moe/o3d2x9.jpg", gameKey: "genshin-impact" },
-];
+    if (page === 'index') {
+        renderIndexPage();
+    } else if (page === 'game') {
+        renderGamePage();
+    } else if (page === 'cart') {
+        renderCartPage();
+    }
 
-const PAYMENTS = [
-    { id: "dana", name: "DANA", fee: 1000 },
-    { id: "gopay", name: "GoPay", fee: 1500 },
-    { id: "qris", name: "QRIS", fee: 0 },
-    { id: "krom-bank", name: "Krom Bank", fee: 0 }
-];
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.nav');
+    if (navToggle) {
+        navToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+    }
+});
 
-const PRODUCTS = {
-    "free-fire": [
-        { id: "ff-5", label: "5 Diamonds", price: 901 },
-        { id: "ff-12", label: "12 Diamonds", price: 1802 },
-        { id: "ff-50", label: "50 Diamonds", price: 7207 },
-        { id: "ff-70", label: "70 Diamonds", price: 9009 },
-        { id: "ff-140", label: "140 Diamonds", price: 18018 },
-        { id: "ff-355", label: "355 Diamonds", price: 45045 },
-        { id: "ff-720", label: "720 Diamonds", price: 90090 },
-        { id: "ff-1450", label: "1450 Diamonds", price: 180180 },
-        { id: "ff-2180", label: "2180 Diamonds", price: 270270 },
-        { id: "ff-3640", label: "3640 Diamonds", price: 450450 },
-        { id: "ff-mw", label: "Membership Mingguan", price: 30500},
-        { id: "ff-mb", label: "Membership Bulanan", price: 90000},
-        { id: "ff-lvl6", label: "Level Up Pass Lv.6", price: 5500},
-        { id: "ff-lvl10", label: "Level Up Pass Lv.10", price: 8800},
-        { id: "ff-lvl15", label: "Level Up Pass Lv.15", price: 8800},
-        { id: "ff-lvl20", label: "Level Up Pass Lv.20", price: 8800},
-        { id: "ff-booyah", label: "BooYah Pass", price: 50000},
-    ],
-    "mobile-legends": [
-        { id: "ml-3", label: "3 Diamonds", price: 1171 },
-        { id: "ml-5", label: "5 Diamonds", price: 1423 },
-        { id: "ml-12", label: "12 Diamonds", price: 3323 },
-        { id: "ml-19", label: "19 Diamonds", price: 5223 },
-        { id: "ml-28", label: "28 Diamonds", price: 7600 },
-        { id: "ml-44", label: "44 Diamonds", price: 11400 },
-        { id: "ml-59", label: "59 Diamonds", price: 15200 },
-        { id: "ml-85", label: "85 Diamonds", price: 21850 },
-        { id: "ml-170", label: "170 Diamonds", price: 43700 },
-        { id: "ml-240", label: "240 Diamonds", price: 61750 },
-        { id: "ml-296", label: "296 Diamonds", price: 76000 },
-        { id: "ml-408", label: "408 Diamonds", price: 104500 },
-        { id: "ml-568", label: "568 Diamonds", price: 142500 },
-        { id: "ml-875", label: "875 Diamonds", price: 218500 },
-        { id: "ml-2010", label: "2010 Diamonds", price: 475000 },
-        { id: "ml-4830", label: "4830 Diamonds", price: 1140000 },
-        { id: "ml-wdp", label: "Weekly Diamond Pass", price: 28000},
-        { id: "ml-twilight", label: "Twilight Pass", price: 150000},
-    ],
-    "pubg-mobile": [
-        { id: "pubg-30", label: "30 UC", price: 7000 },
-        { id: "pubg-60", label: "60 UC", price: 14000 },
-        { id: "pubg-300", label: "300 + 25 UC", price: 70000 },
-        { id: "pubg-600", label: "600 + 60 UC", price: 140000 },
-        { id: "pubg-1500", label: "1500 + 300 UC", price: 350000 },
-        { id: "pubg-3000", label: "3000 + 850 UC", price: 700000 },
-        { id: "pubg-lvl20", label: "Level Up Pass Lv.20", price: 8800},
-        { id: "pubg-booyah", label: "BooYah Pass", price: 50000},
-    ],
-    "genshin-impact": [
-        { id: "gi-60", label: "60 Genesis Crystals", price: 14865 },
-        { id: "gi-330", label: "330 Genesis Crystals", price: 72973 },
-        { id: "gi-1090", label: "1090 Genesis Crystals", price: 229730 },
-        { id: "gi-2240", label: "2240 Genesis Crystals", price: 440541 },
-        { id: "gi-3880", label: "3880 Genesis Crystals", price: 734234 },
-        { id: "gi-8080", label: "8080 Genesis Crystals", price: 1467568 },
-        { id: "gi-welkin", label: "Blessing of the Welkin Moon", price: 72973},
-    ],
-    "honor-of-kings": [
-        { id: "hok-16", label: "16 Tokens", price: 3300 },
-        { id: "hok-80", label: "80 Tokens", price: 16500 },
-        { id: "hok-240", label: "240 Tokens", price: 51000 },
-        { id: "hok-400", label: "400 Tokens", price: 84000 },
-        { id: "hok-560", label: "560 Tokens", price: 118000 },
-        { id: "hok-830", label: "830 Tokens", price: 168000 },
-        { id: "hok-1245", label: "1245 Tokens", price: 250000 },
-        { id: "hok-2508", label: "2508 Tokens", price: 495000 },
-        { id: "hok-4180", label: "4180 Tokens", price: 824000 },
-        { id: "hok-8360", label: "8360 Tokens", price: 1648000 },
-    ],
-    "roblox": [
-        { id: "rbx-50k", label: "Gift Card Rp50.000", price: 48440 },
-        { id: "rbx-65k", label: "Gift Card Rp65.000", price: 62970 },
-        { id: "rbx-100k", label: "Gift Card Rp100.000", price: 96500 },
-        { id: "rbx-200k", label: "Gift Card Rp200.000", price: 193000 },
-        { id: "rbx-500k", label: "Gift Card Rp500.000", price: 479000 },
-    ],
-    "super-sus": [
-        { id: "ss-100", label: "100 Goldstar", price: 11712 },
-        { id: "ss-310", label: "310 Goldstar", price: 34234 },
-        { id: "ss-520", label: "520 Goldstar", price: 57658 },
-        { id: "ss-1060", label: "1060 Goldstar", price: 116216 },
-        { id: "ss-2180", label: "2180 Goldstar", price: 239640 },
-        { id: "ss-5600", label: "5600 Goldstar", price: 613514 },
-        { id: "ss-weekly", label: "Weekly Card", price: 13514},
-        { id: "ss-monthly", label: "Monthly Card", price: 134234},
-        { id: "ss-vip", label: "Super VIP Card", price: 157658},
-    ],
-    "clash-of-clans": [
-        { id: "coc-500", label: "500 Gems", price: 75299 },
-        { id: "coc-1200", label: "1200 Gems", price: 150499 },
-        { id: "coc-2500", label: "2500 Gems", price: 300999 },
-        { id: "coc-6500", label: "6500 Gems", price: 752399 },
-        { id: "coc-14000", label: "14000 Gems", price: 1454599 },
-    ],
-    "blood-strike": [
-        { id: "bs-100", label: "100 + 5 Gold", price: 11999 },
-        { id: "bs-300", label: "300 + 20 Gold", price: 34999 },
-        { id: "bs-500", label: "500 + 40 Gold", price: 54999 },
-        { id: "bs-1000", label: "1000 + 100 Gold", price: 110000 },
-        { id: "bs-2000", label: "2000 + 260 Gold", price: 219999 },
-        { id: "bs-5000", label: "5000 + 800 Gold", price: 549999 },
-    ],
-    "eggy-party": [
-        { id: "eggy-weekly", label: "Weekly Egg Coin Pack", price: 14799},
-        { id: "eggy-yoyo", label: "Yoyo Membership", price: 27799},
-        { id: "eggy-shiny", label: "Shiny Coin Jar", price: 42699},
-        { id: "eggy-aquarius", label: "Energetic Aquarius", price: 14499},
-        { id: "eggy-capricorn", label: "Obsidian Capricorn", price: 14399},
-        { id: "eggy-libra", label: "Elegant Libra", price: 14499},
-        { id: "eggy-sagittarius", label: "Wandering Sagittarius", price: 14399},
-        { id: "eggy-scorpio", label: "Mysterious Scorpio", price: 14399},
-        { id: "eggy-spring-small", label: "Spring Egg Coin Pack Small", price: 14399},
-        { id: "eggy-spring-big", label: "Spring Egg Coin Pack Big", price: 163399},
-        { id: "eggy-10", label: "10 Eggy Coins", price: 2199 },
-        { id: "eggy-60", label: "60 + 3 Bonus", price: 13999 },
-        { id: "eggy-120", label: "120 + 6 Bonus", price: 26999 },
-        { id: "eggy-300", label: "300 + 24 Bonus", price: 68499 },
-        { id: "eggy-600", label: "600 + 57 Bonus", price: 138599 },
-        { id: "eggy-1250", label: "1250 + 144 Bonus", price: 251099 },
-        { id: "eggy-1880", label: "1880 + 216 Bonus", price: 378099 },
-        { id: "eggy-3180", label: "3180 + 423 Bonus", price: 630199 },
-        { id: "eggy-6480", label: "6480 + 903 Bonus", price: 1244999},
-        { id: "eggy-mingguan", label: "Kartu Mingguan", price: 28599},
-        { id: "eggy-bulanan", label: "Kartu Bulanan", price: 47299},
-        { id: "eggy-undawn", label: "Undawn-Mingguan", price: 28599},
-        { id: "eggy-undawn-bulanan", label: "Undawn-Bulanan", price: 47299},
-        { id: "eggy-glory-pass", label: "Glory Pass Premium", price: 142299},
-        { id: "eggy-elite", label: "Elite Fund Rebate LV 80", price: 126999},
-        { id: "eggy-ace", label: "Ace Fund", price: 143999},
-        { id: "eggy-quick", label: "Quick Battle Prep", price: 94379},
-    ],
-    "call-of-duty": [
-        { id: "codm-31", label: "31 CP", price: 4899 },
-        { id: "codm-63", label: "63 CP", price: 9699 },
-        { id: "codm-128", label: "128 CP", price: 19399 },
-        { id: "codm-321", label: "321 CP", price: 48499 },
-        { id: "codm-645", label: "645 CP", price: 99999 },
-        { id: "codm-800", label: "800 CP", price: 119999 },
-        { id: "codm-1373", label: "1373 CP", price: 193999},
-        { id: "codm-2060", label: "2060 CP", price: 290999 },
-        { id: "codm-2750", label: "2750 CP", price: 379999 },
-        { id: "codm-3564", label: "3564 CP", price: 484999 },
-        { id: "codm-5619", label: "5619 CP", price: 729999},
-        { id: "codm-7656", label: "7656 CP", price: 969999 },
-        { id: "codm-15312", label: "15312 CP", price: 1999999 },
-        { id: "codm-38280", label: "38280 CP", price: 4999999 },
-        { id: "codm-76560", label: "76560 CP", price: 9999999 },
-    ],
-    "valorant": [
-        { id: "val-475", label: "475 Points", price: 54349 },
-        { id: "val-1000", label: "1000 Points", price: 108799 },
-        { id: "val-2050", label: "2050 Points", price: 217499},
-        { id: "val-3650", label: "3650 Points", price: 372199 },
-        { id: "val-5350", label: "5350 Points", price: 544999 },
-        { id: "val-11000", label: "11000 Points", price: 1089999},
-    ],
-    "garena-delta-force": [
-        { id: "delta-tide", label: "Tide Supplies", price: 8499},
-        { id: "delta-adv", label: "Tide Supplies Advanced", price: 24499},
-        { id: "delta-genesis", label: "Black Hawk Down Genesis", price: 41999},
-        { id: "delta-redefine", label: "Black Hawk Down Redefine", price: 84999},
-        { id: "delta-18", label: "18 + 1", price: 4999 },
-        { id: "delta-30", label: "30 + 2", price: 7499 },
-        { id: "delta-60", label: "60 + 3", price: 14999},
-        { id: "delta-300", label: "300 + 36", price: 74999 },
-        { id: "delta-420", label: "420 + 62", price: 99999 },
-        { id: "delta-680", label: "680 + 105", price: 139999 },
-        { id: "delta-1280", label: "1280 + 264", price: 279999 },
-        { id: "delta-1680", label: "1680 + 385", price: 349999 },
-        { id: "delta-3280", label: "3280 + 834", price: 699999 },
-        { id: "delta-6480", label: "6480 + 1944", price: 1399999},
-        { id: "delta-12960", label: "12960 + 3888", price: 2799999 },
-        { id: "delta-19440", label: "19440 + 5832", price: 4199999 },
-    ],
-    "garena-undawn": [
-        { id: "undawn-bulanan", label: "Kartu Bulanan", price: 47299},
-        { id: "undawn-growth", label: "Growth Fund", price: 94799},
-        { id: "undawn-glory", label: "Glory Pass Premium", price: 142299},
-        { id: "undawn-elite", label: "Elite Fund Rebate LV 80", price: 126999},
-        { id: "undawn-ace", label: "Ace Fund", price: 143999},
-        { id: "undawn-rc80", label: "RC 80", price: 14599 },
-        { id: "undawn-rc250", label: "RC 250", price: 43699 },
-        { id: "undawn-rc450", label: "RC 450", price: 72799 },
-        { id: "undawn-rc920", label: "RC 920", price: 144599 },
-        { id: "undawn-rc1850", label: "RC 1850", price: 290099 },
-        { id: "undawn-rc2800", label: "RC 2800", price: 435599 },
-        { id: "undawn-rc4750", label: "RC 4750", price: 726599 },
-        { id: "undawn-rc9600", label: "RC 9600", price: 1454099},
-        { id: "undawn-rc33000", label: "RC 33.000", price: 4849999 },
-        { id: "undawn-rc66500", label: "RC 66.500", price: 9699999 },
-        { id: "undawn-mingguan", label: "Kartu Mingguan", price: 28599},
-        { id: "undawn-glory-s7", label: "Glory Pass Premium S7", price: 143999},
-        { id: "undawn-glory-s16", label: "Glory Pass Premium S16", price: 143999},
-        { id: "undawn-prep", label: "Quick Battle Prep", price: 94379},
-    ]
-};
+// =======================
+// Fungsi untuk Halaman Beranda (index.html)
+// =======================
+
+function renderIndexPage() {
+    renderGamesGrid();
+    renderPromoSlider();
+}
+
+function renderGamesGrid() {
+    const gamesGrid = document.getElementById('games-grid');
+    if (!gamesGrid) return;
+
+    gamesGrid.innerHTML = GAMES.map(game => `
+        <a href="${game.url}" class="game-card">
+            <img src="${game.img}" alt="${game.name}">
+            <p>${game.name}</p>
+        </a>
+    `).join('');
+}
+
+function renderPromoSlider() {
+    const promoSlider = document.getElementById('promo-slider');
+    const sliderDots = document.getElementById('slider-dots');
+    if (!promoSlider || !sliderDots) return;
+
+    promoSlider.innerHTML = PROMOS.map(promo => `
+        <div class="slider__item">
+            <img src="${promo.src}" alt="${promo.alt}">
+        </div>
+    `).join('');
+
+    sliderDots.innerHTML = PROMOS.map((_, index) => `<span class="slider__dot" data-index="${index}"></span>`).join('');
+
+    let currentSlide = 0;
+    const items = document.querySelectorAll('.slider__item');
+    const dots = document.querySelectorAll('.slider__dot');
+
+    const updateSlider = () => {
+        promoSlider.style.transform = `translateX(${-currentSlide * 100}%)`;
+        dots.forEach(dot => dot.classList.remove('active'));
+        if (dots.length > 0) {
+            dots[currentSlide].classList.add('active');
+        }
+    };
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', (e) => {
+            currentSlide = parseInt(e.target.dataset.index);
+            updateSlider();
+        });
+    });
+
+    setInterval(() => {
+        if (items.length > 0) {
+            currentSlide = (currentSlide + 1) % items.length;
+            updateSlider();
+        }
+    }, 5000);
+
+    if (items.length > 0) {
+        updateSlider(); // Initial update
+    }
+}
 
 
-/* ================== HELPERS ================== */
-const qs = (s, p = document) => p.querySelector(s);
-const qsa = (s, p = document) => Array.from(p.querySelectorAll(s));
-const fmtIDR = n => new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(n);
+// =======================
+// Fungsi untuk Halaman Game (game.html)
+// =======================
 
-let selectedProduct = null;
-let selectedPayment = null;
+function renderGamePage() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const gameKey = urlParams.get('key');
+    const game = GAMES.find(g => g.key === gameKey);
 
-function refreshSummary() {
-    const summaryProductEl = qs("#summary-product");
-    const summaryPaymentEl = qs("#summary-payment");
-    const summaryPriceEl = qs("#summary-price");
-    const checkoutBtn = qs("#checkout-btn");
+    if (!game) {
+        document.querySelector('main').innerHTML = '<h1 style="text-align: center; margin-top: 5rem;">Game tidak ditemukan.</h1>';
+        return;
+    }
+
+    document.getElementById('game-title-page').textContent = `Top Up ${game.name}`;
+    document.getElementById('game-title').textContent = game.name;
+    document.getElementById('game-banner').src = game.bannerImg;
+    document.getElementById('user-guide').textContent = game.guide;
+
+    const serverIdGroup = document.getElementById('server-id-group');
+    if (game.hasServerId) {
+        serverIdGroup.style.display = 'block';
+    } else {
+        serverIdGroup.style.display = 'none';
+    }
+
+    renderProducts(gameKey);
+    renderPayments();
+
+    setupCheckoutLogic(gameKey);
+}
+
+function renderProducts(gameKey) {
+    const productGrid = document.getElementById('product-grid');
+    if (!productGrid) return;
+    const products = PRODUCTS[gameKey] || [];
+
+    productGrid.innerHTML = products.map(product => `
+        <div class="grid-item product-item" data-id="${product.id}" data-label="${product.label}" data-price="${product.price}">
+            <span class="label">${product.label}</span>
+            <span class="price">Rp${product.price.toLocaleString('id-ID')}</span>
+            ${product.badges ? product.badges.map(badge => `<span class="badge badge-${badge}">${badge}</span>`).join('') : ''}
+        </div>
+    `).join('');
+
+    document.querySelectorAll('.product-item').forEach(item => {
+        item.addEventListener('click', () => {
+            document.querySelectorAll('.product-item').forEach(p => p.classList.remove('selected'));
+            item.classList.add('selected');
+            updateSummary();
+        });
+    });
+}
+
+function renderPayments() {
+    const paymentGrid = document.getElementById('payment-grid');
+    if (!paymentGrid) return;
+
+    paymentGrid.innerHTML = PAYMENTS.map(payment => `
+        <div class="grid-item payment-item" data-name="${payment.name}">
+            <img src="${payment.icon}" alt="${payment.name}" style="height: 25px; margin-bottom: 5px;">
+            <span class="label">${payment.name}</span>
+        </div>
+    `).join('');
+
+    document.querySelectorAll('.payment-item').forEach(item => {
+        item.addEventListener('click', () => {
+            document.querySelectorAll('.payment-item').forEach(p => p.classList.remove('selected'));
+            item.classList.add('selected');
+            updateSummary();
+        });
+    });
+}
+
+function updateSummary() {
+    const selectedProduct = document.querySelector('.product-item.selected');
+    const selectedPayment = document.querySelector('.payment-item.selected');
+    const checkoutBtn = document.getElementById('checkout-btn');
+
+    const summaryProduct = document.getElementById('summary-product');
+    const summaryPayment = document.getElementById('summary-payment');
+    const summaryPrice = document.getElementById('summary-price');
 
     if (selectedProduct) {
-        summaryProductEl.textContent = selectedProduct.label;
+        summaryProduct.textContent = selectedProduct.dataset.label;
+        summaryPrice.textContent = `Rp${parseInt(selectedProduct.dataset.price).toLocaleString('id-ID')}`;
     } else {
-        summaryProductEl.textContent = "-";
+        summaryProduct.textContent = '-';
+        summaryPrice.textContent = '-';
     }
-    
+
     if (selectedPayment) {
-        summaryPaymentEl.textContent = selectedPayment.name;
+        summaryPayment.textContent = selectedPayment.dataset.name;
     } else {
-        summaryPaymentEl.textContent = "-";
+        summaryPayment.textContent = '-';
     }
 
     if (selectedProduct && selectedPayment) {
-        const totalPrice = selectedProduct.price + selectedPayment.fee;
-        summaryPriceEl.textContent = fmtIDR(totalPrice);
-    } else {
-        summaryPriceEl.textContent = "-";
-    }
-
-    if (qs("#user-id").value.trim() && selectedProduct && selectedPayment) {
         checkoutBtn.disabled = false;
     } else {
         checkoutBtn.disabled = true;
     }
 }
 
-function updatePaymentPrices() {
-    qsa(".payment-item").forEach(item => {
-        const paymentId = item.dataset.id;
-        const payment = PAYMENTS.find(p => p.id === paymentId);
-        
-        const priceEl = item.querySelector(".price");
-        if (selectedProduct && payment) {
-            const totalPrice = selectedProduct.price + payment.fee;
-            priceEl.textContent = fmtIDR(totalPrice);
-        } else {
-            priceEl.textContent = "-";
+function setupCheckoutLogic(gameKey) {
+    const checkoutBtn = document.getElementById('checkout-btn');
+    if (!checkoutBtn) return;
+
+    checkoutBtn.addEventListener('click', () => {
+        const userId = document.getElementById('user-id').value;
+        const serverId = document.getElementById('server-id').value;
+        const selectedProduct = document.querySelector('.product-item.selected');
+        const selectedPayment = document.querySelector('.payment-item.selected');
+
+        if (!userId || !selectedProduct || !selectedPayment) {
+            alert('Mohon lengkapi semua data sebelum melanjutkan.');
+            return;
         }
+
+        const orderData = {
+            game: gameKey,
+            userId: userId,
+            serverId: serverId || null,
+            productLabel: selectedProduct.dataset.label,
+            productPrice: parseInt(selectedProduct.dataset.price),
+            paymentName: selectedPayment.dataset.name
+        };
+        
+        localStorage.setItem('currentOrder', JSON.stringify(orderData));
+        window.location.href = 'cart.html';
     });
 }
 
-function validateForm(hasServer) {
-    let ok = true;
-    const user = qs("#user-id").value.trim();
-    const server = hasServer ? qs("#server-id").value.trim() : "";
 
-    const errorUserEl = qs("#error-user");
-    const errorProductEl = qs("#error-product");
-    const errorPaymentEl = qs("#error-payment");
+// =======================
+// Fungsi untuk Halaman Pembayaran (cart.html)
+// =======================
 
-    if(errorUserEl) errorUserEl.textContent = "";
-    if(errorProductEl) errorProductEl.textContent = "";
-    if(errorPaymentEl) errorPaymentEl.textContent = "";
-
-    if (!user) { if(errorUserEl) errorUserEl.textContent = "User ID wajib diisi."; ok = false; }
-    if (hasServer && !server) { if(errorUserEl) errorUserEl.textContent = "User ID dan Server ID wajib diisi."; ok = false; }
-    if (!selectedProduct) { if(errorProductEl) errorProductEl.textContent = "Pilih salah satu nominal."; ok = false; }
-    if (!selectedPayment) { if(errorPaymentEl) errorPaymentEl.textContent = "Pilih salah satu metode bayar."; ok = false; }
-
-    return ok;
-}
-
-function saveTransactionData(game) {
-    const userId = qs("#user-id").value.trim();
-    const serverId = game.hasServerId ? qs("#server-id").value.trim() : null;
-    const totalPrice = selectedProduct.price + selectedPayment.fee;
-
-    const transactionData = {
-        game: game.name,
-        userId: userId,
-        serverId: serverId,
-        product: selectedProduct.label,
-        payment: selectedPayment.name,
-        price: totalPrice
-    };
-    localStorage.setItem("walzShopTransaction", JSON.stringify(transactionData));
-}
-
-function updateCartPage() {
-    const data = JSON.parse(localStorage.getItem("walzShopTransaction"));
-    if (!data) {
-        qs(".main .container").innerHTML = `<p class="error-text" style="text-align:center;">Transaksi tidak ditemukan. Silakan kembali ke halaman utama.</p><a href="index.html" class="btn btn-primary" style="margin-top:20px;">Kembali ke Beranda</a>`;
+function renderCartPage() {
+    const orderData = JSON.parse(localStorage.getItem('currentOrder'));
+    if (!orderData) {
+        document.querySelector('.summary-box').innerHTML = '<h2>Pesanan tidak ditemukan.</h2><a href="index.html" class="btn btn-primary">Kembali ke Beranda</a>';
         return;
     }
 
-    qs("#summary-product").textContent = data.product;
-    qs("#summary-payment").textContent = data.payment;
-    qs("#summary-total").textContent = fmtIDR(data.price);
-    
-    // Siapkan pesan WhatsApp
-    const waMsg = `Halo Admin, saya ingin konfirmasi pesanan top-up:
-*Game:* ${data.game}
-*User ID:* ${data.userId}
-${data.serverId ? `*Server ID:* ${data.serverId}\n` : ""}*Produk:* ${data.product}
-*Metode:* ${data.payment}
-*Total:* ${fmtIDR(data.price)}
-${data.payment === 'QRIS' ? `*Silakan scan QRIS berikut untuk melakukan pembayaran:* ${QRIS_IMAGE}` : `*Silakan transfer ke rekening ini:* ${BANK_ACCOUNT}`}
-Terima kasih, mohon segera diproses setelah bukti transfer dikirim.`;
+    document.getElementById('summary-product').textContent = orderData.productLabel;
+    document.getElementById('summary-payment').textContent = orderData.paymentName;
+    document.getElementById('summary-total').textContent = `Rp${orderData.productPrice.toLocaleString('id-ID')}`;
 
-    const waBtn = qs("#wa-btn");
-    waBtn.href = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(waMsg)}`;
-    waBtn.addEventListener('click', (e) => {
-        // Hapus data transaksi setelah dikirim ke WA
-        localStorage.removeItem("walzShopTransaction");
-    });
-}
+    const waText = `Halo admin, saya ingin konfirmasi pesanan.\n\n` +
+                   `Game: ${GAMES.find(g => g.key === orderData.game)?.name || orderData.game}\n` +
+                   `User ID: ${orderData.userId}\n` +
+                   (orderData.serverId ? `Server ID: ${orderData.serverId}\n` : '') +
+                   `Produk: ${orderData.productLabel}\n` +
+                   `Total: Rp${orderData.productPrice.toLocaleString('id-ID')}\n` +
+                   `Metode Pembayaran: ${orderData.paymentName}\n\n` +
+                   `Terima kasih.`;
 
-/* ================== INIT ================== */
-document.addEventListener("DOMContentLoaded", () => {
-    const page = document.body.dataset.page;
-    const navToggle = qs(".nav-toggle");
-    const nav = qs(".nav");
-    if (navToggle && nav) {
-        navToggle.addEventListener("click", () => nav.classList.toggle("active"));
-    }
-
-    if (page === "index") {
-        initIndexPage();
-    } else if (page === "game") {
-        initGamePage();
-    } else if (page === "cart") {
-        updateCartPage();
-    }
-});
-
-function initIndexPage() {
-    const gamesGrid = qs("#games-grid");
-    if (gamesGrid) {
-        gamesGrid.innerHTML = GAMES.map(g => `
-            <a href="game.html?key=${g.key}" class="game-card">
-              <img src="${g.img}" alt="${g.name}">
-              <p>${g.name}</p>
-            </a>
-        `).join("");
-    }
-
-    const promoSlider = qs("#promo-slider");
-    const sliderDots = qs("#slider-dots");
-    if (promoSlider && sliderDots) {
-        promoSlider.innerHTML = PROMOS.map(p => `
-            <div class="slider__item">
-              <a href="game.html?key=${p.gameKey}">
-                <img src="${p.img}" alt="${p.title}">
-              </a>
-            </div>
-        `).join("");
-        
-        if (PROMOS.length > 0) {
-            let currentSlide = 0;
-            
-            function updateSlider() {
-                promoSlider.style.transform = `translateX(-${currentSlide * 100}%)`;
-                qsa(".slider__dot").forEach((dot, i) => {
-                    dot.classList.toggle("active", i === currentSlide);
-                });
-            }
-            
-            PROMOS.forEach(() => {
-                const dot = document.createElement("div");
-                dot.classList.add("slider__dot");
-                sliderDots.appendChild(dot);
-            });
-            
-            qsa(".slider__dot").forEach((dot, i) => {
-                dot.addEventListener("click", () => {
-                    currentSlide = i;
-                    updateSlider();
-                });
-            });
-            
-            setInterval(() => {
-                currentSlide = (currentSlide + 1) % PROMOS.length;
-                updateSlider();
-            }, 4000);
-            
-            updateSlider();
-        }
-    }
-}
-
-function initGamePage() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const gameKey = urlParams.get('key');
-    const game = GAMES.find(g => g.key === gameKey);
-
-    if (!game) {
-        qs(".main .container").innerHTML = `<p class="error-text" style="text-align:center;">Game tidak ditemukan. Silakan kembali ke halaman utama.</p><a href="index.html" class="btn btn-primary" style="margin-top:20px;">Kembali ke Beranda</a>`;
-        return;
-    }
-
-    qs("#game-title-page").textContent = `${game.name} - Walz Shop`;
-    qs("#game-banner").src = game.bannerImg;
-    qs("#game-title").textContent = game.name;
-    qs("#user-guide").textContent = game.guide;
-    
-    const serverIdGroup = qs("#server-id-group");
-    if (!game.hasServerId) {
-        serverIdGroup.style.display = "none";
-    }
-
-    const productGrid = qs("#product-grid");
-    const paymentGrid = qs("#payment-grid");
-    
-    if (productGrid) {
-        productGrid.innerHTML = (PRODUCTS[gameKey] || []).map(p => `
-            <div class="grid-item" data-id="${p.id}" data-price="${p.price}">
-              <div class="label">${p.label}</div>
-              <div class="price">${fmtIDR(p.price)}</div>
-            </div>
-        `).join("");
-    }
-    
-    if (paymentGrid) {
-        paymentGrid.innerHTML = PAYMENTS.map(pay => `
-            <div class="payment-item" data-id="${pay.id}">
-              <div class="label">${pay.name}</div>
-              <div class="price">-</div>
-            </div>
-        `).join("");
-    }
-
-    qsa(".product-grid .grid-item").forEach(item => {
-        item.addEventListener("click", () => {
-            qsa(".product-grid .grid-item").forEach(p => p.classList.remove("selected"));
-            item.classList.add("selected");
-            selectedProduct = {
-                id: item.dataset.id,
-                label: item.querySelector(".label").textContent,
-                price: parseInt(item.dataset.price)
-            };
-            updatePaymentPrices();
-            refreshSummary();
-        });
-    });
-
-    qsa(".payment-grid .payment-item").forEach(item => {
-        item.addEventListener("click", () => {
-            qsa(".payment-grid .payment-item").forEach(p => p.classList.remove("selected"));
-            item.classList.add("selected");
-            selectedPayment = PAYMENTS.find(p => p.id === item.dataset.id);
-            refreshSummary();
-        });
-    });
-
-    qs("#user-id").addEventListener("input", refreshSummary);
-    if (game.hasServerId) {
-        qs("#server-id").addEventListener("input", refreshSummary);
-    }
-
-    qs("#checkout-btn").addEventListener("click", () => {
-        if (validateForm(game.hasServerId)) {
-            saveTransactionData(game);
-            window.location.href = "cart.html";
-        }
-    });
-    
-    updatePaymentPrices();
-    refreshSummary();
+    const waBtn = document.getElementById('wa-btn');
+    waBtn.href = `https://wa.me/6282298902274?text=${encodeURIComponent(waText)}`;
 }
