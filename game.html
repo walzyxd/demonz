@@ -5,110 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="game-title-page">Top Up Game</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body data-page="game">
-    <header>
-        <div class="container flex-row">
-            <a href="index.html" class="logo">
-                <img src="https://i.ibb.co/Ld1752D/Walz-Shop-1.png" alt="Walz Shop Logo">
-            </a>
-            <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
-            <nav class="nav">
-                <a href="index.html">Beranda</a>
-                <a href="index.html#about">Tentang Kami</a>
-            </nav>
-        </div>
+
+    <header class="header">
+        <a href="index.html" class="logo">💎 Diamonds Store</a>
+        <button class="nav-toggle" aria-label="toggle navigation">
+            <span class="hamburger"></span>
+        </button>
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__item"><a href="index.html" class="nav__link">Beranda</a></li>
+                <li class="nav__item"><a href="#" class="nav__link">Cara Beli</a></li>
+                <li class="nav__item"><a href="#" class="nav__link">Promo</a></li>
+                <li class="nav__item"><a href="cart.html" class="nav__link">Keranjang</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main class="main">
-        <div class="container">
-            <img id="game-banner" class="game-banner" src="" alt="Game Banner">
-            <h1 id="game-title" style="text-align: center;"></h1>
+    <main class="main-content">
+        <div class="game-header">
+            <img src="" alt="Game Banner" class="game-banner" id="game-banner">
+            <h1 class="game-title" id="game-title"></h1>
+        </div>
 
-            <div class="steps-container">
-                <section class="card section step-1">
-                    <h3 class="step-header">1. Masukkan User ID</h3>
-                    <p id="user-guide" class="guide-text"></p>
-                    <div class="input-group">
-                        <label for="user-id">User ID</label>
-                        <input type="text" id="user-id" placeholder="Masukkan User ID Anda">
-                    </div>
-                    <div class="input-group" id="server-id-group">
-                        <label for="server-id">Server ID</label>
-                        <input type="text" id="server-id" placeholder="Masukkan Server ID Anda">
-                    </div>
-                    <span id="error-user" class="error-text"></span>
-                </section>
-                
-                <section class="card section step-2">
-                    <h3 class="step-header step-2-header">2. Pilih Nominal Top Up</h3>
-                    <div id="product-grid" class="product-grid">
-                        </div>
-                    <span id="error-product" class="error-text"></span>
-                </section>
+        <div class="form-container">
+            <section class="form-section">
+                <h2>1. Masukkan User ID</h2>
+                <p class="guide-text" id="user-guide"></p>
+                <div class="input-group">
+                    <input type="text" id="user-id" placeholder="Masukkan User ID" required>
+                </div>
+                <div class="input-group" id="server-id-group">
+                    <input type="text" id="server-id" placeholder="Masukkan Server ID">
+                </div>
+            </section>
 
-                <section class="card section step-3">
-                    <h3 class="step-header step-3-header">3. Pilih Pembayaran</h3>
-                    <div id="payment-grid" class="payment-grid">
-                        </div>
-                    <span id="error-payment" class="error-text"></span>
-                </section>
-
-                <section class="card section step-4">
-                    <h3 class="step-header step-4-header">4. Beli Sekarang</h3>
-                    <div class="summary-details">
-                        <div class="summary-item">
-                            <span class="summary-label">Produk</span>
-                            <span id="summary-product" class="summary-value">-</span>
-                        </div>
-                        <div class="summary-item">
-                            <span class="summary-label">Metode Pembayaran</span>
-                            <span id="summary-payment" class="summary-value">-</span>
-                        </div>
-                        <div class="summary-item">
-                            <span class="summary-label">Harga</span>
-                            <span id="summary-price" class="summary-value">-</span>
-                        </div>
+            <section class="form-section">
+                <h2>2. Pilih Nominal Top Up</h2>
+                <div class="grid-container products-grid" id="product-grid">
                     </div>
-                    <button id="checkout-btn" class="btn btn-confirm" disabled>Bayar Sekarang</button>
-                </section>
-            </div>
+            </section>
+
+            <section class="form-section">
+                <h2>3. Pilih Metode Pembayaran</h2>
+                <div class="grid-container payments-grid" id="payment-grid">
+                    </div>
+            </section>
+
+            <section class="form-section summary-section">
+                <h2>Ringkasan Pesanan</h2>
+                <div class="summary-box">
+                    <div class="summary-item">
+                        <span>Produk:</span>
+                        <span id="summary-product">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Metode Pembayaran:</span>
+                        <span id="summary-payment">-</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Harga:</span>
+                        <span id="summary-price">-</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="checkout-btn" disabled>Beli Sekarang</button>
+            </section>
         </div>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="footer-columns">
-                <div class="footer-column">
-                    <h4>Walz Shop</h4>
-                    <p>Layanan top up game terpercaya, cepat, dan aman.</p>
-                    <a href="#" class="social-icon"><img src="https://i.ibb.co/Ld1752D/Walz-Shop-1.png" alt="Logo"></a>
-                </div>
-                <div class="footer-column">
-                    <h4>Navigasi</h4>
-                    <ul>
-                        <li><a href="index.html">Beranda</a></li>
-                        <li><a href="#about">Tentang Kami</a></li>
-                        <li><a href="#payments">Pembayaran</a></li>
-                        <li><a href="#">Syarat & Ketentuan</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Hubungi Kami</h4>
-                    <p>Email: walzshop@gmail.com</p>
-                    <p>WhatsApp: 082298902274</p>
-                    <p>Jam Kerja: 08.00 - 22.00 WIB</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Walz Shop. All Rights Reserved.</p>
-            </div>
-        </div>
+    <footer class="footer">
+        <p>&copy; 2024 Diamonds Store. All Rights Reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js" type="module"></script>
 </body>
 </html>
