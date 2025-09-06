@@ -260,42 +260,6 @@ function selectOption(element) {
     updateSummary();
 }
 
-function updateSummary() {
-    const selectedProductCard = document.querySelector('#product-list .option-card.selected');
-    const selectedPaymentCard = document.querySelector('#payment-list .option-card.selected');
-    const summaryCard = document.getElementById('summary-card');
-    const summaryProductDetails = document.getElementById('summary-product-details');
-    const summaryPrice = document.getElementById('summary-price');
-    const gameKey = getUrlParameter('key');
-    const userIdInput = document.getElementById('user-id');
-    const serverIdInput = document.getElementById('server-id');
-    
-    const userId = userIdInput.value;
-    const serverId = serverIdInput ? serverIdInput.value : '';
-    const isIdValid = userId.length > 0 && (serverIdInput ? serverId.length > 0 : true);
-    
-    if (selectedProductCard && selectedPaymentCard && isIdValid) {
-        summaryCard.style.display = 'block';
-        
-        const productId = selectedProductCard.dataset.id;
-        const product = PRODUCTS[gameKey].find(p => p.id === productId);
-        let finalPrice = product.price;
-
-        if (appliedVoucher) {
-            finalPrice = finalPrice - (finalPrice * appliedVoucher);
-        }
-
-        summaryProductDetails.innerHTML = `
-            <i class="fas fa-gem"></i>
-            <span class="product-text">${product.label}</span>
-        `;
-        summaryPrice.innerHTML = `<span class="price-text">${formatRupiah(finalPrice)}</span>`;
-
-    } else {
-        summaryCard.style.display = 'none';
-    }
-}
-
 function closeModal(id) {
     document.getElementById(id).style.display = 'none';
 }
@@ -306,13 +270,53 @@ function showVoucherModal(title, message) {
     document.getElementById('voucher-modal').style.display = 'flex';
 }
 
+function updateSummary() {
+    const selectedProductCard = document.querySelector('#product-list .option-card.selected');
+    const selectedPaymentCard = document.querySelector('#payment-list .option-card.selected');
+    const summaryCard = document.getElementById('summary-card');
+    const summaryProductDetails = document.getElementById('summary-product-details');
+    const summaryPrice = document.getElementById('summary-price');
+    const gameKey = getUrlParameter('key');
+    const userIdInput = document.getElementById('user-id');
+    const serverIdInput = document.getElementById('server-id');
+    const confirmButton = document.getElementById('confirm-button');
+
+    const userId = userIdInput.value;
+    const serverId = serverIdInput ? serverIdInput.value : '';
+    
+    const isIdValid = userId.length > 0 && (serverIdInput ? serverId.length > 0 : true);
+    
+    if (selectedProductCard && selectedPaymentCard && isIdValid) {
+        summaryCard.style.display = 'block';
+        confirmButton.disabled = false;
+        
+        const productId = selectedProductCard.dataset.id;
+        const product = PRODUCTS[gameKey].find(p => p.id === productId);
+        let finalPrice = product.price;
+
+        if (appliedVoucher) {
+            finalPrice = finalPrice - (finalPrice * appliedVoucher);
+        }
+
+        summaryProductDetails.innerHTML = `
+            <i class="fas fa-gem" style="color:var(--text-color);"></i>
+            <span class="product-text">${product.label}</span>
+        `;
+        summaryPrice.innerHTML = `<span class="price-text">${formatRupiah(finalPrice)}</span>`;
+
+    } else {
+        summaryCard.style.display = 'none';
+        confirmButton.disabled = true;
+    }
+}
+
 // --- Fungsi Vouchers ---
 function applyVoucher() {
     const voucherCode = document.getElementById('voucher-code').value.toUpperCase();
     if (VOUCHER[voucherCode]) {
         appliedVoucher = VOUCHER[voucherCode];
         updateSummary();
-        showVoucherModal('Voucher Berhasil', 'Kode voucher berhasil diterapkan! Diskon ' + (appliedVoucher * 100) + '%');
+        showVoucherModal('Voucher Berhasil', `Kode voucher berhasil diterapkan! Diskon ${(appliedVoucher * 100)}%.`);
     } else {
         appliedVoucher = null;
         updateSummary();
@@ -405,7 +409,11 @@ function setupGamePage() {
     if (products) {
         products.forEach(product => {
             const productDiv = document.createElement("div");
-            productDiv.classList.add("option-card", "diamond");
+            productDiv.classList.add("option-card");
+            if (product.label.toLowerCase().includes("diamond") || product.label.toLowerCase().includes("gems") || product.label.toLowerCase().includes("uc") || product.label.toLowerCase().includes("crystals") || product.label.toLowerCase().includes("coins")) {
+                productDiv.classList.add("diamond");
+            }
+
             productDiv.setAttribute('data-id', product.id);
 
             let badgesHtml = '';
@@ -507,8 +515,8 @@ function setupGamePage() {
             ${serverId ? `<p><strong>Server ID:</strong> ${serverId}</p>` : ''}
             <p><strong>Produk:</strong> ${product.label}</p>
             <p><strong>Pembayaran:</strong> ${payment.name}</p>
-            <p><strong>Total Harga:</strong> <span class="price-text">${formatRupiah(finalPrice)}</span></p>
-            ${appliedVoucher ? `<p><strong>Diskon Voucher:</strong> ${appliedVoucher * 100}%</p>` : ''}
+            <p><strong>Total Harga:</strong> <span class="price-text" style="background:var(--accent-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">${formatRupiah(finalPrice)}</span></p>
+            ${appliedVoucher ? `<p><strong>Diskon Voucher:</strong> ${(appliedVoucher * 100)}%</p>` : ''}
         `;
 
         modal.style.display = 'flex';
@@ -585,7 +593,7 @@ function setupCartPage() {
                 `;
             }
         }
-        document.getElementById('cart-total-price').innerText = `Total: ${formatRupiah(product.price)}`;
+        document.getElementById('cart-total-price').innerText = `${formatRupiah(product.price)}`;
     } else {
         // Handle case where URL parameters are missing or invalid
         cartSummaryCard.innerHTML = `<p style="text-align: center; color: red;">Maaf, data pesanan tidak ditemukan. Silakan kembali ke halaman utama.</p>`;
@@ -593,7 +601,7 @@ function setupCartPage() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (document.getElementById('game-list')) {
+    if (document.querySelector('.game-grid-custom')) {
         renderGameCards();
         initializeCarousel();
     } else if (document.getElementById('topup-form')) {
