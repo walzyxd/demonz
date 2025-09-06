@@ -157,17 +157,22 @@ a {
 }
 
 .back-button-top {
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 1.2em;
+    font-size: 1em;
     color: var(--text-light);
     transition: color 0.2s;
     z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 15px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .back-button-top:hover {
     color: var(--text-color);
+    background: var(--purple-mid);
 }
 
 .game-info-header {
@@ -179,7 +184,6 @@ a {
     background: var(--card-bg);
     border-radius: 15px;
     margin-bottom: 20px;
-    margin-top: 30px;
 }
 
 .game-info-header .game-img {
@@ -272,16 +276,7 @@ a {
     font-size: 1em;
 }
 
-.input-group-grid {
-    display: flex;
-    gap: 10px;
-}
-
-.input-group-grid .input-group {
-    flex-grow: 1;
-}
-
-.input-group input, .input-group-grid input {
+.input-group input {
     width: 100%;
     padding: 12px 15px;
     padding-left: 45px;
@@ -293,7 +288,7 @@ a {
     transition: border-color 0.3s ease;
 }
 
-.input-group input:focus, .input-group-grid input:focus {
+.input-group input:focus {
     outline: none;
     border-color: var(--selected-border);
 }
@@ -407,9 +402,16 @@ a {
     align-items: center;
 }
 
-.voucher-input {
+.voucher-input-group input {
     flex-grow: 1;
-    padding-left: 15px !important;
+}
+
+.voucher-input-group .input-icon {
+    left: 15px;
+}
+
+.voucher-input-group input::placeholder {
+    padding-left: 20px; /* Adjust padding for placeholder text */
 }
 
 .voucher-button {
@@ -634,11 +636,12 @@ a {
     color: var(--text-color);
 }
 
-/* --- Pop-up Notifikasi --- */
+/* --- Pop-up Notifikasi (Pusat) --- */
 .notification-container {
     position: fixed;
     top: 20px;
-    right: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 2000;
 }
 
