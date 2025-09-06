@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Walz Shop - Top Up</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body data-page="game">
@@ -29,35 +29,49 @@
   <main class="main">
     <div class="container">
       <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali</a>
-      <div class="game-banner fade-in">
+      
+      <div class="game-info">
         <img id="game-banner" class="game-banner-image" src="" alt="Game Banner">
         <h1 class="game-name-h1" id="game-title"></h1>
       </div>
 
       <div class="form-container">
-        <div class="form-group">
-          <label for="user-id"><i class="fas fa-user"></i> Masukkan User ID</label>
+        <div class="form-step">
+          <div class="step-title-wrapper">
+            <span class="step-number">1</span>
+            <h3 class="step-title"><i class="fas fa-user"></i> Masukkan User ID</h3>
+          </div>
           <div class="input-group">
             <input type="text" id="user-id" placeholder="Contoh: 12345678" required>
             <input type="text" id="server-id" placeholder="Server ID (Opsional)">
           </div>
+          <small class="user-guide" id="user-guide"></small>
           <small class="error-text" id="error-user"></small>
         </div>
 
-        <div class="form-group">
-          <label><i class="fas fa-dollar-sign"></i> Pilih Nominal Top Up</label>
+        <div class="form-step">
+          <div class="step-title-wrapper">
+            <span class="step-number">2</span>
+            <h3 class="step-title"><i class="fas fa-dollar-sign"></i> Pilih Nominal Top Up</h3>
+          </div>
           <div class="product-grid" id="product-grid"></div>
           <small class="error-text" id="error-product"></small>
         </div>
 
-        <div class="form-group">
-          <label><i class="fas fa-credit-card"></i> Pilih Metode Pembayaran</label>
+        <div class="form-step">
+          <div class="step-title-wrapper">
+            <span class="step-number">3</span>
+            <h3 class="step-title"><i class="fas fa-credit-card"></i> Pilih Metode Pembayaran</h3>
+          </div>
           <div class="payment-grid" id="payment-grid"></div>
           <small class="error-text" id="error-payment"></small>
         </div>
         
-        <div class="form-group">
-          <label><i class="fas fa-tags"></i> Gunakan Voucher</label>
+        <div class="form-step">
+          <div class="step-title-wrapper">
+            <span class="step-number">4</span>
+            <h3 class="step-title"><i class="fas fa-tags"></i> Gunakan Voucher (Opsional)</h3>
+          </div>
           <div class="input-group voucher-input-group">
             <input type="text" id="voucher-input" placeholder="Kode Voucher">
             <button type="button" class="btn btn-apply" id="voucher-btn">Terapkan</button>
@@ -66,6 +80,7 @@
         </div>
 
         <div class="summary-box">
+          <h3 class="summary-title">Ringkasan Pesanan</h3>
           <div class="summary-item">
             <span>Harga Produk</span>
             <span id="summary-product-price">-</span>
@@ -74,6 +89,7 @@
             <span>Diskon Voucher</span>
             <span id="summary-voucher-price">-</span>
           </div>
+          <div class="soft-divider"></div>
           <div class="summary-item total-price">
             <span>Total Pembayaran</span>
             <span id="total-price">-</span>
@@ -87,7 +103,34 @@
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2025 Walz Shop. Semua hak dilindungi.</p>
+      <div class="footer-content">
+        <div class="footer-section about">
+          <a href="#" class="footer-logo">Walz Shop</a>
+          <p>Layanan top-up game termurah dan tercepat untuk semua game favorit Anda.</p>
+        </div>
+        <div class="footer-section links">
+          <h3>Tautan Cepat</h3>
+          <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="#">Tentang Kami</a></li>
+            <li><a href="#">Kontak</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+          </ul>
+        </div>
+        <div class="footer-section contact">
+          <h3>Hubungi Kami</h3>
+          <p><i class="fas fa-envelope"></i> admin@walzshop.com</p>
+          <p><i class="fas fa-phone"></i> +62 812-3456-7890</p>
+          <div class="socials">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Walz Shop. Semua hak dilindungi.</p>
+      </div>
     </div>
   </footer>
   
