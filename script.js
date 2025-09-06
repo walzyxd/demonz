@@ -1,19 +1,19 @@
 // --- Data Website Anda ---
 const GAMES = [
-    { key: "free-fire", name: "Free Fire", publisher: "Garena", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", url: "game.html?key=free-fire", needsServerId: false },
-    { key: "mobile-legends", name: "Mobile Legends", publisher: "Moonton", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", url: "game.html?key=mobile-legends", needsServerId: true },
-    { key: "honor-of-kings", name: "Honor of Kings", publisher: "Level Infinite", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", url: "game.html?key=honor-of-kings", needsServerId: true },
-    { key: "genshin-impact", name: "Genshin Impact", publisher: "Hoyoverse", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", url: "game.html?key=genshin-impact", needsServerId: true },
-    { key: "roblox", name: "Roblox", publisher: "Roblox Corporation", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", url: "game.html?key=roblox", needsServerId: false },
-    { key: "super-sus", name: "Super Sus", publisher: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", url: "game.html?key=super-sus", needsServerId: true },
-    { key: "coc", name: "Clash of Clans", publisher: "Supercell", img: "https://files.catbox.moe/6aia0n.jpg", url: "game.html?key=coc", needsServerId: false },
-    { key: "blood-strike", name: "Blood Strike", publisher: "NetEase", img: "https://files.catbox.moe/3y066i.jpg", url: "game.html?key=blood-strike", needsServerId: false },
-    { key: "pubg", name: "PUBG Mobile", publisher: "Semua Region", img: "https://files.catbox.moe/tatuo9.jpg", url: "game.html?key=pubg", needsServerId: false },
-    { key: "garena-delta", name: "Garena Delta Force", publisher: "Garena Delta...", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", url: "game.html?key=garena-delta", needsServerId: false },
-    { key: "garena-undawn", name: "Garena Undawn", publisher: "Garena", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", url: "game.html?key=garena-undawn", needsServerId: false },
-    { key: "valorant", name: "Valorant", publisher: "Riot Games", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", url: "game.html?key=valorant", needsServerId: false },
-    { key: "call-of-duty", name: "Call Of Duty", publisher: "Activision", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", url: "game.html?key=call-of-duty", needsServerId: false },
-    { key: "eggy-party", name: "Eggy Party", publisher: "NetEase Games", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", url: "game.html?key=eggy-party", needsServerId: false },
+    { key: "free-fire", name: "Free Fire", publisher: "Garena", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", url: "game.html?key=free-fire", needsServerId: false, apiCode: "ff" },
+    { key: "mobile-legends", name: "Mobile Legends", publisher: "Moonton", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", url: "game.html?key=mobile-legends", needsServerId: true, apiCode: "ml" },
+    { key: "honor-of-kings", name: "Honor of Kings", publisher: "Level Infinite", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", url: "game.html?key=honor-of-kings", needsServerId: true, apiCode: "hok" },
+    { key: "genshin-impact", name: "Genshin Impact", publisher: "Hoyoverse", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", url: "game.html?key=genshin-impact", needsServerId: true, apiCode: "gi" },
+    { key: "roblox", name: "Roblox", publisher: "Roblox Corporation", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", url: "game.html?key=roblox", needsServerId: false, apiCode: "roblox" },
+    { key: "super-sus", name: "Super Sus", publisher: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", url: "game.html?key=super-sus", needsServerId: true, apiCode: "supersus" },
+    { key: "coc", name: "Clash of Clans", publisher: "Supercell", img: "https://files.catbox.moe/6aia0n.jpg", url: "game.html?key=coc", needsServerId: false, apiCode: "coc" },
+    { key: "blood-strike", name: "Blood Strike", publisher: "NetEase", img: "https://files.catbox.moe/3y066i.jpg", url: "game.html?key=blood-strike", needsServerId: false, apiCode: "bloodstrike" },
+    { key: "pubg", name: "PUBG Mobile", publisher: "Semua Region", img: "https://files.catbox.moe/tatuo9.jpg", url: "game.html?key=pubg", needsServerId: false, apiCode: "pubgm" },
+    { key: "garena-delta", name: "Garena Delta Force", publisher: "Garena Delta...", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", url: "game.html?key=garena-delta", needsServerId: false, apiCode: "deltaforce" },
+    { key: "garena-undawn", name: "Garena Undawn", publisher: "Garena", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", url: "game.html?key=garena-undawn", needsServerId: false, apiCode: "undawn" },
+    { key: "valorant", name: "Valorant", publisher: "Riot Games", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", url: "game.html?key=valorant", needsServerId: false, apiCode: "valorant" },
+    { key: "call-of-duty", name: "Call Of Duty", publisher: "Activision", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", url: "game.html?key=call-of-duty", needsServerId: false, apiCode: "codm" },
+    { key: "eggy-party", name: "Eggy Party", publisher: "NetEase Games", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", url: "game.html?key=eggy-party", needsServerId: false, apiCode: "eggyparty" },
 ];
 
 const PAYMENTS = [
@@ -389,6 +389,9 @@ function setupGamePage() {
     const serverIdContainer = document.getElementById("server-id-container");
     const promoCodeInput = document.getElementById('promo-code');
     const whatsappInput = document.getElementById('whatsapp-number');
+    const checkIdBtn = document.getElementById('check-id-btn');
+    const userIdInput = document.getElementById('user-id');
+    const idCheckResult = document.getElementById('id-check-result');
 
     if (!game || !productListContainer || !paymentListContainer) {
         window.location.href = 'index.html';
@@ -447,7 +450,7 @@ function setupGamePage() {
     });
 
     // Event listeners for inputs to update summary
-    document.getElementById('user-id').addEventListener('input', updateSummary);
+    userIdInput.addEventListener('input', updateSummary);
     if (game.needsServerId) {
         document.getElementById('server-id').addEventListener('input', updateSummary);
     }
@@ -470,6 +473,11 @@ function setupGamePage() {
         }
     });
 
+    // FUNGSI BARU: Event listener untuk tombol Cek ID
+    checkIdBtn.addEventListener('click', () => {
+        checkGameId(game.apiCode, userIdInput.value);
+    });
+
     document.getElementById('confirm-button').addEventListener('click', () => {
         const selectedProductCard = document.querySelector('#product-list .option-card.selected');
         const selectedPaymentCard = document.querySelector('#payment-list .option-card.selected');
@@ -488,6 +496,47 @@ function setupGamePage() {
             alert('Mohon lengkapi semua data pesanan terlebih dahulu.');
         }
     });
+}
+
+// FUNGSI BARU: Fungsi untuk memeriksa ID Game
+async function checkGameId(gameCode, userId) {
+    const idCheckResult = document.getElementById('id-check-result');
+    const checkIdBtn = document.getElementById('check-id-btn');
+    
+    // Validasi input sederhana
+    if (!userId || userId.length < 3) {
+        idCheckResult.textContent = "ID tidak valid.";
+        idCheckResult.style.color = "var(--price-color)";
+        return;
+    }
+
+    // Ganti dengan kredensial API Anda
+    const merchantId = "M250907JZZY9386TE"; // GANTI DENGAN MERCHANT ID ANDA
+    const signature = "30c48fa4678c8a429ad7978ebada54eb"; // GANTI DENGAN SIGNATURE ANDA
+    const apiURL = `https://v1.apigames.id/merchant/${merchantId}/cek-username/${gameCode}?user_id=${userId}&signature=${signature}`;
+
+    idCheckResult.textContent = "Memeriksa...";
+    idCheckResult.style.color = "var(--text-color-dark)";
+    checkIdBtn.disabled = true;
+
+    try {
+        const response = await fetch(apiURL);
+        const data = await response.json();
+
+        if (data.status === 1 && data.data.is_valid) {
+            idCheckResult.textContent = `Username: ${data.data.username}`;
+            idCheckResult.style.color = "lightgreen";
+        } else {
+            idCheckResult.textContent = "ID tidak ditemukan atau tidak valid.";
+            idCheckResult.style.color = "var(--price-color)";
+        }
+    } catch (error) {
+        console.error("Error fetching API:", error);
+        idCheckResult.textContent = "Gagal terhubung ke server.";
+        idCheckResult.style.color = "var(--price-color)";
+    } finally {
+        checkIdBtn.disabled = false;
+    }
 }
 
 // --- Logika Halaman Cart ---
