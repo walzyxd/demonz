@@ -3,56 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WALZSHOP</title>
+    <title>Keranjang Belanja</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="main-container">
 
-        <main class="game-selection-main">
-            <section class="page-container">
-                <div class="container">
-                    <h2 class="section-title">Ringkasan Pembelian</h2>
-                    <div class="cart-summary-card">
-                        <div class="cart-item-header">
-                            <img id="cart-game-img" src="" alt="Game Image" class="cart-item-img">
-                            <div class="cart-details">
-                                <h3 id="cart-game-name"></h3>
-                                <p id="cart-user-id"></p>
-                                <p id="cart-server-id" style="display:none;"></p>
-                            </div>
-                        </div>
+    <header class="header">
+        <a href="index.html" class="logo-link">
+            <img src="https://i.supaimg.com/e474586d-0649-4171-88f6-285640778c85.png" alt="Supa Store Logo" class="logo">
+        </a>
+        <h1 class="website-name">Supa Store</h1>
+        <div class="header-right">
+            <a href="#" class="header-link">
+                <i class="fas fa-search"></i>
+            </a>
+            <a href="#" class="header-link">
+                <i class="fas fa-user"></i>
+            </a>
+        </div>
+    </header>
 
-                        <div class="cart-section">
-                            <div class="section-title-icon"><i class="fas fa-ticket-alt"></i></div>
-                            <div class="section-content">
-                                <h4>Produk</h4>
-                                <p id="cart-product-label"></p>
-                            </div>
-                        </div>
-
-                        <div class="cart-section">
-                            <div class="section-title-icon"><i class="fas fa-money-bill-wave"></i></div>
-                            <div class="section-content">
-                                <h4>Metode Pembayaran</h4>
-                                <p id="cart-payment-name"></p>
-                                <img id="cart-payment-img" src="" alt="Payment Logo" class="payment-icon-cart">
-                            </div>
-                        </div>
-
-                        <div id="cart-payment-info" class="cart-payment-details">
-                        </div>
-
-                        <div id="cart-total-price" class="total-price"></div>
-
-                        <a href="#" class="submit-button active" style="text-align: center;">Konfirmasi Pembayaran</a>
+    <main class="container">
+        <section class="checkout-summary-section">
+            <div class="step-header">
+                <h2 class="step-title">Ringkasan Pesanan & Pembayaran</h2>
+            </div>
+            <div class="cart-summary-card" id="cart-summary-card">
+                <div class="cart-summary-header">
+                    <img id="cart-game-img" src="" alt="Game Image">
+                    <div>
+                        <h3 id="cart-game-name"></h3>
+                        <p id="cart-user-id"></p>
+                        <p id="cart-server-id" style="display:none;"></p>
                     </div>
                 </div>
-            </section>
-        </main>
-    </div>
+                <div class="divider"></div>
+                <div class="cart-summary-details">
+                    <div class="item-summary">
+                        <span>Produk:</span>
+                        <span id="cart-product-label"></span>
+                    </div>
+                    <div class="item-summary">
+                        <span>Metode Pembayaran:</span>
+                        <div class="payment-summary-info">
+                            <img id="cart-payment-img" src="" alt="Payment Image">
+                            <span id="cart-payment-name"></span>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="item-summary total-price">
+                        <span>Total:</span>
+                        <span id="cart-total-price"></span>
+                    </div>
+                </div>
+                <div class="payment-instructions" id="cart-payment-info">
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        </footer>
 
     <script src="script.js"></script>
 </body>
