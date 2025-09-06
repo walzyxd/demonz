@@ -5,60 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supa Store</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-    <header class="header">
-        <a href="index.html" class="logo-link">
-            <img src="https://i.supaimg.com/e474586d-0649-4171-88f6-285640778c85.png" alt="Supa Store Logo" class="logo">
-        </a>
-        <h1 class="website-name">Supa Store</h1>
-        <div class="header-right">
-            <a href="#" class="header-link">
-                <i class="fas fa-search"></i>
+    <div class="main-container">
+        <header class="header">
+            <a href="index.html" class="logo-link">
+                <img src="https://i.supaimg.com/e474586d-0649-4171-88f6-285640778c85.png" alt="Supa Store Logo" class="logo">
             </a>
-            <a href="#" class="header-link">
-                <i class="fas fa-user"></i>
-            </a>
-        </div>
-    </header>
-
-    <main class="container">
-        <section class="top-section">
-            <div class="carousel-container">
-                <div class="carousel-slide"></div>
-                <div class="carousel-dots"></div>
+            <h1 class="website-name">Supa Store</h1>
+            <div class="header-right">
+                <a href="#" class="header-link">
+                    <i class="fas fa-search"></i>
+                </a>
+                <a href="#" class="header-link">
+                    <i class="fas fa-user"></i>
+                </a>
             </div>
-        </section>
-
-        <section class="game-list-section">
-            <h2>Pilih Game</h2>
-            <div id="game-list" class="game-grid">
+        </header>
+    
+        <main class="game-selection-main">
+            <section class="top-section">
+                <div class="carousel-container">
+                    <div class="carousel-slide"></div>
+                    <div class="carousel-dots"></div>
                 </div>
-        </section>
-    </main>
+            </section>
+    
+            <section class="game-list-section">
+                <h2 style="text-align: center;">Pilih Game</h2>
+                <div id="game-list" class="game-grid-custom">
+                    </div>
+            </section>
+        </main>
+    </div>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section about">
-                <h3>Tentang Kami</h3>
-                <p>Supa Store adalah platform terpercaya untuk top-up game dan voucher digital dengan harga terjangkau dan proses yang cepat.</p>
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4 class="footer-logo">Supa Store</h4>
+                <p>Platform terpercaya untuk top-up game dan voucher digital dengan harga terjangkau dan proses yang cepat.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
             </div>
-            <div class="footer-section contact">
-                <h3>Hubungi Kami</h3>
-                <p>Email: support@supastore.com</p>
-                <p>WhatsApp: +62 812 3456 7890</p>
+            <div class="footer-column">
+                <h4>Informasi</h4>
+                <ul>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#">Syarat & Ketentuan</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                </ul>
             </div>
-            <div class="footer-section social">
-                <h3>Ikuti Kami</h3>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
+            <div class="footer-column">
+                <h4>Bantuan</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; 2024 Supa Store. All Rights Reserved.
+            <p>&copy; 2024 Supa Store. All Rights Reserved.</p>
         </div>
     </footer>
 
