@@ -27,7 +27,7 @@
         </header>
 
         <main class="game-page-container">
-            <a href="index.html" class="back-button-top"><i class="fas fa-arrow-left"></i></a>
+            <a href="javascript:history.back()" class="back-button-top" style="margin-bottom: 20px;"><i class="fas fa-arrow-left"></i> Kembali</a>
             
             <div id="game-info-header" class="game-info-header">
                 </div>
@@ -40,12 +40,10 @@
                     </div>
                     <div class="input-group">
                         <i class="fas fa-user input-icon"></i>
-                        <input type="text" id="user-id" placeholder="Masukkan ID">
+                        <input type="number" id="user-id" placeholder="Masukkan ID">
                     </div>
-                    <div class="input-group">
-                        <i class="fas fa-server input-icon"></i>
-                        <input type="text" id="server-id" placeholder="Masukkan Server ID (Opsional)">
-                    </div>
+                    <div id="server-id-container" class="input-group">
+                        </div>
                 </section>
 
                 <section class="section-card">
@@ -69,14 +67,21 @@
                 <section class="section-card">
                     <div class="section-header">
                         <div class="section-number">4</div>
-                        <h3>Lengkapi Kontak & Voucher</h3>
+                        <h3>Lengkapi Kontak</h3>
                     </div>
                     <div class="input-group">
                         <i class="fab fa-whatsapp input-icon"></i>
                         <input type="tel" id="whatsapp-number" placeholder="Masukkan Nomor WhatsApp">
                     </div>
+                </section>
+
+                <section class="section-card">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Gunakan Kode Voucher</h3>
+                    </div>
                     <div class="input-group voucher-input-group">
-                        <i class="fas fa-ticket-alt input-icon" style="left: 10px;"></i>
+                        <i class="fas fa-ticket-alt input-icon"></i>
                         <input type="text" id="promo-code" class="voucher-input" placeholder="Masukkan Kode Voucher">
                         <button type="button" id="use-voucher-btn" class="voucher-button">Gunakan</button>
                     </div>
@@ -90,7 +95,6 @@
 
             <button type="button" id="confirm-button" class="confirm-button" disabled>Beli Sekarang</button>
             
-            <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
         </main>
     </div>
     
