@@ -6,80 +6,56 @@
     <title>WALZSHOP</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+
     <div class="main-container">
+        
+        <div class="carousel-container">
+            <div class="carousel-slide" id="carousel-slide">
+            </div>
+            <div class="carousel-dots" id="carousel-dots"></div>
+        </div>
 
         <main class="game-selection-main">
-            <div class="container game-page-container" id="game-page-container">
-
-                <div class="back-button-container">
-                    <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i></a>
-                </div>
-
-                <div class="game-info-header" id="game-info-header">
-                    </div>
-
-                <div id="notification-popup" class="notification-popup" style="display:none;">
-                    <div class="notification-content">
-                        <span class="notification-icon">⚠️</span>
-                        <p class="notification-text">Attention!</p>
-                        <p class="notification-message">Silakan pilih pembayaran terlebih dahulu!</p>
-                        <button class="close-button" onclick="closeNotification()">Close</button>
-                    </div>
-                </div>
-
-                <form class="topup-form" onsubmit="event.preventDefault(); window.location.href = 'cart.html?key=' + this.querySelector('[name=key]').value + '&user_id=' + this.querySelector('[name=user_id]').value + '&server_id=' + (this.querySelector('[name=server_id]') ? this.querySelector('[name=server_id]').value : '') + '&product_id=' + this.querySelector('[name=product_id]:checked').value + '&payment_id=' + this.querySelector('[name=payment_id]:checked').value;">
-                    
-                    <div class="step-card">
-                        <div class="step-number">1</div>
-                        <h3 class="step-title">Masukkan User ID</h3>
-                        <div class="input-group">
-                            <input type="text" id="user-id" name="user_id" placeholder="Masukkan ID Akun" required>
-                        </div>
-                        <div class="input-group" id="server-id-group" style="display:none;">
-                            <input type="text" id="server-id" name="server_id" placeholder="Masukkan Server ID" required>
-                        </div>
-                    </div>
-
-                    <div class="step-card">
-                        <div class="step-number">2</div>
-                        <h3 class="step-title">Pilih Diamonds</h3>
-                        <div class="options-grid" id="product-list">
-                        </div>
-                    </div>
-
-                    <div class="step-card">
-                        <div class="step-number">3</div>
-                        <h3 class="step-title">Pilih Metode Pembayaran</h3>
-                        <div class="options-grid" id="payment-list">
-                        </div>
-                    </div>
-
-                    <div class="step-card optional-voucher">
-                        <div class="step-number">4</div>
-                        <h3 class="step-title">Kode Voucher (Opsional)</h3>
-                        <div class="input-group">
-                            <input type="text" id="voucher-code" name="voucher_code" placeholder="Masukkan Kode Voucher">
-                        </div>
-                    </div>
-                    
-                    <div class="summary-card" id="summary-card">
-                        <div class="summary-details">
-                            <div class="summary-product" id="summary-product-details">
-                            </div>
-                            <div class="summary-price" id="summary-price">
-                            </div>
-                        </div>
-                        <button type="submit" class="confirm-button" id="confirm-button" disabled>Konfirmasi Pesanan</button>
-                    </div>
-                    
-                    <input type="hidden" id="game-key-input" name="key">
-                </form>
+            <div class="game-grid-custom" id="game-list">
             </div>
         </main>
     </div>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4 class="footer-logo">WALZSHOP</h4>
+                <p>Website Top Up Game Terpercaya</p>
+                <div class="social-icons">
+                    <a href="#"><img src="https://files.catbox.moe/8bcn1a.png" alt="Facebook"></a>
+                    <a href="#"><img src="https://files.catbox.moe/7h98v9.png" alt="Instagram"></a>
+                    <a href="#"><img src="https://files.catbox.moe/h1x74e.png" alt="Twitter"></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Pembayaran</h4>
+                <div class="payment-icons">
+                    <img src="https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg" alt="QRIS">
+                    <img src="https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg" alt="Bank Krom">
+                    <img src="https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg" alt="Dana">
+                    <img src="https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg" alt="Gopay">
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 WALZSHOP. All Rights Reserved.</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
