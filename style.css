@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 :root {
-    --primary-color: #f8f9fa;
-    --secondary-color: #4a235a;
+    --primary-color: #1e1e1e; /* Warna latar belakang gelap */
+    --secondary-color: #f0f0f0; /* Warna teks terang */
     --accent-color: #3498db;
-    --light-gray: #e9ecef;
-    --dark-gray: #6c757d;
-    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --shadow-subtle: 0 2px 6px rgba(0, 0, 0, 0.05);
+    --light-gray: #2e2e2e; /* Warna card dan form */
+    --dark-gray: #b0b0b0; /* Warna teks sekunder */
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-subtle: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 * {
@@ -27,7 +27,7 @@ body {
 
 /* Header & Navigasi */
 .header {
-    background-color: #fff;
+    background-color: var(--light-gray);
     padding: 0.75rem 1rem;
     display: flex;
     justify-content: space-between;
@@ -100,7 +100,7 @@ body {
     top: 100%;
     left: 0;
     width: 100%;
-    background-color: #fff;
+    background-color: var(--light-gray);
     box-shadow: var(--shadow-subtle);
     z-index: 999;
 }
@@ -114,7 +114,7 @@ body {
 .nav.active .nav__item {
     width: 100%;
     text-align: center;
-    border-bottom: 1px solid var(--light-gray);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .nav.active .nav__link {
@@ -199,7 +199,7 @@ body {
 }
 
 .game-card {
-    background-color: #fff;
+    background-color: var(--light-gray);
     padding: 0.75rem;
     border-radius: 8px;
     text-align: center;
@@ -211,7 +211,7 @@ body {
 
 .game-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .game-card img {
@@ -249,7 +249,7 @@ body {
 }
 
 .form-container {
-    background-color: #fff;
+    background-color: var(--light-gray);
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: var(--shadow-light);
@@ -306,9 +306,11 @@ body {
 .input-with-icon input {
     width: 100%;
     padding: 0.75rem 1rem 0.75rem 3rem;
-    border: 1px solid var(--light-gray);
+    border: 1px solid #444;
     border-radius: 6px;
     font-size: 0.9rem;
+    background-color: #383838;
+    color: var(--secondary-color);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -318,7 +320,7 @@ body {
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
 
-/* Perbaikan Grid Card: Menjaga agar konten tetap di dalam kotak */
+/* Tampilan Grid Card */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -326,7 +328,7 @@ body {
 }
 
 .grid-item {
-    background-color: var(--light-gray);
+    background-color: #242424;
     padding: 1rem;
     border-radius: 8px;
     text-align: center;
@@ -338,24 +340,31 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 75px;
+    border: 1px solid transparent;
 }
 
 .grid-item:hover {
-    background-color: #e3e6e9;
+    background-color: #2a2a2a;
     transform: translateY(-3px);
 }
 
 .grid-item.selected {
-    background-color: var(--accent-color);
-    color: #fff;
+    background-color: #2a2a2a;
+    border: 1px solid var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-color);
     transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
 }
 
 .grid-item.selected .label,
 .grid-item.selected .price,
 .grid-item.selected .diamond-icon {
     color: #fff;
+}
+
+/* Animasi Teks Bergerak */
+@keyframes scrollText {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
 }
 
 .diamond-icon {
@@ -379,6 +388,21 @@ body {
     width: 100%;
 }
 
+.grid-item .label-container {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Hanya jalankan animasi jika teksnya meluap */
+.grid-item .label.long-text {
+    animation: scrollText 5s linear infinite;
+    padding-right: 100%; /* Agar teks bisa bergerak keluar sepenuhnya */
+}
+
+
 .grid-item .price {
     font-size: 0.75rem;
     color: var(--dark-gray);
@@ -388,6 +412,7 @@ body {
 .payment-item img {
     height: 25px;
     margin-bottom: 0.25rem;
+    filter: brightness(1.2); /* Mencerahkan ikon agar terlihat di tema gelap */
 }
 
 .payment-item .label {
@@ -415,10 +440,10 @@ body {
 .badge-welkin { background-color: #34495e; }
 
 .summary-box {
-    background-color: var(--light-gray);
+    background-color: #242424;
     padding: 1rem;
     border-radius: 6px;
-    border: 1px solid #dee2e6;
+    border: 1px solid #383838;
     margin-bottom: 1.5rem;
 }
 
@@ -426,7 +451,7 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 0.5rem 0;
-    border-bottom: 1px dashed #ced4da;
+    border-bottom: 1px dashed #444;
 }
 
 .summary-item:last-child {
@@ -455,9 +480,9 @@ body {
 }
 
 .btn:disabled {
-    background-color: #adb5bd;
+    background-color: #4a4a4a;
     cursor: not-allowed;
-    color: #f8f9fa;
+    color: #999;
 }
 
 .btn-primary {
@@ -472,7 +497,7 @@ body {
 
 .back-btn {
     width: auto;
-    background-color: #e6e6e6;
+    background-color: #444;
     color: var(--secondary-color);
     padding: 0.5rem 1rem;
     margin-bottom: 1.5rem;
@@ -483,7 +508,7 @@ body {
 }
 
 .back-btn:hover {
-    background-color: #d6d6d6;
+    background-color: #555;
 }
 
 /* Floating WhatsApp Button */
@@ -512,8 +537,8 @@ body {
 
 /* Footer */
 .footer {
-    background-color: var(--secondary-color);
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--dark-gray);
     padding: 1.5rem 1rem;
     font-size: 0.8rem;
     margin-top: 2rem;
@@ -539,7 +564,7 @@ body {
     font-size: 1rem;
     margin-bottom: 0.5rem;
     font-weight: 600;
-    color: var(--light-gray);
+    color: var(--secondary-color);
 }
 
 .footer-section p {
@@ -554,7 +579,7 @@ body {
 }
 
 .footer-section.social a {
-    color: #fff;
+    color: var(--dark-gray);
     font-size: 1.2rem;
     margin: 0 0.4rem;
     transition: color 0.3s ease;
@@ -650,10 +675,6 @@ body {
 
     .grid-item .price {
         font-size: 0.9rem;
-    }
-
-    .payment-item img {
-        height: 30px;
     }
 
     .summary-item.total {
