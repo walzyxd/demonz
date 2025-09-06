@@ -11,6 +11,9 @@
     --text-light: #c0c0c0;
     --accent-color: #00e0ff;
     --accent-gradient: linear-gradient(135deg, #a745ff, #eb83ff);
+    --diamond-bg: #fff;
+    --diamond-text: #000;
+    --diamond-price: #ff0000;
 }
 
 * {
@@ -55,7 +58,7 @@ a {
     max-width: 700px;
     margin: 20px auto;
     overflow: hidden;
-    border-radius: 15px;
+    border-radius: 20px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     position: relative;
     background-color: var(--card-bg-dark);
@@ -109,7 +112,7 @@ a {
 
 .game-card-custom {
     background: var(--card-bg-dark);
-    border-radius: 10px;
+    border-radius: 20px;
     overflow: hidden;
     position: relative;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -155,9 +158,9 @@ a {
 .game-info-header {
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, var(--card-bg-dark), var(--card-bg-light));
+    background: linear-gradient(135deg, rgba(76, 23, 130, 0.5), rgba(31, 11, 64, 0.5));
     backdrop-filter: blur(5px);
-    border-radius: 15px;
+    border-radius: 20px;
     padding: 20px;
     margin-bottom: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -167,7 +170,7 @@ a {
 .game-info-header .game-img {
     width: 60px;
     height: 60px;
-    border-radius: 10px;
+    border-radius: 15px;
     object-fit: cover;
     margin-right: 15px;
 }
@@ -181,24 +184,6 @@ a {
     -webkit-text-fill-color: transparent;
 }
 
-.back-button-container {
-    padding-top: 20px;
-    margin-bottom: -15px;
-}
-
-.back-button {
-    background-color: rgba(0, 0, 0, 0.3);
-    color: var(--text-color);
-    padding: 10px 15px;
-    border-radius: 50%;
-    font-size: 1.2em;
-    transition: background-color 0.2s ease;
-}
-
-.back-button:hover {
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
 .game-page-container {
     padding: 20px 0;
 }
@@ -206,7 +191,7 @@ a {
 .step-card {
     background: linear-gradient(135deg, rgba(76, 23, 130, 0.5), rgba(31, 11, 64, 0.5));
     backdrop-filter: blur(5px);
-    border-radius: 15px;
+    border-radius: 20px;
     padding: 20px;
     margin-bottom: 20px;
     position: relative;
@@ -217,8 +202,8 @@ a {
     position: absolute;
     top: 15px;
     left: 15px;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     background-color: var(--card-bg-light);
     color: var(--text-color);
     border-radius: 50%;
@@ -232,7 +217,7 @@ a {
 .step-title {
     font-size: 1.2em;
     font-weight: 500;
-    margin-left: 45px;
+    margin-left: 55px;
     margin-bottom: 20px;
 }
 
@@ -245,7 +230,7 @@ a {
     padding: 10px 15px;
     background-color: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
+    border-radius: 15px;
     color: var(--text-color);
     font-size: 1em;
 }
@@ -260,9 +245,35 @@ a {
     gap: 10px;
 }
 
-.option-card {
+/* Diamond Product Card */
+.option-card.diamond {
+    background-color: var(--diamond-bg);
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: 2px solid transparent;
+}
+
+.option-card.diamond .label {
+    color: var(--diamond-text);
+}
+
+.option-card.diamond .price {
+    color: var(--diamond-price);
+    -webkit-text-fill-color: var(--diamond-price);
+}
+
+.option-card.diamond .diamond-icon {
+    width: 40px;
+    height: auto;
+    margin-bottom: 5px;
+}
+
+/* Other Products */
+.option-card:not(.diamond) {
     background: linear-gradient(135deg, var(--card-bg-dark), var(--card-bg-light));
-    border-radius: 10px;
+    border-radius: 15px;
     padding: 15px;
     text-align: center;
     cursor: pointer;
@@ -270,25 +281,13 @@ a {
     border: 2px solid transparent;
 }
 
-.option-card.selected {
-    background: var(--accent-gradient);
-    border-color: #fff;
-    box-shadow: 0 0 15px rgba(235, 131, 255, 0.5);
-}
-
-.option-card img {
-    max-width: 50px;
-    height: auto;
-    margin-bottom: 10px;
-}
-
-.option-card .label {
+.option-card:not(.diamond) .label {
     font-size: 0.9em;
     font-weight: 500;
     margin-bottom: 5px;
 }
 
-.option-card .price {
+.option-card:not(.diamond) .price {
     font-size: 1.1em;
     font-weight: bold;
     color: #fff;
@@ -297,7 +296,74 @@ a {
     -webkit-text-fill-color: transparent;
 }
 
-/* New: Bottom Pop-up Animation */
+/* Badge Glow for non-diamond products */
+@keyframes glowing {
+    0% { box-shadow: 0 0 5px #a745ff, 0 0 10px #a745ff; }
+    50% { box-shadow: 0 0 20px #a745ff, 0 0 30px #a745ff; }
+    100% { box-shadow: 0 0 5px #a745ff, 0 0 10px #a745ff; }
+}
+
+.option-card:not(.diamond).selected {
+    border-color: #fff;
+    box-shadow: 0 0 15px rgba(235, 131, 255, 0.5);
+    animation: glowing 1.5s infinite;
+}
+
+.option-card.diamond.selected {
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    border-color: #888;
+    box-shadow: 0 0 15px rgba(235, 131, 255, 0.5);
+}
+
+/* Efek Selected Baru */
+.option-card.selected {
+    background: linear-gradient(135deg, #38255d, #422d6b);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(235, 131, 255, 0.5);
+}
+
+.option-card.selected.diamond {
+    background-color: #dcdcdc;
+    border-color: #888;
+    box-shadow: 0 0 15px rgba(235, 131, 255, 0.5);
+}
+
+/* Payment card styles */
+.option-card.payment {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    text-align: left;
+}
+.option-card.payment .option-details {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.option-card.payment .option-details img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-bottom: 0;
+}
+.option-card.payment .text-group {
+    flex-grow: 1;
+}
+.option-card.payment .label {
+    margin-bottom: 0;
+}
+.option-card.payment .sub-label {
+    font-size: 0.8em;
+    color: var(--text-light);
+}
+.option-card.payment .price {
+    font-size: 1em;
+    text-align: right;
+}
+
+/* Pop-up and Summary */
 @keyframes slideUp {
     from {
         transform: translateY(100%);
@@ -311,7 +377,7 @@ a {
 
 .summary-card {
     background-color: rgba(31, 11, 64, 0.8);
-    border-radius: 15px;
+    border-radius: 20px;
     padding: 20px;
     position: sticky;
     bottom: 20px;
@@ -357,7 +423,7 @@ a {
     padding: 15px;
     background: var(--accent-gradient);
     border: none;
-    border-radius: 10px;
+    border-radius: 15px;
     color: white;
     font-size: 1.1em;
     font-weight: bold;
@@ -380,7 +446,7 @@ a {
     width: 90%;
     max-width: 350px;
     background-color: #3d1b64;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
     padding: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -413,47 +479,97 @@ a {
     color: white;
     border: none;
     padding: 8px 20px;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
-/* Cart & Summary Page */
-.cart-summary {
+
+/* --- New Cart Styles --- */
+.cart-summary-card {
     background: linear-gradient(135deg, rgba(76, 23, 130, 0.5), rgba(31, 11, 64, 0.5));
-    border-radius: 15px;
-    padding: 20px;
+    border-radius: 20px;
+    padding: 25px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.cart-item {
+.cart-item-header {
     display: flex;
     align-items: center;
     gap: 20px;
-    padding: 15px 0;
+    padding-bottom: 20px;
     border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
-}
-
-.cart-item:last-child {
-    border-bottom: none;
 }
 
 .cart-item-img {
     width: 80px;
     height: 80px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .cart-details h3 {
     font-size: 1.2em;
     margin: 0 0 5px;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .cart-details p {
     font-size: 0.9em;
     color: var(--text-light);
     margin: 0;
+}
+
+.cart-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+    padding-bottom: 15px;
+}
+.cart-section:last-of-type {
+    border-bottom: none;
+}
+
+.section-title-icon {
+    width: 40px;
+    height: 40px;
+    background-color: var(--card-bg-light);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    color: var(--text-color);
+}
+
+.section-content h4 {
+    font-size: 1em;
+    margin: 0;
+    color: var(--text-color);
+}
+.section-content p {
+    font-size: 0.9em;
+    color: var(--text-light);
+    margin: 0;
+}
+
+.payment-icon-cart {
+    width: 60px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.cart-payment-details {
+    text-align: center;
+    padding-top: 10px;
 }
 
 .total-price {
@@ -466,58 +582,6 @@ a {
     padding-top: 20px;
 }
 
-.submit-button.active {
-    background: var(--accent-gradient);
-    border: none;
-    color: white;
-    padding: 15px;
-    width: 100%;
-    font-size: 1.1em;
-    font-weight: bold;
-    border-radius: 10px;
-    margin-top: 20px;
-}
-
-.cart-payment-details {
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    margin-top: 10px;
-}
-
-.payment-details-info {
-    font-size: 1.1em;
-    margin-bottom: 10px;
-    color: var(--text-color);
-}
-
-.payment-details-info span {
-    font-weight: bold;
-    display: block;
-    margin-top: 5px;
-}
-
-.copy-button {
-    background: var(--purple-light);
-    color: var(--text-color);
-    border: none;
-    padding: 8px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.9em;
-    margin-top: 10px;
-    transition: background-color 0.2s ease;
-}
-
-.copy-button:hover {
-    background-color: var(--card-bg-light);
-}
-
-.qris-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
 
 /* Footer Styles */
 .site-footer {
@@ -559,9 +623,14 @@ a {
     margin-bottom: 15px;
 }
 
-.social-icons a img {
-    width: 24px;
-    margin-right: 10px;
+.social-icons a {
+    color: var(--text-light);
+    font-size: 1.5em;
+    margin-right: 15px;
+    transition: color 0.2s ease;
+}
+.social-icons a:hover {
+    color: var(--accent-color);
 }
 
 .footer-column ul {
@@ -575,13 +644,6 @@ a {
 
 .footer-column li a:hover {
     color: var(--accent-color);
-}
-
-.payment-icons img {
-    width: 50px;
-    height: auto;
-    margin-right: 10px;
-    border-radius: 5px;
 }
 
 .footer-bottom {
@@ -617,5 +679,8 @@ a {
     }
     .footer-column {
         align-items: center;
+    }
+    .cart-summary-card {
+        border-radius: 0;
     }
 }
