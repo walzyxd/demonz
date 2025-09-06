@@ -18,9 +18,9 @@ const GAMES = [
 
 const PAYMENTS = [
     { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", qr: "https://files.catbox.moe/pa0iwo.png" },
-    { id: "krom", name: "Bank Krom", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg" },
-    { id: "dana", name: "Dana", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg" },
-    { id: "gopay", name: "Gopay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg" }
+    { id: "krom", name: "Bank Krom", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", number: "770072009565", holder: "Walzshop ID" },
+    { id: "dana", name: "Dana", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", number: "083139243389", holder: "Anom" },
+    { id: "gopay", name: "Gopay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", number: "082298902274", holder: "Anom" }
 ];
 
 const PRODUCTS = {
@@ -173,7 +173,7 @@ const PRODUCTS = {
         { id: "val-5350", label: "5350 Points", price: 544999 },
         { id: "val-11000", label: "11000 Points", price: 1089999, badges: ["hot"] },
     ],
-    "garena-delta-force": [
+    "garena-delta": [
         { id: "delta-tide", label: "Tide Supplies", price: 8499, badges: ["new"] },
         { id: "delta-adv", label: "Tide Supplies Advanced", price: 24499, badges: ["new"] },
         { id: "delta-genesis", label: "Black Hawk Down Genesis", price: 41999, badges: ["new"] },
@@ -273,6 +273,31 @@ function updateSummary() {
         summaryCard.style.display = 'none';
         confirmButton.disabled = true;
     }
+}
+
+function showNotification(message, isSuccess = true) {
+    const container = document.querySelector('.notification-container') || document.body.appendChild(document.createElement('div'));
+    container.classList.add('notification-container');
+    
+    const popup = document.createElement('div');
+    popup.classList.add('notification-popup');
+    
+    const iconClass = isSuccess ? 'fa-check-circle' : 'fa-times-circle';
+    const iconColor = isSuccess ? 'var(--selected-border)' : 'var(--price-color)';
+    
+    popup.innerHTML = `
+        <i class="fas ${iconClass} icon" style="color:${iconColor};"></i>
+        <span class="message">${message}</span>
+    `;
+
+    container.appendChild(popup);
+    
+    setTimeout(() => {
+        popup.classList.add('fade-out');
+        popup.addEventListener('animationend', () => {
+            popup.remove();
+        });
+    }, 3000);
 }
 
 // --- Logika Halaman Index ---
@@ -381,9 +406,10 @@ function setupGamePage() {
     document.getElementById('use-voucher-btn').addEventListener('click', () => {
         const promoCode = document.getElementById('promo-code').value;
         if (promoCode) {
-            alert(`Voucher "${promoCode}" berhasil digunakan!`);
+            const discount = 5000;
+            showNotification(`Voucher Berhasil digunakan✅, Potongan: ${formatRupiah(discount)}`, true);
         } else {
-            alert('Masukkan kode voucher terlebih dahulu.');
+            showNotification('Masukkan kode voucher terlebih dahulu.', false);
         }
     });
 
@@ -422,7 +448,7 @@ function setupCartPage() {
     const payment = PAYMENTS.find(p => p.id === paymentId);
     
     const cartSummaryCard = document.getElementById('cart-summary-card');
-    const qrCodeSection = document.getElementById('qr-code-section');
+    const paymentInfoSection = document.getElementById('payment-info-section');
     const payButton = document.getElementById('pay-button');
     
     if (game && product && payment && cartSummaryCard) {
@@ -457,15 +483,24 @@ function setupCartPage() {
             </div>
         `;
 
+        let paymentContent = '';
         if (payment.qr) {
-            qrCodeSection.innerHTML = `
+            paymentContent = `
+                <h4>Scan untuk Bayar</h4>
                 <img src="${payment.qr}" alt="QR Code" class="qr-code-image">
                 <div class="qr-caption">Silakan scan kode QR di atas untuk melakukan pembayaran. Setelah berhasil, klik **Bayar Sekarang**.</div>
             `;
-            qrCodeSection.style.display = 'block';
-        } else {
-            qrCodeSection.style.display = 'none';
+        } else if (payment.number) {
+            paymentContent = `
+                <h4>Transfer ke ${payment.name}</h4>
+                <img src="${payment.img}" alt="${payment.name}" class="payment-image">
+                <div class="payment-caption">A.N. ${payment.holder}</div>
+                <div class="payment-number">${payment.number}</div>
+                <button class="copy-button" onclick="copyToClipboard('${payment.number}')">Salin Nomor</button>
+            `;
         }
+
+        paymentInfoSection.innerHTML = paymentContent;
         
         payButton.addEventListener('click', () => {
             alert('Pesanan Anda akan diproses! Silakan lakukan pembayaran.');
@@ -477,8 +512,17 @@ function setupCartPage() {
             <p style="text-align: center; color: var(--text-light);">Data pesanan tidak ditemukan. Silakan kembali ke halaman utama.</p>
         `;
         if(payButton) payButton.style.display = 'none';
-        if(qrCodeSection) qrCodeSection.style.display = 'none';
+        if(paymentInfoSection) paymentInfoSection.style.display = 'none';
     }
+}
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        showNotification('Nomor berhasil disalin!', true);
+    }).catch(err => {
+        console.error('Gagal menyalin:', err);
+        showNotification('Gagal menyalin nomor. Coba lagi.', false);
+    });
 }
 
 
