@@ -28,17 +28,8 @@ const GAMES = [
 ];
 
 const PROMOS = [
-    { title: "Top Up Diamond FF Termurah", img: "https://files.catbox.moe/wz282d.png", gameKey: "free-fire" },
-    { title: "Top Up Starlight MLBB Harga Cuan", img: "https://files.catbox.moe/97a2w3.jpg", gameKey: "mobile-legends" },
-    { title: "Promo UC PUBG Mobile Khusus Member", img: "https://files.catbox.moe/c4c51z.jpg", gameKey: "pubg-mobile" },
-    { title: "Blessing of the Welkin Moon Genshin", img: "https://files.catbox.moe/o3d2x9.jpg", gameKey: "genshin-impact" },
-];
-
-const PAYMENTS = [
-    { id: "dana", name: "DANA", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
-    { id: "gopay", name: "GoPay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", type: "ewallet", info: { number: "082116690164", name: "TI** SUT***" } },
-    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", type: "qris", info: { qrisImg: "https://files.catbox.moe/5688406c-3c9f-4990-b77a-4f1eaba082ad.png" } },
-    { id: "krom", name: "Krom Bank", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", type: "bank_transfer", info: { number: "770072009565", name: "TI** SUT***" } },
+    { title: img: "https://files.catbox.moe/wz282d.png", gameKey: "gambar1", img: "https://files.catbox.moe/97a2w3.jpg", gameKey: "gambar2", img: "https://files.catbox.moe/c4c51z.jpg", gameKey: "gambar3" },
+"gambar4", img: "https://files.catbox.moe/o3d2x9.jpg", gameKey: "gambar5" },
 ];
 
 const PRODUCTS = {
@@ -420,7 +411,7 @@ function renderPayments() {
             const div = document.createElement("div");
             div.className = "payment-card";
             div.dataset.id = pay.id;
-            
+
             const price = selectedProduct ? finalPrice() : 0;
             const priceHtml = selectedProduct ? `<div class="payment-price">${fmtIDR(price)}</div>` : '';
 
@@ -429,7 +420,7 @@ function renderPayments() {
                 <div class="payment-label">${pay.name}</div>
                 ${priceHtml}
             `;
-            
+
             div.addEventListener("click", () => {
                 if (!selectedProduct) {
                     showErrorModal("Silakan pilih nominal top-up terlebih dahulu.");
@@ -519,224 +510,78 @@ function refreshSummary() {
     } else {
         summaryProduct.textContent = "-";
         summaryDiscountRow.style.display = "none";
-        summaryTotal.textContent = fmtIDR(0);
+        summaryTotal.textContent = "-";
     }
-    
+
     summaryPayment.textContent = selectedPayment ? selectedPayment.name : "-";
-    
-    const userId = qs("#user-id").value.trim();
-    const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : "ok";
-    checkoutBtn.disabled = !(userId && (currentGame.hasServerId ? serverId : true) && selectedProduct && selectedPayment);
+    checkoutBtn.disabled = !(selectedProduct && selectedPayment && qs("#user-id").value.trim() && (!currentGame.hasServerId || qs("#server-id").value.trim()));
 }
 
+function setVoucherStatus(msg, isError = false) {
+    const el = qs("#voucher-status");
+    if (!el) return;
+    el.textContent = msg;
+    el.className = isError ? "error" : "success";
+}
 
 function checkProgress() {
-    const userId = qs("#user-id").value.trim();
-    const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : "ok";
-    const checkoutBtn = qs("#checkout-btn");
-    checkoutBtn.disabled = !(userId && (currentGame.hasServerId ? serverId : true) && selectedProduct && selectedPayment);
-}
-
-function setVoucherStatus(text, isError = false) {
-    const el = qs("#voucher-status");
-    if (el) {
-        el.textContent = text;
-        el.className = `status-text ${isError ? 'error-text' : 'success-text'}`;
-    }
+    refreshSummary();
 }
 
 function showVoucherListModal() {
-    const modal = qs("#promo-list-modal");
-    if (!modal) return;
-    modal.innerHTML = `
-        <div class="modal-header">
-            <h3>Daftar Kode Promo</h3>
-            <button class="modal-close-btn" data-close>&times;</button>
-        </div>
-        <div class="modal-content-list">
-            ${VOUCHERS.map(v => `
-                <div class="voucher-item">
-                    <div class="voucher-info">
-                        <h4>${v.code}</h4>
-                        <p>${v.description}</p>
-                    </div>
-                    <button class="btn btn-sm btn-choose" data-choose="${v.code}">Pilih</button>
-                </div>
-            `).join("")}
-        </div>
-    `;
-    qsa("[data-choose]", modal).forEach(btn => {
-        btn.addEventListener("click", () => {
-            qs("#voucher-input").value = btn.dataset.choose;
-            closeModal("promo-list-modal");
-            applyVoucher();
-        });
-    });
-    openModal("promo-list-modal");
-}
-
-function showErrorModal(message) {
-    const modal = qs("#error-modal");
-    if (!modal) return;
-    modal.innerHTML = `
-        <div class="modal-header">
-            <h3>Peringatan!</h3>
-            <button class="modal-close-btn" data-close>&times;</button>
-        </div>
-        <div class="modal-content" style="text-align: center;">
-            <p>${message}</p>
-            <div style="margin-top: 1rem;">
-                <button class="btn btn-confirm" onclick="closeModal('error-modal')">Oke</button>
-            </div>
-        </div>
-    `;
-    openModal("error-modal");
-}
-
-function validateForm() {
-    const userId = qs("#user-id").value.trim();
-    const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : "ok";
-
-    if (!userId) {
-        showErrorModal("User ID wajib diisi.");
-        return false;
-    }
-    if (currentGame.hasServerId && !serverId) {
-        showErrorModal("Server ID wajib diisi.");
-        return false;
-    }
-    if (!selectedProduct) {
-        showErrorModal("Pilih nominal top-up.");
-        return false;
-    }
-    if (!selectedPayment) {
-        showErrorModal("Pilih metode pembayaran.");
-        return false;
-    }
-    return true;
+    const content = qs("#modal-content");
+    content.innerHTML = "<h3>Daftar Voucher</h3><ul>" +
+        VOUCHERS.map(v => `<li><b>${v.code}</b>: ${v.description}</li>`).join("") +
+        "</ul><button class='btn' onclick='hideOverlay()'>Tutup</button>";
+    showOverlay();
 }
 
 function openCheckoutModal() {
-    if (!validateForm()) return;
+    if (!(selectedProduct && selectedPayment)) {
+        showErrorModal("Lengkapi pilihan produk dan metode pembayaran.");
+        return;
+    }
     const userId = qs("#user-id").value.trim();
-    const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : null;
+    const serverId = currentGame.hasServerId ? qs("#server-id").value.trim() : "";
+    if (!userId || (currentGame.hasServerId && !serverId)) {
+        showErrorModal("Isi User ID / Server ID terlebih dahulu.");
+        return;
+    }
     const total = finalPrice();
-    const discountAmount = selectedProduct.price - total;
-    let payBlock = '';
 
-    const formatWhatsAppMsg = () => {
-        let msg = `Halo admin, saya mau top-up:\n`;
-        msg += `*Game:* ${currentGame.name}\n`;
-        msg += `*User ID:* ${userId}\n`;
-        if (serverId) msg += `*Server ID:* ${serverId}\n`;
-        msg += `*Produk:* ${selectedProduct.label}\n`;
-        msg += `*Metode Pembayaran:* ${selectedPayment.name}\n`;
-        msg += `*Total Pembayaran:* ${fmtIDR(total)}\n\n`;
-        msg += `Mohon konfirmasi pesanan saya. Terima kasih.`;
-        return encodeURIComponent(msg);
-    };
-
-    if (selectedPayment.type === "qris") {
-        payBlock = `
-            <div class="payment-info">
-                <h4>Scan QRIS Berikut</h4>
-                <div class="qris-image-container">
-                    <img src="${selectedPayment.info.qrisImg}" alt="QRIS Code" class="qris-image">
-                </div>
-            </div>
-        `;
-    } else {
-        payBlock = `
-            <div class="payment-info">
-                <h4>Transfer ke Rekening Berikut</h4>
-                <div class="payment-img-container" style="text-align:center; margin-bottom: 1rem;">
-                    <img src="${selectedPayment.img}" alt="${selectedPayment.name}" style="max-width: 120px; height: auto;">
-                </div>
-                <p><strong>A/N:</strong> ${selectedPayment.info.name || "-"}</p>
-                <div class="copy-field">
-                    <span id="account-number">${selectedPayment.info.number}</span>
-                    <button class="btn" id="copy-account-btn">Salin</button>
-                </div>
-            </div>
-        `;
-    }
-
-    const modal = qs("#checkout-modal");
-    if (!modal) return;
-
-    modal.innerHTML = `
-        <div class="modal-header">
-            <h3>Konfirmasi Pembelian</h3>
-            <button class="modal-close-btn" data-close>&times;</button>
-        </div>
-        <div class="modal-content">
-            <table class="summary-table">
-                <tr><td>Game</td><td>${currentGame.name}</td></tr>
-                <tr><td>Player ID</td><td>${userId}</td></tr>
-                ${serverId ? `<tr><td>Server ID</td><td>${serverId}</td></tr>` : ''}
-                <tr><td>Produk</td><td>${selectedProduct.label}</td></tr>
-                <tr><td>Metode Bayar</td><td>${selectedPayment.name}</td></tr>
-                ${appliedVoucher ? `<tr><td>Diskon Voucher</td><td>- ${fmtIDR(discountAmount)}</td></tr>` : ''}
-            </table>
-            <div class="summary-total" style="margin-top: 1.5rem;">
-                <span>Total Pembayaran</span>
-                <span>${fmtIDR(total)}</span>
-            </div>
-            ${payBlock}
-            <div class="modal-footer" style="margin-top: 1.5rem;">
-                <a href="https://wa.me/${ADMIN_WA}?text=${formatWhatsAppMsg()}" target="_blank" class="btn btn-confirm btn-block">Chat Admin Sekarang</a>
-                <p class="instruction">Setelah bayar, kirim bukti transfer ke Admin agar pesanan segera diproses.</p>
-            </div>
-        </div>
+    const content = qs("#modal-content");
+    content.innerHTML = `
+        <h3>Konfirmasi Pesanan</h3>
+        <table class="summary-table">
+            <tr><td>Game</td><td>${currentGame.name}</td></tr>
+            <tr><td>Produk</td><td>${selectedProduct.label}</td></tr>
+            <tr><td>User ID</td><td>${userId}${serverId ? " (" + serverId + ")" : ""}</td></tr>
+            <tr><td>Pembayaran</td><td>${selectedPayment.name}</td></tr>
+            <tr><td>Total</td><td>${fmtIDR(total)}</td></tr>
+        </table>
+        <button class="btn" id="confirm-checkout">Konfirmasi & Bayar</button>
     `;
+    showOverlay();
 
-    const copyBtn = qs("#copy-account-btn", modal);
-    if (copyBtn) {
-        copyBtn.addEventListener("click", () => copyToClipboard(selectedPayment.info.number, copyBtn));
-    }
+    qs("#confirm-checkout").addEventListener("click", () => {
+        let message = `Halo Admin, saya ingin top up:\n\nGame: ${currentGame.name}\nProduk: ${selectedProduct.label}\nUser ID: ${userId}${serverId ? " (" + serverId + ")" : ""}\nPembayaran: ${selectedPayment.name}\nTotal: ${fmtIDR(total)}`;
+        if (appliedVoucher) message += `\nVoucher: ${appliedVoucher.code}`;
+        const waUrl = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(message)}`;
+        window.open(waUrl, "_blank");
+        hideOverlay();
+    });
+}
 
-    openModal("checkout-modal");
+function showErrorModal(msg) {
+    const content = qs("#modal-content");
+    content.innerHTML = `<p class="error">${msg}</p><button class="btn" onclick="hideOverlay()">Tutup</button>`;
+    showOverlay();
 }
 
 function showOverlay() {
-    qs("#modal-overlay")?.classList.add("active");
-    document.body.style.overflow = "hidden";
+    qs("#modal-overlay").style.display = "flex";
 }
 
 function hideOverlay() {
-    qs("#modal-overlay")?.classList.remove("active");
-    document.body.style.overflow = "";
-    qsa(".modal").forEach(m => {
-        m.classList.remove("active");
-    });
-}
-
-function openModal(id) {
-    const m = qs(`#${id}`);
-    if (!m) return;
-    showOverlay();
-    m.classList.add("active");
-    const closeBtn = m.querySelector("[data-close]");
-    if (closeBtn) {
-        closeBtn.onclick = () => closeModal(id);
-    }
-}
-
-function closeModal(id) {
-    const m = qs(`#${id}`);
-    if (!m) return;
-    m.classList.remove("active");
-    const anyOpen = qsa(".modal.active").length > 0;
-    if (!anyOpen) hideOverlay();
-}
-
-function copyToClipboard(text, btn) {
-    navigator.clipboard.writeText(text).then(() => {
-        const old = btn.textContent;
-        btn.textContent = "Disalin!";
-        setTimeout(() => btn.textContent = old, 1500);
-    }).catch(err => {
-        console.error('Failed to copy text: ', err);
-        alert('Gagal menyalin. Silakan salin manual.');
-    });
+    qs("#modal-overlay").style.display = "none";
 }
