@@ -14,12 +14,8 @@
         <main class="game-selection-main">
             <div class="container game-page-container" id="game-page-container">
 
-                <div class="back-button-container">
-                    <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i></a>
-                </div>
-
                 <div class="game-info-header" id="game-info-header">
-                    </div>
+                </div>
 
                 <div id="notification-popup" class="notification-popup" style="display:none;">
                     <div class="notification-content">
@@ -33,7 +29,7 @@
                 <form class="topup-form" onsubmit="event.preventDefault(); window.location.href = 'cart.html?key=' + this.querySelector('[name=key]').value + '&user_id=' + this.querySelector('[name=user_id]').value + '&server_id=' + (this.querySelector('[name=server_id]') ? this.querySelector('[name=server_id]').value : '') + '&product_id=' + this.querySelector('[name=product_id]:checked').value + '&payment_id=' + this.querySelector('[name=payment_id]:checked').value;">
                     
                     <div class="step-card">
-                        <div class="step-number">1</div>
+                        <div class="step-number"><i class="fas fa-gamepad"></i></div>
                         <h3 class="step-title">Masukkan User ID</h3>
                         <div class="input-group">
                             <input type="text" id="user-id" name="user_id" placeholder="Masukkan ID Akun" required>
@@ -44,21 +40,21 @@
                     </div>
 
                     <div class="step-card">
-                        <div class="step-number">2</div>
+                        <div class="step-number"><i class="fas fa-gem"></i></div>
                         <h3 class="step-title">Pilih Diamonds</h3>
                         <div class="options-grid" id="product-list">
                         </div>
                     </div>
 
                     <div class="step-card">
-                        <div class="step-number">3</div>
+                        <div class="step-number"><i class="fas fa-credit-card"></i></div>
                         <h3 class="step-title">Pilih Metode Pembayaran</h3>
                         <div class="options-grid" id="payment-list">
                         </div>
                     </div>
 
                     <div class="step-card optional-voucher">
-                        <div class="step-number">4</div>
+                        <div class="step-number"><i class="fas fa-ticket-alt"></i></div>
                         <h3 class="step-title">Kode Voucher (Opsional)</h3>
                         <div class="input-group">
                             <input type="text" id="voucher-code" name="voucher_code" placeholder="Masukkan Kode Voucher">
