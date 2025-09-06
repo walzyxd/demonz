@@ -43,49 +43,6 @@ a {
     padding: 0 10px;
 }
 
-.custom-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: var(--purple-light);
-    color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.header-content {
-    display: flex;
-    flex-direction: column;
-}
-
-.header-text {
-    font-size: 1.1em;
-    font-weight: 500;
-}
-
-.header-text-sub {
-    font-size: 0.8em;
-    color: var(--text-light);
-}
-
-.download-button {
-    background-color: #55a0e0;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 0.9em;
-    font-weight: bold;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.download-button:hover {
-    background-color: #438ac9;
-}
-
 .game-selection-main {
     padding: 20px 0;
 }
