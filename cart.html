@@ -1,70 +1,63 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Walz Shop - Keranjang</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WalzShop — Keranjang</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-
-  <!-- ========== HEADER ========== -->
   <header class="header">
     <div class="container">
-      <a href="index.html" class="logo">
-        <i class="fas fa-gem logo-icon"></i>
-        <span class="logo-text">Walz Shop</span>
-      </a>
+      <a href="index.html" class="logo"><span class="logo-icon">🎮</span> WalzShop</a>
       <nav class="nav">
-        <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
-        <a href="#"><i class="fas fa-info-circle"></i> Tentang</a>
-        <a href="#"><i class="fas fa-headset"></i> Kontak</a>
+        <a href="index.html">Beranda</a>
+        <a href="#">Promo</a>
+        <a href="#">Bantuan</a>
       </nav>
     </div>
   </header>
 
-  <!-- ========== MAIN ========== -->
   <main class="main">
     <div class="container">
-      <a href="game.html" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali</a>
-
-      <h2 class="section-title">Ringkasan Transaksi</h2>
-
+      <h1>Ringkasan Pesanan</h1>
       <div class="summary-card">
         <table class="summary-table">
           <tr><td>Game</td><td id="cart-game">-</td></tr>
           <tr><td>User ID</td><td id="cart-user">-</td></tr>
-          <tr id="cart-server-row" style="display:none;"><td>Server ID</td><td id="cart-server">-</td></tr>
           <tr><td>Produk</td><td id="cart-product">-</td></tr>
-          <tr><td>Metode Bayar</td><td id="cart-payment">-</td></tr>
-          <tr id="cart-discount-row" style="display:none;"><td>Diskon Voucher</td><td id="cart-discount">-</td></tr>
+          <tr><td>Pembayaran</td><td id="cart-payment">-</td></tr>
         </table>
-        <div class="summary-total">
-          <span>Total Pembayaran</span>
-          <span id="cart-total">Rp 0</span>
-        </div>
+        <div class="summary-total"><span>Total</span><span id="cart-price">Rp 0</span></div>
       </div>
-
-      <div class="form-container" style="margin-top:2rem;">
-        <label><i class="fas fa-phone"></i> Nomor WhatsApp</label>
-        <input type="text" id="cart-whatsapp" placeholder="Contoh: 6281234567890" style="margin-bottom:1rem;">
-
-        <button id="cart-checkout-btn" class="btn btn-block btn-confirm">
-          <i class="fab fa-whatsapp"></i> Lanjut ke WhatsApp
-        </button>
+      <div class="cart-actions">
+        <a href="game.html" class="btn">Ubah Pesanan</a>
+        <button id="checkout-wa" class="btn btn-confirm">Checkout via WhatsApp</button>
       </div>
     </div>
   </main>
 
-  <!-- ========== FOOTER ========== -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2025 Walz Shop. Semua hak dilindungi.</p>
+      <p>© 2025 WalzShop. All rights reserved.</p>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    const order=JSON.parse(localStorage.getItem("order"))
+    if(order){
+      document.getElementById("cart-game").textContent=order.game
+      document.getElementById("cart-user").textContent=order.user
+      document.getElementById("cart-product").textContent=order.product
+      document.getElementById("cart-payment").textContent=order.payment
+      document.getElementById("cart-price").textContent=order.price
+    }
+    document.getElementById("checkout-wa").addEventListener("click",()=>{
+      if(!order)return
+      const message=`Halo, saya ingin top up:\nGame: ${order.game}\nUser: ${order.user}\nProduk: ${order.product}\nPembayaran: ${order.payment}\nTotal: ${order.price}`
+      window.open("https://wa.me/6281234567890?text="+encodeURIComponent(message),"_blank")
+    })
+  </script>
 </body>
 </html>
