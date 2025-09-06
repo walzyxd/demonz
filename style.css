@@ -262,15 +262,15 @@ a {
     gap: 10px;
 }
 
-/* Diamond Product Card */
+/* Product Card */
 .option-card {
-    background-color: var(--diamond-bg);
+    background: var(--card-bg-dark);
     border-radius: 15px;
     text-align: center;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     border: 2px solid transparent;
-    padding: 10px;
+    padding: 15px; /* Jarak yang ditingkatkan */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -278,40 +278,58 @@ a {
 }
 
 .option-card .label {
-    color: var(--diamond-text);
+    font-size: 0.9em;
     font-weight: 500;
-}
-
-.option-card .price {
-    color: var(--diamond-price);
-    font-weight: bold;
-    font-size: 1.1em;
-}
-
-.option-card .icon {
-    width: 40px;
-    height: auto;
     margin-bottom: 5px;
 }
 
-/* Selected effect */
-.option-card.selected {
-    background: linear-gradient(135deg, #38255d, #422d6b);
-    border-color: var(--accent-color);
-    box-shadow: 0 0 15px rgba(235, 131, 255, 0.5);
-}
-
-.option-card.selected .label,
-.option-card.selected .price {
+.option-card .price {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(45deg, #a745ff, #eb83ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(to right, #a745ff, #eb83ff);
 }
 
-.option-card.selected.diamond {
-    background-color: #dcdcdc;
-    border-color: #888;
+.option-card .icon {
+    font-size: 2.5em; /* Ukuran ikon lebih besar */
+    color: #ffd700;
+    margin-bottom: 5px;
+    animation: pulse 1s infinite alternate;
+}
+
+/* Special color for Diamond product */
+.option-card.diamond {
+    background-color: var(--diamond-bg);
+}
+.option-card.diamond .label {
+    color: var(--diamond-text);
+}
+.option-card.diamond .price {
+    color: var(--diamond-price);
+    -webkit-text-fill-color: var(--diamond-price);
+}
+
+/* Selected effect */
+@keyframes glowing {
+    0% { box-shadow: 0 0 5px #a745ff, 0 0 10px #a745ff; }
+    50% { box-shadow: 0 0 20px #a745ff, 0 0 30px #a745ff; }
+    100% { box-shadow: 0 0 5px #a745ff, 0 0 10px #a745ff; }
+}
+
+.option-card.selected:not(.diamond) {
+    border-color: #fff;
     box-shadow: 0 0 15px rgba(235, 131, 255, 0.5);
+    animation: glowing 1.5s infinite;
+    background: linear-gradient(135deg, #38255d, #422d6b);
+}
+
+.option-card.diamond.selected {
+    border-color: #fff;
+    box-shadow: 0 0 15px rgba(235, 131, 255, 0.5);
+    animation: glowing 1.5s infinite;
+    background-color: #dcdcdc;
 }
 
 /* Payment card styles */
