@@ -19,7 +19,6 @@
             <nav class="nav">
                 <a href="index.html">Beranda</a>
                 <a href="index.html#about">Tentang Kami</a>
-                <a href="index.html#payments">Pembayaran</a>
             </nav>
         </div>
     </header>
@@ -29,61 +28,50 @@
             <img id="game-banner" class="game-banner" src="" alt="Game Banner">
             <h1 id="game-title" style="text-align: center;"></h1>
 
-            <section class="card section">
-                <h3 class="step-header">1. Masukkan User ID</h3>
-                <p id="user-guide" class="guide-text"></p>
-                <div class="input-group">
-                    <label for="user-id">User ID</label>
-                    <input type="text" id="user-id" placeholder="Masukkan User ID Anda">
-                </div>
-                <div class="input-group">
-                    <label for="server-id">Server ID</label>
-                    <input type="text" id="server-id" placeholder="Masukkan Server ID Anda (jika ada)">
-                </div>
-                <span id="error-user" class="error-text"></span>
-            </section>
-            
-            <section class="card section">
-                <h3 class="step-header step-2-header">2. Pilih Nominal Top Up</h3>
-                <div id="product-grid" class="product-grid">
+            <div class="steps-container">
+                <section class="card section step-1">
+                    <h3 class="step-header">1. Masukkan User ID</h3>
+                    <p id="user-guide" class="guide-text"></p>
+                    <div class="input-group">
+                        <label for="user-id">User ID</label>
+                        <input type="text" id="user-id" placeholder="Masukkan User ID Anda">
                     </div>
-                <span id="error-product" class="error-text"></span>
-            </section>
-
-            <section class="card section">
-                <h3 class="step-header step-3-header">3. Pilih Pembayaran</h3>
-                <div id="payment-grid" class="payment-grid">
+                    <div class="input-group">
+                        <label for="server-id">Server ID</label>
+                        <input type="text" id="server-id" placeholder="Masukkan Server ID Anda (jika ada)">
                     </div>
-                <span id="error-payment" class="error-text"></span>
-            </section>
+                    <span id="error-user" class="error-text"></span>
+                </section>
+                
+                <section class="card section step-2">
+                    <h3 class="step-header step-2-header">2. Pilih Nominal Top Up</h3>
+                    <div id="product-grid" class="product-grid">
+                        </div>
+                    <span id="error-product" class="error-text"></span>
+                </section>
 
-            <section class="card section">
-                <h3 class="step-header step-4-header">4. Gunakan Kode Voucher</h3>
-                <div class="voucher-section">
-                    <input type="text" id="voucher-input" placeholder="Masukkan kode voucher">
-                    <button id="voucher-btn" class="btn btn-secondary">Terapkan</button>
-                </div>
-                <span id="voucher-status" class="status-text"></span>
-            </section>
+                <section class="card section step-3">
+                    <h3 class="step-header step-3-header">3. Pilih Pembayaran</h3>
+                    <div id="payment-grid" class="payment-grid">
+                        </div>
+                    <span id="error-payment" class="error-text"></span>
+                </section>
 
-            <section class="card section summary-card">
-                <h2>Ringkasan Pesanan</h2>
-                <table class="summary-table">
-                    <tr>
-                        <td class="label">Produk</td>
-                        <td id="summary-product-price" class="value"></td>
-                    </tr>
-                    <tr id="summary-voucher-row" style="display:none;">
-                        <td class="label">Diskon Voucher</td>
-                        <td id="summary-voucher-price" class="value"></td>
-                    </tr>
-                    <tr class="total-row">
-                        <td class="label">Total Pembayaran</td>
-                        <td id="total-price" class="value"></td>
-                    </tr>
-                </table>
-                <button id="checkout-btn" class="btn btn-confirm" disabled>Checkout</button>
-            </section>
+                <section class="card section step-4">
+                    <h3 class="step-header step-4-header">4. Beli Sekarang</h3>
+                    <div class="summary-details">
+                        <div class="summary-item">
+                            <span class="summary-label">Produk</span>
+                            <span id="summary-product" class="summary-value"></span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Harga</span>
+                            <span id="summary-price" class="summary-value"></span>
+                        </div>
+                    </div>
+                    <button id="checkout-btn" class="btn btn-confirm" disabled>Bayar Sekarang</button>
+                </section>
+            </div>
         </div>
     </main>
 
