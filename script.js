@@ -81,7 +81,7 @@ function renderPromoSlider() {
     }, 5000);
 
     if (items.length > 0) {
-        updateSlider(); // Initial update
+        updateSlider();
     }
 }
 
@@ -96,7 +96,7 @@ function renderGamePage() {
     const game = GAMES.find(g => g.key === gameKey);
 
     if (!game) {
-        document.querySelector('main').innerHTML = '<h1 style="text-align: center; margin-top: 5rem;">Game tidak ditemukan.</h1>';
+        document.querySelector('main').innerHTML = '<h1 style="text-align: center; margin-top: 5rem; color: #4a235a;">Game tidak ditemukan.</h1>';
         return;
     }
 
@@ -125,7 +125,7 @@ function renderProducts(gameKey) {
 
     productGrid.innerHTML = products.map(product => `
         <div class="grid-item product-item" data-id="${product.id}" data-label="${product.label}" data-price="${product.price}">
-            <span class="label">${product.label}</span>
+            <span class="label"><i class="fas fa-gem diamond-icon"></i>${product.label}</span>
             <span class="price">Rp${product.price.toLocaleString('id-ID')}</span>
             ${product.badges ? product.badges.map(badge => `<span class="badge badge-${badge}">${badge}</span>`).join('') : ''}
         </div>
@@ -146,7 +146,7 @@ function renderPayments() {
 
     paymentGrid.innerHTML = PAYMENTS.map(payment => `
         <div class="grid-item payment-item" data-name="${payment.name}">
-            <img src="${payment.icon}" alt="${payment.name}" style="height: 25px; margin-bottom: 5px;">
+            <img src="${payment.icon}" alt="${payment.name}" style="height: 30px; margin-bottom: 0.5rem;">
             <span class="label">${payment.name}</span>
         </div>
     `).join('');
@@ -197,6 +197,7 @@ function setupCheckoutLogic(gameKey) {
     checkoutBtn.addEventListener('click', () => {
         const userId = document.getElementById('user-id').value;
         const serverId = document.getElementById('server-id').value;
+        const voucherCode = document.getElementById('voucher-code').value;
         const selectedProduct = document.querySelector('.product-item.selected');
         const selectedPayment = document.querySelector('.payment-item.selected');
 
@@ -211,7 +212,8 @@ function setupCheckoutLogic(gameKey) {
             serverId: serverId || null,
             productLabel: selectedProduct.dataset.label,
             productPrice: parseInt(selectedProduct.dataset.price),
-            paymentName: selectedPayment.dataset.name
+            paymentName: selectedPayment.dataset.name,
+            voucherCode: voucherCode || null
         };
         
         localStorage.setItem('currentOrder', JSON.stringify(orderData));
@@ -235,14 +237,19 @@ function renderCartPage() {
     document.getElementById('summary-payment').textContent = orderData.paymentName;
     document.getElementById('summary-total').textContent = `Rp${orderData.productPrice.toLocaleString('id-ID')}`;
 
-    const waText = `Halo admin, saya ingin konfirmasi pesanan.\n\n` +
+    let waText = `Halo admin, saya ingin konfirmasi pesanan.\n\n` +
                    `Game: ${GAMES.find(g => g.key === orderData.game)?.name || orderData.game}\n` +
                    `User ID: ${orderData.userId}\n` +
                    (orderData.serverId ? `Server ID: ${orderData.serverId}\n` : '') +
                    `Produk: ${orderData.productLabel}\n` +
                    `Total: Rp${orderData.productPrice.toLocaleString('id-ID')}\n` +
-                   `Metode Pembayaran: ${orderData.paymentName}\n\n` +
-                   `Terima kasih.`;
+                   `Metode Pembayaran: ${orderData.paymentName}\n\n`;
+
+    if (orderData.voucherCode) {
+        waText += `Kode Voucher: ${orderData.voucherCode}\n\n`;
+    }
+
+    waText += `Terima kasih.`;
 
     const waBtn = document.getElementById('wa-btn');
     waBtn.href = `https://wa.me/6282298902274?text=${encodeURIComponent(waText)}`;
