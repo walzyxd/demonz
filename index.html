@@ -1,81 +1,78 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Walz Shop - Top Up Games Murah & Cepat</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walz Shop - Top Up Game Murah</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body data-page="index">
-  <header class="header">
-    <div class="container">
-      <a href="index.html" class="logo">
-        <i class="fas fa-gem logo-icon"></i>
-        <span class="logo-text">Walz Shop</span>
-      </a>
-      <nav class="nav">
-        <a href="index.html" class="nav-item active"><i class="fas fa-home"></i> Beranda</a>
-        <a href="#" class="nav-item"><i class="fas fa-info-circle"></i> Tentang</a>
-        <a href="#" class="nav-item"><i class="fas fa-headset"></i> Kontak</a>
-      </nav>
-      <button class="nav-toggle">
-        <i class="fas fa-bars"></i>
-      </button>
-    </div>
-  </header>
 
-  <main class="main">
-    <div class="container">
-      <section class="promo-section">
-        <div class="slider" id="promo-slider-container">
-          <div class="slider__track" id="promo-slider">
-            </div>
-          <div class="slider__dots" id="slider-dots"></div>
+    <header>
+        <div class="container flex-row">
+            <a href="index.html" class="logo">
+                <img src="https://i.ibb.co/Ld1752D/Walz-Shop-1.png" alt="Walz Shop Logo">
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+            <nav class="nav">
+                <a href="index.html">Beranda</a>
+                <a href="#about">Tentang Kami</a>
+                <a href="#payments">Pembayaran</a>
+            </nav>
         </div>
-      </section>
+    </header>
 
-      <section class="games-section">
-        <h2 class="section-title">Pilih Game Favoritmu</h2>
-        <div class="games-grid" id="games-grid"></div>
-      </section>
-    </div>
-  </main>
+    <main class="main">
+        <div class="container">
+            <section class="section">
+                <div class="hero">
+                    <h1>Top Up Game Murah & Cepat</h1>
+                    <p>Proses instan, harga termurah, dan jaminan keamanan.</p>
+                </div>
+            </section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section about">
-          <a href="#" class="footer-logo">Walz Shop</a>
-          <p>Layanan top-up game termurah dan tercepat untuk semua game favorit Anda.</p>
-        </div>
-        <div class="footer-section links">
-          <h3>Tautan Cepat</h3>
-          <ul>
-            <li><a href="index.html">Beranda</a></li>
-            <li><a href="#">Tentang Kami</a></li>
-            <li><a href="#">Kontak</a></li>
-            <li><a href="#">Kebijakan Privasi</a></li>
-          </ul>
-        </div>
-        <div class="footer-section contact">
-          <h3>Hubungi Kami</h3>
-          <p><i class="fas fa-envelope"></i> admin@walzshop.com</p>
-          <p><i class="fas fa-phone"></i> +62 812-3456-7890</p>
-          <div class="socials">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 Walz Shop. Semua hak dilindungi.</p>
-      </div>
-    </div>
-  </footer>
+            <section class="section">
+                <h2>Game Populer</h2>
+                <div id="games-grid" class="games-grid">
+                    </div>
+            </section>
 
-  <script src="script.js"></script>
+            <section class="section">
+                <h2>Promo</h2>
+                <div class="promo-slider">
+                    <div id="promo-slider" class="slider__wrapper">
+                        </div>
+                    <div id="slider-dots" class="slider__dots"></div>
+                </div>
+            </section>
+
+            <section class="section card" id="about">
+                <h2>Tentang Kami</h2>
+                <p>Walz Shop adalah destinasi top up game andalan Anda. Kami menyediakan berbagai produk game populer dengan harga yang sangat kompetitif. Proses top up di sini sangat mudah, cepat, dan 100% aman. Cukup masukkan ID game Anda, pilih nominal, selesaikan pembayaran, dan produk akan langsung masuk ke akun Anda dalam hitungan detik.</p>
+            </section>
+
+            <section class="section card" id="payments">
+                <h2>Metode Pembayaran</h2>
+                <p>Kami menyediakan berbagai metode pembayaran yang mudah dan aman untuk kenyamanan Anda.</p>
+                <div class="payment-icons">
+                    <img src="https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg" alt="DANA">
+                    <img src="https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg" alt="GoPay">
+                    <img src="https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg" alt="QRIS">
+                    <img src="https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg" alt="Krom Bank">
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Walz Shop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
