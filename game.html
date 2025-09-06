@@ -3,116 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Up Game</title>
+    <title>Top Up Game Murah - Walzshop ID</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-    <div class="main-container">
-        <header class="header">
+    <header class="header">
+        <div class="header-left">
             <a href="index.html" class="logo-link">
-                <img src="https://files.catbox.moe/hrtpys.jpg" alt="WALZSHOP Icon" class="logo-icon">
-                <h1 class="website-name">WALZSHOP</h1>
+                <img src="https://i.supaimg.com/e285a86d-1768-45be-b94f-d002f6186414.jpg" alt="Logo Walzshop ID" class="logo">
+                <span class="website-name">Walzshop ID</span>
             </a>
-            <div class="header-right">
-                <a href="search.html" class="header-link">
-                    <i class="fas fa-search"></i>
-                </a>
-                <a href="profile.html" class="header-link">
-                    <i class="fas fa-user"></i>
-                </a>
-            </div>
-        </header>
-
-        <main class="game-page-container">
-            <a href="javascript:history.back()" class="back-button-top" style="margin-bottom: 20px;"><i class="fas fa-arrow-left"></i> Kembali</a>
-            
-            <div id="game-info-header" class="game-info-header">
-                </div>
-
-            <form id="topup-form" onsubmit="return false;">
-                <section class="section-card">
-                    <div class="section-header">
-                        <div class="section-number">1</div>
-                        <h3>Lengkapi Data Akun</h3>
-                    </div>
-                    <div class="input-group">
-                        <i class="fas fa-user input-icon"></i>
-                        <input type="number" id="user-id" placeholder="Masukkan ID">
-                    </div>
-                    <div id="server-id-container" class="input-group">
-                        </div>
-                </section>
-
-                <section class="section-card">
-                    <div class="section-header">
-                        <div class="section-number">2</div>
-                        <h3>Pilih Nominal Top Up</h3>
-                    </div>
-                    <div id="product-list" class="options-grid">
-                        </div>
-                </section>
-                
-                <section class="section-card">
-                    <div class="section-header">
-                        <div class="section-number">3</div>
-                        <h3>Pilih Metode Pembayaran</h3>
-                    </div>
-                    <div id="payment-list" class="options-grid">
-                        </div>
-                </section>
-                
-                <section class="section-card">
-                    <div class="section-header">
-                        <div class="section-number">4</div>
-                        <h3>Lengkapi Kontak</h3>
-                    </div>
-                    <div class="input-group">
-                        <i class="fab fa-whatsapp input-icon"></i>
-                        <input type="tel" id="whatsapp-number" placeholder="Masukkan Nomor WhatsApp">
-                    </div>
-                </section>
-
-                <section class="section-card">
-                    <div class="section-header">
-                        <div class="section-number">5</div>
-                        <h3>Gunakan Kode Voucher</h3>
-                    </div>
-                    <div class="input-group voucher-input-group">
-                        <i class="fas fa-ticket-alt input-icon"></i>
-                        <input type="text" id="promo-code" class="voucher-input" placeholder="Masukkan Kode Voucher">
-                        <button type="button" id="use-voucher-btn" class="voucher-button">Gunakan</button>
-                    </div>
-                </section>
-            </form>
-
-            <div id="summary-card" class="summary-card" style="display:none;">
-                <div class="summary-product" id="summary-product-details"></div>
-                <div class="summary-price" id="summary-price"></div>
-            </div>
-
-            <button type="button" id="confirm-button" class="confirm-button" disabled>Beli Sekarang</button>
-            
-        </main>
-    </div>
-    
-    <footer class="footer">
-        <div class="footer-socials">
-            <a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://t.me/walzshopid" target="_blank" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
         </div>
-        <ul class="footer-links">
-            <li><a href="#">Tentang Kami</a></li>
-            <li><a href="#">Kebijakan Privasi</a></li>
-            <li><a href="#">Syarat & Ketentuan</a></li>
-        </ul>
-        <p>&copy; 2024 WALZSHOP. All rights reserved.</p>
-    </footer>
+        <div class="header-right">
+            <a href="#" class="header-link"><i class="fas fa-bell"></i></a>
+            <a href="https://wa.me/6282298902274" target="_blank" class="header-link"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </header>
+
+    <main class="main-container game-page-container">
+        <a href="index.html" class="back-button-top">
+            <i class="fas fa-arrow-left"></i> Kembali
+        </a>
+        
+        <div class="game-info-header" id="game-info-header">
+            </div>
+
+        <form id="topup-form">
+            <div class="section-card">
+                <div class="section-header">
+                    <span class="section-number">1</span>
+                    <h3>Masukkan Data Akun</h3>
+                </div>
+                <p class="section-description">
+                    Pastikan ID Akun yang dimasukkan sudah benar. Kesalahan input ID Akun adalah tanggung jawab pembeli.
+                </p>
+                <div class="input-group">
+                    <i class="fas fa-user input-icon"></i>
+                    <input type="number" id="user-id" placeholder="Masukkan Player ID">
+                </div>
+                <div class="input-group" id="server-id-container">
+                    </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-header">
+                    <span class="section-number">2</span>
+                    <h3>Pilih Produk</h3>
+                </div>
+                <div class="options-grid" id="product-list">
+                    </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-header">
+                    <span class="section-number">3</span>
+                    <h3>Pilih Pembayaran</h3>
+                </div>
+                <p class="section-description">
+                    Pilih metode pembayaran yang Anda inginkan.
+                </p>
+                <div class="options-grid" id="payment-list">
+                    </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-header">
+                    <span class="section-number">4</span>
+                    <h3>Kode Voucher (Opsional)</h3>
+                </div>
+                <div class="voucher-input-group">
+                    <div class="input-group voucher-input">
+                        <i class="fas fa-ticket-alt input-icon"></i>
+                        <input type="text" id="promo-code" placeholder="Masukkan Kode Voucher">
+                    </div>
+                    <button type="button" class="voucher-button" id="use-voucher-btn">Pakai</button>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-header">
+                    <span class="section-number">5</span>
+                    <h3>Masukkan Nomor WhatsApp</h3>
+                </div>
+                <p class="section-description">
+                    Nomor WhatsApp aktif untuk menerima notifikasi pesanan.
+                </p>
+                <div class="input-group">
+                    <i class="fab fa-whatsapp input-icon"></i>
+                    <input type="tel" id="whatsapp-number" placeholder="Contoh: 08123456789">
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-header">
+                    <h3>Rating & Review</h3>
+                </div>
+                <div id="fastcomments-widget"></div>
+            </div>
+
+        </form>
+
+    </main>
+    
+    <div class="summary-card" id="summary-card" style="display:none;">
+        <div class="summary-product" id="summary-product-details">
+            </div>
+        <div class="summary-price" id="summary-price">
+            </div>
+        <button type="button" class="confirm-button" id="confirm-button">Beli Sekarang</button>
+    </div>
 
     <div class="notification-container"></div>
+    
+    <footer>
+        <div class="footer">
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/walzshop.id/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/6282298902274" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p>&copy; 2024 Walzshop ID. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
+
+    <script>
+        window.FastComments.render({
+            tenantId: "{TENANT_ID}", // <-- Ganti dengan ID Penyewa Anda
+            domain: "{DOMAIN}", // <-- Ganti dengan Kode Domain Anda
+            defaultSortBy: "NEWEST",
+            showCommentsCount: true,
+            pageUrl: window.location.href
+        });
+    </script>
+    <script src="https://js.fastcomments.com/all.js"></script>
+
 </body>
 </html>
