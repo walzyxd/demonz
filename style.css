@@ -14,7 +14,7 @@
     --price-color: #ff3b30;
     --accent-gradient: linear-gradient(135deg, #a745ff, #8a2be2);
     --button-gradient: linear-gradient(135deg, #6230b0, #7b36d6);
-    --selected-border: #44aaff; /* Biru */
+    --selected-border: #00e69b; /* Tosca */
     --special-badge-bg: #ff3b30;
     --voucher-btn-bg: #8a2be2;
     --header-bg-rgba: rgba(32, 10, 64, 0.7);
@@ -300,6 +300,7 @@ a {
 
 .input-group input::placeholder {
     color: var(--text-light);
+    font-size: 0.9em;
 }
 
 .options-grid {
@@ -327,17 +328,17 @@ a {
 
 .option-card.selected {
     border-color: var(--selected-border);
-    box-shadow: 0 0 15px rgba(68, 170, 255, 0.7);
+    box-shadow: 0 0 15px rgba(0, 230, 155, 0.7);
     transform: scale(1.05);
     animation: pulse-border 1s infinite alternate;
 }
 
 @keyframes pulse-border {
     from {
-        box-shadow: 0 0 15px rgba(68, 170, 255, 0.7);
+        box-shadow: 0 0 15px rgba(0, 230, 155, 0.7);
     }
     to {
-        box-shadow: 0 0 20px rgba(68, 170, 255, 1);
+        box-shadow: 0 0 20px rgba(0, 230, 155, 1);
     }
 }
 
@@ -536,40 +537,49 @@ a {
     font-weight: bold;
 }
 
-.qr-code-section {
-    background-color: #fff;
-    padding: 10px;
+.payment-info-section {
+    background: #fff;
+    padding: 20px;
     border-radius: 10px;
     width: 100%;
-    max-width: 300px;
+    max-width: 350px;
     margin: 20px auto;
-    overflow-y: auto;
-    max-height: 400px;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-}
-
-.qr-code-section::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-}
-
-.qr-code-image {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.qr-caption {
-    font-size: 0.8em;
-    color: #666;
     text-align: center;
-    margin-top: 10px;
+    color: #333;
 }
 
-.qr-caption span {
+.payment-info-section .payment-image {
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.payment-info-section h4 {
+    color: #333;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.payment-info-section .payment-number {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: var(--price-color);
+}
+
+.payment-info-section .copy-button {
+    padding: 10px 20px;
+    background-color: var(--selected-border);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     font-weight: 600;
+    transition: background-color 0.2s;
 }
 
+.payment-info-section .copy-button:hover {
+    background-color: #00b377;
+}
 
 /* ======================== */
 /* Footer */
@@ -615,4 +625,57 @@ a {
 
 .footer-links a:hover {
     color: var(--text-color);
+}
+
+/* --- Pop-up Notifikasi --- */
+.notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2000;
+}
+
+.notification-popup {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fade-in-up 0.5s forwards;
+}
+
+.notification-popup.fade-out {
+    animation: fade-out-down 0.5s forwards;
+}
+
+@keyframes fade-in-up {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-out-down {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+.notification-popup .icon {
+    font-size: 1.5em;
+    color: var(--selected-border);
+}
+
+.notification-popup .message {
+    font-weight: 600;
 }
