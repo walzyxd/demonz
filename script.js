@@ -3,20 +3,19 @@ const ADMIN_WA = "6282298902274";
 const ADMIN_EMAIL = "walzlonely@gmail.com";
 
 const GAMES = [
-  { key: "free-fire", name: "Free Fire", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", bannerImg: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", hasServerId: false, guide: "Temukan User ID Anda di profil game.", url: "game.html?game=free-fire" },
-  { key: "mobile-legends", name: "Mobile Legends", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", bannerImg: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", hasServerId: true, guide: "User ID & Server dapat ditemukan di profil.", url: "game.html?game=mobile-legends" },
-  { key: "pubg-mobile", name: "PUBG Mobile", img: "https://i.supaimg.com/00a77c87-f6b5-4e54-b325-bd3ac3d3e441.jpg", bannerImg: "https://i.supaimg.com/00a77c87-f6b5-4e54-b325-bd3ac3d3e441.jpg", hasServerId: false, guide: "User ID di profil game.", url: "game.html?game=pubg-mobile" },
-  { key: "genshin-impact", name: "Genshin Impact", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", bannerImg: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", hasServerId: false, guide: "User ID (9 digit) di pojok kanan bawah.", url: "game.html?game=genshin-impact" },
-  { key: "valorant", name: "Valorant", img: "https://i.supaimg.com/8bb768c4-d3f6-40e9-a267-90b7c6c62c24.jpg", bannerImg: "https://i.supaimg.com/8bb768c4-d3f6-40e9-a267-90b7c6c62c24.jpg", hasServerId: false, guide: "Riot ID (Nama#1234) di profil.", url: "game.html?game=valorant" },
-  { key: "call-of-duty", name: "Call of Duty Mobile", img: "https://i.supaimg.com/55dcf25d-935f-4091-b445-9a1686bd6575.jpg", bannerImg: "https://i.supaimg.com/55dcf25d-935f-4091-b445-9a1686bd6575.jpg", hasServerId: false, guide: "User ID di profil game.", url: "game.html?game=call-of-duty" },
-  { key: "honor-of-kings", name: "Honor of Kings", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", bannerImg: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", hasServerId: false, guide: "User ID di bagian profil.", url: "game.html?game=honor-of-kings" },
-  { key: "roblox", name: "Roblox", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", bannerImg: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", hasServerId: false, guide: "Top up via gift card.", url: "game.html?game=roblox" },
-  { key: "clash-of-clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", bannerImg: "https://files.catbox.moe/6aia0n.jpg", hasServerId: false, guide: "Player Tag dimulai '#'.", url: "game.html?game=clash-of-clans" },
-  { key: "eggy-party", name: "Eggy Party", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", bannerImg: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", hasServerId: false, guide: "User ID di profil game.", url: "game.html?game=eggy-party" },
-  { key: "garena-delta-force", name: "Garena Delta Force", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", bannerImg: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", hasServerId: false, guide: "User ID di profil.", url: "game.html?game=garena-delta-force" },
-  { key: "garena-undawn", name: "Garena Undawn", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", bannerImg: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", hasServerId: false, guide: "User ID di profil.", url: "game.html?game=garena-undawn" },
-  { key: "blood-strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", bannerImg: "https://files.catbox.moe/3y066i.jpg", hasServerId: false, guide: "User ID di profil.", url: "game.html?game=blood-strike" }
-  // kamu bisa tambahkan lagi di sini jika ingin
+  { key: "free-fire", name: "Free Fire", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", bannerImg: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", hasServerId: false, guide: "Temukan User ID Anda di profil game.", url: "game.html?key=free-fire" },
+  { key: "mobile-legends", name: "Mobile Legends", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", bannerImg: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", hasServerId: true, guide: "User ID & Server dapat ditemukan di profil.", url: "game.html?key=mobile-legends" },
+  { key: "pubg-mobile", name: "PUBG Mobile", img: "https://i.supaimg.com/00a77c87-f6b5-4e54-b325-bd3ac3d3e441.jpg", bannerImg: "https://i.supaimg.com/00a77c87-f6b5-4e54-b325-bd3ac3d3e441.jpg", hasServerId: false, guide: "User ID di profil game.", url: "game.html?key=pubg-mobile" },
+  { key: "genshin-impact", name: "Genshin Impact", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", bannerImg: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", hasServerId: false, guide: "User ID (9 digit) di pojok kanan bawah.", url: "game.html?key=genshin-impact" },
+  { key: "valorant", name: "Valorant", img: "https://i.supaimg.com/8bb768c4-d3f6-40e9-a267-90b7c6c62c24.jpg", bannerImg: "https://i.supaimg.com/8bb768c4-d3f6-40e9-a267-90b7c6c62c24.jpg", hasServerId: false, guide: "Riot ID (Nama#1234) di profil.", url: "game.html?key=valorant" },
+  { key: "call-of-duty", name: "Call of Duty Mobile", img: "https://i.supaimg.com/55dcf25d-935f-4091-b445-9a1686bd6575.jpg", bannerImg: "https://i.supaimg.com/55dcf25d-935f-4091-b445-9a1686bd6575.jpg", hasServerId: false, guide: "User ID di profil game.", url: "game.html?key=call-of-duty" },
+  { key: "honor-of-kings", name: "Honor of Kings", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", bannerImg: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", hasServerId: false, guide: "User ID di bagian profil.", url: "game.html?key=honor-of-kings" },
+  { key: "roblox", name: "Roblox", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", bannerImg: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", hasServerId: false, guide: "Top up via gift card.", url: "game.html?key=roblox" },
+  { key: "clash-of-clans", name: "Clash of Clans", img: "https://files.catbox.moe/6aia0n.jpg", bannerImg: "https://files.catbox.moe/6aia0n.jpg", hasServerId: false, guide: "Player Tag dimulai '#'.", url: "game.html?key=clash-of-clans" },
+  { key: "eggy-party", name: "Eggy Party", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", bannerImg: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", hasServerId: false, guide: "User ID di profil game.", url: "game.html?key=eggy-party" },
+  { key: "garena-delta-force", name: "Garena Delta Force", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", bannerImg: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", hasServerId: false, guide: "User ID di profil.", url: "game.html?key=garena-delta-force" },
+  { key: "garena-undawn", name: "Garena Undawn", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", bannerImg: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", hasServerId: false, guide: "User ID di profil.", url: "game.html?key=garena-undawn" },
+  { key: "blood-strike", name: "Blood Strike", img: "https://files.catbox.moe/3y066i.jpg", bannerImg: "https://files.catbox.moe/3y066i.jpg", hasServerId: false, guide: "User ID di profil.", url: "game.html?key=blood-strike" }
 ];
 
 const PROMOS = [
@@ -27,9 +26,10 @@ const PROMOS = [
 ];
 
 const PAYMENTS = [
-  { id: "dana", name: "DANA", img: "https://files.catbox.moe/0j5opw.png", type: "ewallet", info: { number: "083139243389", name: "TI** SUT***" } },
-  { id: "gopay", name: "GoPay", img: "https://files.catbox.moe/37vcbe.jpg", type: "ewallet", info: { number: "082116690164", name: "TI** SUT***" } },
-  { id: "qris", name: "QRIS", img: "https://files.catbox.moe/pa0iwo.png", type: "qris", info: { qrisImg: "https://files.catbox.moe/pa0iwo.png" } },
+  { id: "dana", name: "DANA" },
+  { id: "gopay", name: "GoPay" },
+  { id: "qris", name: "QRIS" },
+  { id: "krom-bank", name: "Krom Bank" }
 ];
 
 const PRODUCTS = {
@@ -129,7 +129,6 @@ const PRODUCTS = {
     { id: "bs-100", label: "100 + 5 Gold", price: 11999 },
     { id: "bs-300", label: "300 + 20 Gold", price: 34999 }
   ]
-  // Tambahkan game/produk lain di sini jika perlu
 };
 
 const VOUCHERS = [
@@ -174,9 +173,10 @@ function refreshSummary() {
   const voucherPriceEl = qs("#summary-voucher-price");
   const totalEl = qs("#total-price");
   const checkoutBtn = qs("#checkout-btn");
+  const paymentGrid = qs("#payment-grid");
 
   if (productPriceEl && totalEl && checkoutBtn) {
-    if (selectedProduct && selectedPayment) {
+    if (selectedProduct) {
       const basePrice = selectedProduct.price;
       const finalP = finalPrice();
       const discount = basePrice - finalP;
@@ -192,14 +192,21 @@ function refreshSummary() {
           voucherRowEl.style.display = "none";
         }
       }
+      
+      qsa(".payment-grid .grid-item .price").forEach(el => el.textContent = fmtIDR(finalP));
 
-      checkoutBtn.disabled = false;
     } else {
       productPriceEl.textContent = "-";
       totalEl.textContent = "-";
       if (voucherRowEl) voucherRowEl.style.display = "none";
-      checkoutBtn.disabled = true;
+      qsa(".payment-grid .grid-item .price").forEach(el => el.textContent = "");
     }
+  }
+
+  if (selectedProduct && selectedPayment && qs("#user-id").value.trim()) {
+      checkoutBtn.disabled = false;
+  } else {
+      checkoutBtn.disabled = true;
   }
 }
 
@@ -228,6 +235,7 @@ function saveTransactionData(game) {
   const userId = qs("#user-id").value.trim();
   const serverId = game.hasServerId ? qs("#server-id").value.trim() : null;
   const transactionData = {
+    gameKey: game.key, // Simpan gameKey untuk kembali
     game: game.name,
     userId: userId,
     serverId: serverId,
@@ -247,6 +255,7 @@ function updateCartPage() {
     return;
   }
 
+  qs("#back-to-game").href = `game.html?key=${data.gameKey}`;
   qs("#summary-game").textContent = data.game;
   qs("#summary-user").textContent = data.userId;
   qs("#summary-product").textContent = data.product;
@@ -390,8 +399,8 @@ function initGamePage() {
   
   paymentGrid.innerHTML = PAYMENTS.map(pay => `
     <div class="grid-item" data-id="${pay.id}">
-      <img src="${pay.img}" alt="${pay.name}">
       <div class="label">${pay.name}</div>
+      <div class="price"></div>
     </div>
   `).join("");
 
@@ -420,6 +429,11 @@ function initGamePage() {
     });
   });
 
+  qs("#user-id").addEventListener("input", refreshSummary);
+  if (game.hasServerId) {
+      qs("#server-id").addEventListener("input", refreshSummary);
+  }
+
   qs("#voucher-btn").addEventListener("click", () => {
     const code = qs("#voucher-input").value.trim().toUpperCase();
     if (!selectedProduct) {
@@ -446,4 +460,6 @@ function initGamePage() {
       window.location.href = "cart.html";
     }
   });
+  
+  refreshSummary();
 }
