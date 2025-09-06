@@ -1,58 +1,54 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WalzShop — Cart</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keranjang Belanja - WalzShop</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">TopUpKuy</a>
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="#">Promo</a>
+                <a href="#">Kontak</a>
+            </nav>
+        </div>
+    </header>
 
-<header class="header">
-  <div class="container">
-    <div class="logo">WalzShop</div>
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="game.html">Games</a>
-      <a href="cart.html">Cart</a>
-    </nav>
-  </div>
-</header>
+    <main class="container">
+        <h2>Ringkasan Pembelian</h2>
+        <div class="cart-summary">
+            <div class="cart-item">
+                <img id="cart-game-img" src="" alt="Game Image">
+                <div class="item-details">
+                    <h3 id="cart-game-name"></h3>
+                    <p id="cart-user-id"></p>
+                    <p id="cart-server-id" style="display:none;"></p>
+                    <p id="cart-product-label"></p>
+                </div>
+            </div>
+            
+            <div class="cart-item">
+                <img id="cart-payment-img" src="" alt="Payment Method">
+                <div class="item-details">
+                    <h3>Metode Pembayaran</h3>
+                    <p id="cart-payment-name"></p>
+                    <p id="cart-payment-info"></p>
+                </div>
+            </div>
 
-<main class="main">
-  <section class="games-section scroll-reveal">
-    <h2 class="section-title">Cart Anda</h2>
-    <div class="form-container">
-      <table class="summary-table">
-        <tr>
-          <td>Diamond 50</td>
-          <td>Rp 50.000</td>
-        </tr>
-        <tr>
-          <td>Diamond 100</td>
-          <td>Rp 100.000</td>
-        </tr>
-      </table>
-      <div class="summary-total">
-        <span>Total</span>
-        <span>Rp 150.000</span>
-      </div>
-      <button class="btn btn-confirm btn-block">Checkout</button>
-    </div>
-  </section>
-</main>
+            <div class="total-price" id="cart-total-price"></div>
+            <button class="checkout-button" onclick="window.location.href = '#'; alert('Pesanan Anda berhasil dibuat!');">Selesaikan Pembayaran</button>
+        </div>
+    </main>
 
-<footer class="footer scroll-reveal">
-  <div class="container">
-    <div class="footer-links">
-      <a href="#">Privacy Policy</a> | 
-      <a href="#">Terms</a> | 
-      <a href="#">Contact</a>
-    </div>
-    <p>&copy; 2025 WalzShop. All Rights Reserved.</p>
-  </div>
-</footer>
+    <footer class="footer">
+        <p>&copy; 2025 WalzShop. Semua Hak Cipta Dilindungi.</p>
+    </footer>
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
