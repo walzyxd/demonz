@@ -14,7 +14,7 @@
     --price-color: #ff3b30;
     --accent-gradient: linear-gradient(135deg, #a745ff, #8a2be2);
     --button-gradient: linear-gradient(135deg, #6230b0, #7b36d6);
-    --selected-border: #00e69b;
+    --selected-border: #00e69b; 
     --special-badge-bg: #ff3b30;
     --voucher-btn-bg: #8a2be2;
     --header-bg-rgba: rgba(32, 10, 64, 0.7);
