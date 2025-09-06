@@ -512,7 +512,7 @@ async function checkGameId(gameCode, userId) {
 
     // Ganti dengan kredensial API Anda
     const merchantId = "M250907JZZY9386TE"; // GANTI DENGAN MERCHANT ID ANDA
-    const signature = "30c48fa4678c8a429ad7978ebada54eb"; // GANTI DENGAN SIGNATURE ANDA
+    const signature = "2cbefb6a1e0a229d12c318747c59e36d0c6a38827e5984c077ec143a26471986"; // GANTI DENGAN SIGNATURE ANDA
     const apiURL = `https://v1.apigames.id/merchant/${merchantId}/cek-username/${gameCode}?user_id=${userId}&signature=${signature}`;
 
     idCheckResult.textContent = "Memeriksa...";
