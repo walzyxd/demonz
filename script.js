@@ -34,44 +34,44 @@ const PRODUCTS = {
         { id: "ml-14-bonus", label: "14 Diamonds", subLabel: "13 + 1 Bonus", type: "diamond", price: 3829, icon: "https://i.supaimg.com/e5f3f01c-6d81-426b-80a5-f48259d6e4b8.png" },
         { id: "ml-28-bonus", label: "28 Diamonds", subLabel: "26 + 2 Bonus", type: "diamond", price: 7659, icon: "https://i.supaimg.com/e5f3f01c-6d81-426b-80a5-f48259d6e4b8.png" },
         { id: "ml-42-bonus", label: "42 Diamonds", subLabel: "38 + 4 Bonus", type: "diamond", price: 11487, icon: "https://i.supaimg.com/e5f3f01c-6d81-426b-80a5-f48259d6e4b8.png" },
-        { id: "ml-weekly-pass", label: "Weekly Diamond Pass", type: "special", price: 30000, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
-        { id: "ml-twilight-pass", label: "Twilight Pass", type: "special", price: 150000, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
+        { id: "ml-weekly-pass", label: "Weekly Diamond Pass", type: "diamond", price: 30000, icon: "https://i.supaimg.com/e5f3f01c-6d81-426b-80a5-f48259d6e4b8.png" },
+        { id: "ml-twilight-pass", label: "Twilight Pass", type: "diamond", price: 150000, icon: "https://i.supaimg.com/e5f3f01c-6d81-426b-80a5-f48259d6e4b8.png" },
     ],
     "honor-of-kings": [
-        { id: "hok-6-voucher", label: "6 Voucher", type: "special", price: 2000, img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg" },
+        { id: "hok-6-voucher", label: "6 Voucher", type: "diamond", price: 2000, icon: "https://i.supaimg.com/e5f3f01c-6d81-426b-80a5-f48259d6e4b8.png" },
     ],
     "genshin-impact": [
-        { id: "gi-60-genesis", label: "60 Genesis Crystal", type: "special", price: 15000, img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg" },
+        { id: "gi-60-genesis", label: "60 Genesis Crystal", type: "diamond", price: 15000, icon: "https://i.supaimg.com/e5f3f01c-6d81-426b-80a5-f48259d6e4b8.png" },
     ],
     "roblox": [
-        { id: "rb-100-robux", label: "100 Robux", type: "special", price: 20000, img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg" },
+        { id: "rb-100-robux", label: "100 Robux", type: "diamond", price: 20000, icon: "https://i.supaimg.com/e5f3f01c-6d81-426b-80a5-f48259d6e4b8.png" },
     ],
     "super-sus": [
-        { id: "ss-60-stars", label: "60 Stars", type: "special", price: 10000, img: "https://files.catbox.moe/j61uny.jpg" },
+        { id: "ss-60-stars", label: "60 Stars", type: "diamond", price: 10000, icon: "https://i.supaimg.com/e5f3f01c-6d81-426b-80a5-f48259d6e4b8.png" },
     ],
     "clash-of-clans": [
-        { id: "coc-80-gems", label: "80 Gems", type: "special", price: 15000, img: "https://files.catbox.moe/6aia0n.jpg" },
+        { id: "coc-80-gems", label: "80 Gems", type: "diamond", price: 15000, icon: "https://i.supaimg.com/e5f3f01c-6d81-426b-80a5-f48259d6e4b8.png" },
     ],
     "blood-strike": [
-        { id: "bs-60-gold", label: "60 Gold", type: "special", price: 10000, img: "https://files.catbox.moe/3y066i.jpg" },
+        { id: "bs-60-gold", label: "60 Gold", type: "diamond", price: 10000, icon: "https://i.supaimg.com/e5f3f01c-6d81-426b-80a5-f48259d6e4b8.png" },
     ],
     "pubg": [
-        { id: "pubg-60-uc", label: "60 UC", type: "special", price: 15000, img: "https://files.catbox.moe/tatuo9.jpg" },
+        { id: "pubg-60-uc", label: "60 UC", type: "diamond", price: 15000, icon: "https://i.supaimg.com/e5f3f01c-6d81-426b-80a5-f48259d6e4b8.png" },
     ],
     "garena-delta": [
-        { id: "gd-125-diamonds", label: "125 Diamonds", type: "diamond", price: 10000, icon: "https://files.catbox.moe/k37o1s.jpg" },
+        { id: "gd-125-diamonds", label: "125 Diamonds", type: "diamond", price: 10000, icon: "https://i.supaimg.com/e5f3f01c-6d81-426b-80a5-f48259d6e4b8.png" },
     ],
     "garena-undawn": [
-        { id: "gu-60-credits", label: "60 Credits", type: "special", price: 10000, img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png" },
+        { id: "gu-60-credits", label: "60 Credits", type: "diamond", price: 10000, icon: "https://i.supaimg.com/e5f3f01c-6d81-426b-80a5-f48259d6e4b8.png" },
     ],
     "valorant": [
-        { id: "val-125-points", label: "125 VP", type: "special", price: 15000, img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png" },
+        { id: "val-125-points", label: "125 VP", type: "diamond", price: 15000, icon: "https://i.supaimg.com/e5f3f01c-6d81-426b-80a5-f48259d6e4b8.png" },
     ],
     "call-of-duty": [
-        { id: "cod-80-cp", label: "80 CP", type: "special", price: 15000, img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp" },
+        { id: "cod-80-cp", label: "80 CP", type: "diamond", price: 15000, icon: "https://i.supaimg.com/e5f3f01c-6d81-426b-80a5-f48259d6e4b8.png" },
     ],
     "eggy-party": [
-        { id: "ep-100-gems", label: "100 Gems", type: "special", price: 10000, img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg" },
+        { id: "ep-100-gems", label: "100 Gems", type: "diamond", price: 10000, icon: "https://i.supaimg.com/e5f3f01c-6d81-426b-80a5-f48259d6e4b8.png" },
     ],
 };
 
@@ -102,7 +102,7 @@ function getUrlParameter(name) {
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 }
 
-function selectOption(element, type) {
+function selectOption(element) {
     const parent = element.closest('.options-grid');
     if (!parent) return;
 
@@ -122,28 +122,27 @@ function updateSummary() {
     const confirmButton = document.getElementById('confirm-button');
     const summaryProductDetails = document.getElementById('summary-product-details');
     const summaryPrice = document.getElementById('summary-price');
+    const gameKey = getUrlParameter('key');
+    const userIdInput = document.getElementById('user-id');
+    const serverIdInput = document.getElementById('server-id');
     
-    if (selectedProductCard) {
+    const userId = userIdInput.value;
+    const serverId = serverIdInput ? serverIdInput.value : '';
+    const isIdValid = userId.length > 0 && (serverIdInput ? serverId.length > 0 : true);
+    
+    if (selectedProductCard && selectedPaymentCard && isIdValid) {
         summaryCard.style.display = 'block';
         
         const productId = selectedProductCard.dataset.id;
-        const gameKey = getUrlParameter('key');
         const product = PRODUCTS[gameKey].find(p => p.id === productId);
         
-        const totalHarga = product.price;
-
         summaryProductDetails.innerHTML = `
-            <img src="${product.type === 'diamond' ? product.icon : product.img}" alt="Product Icon">
+            <img src="${product.icon}" alt="Product Icon">
             <span class="product-text">${product.label}</span>
         `;
-        summaryPrice.innerHTML = `<span class="price-text">${formatRupiah(totalHarga)}</span>`;
+        summaryPrice.innerHTML = `<span class="price-text">${formatRupiah(product.price)}</span>`;
         
-        if (selectedPaymentCard) {
-            confirmButton.disabled = false;
-        } else {
-            confirmButton.disabled = true;
-        }
-
+        confirmButton.disabled = false;
     } else {
         summaryCard.style.display = 'none';
         confirmButton.disabled = true;
@@ -235,15 +234,8 @@ function resetSlideInterval() {
     startSlideInterval();
 }
 
-// --- Logika Halaman ---
-document.addEventListener("DOMContentLoaded", () => {
-    // Check if it's the home page
-    if (document.getElementById('game-list')) {
-        renderGameCards();
-        initializeCarousel();
-    }
-
-    // Check if it's the game top-up page
+// --- Logika Halaman Game ---
+function setupGamePage() {
     const gameKey = getUrlParameter('key');
     const game = GAMES.find(g => g.key === gameKey);
     const productListContainer = document.getElementById("product-list");
@@ -251,153 +243,193 @@ document.addEventListener("DOMContentLoaded", () => {
     const gameKeyInput = document.getElementById("game-key-input");
     const gameInfoHeader = document.getElementById("game-info-header");
 
-    if (game && productListContainer && paymentListContainer) {
-        gameKeyInput.value = gameKey;
+    if (!game || !productListContainer || !paymentListContainer) return;
 
-        gameInfoHeader.innerHTML = `
-            <img src="${game.img}" alt="${game.name}" class="game-img">
-            <h2>${game.name}</h2>
-        `;
+    gameKeyInput.value = gameKey;
 
-        if (game.key === 'genshin-impact' || game.key === 'pubg') {
-            document.getElementById('server-id-group').style.display = 'block';
-        }
+    gameInfoHeader.innerHTML = `
+        <img src="${game.img}" alt="${game.name}" class="game-img">
+        <h2>${game.name}</h2>
+    `;
 
-        const products = PRODUCTS[gameKey];
-        if (products) {
-            products.forEach(product => {
-                const productDiv = document.createElement("div");
-                productDiv.classList.add("option-card");
-                productDiv.setAttribute('data-id', product.id);
+    if (game.key === 'genshin-impact' || game.key === 'pubg') {
+        document.getElementById('server-id-group').style.display = 'block';
+    }
 
-                if (product.type === "diamond") {
-                    productDiv.classList.add("diamond");
-                    productDiv.innerHTML = `
-                        <input type="radio" name="product_id" value="${product.id}" style="display:none;" required>
-                        <img src="${product.icon}" alt="Diamond Icon" class="diamond-icon">
-                        <div class="label">${product.label}</div>
-                        ${product.subLabel ? `<div class="sub-label">${product.subLabel}</div>` : ''}
-                        <div class="price">${formatRupiah(product.price)}</div>
-                    `;
-                } else {
-                    productDiv.innerHTML = `
-                        <input type="radio" name="product_id" value="${product.id}" style="display:none;" required>
-                        <img src="${product.img}" alt="${product.label}">
-                        <div class="label">${product.label}</div>
-                        <div class="price">${formatRupiah(product.price)}</div>
-                    `;
-                }
+    const products = PRODUCTS[gameKey];
+    if (products) {
+        products.forEach(product => {
+            const productDiv = document.createElement("div");
+            productDiv.classList.add("option-card", product.type);
+            productDiv.setAttribute('data-id', product.id);
 
-                productDiv.onclick = () => {
-                    selectOption(productDiv, 'product');
-                    productDiv.querySelector('input').checked = true;
-                };
-                productListContainer.appendChild(productDiv);
-            });
-        }
-
-        for (const category in PAYMENTS) {
-            PAYMENTS[category].forEach(payment => {
-                const paymentDiv = document.createElement("div");
-                paymentDiv.classList.add("option-card", "payment");
-                paymentDiv.setAttribute('data-id', payment.id);
-                paymentDiv.innerHTML = `
-                    <input type="radio" name="payment_id" value="${payment.id}" style="display:none;" required>
-                    <div class="option-details">
-                        <img src="${payment.img}" alt="${payment.name}">
-                        <div class="text-group">
-                            <div class="label">${payment.name}</div>
-                            <div class="sub-label">${payment.subLabel || ''}</div>
-                        </div>
-                    </div>
-                    <div class="price">${formatRupiah(payment.price)}</div>
-                `;
-                paymentDiv.onclick = () => {
-                    selectOption(paymentDiv, 'payment');
-                    paymentDiv.querySelector('input').checked = true;
-                };
-                paymentListContainer.appendChild(paymentDiv);
-            });
-        }
-        
-        const userIdInput = document.getElementById('user-id');
-        const serverIdInput = document.getElementById('server-id');
-        userIdInput.addEventListener('input', updateSummary);
-        if (serverIdInput) {
-            serverIdInput.addEventListener('input', updateSummary);
-        }
-
-        document.getElementById('summary-card').style.display = 'none';
-        
-        document.getElementById('confirm-button').addEventListener('click', (e) => {
-            if (!document.querySelector('#payment-list .option-card.selected')) {
-                e.preventDefault();
-                document.getElementById('notification-popup').style.display = 'block';
-            }
+            productDiv.innerHTML = `
+                <input type="radio" name="product_id" value="${product.id}" style="display:none;" required>
+                <img src="${product.icon}" alt="Icon" class="icon">
+                <div class="label">${product.label}</div>
+                ${product.subLabel ? `<div class="sub-label">${product.subLabel}</div>` : ''}
+                <div class="price">${formatRupiah(product.price)}</div>
+            `;
+            
+            productDiv.onclick = () => {
+                selectOption(productDiv);
+                productDiv.querySelector('input').checked = true;
+            };
+            productListContainer.appendChild(productDiv);
         });
     }
 
-    // Check if it's the cart page
+    for (const category in PAYMENTS) {
+        PAYMENTS[category].forEach(payment => {
+            const paymentDiv = document.createElement("div");
+            paymentDiv.classList.add("option-card", "payment");
+            paymentDiv.setAttribute('data-id', payment.id);
+            paymentDiv.innerHTML = `
+                <input type="radio" name="payment_id" value="${payment.id}" style="display:none;" required>
+                <div class="option-details">
+                    <img src="${payment.img}" alt="${payment.name}">
+                    <div class="text-group">
+                        <div class="label">${payment.name}</div>
+                        <div class="sub-label">${payment.subLabel || ''}</div>
+                    </div>
+                </div>
+                <div class="price">${formatRupiah(payment.price)}</div>
+            `;
+            paymentDiv.onclick = () => {
+                selectOption(paymentDiv);
+                paymentDiv.querySelector('input').checked = true;
+            };
+            paymentListContainer.appendChild(paymentDiv);
+        });
+    }
+
+    const userIdInput = document.getElementById('user-id');
+    const serverIdInput = document.getElementById('server-id');
+    const form = document.getElementById('topup-form');
+    const confirmButton = document.getElementById('confirm-button');
+    const modal = document.getElementById('confirmation-modal');
+    const modalSummary = document.getElementById('modal-summary-details');
+
+    if (userIdInput) userIdInput.addEventListener('input', updateSummary);
+    if (serverIdInput) serverIdInput.addEventListener('input', updateSummary);
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const selectedProductCard = document.querySelector('#product-list .option-card.selected');
+        const selectedPaymentCard = document.querySelector('#payment-list .option-card.selected');
+        const userId = userIdInput.value;
+        const serverId = serverIdInput ? serverIdInput.value : '';
+        const voucherCode = document.getElementById('voucher-code').value;
+
+        if (!selectedProductCard || !selectedPaymentCard || !userId) {
+            alert('Mohon lengkapi semua data: ID dan pilihan produk serta pembayaran.');
+            return;
+        }
+
+        const productId = selectedProductCard.dataset.id;
+        const paymentId = selectedPaymentCard.dataset.id;
+        const product = PRODUCTS[gameKey].find(p => p.id === productId);
+        const payment = PAYMENTS.qris.find(p => p.id === paymentId);
+        
+        modalSummary.innerHTML = `
+            <p><strong>Game:</strong> ${game.name}</p>
+            <p><strong>User ID:</strong> ${userId}</p>
+            ${serverId ? `<p><strong>Server ID:</strong> ${serverId}</p>` : ''}
+            <p><strong>Produk:</strong> ${product.label}</p>
+            <p><strong>Pembayaran:</strong> ${payment.name}</p>
+            <p><strong>Total Harga:</strong> <span class="price-text">${formatRupiah(product.price)}</span></p>
+            ${voucherCode ? `<p><strong>Voucher:</strong> ${voucherCode}</p>` : ''}
+        `;
+
+        modal.style.display = 'flex';
+        
+        document.getElementById('confirm-modal-btn').onclick = () => {
+             window.location.href = `cart.html?key=${gameKey}&user_id=${userId}&server_id=${serverId}&product_id=${productId}&payment_id=${paymentId}`;
+        };
+
+        document.getElementById('cancel-modal-btn').onclick = () => {
+            modal.style.display = 'none';
+        };
+    });
+}
+
+// --- Logika Halaman Cart ---
+function setupCartPage() {
     const gameKeyCart = getUrlParameter('key');
     const productId = getUrlParameter('product_id');
     const paymentId = getUrlParameter('payment_id');
     const userId = getUrlParameter('user_id');
     const serverId = getUrlParameter('server_id');
 
-    if (document.getElementById('cart-summary-card') && gameKeyCart && productId && paymentId && userId) {
-        const game = GAMES.find(g => g.key === gameKeyCart);
-        const product = PRODUCTS[gameKeyCart].find(p => p.id === productId);
-        let payment = null;
-        for (const category in PAYMENTS) {
-            const foundPayment = PAYMENTS[category].find(p => p.id === paymentId);
-            if (foundPayment) {
-                payment = foundPayment;
-                break;
+    const cartSummaryCard = document.getElementById('cart-summary-card');
+    if (!cartSummaryCard) return;
+
+    const game = GAMES.find(g => g.key === gameKeyCart);
+    const product = PRODUCTS[gameKeyCart].find(p => p.id === productId);
+    let payment = null;
+    for (const category in PAYMENTS) {
+        const foundPayment = PAYMENTS[category].find(p => p.id === paymentId);
+        if (foundPayment) {
+            payment = foundPayment;
+            break;
+        }
+    }
+    
+    if (game && product && payment) {
+        document.getElementById('cart-game-img').src = game.img;
+        document.getElementById('cart-game-name').innerText = game.name;
+        document.getElementById('cart-user-id').innerText = `User ID: ${userId}`;
+        if (serverId) {
+            document.getElementById('cart-server-id').innerText = `Server ID: ${serverId}`;
+            document.getElementById('cart-server-id').style.display = 'block';
+        }
+        document.getElementById('cart-product-label').innerText = product.label;
+        document.getElementById('cart-payment-img').src = payment.img;
+        document.getElementById('cart-payment-name').innerText = payment.name;
+
+        const paymentInfoContainer = document.getElementById('cart-payment-info');
+        paymentInfoContainer.innerHTML = '';
+
+        const paymentInfoData = {
+            "bank-krom": { number: "8009123456", name: "TI** SUT***" },
+            "qris-all": { qrisImg: "https://files.catbox.moe/5688406c-3c9f-4990-b77a-4f1eaba082ad.png" },
+            "qris-dana": { qrisImg: "https://files.catbox.moe/5688406c-3c9f-4990-b77a-4f1eaba082ad.png" },
+            "gopay": { number: "08123456789", name: "TI** SUT***" }
+        };
+
+        const selectedPaymentInfo = paymentInfoData[paymentId];
+        if (selectedPaymentInfo) {
+            if (selectedPaymentInfo.number) {
+                paymentInfoContainer.innerHTML = `
+                    <div class="payment-details-info">
+                        <p>Nomor Rekening: <span id="account-number">${selectedPaymentInfo.number}</span></p>
+                        <p>A.n: ${selectedPaymentInfo.name}</p>
+                        <button class="copy-button" onclick="copyToClipboard('account-number')">Salin Nomor</button>
+                    </div>
+                `;
+            } else if (selectedPaymentInfo.qrisImg) {
+                paymentInfoContainer.innerHTML = `
+                    <img src="${selectedPaymentInfo.qrisImg}" alt="QRIS Code" class="qris-image">
+                    <p style="margin-top:10px;">Silakan scan kode QR di atas</p>
+                `;
             }
         }
-        
-        if (game && product && payment) {
-            document.getElementById('cart-game-img').src = game.img;
-            document.getElementById('cart-game-name').innerText = game.name;
-            document.getElementById('cart-user-id').innerText = `User ID: ${userId}`;
-            if (serverId) {
-                document.getElementById('cart-server-id').innerText = `Server ID: ${serverId}`;
-                document.getElementById('cart-server-id').style.display = 'block';
-            }
-            document.getElementById('cart-product-label').innerText = product.label;
-            document.getElementById('cart-payment-img').src = payment.img;
-            document.getElementById('cart-payment-name').innerText = payment.name;
+        document.getElementById('cart-total-price').innerText = `Total: ${formatRupiah(product.price)}`;
+    } else {
+        // Handle case where URL parameters are missing or invalid
+        cartSummaryCard.innerHTML = `<p style="text-align: center; color: red;">Maaf, data pesanan tidak ditemukan. Silakan kembali ke halaman utama.</p>`;
+    }
+}
 
-            const paymentInfoContainer = document.getElementById('cart-payment-info');
-            paymentInfoContainer.innerHTML = '';
-
-            const paymentInfoData = {
-                "bank-krom": { number: "8009123456", name: "TI** SUT***" },
-                "qris-all": { qrisImg: "https://files.catbox.moe/5688406c-3c9f-4990-b77a-4f1eaba082ad.png" },
-                "qris-dana": { qrisImg: "https://files.catbox.moe/5688406c-3c9f-4990-b77a-4f1eaba082ad.png" },
-                "gopay": { number: "08123456789", name: "TI** SUT***" }
-            };
-
-            const selectedPaymentInfo = paymentInfoData[paymentId];
-            if (selectedPaymentInfo) {
-                if (selectedPaymentInfo.number) {
-                    paymentInfoContainer.innerHTML = `
-                        <div class="payment-details-info">
-                            <p>Nomor Rekening: <span id="account-number">${selectedPaymentInfo.number}</span></p>
-                            <p>A.n: ${selectedPaymentInfo.name}</p>
-                            <button class="copy-button" onclick="copyToClipboard('account-number')">Salin Nomor</button>
-                        </div>
-                    `;
-                } else if (selectedPaymentInfo.qrisImg) {
-                    paymentInfoContainer.innerHTML = `
-                        <img src="${selectedPaymentInfo.qrisImg}" alt="QRIS Code" class="qris-image">
-                        <p style="margin-top:10px;">Silakan scan kode QR di atas</p>
-                    `;
-                }
-            }
-
-            document.getElementById('cart-total-price').innerText = `Total: ${formatRupiah(product.price)}`;
-        }
+document.addEventListener("DOMContentLoaded", () => {
+    if (document.getElementById('game-list')) {
+        renderGameCards();
+        initializeCarousel();
+    } else if (document.getElementById('topup-form')) {
+        setupGamePage();
+    } else if (document.getElementById('cart-summary-card')) {
+        setupCartPage();
     }
 });
 
