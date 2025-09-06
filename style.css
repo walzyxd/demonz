@@ -1,12 +1,16 @@
+/* ======================== */
+/* General Styles & Fonts  */
+/* ======================== */
+
 :root {
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #161616;
-    --card-bg: #1f1f1f;
+    --purple-dark: #2c0e5b;
+    --purple-light: #5f1e9c;
+    --card-bg-dark: #1f0b40;
+    --card-bg-light: #4c1782;
     --text-color: #f0f0f0;
-    --text-secondary: #a0a0a0;
+    --text-light: #c0c0c0;
     --accent-color: #00e0ff;
-    --accent-hover: #00b8d4;
-    --border-color: #333;
+    --accent-gradient: linear-gradient(135deg, #a745ff, #eb83ff);
 }
 
 * {
@@ -15,9 +19,9 @@
     padding: 0;
 }
 
-body {
+body, html {
     font-family: 'Roboto', sans-serif;
-    background-color: var(--bg-primary);
+    background-color: var(--purple-dark);
     color: var(--text-color);
     line-height: 1.6;
     overflow-x: hidden;
@@ -25,540 +29,401 @@ body {
 
 a {
     text-decoration: none;
-    color: var(--accent-color);
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: var(--accent-hover);
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
+    color: inherit;
 }
 
 /* ======================== */
-/* Header & Nav      */
+/* Custom Header & Layout   */
 /* ======================== */
 
-.header {
-    background-color: rgba(16, 16, 16, 0.8);
-    backdrop-filter: blur(10px);
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid var(--border-color);
+.main-container {
+    background: url('https://files.catbox.moe/gcl23o.jpg') no-repeat center top/cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding: 0 10px;
 }
 
-.header .container {
+.custom-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
+    background-color: var(--purple-light);
+    color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.header .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+.header-content {
+    display: flex;
+    flex-direction: column;
 }
 
-.header .logo a {
-    color: #fff;
-    transition: color 0.3s ease;
-}
-
-.header .logo a:hover {
-    color: var(--accent-color);
-}
-
-.header .nav a {
-    color: var(--text-color);
-    margin-left: 2rem;
-    font-size: 0.9rem;
+.header-text {
+    font-size: 1.1em;
     font-weight: 500;
-    position: relative;
 }
 
-.header .nav a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background-color: var(--accent-color);
-    transition: width 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+.header-text-sub {
+    font-size: 0.8em;
+    color: var(--text-light);
 }
 
-.header .nav a:hover::after {
-    width: 100%;
+.download-button {
+    background-color: #55a0e0;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
 }
 
-/* ======================== */
-/* Hero Section      */
-/* ======================== */
-
-.hero-section {
-    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://files.catbox.moe/k37o1s.jpg') no-repeat center center/cover;
-    padding: 8rem 0;
-    text-align: center;
-    border-bottom: 1px solid var(--border-color);
+.download-button:hover {
+    background-color: #438ac9;
 }
 
-.hero-content h2 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    background: linear-gradient(45deg, var(--accent-color), #fff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 1rem;
-}
-
-.hero-content p {
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto;
-    color: var(--text-secondary);
+.game-selection-main {
+    padding: 20px 0;
 }
 
 /* ======================== */
-/* Content Sections   */
+/* Game Grid & Cards  */
 /* ======================== */
 
-.content-section {
-    padding: 4rem 0;
-}
-
-.section-title {
-    font-size: 2.2rem;
-    text-align: center;
-    margin-bottom: 3rem;
-    font-weight: 700;
-    color: var(--text-color);
-    position: relative;
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background-color: var(--accent-color);
-}
-
-.game-grid {
+.game-grid-custom {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
 }
 
-.game-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
+.game-card-custom {
+    background: var(--card-bg-dark);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
     position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
 }
 
-.game-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 224, 255, 0.2);
+.game-card-custom:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 .game-card-img {
     width: 100%;
-    height: 180px;
+    height: 120px;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    display: block;
 }
 
-.game-card:hover .game-card-img {
-    transform: scale(1.05);
-}
-
-.game-card-content {
-    padding: 1rem;
+.game-card-content-custom {
+    padding: 10px 5px;
     text-align: center;
 }
 
-.game-card-content h3 {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--text-color);
-    margin-bottom: 0.5rem;
-}
-
-.game-card-content a {
-    display: block;
-    background-color: var(--accent-color);
-    color: var(--bg-primary);
+.game-card-content-custom h3 {
+    font-size: 0.9em;
     font-weight: 700;
-    padding: 0.6rem;
-    border-radius: 6px;
-    transition: background-color 0.3s ease;
+    margin-bottom: 3px;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.game-card-content a:hover {
-    background-color: var(--accent-hover);
-}
-
-/* Promo Carousel */
-.promo-section {
-    background-color: var(--bg-secondary);
-    border-top: 1px solid var(--border-color);
-}
-
-.promo-carousel {
-    display: flex;
-    overflow-x: auto;
-    gap: 1.5rem;
-    padding-bottom: 1rem;
-    scrollbar-width: thin;
-    scrollbar-color: var(--accent-color) var(--bg-secondary);
-}
-
-.promo-carousel::-webkit-scrollbar {
-    height: 8px;
-}
-
-.promo-carousel::-webkit-scrollbar-thumb {
-    background-color: var(--accent-color);
-    border-radius: 10px;
-}
-
-.promo-carousel::-webkit-scrollbar-track {
-    background-color: var(--bg-secondary);
-}
-
-.promo-card {
-    min-width: 280px;
-    max-width: 350px;
-    height: 180px;
-    background-color: var(--card-bg);
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
-
-.promo-card:hover {
-    transform: translateY(-5px);
-}
-
-.promo-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.promo-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
-    padding: 1rem;
-}
-
-.promo-overlay h3 {
-    margin: 0;
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: #fff;
+.game-card-content-custom p {
+    font-size: 0.7em;
+    color: var(--text-light);
+    text-transform: capitalize;
 }
 
 /* ======================== */
-/* Game & Cart Pages   */
+/* Game Page Styles - New */
 /* ======================== */
 
-.page-container {
-    padding-top: 2rem;
-}
-
-.detail-card {
-    background-color: var(--bg-secondary);
-    border-radius: 15px;
-    padding: 2rem;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-    margin-bottom: 2rem;
-}
-
-.detail-header {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-
-.detail-header img {
-    width: 120px;
-    height: 120px;
-    border-radius: 10px;
-    object-fit: cover;
-    border: 2px solid var(--accent-color);
-}
-
-.detail-header-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.detail-header-content p {
-    color: var(--text-secondary);
+.game-page-container {
+    padding: 20px 0;
 }
 
 .step-card {
-    background-color: var(--card-bg);
-    border-radius: 10px;
-    padding: 2rem;
-    border: 1px solid var(--border-color);
-    margin-top: 1.5rem;
-}
-
-.step-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, rgba(76, 23, 130, 0.5), rgba(31, 11, 64, 0.5));
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
     position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.step-card h3::after {
-    content: '';
+.step-number {
     position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 40px;
-    height: 2px;
-    background-color: var(--accent-color);
+    top: 15px;
+    left: 15px;
+    width: 30px;
+    height: 30px;
+    background-color: var(--card-bg-light);
+    color: var(--text-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.step-title {
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-left: 45px;
+    margin-bottom: 20px;
 }
 
 .input-group {
-    margin-bottom: 1.5rem;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: var(--text-secondary);
+    margin-bottom: 15px;
 }
 
 .input-group input {
     width: 100%;
-    padding: 0.8rem 1rem;
-    background-color: #2e2e2e;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
+    padding: 10px 15px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
     color: var(--text-color);
-    font-size: 1rem;
+    font-size: 1em;
 }
 
-.input-group input:focus {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 5px rgba(0, 224, 255, 0.4);
+.input-group input::placeholder {
+    color: var(--text-light);
 }
 
 .options-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
 }
 
 .option-card {
-    background-color: #2e2e2e;
-    border: 2px solid transparent;
-    border-radius: 8px;
-    padding: 1rem;
+    background: linear-gradient(135deg, var(--card-bg-dark), var(--card-bg-light));
+    border-radius: 10px;
+    padding: 15px;
     text-align: center;
     cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.option-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--accent-color);
+    transition: all 0.2s ease-in-out;
+    border: 2px solid transparent;
 }
 
 .option-card.selected {
-    border-color: var(--accent-color);
-    box-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
-    background-color: rgba(0, 224, 255, 0.05);
+    background: var(--accent-gradient);
+    border-color: #fff;
+    box-shadow: 0 0 15px rgba(235, 131, 255, 0.5);
 }
 
-.option-card strong {
-    display: block;
-    margin-bottom: 0.5rem;
+.option-card img {
+    max-width: 50px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.option-card .label {
+    font-size: 0.9em;
+    font-weight: 500;
+    margin-bottom: 5px;
 }
 
 .option-card .price {
-    font-weight: 700;
-    color: var(--accent-color);
-}
-
-.payment-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.payment-card {
-    background-color: #2e2e2e;
-    border: 2px solid transparent;
-    border-radius: 8px;
-    padding: 0.8rem;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    flex: 1;
-    min-width: 100px;
-}
-
-.payment-card:hover {
-    border-color: var(--accent-color);
-}
-
-.payment-card.selected {
-    border-color: var(--accent-color);
-    box-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
-    background-color: rgba(0, 224, 255, 0.05);
-}
-
-.payment-card img {
-    max-width: 80px;
-    height: auto;
-    filter: grayscale(80%);
-    transition: filter 0.3s ease;
-}
-
-.payment-card.selected img {
-    filter: none;
-}
-
-.submit-button {
-    width: 100%;
-    padding: 1rem;
-    background-color: var(--accent-color);
-    color: var(--bg-primary);
-    border: none;
-    border-radius: 8px;
-    font-size: 1.2rem;
+    font-size: 1.1em;
     font-weight: bold;
-    cursor: not-allowed;
-    opacity: 0.5;
-    transition: all 0.3s ease;
+    color: #fff;
+    background: linear-gradient(45deg, #a745ff, #eb83ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.submit-button.active {
-    cursor: pointer;
-    opacity: 1;
-    background-color: var(--accent-hover);
-}
-
-.submit-button.active:hover {
-    background-color: var(--accent-color);
-    transform: translateY(-2px);
-}
-
-.cart-summary {
-    background-color: var(--bg-secondary);
+.summary-card {
+    background-color: rgba(31, 11, 64, 0.8);
     border-radius: 15px;
-    padding: 2rem;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    padding: 20px;
+    position: sticky;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.summary-product {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.summary-product img {
+    width: 30px;
+    height: 30px;
+}
+
+.summary-product .product-text {
+    font-weight: bold;
+}
+
+.summary-price .price-text {
+    font-size: 1.3em;
+    font-weight: bold;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.confirm-button {
+    width: 100%;
+    padding: 15px;
+    background: var(--accent-gradient);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.confirm-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Notifikasi Pop-up */
+.notification-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 90%;
+    max-width: 350px;
+    background-color: #3d1b64;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.notification-content {
+    text-align: center;
+}
+
+.notification-icon {
+    font-size: 2em;
+    color: #ffcc00;
+    margin-bottom: 10px;
+}
+
+.notification-text {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.notification-message {
+    font-size: 0.9em;
+    color: var(--text-light);
+    margin-bottom: 15px;
+}
+
+.close-button {
+    background: var(--accent-gradient);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Cart & Summary Page */
+.cart-summary {
+    background: linear-gradient(135deg, rgba(76, 23, 130, 0.5), rgba(31, 11, 64, 0.5));
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .cart-item {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    border-bottom: 1px dashed var(--border-color);
-    padding-bottom: 1.5rem;
-    margin-bottom: 1.5rem;
+    gap: 20px;
+    padding: 15px 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
 }
 
 .cart-item:last-child {
     border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
 }
 
 .cart-item-img {
     width: 80px;
     height: 80px;
     object-fit: cover;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .cart-details h3 {
-    margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.2em;
+    margin: 0 0 5px;
 }
 
 .cart-details p {
-    margin: 0.3rem 0;
-    color: var(--text-secondary);
+    font-size: 0.9em;
+    color: var(--text-light);
+    margin: 0;
 }
 
 .total-price {
     text-align: right;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--accent-color);
-    margin-top: 1.5rem;
+    font-size: 1.5em;
+    font-weight: bold;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-top: 20px;
 }
 
-/* ======================== */
-/* Footer          */
-/* ======================== */
-
-.footer {
-    background-color: var(--bg-secondary);
-    color: var(--text-secondary);
-    text-align: center;
-    padding: 1.5rem;
-    margin-top: 3rem;
-    border-top: 1px solid var(--border-color);
+.submit-button.active {
+    background: var(--accent-gradient);
+    border: none;
+    color: white;
+    padding: 15px;
+    width: 100%;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-top: 20px;
 }
 
 /* ======================== */
 /* Responsiveness     */
 /* ======================== */
-
-@media (max-width: 768px) {
-    .header .container {
-        flex-direction: column;
-        text-align: center;
+@media (max-width: 480px) {
+    .game-grid-custom {
+        grid-template-columns: repeat(2, 1fr);
     }
-    .header .logo {
-        margin-bottom: 1rem;
+    .option-card {
+        padding: 10px;
     }
-    .header .nav a {
-        margin: 0 0.8rem;
-    }
-    .hero-content h2 {
-        font-size: 2.5rem;
-    }
-    .detail-header {
-        flex-direction: column;
-        text-align: center;
-    }
-    .detail-header img {
-        width: 100px;
-        height: 100px;
-    }
-    .payment-grid {
-        justify-content: center;
+    .summary-card {
+        border-radius: 0;
+        bottom: 0;
     }
 }
