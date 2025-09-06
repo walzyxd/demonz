@@ -1,54 +1,76 @@
 // --- Data Website Anda ---
 const GAMES = [
+    { key: "free-fire", name: "Free Fire", description: "Garena", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", url: "game.html?key=free-fire" },
     { key: "mobile-legends", name: "Mobile Legends", description: "Moonton", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", url: "game.html?key=mobile-legends" },
-    { key: "mobile-legends-global", name: "Mobile Legends", description: "Global", img: "https://i.supaimg.com/00e12727-4a11-4475-8120-d3acb70d4e9c.jpg", url: "game.html?key=mobile-legends-global" },
-    { key: "magic-chess", name: "Magic Chess GG", description: "Vizta Games", img: "https://files.catbox.moe/k37o1s.jpg", url: "game.html?key=magic-chess" },
-    { key: "pubg-mobile", name: "PUBG Mobile", description: "Semua Region", img: "https://files.catbox.moe/tatuo9.jpg", url: "game.html?key=pubg-mobile" },
-    { key: "garena-free-fire", name: "Garena Free Fire", description: "Garena", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", url: "game.html?key=garena-free-fire" },
-    { key: "free-fire-max", name: "Free Fire MAX", description: "Garena", img: "https://files.catbox.moe/wz282d.png", url: "game.html?key=free-fire-max" },
-    { key: "genshin-impact", name: "Genshin Crystal", description: "Termurah", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", url: "game.html?key=genshin-impact" },
-    { key: "honkai-star-rail", name: "Honkai: Star Rail", description: "Hoyoverse", img: "https://files.catbox.moe/o3d2x9.jpg", url: "game.html?key=honkai-star-rail" },
-    { key: "zenless-zone-zero", name: "Zenless Zone Zero", description: "Termurah", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", url: "game.html?key=zenless-zone-zero" },
-    { key: "garena-delta", name: "Garena Delta Force", description: "Garena Delta...", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", url: "game.html?key=garena-delta" },
-    { key: "call-of-duty", name: "Call of Duty", description: "Activision", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", url: "game.html?key=call-of-duty" },
     { key: "honor-of-kings", name: "Honor of Kings", description: "Tencent", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", url: "game.html?key=honor-of-kings" },
+    { key: "genshin-impact", name: "Genshin Impact", description: "Hoyoverse", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", url: "game.html?key=genshin-impact" },
     { key: "roblox", name: "Roblox", description: "Roblox Corp", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", url: "game.html?key=roblox" },
     { key: "super-sus", name: "Super Sus", description: "Happyverse", img: "https://files.catbox.moe/j61uny.jpg", url: "game.html?key=super-sus" },
     { key: "clash-of-clans", name: "Clash of Clans", description: "Supercell", img: "https://files.catbox.moe/6aia0n.jpg", url: "game.html?key=clash-of-clans" },
     { key: "blood-strike", name: "Blood Strike", description: "NetEase Games", img: "https://files.catbox.moe/3y066i.jpg", url: "game.html?key=blood-strike" },
+    { key: "pubg", name: "PUBG Mobile", description: "Semua Region", img: "https://files.catbox.moe/tatuo9.jpg", url: "game.html?key=pubg" },
+    { key: "garena-delta", name: "Garena Delta Force", description: "Garena Delta...", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", url: "game.html?key=garena-delta" },
     { key: "garena-undawn", name: "Garena Undawn", description: "Garena", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", url: "game.html?key=garena-undawn" },
     { key: "valorant", name: "Valorant", description: "Riot Games", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", url: "game.html?key=valorant" },
+    { key: "call-of-duty", name: "Call Of Duty", description: "Activision", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", url: "game.html?key=call-of-duty" },
     { key: "eggy-party", name: "Eggy Party", description: "NetEase Games", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", url: "game.html?key=eggy-party" },
 ];
 
 const PAYMENTS = {
-    "bank_transfer": [
-        { id: "bca", name: "BCA", subLabel: "", img: "https://files.catbox.moe/u74p8c.png", price: 3829 },
-        { id: "bank-krom", name: "Bank Krom", subLabel: "", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", price: 3829 },
-        { id: "bank-lain", name: "Pembayaran tidak...", subLabel: "", img: "https://files.catbox.moe/0v4c4m.png", price: 3829 },
-    ],
     "qris": [
         { id: "qris-all", name: "QRIS", subLabel: "(Semua Pembayaran)", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", price: 3896 },
-        { id: "qris-dana", name: "QRIS Dana", subLabel: "", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", price: 3896 },
-    ],
-    "e-wallet": [
+        { id: "qris-dana", name: "Dana", subLabel: "", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", price: 3896 },
         { id: "gopay", name: "Gopay", subLabel: "", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", price: 3925 },
-        { id: "lintas-negara", name: "Lintas Negara", subLabel: "(Asia Tenggara)", img: "https://files.catbox.moe/p4b6f1.png", price: 3925 },
+        { id: "bank-krom", name: "Bank Krom", subLabel: "", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", price: 3829 },
     ]
 };
 
 const PRODUCTS = {
-    "mobile-legends": [
-        { id: "ml-14-bonus", label: "14 (13 + 1 Bonus) Diamonds", price: 3829, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
-        { id: "ml-28-bonus", label: "28 (26 + 2 Bonus) Diamonds", price: 7659, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
-        { id: "ml-42-bonus", label: "42 (38 + 4 Bonus) Diamonds", price: 11487, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
-        { id: "ml-56-bonus", label: "56 (51 + 5 Bonus) Diamonds", price: 15317, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
-        { id: "ml-70-bonus", label: "70 (64 + 6 Bonus) Diamonds", price: 19147, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
-        { id: "ml-84-bonus", label: "84 (77 + 7 Bonus) Diamonds", price: 22977, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
-        { id: "ml-weekly-pass", label: "Weekly Diamond Pass", price: 30000, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
-        { id: "ml-twilight-pass", label: "Twilight Pass", price: 150000, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
+    "free-fire": [
+        { id: "ff-140-diamonds", label: "140 Diamonds", price: 15317, img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg" },
+        { id: "ff-70-diamonds", label: "70 Diamonds", price: 10000, img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg" },
     ],
-    // Tambahkan produk untuk game lain di sini jika diperlukan
+    "mobile-legends": [
+        { id: "ml-14-bonus", label: "14 Diamonds", subLabel: "13 + 1 Bonus", price: 3829, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
+        { id: "ml-28-bonus", label: "28 Diamonds", subLabel: "26 + 2 Bonus", price: 7659, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
+        { id: "ml-42-bonus", label: "42 Diamonds", subLabel: "38 + 4 Bonus", price: 11487, img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg" },
+    ],
+    "honor-of-kings": [
+        { id: "hok-6-voucher", label: "6 Voucher", price: 2000, img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg" },
+    ],
+    "genshin-impact": [
+        { id: "gi-60-genesis", label: "60 Genesis Crystal", price: 15000, img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg" },
+    ],
+    "roblox": [
+        { id: "rb-100-robux", label: "100 Robux", price: 20000, img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg" },
+    ],
+    "super-sus": [
+        { id: "ss-60-stars", label: "60 Stars", price: 10000, img: "https://files.catbox.moe/j61uny.jpg" },
+    ],
+    "clash-of-clans": [
+        { id: "coc-80-gems", label: "80 Gems", price: 15000, img: "https://files.catbox.moe/6aia0n.jpg" },
+    ],
+    "blood-strike": [
+        { id: "bs-60-gold", label: "60 Gold", price: 10000, img: "https://files.catbox.moe/3y066i.jpg" },
+    ],
+    "pubg": [
+        { id: "pubg-60-uc", label: "60 UC", price: 15000, img: "https://files.catbox.moe/tatuo9.jpg" },
+    ],
+    "garena-delta": [
+        { id: "gd-125-diamonds", label: "125 Diamonds", price: 10000, img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png" },
+    ],
+    "garena-undawn": [
+        { id: "gu-60-credits", label: "60 Credits", price: 10000, img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png" },
+    ],
+    "valorant": [
+        { id: "val-125-points", label: "125 VP", price: 15000, img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png" },
+    ],
+    "call-of-duty": [
+        { id: "cod-80-cp", label: "80 CP", price: 15000, img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp" },
+    ],
+    "eggy-party": [
+        { id: "ep-100-gems", label: "100 Gems", price: 10000, img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg" },
+    ],
 };
 
 // --- Carousel Data ---
@@ -110,7 +132,7 @@ function updateSummary() {
 
         summaryProductDetails.innerHTML = `
             <img src="${product.img}" alt="Product Icon">
-            <span class="product-text">${product.label.split('(')[0].trim()}</span>
+            <span class="product-text">${product.label}</span>
         `;
         summaryPrice.innerHTML = `<span class="price-text">${formatRupiah(totalHarga)}</span>`;
         
@@ -156,7 +178,6 @@ function initializeCarousel() {
 
     if (!carouselSlide || !carouselDots) return;
 
-    // Load images into carousel
     carouselImages.forEach((src, index) => {
         const img = document.createElement('img');
         img.src = src;
@@ -171,7 +192,6 @@ function initializeCarousel() {
         carouselDots.appendChild(dot);
     });
 
-    // Set initial slide and start auto-slide
     goToSlide(0);
     startSlideInterval();
 }
@@ -205,7 +225,7 @@ function nextSlide() {
 }
 
 function startSlideInterval() {
-    slideInterval = setInterval(nextSlide, 3000); // Change slide every 3 seconds
+    slideInterval = setInterval(nextSlide, 3000);
 }
 
 function resetSlideInterval() {
@@ -218,7 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Check if it's the home page
     if (document.getElementById('game-list')) {
         renderGameCards();
-        initializeCarousel(); // Initialize carousel on home page
+        initializeCarousel();
     }
 
     // Check if it's the game top-up page
@@ -227,11 +247,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const productListContainer = document.getElementById("product-list");
     const paymentListContainer = document.getElementById("payment-list");
     const gameKeyInput = document.getElementById("game-key-input");
+    const gameInfoHeader = document.getElementById("game-info-header");
 
     if (game && productListContainer && paymentListContainer) {
         gameKeyInput.value = gameKey;
 
-        if (game.hasServerId) {
+        // Display game info header
+        gameInfoHeader.innerHTML = `
+            <img src="${game.img}" alt="${game.name}" class="game-img">
+            <h2>${game.name}</h2>
+        `;
+
+        // Check for games that need server ID
+        if (game.key === 'genshin-impact' || game.key === 'pubg') {
             document.getElementById('server-id-group').style.display = 'block';
         }
 
@@ -245,6 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <input type="radio" name="product_id" value="${product.id}" style="display:none;" required>
                     <img src="${product.img}" alt="${product.label}">
                     <div class="label">${product.label}</div>
+                    ${product.subLabel ? `<div class="sub-label">${product.subLabel}</div>` : ''}
                     <div class="price">${formatRupiah(product.price)}</div>
                 `;
                 productDiv.onclick = () => {
@@ -332,27 +361,47 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById('cart-payment-img').src = payment.img;
             document.getElementById('cart-payment-name').innerText = payment.name;
 
-            let paymentInfoHtml = '';
+            const paymentInfoContainer = document.getElementById('cart-payment-info');
+            paymentInfoContainer.innerHTML = ''; // Clear previous content
+
             const paymentInfoData = {
-                "bca": { number: "8009123456", name: "TI** SUT***" },
                 "bank-krom": { number: "8009123456", name: "TI** SUT***" },
                 "qris-all": { qrisImg: "https://files.catbox.moe/5688406c-3c9f-4990-b77a-4f1eaba082ad.png" },
                 "qris-dana": { qrisImg: "https://files.catbox.moe/5688406c-3c9f-4990-b77a-4f1eaba082ad.png" },
-                "gopay": { number: "08123456789", name: "TI** SUT***" },
-                "lintas-negara": { number: "1234567890", name: "TI** SUT***" }
+                "gopay": { number: "08123456789", name: "TI** SUT***" }
             };
 
             const selectedPaymentInfo = paymentInfoData[paymentId];
             if (selectedPaymentInfo) {
                 if (selectedPaymentInfo.number) {
-                    paymentInfoHtml = `<p>Nomor: ${selectedPaymentInfo.number}</p><p>A.n: ${selectedPaymentInfo.name}</p>`;
+                    paymentInfoContainer.innerHTML = `
+                        <div class="payment-details-info">
+                            Nomor Rekening: <span id="account-number">${selectedPaymentInfo.number}</span>
+                            <p>A.n: ${selectedPaymentInfo.name}</p>
+                            <button class="copy-button" onclick="copyToClipboard('account-number')">Salin Nomor</button>
+                        </div>
+                    `;
                 } else if (selectedPaymentInfo.qrisImg) {
-                    paymentInfoHtml = `<img src="${selectedPaymentInfo.qrisImg}" alt="QRIS Code" style="max-width: 150px; margin-top: 1rem;">`;
+                    paymentInfoContainer.innerHTML = `
+                        <img src="${selectedPaymentInfo.qrisImg}" alt="QRIS Code" class="qris-image">
+                        <p style="margin-top:10px;">Silakan scan kode QR di atas</p>
+                    `;
                 }
             }
 
-            document.getElementById('cart-payment-info').innerHTML = paymentInfoHtml;
             document.getElementById('cart-total-price').innerText = `Total: ${formatRupiah(product.price)}`;
         }
     }
 });
+
+function copyToClipboard(elementId) {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+    
+    const textToCopy = element.innerText;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        alert("Nomor rekening berhasil disalin!");
+    }).catch(err => {
+        console.error('Gagal menyalin:', err);
+    });
+}
