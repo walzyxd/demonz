@@ -1,6 +1,5 @@
 /* ================== KONFIGURASI ================== */
 const ADMIN_WA = "6282298902274";
-const ADMIN_EMAIL = "walzlonely@gmail.com";
 
 const GAMES = [
     { key: "free-fire", name: "Free Fire", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", bannerImg: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", hasServerId: false, guide: "Temukan User ID Anda di bawah nama panggilan pada menu profil game.", url: "game.html?key=free-fire" },
@@ -27,10 +26,10 @@ const PROMOS = [
 ];
 
 const PAYMENTS = [
-    { id: "dana", name: "DANA" },
-    { id: "gopay", name: "GoPay" },
-    { id: "qris", name: "QRIS" },
-    { id: "krom-bank", name: "Krom Bank" }
+    { id: "dana", name: "DANA", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg" },
+    { id: "gopay", name: "GoPay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg" },
+    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg" },
+    { id: "krom-bank", name: "Krom Bank", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg" }
 ];
 
 const PRODUCTS = {
@@ -45,13 +44,13 @@ const PRODUCTS = {
         { id: "ff-1450", label: "1450 Diamonds", price: 180180 },
         { id: "ff-2180", label: "2180 Diamonds", price: 270270 },
         { id: "ff-3640", label: "3640 Diamonds", price: 450450 },
-        { id: "ff-mw", label: "Membership Mingguan", price: 30500, badges: ["member"] },
-        { id: "ff-mb", label: "Membership Bulanan", price: 90000, badges: ["member"] },
-        { id: "ff-lvl6", label: "Level Up Pass Lv.6", price: 5500, badges: ["levelup"] },
-        { id: "ff-lvl10", label: "Level Up Pass Lv.10", price: 8800, badges: ["levelup"] },
-        { id: "ff-lvl15", label: "Level Up Pass Lv.15", price: 8800, badges: ["levelup"] },
-        { id: "ff-lvl20", label: "Level Up Pass Lv.20", price: 8800, badges: ["levelup"] },
-        { id: "ff-booyah", label: "BooYah Pass", price: 50000, badges: ["pass"] },
+        { id: "ff-mw", label: "Membership Mingguan", price: 30500},
+        { id: "ff-mb", label: "Membership Bulanan", price: 90000},
+        { id: "ff-lvl6", label: "Level Up Pass Lv.6", price: 5500},
+        { id: "ff-lvl10", label: "Level Up Pass Lv.10", price: 8800},
+        { id: "ff-lvl15", label: "Level Up Pass Lv.15", price: 8800},
+        { id: "ff-lvl20", label: "Level Up Pass Lv.20", price: 8800},
+        { id: "ff-booyah", label: "BooYah Pass", price: 50000},
     ],
     "mobile-legends": [
         { id: "ml-3", label: "3 Diamonds", price: 1171 },
@@ -70,8 +69,8 @@ const PRODUCTS = {
         { id: "ml-875", label: "875 Diamonds", price: 218500 },
         { id: "ml-2010", label: "2010 Diamonds", price: 475000 },
         { id: "ml-4830", label: "4830 Diamonds", price: 1140000 },
-        { id: "ml-wdp", label: "Weekly Diamond Pass", price: 28000, badges: ["weekly"] },
-        { id: "ml-twilight", label: "Twilight Pass", price: 150000, badges: ["pass"] },
+        { id: "ml-wdp", label: "Weekly Diamond Pass", price: 28000},
+        { id: "ml-twilight", label: "Twilight Pass", price: 150000},
     ],
     "pubg-mobile": [
         { id: "pubg-30", label: "30 UC", price: 7000 },
@@ -80,8 +79,8 @@ const PRODUCTS = {
         { id: "pubg-600", label: "600 + 60 UC", price: 140000 },
         { id: "pubg-1500", label: "1500 + 300 UC", price: 350000 },
         { id: "pubg-3000", label: "3000 + 850 UC", price: 700000 },
-        { id: "pubg-lvl20", label: "Level Up Pass Lv.20", price: 8800, badges: ["levelup"] },
-        { id: "pubg-booyah", label: "BooYah Pass", price: 50000, badges: ["pass"] },
+        { id: "pubg-lvl20", label: "Level Up Pass Lv.20", price: 8800},
+        { id: "pubg-booyah", label: "BooYah Pass", price: 50000},
     ],
     "genshin-impact": [
         { id: "gi-60", label: "60 Genesis Crystals", price: 14865 },
@@ -90,7 +89,7 @@ const PRODUCTS = {
         { id: "gi-2240", label: "2240 Genesis Crystals", price: 440541 },
         { id: "gi-3880", label: "3880 Genesis Crystals", price: 734234 },
         { id: "gi-8080", label: "8080 Genesis Crystals", price: 1467568 },
-        { id: "gi-welkin", label: "Blessing of the Welkin Moon", price: 72973, badges: ["welkin"] },
+        { id: "gi-welkin", label: "Blessing of the Welkin Moon", price: 72973},
     ],
     "honor-of-kings": [
         { id: "hok-16", label: "16 Tokens", price: 3300 },
@@ -118,9 +117,9 @@ const PRODUCTS = {
         { id: "ss-1060", label: "1060 Goldstar", price: 116216 },
         { id: "ss-2180", label: "2180 Goldstar", price: 239640 },
         { id: "ss-5600", label: "5600 Goldstar", price: 613514 },
-        { id: "ss-weekly", label: "Weekly Card", price: 13514, badges: ["weekly"] },
-        { id: "ss-monthly", label: "Monthly Card", price: 134234, badges: ["monthly"] },
-        { id: "ss-vip", label: "Super VIP Card", price: 157658, badges: ["vip"] },
+        { id: "ss-weekly", label: "Weekly Card", price: 13514},
+        { id: "ss-monthly", label: "Monthly Card", price: 134234},
+        { id: "ss-vip", label: "Super VIP Card", price: 157658},
     ],
     "clash-of-clans": [
         { id: "coc-500", label: "500 Gems", price: 75299 },
@@ -138,16 +137,16 @@ const PRODUCTS = {
         { id: "bs-5000", label: "5000 + 800 Gold", price: 549999 },
     ],
     "eggy-party": [
-        { id: "eggy-weekly", label: "Weekly Egg Coin Pack", price: 14799, badges: ["weekly"] },
-        { id: "eggy-yoyo", label: "Yoyo Membership", price: 27799, badges: ["member"] },
-        { id: "eggy-shiny", label: "Shiny Coin Jar", price: 42699, badges: ["hot"] },
-        { id: "eggy-aquarius", label: "Energetic Aquarius", price: 14499, badges: ["new"] },
-        { id: "eggy-capricorn", label: "Obsidian Capricorn", price: 14399, badges: ["new"] },
-        { id: "eggy-libra", label: "Elegant Libra", price: 14499, badges: ["new"] },
-        { id: "eggy-sagittarius", label: "Wandering Sagittarius", price: 14399, badges: ["new"] },
-        { id: "eggy-scorpio", label: "Mysterious Scorpio", price: 14399, badges: ["new"] },
-        { id: "eggy-spring-small", label: "Spring Egg Coin Pack Small", price: 14399, badges: ["sale"] },
-        { id: "eggy-spring-big", label: "Spring Egg Coin Pack Big", price: 163399, badges: ["sale"] },
+        { id: "eggy-weekly", label: "Weekly Egg Coin Pack", price: 14799},
+        { id: "eggy-yoyo", label: "Yoyo Membership", price: 27799},
+        { id: "eggy-shiny", label: "Shiny Coin Jar", price: 42699},
+        { id: "eggy-aquarius", label: "Energetic Aquarius", price: 14499},
+        { id: "eggy-capricorn", label: "Obsidian Capricorn", price: 14399},
+        { id: "eggy-libra", label: "Elegant Libra", price: 14499},
+        { id: "eggy-sagittarius", label: "Wandering Sagittarius", price: 14399},
+        { id: "eggy-scorpio", label: "Mysterious Scorpio", price: 14399},
+        { id: "eggy-spring-small", label: "Spring Egg Coin Pack Small", price: 14399},
+        { id: "eggy-spring-big", label: "Spring Egg Coin Pack Big", price: 163399},
         { id: "eggy-10", label: "10 Eggy Coins", price: 2199 },
         { id: "eggy-60", label: "60 + 3 Bonus", price: 13999 },
         { id: "eggy-120", label: "120 + 6 Bonus", price: 26999 },
@@ -156,7 +155,15 @@ const PRODUCTS = {
         { id: "eggy-1250", label: "1250 + 144 Bonus", price: 251099 },
         { id: "eggy-1880", label: "1880 + 216 Bonus", price: 378099 },
         { id: "eggy-3180", label: "3180 + 423 Bonus", price: 630199 },
-        { id: "eggy-6480", label: "6480 + 903 Bonus", price: 1244999 },
+        { id: "eggy-6480", label: "6480 + 903 Bonus", price: 1244999},
+        { id: "eggy-mingguan", label: "Kartu Mingguan", price: 28599},
+        { id: "eggy-bulanan", label: "Kartu Bulanan", price: 47299},
+        { id: "eggy-undawn", label: "Undawn-Mingguan", price: 28599},
+        { id: "eggy-undawn-bulanan", label: "Undawn-Bulanan", price: 47299},
+        { id: "eggy-glory-pass", label: "Glory Pass Premium", price: 142299},
+        { id: "eggy-elite", label: "Elite Fund Rebate LV 80", price: 126999},
+        { id: "eggy-ace", label: "Ace Fund", price: 143999},
+        { id: "eggy-quick", label: "Quick Battle Prep", price: 94379},
     ],
     "call-of-duty": [
         { id: "codm-31", label: "31 CP", price: 4899 },
@@ -165,11 +172,11 @@ const PRODUCTS = {
         { id: "codm-321", label: "321 CP", price: 48499 },
         { id: "codm-645", label: "645 CP", price: 99999 },
         { id: "codm-800", label: "800 CP", price: 119999 },
-        { id: "codm-1373", label: "1373 CP", price: 193999, badges: ["hot"] },
+        { id: "codm-1373", label: "1373 CP", price: 193999},
         { id: "codm-2060", label: "2060 CP", price: 290999 },
         { id: "codm-2750", label: "2750 CP", price: 379999 },
         { id: "codm-3564", label: "3564 CP", price: 484999 },
-        { id: "codm-5619", label: "5619 CP", price: 729999, badges: ["sale"] },
+        { id: "codm-5619", label: "5619 CP", price: 729999},
         { id: "codm-7656", label: "7656 CP", price: 969999 },
         { id: "codm-15312", label: "15312 CP", price: 1999999 },
         { id: "codm-38280", label: "38280 CP", price: 4999999 },
@@ -178,35 +185,35 @@ const PRODUCTS = {
     "valorant": [
         { id: "val-475", label: "475 Points", price: 54349 },
         { id: "val-1000", label: "1000 Points", price: 108799 },
-        { id: "val-2050", label: "2050 Points", price: 217499, badges: ["hot"] },
+        { id: "val-2050", label: "2050 Points", price: 217499},
         { id: "val-3650", label: "3650 Points", price: 372199 },
         { id: "val-5350", label: "5350 Points", price: 544999 },
-        { id: "val-11000", label: "11000 Points", price: 1089999, badges: ["hot"] },
+        { id: "val-11000", label: "11000 Points", price: 1089999},
     ],
     "garena-delta-force": [
-        { id: "delta-tide", label: "Tide Supplies", price: 8499, badges: ["new"] },
-        { id: "delta-adv", label: "Tide Supplies Advanced", price: 24499, badges: ["new"] },
-        { id: "delta-genesis", label: "Black Hawk Down Genesis", price: 41999, badges: ["new"] },
-        { id: "delta-redefine", label: "Black Hawk Down Redefine", price: 84999, badges: ["new"] },
+        { id: "delta-tide", label: "Tide Supplies", price: 8499},
+        { id: "delta-adv", label: "Tide Supplies Advanced", price: 24499},
+        { id: "delta-genesis", label: "Black Hawk Down Genesis", price: 41999},
+        { id: "delta-redefine", label: "Black Hawk Down Redefine", price: 84999},
         { id: "delta-18", label: "18 + 1", price: 4999 },
         { id: "delta-30", label: "30 + 2", price: 7499 },
-        { id: "delta-60", label: "60 + 3", price: 14999, badges: ["hot"] },
+        { id: "delta-60", label: "60 + 3", price: 14999},
         { id: "delta-300", label: "300 + 36", price: 74999 },
         { id: "delta-420", label: "420 + 62", price: 99999 },
         { id: "delta-680", label: "680 + 105", price: 139999 },
         { id: "delta-1280", label: "1280 + 264", price: 279999 },
         { id: "delta-1680", label: "1680 + 385", price: 349999 },
         { id: "delta-3280", label: "3280 + 834", price: 699999 },
-        { id: "delta-6480", label: "6480 + 1944", price: 1399999, badges: ["sale"] },
+        { id: "delta-6480", label: "6480 + 1944", price: 1399999},
         { id: "delta-12960", label: "12960 + 3888", price: 2799999 },
         { id: "delta-19440", label: "19440 + 5832", price: 4199999 },
     ],
     "garena-undawn": [
-        { id: "undawn-bulanan", label: "Kartu Bulanan", price: 47299, badges: ["member"] },
-        { id: "undawn-growth", label: "Growth Fund", price: 94799, badges: ["hot"] },
-        { id: "undawn-glory", label: "Glory Pass Premium", price: 142299, badges: ["pass"] },
-        { id: "undawn-elite", label: "Elite Fund Rebate LV 80", price: 126999, badges: ["new"] },
-        { id: "undawn-ace", label: "Ace Fund", price: 143999, badges: ["hot"] },
+        { id: "undawn-bulanan", label: "Kartu Bulanan", price: 47299},
+        { id: "undawn-growth", label: "Growth Fund", price: 94799},
+        { id: "undawn-glory", label: "Glory Pass Premium", price: 142299},
+        { id: "undawn-elite", label: "Elite Fund Rebate LV 80", price: 126999},
+        { id: "undawn-ace", label: "Ace Fund", price: 143999},
         { id: "undawn-rc80", label: "RC 80", price: 14599 },
         { id: "undawn-rc250", label: "RC 250", price: 43699 },
         { id: "undawn-rc450", label: "RC 450", price: 72799 },
@@ -214,20 +221,15 @@ const PRODUCTS = {
         { id: "undawn-rc1850", label: "RC 1850", price: 290099 },
         { id: "undawn-rc2800", label: "RC 2800", price: 435599 },
         { id: "undawn-rc4750", label: "RC 4750", price: 726599 },
-        { id: "undawn-rc9600", label: "RC 9600", price: 1454099, badges: ["sale"] },
+        { id: "undawn-rc9600", label: "RC 9600", price: 1454099},
         { id: "undawn-rc33000", label: "RC 33.000", price: 4849999 },
         { id: "undawn-rc66500", label: "RC 66.500", price: 9699999 },
-        { id: "undawn-mingguan", label: "Kartu Mingguan", price: 28599, badges: ["weekly"] },
-        { id: "undawn-glory-s7", label: "Glory Pass Premium S7", price: 143999, badges: ["pass"] },
-        { id: "undawn-glory-s16", label: "Glory Pass Premium S16", price: 143999, badges: ["pass"] },
-        { id: "undawn-prep", label: "Quick Battle Prep", price: 94379, badges: ["sale"] },
+        { id: "undawn-mingguan", label: "Kartu Mingguan", price: 28599},
+        { id: "undawn-glory-s7", label: "Glory Pass Premium S7", price: 143999},
+        { id: "undawn-glory-s16", label: "Glory Pass Premium S16", price: 143999},
+        { id: "undawn-prep", label: "Quick Battle Prep", price: 94379},
     ]
 };
-
-const VOUCHERS = [
-  { code: "WALZSHOP", percent: 5, description: "Diskon 5% untuk semua produk" },
-  { code: "HEMAT5000", percent: 0, fixed: 5000, minPurchase: 50000, description: "Diskon Rp5.000 (min. Rp50.000)" },
-];
 
 /* ================== HELPERS ================== */
 const qs = (s, p = document) => p.querySelector(s);
@@ -236,325 +238,232 @@ const fmtIDR = n => new Intl.NumberFormat("id-ID", { style: "currency", currency
 
 let selectedProduct = null;
 let selectedPayment = null;
-let appliedVoucher = null;
-
-function setVoucherStatus(text, isError = false) {
-  const el = qs("#voucher-status");
-  if (!el) return;
-  el.textContent = text;
-  el.className = `status-text ${isError ? 'error' : 'success'}`;
-}
-
-function calcDiscount(price, voucher) {
-  let discount = 0;
-  if (voucher.percent) discount = Math.floor(price * voucher.percent / 100);
-  if (voucher.fixed) discount = voucher.fixed;
-  if (voucher.maxDiscount) discount = Math.min(discount, voucher.maxDiscount);
-  return Math.max(0, discount);
-}
-
-function finalPrice() {
-  if (!selectedProduct) return 0;
-  const base = selectedProduct.price;
-  const disc = appliedVoucher ? calcDiscount(base, appliedVoucher) : 0;
-  return Math.max(0, base - disc);
-}
 
 function refreshSummary() {
-  const productPriceEl = qs("#summary-product-price");
-  const voucherRowEl = qs("#summary-voucher-row");
-  const voucherPriceEl = qs("#summary-voucher-price");
-  const totalEl = qs("#total-price");
-  const checkoutBtn = qs("#checkout-btn");
-  const paymentGrid = qs("#payment-grid");
+    const summaryProductEl = qs("#summary-product");
+    const summaryPriceEl = qs("#summary-price");
+    const checkoutBtn = qs("#checkout-btn");
 
-  if (productPriceEl && totalEl && checkoutBtn) {
     if (selectedProduct) {
-      const basePrice = selectedProduct.price;
-      const finalP = finalPrice();
-      const discount = basePrice - finalP;
-
-      productPriceEl.textContent = fmtIDR(basePrice);
-      totalEl.textContent = fmtIDR(finalP);
-
-      if (voucherRowEl && voucherPriceEl) {
-        if (appliedVoucher && discount > 0) {
-          voucherRowEl.style.display = "flex";
-          voucherPriceEl.textContent = `- ${fmtIDR(discount)}`;
-        } else {
-          voucherRowEl.style.display = "none";
-        }
-      }
-      
-      qsa(".payment-grid .grid-item .price").forEach(el => el.textContent = fmtIDR(finalP));
-
+        summaryProductEl.textContent = selectedProduct.label;
+        summaryPriceEl.textContent = fmtIDR(selectedProduct.price);
     } else {
-      productPriceEl.textContent = "-";
-      totalEl.textContent = "-";
-      if (voucherRowEl) voucherRowEl.style.display = "none";
-      qsa(".payment-grid .grid-item .price").forEach(el => el.textContent = "");
+        summaryProductEl.textContent = "-";
+        summaryPriceEl.textContent = "-";
     }
-  }
 
-  if (selectedProduct && selectedPayment && qs("#user-id").value.trim()) {
-      checkoutBtn.disabled = false;
-  } else {
-      checkoutBtn.disabled = true;
-  }
+    if (qs("#user-id").value.trim() && selectedProduct && selectedPayment) {
+        checkoutBtn.disabled = false;
+    } else {
+        checkoutBtn.disabled = true;
+    }
 }
 
 function validateForm(hasServer) {
-  let ok = true;
-  const user = qs("#user-id").value.trim();
-  const server = hasServer ? qs("#server-id").value.trim() : "";
+    let ok = true;
+    const user = qs("#user-id").value.trim();
+    const server = hasServer ? qs("#server-id").value.trim() : "";
 
-  const errorUserEl = qs("#error-user");
-  const errorProductEl = qs("#error-product");
-  const errorPaymentEl = qs("#error-payment");
+    const errorUserEl = qs("#error-user");
+    const errorProductEl = qs("#error-product");
+    const errorPaymentEl = qs("#error-payment");
 
-  if(errorUserEl) errorUserEl.textContent = "";
-  if(errorProductEl) errorProductEl.textContent = "";
-  if(errorPaymentEl) errorPaymentEl.textContent = "";
+    if(errorUserEl) errorUserEl.textContent = "";
+    if(errorProductEl) errorProductEl.textContent = "";
+    if(errorPaymentEl) errorPaymentEl.textContent = "";
 
-  if (!user) { if(errorUserEl) errorUserEl.textContent = "User ID wajib diisi."; ok = false; }
-  if (hasServer && !server) { if(errorUserEl) errorUserEl.textContent = "User ID dan Server ID wajib diisi."; ok = false; }
-  if (!selectedProduct) { if(errorProductEl) errorProductEl.textContent = "Pilih salah satu nominal."; ok = false; }
-  if (!selectedPayment) { if(errorPaymentEl) errorPaymentEl.textContent = "Pilih salah satu metode bayar."; ok = false; }
+    if (!user) { if(errorUserEl) errorUserEl.textContent = "User ID wajib diisi."; ok = false; }
+    if (hasServer && !server) { if(errorUserEl) errorUserEl.textContent = "User ID dan Server ID wajib diisi."; ok = false; }
+    if (!selectedProduct) { if(errorProductEl) errorProductEl.textContent = "Pilih salah satu nominal."; ok = false; }
+    if (!selectedPayment) { if(errorPaymentEl) errorPaymentEl.textContent = "Pilih salah satu metode bayar."; ok = false; }
 
-  return ok;
+    return ok;
 }
 
 function saveTransactionData(game) {
-  const userId = qs("#user-id").value.trim();
-  const serverId = game.hasServerId ? qs("#server-id").value.trim() : null;
-  const transactionData = {
-    gameKey: game.key, // Simpan gameKey untuk kembali
-    game: game.name,
-    userId: userId,
-    serverId: serverId,
-    product: selectedProduct.label,
-    payment: selectedPayment.name,
-    price: selectedProduct.price,
-    voucher: appliedVoucher,
-    finalPrice: finalPrice()
-  };
-  localStorage.setItem("walzShopTransaction", JSON.stringify(transactionData));
+    const userId = qs("#user-id").value.trim();
+    const serverId = game.hasServerId ? qs("#server-id").value.trim() : null;
+    const transactionData = {
+        game: game.name,
+        userId: userId,
+        serverId: serverId,
+        product: selectedProduct.label,
+        payment: selectedPayment.name,
+        price: selectedProduct.price
+    };
+    localStorage.setItem("walzShopTransaction", JSON.stringify(transactionData));
 }
 
 function updateCartPage() {
-  const data = JSON.parse(localStorage.getItem("walzShopTransaction"));
-  if (!data) {
-    qs(".main .container").innerHTML = `<p class="error-text" style="text-align:center;">Game tidak ditemukan. Silakan kembali ke halaman game.</p><a href="index.html" class="btn btn-confirm" style="margin-top:20px;">Kembali ke Beranda</a>`;
-    return;
-  }
-
-  qs("#back-to-game").href = `game.html?key=${data.gameKey}`;
-  qs("#summary-game").textContent = data.game;
-  qs("#summary-user").textContent = data.userId;
-  qs("#summary-product").textContent = data.product;
-  qs("#summary-payment").textContent = data.payment;
-  qs("#summary-total").textContent = fmtIDR(data.finalPrice);
-
-  const serverRow = qs("#server-row");
-  if (data.serverId) {
-    serverRow.style.display = "table-row";
-    qs("#summary-server").textContent = data.serverId;
-  } else {
-    serverRow.style.display = "none";
-  }
-
-  const voucherRow = qs("#voucher-row");
-  if (data.voucher) {
-    const discount = data.price - data.finalPrice;
-    if (discount > 0) {
-      voucherRow.style.display = "table-row";
-      qs("#summary-voucher").textContent = `- ${fmtIDR(discount)}`;
-    } else {
-      voucherRow.style.display = "none";
+    const data = JSON.parse(localStorage.getItem("walzShopTransaction"));
+    if (!data) {
+        qs(".main .container").innerHTML = `<p class="error-text" style="text-align:center;">Transaksi tidak ditemukan. Silakan kembali ke halaman utama.</p><a href="index.html" class="btn btn-primary" style="margin-top:20px;">Kembali ke Beranda</a>`;
+        return;
     }
-  } else {
-    voucherRow.style.display = "none";
-  }
 
-  const buyBtn = qs("#buy-btn");
-  if (buyBtn) {
+    qs("#summary-product").textContent = data.product;
+    qs("#summary-payment").textContent = data.payment;
+    qs("#summary-total").textContent = fmtIDR(data.price);
+    
+    // Kirim data ke WhatsApp
     const waMsg = `Halo Admin, saya ingin konfirmasi pesanan top-up:
 *Game:* ${data.game}
 *User ID:* ${data.userId}
 ${data.serverId ? `*Server ID:* ${data.serverId}\n` : ""}*Produk:* ${data.product}
 *Metode:* ${data.payment}
-*Total:* ${fmtIDR(data.finalPrice)}
+*Total:* ${fmtIDR(data.price)}
 Terima kasih.`;
-    buyBtn.onclick = () => window.open(`https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(waMsg)}`, '_blank');
-  }
+    window.open(`https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(waMsg)}`, '_blank');
 }
 
 /* ================== INIT ================== */
 document.addEventListener("DOMContentLoaded", () => {
-  const page = document.body.dataset.page;
-  const navToggle = qs(".nav-toggle");
-  const nav = qs(".nav");
-  if (navToggle && nav) {
-    navToggle.addEventListener("click", () => nav.classList.toggle("active"));
-  }
+    const page = document.body.dataset.page;
+    const navToggle = qs(".nav-toggle");
+    const nav = qs(".nav");
+    if (navToggle && nav) {
+        navToggle.addEventListener("click", () => nav.classList.toggle("active"));
+    }
 
-  if (page === "index") {
-    initIndexPage();
-  } else if (page === "game") {
-    initGamePage();
-  } else if (page === "cart") {
-    updateCartPage();
-  }
+    if (page === "index") {
+        initIndexPage();
+    } else if (page === "game") {
+        initGamePage();
+    } else if (page === "cart") {
+        updateCartPage();
+    }
 });
 
 function initIndexPage() {
-  const gamesGrid = qs("#games-grid");
-  gamesGrid.innerHTML = GAMES.map(g => `
-    <a href="game.html?key=${g.key}" class="game-card">
-      <img src="${g.img}" alt="${g.name}">
-      <p>${g.name}</p>
-    </a>
-  `).join("");
+    const gamesGrid = qs("#games-grid");
+    if (gamesGrid) {
+        gamesGrid.innerHTML = GAMES.map(g => `
+            <a href="game.html?key=${g.key}" class="game-card">
+              <img src="${g.img}" alt="${g.name}">
+              <p>${g.name}</p>
+            </a>
+        `).join("");
+    }
 
-  const promoSlider = qs("#promo-slider");
-  const sliderDots = qs("#slider-dots");
-  promoSlider.innerHTML = PROMOS.map(p => `
-    <div class="slider__item">
-      <a href="game.html?key=${p.gameKey}">
-        <img src="${p.img}" alt="${p.title}">
-      </a>
-    </div>
-  `).join("");
-  
-  if (PROMOS.length > 0) {
-      const dots = qsa(".slider__dot");
-      const slides = qsa(".slider__item");
-      let currentSlide = 0;
-      
-      function updateSlider() {
-          promoSlider.style.transform = `translateX(-${currentSlide * 100}%)`;
-          dots.forEach((dot, i) => {
-              dot.classList.toggle("active", i === currentSlide);
-          });
-      }
-      
-      PROMOS.forEach(() => {
-          const dot = document.createElement("div");
-          dot.classList.add("slider__dot");
-          sliderDots.appendChild(dot);
-      });
-      
-      qsa(".slider__dot").forEach((dot, i) => {
-          dot.addEventListener("click", () => {
-              currentSlide = i;
-              updateSlider();
-          });
-      });
-      
-      setInterval(() => {
-          currentSlide = (currentSlide + 1) % slides.length;
-          updateSlider();
-      }, 4000);
-      
-      updateSlider();
-  }
+    const promoSlider = qs("#promo-slider");
+    const sliderDots = qs("#slider-dots");
+    if (promoSlider && sliderDots) {
+        promoSlider.innerHTML = PROMOS.map(p => `
+            <div class="slider__item">
+              <a href="game.html?key=${p.gameKey}">
+                <img src="${p.img}" alt="${p.title}">
+              </a>
+            </div>
+        `).join("");
+        
+        if (PROMOS.length > 0) {
+            let currentSlide = 0;
+            
+            function updateSlider() {
+                promoSlider.style.transform = `translateX(-${currentSlide * 100}%)`;
+                qsa(".slider__dot").forEach((dot, i) => {
+                    dot.classList.toggle("active", i === currentSlide);
+                });
+            }
+            
+            PROMOS.forEach(() => {
+                const dot = document.createElement("div");
+                dot.classList.add("slider__dot");
+                sliderDots.appendChild(dot);
+            });
+            
+            qsa(".slider__dot").forEach((dot, i) => {
+                dot.addEventListener("click", () => {
+                    currentSlide = i;
+                    updateSlider();
+                });
+            });
+            
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % PROMOS.length;
+                updateSlider();
+            }, 4000);
+            
+            updateSlider();
+        }
+    }
 }
 
 function initGamePage() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const gameKey = urlParams.get('key');
-  const game = GAMES.find(g => g.key === gameKey);
+    const urlParams = new URLSearchParams(window.location.search);
+    const gameKey = urlParams.get('key');
+    const game = GAMES.find(g => g.key === gameKey);
 
-  if (!game) {
-    qs(".main .container").innerHTML = `<p class="error-text" style="text-align:center;">Game tidak ditemukan. Silakan kembali ke halaman utama.</p><a href="index.html" class="btn btn-confirm" style="margin-top:20px;">Kembali ke Beranda</a>`;
-    return;
-  }
-
-  qs("#game-title-page").textContent = `${game.name} - Walz Shop`;
-  qs("#game-banner").src = game.img;
-  qs("#game-title").textContent = game.name;
-  qs("#user-guide").textContent = game.guide;
-  
-  const serverIdInput = qs("#server-id");
-  if (!game.hasServerId) {
-    serverIdInput.style.display = "none";
-    qs("label[for='server-id']").style.display = "none";
-  }
-
-  const productGrid = qs("#product-grid");
-  const paymentGrid = qs("#payment-grid");
-  
-  productGrid.innerHTML = (PRODUCTS[gameKey] || []).map(p => `
-    <div class="grid-item" data-id="${p.id}" data-price="${p.price}">
-      ${p.badges ? p.badges.map(b => `<span class="badge badge-${b}">${b}</span>`).join("") : ""}
-      <div class="label">${p.label}</div>
-      <div class="price">${fmtIDR(p.price)}</div>
-    </div>
-  `).join("");
-  
-  paymentGrid.innerHTML = PAYMENTS.map(pay => `
-    <div class="grid-item" data-id="${pay.id}">
-      <div class="label">${pay.name}</div>
-      <div class="price"></div>
-    </div>
-  `).join("");
-
-  qsa(".product-grid .grid-item").forEach(item => {
-    item.addEventListener("click", () => {
-      qsa(".product-grid .grid-item").forEach(p => p.classList.remove("selected"));
-      item.classList.add("selected");
-      selectedProduct = {
-        id: item.dataset.id,
-        label: item.querySelector(".label").textContent,
-        price: parseInt(item.dataset.price)
-      };
-      appliedVoucher = null;
-      qs("#voucher-input").value = "";
-      setVoucherStatus("");
-      refreshSummary();
-    });
-  });
-
-  qsa(".payment-grid .grid-item").forEach(item => {
-    item.addEventListener("click", () => {
-      qsa(".payment-grid .grid-item").forEach(p => p.classList.remove("selected"));
-      item.classList.add("selected");
-      selectedPayment = PAYMENTS.find(p => p.id === item.dataset.id);
-      refreshSummary();
-    });
-  });
-
-  qs("#user-id").addEventListener("input", refreshSummary);
-  if (game.hasServerId) {
-      qs("#server-id").addEventListener("input", refreshSummary);
-  }
-
-  qs("#voucher-btn").addEventListener("click", () => {
-    const code = qs("#voucher-input").value.trim().toUpperCase();
-    if (!selectedProduct) {
-      setVoucherStatus("Pilih nominal terlebih dahulu.", true);
-      return;
+    if (!game) {
+        qs(".main .container").innerHTML = `<p class="error-text" style="text-align:center;">Game tidak ditemukan. Silakan kembali ke halaman utama.</p><a href="index.html" class="btn btn-primary" style="margin-top:20px;">Kembali ke Beranda</a>`;
+        return;
     }
-    const voucher = VOUCHERS.find(v => v.code === code);
-    if (!voucher) {
-      setVoucherStatus("Kode voucher tidak valid.", true);
-      appliedVoucher = null;
-    } else if (voucher.minPurchase && selectedProduct.price < voucher.minPurchase) {
-      setVoucherStatus(`Minimal transaksi ${fmtIDR(voucher.minPurchase)}.`, true);
-      appliedVoucher = null;
-    } else {
-      appliedVoucher = voucher;
-      setVoucherStatus(`Voucher berhasil diterapkan.`, false);
+
+    qs("#game-title-page").textContent = `${game.name} - Walz Shop`;
+    qs("#game-banner").src = game.bannerImg;
+    qs("#game-title").textContent = game.name;
+    qs("#user-guide").textContent = game.guide;
+    
+    const serverIdInput = qs("#server-id");
+    if (!game.hasServerId) {
+        serverIdInput.style.display = "none";
+        qs("label[for='server-id']").style.display = "none";
     }
+
+    const productGrid = qs("#product-grid");
+    const paymentGrid = qs("#payment-grid");
+    
+    if (productGrid) {
+        productGrid.innerHTML = (PRODUCTS[gameKey] || []).map(p => `
+            <div class="grid-item" data-id="${p.id}" data-price="${p.price}">
+              <div class="label">${p.label}</div>
+              <div class="price">${fmtIDR(p.price)}</div>
+            </div>
+        `).join("");
+    }
+    
+    if (paymentGrid) {
+        paymentGrid.innerHTML = PAYMENTS.map(pay => `
+            <div class="payment-item" data-id="${pay.id}">
+              <img src="${pay.img}" alt="${pay.name}">
+              <div class="label">${pay.name}</div>
+            </div>
+        `).join("");
+    }
+
+    qsa(".product-grid .grid-item").forEach(item => {
+        item.addEventListener("click", () => {
+            qsa(".product-grid .grid-item").forEach(p => p.classList.remove("selected"));
+            item.classList.add("selected");
+            selectedProduct = {
+                id: item.dataset.id,
+                label: item.querySelector(".label").textContent,
+                price: parseInt(item.dataset.price)
+            };
+            refreshSummary();
+        });
+    });
+
+    qsa(".payment-grid .payment-item").forEach(item => {
+        item.addEventListener("click", () => {
+            qsa(".payment-grid .payment-item").forEach(p => p.classList.remove("selected"));
+            item.classList.add("selected");
+            selectedPayment = PAYMENTS.find(p => p.id === item.dataset.id);
+            refreshSummary();
+        });
+    });
+
+    qs("#user-id").addEventListener("input", refreshSummary);
+    if (game.hasServerId) {
+        qs("#server-id").addEventListener("input", refreshSummary);
+    }
+
+    qs("#checkout-btn").addEventListener("click", () => {
+        if (validateForm(game.hasServerId)) {
+            saveTransactionData(game);
+            window.location.href = "cart.html";
+        }
+    });
+    
     refreshSummary();
-  });
-  
-  qs("#checkout-btn").addEventListener("click", () => {
-    if (validateForm(game.hasServerId)) {
-      saveTransactionData(game);
-      window.location.href = "cart.html";
-    }
-  });
-  
-  refreshSummary();
 }
