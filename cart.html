@@ -6,6 +6,7 @@
     <title>Ringkasan Pesanan | Walzshop</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
@@ -16,26 +17,31 @@
         <a href="index.html" class="header-link home-icon"><i class="fas fa-home"></i></a>
     </header>
 
-    <main class="main-content">
+    <main class="main-content container">
         <div class="cart-card-group">
-            <div class="cart-card" id="cart-summary-card">
+            <div class="page-section" id="cart-summary-card">
                 <h3>Detail Pesanan</h3>
                 <div class="summary-details" id="summary-details">
                     </div>
             </div>
-            
-            <div class="cart-card payment-info-card" id="payment-info-section">
+
+            <div class="page-section payment-info-card" id="payment-info-section">
                 </div>
         </div>
     </main>
 
     <footer class="footer-fixed">
-        <button class="pay-button" id="pay-button">
+        <button class="action-button" id="pay-button">
             <i class="fas fa-shopping-cart"></i> Beli Sekarang
         </button>
     </footer>
 
     <div class="notification-container"></div>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCartPage();
+        });
+    </script>
 </body>
 </html>
