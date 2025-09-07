@@ -3,40 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walzshop - Jual Top Up Game Murah dan Terpercaya</title>
+    <title>Walzshop | Top Up Game Murah</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <header class="header">
-        <div class="header-left">
-            <a href="index.html" class="header-link brand-name">Walzshop</a>
+        <a href="#" class="header-link back-button hidden"><i class="fas fa-arrow-left"></i></a>
+        <div class="header-center">
+            <h1>Walzshop</h1>
         </div>
-        <div class="header-right">
-            <a href="search.html" class="header-link search-icon"><i class="fas fa-search"></i></a>
-        </div>
+        <a href="#" class="header-link search-icon"><i class="fas fa-search"></i></a>
     </header>
 
-    <main class="main-content">
-        <section class="banner-section">
-            <div class="slider-container">
-                <div class="slider" id="banner-slider">
-                    <img src="https://files.catbox.moe/hrtpys.jpg" alt="Banner Promo 1" class="banner-image active">
-                    <img src="https://files.catbox.moe/8g41jj.jpg" alt="Banner Promo 2" class="banner-image">
-                    <img src="https://files.catbox.moe/e87yj3.png" alt="Banner Promo 3" class="banner-image">
-                </div>
-            </div>
-        </section>
+    <main class="main-content container" id="app-container">
+        </main>
 
-        <section class="game-list-section">
-            <div class="section-header">
-                <h2>Pilih Game</h2>
-            </div>
-            <div class="game-grid-custom" id="game-list">
-                </div>
-        </section>
-    </main>
-    
+    <footer class="footer-fixed">
+        <button class="action-button" id="main-button" disabled>
+            <i class="fas fa-shopping-cart"></i> Lanjutkan
+        </button>
+    </footer>
+
     <div class="notification-container"></div>
     <script src="script.js"></script>
 </body>
