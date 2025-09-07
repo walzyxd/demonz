@@ -111,13 +111,13 @@ body {
 /* Game Grid (Perbaikan Tampilan) */
 .game-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 15px;
 }
 
 .game-card {
     background-color: rgba(30, 30, 30, 0.8);
-    border-radius: 15px;
+    border-radius: 12px;
     overflow: hidden;
     text-decoration: none;
     color: var(--text-color);
@@ -154,18 +154,18 @@ body {
     left: 0;
     width: 100%;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
-    padding: 15px;
+    padding: 15px 10px;
     z-index: 2;
 }
 
 .game-card-content h3 {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     margin: 0;
 }
 
 .game-card-content p {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-light);
     margin-top: 2px;
 }
@@ -233,10 +233,10 @@ body {
 }
 
 .game-info-header .game-img {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 .step-card {
@@ -555,7 +555,7 @@ body {
 
 .qr-code-image {
     width: 100%;
-    max-width: 250px;
+    max-width: 200px;
     height: auto;
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -677,7 +677,7 @@ body {
 /* Responsive Design */
 @media (max-width: 600px) {
     .game-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
     .options-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -698,7 +698,7 @@ body {
     .pay-button {
         font-size: 14px;
     }
-    .game-card img {
-        height: 100px;
+    .game-card {
+        height: 150px;
     }
 }
