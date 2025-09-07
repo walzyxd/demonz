@@ -3,85 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ringkasan Pesanan</title>
+    <title>Konfirmasi Pembayaran - Walzshop</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="notification-container"></div>
-
     <header class="header">
-        <a href="index.html" class="logo">Walzshop</a>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">Walzshop</a>
+            </div>
+            <nav class="nav">
+                <a href="index.html">Beranda</a>
+                <a href="https://wa.me/6282298902274" target="_blank">Kontak</a>
+            </nav>
+        </div>
     </header>
 
-    <main class="container">
-        <section class="checkout-card">
-            <div class="order-status-header">
-                <i class="fas fa-check-circle status-icon"></i>
-                <h1>Pesanan Berhasil Dibuat</h1>
-                <p>Silakan selesaikan pembayaran sesuai metode yang Anda pilih.</p>
-            </div>
-            
-            <div class="checkout-content">
-                <div class="cart-summary" id="cart-summary-card">
+    <main class="main cart-page">
+        <div class="container">
+            <div class="cart-container">
+                <div class="card" id="cart-summary-card">
                     </div>
-
-                <div class="payment-info" id="payment-info-section">
-                    </div>
+                
+                <div class="payment-info-card card">
+                    <div id="payment-info-section">
+                        </div>
+                </div>
+                
+                <div class="confirmation-section">
+                    <button class="btn btn-confirm" id="pay-button">Bayar Sekarang</button>
+                    <p class="note">Setelah klik "Bayar Sekarang", Anda akan diarahkan ke WhatsApp Admin.</p>
+                </div>
             </div>
-            
-            <button class="pay-button" id="pay-button">Bayar Sekarang</button>
-        </section>
+        </div>
     </main>
 
     <div id="rating-modal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" id="close-modal">&times;</span>
-            <div class="rating-header">
-                <h2>Berikan Ulasan Anda</h2>
-                <p>Bagikan pengalaman Anda, ini akan sangat membantu kami!</p>
+            <span class="close-button" id="close-modal">&times;</span>
+            <div class="modal-header">
+                <h3>Bagaimana Pengalaman Anda?</h3>
             </div>
-            <div class="rating-stars">
-                <i class="far fa-star fa-2x" data-rating="1"></i>
-                <i class="far fa-star fa-2x" data-rating="2"></i>
-                <i class="far fa-star fa-2x" data-rating="3"></i>
-                <i class="far fa-star fa-2x" data-rating="4"></i>
-                <i class="far fa-star fa-2x" data-rating="5"></i>
+            <div class="modal-body">
+                <div class="rating-stars">
+                    <i class="fas fa-star" data-rating="1"></i>
+                    <i class="fas fa-star" data-rating="2"></i>
+                    <i class="fas fa-star" data-rating="3"></i>
+                    <i class="fas fa-star" data-rating="4"></i>
+                    <i class="fas fa-star" data-rating="5"></i>
+                </div>
+                <p>Beri kami rating bintang 5 jika Anda puas! 😊</p>
+                <textarea id="review-text" placeholder="Tambahkan komentar Anda (opsional)..."></textarea>
             </div>
-            <textarea id="review-text" placeholder="Tambahkan komentar Anda..."></textarea>
-            <button id="close-and-pay-btn" class="modal-button">Kirim Ulasan</button>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="close-and-pay-btn">Kirim Ulasan & Bayar</button>
+            </div>
         </div>
     </div>
+
+    <div class="notification-container"></div>
     
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section about">
-                <h3>Tentang Walzshop</h3>
-                <p>Tempat top-up game favoritmu dengan harga termurah dan proses tercepat. Dijamin aman dan terpercaya!</p>
+        <div class="container">
+            <p>&copy; 2025 Walzshop. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
             </div>
-            <div class="footer-section links">
-                <h3>Tautan Cepat</h3>
-                <ul>
-                    <li><a href="#">Beranda</a></li>
-                    <li><a href="#">Tentang Kami</a></li>
-                    <li><a href="#">Hubungi Kami</a></li>
-                    <li><a href="#">Kebijakan Privasi</a></li>
-                </ul>
-            </div>
-            <div class="footer-section social">
-                <h3>Ikuti Kami</h3>
-                <div class="social-links">
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Walzshop. Semua hak dilindungi.</p>
         </div>
     </footer>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
