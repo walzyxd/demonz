@@ -254,13 +254,29 @@ const BANNERS = [
     'https://files.catbox.moe/e87yj3.png'
 ];
 
-// --- State Management (untuk halaman game.html)
+// Data Pulsa & Panel
+const PULSA_PRODUCTS = [
+    { id: "telkomsel-5k", label: "Pulsa Telkomsel 5K", price: 6000 },
+    { id: "telkomsel-10k", label: "Pulsa Telkomsel 10K", price: 11000 },
+    { id: "xl-5k", label: "Pulsa XL 5K", price: 6100 },
+    { id: "xl-10k", label: "Pulsa XL 10K", price: 11200 },
+    { id: "indosat-5k", label: "Pulsa Indosat 5K", price: 6200 },
+];
+
+const PTERODACTYL_PRODUCTS = [
+    { id: "pter-basic", label: "Panel Basic 1GB RAM", price: 15000 },
+    { id: "pter-standar", label: "Panel Standar 2GB RAM", price: 25000 },
+    { id: "pter-pro", label: "Panel Pro 4GB RAM", price: 45000 },
+];
+
+// --- State Management
+let cart = [];
 let selectedGame = null;
-let selectedProduct = null;
 let selectedPayment = null;
 let isVoucherApplied = false;
 const VOUCHER_CODE = "WALZPROMO";
 const VOUCHER_DISCOUNT = 1000;
+const ADMIN_WHATSAPP_NUMBER = "6282298902274";
 
 // --- Global Functions
 function formatRupiah(number) {
@@ -396,83 +412,352 @@ function renderGamePage() {
                     <input type="number" id="server-id" placeholder="Masukkan Server ID">
                 </div>
             `;
-            document.getElementById('server-id').addEventListener('input', updateMainButton);
         } else {
             serverIdContainer.innerHTML = '';
         }
     }
 
     // Attach event listeners
-    const userIdInput = document.getElementById('user-id');
-    const whatsappInput = document.getElementById('whatsapp-number');
     const useVoucherBtn = document.getElementById('use-voucher-btn');
-    const mainButton = document.getElementById('main-button');
-
-    if (userIdInput) userIdInput.addEventListener('input', updateMainButton);
-    if (whatsappInput) whatsappInput.addEventListener('input', updateMainButton);
     if (useVoucherBtn) useVoucherBtn.addEventListener('click', applyVoucher);
-    if (mainButton) {
-        mainButton.addEventListener('click', () => {
-            const orderData = {
-                gameKey: selectedGame.key,
-                productId: selectedProduct.id,
-                paymentId: selectedPayment.id,
-                userId: document.getElementById('user-id').value,
-                serverId: selectedGame.needsServerId ? document.getElementById('server-id').value : '',
-                whatsappNumber: document.getElementById('whatsapp-number').value,
-                isVoucherApplied: isVoucherApplied
-            };
-            localStorage.setItem('orderData', JSON.stringify(orderData));
-            window.location.href = 'cart.html';
-        });
-    }
-
-    renderOptions('product-list', products, 'product');
-    renderOptions('payment-list', PAYMENTS, 'payment');
-    updateMainButton();
-}
-
-function renderOptions(containerId, options, type) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-    container.innerHTML = '';
-    options.forEach(option => {
-        const card = document.createElement('div');
-        card.classList.add('option-card', type);
-        card.setAttribute('data-id', option.id);
-        
-        let innerHtml = '';
-        if (type === 'product') {
-            const finalPrice = isVoucherApplied ? Math.max(0, option.price - VOUCHER_DISCOUNT) : option.price;
-            const hasDiscount = isVoucherApplied && option.price > VOUCHER_DISCOUNT;
+    
+    // Render products with "Pilih" button
+    const productListContainer = document.getElementById('product-list');
+    if (productListContainer) {
+        productListContainer.innerHTML = '';
+        products.forEach(product => {
+            const finalPrice = isVoucherApplied ? Math.max(0, product.price - VOUCHER_DISCOUNT) : product.price;
+            const hasDiscount = isVoucherApplied && product.price > VOUCHER_DISCOUNT;
             
             const priceHtml = hasDiscount ? `
-                <div class="original-price">${formatRupiah(option.price)}</div>
+                <div class="original-price">${formatRupiah(product.price)}</div>
                 <div class="price discounted-price">${formatRupiah(finalPrice)}</div>
-            ` : `<div class="price">${formatRupiah(option.price)}</div>`;
+            ` : `<div class="price">${formatRupiah(finalPrice)}</div>`;
             
             let badgeHtml = '';
-            if (option.badges && option.badges.length > 0) {
-                option.badges.forEach(badge => {
+            if (product.badges && product.badges.length > 0) {
+                product.badges.forEach(badge => {
                     const badgeText = badge.charAt(0).toUpperCase() + badge.slice(1);
                     badgeHtml += `<span class="special-badge" data-badge="${badge}">${badgeText}</span>`;
                 });
             }
 
-            innerHtml = `
+            const card = document.createElement('div');
+            card.classList.add('option-card', 'product');
+            card.setAttribute('data-id', product.id);
+            card.innerHTML = `
                 ${badgeHtml}
-                <i class="fas fa-gem icon"></i>
-                <div class="label">${option.label}</div>
+                <div class="label">${product.label}</div>
                 <div class="price-group">${priceHtml}</div>
+                <button class="add-to-cart-btn action-button" data-product-id="${product.id}">Pilih</button>
             `;
-        } else if (type === 'payment') {
-            innerHtml = `<img src="${option.img}" alt="${option.name}"><div class="label">${option.name}</div>`;
+            
+            card.querySelector('.add-to-cart-btn').addEventListener('click', (e) => {
+                e.stopPropagation();
+                addToCart(product, game.name, game.key);
+            });
+            
+            productListContainer.appendChild(card);
+        });
+    }
+
+    renderOptions('payment-list', PAYMENTS, 'payment');
+}
+
+function renderProductList(products, containerId, pageType) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    container.innerHTML = '';
+    products.forEach(product => {
+        const finalPrice = isVoucherApplied ? Math.max(0, product.price - VOUCHER_DISCOUNT) : product.price;
+        const hasDiscount = isVoucherApplied && product.price > VOUCHER_DISCOUNT;
+        
+        const priceHtml = hasDiscount ? `
+            <div class="original-price">${formatRupiah(product.price)}</div>
+            <div class="price discounted-price">${formatRupiah(finalPrice)}</div>
+        ` : `<div class="price">${formatRupiah(finalPrice)}</div>`;
+        
+        let badgeHtml = '';
+        if (product.badges && product.badges.length > 0) {
+            product.badges.forEach(badge => {
+                const badgeText = badge.charAt(0).toUpperCase() + badge.slice(1);
+                badgeHtml += `<span class="special-badge" data-badge="${badge}">${badgeText}</span>`;
+            });
         }
         
-        card.innerHTML = innerHtml;
-        card.onclick = () => selectOption(card, type);
+        const card = document.createElement('div');
+        card.classList.add('option-card', 'product');
+        card.setAttribute('data-id', product.id);
+        
+        const title = pageType === 'pulsa' ? product.label.split(' ').slice(0, 2).join(' ') : product.label;
+        const description = pageType === 'pulsa' ? product.label.split(' ').slice(2).join(' ') : '';
+        
+        card.innerHTML = `
+            ${badgeHtml}
+            <div class="label">${title}</div>
+            <div class="price-group">
+                <p class="description">${description}</p>
+                ${priceHtml}
+            </div>
+            <button class="add-to-cart-btn action-button" data-product-id="${product.id}">Pilih</button>
+        `;
+        
+        card.querySelector('.add-to-cart-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            const gameName = pageType === 'pulsa' ? 'Pulsa & Data' : 'Panel Pterodactyl';
+            addToCart(product, gameName, pageType);
+        });
+        
         container.appendChild(card);
     });
+}
+
+function addToCart(product, gameName, gameKey) {
+    const existingItem = cart.find(item => item.product.id === product.id);
+    
+    if (existingItem) {
+        showNotification(`${product.label} sudah ada di keranjang!`, false);
+        return;
+    }
+    
+    cart.push({ game: { key: gameKey, name: gameName }, product });
+    showNotification(`${product.label} berhasil ditambahkan ke keranjang!`);
+    
+    updateCartDisplay();
+    showCartPopup();
+}
+
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.product.id !== productId);
+    updateCartDisplay();
+}
+
+function updateCartDisplay() {
+    const cartCountElement = document.querySelector('.cart-count');
+    const cartItemsList = document.getElementById('cart-items-list');
+    const cartTotalElement = document.querySelector('.cart-total .total-price');
+    const cartCheckoutBtn = document.getElementById('cart-checkout-btn');
+
+    // Update floating cart count
+    if (cart.length > 0) {
+        cartCountElement.textContent = cart.length;
+        cartCountElement.classList.add('show');
+    } else {
+        cartCountElement.classList.remove('show');
+    }
+
+    // Update popup cart items
+    if (cartItemsList) {
+        cartItemsList.innerHTML = '';
+        let total = 0;
+        if (cart.length === 0) {
+            cartItemsList.innerHTML = '<li class="empty-cart-message">Keranjang Anda kosong.</li>';
+        } else {
+            cart.forEach(item => {
+                const finalPrice = isVoucherApplied ? Math.max(0, item.product.price - VOUCHER_DISCOUNT) : item.product.price;
+                total += finalPrice;
+                
+                const li = document.createElement('li');
+                li.classList.add('cart-item');
+                li.innerHTML = `
+                    <div class="cart-item-info">
+                        <div class="item-name">${item.product.label} (${item.game.name})</div>
+                        <div class="item-price">${formatRupiah(finalPrice)}</div>
+                    </div>
+                    <button class="cart-item-remove" data-product-id="${item.product.id}"><i class="fas fa-trash-alt"></i></button>
+                `;
+                li.querySelector('.cart-item-remove').addEventListener('click', () => removeFromCart(item.product.id));
+                cartItemsList.appendChild(li);
+            });
+        }
+    }
+    
+    // Update total price and checkout button
+    if (cartTotalElement) cartTotalElement.textContent = formatRupiah(total);
+    if (cartCheckoutBtn) cartCheckoutBtn.disabled = cart.length === 0;
+}
+
+function showCartPopup() {
+    const popup = document.getElementById('cart-popup');
+    if (popup) popup.classList.add('show');
+}
+
+function hideCartPopup() {
+    const popup = document.getElementById('cart-popup');
+    if (popup) popup.classList.remove('show');
+}
+
+function setupFloatingCart() {
+    const path = window.location.pathname.toLowerCase();
+    const isSpecialPage = path.includes('pulsa.html') || path.includes('pterodactyl.html');
+
+    const floatingCartBtn = document.getElementById('floating-cart-button');
+    const cartPopup = document.getElementById('cart-popup');
+    const closePopupBtn = document.querySelector('.close-popup-btn');
+    const cartCheckoutBtn = document.getElementById('cart-checkout-btn');
+
+    if (isSpecialPage) {
+        if (floatingCartBtn) floatingCartBtn.style.display = 'flex';
+        if (floatingCartBtn) floatingCartBtn.addEventListener('click', showCartPopup);
+        if (closePopupBtn) closePopupBtn.addEventListener('click', hideCartPopup);
+        if (cartPopup) {
+            cartPopup.addEventListener('click', (e) => {
+                if (e.target.id === 'cart-popup') {
+                    hideCartPopup();
+                }
+            });
+        }
+        if (cartCheckoutBtn) {
+            cartCheckoutBtn.addEventListener('click', () => {
+                const orderData = {
+                    items: cart.map(item => ({
+                        gameKey: item.game.key,
+                        productId: item.product.id,
+                        price: item.product.price,
+                        label: item.product.label
+                    })),
+                    isVoucherApplied: isVoucherApplied
+                };
+                localStorage.setItem('cartData', JSON.stringify(orderData));
+                window.location.href = 'checkout.html';
+            });
+        }
+    } else {
+        if (floatingCartBtn) floatingCartBtn.style.display = 'none';
+    }
+    
+    updateCartDisplay();
+}
+
+function applyVoucher() {
+    const promoCodeInput = document.getElementById('promo-code');
+    const promoCode = promoCodeInput.value.toUpperCase();
+    
+    if (promoCode === VOUCHER_CODE) {
+        isVoucherApplied = true;
+        // Re-render product list to show discounted prices
+        const path = window.location.pathname.toLowerCase();
+        if (path.includes('game.html')) {
+            renderGamePage();
+        } else if (path.includes('pulsa.html')) {
+            renderProductList(PULSA_PRODUCTS, 'pulsa-list', 'pulsa');
+        } else if (path.includes('pterodactyl.html')) {
+            renderProductList(PTERODACTYL_PRODUCTS, 'panel-list', 'pterodactyl');
+        }
+        showNotification(`Voucher Berhasil digunakan! Potongan: ${formatRupiah(VOUCHER_DISCOUNT)}`);
+    } else {
+        isVoucherApplied = false;
+        const path = window.location.pathname.toLowerCase();
+        if (path.includes('game.html')) {
+            renderGamePage();
+        } else if (path.includes('pulsa.html')) {
+            renderProductList(PULSA_PRODUCTS, 'pulsa-list', 'pulsa');
+        } else if (path.includes('pterodactyl.html')) {
+            renderProductList(PTERODACTYL_PRODUCTS, 'panel-list', 'pterodactyl');
+        }
+        showNotification('Voucher Tidak valid', false);
+    }
+}
+
+function updateMainButton() {
+    // This function is no longer needed in game.html, but keep for other pages if they exist
+}
+
+// --- Checkout Page Functions
+function renderCheckoutPage() {
+    const cartData = JSON.parse(localStorage.getItem('cartData'));
+    if (!cartData || cartData.items.length === 0) {
+        window.location.href = 'index.html';
+        return;
+    }
+    
+    // Render payment options
+    renderOptions('payment-list', PAYMENTS, 'payment');
+    
+    // Render summary
+    const summaryDetails = document.getElementById('summary-details');
+    let subtotal = 0;
+    
+    summaryDetails.innerHTML = '';
+    
+    cartData.items.forEach(item => {
+        subtotal += item.price;
+        summaryDetails.innerHTML += `
+            <div class="summary-detail-item">
+                <span class="label"><i class="fas fa-gem"></i> ${item.label} (${item.gameKey})</span>
+                <span class="value">${formatRupiah(item.price)}</span>
+            </div>
+        `;
+    });
+    
+    let finalTotal = subtotal;
+    if (cartData.isVoucherApplied) {
+        finalTotal = Math.max(0, subtotal - VOUCHER_DISCOUNT);
+        summaryDetails.innerHTML += `
+            <div class="summary-detail-item voucher-applied">
+                <span class="label"><i class="fas fa-ticket-alt"></i> Potongan Voucher</span>
+                <span class="value">- ${formatRupiah(VOUCHER_DISCOUNT)}</span>
+            </div>
+        `;
+    }
+    
+    document.getElementById('total-payment').textContent = formatRupiah(finalTotal);
+    
+    const userIdInput = document.getElementById('user-id');
+    const whatsappInput = document.getElementById('whatsapp-number');
+    const serverIdInput = document.getElementById('server-id');
+    const payButton = document.getElementById('pay-button');
+    
+    const updatePayButtonState = () => {
+        const hasUserId = userIdInput.value.trim().length > 0;
+        const hasWhatsapp = whatsappInput.value.trim().length > 0;
+        const hasPayment = selectedPayment !== null;
+        
+        let hasServerId = true;
+        cartData.items.forEach(item => {
+            const game = GAMES.find(g => g.key === item.gameKey);
+            if (game && game.needsServerId && serverIdInput.value.trim().length === 0) {
+                hasServerId = false;
+            }
+        });
+
+        payButton.disabled = !(hasUserId && hasWhatsapp && hasPayment && hasServerId);
+    };
+
+    userIdInput.addEventListener('input', updatePayButtonState);
+    whatsappInput.addEventListener('input', updatePayButtonState);
+    if (serverIdInput) {
+         serverIdInput.addEventListener('input', updatePayButtonState);
+    }
+    
+    payButton.addEventListener('click', () => {
+        const userId = userIdInput.value;
+        const whatsapp = whatsappInput.value;
+        const serverId = serverIdInput ? serverIdInput.value : 'N/A';
+        
+        const messageHeader = `Halo Admin, saya ingin konfirmasi pesanan saya.\n\n*Detail Pesanan:*\n`;
+        let messageItems = '';
+        cartData.items.forEach(item => {
+            const gameName = GAMES.find(g => g.key === item.gameKey) ? GAMES.find(g => g.key === item.gameKey).name : item.gameKey;
+            const price = isVoucherApplied ? Math.max(0, item.price - (VOUCHER_DISCOUNT / cartData.items.length)) : item.price;
+            messageItems += `- ${item.label} (${gameName}): ${formatRupiah(price)}\n`;
+        });
+        
+        const messageFooter = `\nPlayer ID: ${userId}${serverId !== 'N/A' ? ` (${serverId})` : ''}\nNomor WhatsApp: ${whatsapp}\nMetode Pembayaran: ${selectedPayment.name}\nTotal: ${formatRupiah(finalTotal)}\n\nMohon bantuannya untuk diproses, terima kasih.`;
+        
+        const fullMessage = messageHeader + messageItems + messageFooter;
+        
+        const encodedMessage = encodeURIComponent(fullMessage);
+        window.open(`https://wa.me/${ADMIN_WHATSAPP_NUMBER}?text=${encodedMessage}`, '_blank');
+        
+        // Clear cart after checkout
+        cart = [];
+        localStorage.removeItem('cartData');
+        localStorage.removeItem('orderData');
+    });
+    
+    updatePayButtonState();
 }
 
 function selectOption(element, type) {
@@ -482,133 +767,67 @@ function selectOption(element, type) {
     element.classList.add('selected');
 
     const optionId = element.dataset.id;
-    if (type === 'product') {
-        selectedProduct = PRODUCTS[selectedGame.key].find(p => p.id === optionId);
-    } else if (type === 'payment') {
+    if (type === 'payment') {
         selectedPayment = PAYMENTS.find(p => p.id === optionId);
     }
-    updateMainButton();
-}
-
-function applyVoucher() {
-    const promoCodeInput = document.getElementById('promo-code');
-    const promoCode = promoCodeInput.value.toUpperCase();
-    const products = PRODUCTS[selectedGame.key];
-
-    if (promoCode === VOUCHER_CODE) {
-        isVoucherApplied = true;
-        renderOptions('product-list', products, 'product');
-        updateMainButton();
-        showNotification(`Voucher Berhasil digunakan! Potongan: ${formatRupiah(VOUCHER_DISCOUNT)}`);
-    } else {
-        isVoucherApplied = false;
-        renderOptions('product-list', products, 'product');
-        updateMainButton();
-        showNotification('Voucher Tidak valid', false);
+    
+    if (document.getElementById('pay-button')) {
+        renderCheckoutPage();
     }
 }
 
-function updateMainButton() {
-    const mainButton = document.getElementById('main-button');
-    if (!mainButton) return;
+function renderOptions(containerId, options, type) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
     
-    let isDisabled = !selectedProduct || !selectedPayment;
-    const userId = document.getElementById('user-id')?.value;
-    const whatsappNumber = document.getElementById('whatsapp-number')?.value;
-    const serverId = document.getElementById('server-id')?.value;
-    
-    isDisabled = isDisabled || !userId || !whatsappNumber || (selectedGame.needsServerId && !serverId);
-    
-    mainButton.disabled = isDisabled;
-}
-
-// --- Cart Page Functions
-function renderCartPage() {
-    const orderData = JSON.parse(localStorage.getItem('orderData'));
-    if (!orderData) {
-        window.location.href = 'index.html';
-        return;
-    }
-
-    const game = GAMES.find(g => g.key === orderData.gameKey);
-    const product = PRODUCTS[game.key].find(p => p.id === orderData.productId);
-    const payment = PAYMENTS.find(p => p.id === orderData.paymentId);
-    const finalPrice = orderData.isVoucherApplied ? Math.max(0, product.price - VOUCHER_DISCOUNT) : product.price;
-
-    // Render summary
-    const summaryDetails = document.getElementById('summary-details');
-    if (summaryDetails) {
-        summaryDetails.innerHTML = `
-            <div class="summary-detail-item">
-                <span class="label"><i class="fas fa-gamepad"></i> Game</span>
-                <span class="value">${game.name}</span>
-            </div>
-            <div class="summary-detail-item">
-                <span class="label"><i class="fas fa-gem"></i> Produk</span>
-                <span class="value">${product.label}</span>
-            </div>
-            <div class="summary-detail-item">
-                <span class="label"><i class="fas fa-user"></i> Player ID</span>
-                <span class="value">${orderData.userId}${orderData.serverId ? ` (${orderData.serverId})` : ''}</span>
-            </div>
-            <div class="summary-detail-item">
-                <span class="label"><i class="fab fa-whatsapp"></i> Nomor WhatsApp</span>
-                <span class="value">${orderData.whatsappNumber}</span>
-            </div>
-            <div class="summary-detail-item">
-                <span class="label"><i class="fas fa-wallet"></i> Metode Pembayaran</span>
-                <span class="value">
-                    <img src="${payment.img}" alt="${payment.name}" class="payment-image">
-                    ${payment.name}
-                </span>
-            </div>
-            ${orderData.isVoucherApplied ? `
-            <div class="summary-detail-item voucher-applied">
-                <span class="label"><i class="fas fa-ticket-alt"></i> Potongan Voucher</span>
-                <span class="value">- ${formatRupiah(VOUCHER_DISCOUNT)}</span>
-            </div>
-            ` : ''}
-            <div class="summary-total">
-                <span class="label">Total Pembayaran</span>
-                <span class="value">${formatRupiah(finalPrice)}</span>
-            </div>
-        `;
-    }
-    
-    // Render payment info
-    const paymentInfoSection = document.getElementById('payment-info-section');
-    if (paymentInfoSection) {
-        if (payment.qr) {
-            paymentInfoSection.innerHTML = `
-                <h4>Scan untuk Bayar</h4>
-                <img src="${payment.qr}" alt="QR Code" class="qr-code-image">
-                <div class="qr-caption">⚠️Perhatian: Transfer harus sesuai Dengan Harga Yang Tertera Di Atas⚠️
-                <br>Silakan scan kode QR di atas untuk melakukan pembayaran.</div>
-            `;
-        } else if (payment.number) {
-            paymentInfoSection.innerHTML = `
-                <h4>Transfer ke ${payment.name}</h4>
-                <img src="${payment.img}" alt="${payment.name}" class="payment-image-lg">
-                <div class="payment-caption">A.N. ${payment.holder}</div>
-                <div class="payment-number" data-number="${payment.number}">${payment.number}</div>
-                <button class="copy-button">Salin Nomor</button>
-            `;
-            paymentInfoSection.querySelector('.copy-button').addEventListener('click', () => {
-                copyToClipboard(payment.number);
-            });
+    container.innerHTML = '';
+    options.forEach(option => {
+        const card = document.createElement('div');
+        card.classList.add('option-card');
+        card.dataset.id = option.id;
+        
+        let contentHtml = '';
+        if (type === 'payment') {
+            contentHtml = `<img src="${option.img}" alt="${option.name}" />`;
+        } else {
+            contentHtml = `<div class="label">${option.label}</div>`;
         }
-    }
-
-    // Pay Button
-    const payButton = document.getElementById('pay-button');
-    if (payButton) {
-        payButton.addEventListener('click', () => {
-            const message = `Halo Admin, saya ingin konfirmasi pesanan saya.\n\n*Detail Pesanan:*\nGame: ${game.name}\nProduk: ${product.label}\nPlayer ID: ${orderData.userId}${orderData.serverId ? ` (${orderData.serverId})` : ''}\nMetode Pembayaran: ${payment.name}\nTotal: ${formatRupiah(finalPrice)}\n\nNomor WA saya: ${orderData.whatsappNumber}\n\nMohon bantuannya untuk diproses, terima kasih.`;
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/6282298902274?text=${encodedMessage}`, '_blank');
-        });
-    }
+        
+        card.innerHTML = contentHtml;
+        card.addEventListener('click', () => selectOption(card, type));
+        container.appendChild(card);
+    });
 }
+
+// --- Initial Page Load
+document.addEventListener('DOMContentLoaded', () => {
+    const path = window.location.pathname.toLowerCase();
+    if (path.includes('game.html')) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const gameKey = urlParams.get('game');
+        selectedGame = GAMES.find(g => g.key === gameKey);
+        if (selectedGame) {
+            renderGamePage();
+        } else {
+            window.location.href = 'index.html';
+        }
+    } else if (path.includes('pulsa.html')) {
+        renderProductList(PULSA_PRODUCTS, 'pulsa-list', 'pulsa');
+    } else if (path.includes('pterodactyl.html')) {
+        renderProductList(PTERODACTYL_PRODUCTS, 'panel-list', 'pterodactyl');
+    } else if (path.includes('checkout.html')) {
+        renderCheckoutPage();
+    } else if (path.includes('index.html') || path === '/') {
+        renderGameCards(GAMES, 'popular-games');
+        renderBanners();
+        startBannerSlider();
+    } else if (path.includes('search.html')) {
+        setupSearchFunctionality();
+        renderGameCards(GAMES, 'game-list');
+    }
+    
+    setupFloatingCart();
+});
 
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
@@ -618,7 +837,6 @@ function copyToClipboard(text) {
     });
 }
 
-// --- Search Page Functions
 function setupSearchFunctionality() {
     const searchInput = document.getElementById('search-box');
     const clearBtn = document.getElementById('clear-search');
