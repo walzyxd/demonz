@@ -25,194 +25,202 @@ const PAYMENTS = [
 
 const PRODUCTS = {
     "free-fire": [
-        { id: "ff-5", label: "5 Diamonds", price: 901 },
-        { id: "ff-12", label: "12 Diamonds", price: 1802 },
-        { id: "ff-50", label: "50 Diamonds", price: 7207 },
-        { id: "ff-70", label: "70 Diamonds", price: 9009 },
-        { id: "ff-140", label: "140 Diamonds", price: 18018 },
-        { id: "ff-355", label: "355 Diamonds", price: 45045 },
-        { id: "ff-720", label: "720 Diamonds", price: 90090 },
-        { id: "ff-1450", label: "1450 Diamonds", price: 180180 },
-        { id: "ff-2180", label: "2180 Diamonds", price: 270270 },
-        { id: "ff-3640", label: "3640 Diamonds", price: 450450 },
-        { id: "ff-mw", label: "Membership Mingguan", price: 30500, badges: ["member"] },
-        { id: "ff-mb", label: "Membership Bulanan", price: 90000, badges: ["member"] },
-        { id: "ff-lvl6", label: "Level Up Pass Lv.6", price: 5500, badges: ["levelup"] },
-        { id: "ff-lvl10", label: "Level Up Pass Lv.10", price: 8800, badges: ["levelup"] },
-        { id: "ff-lvl15", label: "Level Up Pass Lv.15", price: 8800, badges: ["levelup"] },
-        { id: "ff-lvl20", label: "Level Up Pass Lv.20", price: 8800, badges: ["levelup"] },
-        { id: "ff-booyah", label: "BooYah Pass", price: 50000, badges: ["pass"] },
+        { id: "ff-5", label: "5 Diamonds", price: 901, apiCode: "FF01" },
+        { id: "ff-12", label: "12 Diamonds", price: 1802, apiCode: "FF02" },
+        { id: "ff-50", label: "50 Diamonds", price: 7207, apiCode: "FF05" },
+        { id: "ff-70", label: "70 Diamonds", price: 9009, apiCode: "FF07" },
+        { id: "ff-140", label: "140 Diamonds", price: 18018, apiCode: "FF10" },
+        { id: "ff-355", label: "355 Diamonds", price: 45045, apiCode: "FF25" },
+        { id: "ff-720", label: "720 Diamonds", price: 90090, apiCode: "FF50" },
+        { id: "ff-1450", label: "1450 Diamonds", price: 180180, apiCode: "FF100" },
+        { id: "ff-2180", label: "2180 Diamonds", price: 270270, apiCode: "FF150" },
+        { id: "ff-3640", label: "3640 Diamonds", price: 450450, apiCode: "FF250" },
+        { id: "ff-mw", label: "Membership Mingguan", price: 30500, badges: ["member"], apiCode: "FFMW" },
+        { id: "ff-mb", label: "Membership Bulanan", price: 90000, badges: ["member"], apiCode: "FFMB" },
+        { id: "ff-lvl6", label: "Level Up Pass Lv.6", price: 5500, badges: ["levelup"], apiCode: "FFLUPLV6" },
+        { id: "ff-lvl10", label: "Level Up Pass Lv.10", price: 8800, badges: ["levelup"], apiCode: "FFLUPLV10" },
+        { id: "ff-lvl15", label: "Level Up Pass Lv.15", price: 8800, badges: ["levelup"], apiCode: "FFLUPLV15" },
+        { id: "ff-lvl20", label: "Level Up Pass Lv.20", price: 8800, badges: ["levelup"], apiCode: "FFLUPLV20" },
+        { id: "ff-booyah", label: "BooYah Pass", price: 50000, badges: ["pass"], apiCode: "FFBP" },
     ],
     "mobile-legends": [
-        { id: "ml-3", label: "3 Diamonds", price: 1171 },
-        { id: "ml-5", label: "5 Diamonds", price: 1423 },
-        { id: "ml-12", label: "12 Diamonds", price: 3323 },
-        { id: "ml-19", label: "19 Diamonds", price: 5223 },
-        { id: "ml-28", label: "28 Diamonds", price: 7600 },
-        { id: "ml-44", label: "44 Diamonds", price: 11400 },
-        { id: "ml-59", label: "59 Diamonds", price: 15200 },
-        { id: "ml-85", label: "85 Diamonds", price: 21850 },
-        { id: "ml-170", label: "170 Diamonds", price: 43700 },
-        { id: "ml-240", label: "240 Diamonds", price: 61750 },
-        { id: "ml-296", label: "296 Diamonds", price: 76000 },
-        { id: "ml-408", label: "408 Diamonds", price: 104500 },
-        { id: "ml-568", label: "568 Diamonds", price: 142500 },
-        { id: "ml-875", label: "875 Diamonds", price: 218500 },
-        { id: "ml-2010", label: "2010 Diamonds", price: 475000 },
-        { id: "ml-4830", label: "4830 Diamonds", price: 1140000 },
-        { id: "ml-wdp", label: "Weekly Diamond Pass", price: 28000, badges: ["weekly"] },
-        { id: "ml-twilight", label: "Twilight Pass", price: 150000, badges: ["pass"] },
+        { id: "ml-3", label: "3 Diamonds", price: 1171, apiCode: "ML3" },
+        { id: "ml-5", label: "5 Diamonds", price: 1423, apiCode: "ML5" },
+        { id: "ml-12", label: "12 Diamonds", price: 3323, apiCode: "ML12" },
+        { id: "ml-19", label: "19 Diamonds", price: 5223, apiCode: "ML19" },
+        { id: "ml-28", label: "28 Diamonds", price: 7600, apiCode: "ML28" },
+        { id: "ml-44", label: "44 Diamonds", price: 11400, apiCode: "ML44" },
+        { id: "ml-59", label: "59 Diamonds", price: 15200, apiCode: "ML59" },
+        { id: "ml-85", label: "85 Diamonds", price: 21850, apiCode: "ML85" },
+        { id: "ml-170", label: "170 Diamonds", price: 43700, apiCode: "ML170" },
+        { id: "ml-240", label: "240 Diamonds", price: 61750, apiCode: "ML240" },
+        { id: "ml-296", label: "296 Diamonds", price: 76000, apiCode: "ML296" },
+        { id: "ml-408", label: "408 Diamonds", price: 104500, apiCode: "ML408" },
+        { id: "ml-568", label: "568 Diamonds", price: 142500, apiCode: "ML568" },
+        { id: "ml-875", label: "875 Diamonds", price: 218500, apiCode: "ML875" },
+        { id: "ml-2010", label: "2010 Diamonds", price: 475000, apiCode: "ML2010" },
+        { id: "ml-4830", label: "4830 Diamonds", price: 1140000, apiCode: "ML4830" },
+        { id: "ml-wdp", label: "Weekly Diamond Pass", price: 28000, badges: ["weekly"], apiCode: "MLWDP" },
+        { id: "ml-twilight", label: "Twilight Pass", price: 150000, badges: ["pass"], apiCode: "MLTP" },
     ],
     "pubg": [
-        { id: "pubg-30", label: "30 UC", price: 7000 },
-        { id: "pubg-60", label: "60 UC", price: 14000 },
-        { id: "pubg-300", label: "300 + 25 UC", price: 70000 },
-        { id: "pubg-600", label: "600 + 60 UC", price: 140000 },
-        { id: "pubg-1500", label: "1500 + 300 UC", price: 350000 },
-        { id: "pubg-3000", label: "3000 + 850 UC", price: 700000 },
-        { id: "pubg-lvl20", label: "Level Up Pass Lv.20", price: 8800, badges: ["levelup"] },
-        { id: "pubg-booyah", label: "BooYah Pass", price: 50000, badges: ["pass"] },
+        { id: "pubg-30", label: "30 UC", price: 7000, apiCode: "PUBG30" },
+        { id: "pubg-60", label: "60 UC", price: 14000, apiCode: "PUBG60" },
+        { id: "pubg-300", label: "300 + 25 UC", price: 70000, apiCode: "PUBG300" },
+        { id: "pubg-600", label: "600 + 60 UC", price: 140000, apiCode: "PUBG600" },
+        { id: "pubg-1500", label: "1500 + 300 UC", price: 350000, apiCode: "PUBG1500" },
+        { id: "pubg-3000", label: "3000 + 850 UC", price: 700000, apiCode: "PUBG3000" },
+        { id: "pubg-lvl20", label: "Level Up Pass Lv.20", price: 8800, badges: ["levelup"], apiCode: "PUBGRL" },
+        { id: "pubg-booyah", label: "BooYah Pass", price: 50000, badges: ["pass"], apiCode: "PUBGBP" },
     ],
     "genshin-impact": [
-        { id: "gi-60", label: "60 Genesis Crystals", price: 14865 },
-        { id: "gi-330", label: "330 Genesis Crystals", price: 72973 },
-        { id: "gi-1090", label: "1090 Genesis Crystals", price: 229730 },
-        { id: "gi-2240", label: "2240 Genesis Crystals", price: 440541 },
-        { id: "gi-3880", label: "3880 Genesis Crystals", price: 734234 },
-        { id: "gi-8080", label: "8080 Genesis Crystals", price: 1467568 },
-        { id: "gi-welkin", label: "Blessing of the Welkin Moon", price: 72973, badges: ["welkin"] },
+        { id: "gi-60", label: "60 Genesis Crystals", price: 14865, apiCode: "GI60" },
+        { id: "gi-330", label: "330 Genesis Crystals", price: 72973, apiCode: "GI330" },
+        { id: "gi-1090", label: "1090 Genesis Crystals", price: 229730, apiCode: "GI1090" },
+        { id: "gi-2240", label: "2240 Genesis Crystals", price: 440541, apiCode: "GI2240" },
+        { id: "gi-3880", label: "3880 Genesis Crystals", price: 734234, apiCode: "GI3880" },
+        { id: "gi-8080", label: "8080 Genesis Crystals", price: 1467568, apiCode: "GI8080" },
+        { id: "gi-welkin", label: "Blessing of the Welkin Moon", price: 72973, badges: ["welkin"], apiCode: "GIWLK" },
     ],
     "honor-of-kings": [
-        { id: "hok-16", label: "16 Tokens", price: 3300 },
-        { id: "hok-80", label: "80 Tokens", price: 16500 },
-        { id: "hok-240", label: "240 Tokens", price: 51000 },
-        { id: "hok-400", label: "400 Tokens", price: 84000 },
-        { id: "hok-560", label: "560 Tokens", price: 118000 },
-        { id: "hok-830", label: "830 Tokens", price: 168000 },
-        { id: "hok-1245", label: "1245 Tokens", price: 250000 },
-        { id: "hok-2508", label: "2508 Tokens", price: 495000 },
-        { id: "hok-4180", label: "4180 Tokens", price: 824000 },
-        { id: "hok-8360", label: "8360 Tokens", price: 1648000 },
+        { id: "hok-16", label: "16 Tokens", price: 3300, apiCode: "HOK16" },
+        { id: "hok-80", label: "80 Tokens", price: 16500, apiCode: "HOK80" },
+        { id: "hok-240", label: "240 Tokens", price: 51000, apiCode: "HOK240" },
+        { id: "hok-400", label: "400 Tokens", price: 84000, apiCode: "HOK400" },
+        { id: "hok-560", label: "560 Tokens", price: 118000, apiCode: "HOK560" },
+        { id: "hok-830", label: "830 Tokens", price: 168000, apiCode: "HOK830" },
+        { id: "hok-1245", label: "1245 Tokens", price: 250000, apiCode: "HOK1245" },
+        { id: "hok-2508", label: "2508 Tokens", price: 495000, apiCode: "HOK2508" },
+        { id: "hok-4180", label: "4180 Tokens", price: 824000, apiCode: "HOK4180" },
+        { id: "hok-8360", label: "8360 Tokens", price: 1648000, apiCode: "HOK8360" },
     ],
     "roblox": [
-        { id: "rbx-50k", label: "Gift Card Rp50.000", price: 48440 },
-        { id: "rbx-65k", label: "Gift Card Rp65.000", price: 62970 },
-        { id: "rbx-100k", label: "Gift Card Rp100.000", price: 96500 },
-        { id: "rbx-200k", label: "Gift Card Rp200.000", price: 193000 },
-        { id: "rbx-500k", label: "Gift Card Rp500.000", price: 479000 },
+        { id: "rbx-50k", label: "Gift Card Rp50.000", price: 48440, apiCode: "ROBLOXGC50K" },
+        { id: "rbx-65k", label: "Gift Card Rp65.000", price: 62970, apiCode: "ROBLOXGC65K" },
+        { id: "rbx-100k", label: "Gift Card Rp100.000", price: 96500, apiCode: "ROBLOXGC100K" },
+        { id: "rbx-200k", label: "Gift Card Rp200.000", price: 193000, apiCode: "ROBLOXGC200K" },
+        { id: "rbx-500k", label: "Gift Card Rp500.000", price: 479000, apiCode: "ROBLOXGC500K" },
     ],
     "super-sus": [
-        { id: "ss-100", label: "100 Goldstar", price: 11712 },
-        { id: "ss-310", label: "310 Goldstar", price: 34234 },
-        { id: "ss-520", label: "520 Goldstar", price: 57658 },
-        { id: "ss-1060", label: "1060 Goldstar", price: 116216 },
-        { id: "ss-2180", label: "2180 Goldstar", price: 239640 },
-        { id: "ss-5600", label: "5600 Goldstar", price: 613514 },
-        { id: "ss-weekly", label: "Weekly Card", price: 13514, badges: ["weekly"] },
-        { id: "ss-monthly", label: "Monthly Card", price: 134234, badges: ["monthly"] },
-        { id: "ss-vip", label: "Super VIP Card", price: 157658, badges: ["vip"] },
+        { id: "ss-100", label: "100 Goldstar", price: 11712, apiCode: "SS100" },
+        { id: "ss-310", label: "310 Goldstar", price: 34234, apiCode: "SS310" },
+        { id: "ss-520", label: "520 Goldstar", price: 57658, apiCode: "SS520" },
+        { id: "ss-1060", label: "1060 Goldstar", price: 116216, apiCode: "SS1060" },
+        { id: "ss-2180", label: "2180 Goldstar", price: 239640, apiCode: "SS2180" },
+        { id: "ss-5600", label: "5600 Goldstar", price: 613514, apiCode: "SS5600" },
+        { id: "ss-weekly", label: "Weekly Card", price: 13514, badges: ["weekly"], apiCode: "SSWC" },
+        { id: "ss-monthly", label: "Monthly Card", price: 134234, badges: ["monthly"], apiCode: "SSMC" },
+        { id: "ss-vip", label: "Super VIP Card", price: 157658, badges: ["vip"], apiCode: "SSVIP" },
     ],
     "coc": [
-        { id: "coc-500", label: "500 Gems", price: 75299 },
-        { id: "coc-1200", label: "1200 Gems", price: 150499 },
-        { id: "coc-2500", label: "2500 Gems", price: 300999 },
-        { id: "coc-6500", label: "6500 Gems", price: 752399 },
-        { id: "coc-14000", label: "14000 Gems", price: 1454599 },
+        { id: "coc-500", label: "500 Gems", price: 75299, apiCode: "COC500" },
+        { id: "coc-1200", label: "1200 Gems", price: 150499, apiCode: "COC1200" },
+        { id: "coc-2500", label: "2500 Gems", price: 300999, apiCode: "COC2500" },
+        { id: "coc-6500", label: "6500 Gems", price: 752399, apiCode: "COC6500" },
+        { id: "coc-14000", label: "14000 Gems", price: 1454599, apiCode: "COC14000" },
     ],
     "blood-strike": [
-        { id: "bs-100", label: "100 + 5 Gold", price: 11999 },
-        { id: "bs-300", label: "300 + 20 Gold", price: 34999 },
-        { id: "bs-500", label: "500 + 40 Gold", price: 54999 },
-        { id: "bs-1000", label: "1000 + 100 Gold", price: 110000 },
-        { id: "bs-2000", label: "2000 + 260 Gold", price: 219999 },
-        { id: "bs-5000", label: "5000 + 800 Gold", price: 549999 },
+        { id: "bs-100", label: "100 + 5 Gold", price: 11999, apiCode: "BS100" },
+        { id: "bs-300", label: "300 + 20 Gold", price: 34999, apiCode: "BS300" },
+        { id: "bs-500", label: "500 + 40 Gold", price: 54999, apiCode: "BS500" },
+        { id: "bs-1000", label: "1000 + 100 Gold", price: 110000, apiCode: "BS1000" },
+        { id: "bs-2000", label: "2000 + 260 Gold", price: 219999, apiCode: "BS2000" },
+        { id: "bs-5000", label: "5000 + 800 Gold", price: 549999, apiCode: "BS5000" },
     ],
     "eggy-party": [
-        { id: "eggy-weekly", label: "Weekly Egg Coin Pack", price: 14799, badges: ["weekly"] },
-        { id: "eggy-yoyo", label: "Yoyo Membership", price: 27799, badges: ["member"] },
-        { id: "eggy-shiny", label: "Shiny Coin Jar", price: 42699, badges: ["hot"] },
-        { id: "eggy-aquarius", label: "Energetic Aquarius", price: 14499, badges: ["new"] },
-        { id: "eggy-capricorn", label: "Obsidian Capricorn", price: 14399, badges: ["new"] },
-        { id: "eggy-libra", label: "Elegant Libra", price: 14499, badges: ["new"] },
-        { id: "eggy-sagittarius", label: "Wandering Sagittarius", price: 14399, badges: ["new"] },
-        { id: "eggy-scorpio", label: "Mysterious Scorpio", price: 14399, badges: ["new"] },
-        { id: "eggy-spring-small", label: "Spring Egg Coin Pack Small", price: 14399, badges: ["sale"] },
-        { id: "eggy-spring-big", label: "Spring Egg Coin Pack Big", price: 163399, badges: ["sale"] },
-        { id: "eggy-10", label: "10 Eggy Coins", price: 2199 },
-        { id: "eggy-60", label: "60 + 3 Bonus", price: 13999 },
-        { id: "eggy-120", label: "120 + 6 Bonus", price: 26999 },
-        { id: "eggy-300", label: "300 + 24 Bonus", price: 68499 },
-        { id: "eggy-600", label: "600 + 57 Bonus", price: 138599 },
-        { id: "eggy-1250", label: "1250 + 144 Bonus", price: 251099 },
-        { id: "eggy-1880", label: "1880 + 216 Bonus", price: 378099 },
-        { id: "eggy-3180", label: "3180 + 423 Bonus", price: 630199 },
-        { id: "eggy-6480", label: "6480 + 903 Bonus", price: 1244999 },
+        { id: "eggy-weekly", label: "Weekly Egg Coin Pack", price: 14799, badges: ["weekly"], apiCode: "EPWCP" },
+        { id: "eggy-yoyo", label: "Yoyo Membership", price: 27799, badges: ["member"], apiCode: "EPYM" },
+        { id: "eggy-shiny", label: "Shiny Coin Jar", price: 42699, badges: ["hot"], apiCode: "EPSCJ" },
+        { id: "eggy-aquarius", label: "Energetic Aquarius", price: 14499, badges: ["new"], apiCode: "EPEA" },
+        { id: "eggy-capricorn", label: "Obsidian Capricorn", price: 14399, badges: ["new"], apiCode: "EPOC" },
+        { id: "eggy-libra", label: "Elegant Libra", price: 14499, badges: ["new"], apiCode: "EPEL" },
+        { id: "eggy-sagittarius", label: "Wandering Sagittarius", price: 14399, badges: ["new"], apiCode: "EPWS" },
+        { id: "eggy-scorpio", label: "Mysterious Scorpio", price: 14399, badges: ["new"], apiCode: "EPMS" },
+        { id: "eggy-spring-small", label: "Spring Egg Coin Pack Small", price: 14399, badges: ["sale"], apiCode: "EPSES" },
+        { id: "eggy-spring-big", label: "Spring Egg Coin Pack Big", price: 163399, badges: ["sale"], apiCode: "EPSEB" },
+        { id: "eggy-10", label: "10 Eggy Coins", price: 2199, apiCode: "EP10" },
+        { id: "eggy-60", label: "60 + 3 Bonus", price: 13999, apiCode: "EP60" },
+        { id: "eggy-120", label: "120 + 6 Bonus", price: 26999, apiCode: "EP120" },
+        { id: "eggy-300", label: "300 + 24 Bonus", price: 68499, apiCode: "EP300" },
+        { id: "eggy-600", label: "600 + 57 Bonus", price: 138599, apiCode: "EP600" },
+        { id: "eggy-1250", label: "1250 + 144 Bonus", price: 251099, apiCode: "EP1250" },
+        { id: "eggy-1880", label: "1880 + 216 Bonus", price: 378099, apiCode: "EP1880" },
+        { id: "eggy-3180", label: "3180 + 423 Bonus", price: 630199, apiCode: "EP3180" },
+        { id: "eggy-6480", label: "6480 + 903 Bonus", price: 1244999, apiCode: "EP6480" },
     ],
     "call-of-duty": [
-        { id: "codm-31", label: "31 CP", price: 4899 },
-        { id: "codm-63", label: "63 CP", price: 9699 },
-        { id: "codm-128", label: "128 CP", price: 19399 },
-        { id: "codm-321", label: "321 CP", price: 48499 },
-        { id: "codm-645", label: "645 CP", price: 99999 },
-        { id: "codm-800", label: "800 CP", price: 119999 },
-        { id: "codm-1373", label: "1373 CP", price: 193999, badges: ["hot"] },
-        { id: "codm-2060", label: "2060 CP", price: 290999 },
-        { id: "codm-2750", label: "2750 CP", price: 379999 },
-        { id: "codm-3564", label: "3564 CP", price: 484999 },
-        { id: "codm-5619", label: "5619 CP", price: 729999, badges: ["sale"] },
-        { id: "codm-7656", label: "7656 CP", price: 969999 },
-        { id: "codm-15312", label: "15312 CP", price: 1999999 },
-        { id: "codm-38280", label: "38280 CP", price: 4999999 },
-        { id: "codm-76560", label: "76560 CP", price: 9999999 },
+        { id: "codm-31", label: "31 CP", price: 4899, apiCode: "CODM31" },
+        { id: "codm-63", label: "63 CP", price: 9699, apiCode: "CODM63" },
+        { id: "codm-128", label: "128 CP", price: 19399, apiCode: "CODM128" },
+        { id: "codm-321", label: "321 CP", price: 48499, apiCode: "CODM321" },
+        { id: "codm-645", label: "645 CP", price: 99999, apiCode: "CODM645" },
+        { id: "codm-800", label: "800 CP", price: 119999, apiCode: "CODM800" },
+        { id: "codm-1373", label: "1373 CP", price: 193999, badges: ["hot"], apiCode: "CODM1373" },
+        { id: "codm-2060", label: "2060 CP", price: 290999, apiCode: "CODM2060" },
+        { id: "codm-2750", label: "2750 CP", price: 379999, apiCode: "CODM2750" },
+        { id: "codm-3564", label: "3564 CP", price: 484999, apiCode: "CODM3564" },
+        { id: "codm-5619", label: "5619 CP", price: 729999, badges: ["sale"], apiCode: "CODM5619" },
+        { id: "codm-7656", label: "7656 CP", price: 969999, apiCode: "CODM7656" },
+        { id: "codm-15312", label: "15312 CP", price: 1999999, apiCode: "CODM15312" },
+        { id: "codm-38280", label: "38280 CP", price: 4999999, apiCode: "CODM38280" },
+        { id: "codm-76560", label: "76560 CP", price: 9999999, apiCode: "CODM76560" },
     ],
     "valorant": [
-        { id: "val-475", label: "475 Points", price: 54349 },
-        { id: "val-1000", label: "1000 Points", price: 108799 },
-        { id: "val-2050", label: "2050 Points", price: 217499, badges: ["hot"] },
-        { id: "val-3650", label: "3650 Points", price: 372199 },
-        { id: "val-5350", label: "5350 Points", price: 544999 },
-        { id: "val-11000", label: "11000 Points", price: 1089999, badges: ["hot"] },
+        { id: "val-475", label: "475 Points", price: 54349, apiCode: "VAL475" },
+        { id: "val-1000", label: "1000 Points", price: 108799, apiCode: "VAL1000" },
+        { id: "val-2050", label: "2050 Points", price: 217499, badges: ["hot"], apiCode: "VAL2050" },
+        { id: "val-3650", label: "3650 Points", price: 372199, apiCode: "VAL3650" },
+        { id: "val-5350", label: "5350 Points", price: 544999, apiCode: "VAL5350" },
+        { id: "val-11000", label: "11000 Points", price: 1089999, badges: ["hot"], apiCode: "VAL11000" },
     ],
     "garena-delta": [
-        { id: "delta-tide", label: "Tide Supplies", price: 8499, badges: ["new"] },
-        { id: "delta-adv", label: "Tide Supplies Advanced", price: 24499, badges: ["new"] },
-        { id: "delta-genesis", label: "Black Hawk Down Genesis", price: 41999, badges: ["new"] },
-        { id: "delta-redefine", label: "Black Hawk Down Redefine", price: 84999, badges: ["new"] },
-        { id: "delta-18", label: "18 + 1", price: 4999 },
-        { id: "delta-30", label: "30 + 2", price: 7499 },
-        { id: "delta-60", label: "60 + 3", price: 14999, badges: ["hot"] },
-        { id: "delta-300", label: "300 + 36", price: 74999 },
-        { id: "delta-420", label: "420 + 62", price: 99999 },
-        { id: "delta-680", label: "680 + 105", price: 139999 },
-        { id: "delta-1280", label: "1280 + 264", price: 279999 },
-        { id: "delta-1680", label: "1680 + 385", price: 349999 },
-        { id: "delta-3280", label: "3280 + 834", price: 699999 },
-        { id: "delta-6480", label: "6480 + 1944", price: 1399999, badges: ["sale"] },
-        { id: "delta-12960", label: "12960 + 3888", price: 2799999 },
-        { id: "delta-19440", label: "19440 + 5832", price: 4199999 },
+        { id: "delta-tide", label: "Tide Supplies", price: 8499, badges: ["new"], apiCode: "GDT" },
+        { id: "delta-adv", label: "Tide Supplies Advanced", price: 24499, badges: ["new"], apiCode: "GDTA" },
+        { id: "delta-genesis", label: "Black Hawk Down Genesis", price: 41999, badges: ["new"], apiCode: "GDBHG" },
+        { id: "delta-redefine", label: "Black Hawk Down Redefine", price: 84999, badges: ["new"], apiCode: "GDBHR" },
+        { id: "delta-18", label: "18 + 1", price: 4999, apiCode: "GD18" },
+        { id: "delta-30", label: "30 + 2", price: 7499, apiCode: "GD30" },
+        { id: "delta-60", label: "60 + 3", price: 14999, badges: ["hot"], apiCode: "GD60" },
+        { id: "delta-300", label: "300 + 36", price: 74999, apiCode: "GD300" },
+        { id: "delta-420", label: "420 + 62", price: 99999, apiCode: "GD420" },
+        { id: "delta-680", label: "680 + 105", price: 139999, apiCode: "GD680" },
+        { id: "delta-1280", label: "1280 + 264", price: 279999, apiCode: "GD1280" },
+        { id: "delta-1680", label: "1680 + 385", price: 349999, apiCode: "GD1680" },
+        { id: "delta-3280", label: "3280 + 834", price: 699999, apiCode: "GD3280" },
+        { id: "delta-6480", label: "6480 + 1944", price: 1399999, badges: ["sale"], apiCode: "GD6480" },
+        { id: "delta-12960", label: "12960 + 3888", price: 2799999, apiCode: "GD12960" },
+        { id: "delta-19440", label: "19440 + 5832", price: 4199999, apiCode: "GD19440" },
     ],
     "garena-undawn": [
-        { id: "undawn-bulanan", label: "Kartu Bulanan", price: 47299, badges: ["member"] },
-        { id: "undawn-growth", label: "Growth Fund", price: 94799, badges: ["hot"] },
-        { id: "undawn-glory", label: "Glory Pass Premium", price: 142299, badges: ["pass"] },
-        { id: "undawn-elite", label: "Elite Fund Rebate LV 80", price: 126999, badges: ["new"] },
-        { id: "undawn-ace", label: "Ace Fund", price: 143999, badges: ["hot"] },
-        { id: "undawn-rc80", label: "RC 80", price: 14599 },
-        { id: "undawn-rc250", label: "RC 250", price: 43699 },
-        { id: "undawn-rc450", label: "RC 450", price: 72799 },
-        { id: "undawn-rc920", label: "RC 920", price: 144599 },
-        { id: "undawn-rc1850", label: "RC 1850", price: 290099 },
-        { id: "undawn-rc2800", label: "RC 2800", price: 435599 },
-        { id: "undawn-rc4750", label: "RC 4750", price: 726599 },
-        { id: "undawn-rc9600", label: "RC 9600", price: 1454099, badges: ["sale"] },
-        { id: "undawn-rc33000", label: "RC 33.000", price: 4849999 },
-        { id: "undawn-rc66500", label: "RC 66.500", price: 9699999 },
-        { id: "undawn-mingguan", label: "Kartu Mingguan", price: 28599, badges: ["weekly"] },
-        { id: "undawn-glory-s7", label: "Glory Pass Premium S7", price: 143999, badges: ["pass"] },
-        { id: "undawn-glory-s16", label: "Glory Pass Premium S16", price: 143999, badges: ["pass"] },
-        { id: "undawn-prep", label: "Quick Battle Prep", price: 94379, badges: ["sale"] },
+        { id: "undawn-bulanan", label: "Kartu Bulanan", price: 47299, badges: ["member"], apiCode: "GUKB" },
+        { id: "undawn-growth", label: "Growth Fund", price: 94799, badges: ["hot"], apiCode: "GUGF" },
+        { id: "undawn-glory", label: "Glory Pass Premium", price: 142299, badges: ["pass"], apiCode: "GUGP" },
+        { id: "undawn-elite", label: "Elite Fund Rebate LV 80", price: 126999, badges: ["new"], apiCode: "GUEF" },
+        { id: "undawn-ace", label: "Ace Fund", price: 143999, badges: ["hot"], apiCode: "GUAF" },
+        { id: "undawn-rc80", label: "RC 80", price: 14599, apiCode: "GURC80" },
+        { id: "undawn-rc250", label: "RC 250", price: 43699, apiCode: "GURC250" },
+        { id: "undawn-rc450", label: "RC 450", price: 72799, apiCode: "GURC450" },
+        { id: "undawn-rc920", label: "RC 920", price: 144599, apiCode: "GURC920" },
+        { id: "undawn-rc1850", label: "RC 1850", price: 290099, apiCode: "GURC1850" },
+        { id: "undawn-rc2800", label: "RC 2800", price: 435599, apiCode: "GURC2800" },
+        { id: "undawn-rc4750", label: "RC 4750", price: 726599, apiCode: "GURC4750" },
+        { id: "undawn-rc9600", label: "RC 9600", price: 1454099, badges: ["sale"], apiCode: "GURC9600" },
+        { id: "undawn-rc33000", label: "RC 33.000", price: 4849999, apiCode: "GURC33000" },
+        { id: "undawn-rc66500", label: "RC 66.500", price: 9699999, apiCode: "GURC66500" },
+        { id: "undawn-mingguan", label: "Kartu Mingguan", price: 28599, badges: ["weekly"], apiCode: "GUKM" },
+        { id: "undawn-glory-s7", label: "Glory Pass Premium S7", price: 143999, badges: ["pass"], apiCode: "GUGPS7" },
+        { id: "undawn-glory-s16", label: "Glory Pass Premium S16", price: 143999, badges: ["pass"], apiCode: "GUGPS16" },
+        { id: "undawn-prep", label: "Quick Battle Prep", price: 94379, badges: ["sale"], apiCode: "GUQBP" },
     ]
 };
+
+const PAYMENTS = [
+    { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", qr: "https://i.ibb.co/680pD67/walzshop-logo.png" },
+    { id: "krom", name: "Bank Krom", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", number: "770072009565", holder: "Walzshop ID" },
+    { id: "dana", name: "Dana", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", number: "083139243389", holder: "Anom" },
+    { id: "gopay", name: "Gopay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", number: "082298902274", holder: "Anom" }
+];
+
 
 // --- Variable untuk menyimpan harga asli produk dan status voucher
 let originalPrices = {};
@@ -302,7 +310,7 @@ function updateSummary() {
     
     const isProductSelected = !!selectedProductCard;
     const isPaymentSelected = !!selectedPaymentCard;
-    const isIdValid = userIdInput && userIdInput.value.length > 0;
+    const isIdValid = userIdInput && userIdInput.value.length > 0 && idCheckResult.textContent.includes('Username:');
     const isWhatsappValid = whatsappInput && window.iti.isValidNumber();
 
     let isServerIdValid = true;
@@ -450,9 +458,15 @@ function setupGamePage() {
     });
 
     // Event listeners for inputs to update summary
-    userIdInput.addEventListener('input', updateSummary);
+    userIdInput.addEventListener('input', () => {
+        idCheckResult.textContent = ''; // Reset status
+        updateSummary();
+    });
     if (game.needsServerId) {
-        document.getElementById('server-id').addEventListener('input', updateSummary);
+        document.getElementById('server-id').addEventListener('input', () => {
+            idCheckResult.textContent = ''; // Reset status
+            updateSummary();
+        });
     }
     whatsappInput.addEventListener('input', updateSummary);
     
@@ -473,9 +487,9 @@ function setupGamePage() {
         }
     });
 
-    // FUNGSI BARU: Event listener untuk tombol Cek ID
+    // Perbarui fungsi checkIdBtn
     checkIdBtn.addEventListener('click', () => {
-        checkGameId(game.apiCode, userIdInput.value);
+        checkGameId(game.apiCode, userIdInput.value, game.needsServerId ? document.getElementById('server-id').value : null);
     });
 
     document.getElementById('confirm-button').addEventListener('click', () => {
@@ -498,23 +512,24 @@ function setupGamePage() {
     });
 }
 
-// FUNGSI BARU: Fungsi untuk memeriksa ID Game
-async function checkGameId(gameCode, userId) {
+// FUNGSI UNTUK CEK ID GAME (MENGGUNAKAN API APIGAMES.ID)
+const API_MERCHANT_ID = "M250907JZZY9386TE";
+const API_SECRET_KEY = "2cbefb6a1e0a229d12c318747c59e36d0c6a38827e5984c077ec143a26471986";
+
+async function checkGameId(gameCode, userId, serverId = null) {
     const idCheckResult = document.getElementById('id-check-result');
     const checkIdBtn = document.getElementById('check-id-btn');
     
-    // Validasi input sederhana
     if (!userId || userId.length < 3) {
         idCheckResult.textContent = "ID tidak valid.";
         idCheckResult.style.color = "var(--price-color)";
         return;
     }
 
-    // KREDENSIAL API APIGAMES.ID ANDA
-    const merchantId = "M250907JZZY9386TE";
-    const signature = "30c48fa4678c8a429ad7978ebada54eb";
-    const apiURL = `https://v1.apigames.id/merchant/${merchantId}/cek-username/${gameCode}?user_id=${userId}&signature=${signature}`;
-
+    const signature = API_MERCHANT_ID + API_SECRET_KEY;
+    
+    const apiURL = `https://v1.apigames.id/v1/legit/check-username?user_id=${userId}&game_code=${gameCode}&merchant_id=${API_MERCHANT_ID}&signature=${signature}`;
+    
     idCheckResult.textContent = "Memeriksa...";
     idCheckResult.style.color = "var(--text-color-dark)";
     checkIdBtn.disabled = true;
@@ -522,12 +537,12 @@ async function checkGameId(gameCode, userId) {
     try {
         const response = await fetch(apiURL);
         const data = await response.json();
-
-        if (data.status === 1 && data.data.is_valid) {
+        
+        if (data.status === 1) {
             idCheckResult.textContent = `Username: ${data.data.username}`;
             idCheckResult.style.color = "lightgreen";
         } else {
-            idCheckResult.textContent = "ID tidak ditemukan atau tidak valid.";
+            idCheckResult.textContent = `ID tidak ditemukan. Pesan: ${data.data.desc}`;
             idCheckResult.style.color = "var(--price-color)";
         }
     } catch (error) {
@@ -536,14 +551,13 @@ async function checkGameId(gameCode, userId) {
         idCheckResult.style.color = "var(--price-color)";
     } finally {
         checkIdBtn.disabled = false;
+        updateSummary();
     }
 }
 
 // --- Logika Halaman Cart ---
-// Tambahkan kredensial API Anda di sini. Ini hanya simulasi, dalam produksi HARUS disimpan di sisi server.
-const API_KEY = "M250907JZZY9386TE";
-const TENANT_ID = "M250907JZZY9386TE";
-const DOMAIN = "30c48fa4678c8a429ad7978ebada54eb";
+const API_MEMBER_CODE = "M250907QGUD5211YY";
+const API_SECRET = "0930f861568bf8d3b029846b45f7fe0adf7e7e2dd61fa6f6a18e0557d3c580ba";
 
 let userRating = 0;
 let reviewText = "";
@@ -636,7 +650,8 @@ function setupCartPage() {
             userRating = document.querySelectorAll('.rating-stars .fa-star.rated').length;
             reviewText = reviewTextarea.value;
             
-            sendReviewToAPI(userId, game.name, userRating, reviewText);
+            // Panggil fungsi untuk mengirim transaksi ke Tokovoucher
+            sendTransactionToAPI(product.apiCode, userId, serverId, whatsappNumber);
         });
 
         // Event listener untuk tombol tutup modal
@@ -670,60 +685,56 @@ function setupCartPage() {
     }
 }
 
-// FUNGSI BARU: Mengirim ulasan ke API
-async function sendReviewToAPI(userId, gameName, rating, review) {
-    // URL API Anda. Ganti dengan endpoint yang sesungguhnya.
-    const apiUrl = "https://your-backend-server.com/api/submit-review"; 
-    
-    // Data yang akan dikirim ke API
-    const dataToSend = {
-        api_key: API_KEY, // Ini hanya untuk simulasi, jangan lakukan di produksi!
-        tenant_id: TENANT_ID,
-        domain: DOMAIN,
-        player_id: userId,
-        game_name: gameName,
-        rating: rating,
-        review: review,
-        timestamp: new Date().toISOString()
+// FUNGSI UNTUK MENGIRIM TRANSAKSI (MENGGUNAKAN API TOKO VOUCHER)
+const API_MEMBER_CODE = "M250907QGUD5211YY";
+const API_SECRET = "0930f861568bf8d3b029846b45f7fe0adf7e7e2dd61fa6f6a18e0557d3c580ba";
+
+async function sendTransactionToAPI(productApiCode, userId, serverId, whatsappNumber) {
+    const apiURL = "https://api.tokovoucher.net/v1/transaksi";
+
+    // Buat ref_id unik untuk setiap transaksi
+    const refId = `WALZ-${Date.now()}`;
+
+    // Sesuaikan parameter sesuai dengan dokumentasi Tokovoucher
+    const params = {
+        ref_id: refId,
+        produk: productApiCode,
+        tujuan: userId,
+        secret: API_SECRET,
+        member_code: API_MEMBER_CODE,
+        // server_id hanya dikirim jika ada
+        ...(serverId && { server_id: serverId }) 
     };
     
+    const queryString = new URLSearchParams(params).toString();
+    const finalApiUrl = `${apiURL}?${queryString}`;
+
     try {
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                // Anda juga bisa menambahkan API key di header untuk keamanan tambahan
-                // 'Authorization': `Bearer ${API_KEY}`
-            },
-            body: JSON.stringify(dataToSend)
-        });
+        const response = await fetch(finalApiUrl);
+        const data = await response.json();
 
-        const result = await response.json();
-
-        if (response.ok) {
-            showNotification('Ulasan berhasil dikirim!', true);
-            // Lanjutkan ke WhatsApp setelah sukses
-            redirectToWhatsApp();
+        // Cek respons dari Tokovoucher
+        if (data.status === true) {
+            showNotification('Transaksi berhasil diproses!', true);
+            redirectToWhatsApp(data.transaksi.transaksi_id, whatsappNumber);
         } else {
-            // Jika ada error dari API
-            showNotification(`Gagal mengirim ulasan: ${result.message || 'Terjadi kesalahan.'}`, false);
+            showNotification(`Gagal: ${data.transaksi.keterangan || 'Transaksi gagal diproses.'}`, false);
         }
+
     } catch (error) {
-        // Jika ada masalah koneksi
-        showNotification('Gagal terhubung ke server. Silakan coba lagi.', false);
-        console.error('Error:', error);
+        console.error("Error fetching API:", error);
+        showNotification("Gagal terhubung ke server.", false);
     }
 }
 
-// FUNGSI BARU: Mengarahkan pengguna ke WhatsApp
-function redirectToWhatsApp() {
+// FUNGSI UNTUK MENGARAHKAN PENGGUNA KE WHATSAPP
+function redirectToWhatsApp(transaksiId, whatsappNumber) {
     const params = new URLSearchParams(window.location.search);
     const gameKey = params.get('game_key');
     const productId = params.get('product_id');
     const paymentId = params.get('payment_id');
     const userId = params.get('user_id');
     const serverId = params.get('server_id');
-    const whatsappNumber = params.get('whatsapp_number');
     const voucherApplied = params.get('voucher_applied') === 'true';
     
     const game = GAMES.find(g => g.key === gameKey);
@@ -734,7 +745,7 @@ function redirectToWhatsApp() {
     const finalPrice = voucherApplied ? Math.max(0, product.price - voucherDiscount) : product.price;
 
     const adminWhatsapp = '6282298902274'; // GANTI dengan nomor WhatsApp Anda
-    const message = `Halo Admin, saya ingin konfirmasi pesanan saya.\n\n*Detail Pesanan:*\nGame: ${game.name}\nProduk: ${product.label}\nPlayer ID: ${userId}${serverId ? ` (${serverId})` : ''}\nMetode Pembayaran: ${payment.name}\nTotal: ${formatRupiah(finalPrice)}\n\nNomor WA saya: ${whatsappNumber}\n\nMohon bantuannya untuk diproses, terima kasih.`;
+    const message = `Halo Admin, saya ingin konfirmasi pesanan saya.\n\n*Detail Pesanan:*\nNo. Transaksi: ${transaksiId}\nGame: ${game.name}\nProduk: ${product.label}\nPlayer ID: ${userId}${serverId ? ` (${serverId})` : ''}\nMetode Pembayaran: ${payment.name}\nTotal: ${formatRupiah(finalPrice)}\n\nNomor WA saya: ${whatsappNumber}\n\nMohon bantuannya untuk diproses, terima kasih.`;
     const encodedMessage = encodeURIComponent(message);
     
     window.location.href = `https://wa.me/${adminWhatsapp}?text=${encodedMessage}`;
