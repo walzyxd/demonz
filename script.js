@@ -21,7 +21,7 @@ const PAYMENTS = [
     { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", qr: "https://files.catbox.moe/pa0iwo.png" },
     { id: "krom", name: "Bank Krom", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", number: "770072009565", holder: "Walzshop ID" },
     { id: "dana", name: "Dana", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", number: "083139243389", holder: "Anom" },
-    { id: "gopay", name: "Gopay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a965-73b301a5ba29.jpg", number: "082298902274", holder: "Anom" }
+    { id: "gopay", name: "Gopay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a964-73b301a5ba29.jpg", number: "082298902274", holder: "Anom" }
 ];
 
 const PRODUCTS = {
@@ -248,6 +248,89 @@ const PRODUCTS = {
     ]
 };
 
+const PULSA_PRODUCTS = {
+    all: [
+        { id: "pulsa-5k", label: "Pulsa 5K All Operator", price: 6000, operator: 'all' },
+        { id: "pulsa-10k", label: "Pulsa 10K All Operator", price: 11000, operator: 'all' },
+        { id: "pulsa-15k", label: "Pulsa 15K All Operator", price: 16000, operator: 'all' },
+        { id: "pulsa-20k", label: "Pulsa 20K All Operator", price: 21000, operator: 'all' },
+        { id: "pulsa-25k", label: "Pulsa 25K All Operator", price: 26000, operator: 'all' },
+        { id: "pulsa-50k", label: "Pulsa 50K All Operator", price: 51000, operator: 'all' },
+        { id: "pulsa-100k", label: "Pulsa 100K All Operator", price: 101000, operator: 'all' },
+    ],
+    telkomsel: [
+        { id: "telkomsel-5k", label: "Pulsa Telkomsel 5K", price: 5500, operator: 'telkomsel' },
+        { id: "telkomsel-10k", label: "Pulsa Telkomsel 10K", price: 10500, operator: 'telkomsel' },
+        { id: "telkomsel-20k", label: "Pulsa Telkomsel 20K", price: 20000, operator: 'telkomsel' },
+        { id: "telkomsel-25k", label: "Pulsa Telkomsel 25K", price: 25000, operator: 'telkomsel' },
+        { id: "telkomsel-50k", label: "Pulsa Telkomsel 50K", price: 50000, operator: 'telkomsel' },
+        { id: "tsel-data-1gb", label: "Telkomsel Data 1GB", price: 15000, operator: 'telkomsel' },
+        { id: "tsel-data-2gb", label: "Telkomsel Data 2GB", price: 25000, operator: 'telkomsel' },
+        { id: "tsel-data-5gb", label: "Telkomsel Data 5GB", price: 45000, operator: 'telkomsel' },
+    ],
+    indosat: [
+        { id: "indosat-5k", label: "Pulsa Indosat 5K", price: 5600, operator: 'indosat' },
+        { id: "indosat-10k", label: "Pulsa Indosat 10K", price: 10700, operator: 'indosat' },
+        { id: "indosat-20k", label: "Pulsa Indosat 20K", price: 20500, operator: 'indosat' },
+        { id: "indosat-25k", label: "Pulsa Indosat 25K", price: 25500, operator: 'indosat' },
+        { id: "indosat-50k", label: "Pulsa Indosat 50K", price: 50500, operator: 'indosat' },
+        { id: "isat-data-1gb", label: "Indosat Data 1GB", price: 14000, operator: 'indosat' },
+        { id: "isat-data-2gb", label: "Indosat Data 2GB", price: 22000, operator: 'indosat' },
+        { id: "isat-data-5gb", label: "Indosat Data 5GB", price: 40000, operator: 'indosat' },
+    ],
+    xl: [
+        { id: "xl-5k", label: "Pulsa XL 5K", price: 5700, operator: 'xl' },
+        { id: "xl-10k", label: "Pulsa XL 10K", price: 10800, operator: 'xl' },
+        { id: "xl-20k", label: "Pulsa XL 20K", price: 20700, operator: 'xl' },
+        { id: "xl-25k", label: "Pulsa XL 25K", price: 25700, operator: 'xl' },
+        { id: "xl-50k", label: "Pulsa XL 50K", price: 50800, operator: 'xl' },
+        { id: "xl-data-1gb", label: "XL Data 1GB", price: 16000, operator: 'xl' },
+        { id: "xl-data-2gb", label: "XL Data 2GB", price: 26000, operator: 'xl' },
+        { id: "xl-data-5gb", label: "XL Data 5GB", price: 48000, operator: 'xl' },
+    ],
+    axis: [
+        { id: "axis-5k", label: "Pulsa Axis 5K", price: 5750, operator: 'axis' },
+        { id: "axis-10k", label: "Pulsa Axis 10K", price: 10900, operator: 'axis' },
+        { id: "axis-20k", label: "Pulsa Axis 20K", price: 20800, operator: 'axis' },
+        { id: "axis-25k", label: "Pulsa Axis 25K", price: 25800, operator: 'axis' },
+        { id: "axis-50k", label: "Pulsa Axis 50K", price: 50900, operator: 'axis' },
+        { id: "axis-data-1gb", label: "Axis Data 1GB", price: 15500, operator: 'axis' },
+        { id: "axis-data-2gb", label: "Axis Data 2GB", price: 25500, operator: 'axis' },
+        { id: "axis-data-5gb", label: "Axis Data 5GB", price: 46000, operator: 'axis' },
+    ],
+    tri: [
+        { id: "tri-5k", label: "Pulsa Tri 5K", price: 5800, operator: 'tri' },
+        { id: "tri-10k", label: "Pulsa Tri 10K", price: 10950, operator: 'tri' },
+        { id: "tri-20k", label: "Pulsa Tri 20K", price: 20900, operator: 'tri' },
+        { id: "tri-25k", label: "Pulsa Tri 25K", price: 25900, operator: 'tri' },
+        { id: "tri-50k", label: "Pulsa Tri 50K", price: 51000, operator: 'tri' },
+        { id: "tri-data-1gb", label: "Tri Data 1GB", price: 14500, operator: 'tri' },
+        { id: "tri-data-2gb", label: "Tri Data 2GB", price: 23000, operator: 'tri' },
+        { id: "tri-data-5gb", label: "Tri Data 5GB", price: 42000, operator: 'tri' },
+    ],
+    smartfren: [
+        { id: "smartfren-5k", label: "Pulsa Smartfren 5K", price: 5900, operator: 'smartfren' },
+        { id: "smartfren-10k", label: "Pulsa Smartfren 10K", price: 11000, operator: 'smartfren' },
+        { id: "smartfren-20k", label: "Pulsa Smartfren 20K", price: 21000, operator: 'smartfren' },
+        { id: "smartfren-25k", label: "Pulsa Smartfren 25K", price: 26000, operator: 'smartfren' },
+        { id: "smartfren-50k", label: "Pulsa Smartfren 50K", price: 51000, operator: 'smartfren' },
+    ]
+};
+
+const PTERODACTYL_PRODUCTS = [
+    { id: "pter-1gb", label: "Panel Basic 1GB RAM", price: 1000 },
+    { id: "pter-2gb", label: "Panel Standar 2GB RAM", price: 2000 },
+    { id: "pter-3gb", label: "Panel Pro 3GB RAM", price: 3000 },
+    { id: "pter-4gb", label: "Panel Pro 4GB RAM", price: 4000 },
+    { id: "pter-5gb", label: "Panel Pro 5GB RAM", price: 5000 },
+    { id: "pter-6gb", label: "Panel Pro 6GB RAM", price: 6000 },
+    { id: "pter-7gb", label: "Panel Pro 7GB RAM", price: 7000 },
+    { id: "pter-8gb", label: "Panel Pro 8GB RAM", price: 8000 },
+    { id: "pter-9gb", label: "Panel Pro 9GB RAM", price: 9000 },
+    { id: "pter-10gb", label: "Panel Pro 10GB RAM", price: 10000 },
+    { id: "pter-unlimited", label: "Panel Unlimited", price: 12000 },
+];
+
 const BANNERS = [
     'https://files.catbox.moe/j20bgi.jpg',
     'https://files.catbox.moe/8g41jj.jpg',
@@ -258,7 +341,7 @@ const BANNERS = [
 let cart = [];
 let selectedGame = null;
 let selectedPayment = null;
-let selectedProduct = null; // Menambahkan state untuk produk yang dipilih
+let selectedProduct = null;
 let isVoucherApplied = false;
 const VOUCHER_CODE = "WALZPROMO";
 const VOUCHER_DISCOUNT = 1000;
@@ -402,13 +485,26 @@ function renderGamePage() {
             serverIdContainer.innerHTML = '';
         }
     }
-    
-    // Render products with select effect
+
+    const buyButton = document.getElementById('add-to-cart-btn');
+    if (buyButton) {
+        buyButton.disabled = true; // Nonaktifkan tombol secara default
+        buyButton.addEventListener('click', () => {
+            if (selectedProduct) {
+                addToCart(selectedProduct, game.name, game.key);
+                // Clear selection after adding to cart
+                selectedProduct = null;
+                renderGamePage(); // Re-render to clear selection
+            }
+        });
+    }
+
+    // Render products with selectable effect
     const productListContainer = document.getElementById('product-list');
     if (productListContainer) {
         productListContainer.innerHTML = '';
         products.forEach(product => {
-            const finalPrice = product.price; // Harga produk tidak berubah
+            const finalPrice = product.price; // Harga tidak berubah di halaman game
             
             let badgeHtml = '';
             if (product.badges && product.badges.length > 0) {
@@ -420,16 +516,14 @@ function renderGamePage() {
 
             const card = document.createElement('div');
             card.classList.add('option-card', 'product');
-            card.setAttribute('data-id', product.id);
             if (selectedProduct && selectedProduct.id === product.id) {
                 card.classList.add('selected');
             }
+            card.setAttribute('data-id', product.id);
             card.innerHTML = `
                 ${badgeHtml}
                 <div class="label">${product.label}</div>
-                <div class="price-group">
-                    <div class="price">${formatRupiah(finalPrice)}</div>
-                </div>
+                <div class="price-group"><div class="price">${formatRupiah(finalPrice)}</div></div>
             `;
             
             card.addEventListener('click', () => {
@@ -439,24 +533,22 @@ function renderGamePage() {
             productListContainer.appendChild(card);
         });
     }
-
-    // Update checkout button state
-    const checkoutBtn = document.getElementById('cart-checkout-btn');
-    if (checkoutBtn) {
-        checkoutBtn.disabled = !selectedProduct;
-    }
 }
 
 function selectProduct(product) {
     selectedProduct = product;
-    const cards = document.querySelectorAll('.option-card.product');
+    const cards = document.querySelectorAll('#product-list .option-card');
     cards.forEach(card => card.classList.remove('selected'));
-    const selectedCard = document.querySelector(`.option-card[data-id="${product.id}"]`);
-    if (selectedCard) {
-        selectedCard.classList.add('selected');
+    const selected = document.querySelector(`[data-id="${product.id}"]`);
+    if (selected) {
+        selected.classList.add('selected');
     }
     
-    updateCartDisplay();
+    const buyButton = document.getElementById('add-to-cart-btn');
+    if (buyButton) {
+        buyButton.disabled = false;
+        buyButton.textContent = `Beli ${product.label}`;
+    }
 }
 
 function renderProductList(products, containerId, pageType) {
@@ -464,8 +556,13 @@ function renderProductList(products, containerId, pageType) {
     if (!container) return;
     
     container.innerHTML = '';
+    if (products.length === 0) {
+        container.innerHTML = '<p class="text-center">Tidak ada produk yang tersedia untuk operator ini.</p>';
+        return;
+    }
+    
     products.forEach(product => {
-        const finalPrice = product.price; 
+        const finalPrice = product.price;
         
         let badgeHtml = '';
         if (product.badges && product.badges.length > 0) {
@@ -479,14 +576,12 @@ function renderProductList(products, containerId, pageType) {
         card.classList.add('option-card', 'product');
         card.setAttribute('data-id', product.id);
         
-        const title = pageType === 'pulsa' ? product.label.split(' ').slice(0, 2).join(' ') : product.label;
-        const description = pageType === 'pulsa' ? product.label.split(' ').slice(2).join(' ') : '';
+        const title = product.label;
         
         card.innerHTML = `
             ${badgeHtml}
             <div class="label">${title}</div>
             <div class="price-group">
-                <p class="description">${description}</p>
                 <div class="price">${formatRupiah(finalPrice)}</div>
             </div>
             <button class="add-to-cart-btn action-button" data-product-id="${product.id}">Pilih</button>
@@ -503,7 +598,7 @@ function renderProductList(products, containerId, pageType) {
 }
 
 function addToCart(product, gameName, gameKey) {
-    const existingItem = cart.find(item => item.product.id === product.id);
+    const existingItem = cart.find(item => item.product.id === product.id && item.game.key === gameKey);
     
     if (existingItem) {
         showNotification(`${product.label} sudah ada di keranjang!`, false);
@@ -562,7 +657,6 @@ function updateCartDisplay() {
         }
     }
     
-    // Update total price and checkout button
     if (cartTotalElement) cartTotalElement.textContent = formatRupiah(total);
     if (cartCheckoutBtn) cartCheckoutBtn.disabled = cart.length === 0;
 }
@@ -611,22 +705,38 @@ function setupFloatingCart() {
     updateCartDisplay();
 }
 
+function applyVoucher() {
+    const promoCodeInput = document.getElementById('promo-code');
+    const promoCode = promoCodeInput.value.toUpperCase();
+    
+    if (promoCode === VOUCHER_CODE) {
+        isVoucherApplied = true;
+        showNotification(`Voucher Berhasil digunakan! Potongan: ${formatRupiah(VOUCHER_DISCOUNT)}`);
+    } else {
+        isVoucherApplied = false;
+        showNotification('Voucher Tidak valid', false);
+    }
+}
+
 function detectOperator(phoneNumber) {
     const prefixes = {
         'telkomsel': ['0811', '0812', '0813', '0821', '0822', '0852', '0853'],
-        'xl': ['0817', '0818', '0819', '0859', '0878', '0877'],
         'indosat': ['0814', '0815', '0816', '0855', '0856', '0857', '0858'],
-        '3': ['0895', '0896', '0897', '0898', '0899'],
+        'xl': ['0817', '0818', '0819', '0859', '0877', '0878'],
         'axis': ['0831', '0832', '0833', '0838'],
+        'tri': ['0895', '0896', '0897', '0898', '0899'],
         'smartfren': ['0881', '0882', '0883', '0884', '0885', '0886', '0887', '0888', '0889']
     };
+    
     if (!phoneNumber || phoneNumber.length < 3) return null;
-    const prefix = phoneNumber.substring(0, 4);
+    
+    const inputPrefix = phoneNumber.substring(0, 4);
     for (const operator in prefixes) {
-        if (prefixes[operator].includes(prefix)) {
+        if (prefixes[operator].includes(inputPrefix)) {
             return operator;
         }
     }
+    
     return null;
 }
 
@@ -681,12 +791,10 @@ function renderCheckoutPage() {
         const hasPayment = selectedPayment !== null;
         
         let hasServerId = true;
-        cartData.items.forEach(item => {
-            const game = GAMES.find(g => g.key === item.gameKey);
-            if (game && game.needsServerId && serverIdInput.value.trim().length === 0) {
-                hasServerId = false;
-            }
-        });
+        const gameItem = cartData.items.find(item => GAMES.find(g => g.key === item.gameKey) && GAMES.find(g => g.key === item.gameKey).needsServerId);
+        if (gameItem && serverIdInput && serverIdInput.value.trim().length === 0) {
+            hasServerId = false;
+        }
 
         payButton.disabled = !(hasUserId && hasWhatsapp && hasPayment && hasServerId);
     };
@@ -706,11 +814,10 @@ function renderCheckoutPage() {
         let messageItems = '';
         cartData.items.forEach(item => {
             const gameName = GAMES.find(g => g.key === item.gameKey) ? GAMES.find(g => g.key === item.gameKey).name : item.gameKey;
-            const price = item.price;
-            messageItems += `- ${item.label} (${gameName}): ${formatRupiah(price)}\n`;
+            messageItems += `- ${item.label} (${gameName}): ${formatRupiah(item.price)}\n`;
         });
         
-        const messageFooter = `\nPlayer ID: ${userId}${serverId !== 'N/A' ? ` (${serverId})` : ''}\nNomor WhatsApp: ${whatsapp}\nMetode Pembayaran: ${selectedPayment.name}\nTotal: ${formatRupiah(finalTotal)}\n\nMohon bantuannya untuk diproses, terima kasih.`;
+        const messageFooter = `\nPlayer ID: ${userId}${serverId !== 'N/A' && serverId ? ` (${serverId})` : ''}\nNomor WhatsApp: ${whatsapp}\nMetode Pembayaran: ${selectedPayment.name}\nTotal: ${formatRupiah(finalTotal)}\n\nMohon bantuannya untuk diproses, terima kasih.`;
         
         const fullMessage = messageHeader + messageItems + messageFooter;
         
@@ -769,7 +876,6 @@ function renderOptions(containerId, options, type) {
 document.addEventListener('DOMContentLoaded', () => {
     const path = window.location.pathname.toLowerCase();
     const floatingCartBtn = document.getElementById('floating-cart-button');
-
     if (path.includes('game.html')) {
         const urlParams = new URLSearchParams(window.location.search);
         const gameKey = urlParams.get('game');
@@ -785,17 +891,21 @@ document.addEventListener('DOMContentLoaded', () => {
         renderGameCards(GAMES, 'popular-games');
         renderBanners();
         startBannerSlider();
-        if (floatingCartBtn) floatingCartBtn.style.display = 'none';
     } else if (path.includes('search.html')) {
         setupSearchFunctionality();
         renderGameCards(GAMES, 'game-list');
-        if (floatingCartBtn) floatingCartBtn.style.display = 'none';
     } else if (path.includes('pulsa.html') || path.includes('pterodactyl.html')) {
-         if (floatingCartBtn) floatingCartBtn.style.display = 'flex';
+        setupFloatingCart();
     }
-    
-    setupFloatingCart();
 });
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        showNotification('Nomor berhasil disalin!');
+    }).catch(err => {
+        showNotification('Gagal menyalin nomor.', false);
+    });
+}
 
 function setupSearchFunctionality() {
     const searchInput = document.getElementById('search-box');
