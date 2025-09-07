@@ -14,6 +14,7 @@ const GAMES = [
     { key: "valorant", name: "Valorant", publisher: "Riot Games", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", url: "game.html?key=valorant", needsServerId: false },
     { key: "call-of-duty", name: "Call Of Duty", publisher: "Activision", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", url: "game.html?key=call-of-duty", needsServerId: false },
     { key: "eggy-party", name: "Eggy Party", publisher: "NetEase Games", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", url: "game.html?key=eggy-party", needsServerId: false },
+    { key: "magic-ches-gogo", name: "Magic Ches Gogo", publisher: "NetEase Games", img: "https://files.catbox.moe/bbxhbo.jpg, url: "game.html?key=magic-ches-gogo", needsServerId: false },
 ];
 
 const PAYMENTS = [
@@ -210,8 +211,41 @@ const PRODUCTS = {
         { id: "undawn-mingguan", label: "Kartu Mingguan", price: 28599, badges: ["weekly"] },
         { id: "undawn-glory-s7", label: "Glory Pass Premium S7", price: 143999, badges: ["pass"] },
         { id: "undawn-glory-s16", label: "Glory Pass Premium S16", price: 143999, badges: ["pass"] },
-        { id: "undawn-prep", label: "Quick Battle Prep", price: 94379, badges: ["sale"] },
-    ]
+        { id: "undawn-prep", label: "Quick Battle Prep", price: 94379, badges: ["sale"] }
+  ],
+  "magic-ches-gogo": [
+        { id: "weekly-card", label: "Weekly Card", price: 31699, badges: ["weekly"] },
+        { id: "first-100", label: "First Recharge 100 Diamonds", price: 12999, badges: ["first"] },
+        { id: "first-300", label: "First Recharge 300 Diamonds", price: 38999, badges: ["first"] },
+        { id: "first-500", label: "First Recharge 500 Diamonds", price: 64899, badges: ["first"] },
+        { id: "first-1000", label: "First Recharge 1000 Diamonds", price: 129799, badges: ["first"] },
+        { id: "d-12", label: "12 Diamonds", price: 3801, badges: ["hot"] },
+        { id: "d-19", label: "19 Diamonds", price: 5667, badges: ["hot"] },
+        { id: "d-28", label: "28 Diamonds", price: 8270, badges: ["hot"] },
+        { id: "d-44", label: "44 Diamonds", price: 12172 },
+        { id: "d-59", label: "59 Diamonds", price: 16107 },
+        { id: "d-85", label: "85 Diamonds", price: 23305, badges: ["popular"] },
+        { id: "d-170", label: "170 Diamonds", price: 45810, badges: ["popular"] },
+        { id: "d-240", label: "240 Diamonds", price: 64998 },
+        { id: "d-296", label: "296 Diamonds", price: 79691 },
+        { id: "d-408", label: "408 Diamonds", price: 108816 },
+        { id: "d-568", label: "568 Diamonds", price: 149099, badges: ["popular"] },
+        { id: "d-875", label: "875 Diamonds", price: 226024 },
+        { id: "d-2010", label: "2010 Diamonds", price: 496838 },
+        { id: "d-4830", label: "4830 Diamonds", price: 1187450, badges: ["sale"] },
+        { id: "d-86", label: "86 Diamonds", price: 20299 },
+        { id: "d-172", label: "172 Diamonds", price: 40599 },
+        { id: "d-257", label: "257 Diamonds", price: 60699 },
+        { id: "d-344", label: "344 Diamonds", price: 81099 },
+        { id: "d-516", label: "516 Diamonds", price: 121699, badges: ["popular"] },
+        { id: "d-706", label: "706 Diamonds", price: 162199 },
+        { id: "d-1346", label: "1346 Diamonds", price: 304199 },
+        { id: "d-1825", label: "1825 Diamonds", price: 405499 },
+        { id: "d-2195", label: "2195 Diamonds", price: 486599 },
+        { id: "d-3688", label: "3688 Diamonds", price: 810999, badges: ["sale"] },
+        { id: "d-5532", label: "5532 Diamonds", price: 1216499, badges: ["sale"] },
+        { id: "d-9288", label: "9288 Diamonds", price: 2027499, badges: ["sale"] }
+  ]
 };
 
 // --- Variable untuk menyimpan harga asli produk dan status voucher
