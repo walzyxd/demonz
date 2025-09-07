@@ -42,6 +42,8 @@ body {
     top: 0;
     z-index: 1000;
     box-shadow: var(--shadow);
+    border-bottom-left-radius: var(--border-radius-l);
+    border-bottom-right-radius: var(--border-radius-l);
 }
 
 .header-left, .header-right {
@@ -91,15 +93,29 @@ body {
 /* --- Banner --- */
 .banner-section {
     margin-bottom: 20px;
-    border-radius: var(--border-radius-l);
     overflow: hidden;
     box-shadow: var(--shadow);
+    border-radius: var(--border-radius-l);
+}
+
+.slider-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    border-radius: var(--border-radius-l);
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
 }
 
 .banner-image {
-    width: 100%;
+    min-width: 100%;
     height: auto;
     display: block;
+    object-fit: cover;
+    border-radius: var(--border-radius-l);
 }
 
 /* --- Game List --- */
@@ -129,7 +145,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: var(--card-bg);
-    border-radius: var(--border-radius-m);
+    border-radius: var(--border-radius-l);
     overflow: hidden;
     text-decoration: none;
     color: var(--text-color);
@@ -231,7 +247,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
+    border-radius: var(--border-radius-l);
     font-weight: bold;
     margin-right: 10px;
 }
@@ -253,7 +269,7 @@ body {
     padding: 12px 15px;
     padding-left: 40px;
     border: 1px solid var(--text-light);
-    border-radius: var(--border-radius-m);
+    border-radius: var(--border-radius-l);
     background-color: transparent;
     color: var(--text-color);
     font-size: 1rem;
@@ -287,7 +303,7 @@ body {
 .option-card {
     background-color: #2b2b2b;
     border: 1px solid #333;
-    border-radius: var(--border-radius-m);
+    border-radius: var(--border-radius-l);
     padding: 10px;
     text-align: center;
     cursor: pointer;
@@ -381,7 +397,7 @@ body {
     background-color: var(--accent-color);
     color: white;
     border: none;
-    border-radius: var(--border-radius-m);
+    border-radius: var(--border-radius-l);
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     cursor: pointer;
@@ -411,6 +427,8 @@ body {
     padding: 10px 20px;
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
     z-index: 999;
+    border-top-left-radius: var(--border-radius-l);
+    border-top-right-radius: var(--border-radius-l);
 }
 
 .summary-card {
@@ -437,7 +455,7 @@ body {
     color: white;
     padding: 10px 20px;
     border: none;
-    border-radius: var(--border-radius-m);
+    border-radius: var(--border-radius-l);
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
@@ -539,7 +557,7 @@ body {
     height: auto;
     background: white;
     padding: 10px;
-    border-radius: var(--border-radius-m);
+    border-radius: var(--border-radius-l);
     border: 1px solid var(--text-light);
     margin-bottom: 15px;
 }
@@ -563,7 +581,7 @@ body {
     color: var(--price-color);
     background-color: #222;
     padding: 10px 15px;
-    border-radius: var(--border-radius-s);
+    border-radius: var(--border-radius-l);
     margin-bottom: 15px;
     display: inline-block;
 }
@@ -573,7 +591,7 @@ body {
     color: white;
     border: none;
     padding: 10px 15px;
-    border-radius: var(--border-radius-m);
+    border-radius: var(--border-radius-l);
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.3s ease;
@@ -589,7 +607,7 @@ body {
     background-color: var(--price-color);
     color: white;
     border: none;
-    border-radius: var(--border-radius-m);
+    border-radius: var(--border-radius-l);
     font-size: 1.1rem;
     font-weight: bold;
     cursor: pointer;
@@ -618,7 +636,7 @@ body {
     background-color: var(--card-bg);
     color: var(--text-color);
     padding: 12px 20px;
-    border-radius: var(--border-radius-m);
+    border-radius: var(--border-radius-l);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
@@ -647,7 +665,7 @@ body {
     display: flex;
     align-items: center;
     background-color: #222;
-    border-radius: var(--border-radius-m);
+    border-radius: var(--border-radius-l);
     padding: 8px 12px;
 }
 
