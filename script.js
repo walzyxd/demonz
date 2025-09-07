@@ -547,8 +547,10 @@ function setupGamePage() {
 
     if (game.needsServerId) {
         serverIdContainer.innerHTML = `
-            <i class="fas fa-server input-icon"></i>
-            <input type="number" id="server-id" placeholder="Masukkan Server ID">
+            <div class="input-container">
+                <i class="fas fa-server input-icon"></i>
+                <input type="number" id="server-id" placeholder="Masukkan Server ID">
+            </div>
         `;
         document.getElementById('server-id').addEventListener('input', updateSummary);
     } else {
@@ -708,12 +710,29 @@ function copyToClipboard(text) {
     });
 }
 
+// --- Fungsi Slider Otomatis ---
+function startSlider() {
+    const slider = document.getElementById('banner-slider');
+    if (!slider) return;
+
+    const images = slider.querySelectorAll('.banner-image');
+    let currentIndex = 0;
+
+    setInterval(() => {
+        images[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].classList.add('active');
+        slider.style.transform = `translateX(-${currentIndex * 100}%)`
+    }, 3000); // Ganti gambar setiap 3 detik
+}
+
 // --- Event Listener Utama ---
 document.addEventListener("DOMContentLoaded", () => {
     const currentPage = window.location.pathname.split('/').pop();
 
     if (currentPage === 'index.html' || currentPage === '') {
         renderGameCards(GAMES);
+        startSlider();
     } else if (currentPage === 'game.html') {
         setupGamePage();
     } else if (currentPage === 'cart.html') {
