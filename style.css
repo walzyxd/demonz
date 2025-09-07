@@ -18,12 +18,16 @@ body {
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
+    width: 100%;
 }
 
 h1, h2, h3 {
@@ -36,12 +40,13 @@ h1 {
     font-size: 2.5em;
     font-weight: 700;
     margin-bottom: 40px;
+    letter-spacing: 1px;
 }
 
 .section {
     background-color: var(--card-bg-color);
-    border-radius: 15px; /* Sudut bundar */
-    box-shadow: 0 4px 15px var(--shadow-color);
+    border-radius: 20px;
+    box-shadow: 0 8px 20px var(--shadow-color);
     padding: 25px;
     margin-bottom: 25px;
 }
@@ -52,7 +57,7 @@ h1 {
 
 .game-grid-custom {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 20px;
     justify-content: center;
 }
@@ -60,16 +65,16 @@ h1 {
 .game-card-custom {
     background-color: var(--card-bg-color);
     border: 2px solid transparent;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px var(--shadow-color);
+    border-radius: 20px;
+    box-shadow: 0 4px 15px var(--shadow-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
     position: relative;
 }
 
 .game-card-custom:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px var(--shadow-color);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px var(--shadow-color);
 }
 
 .game-card-custom a {
@@ -80,9 +85,10 @@ h1 {
 
 .game-card-img {
     width: 100%;
-    height: 150px; /* Atur tinggi gambar */
-    object-fit: cover; /* Pastikan gambar proporsional */
+    height: 160px;
+    object-fit: cover;
     display: block;
+    border-radius: 20px 20px 0 0;
 }
 
 .game-card-content-custom {
@@ -91,7 +97,7 @@ h1 {
 }
 
 .game-card-content-custom h3 {
-    font-size: 1em;
+    font-size: 1.1em;
     margin: 0 0 5px;
     white-space: nowrap;
     overflow: hidden;
@@ -99,7 +105,7 @@ h1 {
 }
 
 .game-card-content-custom p {
-    font-size: 0.8em;
+    font-size: 0.85em;
     margin: 0;
     color: var(--text-color-light);
 }
@@ -113,15 +119,15 @@ h1 {
     align-items: center;
     gap: 20px;
     background-color: var(--card-bg-color);
-    padding: 20px;
-    border-radius: 15px;
+    padding: 25px;
+    border-radius: 20px;
     margin-bottom: 30px;
 }
 
 .game-img {
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
+    width: 90px;
+    height: 90px;
+    border-radius: 15px;
     object-fit: cover;
 }
 
@@ -145,84 +151,92 @@ h1 {
 
 .options-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 15px;
 }
 
 .option-card {
     background-color: var(--bg-color);
     border: 2px solid var(--border-color);
-    border-radius: 12px;
-    padding: 15px;
+    border-radius: 15px;
+    padding: 20px;
     text-align: center;
     cursor: pointer;
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100px;
+    min-height: 120px;
     position: relative;
+    box-shadow: 0 4px 10px var(--shadow-color);
 }
 
 .option-card:hover {
     border-color: var(--accent-color);
-    transform: translateY(-2px);
+    transform: translateY(-5px);
 }
 
 .option-card.selected {
     border-color: var(--selected-border);
     background-color: #17212b;
+    box-shadow: 0 4px 15px rgba(102, 252, 241, 0.25);
 }
 
 .option-card .icon {
-    font-size: 1.5em;
+    font-size: 1.8em;
     color: var(--accent-color);
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
 .option-card .label {
-    font-size: 0.9em;
+    font-size: 1em;
     font-weight: 600;
     color: var(--text-color-light);
     margin-top: 5px;
 }
 
+.option-card .price-group {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .option-card .price {
-    font-size: 1.1em;
+    font-size: 1.2em;
     font-weight: 700;
     color: var(--price-color);
-    margin-top: 5px;
 }
 
 .option-card .original-price {
-    font-size: 0.8em;
+    font-size: 0.9em;
     color: #999;
     text-decoration: line-through;
-    margin-top: 5px;
 }
 
 .option-card.payment img {
-    max-width: 80%;
-    max-height: 40px;
+    max-width: 90%;
+    max-height: 50px;
     display: block;
     margin: 0 auto 5px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .input-group {
     position: relative;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .input-group input, .input-group textarea {
     width: calc(100% - 40px);
-    padding: 12px 12px 12px 35px;
+    padding: 15px 15px 15px 45px;
     border: 1px solid var(--border-color);
     background-color: var(--bg-color);
     color: var(--text-color-light);
-    border-radius: 10px;
+    border-radius: 15px;
     transition: border-color 0.2s ease;
+    font-size: 1em;
 }
 
 .input-group input:focus, .input-group textarea:focus {
@@ -232,27 +246,29 @@ h1 {
 
 .input-group .input-icon {
     position: absolute;
-    left: 12px;
+    left: 15px;
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-color-light);
+    font-size: 1.2em;
 }
 
 #id-check-result {
-    margin-top: 5px;
+    margin-top: 8px;
     font-size: 0.9em;
+    font-weight: 500;
 }
 
 #check-id-btn {
     position: absolute;
-    right: 5px;
+    right: 8px;
     top: 50%;
     transform: translateY(-50%);
     background: var(--accent-color);
     color: white;
     border: none;
-    border-radius: 8px;
-    padding: 8px 12px;
+    border-radius: 12px;
+    padding: 10px 15px;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s ease;
@@ -268,17 +284,17 @@ h1 {
 }
 
 #summary-card {
-    display: none; /* Default hidden */
+    display: none;
     flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
+    gap: 20px;
+    margin-top: 30px;
 }
 
 .summary-detail-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -289,9 +305,11 @@ h1 {
 .summary-total {
     display: flex;
     justify-content: space-between;
-    font-size: 1.2em;
+    font-size: 1.3em;
     font-weight: 700;
     color: var(--text-color-dark);
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
 }
 
 .summary-total .value {
@@ -301,22 +319,22 @@ h1 {
 .btn-primary {
     display: block;
     width: 100%;
-    padding: 15px;
+    padding: 18px;
     border: none;
-    border-radius: 10px;
+    border-radius: 15px;
     background-color: var(--accent-color);
     color: white;
-    font-size: 1.1em;
+    font-size: 1.2em;
     font-weight: 700;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.2s ease;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .btn-primary:hover:not(:disabled) {
     background-color: #3b8e8b;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
 }
 
 .btn-primary:disabled {
@@ -326,8 +344,8 @@ h1 {
 
 .promo-section {
     display: flex;
-    gap: 10px;
-    margin-top: 15px;
+    gap: 15px;
+    margin-top: 20px;
 }
 
 .promo-section input {
@@ -341,13 +359,13 @@ h1 {
 .summary-header {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
 }
 
 .summary-header .summary-img {
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
+    width: 70px;
+    height: 70px;
+    border-radius: 15px;
 }
 
 .payment-info-item {
@@ -355,26 +373,26 @@ h1 {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 15px;
-    margin-top: 20px;
+    gap: 20px;
+    margin-top: 30px;
 }
 
 .payment-image {
-    width: 100px;
+    width: 120px;
     height: auto;
 }
 
 .qr-code-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 10px;
+    width: 180px;
+    height: 180px;
+    border-radius: 15px;
 }
 
 .payment-number-container {
     background-color: var(--bg-color);
     border: 1px dashed var(--border-color);
-    padding: 10px 15px;
-    border-radius: 10px;
+    padding: 15px 20px;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -383,7 +401,7 @@ h1 {
 }
 
 .payment-number {
-    font-size: 1.2em;
+    font-size: 1.3em;
     font-weight: bold;
     color: var(--text-color-dark);
 }
@@ -392,8 +410,8 @@ h1 {
     background-color: var(--accent-color);
     color: white;
     border: none;
-    padding: 8px 15px;
-    border-radius: 8px;
+    padding: 10px 20px;
+    border-radius: 12px;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
@@ -408,7 +426,7 @@ h1 {
 
 .notification-container {
     position: fixed;
-    top: 20px;
+    top: 30px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
@@ -417,9 +435,9 @@ h1 {
 .notification-popup {
     background-color: var(--card-bg-color);
     color: var(--text-color-light);
-    padding: 15px 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    padding: 20px 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     display: flex;
     align-items: center;
     gap: 15px;
@@ -439,14 +457,14 @@ h1 {
         opacity: 0;
     }
     to {
-        top: 20px;
+        top: 30px;
         opacity: 1;
     }
 }
 
 @keyframes slideOut {
     from {
-        top: 20px;
+        top: 30px;
         opacity: 1;
     }
     to {
@@ -474,20 +492,20 @@ h1 {
 
 .modal-content {
     background-color: var(--card-bg-color);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px var(--shadow-color);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px var(--shadow-color);
     width: 90%;
-    max-width: 500px;
+    max-width: 550px;
     position: relative;
     text-align: center;
 }
 
 .close-btn {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 1.5em;
+    top: 15px;
+    right: 20px;
+    font-size: 1.8em;
     color: var(--text-color-light);
     cursor: pointer;
     transition: color 0.2s ease;
@@ -498,11 +516,11 @@ h1 {
 }
 
 .rating-stars .fa-star {
-    font-size: 2em;
+    font-size: 2.5em;
     color: #4a4d52;
     cursor: pointer;
     transition: color 0.2s ease, transform 0.2s ease;
-    margin: 0 5px;
+    margin: 0 8px;
 }
 
 .rating-stars .fa-star.rated, .rating-stars .fa-star:hover, .rating-stars .fa-star:hover ~ .fa-star {
@@ -511,20 +529,39 @@ h1 {
 
 .modal-content textarea {
     width: 100%;
-    height: 100px;
-    padding: 10px;
-    margin-top: 15px;
+    height: 120px;
+    padding: 15px;
+    margin-top: 20px;
     border: 1px solid var(--border-color);
     background-color: var(--bg-color);
     color: var(--text-color-light);
-    border-radius: 10px;
+    border-radius: 15px;
     resize: none;
     box-sizing: border-box;
+    font-size: 1em;
 }
 
+/* -------------------------------------- */
+/* --- Responsif --- */
+/* -------------------------------------- */
+
 @media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
     .container {
-        padding: 0 10px;
+        padding: 0 5px;
+    }
+
+    h1 {
+        font-size: 2em;
+        margin-bottom: 25px;
+    }
+
+    .section {
+        padding: 15px;
+        border-radius: 15px;
     }
 
     .game-grid-custom {
@@ -534,14 +571,36 @@ h1 {
 
     .game-card-img {
         height: 120px;
+        border-radius: 15px 15px 0 0;
+    }
+
+    .game-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .game-info-details {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .options-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 10px;
     }
     
     .option-card {
-        min-height: 80px;
+        min-height: 100px;
+        border-radius: 12px;
     }
-    
-    .input-group input {
-        width: calc(100% - 30px);
-        padding: 10px 10px 10px 30px;
+
+    .input-group input, .input-group textarea {
+        padding: 12px 12px 12px 40px;
+    }
+
+    .btn-primary {
+        padding: 15px;
+        font-size: 1.1em;
     }
 }
