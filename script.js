@@ -406,7 +406,7 @@ function renderGamePage() {
     const useVoucherBtn = document.getElementById('use-voucher-btn');
     if (useVoucherBtn) useVoucherBtn.addEventListener('click', applyVoucher);
     
-    // Render products with "Pilih" button
+    // Render products without "Pilih" button
     const productListContainer = document.getElementById('product-list');
     if (productListContainer) {
         productListContainer.innerHTML = '';
@@ -434,11 +434,10 @@ function renderGamePage() {
                 ${badgeHtml}
                 <div class="label">${product.label}</div>
                 <div class="price-group">${priceHtml}</div>
-                <button class="add-to-cart-btn action-button" data-product-id="${product.id}">Pilih</button>
             `;
             
-            card.querySelector('.add-to-cart-btn').addEventListener('click', (e) => {
-                e.stopPropagation();
+            // Add a click listener to the card itself to add to cart
+            card.addEventListener('click', () => {
                 addToCart(product, game.name, game.key);
             });
             
@@ -453,8 +452,8 @@ function renderProductList(products, containerId, pageType) {
     
     container.innerHTML = '';
     products.forEach(product => {
-        const finalPrice = isVoucherApplied ? Math.max(0, product.price - VOUCHER_DISCOUNT) : product.price;
-        const hasDiscount = isVoucherApplied && product.price > VOUCHER_DISCOUNT;
+        const finalPrice = product.price; // Harga di keranjang tidak berubah
+        const hasDiscount = isVoucherApplied && pageType !== 'game';
         
         const priceHtml = hasDiscount ? `
             <div class="original-price">${formatRupiah(product.price)}</div>
@@ -538,7 +537,8 @@ function updateCartDisplay() {
             cartItemsList.innerHTML = '<li class="empty-cart-message">Keranjang Anda kosong.</li>';
         } else {
             cart.forEach(item => {
-                const finalPrice = isVoucherApplied ? Math.max(0, item.product.price - VOUCHER_DISCOUNT) : item.product.price;
+                // Harga di keranjang tidak terpengaruh voucher
+                const finalPrice = item.product.price;
                 total += finalPrice;
                 
                 const li = document.createElement('li');
@@ -558,7 +558,8 @@ function updateCartDisplay() {
     
     // Update total price and checkout button
     if (cartTotalElement) cartTotalElement.textContent = formatRupiah(total);
-    if (cartCheckoutBtn) cartCheckoutBtn.disabled = cart.length === 0;
+    // Tombol checkout selalu aktif
+    if (cartCheckoutBtn) cartCheckoutBtn.disabled = false;
 }
 
 function showCartPopup() {
@@ -572,42 +573,34 @@ function hideCartPopup() {
 }
 
 function setupFloatingCart() {
-    const path = window.location.pathname.toLowerCase();
-    const isSpecialPage = path.includes('pulsa.html') || path.includes('pterodactyl.html');
-
     const floatingCartBtn = document.getElementById('floating-cart-button');
     const cartPopup = document.getElementById('cart-popup');
     const closePopupBtn = document.querySelector('.close-popup-btn');
     const cartCheckoutBtn = document.getElementById('cart-checkout-btn');
 
-    if (isSpecialPage) {
-        if (floatingCartBtn) floatingCartBtn.style.display = 'flex';
-        if (floatingCartBtn) floatingCartBtn.addEventListener('click', showCartPopup);
-        if (closePopupBtn) closePopupBtn.addEventListener('click', hideCartPopup);
-        if (cartPopup) {
-            cartPopup.addEventListener('click', (e) => {
-                if (e.target.id === 'cart-popup') {
-                    hideCartPopup();
-                }
-            });
-        }
-        if (cartCheckoutBtn) {
-            cartCheckoutBtn.addEventListener('click', () => {
-                const orderData = {
-                    items: cart.map(item => ({
-                        gameKey: item.game.key,
-                        productId: item.product.id,
-                        price: item.product.price,
-                        label: item.product.label
-                    })),
-                    isVoucherApplied: isVoucherApplied
-                };
-                localStorage.setItem('cartData', JSON.stringify(orderData));
-                window.location.href = 'checkout.html';
-            });
-        }
-    } else {
-        if (floatingCartBtn) floatingCartBtn.style.display = 'none';
+    if (floatingCartBtn) floatingCartBtn.addEventListener('click', showCartPopup);
+    if (closePopupBtn) closePopupBtn.addEventListener('click', hideCartPopup);
+    if (cartPopup) {
+        cartPopup.addEventListener('click', (e) => {
+            if (e.target.id === 'cart-popup') {
+                hideCartPopup();
+            }
+        });
+    }
+    if (cartCheckoutBtn) {
+        cartCheckoutBtn.addEventListener('click', () => {
+            const orderData = {
+                items: cart.map(item => ({
+                    gameKey: item.game.key,
+                    productId: item.product.id,
+                    price: item.product.price,
+                    label: item.product.label
+                })),
+                isVoucherApplied: isVoucherApplied
+            };
+            localStorage.setItem('cartData', JSON.stringify(orderData));
+            window.location.href = 'checkout.html';
+        });
     }
     
     updateCartDisplay();
@@ -619,7 +612,6 @@ function applyVoucher() {
     
     if (promoCode === VOUCHER_CODE) {
         isVoucherApplied = true;
-        // Re-render product list to show discounted prices
         const path = window.location.pathname.toLowerCase();
         if (path.includes('game.html')) {
             renderGamePage();
@@ -643,8 +635,18 @@ function applyVoucher() {
     }
 }
 
-function updateMainButton() {
-    // This function is no longer needed in game.html, but keep for other pages if they exist
+function detectOperator(phoneNumber) {
+    // Implementasi sederhana untuk mendeteksi operator dari nomor telepon
+    if (!phoneNumber) return null;
+    const prefix = phoneNumber.substring(0, 4);
+    if (['0811', '0812', '0813', '0821', '0822', '0852', '0853'].includes(prefix)) {
+        return 'telkomsel';
+    } else if (['0817', '0818', '0819', '0859', '0878', '0877'].includes(prefix)) {
+        return 'xl';
+    } else if (['0814', '0815', '0816', '0855', '0856', '0857', '0858'].includes(prefix)) {
+        return 'indosat';
+    }
+    return null;
 }
 
 // --- Checkout Page Functions
