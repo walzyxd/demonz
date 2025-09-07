@@ -33,6 +33,29 @@
         </div>
     </main>
 
+    <button id="floating-cart-button" class="floating-cart-button">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </button>
+
+    <div id="cart-popup" class="cart-popup">
+        <div class="cart-popup-content">
+            <div class="cart-popup-header">
+                <h3>Keranjang Belanja</h3>
+                <button class="close-popup-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <ul id="cart-items-list" class="cart-items-list">
+                </ul>
+            <div id="cart-total" class="cart-total">
+                <span class="total-label">Total:</span>
+                <span class="total-price">Rp 0</span>
+            </div>
+            <div class="cart-actions">
+                <button id="cart-checkout-btn" class="action-button" disabled>Beli Sekarang</button>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         <nav class="nav-links">
             <a href="index.html" class="nav-item active">
@@ -57,6 +80,7 @@
             renderGameCards(GAMES, 'popular-games');
             renderBanners();
             startBannerSlider();
+            setupFloatingCart();
         });
     </script>
 </body>
