@@ -14,7 +14,7 @@ const GAMES = [
     { key: "valorant", name: "Valorant", publisher: "Riot Games", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", needsServerId: false },
     { key: "call-of-duty", name: "Call Of Duty", publisher: "Activision", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", needsServerId: false },
     { key: "eggy-party", name: "Eggy Party", publisher: "NetEase Games", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", needsServerId: false },
-    { key: "magic-ches-gogo", name: "Magic Ches Gogo", publisher: "Vizta Games", img: "https://files.catbox.moe/bbxhbo.jpg", needsServerId: true },
+    { key: "magic-ches-gogo", name: "Magic Ches Gogo", publisher: "Vizta Games", img: "https://files.catbox.moe/bbxhbo.jpg", needsServerId: true }
 ];
 
 const PAYMENTS = [
@@ -147,6 +147,8 @@ let bannerIndex = 0;
 function renderBanners() {
     const container = document.getElementById('banner-container');
     const dotsContainer = document.getElementById('banner-dots');
+    if (!container || !dotsContainer) return;
+
     container.innerHTML = '';
     dotsContainer.innerHTML = '';
 
@@ -165,9 +167,9 @@ function renderBanners() {
 }
 
 function updateBanners() {
-    const slides = document.querySelectorAll('.slide');
+    const container = document.getElementById('banner-container');
     const dots = document.querySelectorAll('.dot');
-    if (slides.length === 0) return;
+    if (!container || dots.length === 0) return;
 
     container.style.transform = `translateX(${-bannerIndex * 100}%)`;
     dots.forEach((dot, index) => {
