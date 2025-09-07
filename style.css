@@ -250,13 +250,16 @@ h1, h2, h3 {
 }
 
 /* Banners */
-.banner-slider {
+.banner-slider-container {
     position: relative;
     width: 100%;
     overflow: hidden;
     border-radius: 20px;
     margin-bottom: 20px;
     box-shadow: 0 4px 10px var(--box-shadow-color);
+}
+
+.banner-slider {
     display: flex;
     transition: transform 0.5s ease-in-out;
 }
@@ -267,6 +270,12 @@ h1, h2, h3 {
     display: block;
     border-radius: 20px;
     flex-shrink: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.banner-image.active {
+    opacity: 1;
 }
 
 /* Game & Options Grids */
