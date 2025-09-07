@@ -6,30 +6,41 @@
     <title>Cari Game | Walzshop</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
         <a href="index.html" class="header-link back-button"><i class="fas fa-arrow-left"></i></a>
-        <div class="search-input-container">
-            <i class="fas fa-search input-icon"></i>
-            <input type="text" id="search-box" placeholder="Cari Game Favoritmu..." autocomplete="off">
-            <i class="fas fa-times-circle clear-btn" id="clear-search"></i>
+        <div class="header-center">
+            <h1>Cari Game</h1>
         </div>
+        <a href="#" class="header-link search-icon hidden"><i class="fas fa-search"></i></a>
     </header>
 
-    <main class="main-content">
-        <div class="search-results">
-            <p id="search-stats" class="search-stats"></p>
-            <div id="game-list" class="game-grid-custom">
-                </div>
-            <div id="no-results" class="no-results" style="display: none;">
-                <h3>Tidak Ditemukan</h3>
-                <p>Coba kata kunci lain atau periksa ejaan Anda.</p>
-            </div>
+    <main class="main-content container">
+        <div class="search-bar page-section">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-box" placeholder="Cari Game...">
+            <button class="clear-search" id="clear-search"><i class="fas fa-times-circle"></i></button>
         </div>
+        <div id="search-stats" style="display:none; color: var(--text-light); margin-bottom: 15px;"></div>
+        <div id="no-results" class="page-section" style="display:none; text-align: center;">
+            <p>Tidak ada hasil yang ditemukan.</p>
+        </div>
+        <div class="game-grid" id="game-list">
+            </div>
     </main>
 
     <div class="notification-container"></div>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setupSearchFunctionality();
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('query') || '';
+            document.getElementById('search-box').value = query;
+            document.getElementById('search-box').dispatchEvent(new Event('input'));
+        });
+    </script>
 </body>
 </html>
