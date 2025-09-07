@@ -18,6 +18,15 @@
     --badge-hot-text: white;
     --badge-populer-bg: #3498db;
     --badge-populer-text: white;
+    --badge-member-bg: #8e44ad;
+    --badge-levelup-bg: #34495e;
+    --badge-pass-bg: #27ae60;
+    --badge-weekly-bg: #1abc9c;
+    --badge-monthly-bg: #2980b9;
+    --badge-vip-bg: #f39c12;
+    --badge-first-bg: #e67e22;
+    --badge-sale-bg: #c0392b;
+    --badge-new-bg: #3498db;
 }
 
 * {
@@ -106,6 +115,27 @@ body {
     font-weight: 600;
     border-left: 4px solid var(--primary-color);
     padding-left: 10px;
+}
+
+.page-list {
+    list-style: none;
+    padding: 0;
+}
+
+.page-list li {
+    background-color: #242424;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--border-color);
+}
+
+.page-list li .price {
+    font-weight: 700;
+    color: var(--secondary-color);
 }
 
 /* Game Grid (Perbaikan Tampilan) */
@@ -369,6 +399,7 @@ body {
     font-size: 10px;
     font-weight: 700;
     border-radius: 5px;
+    color: white;
 }
 
 .option-card.product .special-badge[data-badge="promo"] {
@@ -378,12 +409,46 @@ body {
 
 .option-card.product .special-badge[data-badge="hot"] {
     background-color: var(--badge-hot-bg);
-    color: var(--badge-hot-text);
 }
 
-.option-card.product .special-badge[data-badge="populer"] {
+.option-card.product .special-badge[data-badge="popular"] {
     background-color: var(--badge-populer-bg);
-    color: var(--badge-populer-text);
+}
+
+.option-card.product .special-badge[data-badge="member"] {
+    background-color: var(--badge-member-bg);
+}
+
+.option-card.product .special-badge[data-badge="levelup"] {
+    background-color: var(--badge-levelup-bg);
+}
+
+.option-card.product .special-badge[data-badge="pass"] {
+    background-color: var(--badge-pass-bg);
+}
+
+.option-card.product .special-badge[data-badge="weekly"] {
+    background-color: var(--badge-weekly-bg);
+}
+
+.option-card.product .special-badge[data-badge="monthly"] {
+    background-color: var(--badge-monthly-bg);
+}
+
+.option-card.product .special-badge[data-badge="vip"] {
+    background-color: var(--badge-vip-bg);
+}
+
+.option-card.product .special-badge[data-badge="first"] {
+    background-color: var(--badge-first-bg);
+}
+
+.option-card.product .special-badge[data-badge="sale"] {
+    background-color: var(--badge-sale-bg);
+}
+
+.option-card.product .special-badge[data-badge="new"] {
+    background-color: var(--badge-new-bg);
 }
 
 .payment-options {
@@ -560,6 +625,14 @@ body {
     border: 1px solid var(--border-color);
     border-radius: 8px;
     margin-bottom: 10px;
+}
+
+.payment-image-lg {
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 8px;
 }
 
 .qr-caption {
