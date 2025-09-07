@@ -6,18 +6,23 @@
     <title>Top Up Game | Walzshop</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
         <a href="index.html" class="header-link back-button"><i class="fas fa-arrow-left"></i></a>
-        <div id="game-info-header" class="game-info-header">
-            </div>
+        <div class="header-center">
+            <h1>Detail Game</h1>
+        </div>
         <a href="search.html" class="header-link search-icon"><i class="fas fa-search"></i></a>
     </header>
 
-    <main class="main-content">
+    <main class="main-content container">
+        <div id="game-info-header" class="game-info-header">
+            </div>
+
         <form id="order-form">
-            <div class="step-card">
+            <div class="step-card page-section">
                 <div class="step-header">
                     <span class="step-number">1</span>
                     <h3>Masukkan Player ID</h3>
@@ -30,8 +35,8 @@
                     </div>
                 <p class="input-description">Untuk mengetahui ID Anda, silakan cek di menu profil game Anda.</p>
             </div>
-    
-            <div class="step-card">
+
+            <div class="step-card page-section">
                 <div class="step-header">
                     <span class="step-number">2</span>
                     <h3>Pilih Produk</h3>
@@ -39,8 +44,8 @@
                 <div class="options-grid" id="product-list">
                     </div>
             </div>
-            
-            <div class="step-card">
+
+            <div class="step-card page-section">
                 <div class="step-header">
                     <span class="step-number">3</span>
                     <h3>Pilih Metode Pembayaran</h3>
@@ -49,7 +54,7 @@
                     </div>
             </div>
 
-            <div class="step-card">
+            <div class="step-card page-section">
                 <div class="step-header">
                     <span class="step-number">4</span>
                     <h3>Masukkan Kode Voucher</h3>
@@ -61,7 +66,7 @@
                 </div>
             </div>
 
-            <div class="step-card">
+            <div class="step-card page-section">
                 <div class="step-header">
                     <span class="step-number">5</span>
                     <h3>Lengkapi Data Pembeli</h3>
@@ -76,16 +81,25 @@
     </main>
 
     <footer class="footer-fixed">
-        <div class="summary-card" id="summary-card" style="display: none;">
-            <div class="summary-details">
-                <div id="summary-product-details"></div>
-                <div class="summary-price" id="summary-price"></div>
-            </div>
-            <button id="confirm-button" class="confirm-button" disabled>Konfirmasi</button>
-        </div>
+        <button class="action-button" id="main-button" disabled>
+            <i class="fas fa-shopping-cart"></i> Lanjutkan
+        </button>
     </footer>
 
     <div class="notification-container"></div>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const gameKey = params.get('game');
+            const game = GAMES.find(g => g.key === gameKey);
+            if (game) {
+                selectedGame = game;
+                renderGamePage();
+            } else {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
 </body>
 </html>
