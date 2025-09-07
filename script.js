@@ -1,20 +1,20 @@
-// --- Data Website Anda ---
+// --- Data Konfigurasi ---
 const GAMES = [
-    { key: "free-fire", name: "Free Fire", publisher: "Garena", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", url: "game.html?key=free-fire", needsServerId: false },
-    { key: "mobile-legends", name: "Mobile Legends", publisher: "Moonton", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", url: "game.html?key=mobile-legends", needsServerId: true },
-    { key: "honor-of-kings", name: "Honor of Kings", publisher: "Level Infinite", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", url: "game.html?key=honor-of-kings", needsServerId: true },
-    { key: "genshin-impact", name: "Genshin Impact", publisher: "Hoyoverse", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", url: "game.html?key=genshin-impact", needsServerId: true },
-    { key: "roblox", name: "Roblox", publisher: "Roblox Corporation", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", url: "game.html?key=roblox", needsServerId: false },
-    { key: "super-sus", name: "Super Sus", publisher: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", url: "game.html?key=super-sus", needsServerId: true },
-    { key: "coc", name: "Clash of Clans", publisher: "Supercell", img: "https://files.catbox.moe/6aia0n.jpg", url: "game.html?key=coc", needsServerId: false },
-    { key: "blood-strike", name: "Blood Strike", publisher: "NetEase", img: "https://files.catbox.moe/3y066i.jpg", url: "game.html?key=blood-strike", needsServerId: false },
-    { key: "pubg", name: "PUBG Mobile", publisher: "Semua Region", img: "https://files.catbox.moe/tatuo9.jpg", url: "game.html?key=pubg", needsServerId: false },
-    { key: "garena-delta", name: "Garena Delta Force", publisher: "Garena Delta...", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", url: "game.html?key=garena-delta", needsServerId: false },
-    { key: "garena-undawn", name: "Garena Undawn", publisher: "Garena", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", url: "game.html?key=garena-undawn", needsServerId: false },
-    { key: "valorant", name: "Valorant", publisher: "Riot Games", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", url: "game.html?key=valorant", needsServerId: false },
-    { key: "call-of-duty", name: "Call Of Duty", publisher: "Activision", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", url: "game.html?key=call-of-duty", needsServerId: false },
-    { key: "eggy-party", name: "Eggy Party", publisher: "NetEase Games", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", url: "game.html?key=eggy-party", needsServerId: false },
-    { key: "magic-ches-gogo", name: "Magic Ches Gogo", publisher: "Vizta Games", img: "https://files.catbox.moe/bbxhbo.jpg", url: "game.html?key=magic-ches-gogo", needsServerId:true },
+    { key: "free-fire", name: "Free Fire", publisher: "Garena", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", needsServerId: false },
+    { key: "mobile-legends", name: "Mobile Legends", publisher: "Moonton", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", needsServerId: true },
+    { key: "honor-of-kings", name: "Honor of Kings", publisher: "Level Infinite", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", needsServerId: true },
+    { key: "genshin-impact", name: "Genshin Impact", publisher: "Hoyoverse", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", needsServerId: true },
+    { key: "roblox", name: "Roblox", publisher: "Roblox Corporation", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", needsServerId: false },
+    { key: "super-sus", name: "Super Sus", publisher: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", needsServerId: true },
+    { key: "coc", name: "Clash of Clans", publisher: "Supercell", img: "https://files.catbox.moe/6aia0n.jpg", needsServerId: false },
+    { key: "blood-strike", name: "Blood Strike", publisher: "NetEase", img: "https://files.catbox.moe/3y066i.jpg", needsServerId: false },
+    { key: "pubg", name: "PUBG Mobile", publisher: "Semua Region", img: "https://files.catbox.moe/tatuo9.jpg", needsServerId: false },
+    { key: "garena-delta", name: "Garena Delta Force", publisher: "Garena Delta...", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b739a5bd976.png", needsServerId: false },
+    { key: "garena-undawn", name: "Garena Undawn", publisher: "Garena", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", needsServerId: false },
+    { key: "valorant", name: "Valorant", publisher: "Riot Games", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", needsServerId: false },
+    { key: "call-of-duty", name: "Call Of Duty", publisher: "Activision", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", needsServerId: false },
+    { key: "eggy-party", name: "Eggy Party", publisher: "NetEase Games", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", needsServerId: false },
+    { key: "magic-ches-gogo", name: "Magic Ches Gogo", publisher: "Vizta Games", img: "https://files.catbox.moe/bbxhbo.jpg", needsServerId: true },
 ];
 
 const PAYMENTS = [
@@ -249,7 +249,8 @@ const PRODUCTS = {
 };
 
 // --- Variable untuk menyimpan harga asli produk dan status voucher
-let originalPrices = {};
+const VOUCHER_CODE = "WALZPROMO";
+const VOUCHER_DISCOUNT = 100;
 let isVoucherApplied = false;
 
 // --- Fungsi Global ---
@@ -268,44 +269,198 @@ function getUrlParameter(name) {
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 }
 
+function showNotification(message, isSuccess = true) {
+    const container = document.querySelector('.notification-container');
+    if (!container) return;
+
+    // Hapus notifikasi yang sudah ada
+    container.innerHTML = '';
+
+    const popup = document.createElement('div');
+    popup.classList.add('notification-popup');
+
+    const iconClass = isSuccess ? 'fa-check-circle' : 'fa-times-circle';
+    const iconColor = isSuccess ? 'var(--selected-border)' : 'var(--price-color)';
+
+    popup.innerHTML = `
+        <i class="fas ${iconClass} icon" style="color:${iconColor};"></i>
+        <span class="message">${message}</span>
+    `;
+
+    container.appendChild(popup);
+
+    setTimeout(() => {
+        popup.classList.add('fade-out');
+        popup.addEventListener('animationend', () => {
+            popup.remove();
+        });
+    }, 3000);
+}
+
+// --- Fungsi Halaman Index & Search ---
+function createGameCard(game, query = '') {
+    const gameCard = document.createElement('a');
+    gameCard.classList.add("game-card-custom");
+    gameCard.href = `game.html?key=${game.key}`;
+
+    let displayName = game.name;
+    if (query) {
+        const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+        displayName = game.name.replace(regex, `<span class="highlight">$1</span>`);
+    }
+
+    gameCard.innerHTML = `
+        <img src="${game.img}" alt="${game.name}" class="game-card-img">
+        <div class="game-card-content-custom">
+            <h3>${displayName}</h3>
+            <p>${game.publisher}</p>
+        </div>
+    `;
+    return gameCard;
+}
+
+function renderGameCards(gamesToRender, query = '') {
+    const gameListContainer = document.getElementById('game-list');
+    if (!gameListContainer) return;
+
+    gameListContainer.innerHTML = '';
+    if (gamesToRender.length > 0) {
+        gamesToRender.forEach(game => {
+            gameListContainer.appendChild(createGameCard(game, query));
+        });
+    } else {
+        const noResults = document.getElementById('no-results');
+        const searchStats = document.getElementById('search-stats');
+        if(noResults) noResults.style.display = 'block';
+        if(searchStats) searchStats.style.display = 'none';
+    }
+}
+
+function setupSearchPage() {
+    const searchInput = document.getElementById('search-box');
+    const clearBtn = document.getElementById('clear-search');
+    const searchStats = document.getElementById('search-stats');
+    const noResults = document.getElementById('no-results');
+
+    if (!searchInput || !clearBtn || !searchStats || !noResults) return;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('query') || '';
+
+    searchInput.value = query;
+    if (query.length > 0) {
+        clearBtn.style.display = 'block';
+    }
+
+    function performSearch(currentQuery) {
+        const results = GAMES.filter(game => game.name.toLowerCase().includes(currentQuery.toLowerCase()));
+        
+        if (results.length > 0) {
+            noResults.style.display = 'none';
+            searchStats.style.display = 'block';
+            searchStats.textContent = `Ditemukan ${results.length} hasil untuk "${currentQuery}"`;
+            renderGameCards(results, currentQuery);
+        } else {
+            noResults.style.display = 'block';
+            searchStats.style.display = 'none';
+            noResults.querySelector('h3').textContent = `Tidak ada hasil untuk "${currentQuery}"`;
+            renderGameCards([], currentQuery);
+        }
+    }
+
+    // Initial search on page load
+    if (query) {
+        performSearch(query);
+    } else {
+        renderGameCards(GAMES);
+    }
+
+    searchInput.addEventListener('input', (e) => {
+        const currentQuery = e.target.value;
+        if (currentQuery.length > 0) {
+            clearBtn.style.display = 'block';
+        } else {
+            clearBtn.style.display = 'none';
+            if (searchStats) searchStats.textContent = '';
+            if (noResults) noResults.style.display = 'none';
+            renderGameCards(GAMES); // Show all games when search is cleared
+        }
+        performSearch(currentQuery);
+    });
+
+    clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        clearBtn.style.display = 'none';
+        searchInput.focus();
+        if (searchStats) searchStats.textContent = '';
+        if (noResults) noResults.style.display = 'none';
+        renderGameCards(GAMES); // Show all games when cleared
+    });
+}
+
+// --- Fungsi Halaman Game ---
 function renderProducts(gameKey) {
     const productListContainer = document.getElementById("product-list");
     if (!productListContainer) return;
 
     productListContainer.innerHTML = '';
     const products = PRODUCTS[gameKey];
-    const voucherDiscount = 100; // Harga diskon voucher
 
-    if (products) {
-        products.forEach(product => {
-            const productDiv = document.createElement("div");
-            productDiv.classList.add("option-card");
-            productDiv.setAttribute('data-id', product.id);
-            
-            let badgeHtml = '';
-            if (product.badges && product.badges.length > 0) {
-                const badgeText = product.badges[0].charAt(0).toUpperCase() + product.badges[0].slice(1);
-                badgeHtml = `<span class="special-badge">${badgeText}</span>`;
-            }
-
-            const currentPrice = isVoucherApplied ? Math.max(0, product.price - voucherDiscount) : product.price;
-
-            productDiv.innerHTML = `
-                ${badgeHtml}
-                <i class="fas fa-gem icon"></i>
-                <div class="label">${product.label}</div>
-                <div class="price-group">
-                    ${isVoucherApplied ? `<div class="original-price">${formatRupiah(product.price)}</div>` : ''}
-                    <div class="price">${formatRupiah(currentPrice)}</div>
-                </div>
-            `;
-            
-            productDiv.onclick = () => {
-                selectOption(productDiv);
-            };
-            productListContainer.appendChild(productDiv);
-        });
+    if (!products) {
+        showNotification("Produk untuk game ini tidak ditemukan.", false);
+        return;
     }
+
+    products.forEach(product => {
+        const productDiv = document.createElement("div");
+        productDiv.classList.add("option-card");
+        productDiv.setAttribute('data-id', product.id);
+
+        let badgeHtml = '';
+        if (product.badges && product.badges.length > 0) {
+            const badgeText = product.badges[0].charAt(0).toUpperCase() + product.badges[0].slice(1);
+            badgeHtml = `<span class="special-badge">${badgeText}</span>`;
+        }
+
+        const finalPrice = isVoucherApplied ? Math.max(0, product.price - VOUCHER_DISCOUNT) : product.price;
+        const hasDiscount = isVoucherApplied && product.price > VOUCHER_DISCOUNT;
+        
+        const priceHtml = hasDiscount ? `
+            <div class="original-price">${formatRupiah(product.price)}</div>
+            <div class="price discounted-price">${formatRupiah(finalPrice)}</div>
+        ` : `<div class="price">${formatRupiah(product.price)}</div>`;
+
+        productDiv.innerHTML = `
+            ${badgeHtml}
+            <i class="fas fa-gem icon"></i>
+            <div class="label">${product.label}</div>
+            <div class="price-group">${priceHtml}</div>
+        `;
+
+        productDiv.onclick = () => {
+            selectOption(productDiv);
+        };
+        productListContainer.appendChild(productDiv);
+    });
+}
+
+function renderPayments() {
+    const paymentListContainer = document.getElementById("payment-list");
+    if (!paymentListContainer) return;
+    
+    PAYMENTS.forEach(payment => {
+        const paymentDiv = document.createElement("div");
+        paymentDiv.classList.add("option-card", "payment");
+        paymentDiv.setAttribute('data-id', payment.id);
+        paymentDiv.innerHTML = `
+            <img src="${payment.img}" alt="${payment.name}">
+            <div class="label">${payment.name}</div>
+        `;
+        paymentDiv.onclick = () => {
+            selectOption(paymentDiv);
+        };
+        paymentListContainer.appendChild(paymentDiv);
+    });
 }
 
 function selectOption(element) {
@@ -317,7 +472,7 @@ function selectOption(element) {
         sibling.classList.remove('selected');
     });
     element.classList.add('selected');
-    
+
     updateSummary();
 }
 
@@ -328,30 +483,28 @@ function updateSummary() {
     const confirmButton = document.getElementById('confirm-button');
     const userIdInput = document.getElementById('user-id');
     const whatsappInput = document.getElementById('whatsapp-number');
-    const serverIdContainer = document.getElementById('server-id-container');
     const serverIdInput = document.getElementById('server-id');
 
     const gameKey = getUrlParameter('key');
     const game = GAMES.find(g => g.key === gameKey);
-    
+
     const isProductSelected = !!selectedProductCard;
     const isPaymentSelected = !!selectedPaymentCard;
-    const isIdValid = userIdInput && userIdInput.value.length > 0;
-    const isWhatsappValid = whatsappInput && whatsappInput.value.length > 0;
+    const isIdValid = userIdInput && userIdInput.value.trim().length > 0;
+    const isWhatsappValid = whatsappInput && whatsappInput.value.trim().length > 0;
 
     let isServerIdValid = true;
     if (game && game.needsServerId) {
-        isServerIdValid = serverIdInput && serverIdInput.value.length > 0;
+        isServerIdValid = serverIdInput && serverIdInput.value.trim().length > 0;
     }
-    
+
     if (isProductSelected && isPaymentSelected && isIdValid && isWhatsappValid && isServerIdValid) {
         summaryCard.style.display = 'flex';
         confirmButton.disabled = false;
-        
+
         const productId = selectedProductCard.dataset.id;
         const product = PRODUCTS[gameKey].find(p => p.id === productId);
-        const voucherDiscount = 100; // Harga diskon voucher
-        const finalPrice = isVoucherApplied ? Math.max(0, product.price - voucherDiscount) : product.price;
+        const finalPrice = isVoucherApplied ? Math.max(0, product.price - VOUCHER_DISCOUNT) : product.price;
 
         document.getElementById('summary-product-details').innerHTML = `
             <i class="fas fa-gem" style="color:var(--accent-color);"></i>
@@ -364,72 +517,19 @@ function updateSummary() {
     }
 }
 
-function showNotification(message, isSuccess = true) {
-    const container = document.querySelector('.notification-container') || document.body.appendChild(document.createElement('div'));
-    container.classList.add('notification-container');
-    
-    // Hapus notifikasi yang sudah ada
-    container.innerHTML = '';
-
-    const popup = document.createElement('div');
-    popup.classList.add('notification-popup');
-    
-    const iconClass = isSuccess ? 'fa-check-circle' : 'fa-times-circle';
-    const iconColor = isSuccess ? 'var(--selected-border)' : 'var(--price-color)';
-    
-    popup.innerHTML = `
-        <i class="fas ${iconClass} icon" style="color:${iconColor};"></i>
-        <span class="message">${message}</span>
-    `;
-
-    container.appendChild(popup);
-    
-    setTimeout(() => {
-        popup.classList.add('fade-out');
-        popup.addEventListener('animationend', () => {
-            popup.remove();
-        });
-    }, 3000);
-}
-
-// --- Logika Halaman Index ---
-function renderGameCards() {
-    const gameListContainer = document.getElementById('game-list');
-    if (!gameListContainer) return;
-
-    gameListContainer.innerHTML = '';
-    GAMES.forEach(game => {
-        const gameCard = document.createElement('div');
-        gameCard.classList.add("game-card-custom");
-        gameCard.innerHTML = `
-            <a href="${game.url}">
-                <img src="${game.img}" alt="${game.name}" class="game-card-img">
-                <div class="game-card-content-custom">
-                    <h3>${game.name}</h3>
-                    <p>${game.publisher}</p>
-                </div>
-            </a>
-        `;
-        gameListContainer.appendChild(gameCard);
-    });
-}
-
-// --- Logika Halaman Game ---
 function setupGamePage() {
     const gameKey = getUrlParameter('key');
     const game = GAMES.find(g => g.key === gameKey);
-    const productListContainer = document.getElementById("product-list");
-    const paymentListContainer = document.getElementById("payment-list");
     const gameInfoHeader = document.getElementById("game-info-header");
     const serverIdContainer = document.getElementById("server-id-container");
     const promoCodeInput = document.getElementById('promo-code');
+    const useVoucherBtn = document.getElementById('use-voucher-btn');
+    const confirmButton = document.getElementById('confirm-button');
 
-    if (!game || !productListContainer || !paymentListContainer) {
-        window.location.href = 'index.html';
+    if (!game || !gameInfoHeader || !serverIdContainer || !promoCodeInput || !useVoucherBtn || !confirmButton) {
         return;
     }
-
-    // Render game info header
+    
     gameInfoHeader.innerHTML = `
         <img src="${game.img}" alt="${game.name}" class="game-img">
         <h2>${game.name}</h2>
@@ -445,86 +545,57 @@ function setupGamePage() {
         </div>
     `;
 
-    // Tampilkan input server ID jika diperlukan
     if (game.needsServerId) {
         serverIdContainer.innerHTML = `
             <i class="fas fa-server input-icon"></i>
             <input type="number" id="server-id" placeholder="Masukkan Server ID">
         `;
+        document.getElementById('server-id').addEventListener('input', updateSummary);
     } else {
         serverIdContainer.innerHTML = '';
     }
 
-    // Simpan harga asli sebelum render
-    if (PRODUCTS[gameKey]) {
-        PRODUCTS[gameKey].forEach(p => {
-            originalPrices[p.id] = p.price;
-        });
-    }
-
-    // Render products
     renderProducts(gameKey);
+    renderPayments();
 
-    // Render payments
-    PAYMENTS.forEach(payment => {
-        const paymentDiv = document.createElement("div");
-        paymentDiv.classList.add("option-card", "payment");
-        paymentDiv.setAttribute('data-id', payment.id);
-        paymentDiv.innerHTML = `
-            <img src="${payment.img}" alt="${payment.name}">
-            <div class="label">${payment.name}</div>
-        `;
-        paymentDiv.onclick = () => {
-            selectOption(paymentDiv);
-        };
-        paymentListContainer.appendChild(paymentDiv);
-    });
-
-    // Event listeners for inputs to update summary
     document.getElementById('user-id').addEventListener('input', updateSummary);
-    if (game.needsServerId) {
-        document.getElementById('server-id').addEventListener('input', updateSummary);
-    }
     document.getElementById('whatsapp-number').addEventListener('input', updateSummary);
-    
-    // Voucher button logic
-    document.getElementById('use-voucher-btn').addEventListener('click', () => {
-        const promoCode = promoCodeInput.value.toUpperCase(); // Ubah ke huruf besar untuk validasi
-        const voucherDiscount = 100;
-        if (promoCode === "WALZPROMO") {
+
+    useVoucherBtn.addEventListener('click', () => {
+        const promoCode = promoCodeInput.value.toUpperCase();
+        if (promoCode === VOUCHER_CODE) {
             isVoucherApplied = true;
-            renderProducts(gameKey); // Render ulang produk dengan harga diskon
-            updateSummary(); // Update ringkasan
-            showNotification(`Voucher Berhasil digunakan! Potongan: ${formatRupiah(voucherDiscount)}`, true);
+            renderProducts(gameKey);
+            updateSummary();
+            showNotification(`Voucher Berhasil digunakan! Potongan: ${formatRupiah(VOUCHER_DISCOUNT)}`, true);
         } else {
             isVoucherApplied = false;
-            renderProducts(gameKey); // Render ulang produk dengan harga normal
-            updateSummary(); // Update ringkasan
+            renderProducts(gameKey);
+            updateSummary();
             showNotification('Voucher Tidak valid', false);
         }
     });
 
-    document.getElementById('confirm-button').addEventListener('click', () => {
+    confirmButton.addEventListener('click', () => {
         const selectedProductCard = document.querySelector('#product-list .option-card.selected');
         const selectedPaymentCard = document.querySelector('#payment-list .option-card.selected');
-        
-        const productId = selectedProductCard ? selectedProductCard.dataset.id : '';
-        const paymentId = selectedPaymentCard ? selectedPaymentCard.dataset.id : '';
-        const userId = document.getElementById('user-id').value;
-        const serverId = game.needsServerId ? document.getElementById('server-id').value : '';
-        const whatsappNumber = document.getElementById('whatsapp-number').value;
 
-        // Ensure all required fields are filled before navigating
+        const productId = selectedProductCard?.dataset.id || '';
+        const paymentId = selectedPaymentCard?.dataset.id || '';
+        const userId = document.getElementById('user-id')?.value.trim() || '';
+        const serverId = game.needsServerId ? (document.getElementById('server-id')?.value.trim() || '') : '';
+        const whatsappNumber = document.getElementById('whatsapp-number')?.value.trim() || '';
+
         if (productId && paymentId && userId && whatsappNumber) {
             const url = `cart.html?game_key=${gameKey}&product_id=${productId}&payment_id=${paymentId}&user_id=${userId}&server_id=${serverId}&whatsapp_number=${whatsappNumber}&voucher_applied=${isVoucherApplied}`;
             window.location.href = url;
         } else {
-            alert('Mohon lengkapi semua data pesanan terlebih dahulu.');
+            showNotification('Mohon lengkapi semua data pesanan terlebih dahulu.', false);
         }
     });
 }
 
-// --- Logika Halaman Cart ---
+// --- Fungsi Halaman Cart ---
 function setupCartPage() {
     const params = new URLSearchParams(window.location.search);
     const gameKey = params.get('game_key');
@@ -534,83 +605,97 @@ function setupCartPage() {
     const serverId = params.get('server_id');
     const whatsappNumber = params.get('whatsapp_number');
     const voucherApplied = params.get('voucher_applied') === 'true';
-    
+
     const game = GAMES.find(g => g.key === gameKey);
-    const product = PRODUCTS[gameKey] ? PRODUCTS[gameKey].find(p => p.id === productId) : null;
+    const product = PRODUCTS[gameKey]?.find(p => p.id === productId);
     const payment = PAYMENTS.find(p => p.id === paymentId);
-    
+
     const cartSummaryCard = document.getElementById('cart-summary-card');
     const paymentInfoSection = document.getElementById('payment-info-section');
     const payButton = document.getElementById('pay-button');
-    
-    if (game && product && payment && cartSummaryCard) {
-        const voucherDiscount = 100; // Harga diskon voucher
-        const finalPrice = voucherApplied ? Math.max(0, product.price - voucherDiscount) : product.price;
+    const summaryDetails = document.getElementById('summary-details');
 
-        cartSummaryCard.innerHTML = `
-            <h3>Rincian Pesanan</h3>
-            <div class="summary-detail-item">
-                <span class="label"><i class="fas fa-gamepad"></i> Game</span>
-                <span class="value">${game.name}</span>
-            </div>
-            <div class="summary-detail-item">
-                <span class="label"><i class="fas fa-gem"></i> Produk</span>
-                <span class="value">${product.label}</span>
-            </div>
-            <div class="summary-detail-item">
-                <span class="label"><i class="fas fa-user"></i> Player ID</span>
-                <span class="value">${userId}${serverId ? ` (${serverId})` : ''}</span>
-            </div>
-            <div class="summary-detail-item">
-                <span class="label"><i class="fas fa-wallet"></i> Metode Pembayaran</span>
-                <span class="value">
-                    <img src="${payment.img}" alt="${payment.name}" class="payment-image">
-                    ${payment.name}
-                </span>
-            </div>
-            <div class="summary-detail-item">
-                <span class="label"><i class="fab fa-whatsapp"></i> Nomor WhatsApp</span>
-                <span class="value">${whatsappNumber}</span>
-            </div>
-            <div class="summary-total">
-                <span class="label">Total Pembayaran</span>
-                <span class="value">${formatRupiah(finalPrice)}</span>
-            </div>
-        `;
-
-        let paymentContent = '';
-        if (payment.qr) {
-            paymentContent = `
-                <h4>Scan untuk Bayar</h4>
-                <img src="${payment.qr}" alt="QR Code" class="qr-code-image">
-                <div class="qr-caption">⚠️Perhatian: Transfer harus sesuai Dengan Harga Yang Tertera Di Atas⚠️
-Silakan scan kode QR di atas untuk melakukan pembayaran. Setelah berhasil, klik **Bayar Sekarang**.</div>
-            `;
-        } else if (payment.number) {
-            paymentContent = `
-                <h4>Transfer ke ${payment.name}</h4>
-                <img src="${payment.img}" alt="${payment.name}" class="payment-image">
-                <div class="payment-caption">A.N. ${payment.holder}</div>
-                <div class="payment-number">${payment.number}</div>
-                <button class="copy-button" onclick="copyToClipboard('${payment.number}')">Salin Nomor</button>
-            `;
-        }
-
-        paymentInfoSection.innerHTML = paymentContent;
-        
-        payButton.addEventListener('click', () => {
-            const adminWhatsapp = '6282298902274'; 
-            const message = `Halo Admin, saya ingin konfirmasi pesanan saya.\n\n*Detail Pesanan:*\nGame: ${game.name}\nProduk: ${product.label}\nPlayer ID: ${userId}${serverId ? ` (${serverId})` : ''}\nMetode Pembayaran: ${payment.name}\nTotal: ${formatRupiah(finalPrice)}\n\nNomor WA saya: ${whatsappNumber}\n\nMohon bantuannya untuk diproses, terima kasih.`;
-            const encodedMessage = encodeURIComponent(message);
-            window.location.href = `https://wa.me/${adminWhatsapp}?text=${encodedMessage}`;
-        });
-    } else {
-        cartSummaryCard.innerHTML = `
+    if (!game || !product || !payment || !cartSummaryCard || !summaryDetails) {
+        if(cartSummaryCard) cartSummaryCard.innerHTML = `
             <h3>Terjadi Kesalahan</h3>
             <p style="text-align: center; color: var(--text-light);">Data pesanan tidak ditemukan. Silakan kembali ke halaman utama.</p>
         `;
         if(payButton) payButton.style.display = 'none';
         if(paymentInfoSection) paymentInfoSection.style.display = 'none';
+        return;
+    }
+
+    const finalPrice = voucherApplied ? Math.max(0, product.price - VOUCHER_DISCOUNT) : product.price;
+
+    summaryDetails.innerHTML = `
+        <div class="summary-detail-item">
+            <span class="label"><i class="fas fa-gamepad"></i> Game</span>
+            <span class="value">${game.name}</span>
+        </div>
+        <div class="summary-detail-item">
+            <span class="label"><i class="fas fa-gem"></i> Produk</span>
+            <span class="value">${product.label}</span>
+        </div>
+        <div class="summary-detail-item">
+            <span class="label"><i class="fas fa-user"></i> Player ID</span>
+            <span class="value">${userId}${serverId ? ` (${serverId})` : ''}</span>
+        </div>
+        <div class="summary-detail-item">
+            <span class="label"><i class="fas fa-wallet"></i> Metode Pembayaran</span>
+            <span class="value">
+                <img src="${payment.img}" alt="${payment.name}" class="payment-image">
+                ${payment.name}
+            </span>
+        </div>
+        <div class="summary-detail-item">
+            <span class="label"><i class="fab fa-whatsapp"></i> Nomor WhatsApp</span>
+            <span class="value">${whatsappNumber}</span>
+        </div>
+        ${voucherApplied ? `
+        <div class="summary-detail-item voucher-applied">
+            <span class="label"><i class="fas fa-ticket-alt"></i> Voucher</span>
+            <span class="value">- ${formatRupiah(VOUCHER_DISCOUNT)}</span>
+        </div>
+        ` : ''}
+    `;
+
+    const summaryTotalDiv = document.createElement('div');
+    summaryTotalDiv.classList.add('summary-total');
+    summaryTotalDiv.innerHTML = `
+        <span class="label">Total Pembayaran</span>
+        <span class="value">${formatRupiah(finalPrice)}</span>
+    `;
+    cartSummaryCard.appendChild(summaryTotalDiv);
+
+    if (payment.qr) {
+        paymentInfoSection.innerHTML = `
+            <h4>Scan untuk Bayar</h4>
+            <img src="${payment.qr}" alt="QR Code" class="qr-code-image">
+            <div class="qr-caption">⚠️Perhatian: Transfer harus sesuai Dengan Harga Yang Tertera Di Atas⚠️
+Silakan scan kode QR di atas untuk melakukan pembayaran. Setelah berhasil, klik **Bayar Sekarang**.</div>
+        `;
+    } else if (payment.number) {
+        paymentInfoSection.innerHTML = `
+            <h4>Transfer ke ${payment.name}</h4>
+            <img src="${payment.img}" alt="${payment.name}" class="payment-image">
+            <div class="payment-caption">A.N. ${payment.holder}</div>
+            <div class="payment-number" data-number="${payment.number}">${payment.number}</div>
+            <button class="copy-button">Salin Nomor</button>
+        `;
+        paymentInfoSection.querySelector('.copy-button').addEventListener('click', () => {
+            copyToClipboard(payment.number);
+        });
+    }
+
+    if(paymentInfoSection) paymentInfoSection.style.display = 'block';
+
+    if(payButton) {
+        payButton.addEventListener('click', () => {
+            const adminWhatsapp = '6282298902274'; 
+            const message = `Halo Admin, saya ingin konfirmasi pesanan saya.\n\n*Detail Pesanan:*\nGame: ${game.name}\nProduk: ${product.label}\nPlayer ID: ${userId}${serverId ? ` (${serverId})` : ''}\nMetode Pembayaran: ${payment.name}\nTotal: ${formatRupiah(finalPrice)}\n\nNomor WA saya: ${whatsappNumber}\n\nMohon bantuannya untuk diproses, terima kasih.`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${adminWhatsapp}?text=${encodedMessage}`, '_blank');
+        });
     }
 }
 
@@ -623,14 +708,31 @@ function copyToClipboard(text) {
     });
 }
 
-
-// --- DOMContentLoaded Event Listener ---
+// --- Event Listener Utama ---
 document.addEventListener("DOMContentLoaded", () => {
-    if (document.querySelector('.game-grid-custom')) {
-        renderGameCards();
-    } else if (document.getElementById('topup-form')) {
+    const currentPage = window.location.pathname.split('/').pop();
+
+    if (currentPage === 'index.html' || currentPage === '') {
+        renderGameCards(GAMES);
+    } else if (currentPage === 'game.html') {
         setupGamePage();
-    } else if (document.getElementById('cart-summary-card')) {
+    } else if (currentPage === 'cart.html') {
         setupCartPage();
+    } else if (currentPage === 'search.html') {
+        setupSearchPage();
+    }
+
+    // Event listener untuk tombol pencarian di header (jika ada)
+    const searchLink = document.querySelector('.header-link.search-icon[href="search.html"]');
+    if (searchLink) {
+        searchLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const searchInput = document.getElementById('search-box');
+            let query = '';
+            if (searchInput) {
+                query = searchInput.value;
+            }
+            window.location.href = `search.html?query=${encodeURIComponent(query)}`;
+        });
     }
 });
