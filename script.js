@@ -254,21 +254,6 @@ const BANNERS = [
     'https://files.catbox.moe/e87yj3.png'
 ];
 
-// Data Pulsa & Panel
-const PULSA_PRODUCTS = [
-    { id: "telkomsel-5k", label: "Pulsa Telkomsel 5K", price: 6000 },
-    { id: "telkomsel-10k", label: "Pulsa Telkomsel 10K", price: 11000 },
-    { id: "xl-5k", label: "Pulsa XL 5K", price: 6100 },
-    { id: "xl-10k", label: "Pulsa XL 10K", price: 11200 },
-    { id: "indosat-5k", label: "Pulsa Indosat 5K", price: 6200 },
-];
-
-const PTERODACTYL_PRODUCTS = [
-    { id: "pter-basic", label: "Panel Basic 1GB RAM", price: 15000 },
-    { id: "pter-standar", label: "Panel Standar 2GB RAM", price: 25000 },
-    { id: "pter-pro", label: "Panel Pro 4GB RAM", price: 45000 },
-];
-
 // --- State Management
 let cart = [];
 let selectedGame = null;
@@ -460,8 +445,6 @@ function renderGamePage() {
             productListContainer.appendChild(card);
         });
     }
-
-    renderOptions('payment-list', PAYMENTS, 'payment');
 }
 
 function renderProductList(products, containerId, pageType) {
@@ -811,10 +794,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             window.location.href = 'index.html';
         }
-    } else if (path.includes('pulsa.html')) {
-        renderProductList(PULSA_PRODUCTS, 'pulsa-list', 'pulsa');
-    } else if (path.includes('pterodactyl.html')) {
-        renderProductList(PTERODACTYL_PRODUCTS, 'panel-list', 'pterodactyl');
     } else if (path.includes('checkout.html')) {
         renderCheckoutPage();
     } else if (path.includes('index.html') || path === '/') {
