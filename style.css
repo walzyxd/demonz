@@ -1,27 +1,24 @@
 /* General Styles */
 :root {
-    --primary-color: #1a1a2e; /* Darker, modern background */
-    --secondary-color: #2e3048; /* For cards and containers */
-    --accent-color: #e94560; /* A vibrant red/pink for accents */
-    --text-color: #f7f7f7; /* Off-white for readability */
-    --light-text-color: #9da0aa;
-    --card-bg-color: #2e3048;
-    --hover-bg-color: #3f425b;
-    --selected-border-color: #4a90e2; /* A cooler blue for selection */
-    --selected-shadow-color: rgba(74, 144, 226, 0.5);
-    --footer-bg-color: #161625;
+    --primary-color: #2c3e50;
+    --secondary-color: #34495e;
+    --accent-color: #e74c3c;
+    --text-color: #ecf0f1;
+    --light-text-color: #bdc3c7;
+    --card-bg-color: #3e5169;
+    --hover-bg-color: #4a617c;
+    --selected-border-color: #3498db;
+    --selected-shadow-color: rgba(52, 152, 219, 0.5);
+    --footer-bg-color: #223040;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background: var(--primary-color);
+    background-color: var(--primary-color);
     color: var(--text-color);
     line-height: 1.6;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
 .container {
@@ -41,7 +38,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .header h1 {
@@ -72,7 +69,6 @@ body {
 
 /* Main Content */
 .main-content {
-    flex-grow: 1;
     padding-bottom: 5rem;
 }
 
@@ -90,18 +86,6 @@ body {
 .section-header h2 {
     margin: 0;
     font-size: 1.3rem;
-    position: relative;
-}
-
-.section-header h2::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 50px;
-    height: 3px;
-    background-color: var(--accent-color);
-    border-radius: 2px;
 }
 
 /* Banners */
@@ -110,13 +94,13 @@ body {
     width: 100%;
     overflow: hidden;
     border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     margin-bottom: 2rem;
 }
 
 .banner-container {
     display: flex;
-    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.5s ease-in-out;
 }
 
 .banner-container .slide {
@@ -168,13 +152,11 @@ body {
     color: var(--text-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: block;
-    position: relative;
-    z-index: 1;
 }
 
 .game-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
 
 .game-card img {
@@ -182,18 +164,10 @@ body {
     height: 120px;
     object-fit: cover;
     display: block;
-    transition: transform 0.5s ease;
-}
-
-.game-card:hover img {
-    transform: scale(1.1);
 }
 
 .game-card-content {
     padding: 0.75rem;
-    position: relative;
-    z-index: 2;
-    background-color: var(--card-bg-color);
 }
 
 .game-card-content h3 {
@@ -219,7 +193,6 @@ body {
     padding: 1.5rem;
     border-radius: 12px;
     margin-bottom: 2rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .game-info-header .game-img {
@@ -249,7 +222,7 @@ body {
 }
 
 .game-detail-item i {
-    color: var(--accent-color);
+    color: #3498db;
 }
 
 .input-container {
@@ -268,12 +241,12 @@ body {
 .input-container input {
     width: 100%;
     padding: 0.75rem 1rem 0.75rem 3rem;
-    border: 1px solid var(--hover-bg-color);
+    border: 1px solid var(--card-bg-color);
     border-radius: 8px;
     background-color: var(--card-bg-color);
     color: var(--text-color);
     font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.3s ease;
     box-sizing: border-box;
 }
 
@@ -296,19 +269,18 @@ body {
     padding: 1rem;
     text-align: center;
     cursor: pointer;
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     position: relative;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .option-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.option-card.selected {
+.option-card.product.selected {
     border-color: var(--selected-border-color);
-    box-shadow: 0 0 20px var(--selected-shadow-color);
+    box-shadow: 0 0 15px var(--selected-shadow-color);
     transform: scale(1.05);
 }
 
@@ -354,7 +326,7 @@ body {
     position: absolute;
     top: -8px;
     right: -8px;
-    background-color: var(--accent-color);
+    background-color: #e74c3c;
     color: #fff;
     font-size: 0.6rem;
     padding: 0.2rem 0.5rem;
@@ -395,7 +367,7 @@ body {
 }
 
 .action-button:disabled {
-    background-color: #555866;
+    background-color: #95a5a6;
     cursor: not-allowed;
     transform: none;
 }
@@ -407,13 +379,12 @@ body {
 /* Search Page */
 .search-container {
     position: relative;
-    margin-bottom: 2rem;
 }
 
 .search-container input {
     width: 100%;
     padding: 0.75rem 3rem 0.75rem 1rem;
-    border: 1px solid var(--hover-bg-color);
+    border: 1px solid var(--card-bg-color);
     border-radius: 8px;
     background-color: var(--card-bg-color);
     color: var(--text-color);
@@ -421,8 +392,6 @@ body {
 
 .search-container input:focus {
     outline: none;
-    border-color: var(--selected-border-color);
-    box-shadow: 0 0 0 3px var(--selected-shadow-color);
 }
 
 .search-container .search-icon {
@@ -462,7 +431,7 @@ body {
     position: fixed;
     bottom: 80px;
     right: 20px;
-    background-color: var(--accent-color);
+    background-color: #3498db;
     color: #fff;
     border: none;
     border-radius: 50%;
@@ -479,7 +448,7 @@ body {
 }
 
 .floating-cart-button:hover {
-    background-color: #c0392b;
+    background-color: #2980b9;
     transform: translateY(-5px);
 }
 
@@ -487,7 +456,7 @@ body {
     position: absolute;
     top: -5px;
     right: -5px;
-    background-color: #4a90e2;
+    background-color: var(--accent-color);
     color: #fff;
     font-size: 0.7rem;
     font-weight: 700;
@@ -544,7 +513,7 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
-    border-bottom: 1px solid var(--hover-bg-color);
+    border-bottom: 1px solid var(--card-bg-color);
     padding-bottom: 0.5rem;
 }
 
@@ -576,7 +545,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 0.75rem 0;
-    border-bottom: 1px dashed var(--hover-bg-color);
+    border-bottom: 1px dashed var(--card-bg-color);
 }
 
 .cart-item:last-child {
@@ -625,7 +594,7 @@ body {
     margin-top: 1rem;
     font-size: 1.1rem;
     font-weight: 700;
-    border-top: 2px solid var(--hover-bg-color);
+    border-top: 2px solid var(--card-bg-color);
     padding-top: 1rem;
 }
 
@@ -646,7 +615,7 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 0.5rem 0;
-    border-bottom: 1px dashed var(--hover-bg-color);
+    border-bottom: 1px dashed var(--card-bg-color);
     font-size: 0.9rem;
 }
 
@@ -672,12 +641,12 @@ body {
 /* Footer */
 .footer {
     background-color: var(--footer-bg-color);
-    position: sticky;
+    position: fixed;
     bottom: 0;
     width: 100%;
     z-index: 100;
     padding: 0.5rem 0;
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .nav-links {
@@ -721,7 +690,7 @@ body {
 /* Notifications */
 .notification-container {
     position: fixed;
-    bottom: 80px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1001;
@@ -778,27 +747,5 @@ body {
     
     .floating-cart-button {
         bottom: 70px;
-    }
-
-    .notification-container {
-        bottom: 70px;
-    }
-}
-
-/* Additions for better mobile experience */
-body.modal-open {
-    overflow: hidden;
-}
-
-.cart-popup-content {
-    animation: slideUp 0.3s ease-out forwards;
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateY(100%);
-    }
-    to {
-        transform: translateY(0);
     }
 }
