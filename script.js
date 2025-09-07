@@ -214,7 +214,6 @@ const PRODUCTS = {
     ]
 };
 
-
 // --- Variable untuk menyimpan harga asli produk dan status voucher
 let originalPrices = {};
 let isVoucherApplied = false;
@@ -303,8 +302,9 @@ function updateSummary() {
     
     const isProductSelected = !!selectedProductCard;
     const isPaymentSelected = !!selectedPaymentCard;
-    const isIdValid = userIdInput && userIdInput.value.length > 0 && idCheckResult.textContent.includes('Username:');
-    const isWhatsappValid = whatsappInput && window.iti.isValidNumber();
+    const idCheckResult = document.getElementById('id-check-result');
+    const isIdValid = userIdInput && userIdInput.value.length > 0 && idCheckResult && idCheckResult.textContent.includes('Username:');
+    const isWhatsappValid = whatsappInput && window.iti && window.iti.isValidNumber();
 
     let isServerIdValid = true;
     if (game && game.needsServerId) {
