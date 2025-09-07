@@ -49,7 +49,7 @@
                 <span class="total-price">Rp 0</span>
             </div>
             <div class="cart-actions">
-                <button id="cart-checkout-btn" class="action-button" disabled>Beli Sekarang</button>
+                <button id="cart-checkout-btn" class="action-button">Beli Sekarang</button>
             </div>
         </div>
     </div>
@@ -74,18 +74,72 @@
     <div class="notification-container"></div>
     
     <script>
-        const PULSA_PRODUCTS = [
-            { id: "telkomsel-5k", label: "Pulsa Telkomsel 5K", price: 6000 },
-            { id: "telkomsel-10k", label: "Pulsa Telkomsel 10K", price: 11000 },
-            { id: "xl-5k", label: "Pulsa XL 5K", price: 6100 },
-            { id: "xl-10k", label: "Pulsa XL 10K", price: 11200 },
-            { id: "indosat-5k", label: "Pulsa Indosat 5K", price: 6200 },
-        ];
+        const PULSA_PRODUCTS = {
+            telkomsel: [
+                { id: "telkomsel-5k", label: "Pulsa Telkomsel 5K", price: 6000 },
+                { id: "telkomsel-10k", label: "Pulsa Telkomsel 10K", price: 11000 },
+            ],
+            xl: [
+                { id: "xl-5k", label: "Pulsa XL 5K", price: 6100 },
+                { id: "xl-10k", label: "Pulsa XL 10K", price: 11200 },
+            ],
+            indosat: [
+                { id: "indosat-5k", label: "Pulsa Indosat 5K", price: 6200 },
+                { id: "indosat-10k", label: "Pulsa Indosat 10K", price: 11500 },
+            ]
+        };
+
+        function renderProducts(operator = null) {
+            const container = document.getElementById('pulsa-list');
+            container.innerHTML = '';
+            let productsToRender = [];
+            
+            if (operator && PULSA_PRODUCTS[operator]) {
+                productsToRender = PULSA_PRODUCTS[operator];
+            } else {
+                // Tampilkan semua produk jika operator tidak terdeteksi
+                for (const key in PULSA_PRODUCTS) {
+                    productsToRender = productsToRender.concat(PULSA_PRODUCTS[key]);
+                }
+            }
+            
+            productsToRender.forEach(product => {
+                const card = document.createElement('div');
+                card.classList.add('option-card', 'product');
+                card.setAttribute('data-id', product.id);
+                
+                const title = product.label.split(' ').slice(0, 2).join(' ');
+                const description = product.label.split(' ').slice(2).join(' ');
+                
+                card.innerHTML = `
+                    <div class="label">${title}</div>
+                    <div class="price-group">
+                        <p class="description">${description}</p>
+                        <div class="price">${formatRupiah(product.price)}</div>
+                    </div>
+                    <button class="add-to-cart-btn action-button" data-product-id="${product.id}">Pilih</button>
+                `;
+                
+                card.querySelector('.add-to-cart-btn').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    addToCart(product, 'Pulsa & Data', 'pulsa');
+                });
+                
+                container.appendChild(card);
+            });
+        }
     </script>
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            renderProductList(PULSA_PRODUCTS, 'pulsa-list', 'pulsa');
+            const phoneNumberInput = document.getElementById('user-id');
+            renderProducts(); // Render semua produk saat halaman pertama kali dimuat
+
+            phoneNumberInput.addEventListener('input', () => {
+                const number = phoneNumberInput.value;
+                const operator = detectOperator(number);
+                renderProducts(operator);
+            });
             setupFloatingCart();
         });
     </script>
