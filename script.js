@@ -218,6 +218,14 @@ const PRODUCTS = {
 let originalPrices = {};
 let isVoucherApplied = false;
 
+// --- API Keys ---
+// Ganti dengan API Key yang Anda dapatkan dari APIGAMES.ID dan TOKOVOUCHER.NET
+const API_CHECKID_MERCHANT_ID = "M250907JZZY9386TE";
+const API_CHECKID_SECRET_KEY = "2cbefb6a1e0a229d12c318747c59e36d0c6a38827e5984c077ec143a26471986";
+const API_TRANSACTION_MEMBER_CODE = "M250907QGUD5211YY";
+const API_TRANSACTION_SECRET = "0930f861568bf8d3b029846b45f7fe0adf7e7e2dd61fa6f6a18e0557d3c580ba";
+
+
 // --- Fungsi Global ---
 function formatRupiah(number) {
     return new Intl.NumberFormat('id-ID', {
@@ -506,9 +514,6 @@ function setupGamePage() {
 }
 
 // FUNGSI UNTUK CEK ID GAME (MENGGUNAKAN API APIGAMES.ID)
-const API_MERCHANT_ID = "M250907JZZY9386TE";
-const API_SECRET_KEY = "2cbefb6a1e0a229d12c318747c59e36d0c6a38827e5984c077ec143a26471986";
-
 async function checkGameId(gameCode, userId, serverId = null) {
     const idCheckResult = document.getElementById('id-check-result');
     const checkIdBtn = document.getElementById('check-id-btn');
@@ -519,9 +524,9 @@ async function checkGameId(gameCode, userId, serverId = null) {
         return;
     }
 
-    const signature = API_MERCHANT_ID + API_SECRET_KEY;
+    const signature = API_CHECKID_MERCHANT_ID + API_CHECKID_SECRET_KEY;
     
-    const apiURL = `https://v1.apigames.id/v1/legit/check-username?user_id=${userId}&game_code=${gameCode}&merchant_id=${API_MERCHANT_ID}&signature=${signature}`;
+    const apiURL = `https://v1.apigames.id/v1/legit/check-username?user_id=${userId}&game_code=${gameCode}&merchant_id=${API_CHECKID_MERCHANT_ID}&signature=${signature}`;
     
     idCheckResult.textContent = "Memeriksa...";
     idCheckResult.style.color = "var(--text-color-dark)";
@@ -549,9 +554,6 @@ async function checkGameId(gameCode, userId, serverId = null) {
 }
 
 // --- Logika Halaman Cart ---
-const API_MEMBER_CODE = "M250907QGUD5211YY";
-const API_SECRET = "0930f861568bf8d3b029846b45f7fe0adf7e7e2dd61fa6f6a18e0557d3c580ba";
-
 let userRating = 0;
 let reviewText = "";
 
@@ -679,9 +681,6 @@ function setupCartPage() {
 }
 
 // FUNGSI UNTUK MENGIRIM TRANSAKSI (MENGGUNAKAN API TOKO VOUCHER)
-const API_MEMBER_CODE = "M250907QGUD5211YY";
-const API_SECRET = "0930f861568bf8d3b029846b45f7fe0adf7e7e2dd61fa6f6a18e0557d3c580ba";
-
 async function sendTransactionToAPI(productApiCode, userId, serverId, whatsappNumber) {
     const apiURL = "https://api.tokovoucher.net/v1/transaksi";
 
@@ -693,8 +692,8 @@ async function sendTransactionToAPI(productApiCode, userId, serverId, whatsappNu
         ref_id: refId,
         produk: productApiCode,
         tujuan: userId,
-        secret: API_SECRET,
-        member_code: API_MEMBER_CODE,
+        secret: API_TRANSACTION_SECRET,
+        member_code: API_TRANSACTION_MEMBER_CODE,
         // server_id hanya dikirim jika ada
         ...(serverId && { server_id: serverId }) 
     };
