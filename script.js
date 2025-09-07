@@ -212,8 +212,8 @@ const PRODUCTS = {
         { id: "undawn-glory-s7", label: "Glory Pass Premium S7", price: 143999, badges: ["pass"] },
         { id: "undawn-glory-s16", label: "Glory Pass Premium S16", price: 143999, badges: ["pass"] },
         { id: "undawn-prep", label: "Quick Battle Prep", price: 94379, badges: ["sale"] }
-  ],
-  "magic-ches-gogo": [
+    ],
+    "magic-ches-gogo": [
         { id: "weekly-card", label: "Weekly Card", price: 31699, badges: ["weekly"] },
         { id: "first-100", label: "First Recharge 100 Diamonds", price: 12999, badges: ["first"] },
         { id: "first-300", label: "First Recharge 300 Diamonds", price: 38999, badges: ["first"] },
@@ -245,7 +245,7 @@ const PRODUCTS = {
         { id: "d-3688", label: "3688 Diamonds", price: 810999, badges: ["sale"] },
         { id: "d-5532", label: "5532 Diamonds", price: 1216499, badges: ["sale"] },
         { id: "d-9288", label: "9288 Diamonds", price: 2027499, badges: ["sale"] }
-  ]
+    ]
 };
 
 // --- Variable untuk menyimpan harga asli produk dan status voucher
