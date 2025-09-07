@@ -35,6 +35,10 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background-color: var(--bg-color);
@@ -709,6 +713,15 @@ h1, h2, h3 {
 @media (min-width: 768px) {
     .main-content {
         padding: 40px 0;
+    }
+
+    .banner-slider-container {
+        height: 300px; /* Atur tinggi untuk desktop */
+    }
+
+    .banner-image {
+        max-height: 100%;
+        object-fit: contain;
     }
 
     .game-grid {
