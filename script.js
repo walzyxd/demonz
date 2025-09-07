@@ -1,20 +1,20 @@
 // --- Data Konfigurasi ---
 const GAMES = [
-    { key: "free-fire", name: "Free Fire", publisher: "Garena", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", needsServerId: false },
     { key: "mobile-legends", name: "Mobile Legends", publisher: "Moonton", img: "https://i.supaimg.com/3272ce04-c4a0-4025-8d8a-b2723a2f2267.jpg", needsServerId: true },
+    { key: "magic-ches-gogo", name: "Magic Ches Gogo", publisher: "Vizta Games", img: "https://files.catbox.moe/bbxhbo.jpg", needsServerId: true },
+    { key: "free-fire", name: "Free Fire", publisher: "Garena", img: "https://i.supaimg.com/023005b8-5541-4175-8563-072978e05973.jpg", needsServerId: false },
+    { key: "pubg", name: "PUBG Mobile", publisher: "Semua Region", img: "https://files.catbox.moe/tatuo9.jpg", needsServerId: false },
     { key: "honor-of-kings", name: "Honor of Kings", publisher: "Level Infinite", img: "https://i.supaimg.com/98bfce2d-9b90-40be-8f2e-b42ab896dc3d.jpg", needsServerId: true },
     { key: "genshin-impact", name: "Genshin Impact", publisher: "Hoyoverse", img: "https://i.supaimg.com/872628e9-c5f6-46f5-b5cc-8c8f3e8766c7.jpg", needsServerId: true },
     { key: "roblox", name: "Roblox", publisher: "Roblox Corporation", img: "https://i.supaimg.com/c8d8f1c7-b02c-4643-a6e5-63a6487d622c.jpg", needsServerId: false },
     { key: "super-sus", name: "Super Sus", publisher: "Super Sus", img: "https://files.catbox.moe/j61uny.jpg", needsServerId: true },
     { key: "coc", name: "Clash of Clans", publisher: "Supercell", img: "https://files.catbox.moe/6aia0n.jpg", needsServerId: false },
     { key: "blood-strike", name: "Blood Strike", publisher: "NetEase", img: "https://files.catbox.moe/3y066i.jpg", needsServerId: false },
-    { key: "pubg", name: "PUBG Mobile", publisher: "Semua Region", img: "https://files.catbox.moe/tatuo9.jpg", needsServerId: false },
     { key: "garena-delta", name: "Garena Delta Force", publisher: "Garena Delta...", img: "https://i.supaimg.com/51600c75-7f50-440c-b363-7b379a5bd976.png", needsServerId: false },
     { key: "garena-undawn", name: "Garena Undawn", publisher: "Garena", img: "https://i.supaimg.com/41450b00-c089-49c9-a6f2-a1d37b08f1cd.png", needsServerId: false },
     { key: "valorant", name: "Valorant", publisher: "Riot Games", img: "https://i.supaimg.com/6f1b6502-92e1-4c94-8246-2ff54e08b93d.png", needsServerId: false },
     { key: "call-of-duty", name: "Call Of Duty", publisher: "Activision", img: "https://i.supaimg.com/f7665c44-d005-475b-adbb-3b685aaf1415.webp", needsServerId: false },
-    { key: "eggy-party", name: "Eggy Party", publisher: "NetEase Games", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", needsServerId: false },
-    { key: "magic-ches-gogo", name: "Magic Ches Gogo", publisher: "Vizta Games", img: "https://files.catbox.moe/bbxhbo.jpg", needsServerId: true }
+    { key: "eggy-party", name: "Eggy Party", publisher: "NetEase Games", img: "https://i.supaimg.com/7e8f84ad-9663-4028-9fff-6bbdd6b72f0b.jpg", needsServerId: false }
 ];
 
 const PAYMENTS = [
@@ -177,11 +177,6 @@ function updateBanners() {
     });
 }
 
-function moveToBanner(index) {
-    bannerIndex = index;
-    updateBanners();
-}
-
 function startBannerSlider() {
     setInterval(() => {
         bannerIndex = (bannerIndex + 1) % BANNERS.length;
@@ -206,6 +201,48 @@ function renderGameCards(games, containerId) {
         `;
         container.appendChild(card);
     });
+}
+
+function setupFooterFunctionality() {
+    const pulsaDataLink = document.querySelector('.nav-item.pulsa-data');
+    const panelPterodactylLink = document.querySelector('.nav-item.panel-pterodactyl');
+    
+    if (pulsaDataLink) {
+        pulsaDataLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const message = `
+                Produk Pulsa & Paket Data:
+                - Telkomsel
+                - Indosat
+                - XL/Axis
+                - Smartfren
+                - Three
+                *Hubungi admin untuk detail harga.
+            `;
+            alert(message.trim());
+        });
+    }
+
+    if (panelPterodactylLink) {
+        panelPterodactylLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const message = `
+                Produk Panel Pterodactyl:
+                - RAM 1GB: Rp1.000
+                - RAM 2GB: Rp2.000
+                - RAM 3GB: Rp3.000
+                - RAM 4GB: Rp4.000
+                - RAM 5GB: Rp5.000
+                - RAM 6GB: Rp6.000
+                - RAM 7GB: Rp7.000
+                - RAM 8GB: Rp8.000
+                - RAM 9GB: Rp9.000
+                - RAM 10GB: Rp10.000
+                - Unlimited: Rp12.000
+            `;
+            alert(message.trim());
+        });
+    }
 }
 
 // --- Game Page Functions
