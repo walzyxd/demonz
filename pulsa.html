@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pulsa & Paket Data | Walzshop</title>
+    <title>Pulsa & Data - Walzshop</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -11,44 +11,49 @@
 <body>
 
     <header class="header">
-        <div class="header-left">
-            <a href="index.html" class="header-link back-button"><i class="fas fa-arrow-left"></i></a>
-        </div>
         <div class="header-center">
-            <h1>Pulsa & Paket Data</h1>
+            <h1>Pulsa & Data</h1>
         </div>
-        <div class="header-right">
-            <a href="search.html" class="header-link search-icon"><i class="fas fa-search"></i></a>
-        </div>
+        <a href="search.html" class="header-link search-icon"><i class="fas fa-search"></i></a>
     </header>
 
     <main class="main-content container">
         <div class="page-section">
             <div class="section-header">
-                <h2>Daftar Produk</h2>
+                <h2>Pilih Produk</h2>
             </div>
-            <p style="margin-bottom: 20px; color: var(--text-light);">Hubungi admin untuk detail harga dan pembelian.</p>
-            <ul class="page-list">
-                <li>
-                    <span>Pulsa Semua Operator</span>
-                    <span class="price">Hubungi Admin</span>
-                </li>
-                <li>
-                    <span>Paket Data Semua Operator</span>
-                    <span class="price">Hubungi Admin</span>
-                </li>
-                <li>
-                    <span>Paket Telepon & SMS</span>
-                    <span class="price">Hubungi Admin</span>
-                </li>
-                <li>
-                    <span>Token Listrik</span>
-                    <span class="price">Hubungi Admin</span>
-                </li>
-            </ul>
+            <div class="input-container">
+                <i class="fas fa-mobile-alt input-icon"></i>
+                <input type="number" id="user-id" placeholder="Masukkan nomor HP">
+            </div>
+            <div class="options-grid" id="pulsa-list">
+                </div>
         </div>
     </main>
-    
+
+    <button id="floating-cart-button" class="floating-cart-button" style="display: flex;">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </button>
+
+    <div id="cart-popup" class="cart-popup">
+        <div class="cart-popup-content">
+            <div class="cart-popup-header">
+                <h3>Keranjang Belanja</h3>
+                <button class="close-popup-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <ul id="cart-items-list" class="cart-items-list">
+                </ul>
+            <div id="cart-total" class="cart-total">
+                <span class="total-label">Total:</span>
+                <span class="total-price">Rp 0</span>
+            </div>
+            <div class="cart-actions">
+                <button id="cart-checkout-btn" class="action-button" disabled>Beli Sekarang</button>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         <nav class="nav-links">
             <a href="index.html" class="nav-item">
@@ -65,7 +70,24 @@
             </a>
         </nav>
     </footer>
-
+    
+    <div class="notification-container"></div>
+    
+    <script>
+        const PULSA_PRODUCTS = [
+            { id: "telkomsel-5k", label: "Pulsa Telkomsel 5K", price: 6000 },
+            { id: "telkomsel-10k", label: "Pulsa Telkomsel 10K", price: 11000 },
+            { id: "xl-5k", label: "Pulsa XL 5K", price: 6100 },
+            { id: "xl-10k", label: "Pulsa XL 10K", price: 11200 },
+            { id: "indosat-5k", label: "Pulsa Indosat 5K", price: 6200 },
+        ];
+    </script>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProductList(PULSA_PRODUCTS, 'pulsa-list', 'pulsa');
+            setupFloatingCart();
+        });
+    </script>
 </body>
 </html>
