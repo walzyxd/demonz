@@ -76,28 +76,56 @@
     <script>
         const PULSA_PRODUCTS = {
             telkomsel: [
-                { id: "telkomsel-5k", label: "Pulsa Telkomsel 5K", price: 6000 },
-                { id: "telkomsel-10k", label: "Pulsa Telkomsel 10K", price: 11000 },
+                { id: "t-5", label: "Pulsa Telkomsel 5K", price: 6000 },
+                { id: "t-10", label: "Pulsa Telkomsel 10K", price: 11000 },
+                { id: "t-25", label: "Pulsa Telkomsel 25K", price: 26000 },
+                { id: "t-50", label: "Pulsa Telkomsel 50K", price: 51000 },
+                { id: "t-100", label: "Pulsa Telkomsel 100K", price: 101000 },
+                { id: "t-data-1gb", label: "Data Telkomsel 1GB", price: 5000 },
+                { id: "t-data-3gb", label: "Data Telkomsel 3GB", price: 10000 },
             ],
             xl: [
-                { id: "xl-5k", label: "Pulsa XL 5K", price: 6100 },
-                { id: "xl-10k", label: "Pulsa XL 10K", price: 11200 },
+                { id: "xl-5", label: "Pulsa XL 5K", price: 6100 },
+                { id: "xl-10", label: "Pulsa XL 10K", price: 11200 },
+                { id: "xl-25", label: "Pulsa XL 25K", price: 26500 },
+                { id: "xl-50", label: "Pulsa XL 50K", price: 51500 },
+                { id: "xl-data-1gb", label: "Data XL 1GB", price: 5200 },
+                { id: "xl-data-3gb", label: "Data XL 3GB", price: 10500 },
             ],
             indosat: [
-                { id: "indosat-5k", label: "Pulsa Indosat 5K", price: 6200 },
-                { id: "indosat-10k", label: "Pulsa Indosat 10K", price: 11500 },
+                { id: "i-5", label: "Pulsa Indosat 5K", price: 6200 },
+                { id: "i-10", label: "Pulsa Indosat 10K", price: 11500 },
+                { id: "i-25", label: "Pulsa Indosat 25K", price: 27000 },
+                { id: "i-50", label: "Pulsa Indosat 50K", price: 52000 },
+                { id: "i-data-1gb", label: "Data Indosat 1GB", price: 5300 },
+                { id: "i-data-3gb", label: "Data Indosat 3GB", price: 11000 },
+            ],
+            axis: [
+                { id: "ax-5", label: "Pulsa Axis 5K", price: 6150 },
+                { id: "ax-10", label: "Pulsa Axis 10K", price: 11300 },
+                { id: "ax-25", label: "Pulsa Axis 25K", price: 26600 },
+                { id: "ax-data-1gb", label: "Data Axis 1GB", price: 5250 },
+            ],
+            "3": [
+                { id: "3-5", label: "Pulsa Tri 5K", price: 6180 },
+                { id: "3-10", label: "Pulsa Tri 10K", price: 11400 },
+                { id: "3-data-1gb", label: "Data Tri 1GB", price: 5350 },
+            ],
+            smartfren: [
+                { id: "sf-5", label: "Pulsa Smartfren 5K", price: 6300 },
+                { id: "sf-10", label: "Pulsa Smartfren 10K", price: 11600 },
+                { id: "sf-data-1gb", label: "Data Smartfren 1GB", price: 5400 },
             ]
         };
 
         function renderProducts(operator = null) {
             const container = document.getElementById('pulsa-list');
             container.innerHTML = '';
-            let productsToRender = [];
             
+            let productsToRender = [];
             if (operator && PULSA_PRODUCTS[operator]) {
                 productsToRender = PULSA_PRODUCTS[operator];
             } else {
-                // Tampilkan semua produk jika operator tidak terdeteksi
                 for (const key in PULSA_PRODUCTS) {
                     productsToRender = productsToRender.concat(PULSA_PRODUCTS[key]);
                 }
@@ -133,12 +161,16 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const phoneNumberInput = document.getElementById('user-id');
-            renderProducts(); // Render semua produk saat halaman pertama kali dimuat
+            renderProducts();
 
             phoneNumberInput.addEventListener('input', () => {
-                const number = phoneNumberInput.value;
+                const number = phoneNumberInput.value.replace(/\D/g, ''); // Hapus karakter non-digit
                 const operator = detectOperator(number);
-                renderProducts(operator);
+                if (number.length >= 4) {
+                    renderProducts(operator);
+                } else {
+                    renderProducts(); // Tampilkan semua produk jika kurang dari 4 digit
+                }
             });
             setupFloatingCart();
         });
