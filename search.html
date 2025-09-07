@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pencarian | Walzshop</title>
+    <title>Cari Game | Walzshop</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <header class="header">
-        <a href="javascript:history.back()" class="header-link back-button"><i class="fas fa-arrow-left"></i></a>
+        <a href="index.html" class="header-link back-button"><i class="fas fa-arrow-left"></i></a>
         <div class="search-input-container">
             <i class="fas fa-search input-icon"></i>
-            <input type="text" id="search-box" placeholder="Cari Game...">
+            <input type="text" id="search-box" placeholder="Cari Game Favoritmu..." autocomplete="off">
             <i class="fas fa-times-circle clear-btn" id="clear-search"></i>
         </div>
     </header>
@@ -20,12 +20,12 @@
     <main class="main-content">
         <div class="search-results">
             <p id="search-stats" class="search-stats"></p>
+            <div id="game-list" class="game-grid-custom">
+                </div>
             <div id="no-results" class="no-results" style="display: none;">
-                <h3>Tidak ada hasil yang ditemukan</h3>
+                <h3>Tidak Ditemukan</h3>
                 <p>Coba kata kunci lain atau periksa ejaan Anda.</p>
             </div>
-            <div class="game-grid-custom" id="game-list">
-                </div>
         </div>
     </main>
 
