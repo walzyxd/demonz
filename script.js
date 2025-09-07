@@ -21,7 +21,7 @@ const PAYMENTS = [
     { id: "qris", name: "QRIS", img: "https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg", qr: "https://files.catbox.moe/pa0iwo.png" },
     { id: "krom", name: "Bank Krom", img: "https://i.supaimg.com/20eaef7a-3a63-4be3-a507-175348ab41de.jpg", number: "770072009565", holder: "Walzshop ID" },
     { id: "dana", name: "Dana", img: "https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg", number: "083139243389", holder: "Anom" },
-    { id: "gopay", name: "Gopay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg", number: "082298902274", holder: "Anom" }
+    { id: "gopay", name: "Gopay", img: "https://i.supaimg.com/104ae434-3bb9-4071-a965-73b301a5ba29.jpg", number: "082298902274", holder: "Anom" }
 ];
 
 const PRODUCTS = {
@@ -258,6 +258,7 @@ const BANNERS = [
 let cart = [];
 let selectedGame = null;
 let selectedPayment = null;
+let selectedProduct = null; // Menambahkan state untuk produk yang dipilih
 let isVoucherApplied = false;
 const VOUCHER_CODE = "WALZPROMO";
 const VOUCHER_DISCOUNT = 1000;
@@ -401,23 +402,13 @@ function renderGamePage() {
             serverIdContainer.innerHTML = '';
         }
     }
-
-    // Attach event listeners
-    const useVoucherBtn = document.getElementById('use-voucher-btn');
-    if (useVoucherBtn) useVoucherBtn.addEventListener('click', applyVoucher);
     
-    // Render products without "Pilih" button
+    // Render products with select effect
     const productListContainer = document.getElementById('product-list');
     if (productListContainer) {
         productListContainer.innerHTML = '';
         products.forEach(product => {
-            const finalPrice = isVoucherApplied ? Math.max(0, product.price - VOUCHER_DISCOUNT) : product.price;
-            const hasDiscount = isVoucherApplied && product.price > VOUCHER_DISCOUNT;
-            
-            const priceHtml = hasDiscount ? `
-                <div class="original-price">${formatRupiah(product.price)}</div>
-                <div class="price discounted-price">${formatRupiah(finalPrice)}</div>
-            ` : `<div class="price">${formatRupiah(finalPrice)}</div>`;
+            const finalPrice = product.price; // Harga produk tidak berubah
             
             let badgeHtml = '';
             if (product.badges && product.badges.length > 0) {
@@ -430,20 +421,42 @@ function renderGamePage() {
             const card = document.createElement('div');
             card.classList.add('option-card', 'product');
             card.setAttribute('data-id', product.id);
+            if (selectedProduct && selectedProduct.id === product.id) {
+                card.classList.add('selected');
+            }
             card.innerHTML = `
                 ${badgeHtml}
                 <div class="label">${product.label}</div>
-                <div class="price-group">${priceHtml}</div>
+                <div class="price-group">
+                    <div class="price">${formatRupiah(finalPrice)}</div>
+                </div>
             `;
             
-            // Add a click listener to the card itself to add to cart
             card.addEventListener('click', () => {
-                addToCart(product, game.name, game.key);
+                selectProduct(product);
             });
             
             productListContainer.appendChild(card);
         });
     }
+
+    // Update checkout button state
+    const checkoutBtn = document.getElementById('cart-checkout-btn');
+    if (checkoutBtn) {
+        checkoutBtn.disabled = !selectedProduct;
+    }
+}
+
+function selectProduct(product) {
+    selectedProduct = product;
+    const cards = document.querySelectorAll('.option-card.product');
+    cards.forEach(card => card.classList.remove('selected'));
+    const selectedCard = document.querySelector(`.option-card[data-id="${product.id}"]`);
+    if (selectedCard) {
+        selectedCard.classList.add('selected');
+    }
+    
+    updateCartDisplay();
 }
 
 function renderProductList(products, containerId, pageType) {
@@ -452,13 +465,7 @@ function renderProductList(products, containerId, pageType) {
     
     container.innerHTML = '';
     products.forEach(product => {
-        const finalPrice = product.price; // Harga di keranjang tidak berubah
-        const hasDiscount = isVoucherApplied && pageType !== 'game';
-        
-        const priceHtml = hasDiscount ? `
-            <div class="original-price">${formatRupiah(product.price)}</div>
-            <div class="price discounted-price">${formatRupiah(finalPrice)}</div>
-        ` : `<div class="price">${formatRupiah(finalPrice)}</div>`;
+        const finalPrice = product.price; 
         
         let badgeHtml = '';
         if (product.badges && product.badges.length > 0) {
@@ -480,7 +487,7 @@ function renderProductList(products, containerId, pageType) {
             <div class="label">${title}</div>
             <div class="price-group">
                 <p class="description">${description}</p>
-                ${priceHtml}
+                <div class="price">${formatRupiah(finalPrice)}</div>
             </div>
             <button class="add-to-cart-btn action-button" data-product-id="${product.id}">Pilih</button>
         `;
@@ -537,7 +544,6 @@ function updateCartDisplay() {
             cartItemsList.innerHTML = '<li class="empty-cart-message">Keranjang Anda kosong.</li>';
         } else {
             cart.forEach(item => {
-                // Harga di keranjang tidak terpengaruh voucher
                 const finalPrice = item.product.price;
                 total += finalPrice;
                 
@@ -558,8 +564,7 @@ function updateCartDisplay() {
     
     // Update total price and checkout button
     if (cartTotalElement) cartTotalElement.textContent = formatRupiah(total);
-    // Tombol checkout selalu aktif
-    if (cartCheckoutBtn) cartCheckoutBtn.disabled = false;
+    if (cartCheckoutBtn) cartCheckoutBtn.disabled = cart.length === 0;
 }
 
 function showCartPopup() {
@@ -606,45 +611,21 @@ function setupFloatingCart() {
     updateCartDisplay();
 }
 
-function applyVoucher() {
-    const promoCodeInput = document.getElementById('promo-code');
-    const promoCode = promoCodeInput.value.toUpperCase();
-    
-    if (promoCode === VOUCHER_CODE) {
-        isVoucherApplied = true;
-        const path = window.location.pathname.toLowerCase();
-        if (path.includes('game.html')) {
-            renderGamePage();
-        } else if (path.includes('pulsa.html')) {
-            renderProductList(PULSA_PRODUCTS, 'pulsa-list', 'pulsa');
-        } else if (path.includes('pterodactyl.html')) {
-            renderProductList(PTERODACTYL_PRODUCTS, 'panel-list', 'pterodactyl');
-        }
-        showNotification(`Voucher Berhasil digunakan! Potongan: ${formatRupiah(VOUCHER_DISCOUNT)}`);
-    } else {
-        isVoucherApplied = false;
-        const path = window.location.pathname.toLowerCase();
-        if (path.includes('game.html')) {
-            renderGamePage();
-        } else if (path.includes('pulsa.html')) {
-            renderProductList(PULSA_PRODUCTS, 'pulsa-list', 'pulsa');
-        } else if (path.includes('pterodactyl.html')) {
-            renderProductList(PTERODACTYL_PRODUCTS, 'panel-list', 'pterodactyl');
-        }
-        showNotification('Voucher Tidak valid', false);
-    }
-}
-
 function detectOperator(phoneNumber) {
-    // Implementasi sederhana untuk mendeteksi operator dari nomor telepon
-    if (!phoneNumber) return null;
+    const prefixes = {
+        'telkomsel': ['0811', '0812', '0813', '0821', '0822', '0852', '0853'],
+        'xl': ['0817', '0818', '0819', '0859', '0878', '0877'],
+        'indosat': ['0814', '0815', '0816', '0855', '0856', '0857', '0858'],
+        '3': ['0895', '0896', '0897', '0898', '0899'],
+        'axis': ['0831', '0832', '0833', '0838'],
+        'smartfren': ['0881', '0882', '0883', '0884', '0885', '0886', '0887', '0888', '0889']
+    };
+    if (!phoneNumber || phoneNumber.length < 3) return null;
     const prefix = phoneNumber.substring(0, 4);
-    if (['0811', '0812', '0813', '0821', '0822', '0852', '0853'].includes(prefix)) {
-        return 'telkomsel';
-    } else if (['0817', '0818', '0819', '0859', '0878', '0877'].includes(prefix)) {
-        return 'xl';
-    } else if (['0814', '0815', '0816', '0855', '0856', '0857', '0858'].includes(prefix)) {
-        return 'indosat';
+    for (const operator in prefixes) {
+        if (prefixes[operator].includes(prefix)) {
+            return operator;
+        }
     }
     return null;
 }
@@ -725,7 +706,7 @@ function renderCheckoutPage() {
         let messageItems = '';
         cartData.items.forEach(item => {
             const gameName = GAMES.find(g => g.key === item.gameKey) ? GAMES.find(g => g.key === item.gameKey).name : item.gameKey;
-            const price = isVoucherApplied ? Math.max(0, item.price - (VOUCHER_DISCOUNT / cartData.items.length)) : item.price;
+            const price = item.price;
             messageItems += `- ${item.label} (${gameName}): ${formatRupiah(price)}\n`;
         });
         
@@ -787,6 +768,8 @@ function renderOptions(containerId, options, type) {
 // --- Initial Page Load
 document.addEventListener('DOMContentLoaded', () => {
     const path = window.location.pathname.toLowerCase();
+    const floatingCartBtn = document.getElementById('floating-cart-button');
+
     if (path.includes('game.html')) {
         const urlParams = new URLSearchParams(window.location.search);
         const gameKey = urlParams.get('game');
@@ -802,21 +785,17 @@ document.addEventListener('DOMContentLoaded', () => {
         renderGameCards(GAMES, 'popular-games');
         renderBanners();
         startBannerSlider();
+        if (floatingCartBtn) floatingCartBtn.style.display = 'none';
     } else if (path.includes('search.html')) {
         setupSearchFunctionality();
         renderGameCards(GAMES, 'game-list');
+        if (floatingCartBtn) floatingCartBtn.style.display = 'none';
+    } else if (path.includes('pulsa.html') || path.includes('pterodactyl.html')) {
+         if (floatingCartBtn) floatingCartBtn.style.display = 'flex';
     }
     
     setupFloatingCart();
 });
-
-function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(() => {
-        showNotification('Nomor berhasil disalin!');
-    }).catch(err => {
-        showNotification('Gagal menyalin nomor.', false);
-    });
-}
 
 function setupSearchFunctionality() {
     const searchInput = document.getElementById('search-box');
