@@ -3,52 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WALZSHOP - Top Up Games</title>
+    <title>Walzshop - Jual Top Up Game Murah dan Terpercaya</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-
-    <div class="main-container">
-        <header class="header">
-            <a href="index.html" class="logo-link">
-                <img src="https://files.catbox.moe/hrtpys.jpg" alt="WALZSHOP Icon" class="logo-icon">
-                <h1 class="website-name">WALZSHOP</h1>
-            </a>
-            <div class="header-right">
-                <a href="search.html" class="header-link">
-                    <i class="fas fa-search"></i>
-                </a>
-                <a href="profile.html" class="header-link">
-                    <i class="fas fa-user"></i>
-                </a>
-            </div>
-        </header>
-
-        <main class="game-selection-main">
-            <h2 class="section-title">Pilih Game Favoritmu</h2>
-            <section class="game-list-section">
-                <div id="game-list" class="game-grid-custom">
-                    </div>
-            </section>
-        </main>
-    </div>
-
-    <footer class="footer">
-        <div class="footer-socials">
-            <a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://t.me/walzshopid" target="_blank" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+    <header class="header">
+        <div class="header-left">
+            <a href="index.html" class="header-link brand-name">Walzshop</a>
         </div>
-        <ul class="footer-links">
-            <li><a href="#">Tentang Kami</a></li>
-            <li><a href="#">Kebijakan Privasi</a></li>
-            <li><a href="#">Syarat & Ketentuan</a></li>
-        </ul>
-        <p>&copy; 2024 WALZSHOP. All rights reserved.</p>
-    </footer>
+        <div class="header-right">
+            <a href="search.html" class="header-link search-icon"><i class="fas fa-search"></i></a>
+        </div>
+    </header>
 
+    <main class="main-content">
+        <section class="banner-section">
+            <img src="https://i.supaimg.com/f04a60f9-cf63-455b-b9f2-2b5a1936314f.webp" alt="Banner Promo" class="banner-image">
+        </section>
+
+        <section class="game-list-section">
+            <div class="section-header">
+                <h2>Pilih Game</h2>
+            </div>
+            <div class="game-grid-custom" id="game-list">
+                </div>
+        </section>
+    </main>
+    
+    <div class="notification-container"></div>
     <script src="script.js"></script>
 </body>
 </html>
