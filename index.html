@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walzshop | Top Up Game Murah</title>
+    <title>Walzshop | Top Up Game Murah & Cepat</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -11,23 +11,54 @@
 <body>
 
     <header class="header">
-        <a href="#" class="header-link back-button hidden"><i class="fas fa-arrow-left"></i></a>
         <div class="header-center">
             <h1>Walzshop</h1>
         </div>
-        <a href="#" class="header-link search-icon"><i class="fas fa-search"></i></a>
+        <a href="search.html" class="header-link search-icon"><i class="fas fa-search"></i></a>
     </header>
 
-    <main class="main-content container" id="app-container">
-        </main>
+    <main class="main-content container">
+        <div class="banner-slider">
+            <div class="slides" id="banner-container">
+                </div>
+            <div class="dots-container" id="banner-dots"></div>
+        </div>
 
-    <footer class="footer-fixed">
-        <button class="action-button" id="main-button" disabled>
-            <i class="fas fa-shopping-cart"></i> Lanjutkan
-        </button>
+        <div class="page-section">
+            <div class="section-header">
+                <h2>Paling Banyak Dicari</h2>
+            </div>
+            <div class="game-grid" id="popular-games">
+                </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <nav class="nav-links">
+            <a href="#" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Beranda</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-history"></i>
+                <span>Riwayat</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-user-circle"></i>
+                <span>Akun</span>
+            </a>
+        </nav>
     </footer>
 
     <div class="notification-container"></div>
     <script src="script.js"></script>
+    <script>
+        // Logika untuk halaman beranda
+        document.addEventListener('DOMContentLoaded', () => {
+            renderGameCards(GAMES, 'popular-games');
+            renderBanners();
+            startBannerSlider();
+        });
+    </script>
 </body>
 </html>
