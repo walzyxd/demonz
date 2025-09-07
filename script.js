@@ -616,6 +616,7 @@ function setupCartPage() {
     const paymentInfoSection = document.getElementById('payment-info-section');
     const payButton = document.getElementById('pay-button');
     const summaryDetails = document.getElementById('summary-details');
+    const footerFixed = document.querySelector('.footer-fixed');
 
     if (!game || !product || !payment || !cartSummaryCard || !summaryDetails) {
         if(cartSummaryCard) cartSummaryCard.innerHTML = `
@@ -624,6 +625,7 @@ function setupCartPage() {
         `;
         if(payButton) payButton.style.display = 'none';
         if(paymentInfoSection) paymentInfoSection.style.display = 'none';
+        if(footerFixed) footerFixed.style.display = 'none';
         return;
     }
 
@@ -674,7 +676,7 @@ function setupCartPage() {
             <h4>Scan untuk Bayar</h4>
             <img src="${payment.qr}" alt="QR Code" class="qr-code-image">
             <div class="qr-caption">⚠️Perhatian: Transfer harus sesuai Dengan Harga Yang Tertera Di Atas⚠️
-Silakan scan kode QR di atas untuk melakukan pembayaran. Setelah berhasil, klik **Bayar Sekarang**.</div>
+Silakan scan kode QR di atas untuk melakukan pembayaran. Setelah berhasil, klik **Beli Sekarang**.</div>
         `;
     } else if (payment.number) {
         paymentInfoSection.innerHTML = `
