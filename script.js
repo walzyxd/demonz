@@ -583,7 +583,7 @@ function setupCartPage() {
             paymentContent = `
                 <h4>Scan untuk Bayar</h4>
                 <img src="${payment.qr}" alt="QR Code" class="qr-code-image">
-                <div class="qr-caption">❗Perhatian:Transfer harus sesuai Dengan Harga Yang Tertera Di Atas
+                <div class="qr-caption">⚠️Perhatian: Transfer harus sesuai Dengan Harga Yang Tertera Di Atas⚠️
 Silakan scan kode QR di atas untuk melakukan pembayaran. Setelah berhasil, klik **Bayar Sekarang**.</div>
             `;
         } else if (payment.number) {
