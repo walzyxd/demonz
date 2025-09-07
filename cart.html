@@ -3,35 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keranjang | Walzshop</title>
+    <title>Ringkasan Pesanan | Walzshop</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <header class="header">
-        <a href="javascript:history.back()" class="header-link back-button"><i class="fas fa-arrow-left"></i></a>
+        <a href="game.html" class="header-link back-button"><i class="fas fa-arrow-left"></i></a>
         <div class="header-center">
-            <h1>Detail Pesanan</h1>
+            <h1>Ringkasan Pesanan</h1>
         </div>
-        <div class="header-right">
-            <a href="search.html" class="header-link search-icon"><i class="fas fa-search"></i></a>
-        </div>
+        <a href="index.html" class="header-link home-icon"><i class="fas fa-home"></i></a>
     </header>
 
     <main class="main-content">
         <div class="cart-card-group">
             <div class="cart-card" id="cart-summary-card">
-                <h3>Ringkasan Pesanan</h3>
+                <h3>Detail Pesanan</h3>
                 <div class="summary-details" id="summary-details">
                     </div>
             </div>
-            <div class="cart-card payment-info-card" id="payment-info-section" style="display:none;">
+            
+            <div class="cart-card payment-info-card" id="payment-info-section">
                 </div>
         </div>
     </main>
-    
+
     <footer class="footer-fixed">
-        <button id="pay-button" class="pay-button"><i class="fab fa-whatsapp"></i> Bayar Sekarang</button>
+        <button class="pay-button" id="pay-button">
+            <i class="fas fa-shopping-cart"></i> Beli Sekarang
+        </button>
     </footer>
 
     <div class="notification-container"></div>
