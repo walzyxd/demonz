@@ -248,6 +248,12 @@ const PRODUCTS = {
     ]
 };
 
+const BANNERS = [
+    'https://files.catbox.moe/8g41jj.jpg',
+    'https://files.catbox.moe/e87yj3.png',
+    'https://files.catbox.moe/hrtpys.jpg'
+];
+
 // --- State Management
 let currentPage = 'home';
 let selectedGame = null;
@@ -388,9 +394,7 @@ function renderHomePage() {
     const homeContent = `
         <div class="banner-slider-container page-section">
             <div class="banner-slider" id="banner-slider">
-                <img src="https://i.supaimg.com/00021b0e-f480-4573-b3c9-041793740266.jpg" alt="Banner 1" class="banner-image active">
-                <img src="https://i.supaimg.com/f0407769-9f1c-4b95-a228-4448554d68e0.jpg" alt="Banner 2" class="banner-image">
-                <img src="https://i.supaimg.com/62c14c5c-7471-46c4-b44c-905c28e83b4b.jpg" alt="Banner 3" class="banner-image">
+                ${BANNERS.map((src, index) => `<img src="${src}" alt="Banner ${index + 1}" class="banner-image ${index === 0 ? 'active' : ''}">`).join('')}
             </div>
         </div>
         <div class="game-list-section page-section">
@@ -520,6 +524,8 @@ function renderGameCards(gamesToRender, query = '') {
 
 function renderGamePage() {
     isVoucherApplied = false;
+    selectedProduct = null;
+    selectedPayment = null;
     const game = selectedGame;
     const products = PRODUCTS[game.key];
 
