@@ -3,134 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top-Up Game</title>
+    <title>Top Up Game - Walzshop</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
 </head>
 <body>
-    <div class="notification-container"></div>
-    
     <header class="header">
-        <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i></a>
-        <a href="index.html" class="logo">Walzshop</a>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">Walzshop</a>
+            </div>
+            <nav class="nav">
+                <a href="index.html">Beranda</a>
+                <a href="#about">Tentang</a>
+                <a href="https://wa.me/6282298902274" target="_blank">Kontak</a>
+            </nav>
+        </div>
     </header>
 
-    <main class="container">
-        <section class="game-info" id="game-info-header">
-            </section>
-
-        <form id="topup-form" class="topup-form-grid">
-            <section class="step-card">
-                <div class="step-header">
-                    <div class="step-number">1</div>
-                    <h2 class="step-title">Masukkan Data Akun</h2>
+    <main class="main game-page">
+        <div class="container">
+            <div class="game-info-header" id="game-info-header">
                 </div>
-                <div class="step-content">
-                    <div class="input-group-with-button">
+
+            <form id="topup-form" class="topup-form">
+                <div class="step-card">
+                    <div class="step-header">
+                        <span class="step-number">1</span>
+                        <h3>Masukkan ID Game</h3>
+                    </div>
+                    <div class="input-group">
                         <div class="input-container">
                             <i class="fas fa-user input-icon"></i>
-                            <input type="number" id="user-id" placeholder="Masukkan Player ID">
+                            <input type="text" id="user-id" placeholder="Masukkan User ID">
                         </div>
-                        <button type="button" class="check-id-btn" id="check-id-btn">Cek</button>
+                        <div class="input-container" id="server-id-container">
+                            </div>
+                        <button type="button" class="btn btn-check" id="check-id-btn">Cek ID</button>
                     </div>
-                    <p id="id-check-result" class="input-hint"></p>
-                    <div class="input-group" id="server-id-container">
+                    <div class="id-check-result" id="id-check-result"></div>
+                    <p class="input-help">Untuk Mobile Legends, masukkan ID dan Server ID. Contoh: 1234567 (1234).</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-header">
+                        <span class="step-number">2</span>
+                        <h3>Pilih Nominal Top Up</h3>
+                    </div>
+                    <div class="options-grid" id="product-list">
                         </div>
-                    <p class="input-hint">Temukan ID Anda di profil dalam game.</p>
                 </div>
-            </section>
 
-            <section class="step-card">
-                <div class="step-header">
-                    <div class="step-number">2</div>
-                    <h2 class="step-title">Pilih Produk</h2>
-                </div>
-                <div class="options-grid" id="product-list">
+                <div class="step-card">
+                    <div class="step-header">
+                        <span class="step-number">3</span>
+                        <h3>Pilih Metode Pembayaran</h3>
                     </div>
-            </section>
-            
-            <section class="step-card">
-                <div class="step-header">
-                    <div class="step-number">3</div>
-                    <h2 class="step-title">Pilih Pembayaran</h2>
+                    <div class="options-grid" id="payment-list">
+                        </div>
                 </div>
-                <div class="options-grid payment-options" id="payment-list">
-                    </div>
-            </section>
-            
-            <section class="step-card">
-                <div class="step-header">
-                    <div class="step-number">4</div>
-                    <h2 class="step-title">Masukkan Nomor WhatsApp</h2>
-                </div>
-                <div class="step-content">
-                    <div class="input-group">
-                        <input id="whatsapp-number" type="tel">
-                    </div>
-                    <p class="input-hint">Nomor WhatsApp diperlukan untuk pengiriman bukti pembayaran dan konfirmasi.</p>
-                </div>
-            </section>
 
-            <section class="step-card">
-                <div class="step-header">
-                    <div class="step-number">5</div>
-                    <h2 class="step-title">Voucher (Opsional)</h2>
+                <div class="step-card">
+                    <div class="step-header">
+                        <span class="step-number">4</span>
+                        <h3>Masukkan Nomor WhatsApp</h3>
+                    </div>
+                    <div class="input-container">
+                        <i class="fab fa-whatsapp input-icon"></i>
+                        <input type="tel" id="whatsapp-number">
+                    </div>
+                    <p class="input-help">Untuk mengirimkan detail pesanan.</p>
                 </div>
-                <div class="step-content">
+
+                <div class="step-card voucher-section">
+                    <div class="step-header">
+                        <span class="step-number"><i class="fas fa-gift"></i></span>
+                        <h3>Gunakan Kode Voucher (Opsional)</h3>
+                    </div>
                     <div class="input-group">
-                        <i class="fas fa-tag input-icon"></i>
-                        <input type="text" id="promo-code" placeholder="Masukkan kode promo">
-                        <button type="button" class="apply-btn" id="use-voucher-btn">Gunakan</button>
+                        <input type="text" id="promo-code" placeholder="Masukkan kode voucher">
+                        <button type="button" class="btn btn-voucher" id="use-voucher-btn">Gunakan</button>
                     </div>
                 </div>
-            </section>
-            
-            <section class="summary-card" id="summary-card" style="display:none;">
-                <h3 class="summary-title">Ringkasan Pesanan</h3>
-                <div class="summary-detail">
-                    <span class="label">Produk</span>
-                    <span class="value" id="summary-product-details"></span>
+
+                <div class="summary-card" id="summary-card" style="display:none;">
+                    <div class="summary-header">
+                        <h4>Ringkasan Pesanan</h4>
+                    </div>
+                    <div class="summary-details">
+                        <div class="summary-item" id="summary-product-details"></div>
+                        <div class="summary-item">
+                            <span class="label">Total Pembayaran</span>
+                            <span class="value" id="summary-price"></span>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-confirm" id="confirm-button" disabled>Konfirmasi Pesanan</button>
                 </div>
-                <div class="summary-detail total-price">
-                    <span class="label">Total</span>
-                    <span class="value" id="summary-price"></span>
-                </div>
-            </section>
-            
-            <button type="button" class="confirm-button" id="confirm-button" disabled>Beli Sekarang</button>
-        </form>
+            </form>
+        </div>
     </main>
+
+    <div class="notification-container"></div>
     
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section about">
-                <h3>Tentang Walzshop</h3>
-                <p>Tempat top-up game favoritmu dengan harga termurah dan proses tercepat. Dijamin aman dan terpercaya!</p>
+        <div class="container">
+            <p>&copy; 2025 Walzshop. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
             </div>
-            <div class="footer-section links">
-                <h3>Tautan Cepat</h3>
-                <ul>
-                    <li><a href="#">Beranda</a></li>
-                    <li><a href="#">Tentang Kami</a></li>
-                    <li><a href="#">Hubungi Kami</a></li>
-                    <li><a href="#">Kebijakan Privasi</a></li>
-                </ul>
-            </div>
-            <div class="footer-section social">
-                <h3>Ikuti Kami</h3>
-                <div class="social-links">
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Walzshop. Semua hak dilindungi.</p>
         </div>
     </footer>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
     <script src="script.js"></script>
     <script>
@@ -139,16 +127,6 @@
             initialCountry: "id",
             separateDialCode: true,
             utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js",
-        });
-
-        // Update summary on input change
-        input.addEventListener('input', () => {
-            if(window.iti.isValidNumber()){
-                input.style.borderColor = 'green';
-            } else {
-                input.style.borderColor = 'var(--border-color)';
-            }
-            updateSummary();
         });
     </script>
 </body>
