@@ -3,13 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WALZSHOP - Top Up Games</title>
+    <title>WALZSHOP - Top Up Games Cepat & Terpercaya</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .search-box {
+            position: relative;
+            margin-bottom: 25px;
+            margin-top: 20px;
+        }
+        #game-search-input {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            font-size: 1em;
+            background-color: var(--purple-mid);
+            border: 2px solid var(--card-bg);
+            border-radius: 15px;
+            color: var(--text-color);
+            transition: all var(--transition-speed);
+        }
+        #game-search-input:focus {
+            outline: none;
+            border-color: var(--selected-border);
+            box-shadow: 0 0 15px var(--glow-color);
+        }
+        .search-box .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2em;
+            color: var(--text-light);
+        }
+        #no-results-message {
+            text-align: center;
+            color: var(--text-light);
+            display: none;
+            padding: 40px 0;
+            font-size: 1.1em;
+        }
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background-color: var(--purple-mid); display: flex;
+            justify-content: space-around; align-items: center; padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3); z-index: 1001;
+            border-top: 1px solid var(--card-bg);
+        }
+        .bottom-nav-link {
+            display: flex; flex-direction: column; align-items: center;
+            color: var(--text-light); font-size: 0.75em;
+            transition: all var(--transition-speed); flex-grow: 1; text-align: center;
+        }
+        .bottom-nav-link i { font-size: 1.5em; margin-bottom: 4px; }
+        .bottom-nav-link:hover, .bottom-nav-link.active {
+            color: var(--accent-color); transform: translateY(-3px);
+        }
+        body { padding-bottom: 70px; }
+    </style>
 </head>
 <body>
-
     <div class="main-container">
         <header class="header">
             <a href="index.html" class="logo-link">
@@ -17,37 +69,30 @@
                 <h1 class="website-name">WALZSHOP</h1>
             </a>
             <div class="header-right">
-                <a href="search.html" class="header-link">
-                    <i class="fas fa-search"></i>
-                </a>
-                <a href="profile.html" class="header-link">
-                    <i class="fas fa-user"></i>
-                </a>
+                <a href="#" class="header-link"><i class="fas fa-user"></i></a>
             </div>
         </header>
 
         <main class="game-selection-main">
-            <h2 class="section-title">Pilih Game Favoritmu</h2>
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="game-search-input" placeholder="Cari game favoritmu...">
+            </div>
+
+            <h2 class="section-title">Populer</h2>
             <section class="game-list-section">
                 <div id="game-list" class="game-grid-custom">
                     </div>
+                <p id="no-results-message">Game tidak ditemukan.</p>
             </section>
         </main>
     </div>
 
-    <footer class="footer">
-        <div class="footer-socials">
-            <a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://t.me/walzshopid" target="_blank" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
-        </div>
-        <ul class="footer-links">
-            <li><a href="#">Tentang Kami</a></li>
-            <li><a href="#">Kebijakan Privasi</a></li>
-            <li><a href="#">Syarat & Ketentuan</a></li>
-        </ul>
-        <p>&copy; 2024 WALZSHOP. All rights reserved.</p>
-    </footer>
+    <nav class="bottom-nav">
+        <a href="index.html" class="bottom-nav-link active"><i class="fas fa-gamepad"></i><span>Top Up</span></a>
+        <a href="pulsa.html" class="bottom-nav-link"><i class="fas fa-mobile-alt"></i><span>Pulsa & Data</span></a>
+        <a href="panel.html" class="bottom-nav-link"><i class="fas fa-server"></i><span>Panel</span></a>
+    </nav>
 
     <script src="script.js"></script>
 </body>
