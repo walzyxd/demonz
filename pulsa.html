@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulsa & Data - WALZSHOP</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .provider-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+        .product-tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid var(--card-bg); }
+        .tab-button { padding: 10px 20px; cursor: pointer; background: none; border: none; color: var(--text-light); font-size: 1.1em; font-weight: 500; position: relative; transition: color var(--transition-speed); }
+        .tab-button::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 3px; background-color: var(--selected-border); transform: scaleX(0); transition: transform var(--transition-speed); }
+        .tab-button.active { color: var(--text-color); }
+        .tab-button.active::after { transform: scaleX(1); }
+        #product-section { display: none; }
+        .option-card.payment img { width: 80%; max-width: 80px; height: 40px; }
+        .product-description { font-size: 0.75em; color: #888; }
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background-color: var(--purple-mid); display: flex;
+            justify-content: space-around; align-items: center; padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3); z-index: 1001;
+            border-top: 1px solid var(--card-bg);
+        }
+        .bottom-nav-link {
+            display: flex; flex-direction: column; align-items: center;
+            color: var(--text-light); font-size: 0.75em;
+            transition: all var(--transition-speed); flex-grow: 1; text-align: center;
+        }
+        .bottom-nav-link i { font-size: 1.5em; margin-bottom: 4px; }
+        .bottom-nav-link:hover, .bottom-nav-link.active {
+            color: var(--accent-color); transform: translateY(-3px);
+        }
+        body { padding-bottom: 70px; }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+            <a href="index.html" class="logo-link">
+                <img src="https://files.catbox.moe/hrtpys.jpg" alt="WALZSHOP Icon" class="logo-icon">
+                <h1 class="website-name">WALZSHOP</h1>
+            </a>
+            <div class="header-right">
+                <a href="#" class="header-link"><i class="fas fa-user"></i></a>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-info-header" style="margin-top: 20px;">
+                <i class="fas fa-mobile-alt game-img" style="font-size: 4em; padding: 25px; background: var(--purple-mid); box-shadow: none;"></i>
+                <h2>Pulsa & Paket Data</h2>
+            </div>
+            
+            <section class="section-card">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h3>Masukkan Nomor Tujuan</h3>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-phone input-icon"></i>
+                    <input type="number" id="phone-number" placeholder="Contoh: 081234567890">
+                </div>
+            </section>
+            
+            <section class="section-card">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h3>Pilih Provider</h3>
+                </div>
+                <div id="provider-grid" class="options-grid provider-grid">
+                    <div class="option-card payment" data-provider="telkomsel"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Telkomsel_new_logo_2021.svg/1200px-Telkomsel_new_logo_2021.svg.png" alt="Telkomsel"></div>
+                    <div class="option-card payment" data-provider="indosat"><img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Indosat_Ooredoo_Hutchison_logo.svg" alt="Indosat"></div>
+                    <div class="option-card payment" data-provider="xl"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/XL_logo_2016.svg/1200px-XL_logo_2016.svg.png" alt="XL Axiata"></div>
+                    <div class="option-card payment" data-provider="axis"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/AXIS_logo_2015.svg" alt="AXIS"></div>
+                    <div class="option-card payment" data-provider="tri"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Tri_Indonesia_logo.svg/1200px-Tri_Indonesia_logo.svg.png" alt="Tri"></div>
+                    <div class="option-card payment" data-provider="smartfren"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Smartfren_logo.svg/2560px-Smartfren_logo.svg.png" alt="Smartfren"></div>
+                    <div class="option-card payment" data-provider="byu"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Logo_byU_2021.svg/2560px-Logo_byU_2021.svg.png" alt="by.U"></div>
+                </div>
+            </section>
+            
+            <section id="product-section" class="section-card">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h3 id="product-title">Pilih Nominal</h3>
+                </div>
+                <div class="product-tabs">
+                    <button class="tab-button active" data-type="pulsa">Pulsa</button>
+                    <button class="tab-button" data-type="data">Paket Data</button>
+                </div>
+                 <div id="product-list" class="options-grid"></div>
+            </section>
+        </main>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="bottom-nav-link"><i class="fas fa-gamepad"></i><span>Top Up</span></a>
+        <a href="pulsa.html" class="bottom-nav-link active"><i class="fas fa-mobile-alt"></i><span>Pulsa & Data</span></a>
+        <a href="panel.html" class="bottom-nav-link"><i class="fas fa-server"></i><span>Panel</span></a>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
