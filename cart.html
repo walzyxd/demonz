@@ -3,31 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rincian Pembayaran - WALZSHOP</title>
+    <title>Keranjang Belanja</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="notification-container"></div>
-    <div class="main-container">
+
+    <div class="main-container cart-page-container">
         <header class="header">
-             <a href="index.html" class="logo-link">
+            <a href="index.html" class="logo-link">
                 <img src="https://files.catbox.moe/hrtpys.jpg" alt="WALZSHOP Icon" class="logo-icon">
                 <h1 class="website-name">WALZSHOP</h1>
             </a>
-            <a href="#" class="header-link"><i class="fas fa-user-circle"></i></a>
+            <div class="header-right">
+                <a href="#" class="header-link">
+                    <i class="fas fa-search"></i>
+                </a>
+                <a href="#" class="header-link">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
         </header>
 
-        <main style="margin-top: 20px;">
-            <div id="cart-summary-card" class="cart-summary">
+        <main class="cart-main">
+            <a href="javascript:history.back()" class="back-button-top" style="margin-bottom: 20px;"><i class="fas fa-arrow-left"></i> Kembali</a>
+
+            <div id="cart-summary-card" class="cart-summary-card">
+                </div>
+            
+            <div id="payment-info-section" class="payment-info-section">
                 </div>
 
-            <div id="payment-info-section" class="payment-details">
-                </div>
+            <button type="button" id="pay-button" class="confirm-button">Bayar Sekarang</button>
 
-            <button id="pay-button" class="action-button" style="margin-top: 1.5rem;">Konfirmasi Pembayaran via WhatsApp</button>
         </main>
     </div>
+    
+    <footer class="footer">
+        <div class="footer-socials">
+            <a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me/walzshopid" target="_blank" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+        <ul class="footer-links">
+            <li><a href="#">Tentang Kami</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Syarat & Ketentuan</a></li>
+        </ul>
+        <p>&copy; 2024 WALZSHOP. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <div class="notification-container"></div>
     <script src="script.js"></script>
 </body>
 </html>
