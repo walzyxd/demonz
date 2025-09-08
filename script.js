@@ -256,6 +256,8 @@ const PRODUCTS = {
     ]
 };
 
+/*~~~~~~~~~~~~~~~~~~~*\
+
 const PULSA_DATA = {
     providers: {
         telkomsel: { name: "Telkomsel", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Telkomsel_new_logo_2021.svg/1200px-Telkomsel_new_logo_2021.svg.png" },
