@@ -1,58 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+/* =================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 /* ======================== */
 /* Variabel & Keyframes     */
 /* ======================== */
 :root {
-    --purple-dark: #1a0835;
-    --purple-mid: #3c1573;
-    --card-bg: #4a218d;
-    --text-color: #f0e8ff;
-    --text-dark: #222222;
-    --text-light: #d4c5e3;
-    --accent-color: #ffd700;
-    --price-color: #ff3b30;
-    --accent-gradient: linear-gradient(135deg, #a745ff, #8a2be2);
-    --button-gradient: linear-gradient(135deg, #6230b0, #7b36d6);
-    --selected-border: #00e69b;
-    --special-badge-bg: #ff3b30;
-    --voucher-btn-bg: #8a2be2;
-    --header-bg-rgba: rgba(26, 8, 53, 0.7);
-    --discount-color: #00e69b;
-    --glow-color: rgba(0, 230, 155, 0.7);
-    --transition-speed: 0.3s ease;
+    --bg-dark: #0D0C1D;
+    --bg-mid: #16152B;
+    --bg-light: #1F1E38;
+    --purple-accent: #8A2BE2;
+    --blue-accent: #4A90E2;
+    --cyan-accent: #00E69B;
+    --text-primary: #F0F4F8;
+    --text-secondary: #A0AEC0;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.25);
+    --glow-color: rgba(0, 230, 155, 0.5);
+    --danger-color: #F56565;
+    
+    --accent-gradient: linear-gradient(135deg, var(--blue-accent), var(--purple-accent));
+    --transition-speed: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* --- Keyframes untuk Animasi --- */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes pulse-glow {
-    0% { transform: scale(1); box-shadow: 0 0 10px #a745ff; }
-    50% { transform: scale(1.05); box-shadow: 0 0 20px #8a2be2; }
-    100% { transform: scale(1); box-shadow: 0 0 10px #a745ff; }
-}
-
-@keyframes gradient-flow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-@keyframes pulse-border {
-    from { box-shadow: 0 0 15px var(--glow-color); }
-    to { box-shadow: 0 0 25px var(--glow-color), 0 0 10px #fff; }
-}
-
-@keyframes fade-in-up {
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fade-out-down {
-    from { opacity: 1; transform: translateY(0); }
-    to { opacity: 0; transform: translateY(20px); }
+    0% { box-shadow: 0 0 10px var(--cyan-accent); }
+    50% { box-shadow: 0 0 25px var(--cyan-accent); }
+    100% { box-shadow: 0 0 10px var(--cyan-accent); }
 }
 
 /* ======================== */
@@ -64,393 +43,258 @@
     padding: 0;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--purple-dark);
-    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
     line-height: 1.6;
-    overflow-x: hidden; /* Mencegah scroll horizontal dari animasi */
+    overflow-x: hidden;
+    background-image: radial-gradient(circle at 1% 1%, var(--bg-light) 1px, transparent 1px);
+    background-size: 30px 30px;
+    padding-bottom: 80px; /* Ruang untuk bottom nav */
 }
 
-/* --- Custom Scrollbar --- */
-body::-webkit-scrollbar {
-    width: 10px;
-}
-body::-webkit-scrollbar-track {
-    background: var(--purple-dark);
-}
-body::-webkit-scrollbar-thumb {
-    background: var(--purple-mid);
-    border-radius: 10px;
-}
-body::-webkit-scrollbar-thumb:hover {
-    background: var(--card-bg);
-}
+body::-webkit-scrollbar { width: 8px; }
+body::-webkit-scrollbar-track { background: var(--bg-dark); }
+body::-webkit-scrollbar-thumb { background: var(--bg-light); border-radius: 8px; }
+body::-webkit-scrollbar-thumb:hover { background: var(--purple-accent); }
 
 .main-container {
-    padding: 20px 15px;
-    max-width: 800px;
+    padding: 20px;
+    max-width: 900px;
     margin: 0 auto;
-    animation: fadeIn 0.8s ease-out forwards;
+    animation: fadeIn 0.6s var(--transition-speed) forwards;
 }
 
-h2, h3, h4 {
-    color: var(--text-color);
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
+h2.section-title {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
 /* ======================== */
-/* Header */
+/* Header & Navigasi Bawah  */
 /* ======================== */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
+    padding: 15px 20px;
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: var(--header-bg-rgba);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(74, 33, 141, 0.3);
-    transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+    background-color: rgba(13, 12, 29, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
 }
+.header .logo-link { display: flex; align-items: center; gap: 12px; }
+.header .logo-icon { width: 30px; height: 30px; border-radius: 8px; }
+.header .website-name { font-size: 1.4em; font-weight: 700; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.header .header-link { font-size: 1.5rem; color: var(--text-secondary); transition: color 0.3s; }
+.header .header-link:hover { color: var(--text-primary); }
 
-.header .logo-link {
+.bottom-nav {
+    position: fixed; bottom: 0; left: 0; width: 100%;
+    background-color: rgba(13, 12, 29, 0.8);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    display: flex; justify-content: space-around;
+    padding: 10px 0; border-top: 1px solid var(--border-color);
+    z-index: 1001;
+}
+.bottom-nav-link { display: flex; flex-direction: column; align-items: center; color: var(--text-secondary); font-size: 0.75em; flex-grow: 1; transition: all 0.2s; text-decoration: none; }
+.bottom-nav-link i { font-size: 1.4em; margin-bottom: 4px; }
+.bottom-nav-link.active, .bottom-nav-link:hover { color: var(--cyan-accent); transform: translateY(-3px); }
+
+
+/* ======================== */
+/* Search & Input Fields    */
+/* ======================== */
+.search-box {
+    position: relative;
+    margin-bottom: 25px;
+}
+.search-box .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); }
+.search-input {
+    width: 100%;
+    padding: 14px 20px 14px 50px;
+    font-size: 1em;
+    background-color: var(--bg-mid);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-primary);
+    transition: all var(--transition-speed);
+}
+.search-input:focus {
+    outline: none;
+    border-color: var(--cyan-accent);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+.search-input::placeholder { color: var(--text-secondary); }
+
+
+/* ======================== */
+/* Game Cards (Halaman Utama) */
+/* ======================== */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+}
+.game-card {
+    background: var(--bg-mid);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px var(--shadow-color);
+    transition: all var(--transition-speed);
+    opacity: 0; transform: translateY(15px);
+    animation: fadeIn 0.5s var(--transition-speed) forwards;
+}
+.game-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    border-color: var(--cyan-accent);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+.game-card a { text-decoration: none; color: inherit; }
+.game-card img { width: 100%; height: 140px; object-fit: cover; display: block; }
+.game-card-content { padding: 12px; text-align: center; }
+.game-card-content h3 { font-size: 0.9em; font-weight: 500; margin-bottom: 2px; color: var(--text-primary); }
+.game-card-content p { font-size: 0.75em; color: var(--text-secondary); }
+
+/* Staggered animation */
+.game-card:nth-child(2) { animation-delay: 0.1s; }
+.game-card:nth-child(3) { animation-delay: 0.15s; }
+.game-card:nth-child(4) { animation-delay: 0.2s; }
+
+
+/* ======================== */
+/* Halaman Pulsa (Desain Baru) */
+/* ======================== */
+.pulsa-container { display: flex; flex-direction: column; gap: 1.5rem; }
+.input-card {
+    background: var(--bg-mid);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+}
+.input-card label { display: block; font-size: 0.9em; color: var(--text-secondary); margin-bottom: 8px; }
+.phone-input-wrapper { display: flex; align-items: center; background: var(--bg-dark); border-radius: 12px; border: 1px solid var(--border-color); }
+.phone-input-wrapper:focus-within { border-color: var(--cyan-accent); box-shadow: 0 0 15px var(--glow-color); }
+.phone-input-wrapper input {
+    flex-grow: 1;
+    background: none; border: none; padding: 14px;
+    font-size: 1.2em; color: var(--text-primary); letter-spacing: 1px;
+}
+.phone-input-wrapper input:focus { outline: none; }
+
+.provider-display {
+    padding: 10px 15px;
+    background: var(--bg-mid);
+    border-radius: 10px;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-align: center;
+    border: 1px solid var(--border-color);
+    min-height: 46px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    transition: transform var(--transition-speed);
+    justify-content: center;
 }
-.header .logo-link:hover {
-    transform: scale(1.05);
-}
+.provider-display img { height: 24px; margin-right: 8px; }
 
-.header .logo {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
-}
-
-.header .website-name {
-    font-size: 1.5em;
-    font-weight: 700;
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% auto;
-    transition: background-position 0.5s ease;
-}
-.header .website-name:hover {
-    background-position: right center;
-}
-
-.header-right .header-link {
-    font-size: 1.2em;
-    margin-left: 15px;
-    color: var(--text-light);
-    position: relative;
-    transition: color var(--transition-speed);
-}
-.header-right .header-link::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--accent-gradient);
-    transition: width var(--transition-speed);
-}
-.header-right .header-link:hover {
-    color: var(--text-color);
-}
-.header-right .header-link:hover::after {
-    width: 100%;
-}
-
-.header .logo-icon {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    margin-right: 5px;
-    object-fit: cover;
-}
-
-/* ======================== */
-/* Game List & Cards (Home) */
-/* ======================== */
-.game-grid-custom {
+.pulsa-product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-    perspective: 1000px; /* Perspektif untuk efek 3D */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
 }
-
-.game-card-custom {
-    background: var(--card-bg);
-    border-radius: 15px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    cursor: pointer;
-    will-change: transform;
-    /* Animasi saat load */
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 0.5s ease-out forwards;
-}
-
-/* Staggered animation delay */
-.game-card-custom:nth-child(1) { animation-delay: 0.1s; }
-.game-card-custom:nth-child(2) { animation-delay: 0.15s; }
-.game-card-custom:nth-child(3) { animation-delay: 0.2s; }
-.game-card-custom:nth-child(4) { animation-delay: 0.25s; }
-.game-card-custom:nth-child(5) { animation-delay: 0.3s; }
-.game-card-custom:nth-child(6) { animation-delay: 0.35s; }
-/* ...dan seterusnya jika perlu */
-
-
-.game-card-custom::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
-    opacity: 0;
-    transition: opacity var(--transition-speed);
-}
-
-.game-card-custom:hover {
-    transform: translateY(-8px) scale(1.05) rotateX(10deg) rotateY(5deg);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-}
-.game-card-custom:hover::before {
-    opacity: 1;
-}
-
-.game-card-img {
-    width: 100%;
-    height: 130px;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-}
-.game-card-custom:hover .game-card-img {
-    transform: scale(1.1);
-}
-
-.game-card-content-custom {
-    padding: 10px;
-    text-align: center;
-    background: rgba(0,0,0,0.2);
-}
-
-.game-card-content-custom h3 {
-    font-size: 0.85em;
-    font-weight: 600;
-    margin-bottom: 2px;
-}
-
-.game-card-content-custom p {
-    font-size: 0.7em;
-    color: var(--text-light);
-}
-
-/* ======================== */
-/* Game Page Styles */
-/* ======================== */
-.game-page-container {
-    position: relative;
-}
-
-.back-button-top {
-    font-size: 1em;
-    color: var(--text-light);
-    transition: all var(--transition-speed);
-    z-index: 10;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 18px;
-    background: var(--card-bg);
+.pulsa-card {
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    padding: 1rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all var(--transition-speed);
 }
-.back-button-top:hover {
-    color: var(--text-color);
-    background: var(--purple-mid);
-    transform: translateX(-5px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
+.pulsa-card:hover { transform: translateY(-5px); border-color: var(--purple-accent); }
+.pulsa-card.selected { border-color: var(--cyan-accent); box-shadow: 0 0 15px var(--glow-color); }
+.pulsa-card .product-name { font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+.pulsa-card .product-desc { font-size: 0.8em; color: var(--text-secondary); min-height: 1.2em; }
+.pulsa-card .product-price { font-size: 1.1em; font-weight: 700; color: var(--cyan-accent); margin-top: 12px; }
 
-.game-info-header {
+
+/* ======================== */
+/* Konten Generik & Forms   */
+/* ======================== */
+#game-info-header {
+    background: var(--bg-mid);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 25px;
-    background: var(--card-bg);
-    border-radius: 20px;
-    margin-bottom: 25px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    animation: fadeIn 0.6s ease-out forwards;
+    margin-bottom: 1.5rem;
 }
-
-.game-info-header .game-img {
-    width: 120px;
-    height: 120px;
-    border-radius: 25px;
-    object-fit: cover;
-    margin-bottom: 20px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.5);
-    transition: transform var(--transition-speed);
+#game-info-header img {
+    width: 100px;
+    height: 100px;
+    border-radius: 16px;
+    margin-bottom: 1rem;
 }
-.game-info-header .game-img:hover {
-    transform: scale(1.1);
-}
-
-.game-info-header h2 {
-    font-size: 2em;
+#game-info-header h2 {
+    font-size: 1.8em;
     font-weight: 700;
-    background: linear-gradient(135deg, #FF6B6B, #F9D423);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 20px rgba(249, 212, 35, 0.5);
-    animation: gradient-flow 5s ease infinite;
-    background-size: 200% auto;
 }
 
-.game-info-details {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    margin-top: 20px;
-    border-top: 1px dashed rgba(255, 255, 255, 0.2);
-    padding-top: 20px;
-    color: var(--text-light);
+.main-content-card {
+    background: var(--bg-mid);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 1.5rem;
 }
-
-.game-detail-item {
-    text-align: center;
-    font-size: 0.85em;
-    transition: transform var(--transition-speed);
-}
-.game-detail-item:hover {
-    transform: translateY(-3px);
-}
-
-.game-detail-item i {
-    font-size: 1.4em;
-    margin-bottom: 8px;
-    color: var(--accent-color);
-}
-
-.section-card {
-    background: var(--purple-mid);
-    padding: 25px;
-    border-radius: 20px;
-    margin-bottom: 25px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 0.5s ease-out forwards;
-}
-.section-card:nth-of-type(2) { animation-delay: 0.2s; }
-.section-card:nth-of-type(3) { animation-delay: 0.4s; }
-.section-card:nth-of-type(4) { animation-delay: 0.6s; }
-
-
-.section-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.section-number {
-    width: 45px;
-    height: 45px;
-    background: var(--accent-gradient);
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.4em;
-    font-weight: bold;
-    flex-shrink: 0;
-    animation: pulse-glow 3s infinite;
-}
-
-.section-header h3 {
-    font-size: 1.3em;
+.main-content-card h3 {
+    font-size: 1.2em;
     font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 10px;
 }
-
-.section-description {
-    font-size: 0.85em;
-    color: var(--text-light);
-    margin-bottom: 20px;
+.main-content-card h3 .step-number {
+    background: var(--accent-gradient);
+    border-radius: 50%;
+    width: 30px; height: 30px;
+    display: inline-flex; justify-content: center; align-items: center;
+    font-size: 0.8em; color: white;
 }
-
 .input-group {
-    margin-bottom: 15px;
     position: relative;
+    margin-bottom: 1rem;
 }
-
-.input-group .input-icon {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-light);
-    font-size: 1.1em;
-    transition: color var(--transition-speed);
-}
-
 .input-group input {
     width: 100%;
-    padding: 14px 18px;
-    padding-left: 50px;
-    background-color: var(--card-bg);
-    border: 2px solid transparent;
+    padding: 14px 18px 14px 50px;
+    background-color: var(--bg-dark);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: 1em;
     transition: all var(--transition-speed);
 }
-
 .input-group input:focus {
     outline: none;
-    border-color: var(--selected-border);
+    border-color: var(--cyan-accent);
     box-shadow: 0 0 15px var(--glow-color);
-    background-color: var(--purple-mid);
 }
-.input-group input:focus + .input-icon {
-    color: var(--selected-border);
-}
-
-.input-group input::placeholder {
-    color: var(--text-light);
-    font-size: 0.9em;
+.input-group .input-icon {
+    position: absolute; left: 18px; top: 50%;
+    transform: translateY(-50%); color: var(--text-secondary);
 }
 
 .options-grid {
@@ -458,431 +302,95 @@ a {
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
     gap: 12px;
 }
-
 .option-card {
-    background: #ffffff;
-    border-radius: 15px;
-    text-align: center;
-    cursor: pointer;
-    transition: all var(--transition-speed);
-    border: 3px solid transparent;
-    padding: 15px 10px;
-    position: relative;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.option-card:hover:not(.selected) {
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    border-color: rgba(138, 43, 226, 0.5);
-}
-
-.option-card.selected {
-    border-color: var(--selected-border);
-    transform: scale(1.05);
-    animation: pulse-border 1.5s infinite alternate;
-}
-
-.option-card .label {
-    font-size: 0.9em;
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: var(--text-dark);
-}
-
-.option-card .price-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    line-height: 1.2;
-}
-
-.option-card .price {
-    font-size: 1.1em;
-    font-weight: bold;
-    color: var(--price-color);
-}
-
-.option-card .original-price {
-    font-size: 0.75em;
-    color: #888;
-    text-decoration: line-through;
-}
-
-.option-card .discounted-price {
-    font-size: 1.1em;
-    font-weight: bold;
-    color: var(--discount-color);
-}
-
-.option-card .icon {
-    font-size: 2.8em;
-    color: var(--accent-color);
-    margin-bottom: 8px;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.option-card.payment {
-    background-color: #f7f7f7;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    padding: 10px;
-}
-
-.option-card.payment img {
-    width: 70px;
-    height: 45px;
-    object-fit: contain;
-    transition: transform var(--transition-speed);
-}
-.option-card.payment:hover img {
-    transform: scale(1.1);
-}
-
-.option-card.payment .label {
-    margin: 0;
-    font-size: 0.85em;
-    color: var(--text-dark);
-    font-weight: 500;
-}
-
-.option-card.payment .sub-label {
-    font-size: 0.7em;
-    color: #888;
-}
-
-.special-badge {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background-color: var(--special-badge-bg);
-    color: white;
-    font-size: 0.7em;
-    padding: 3px 8px;
-    border-radius: 7px;
-    font-weight: bold;
-    transform: rotate(10deg);
-}
-
-.voucher-input-group {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.voucher-input-group .voucher-input {
-    flex-grow: 1;
-    padding-left: 50px;
-}
-
-.voucher-button {
-    padding: 14px 25px;
-    background: var(--button-gradient);
-    color: white;
-    border: none;
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
+    padding: 1rem;
     cursor: pointer;
-    font-weight: 600;
-    transition: all var(--transition-speed);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-.voucher-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-    background-position: right center; /* Untuk gradient */
-}
-
-.summary-card {
-    background: var(--button-gradient);
-    padding: 15px 20px;
-    border-radius: 15px;
-    margin-top: 20px;
     text-align: center;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    position: sticky;
-    bottom: 10px; /* Jarak dari bawah */
-    z-index: 10;
-    transform: translateY(150%);
-    animation: slide-up 0.5s ease-out forwards;
-    animation-delay: 1s; /* Muncul setelah user kemungkinan sudah memilih */
+    transition: all var(--transition-speed);
+}
+.option-card:hover { transform: translateY(-5px); }
+.option-card.selected { border-color: var(--cyan-accent); box-shadow: 0 0 15px var(--glow-color); animation: pulse-glow 1.5s infinite alternate; }
+.option-card img { max-width: 80px; height: 40px; object-fit: contain; margin-bottom: 8px; }
+.option-card .label { font-weight: 500; font-size: 0.9em; color: var(--text-primary); }
+.option-card .price { font-weight: 700; color: var(--cyan-accent); margin-top: 4px; }
+.special-badge {
+    position: absolute; top: 8px; right: 8px;
+    background-color: var(--danger-color);
+    color: white; font-size: 0.7em;
+    padding: 3px 8px; border-radius: 7px;
+    font-weight: bold; transform: rotate(10deg);
 }
 
-@keyframes slide-up {
-    to { transform: translateY(0); }
-}
-
-.summary-product {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 1.1em;
-    font-weight: 600;
-}
-
-.summary-price {
-    font-size: 1.3em;
-    font-weight: bold;
-}
-
-.confirm-button {
+/* ======================== */
+/* Tombol Aksi Utama        */
+/* ======================== */
+.action-button {
     width: 100%;
-    padding: 18px;
+    padding: 16px;
     background: var(--accent-gradient);
     border: none;
     border-radius: 12px;
     color: white;
-    font-size: 1.2em;
-    font-weight: bold;
+    font-size: 1.1em;
+    font-weight: 600;
     cursor: pointer;
     transition: all var(--transition-speed);
-    margin-top: 15px;
-    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
-.confirm-button:hover:not(:disabled) {
+.action-button:hover:not(:disabled) {
     transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(138, 43, 226, 0.6);
+    box-shadow: 0 8px 25px rgba(138, 43, 226, 0.4);
 }
-
-.confirm-button:disabled {
+.action-button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    background: var(--card-bg);
+    background: var(--bg-light);
 }
-
 
 /* ======================== */
-/* Cart Page Styles */
+/* Halaman Keranjang         */
 /* ======================== */
-.cart-page-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 30px;
+.cart-summary {
+    background: var(--bg-mid);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
 }
+.cart-summary h3 { text-align: center; margin-bottom: 1.5rem; font-size: 1.4em; }
+.summary-item { display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--border-color); }
+.summary-item:last-child { border-bottom: none; }
+.summary-item .label { color: var(--text-secondary); }
+.summary-item .value { font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 8px; }
+.summary-item .payment-logo { height: 24px; }
+.summary-total { display: flex; justify-content: space-between; padding-top: 1.5rem; margin-top: 1rem; border-top: 1px solid var(--cyan-accent); font-size: 1.2em; font-weight: 700; }
 
-.cart-summary-card {
-    background: var(--card-bg);
-    padding: 25px;
-    border-radius: 15px;
-    width: 100%;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    margin-bottom: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.cart-summary-card h3 {
+.payment-details {
+    background: var(--bg-mid);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
     text-align: center;
-    margin-bottom: 25px;
-    font-size: 1.5em;
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
-
-.summary-detail-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 5px;
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
-    font-size: 0.95em;
-}
-
-.summary-detail-item:last-of-type {
-    border-bottom: none;
-}
-
-.summary-detail-item .label {
-    color: var(--text-light);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.summary-detail-item .value {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 600;
-}
-
-.summary-detail-item .payment-image {
-    height: 25px;
-}
-
-.summary-total {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 5px 10px;
-    font-size: 1.3em;
-    font-weight: bold;
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    margin-top: 10px;
-}
-
-.payment-info-section {
-    background: #fff;
-    padding: 25px;
-    border-radius: 15px;
-    width: 100%;
-    max-width: 380px;
-    margin: 20px auto;
-    text-align: center;
-    color: var(--text-dark);
-    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-}
-
-.payment-info-section .payment-image {
-    height: 50px;
-    margin-bottom: 15px;
-}
-
-.payment-info-section .qr-code-image {
-    width: 220px;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.payment-info-section h4 {
-    color: var(--text-dark);
-    font-size: 1.2em;
-    margin-bottom: 8px;
-}
-
-.payment-info-section .payment-number {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: var(--price-color);
-    background-color: #f0f0f0;
-    padding: 8px;
-    border-radius: 8px;
-}
-
-.payment-info-section .copy-button {
-    padding: 12px 25px;
-    background-color: var(--selected-border);
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all var(--transition-speed);
-}
-.payment-info-section .copy-button:hover {
-    background-color: #00b377;
-    transform: scale(1.05);
-}
+.payment-details .qr-code { width: 200px; height: 200px; border-radius: 12px; margin: 1rem auto; }
+.payment-details .payment-number { font-size: 1.4em; font-weight: 700; background: var(--bg-dark); padding: 10px; border-radius: 8px; margin: 1rem 0; }
+.payment-details .copy-btn { background: var(--blue-accent); border: none; color: white; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 500; transition: background 0.2s; }
+.payment-details .copy-btn:hover { background: #3a80d2; }
 
 /* ======================== */
-/* Footer */
-/* ======================== */
-.footer {
-    background-color: var(--purple-dark);
-    padding: 30px 0;
-    text-align: center;
-    margin-top: 50px;
-    border-top: 1px solid #331566;
-    color: var(--text-light);
-}
-
-.footer-socials {
-    margin-bottom: 20px;
-}
-
-.footer-socials a {
-    color: var(--text-color);
-    font-size: 1.8em;
-    margin: 0 12px;
-    transition: all var(--transition-speed);
-}
-.footer-socials a:hover {
-    color: var(--accent-color);
-    transform: translateY(-5px) scale(1.1);
-}
-
-.footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 15px 0;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-}
-
-.footer-links a {
-    font-size: 1em;
-    color: var(--text-light);
-    transition: color var(--transition-speed);
-}
-.footer-links a:hover {
-    color: var(--text-color);
-}
-
-/* --- Pop-up Notifikasi (Pusat) --- */
-.notification-container {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.notification-popup {
-    background-color: #2c2c2c;
-    color: #fff;
-    padding: 15px 30px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    opacity: 0;
-    transform: translateY(-20px);
-    animation: fade-in-up 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-    min-width: 280px;
-    text-align: center;
-    justify-content: center;
-    border-left: 5px solid var(--selected-border);
-}
-
-.notification-popup.fade-out {
-    animation: fade-out-down 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
-}
-
-.notification-popup .icon {
-    font-size: 1.6em;
-}
-
-.notification-popup .message {
-    font-weight: 600;
-    font-size: 1.05em;
-}
-
-/* ======================== */
-/* Responsive Adjustments */
+/* Responsive Adjustments   */
 /* ======================== */
 @media (max-width: 768px) {
-    .header .website-name { font-size: 1.3em; }
-    .header-right .header-link { font-size: 1.1em; margin-left: 10px; }
-    .game-grid-custom { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; }
-    .game-card-img { height: 120px; }
-    .game-info-header .game-img { width: 100px; height: 100px; }
-    .game-info-header h2 { font-size: 1.8em; }
-    .options-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
-    .section-card { padding: 20px; }
-    .section-header h3 { font-size: 1.2em; }
-    .summary-card { flex-direction: column; gap: 10px; padding: 15px; }
+    .main-container { padding: 15px; }
+    .header .website-name { font-size: 1.2em; }
+    .game-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+    h2.section-title { font-size: 1.3em; }
 }
 
+@media (max-width: 480px) {
+    .game-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .game-card img { height: 110px; }
+    .pulsa-product-grid { grid-template-columns: repeat(2, 1fr); }
+}
