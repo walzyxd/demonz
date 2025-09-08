@@ -18,10 +18,10 @@ const GAMES = [
 ];
 
 const PAYMENTS = [
-    { id: "qris", name: "QRIS", img: "https://files.catbox.moe/9pvhjs.png", qr: "https://files.catbox.moe/pa0iwo.png" },
-    { id: "krom", name: "Bank Krom", img: "https://files.catbox.moe/q8v9ux.webp", number: "770072009565", holder: "Walzshop ID" },
-    { id: "dana", name: "Dana", img: "https://files.catbox.moe/2eju1u.webp", number: "083139243389", holder: "TI** SUT***" },
-    { id: "gopay", name: "Gopay", img: "https://files.catbox.moe/j9nuwa.png", number: "082298902274", holder: "TI** SUT***" }
+    { id: "qris", name: "QRIS", img: "https://files.catbox.moe/n1fx91.png", qr: "https://files.catbox.moe/pa0iwo.png" },
+    { id: "krom", name: "Bank Krom", img: "https://files.catbox.moe/j9nuwa.png", number: "770072009565", holder: "Walzshop ID" },
+    { id: "dana", name: "Dana", img: "https://files.catbox.moe/9pvhjs.png", number: "083139243389", holder: "TI** SUT***" },
+    { id: "gopay", name: "Gopay", img: "https://files.catbox.moe/q8v9ux.webp", number: "082298902274", holder: "TI** SUT***" }
 ];
 
 const PRODUCTS = {
