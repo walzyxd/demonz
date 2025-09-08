@@ -6,52 +6,20 @@
     <title>Panel Pterodactyl - WALZSHOP</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        .bottom-nav {
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            background-color: var(--purple-mid); display: flex;
-            justify-content: space-around; align-items: center; padding: 10px 0;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3); z-index: 1001;
-            border-top: 1px solid var(--card-bg);
-        }
-        .bottom-nav-link {
-            display: flex; flex-direction: column; align-items: center;
-            color: var(--text-light); font-size: 0.75em;
-            transition: all var(--transition-speed); flex-grow: 1; text-align: center;
-        }
-        .bottom-nav-link i { font-size: 1.5em; margin-bottom: 4px; }
-        .bottom-nav-link:hover, .bottom-nav-link.active {
-            color: var(--accent-color); transform: translateY(-3px);
-        }
-        body { padding-bottom: 70px; }
-        .option-card .icon { font-size: 2.5em; margin-bottom: 10px; }
-    </style>
 </head>
 <body>
-
     <div class="main-container">
         <header class="header">
             <a href="index.html" class="logo-link">
                 <img src="https://files.catbox.moe/hrtpys.jpg" alt="WALZSHOP Icon" class="logo-icon">
                 <h1 class="website-name">WALZSHOP</h1>
             </a>
-            <div class="header-right">
-                 <a href="#" class="header-link"><i class="fas fa-user"></i></a>
-            </div>
+            <a href="#" class="header-link"><i class="fas fa-user-circle"></i></a>
         </header>
 
-        <main>
-            <div class="game-info-header" style="margin-top: 20px;">
-                 <i class="fas fa-server game-img" style="font-size: 4em; padding: 25px; background: var(--purple-mid); box-shadow: none;"></i>
-                <h2>Panel Pterodactyl</h2>
-                 <p style="color: var(--text-light); margin-top: 10px;">Solusi hosting game server yang powerful dan mudah dikelola.</p>
-            </div>
-            
-            <section class="section-card">
-                <div class="section-header">
-                    <div class="section-number">1</div>
-                    <h3>Lengkapi Data Anda</h3>
-                </div>
+        <main style="margin-top: 20px;">
+            <div class="main-content-card">
+                <h3><span class="step-number">1</span>Lengkapi Data Anda</h3>
                 <div class="input-group">
                     <i class="fas fa-user input-icon"></i>
                     <input type="text" id="user-name" placeholder="Masukkan Nama Anda">
@@ -60,43 +28,28 @@
                     <i class="fab fa-whatsapp input-icon"></i>
                     <input type="tel" id="user-whatsapp" placeholder="Masukkan Nomor WhatsApp Aktif">
                 </div>
-            </section>
+            </div>
             
-            <section class="section-card">
-                <div class="section-header">
-                    <div class="section-number">2</div>
-                    <h3>Pilih Paket Panel</h3>
-                </div>
-                 <div class="options-grid">
-                    <div class="option-card"><i class="fas fa-memory icon"></i><p class="label">RAM 1 GB</p><p class="price">Rp 1.000</p></div>
-                    <div class="option-card"><i class="fas fa-memory icon"></i><p class="label">RAM 2 GB</p><p class="price">Rp 2.000</p></div>
-                    <div class="option-card"><i class="fas fa-memory icon"></i><p class="label">RAM 3 GB</p><p class="price">Rp 3.000</p></div>
-                    <div class="option-card"><i class="fas fa-hdd icon"></i><p class="label">RAM 4 GB</p><p class="price">Rp 4.000</p></div>
-                    <div class="option-card"><i class="fas fa-hdd icon"></i><p class="label">RAM 5 GB</p><p class="price">Rp 5.000</p></div>
-                    <div class="option-card"><i class="fas fa-hdd icon"></i><p class="label">RAM 6 GB</p><p class="price">Rp 6.000</p></div>
-                    <div class="option-card"><i class="fas fa-database icon"></i><p class="label">RAM 7 GB</p><p class="price">Rp 7.000</p></div>
-                    <div class="option-card"><i class="fas fa-database icon"></i><p class="label">RAM 8 GB</p><p class="price">Rp 8.000</p></div>
-                    <div class="option-card"><i class="fas fa-database icon"></i><p class="label">RAM 9 GB</p><p class="price">Rp 9.000</p></div>
-                    <div class="option-card"><i class="fas fa-layer-group icon"></i><p class="label">RAM 10 GB</p><p class="price">Rp 10.000</p></div>
-                    <div class="option-card">
-                        <div class="special-badge">BEST!</div>
-                        <i class="fas fa-infinity icon"></i><p class="label">RAM Unlimited</p><p class="price">Rp 10.500</p>
+            <div class="main-content-card">
+                <h3><span class="step-number">2</span>Pilih Paket Panel</h3>
+                <div id="panel-product-list" class="options-grid">
+                    <div class="option-card" data-name="RAM 1 GB" data-price="1000"><p class="label">RAM 1 GB</p><p class="price">Rp 1.000</p></div>
+                    <div class="option-card" data-name="RAM 2 GB" data-price="2000"><p class="label">RAM 2 GB</p><p class="price">Rp 2.000</p></div>
+                    <div class="option-card" data-name="RAM 3 GB" data-price="3000"><p class="label">RAM 3 GB</p><p class="price">Rp 3.000</p></div>
+                    <div class="option-card" data-name="RAM 4 GB" data-price="4000"><p class="label">RAM 4 GB</p><p class="price">Rp 4.000</p></div>
+                    <div class="option-card" data-name="RAM 5 GB" data-price="5000"><p class="label">RAM 5 GB</p><p class="price">Rp 5.000</p></div>
+                    <div class="option-card" data-name="RAM 6 GB" data-price="6000"><p class="label">RAM 6 GB</p><p class="price">Rp 6.000</p></div>
+                    <div class="option-card" data-name="RAM 7 GB" data-price="7000"><p class="label">RAM 7 GB</p><p class="price">Rp 7.000</p></div>
+                    <div class="option-card" data-name="RAM 8 GB" data-price="8000"><p class="label">RAM 8 GB</p><p class="price">Rp 8.000</p></div>
+                    <div class="option-card" data-name="RAM 9 GB" data-price="9000"><p class="label">RAM 9 GB</p><p class="price">Rp 9.000</p></div>
+                    <div class="option-card" data-name="RAM 10 GB" data-price="10000"><p class="label">RAM 10 GB</p><p class="price">Rp 10.000</p></div>
+                    <div class="option-card" data-name="RAM Unlimited" data-price="10500">
+                        <p class="label">RAM Unlimited</p><p class="price">Rp 10.500</p>
                     </div>
                 </div>
-            </section>
+            </div>
             
-            <section class="section-card">
-                <div class="section-header">
-                    <div class="section-number">3</div>
-                    <h3>Pilih Metode Pembayaran</h3>
-                </div>
-                <div class="options-grid">
-                    <div class="option-card payment"><img src="https://i.supaimg.com/7b5fe49a-a708-4a05-8b00-9865481e0e13.jpg" alt="QRIS"><p class="label">QRIS</p></div>
-                    <div class="option-card payment"><img src="https://i.supaimg.com/e4a887fd-41fd-4075-9802-8b65bb52d1cb.jpg" alt="Dana"><p class="label">Dana</p></div>
-                    <div class="option-card payment"><img src="https://i.supaimg.com/104ae434-3bb9-4071-a946-73b301a5ba29.jpg" alt="Gopay"><p class="label">Gopay</p></div>
-                </div>
-                <button class="confirm-button" style="margin-top: 25px;">Konfirmasi Pesanan</button>
-            </section>
+            <button id="panel-order-button" class="action-button">Konfirmasi Pesanan via WhatsApp</button>
         </main>
     </div>
 
@@ -106,14 +59,6 @@
         <a href="panel.html" class="bottom-nav-link active"><i class="fas fa-server"></i><span>Panel</span></a>
     </nav>
     
-    <script>
-        document.querySelectorAll('.option-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const parent = this.parentElement;
-                parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-                this.classList.add('selected');
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
