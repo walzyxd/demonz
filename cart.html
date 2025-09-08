@@ -3,88 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Pesanan - WALZSHOP</title>
+    <title>Rincian Pembayaran - WALZSHOP</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="notification-container"></div>
-    <div class="main-container game-page-container">
+    <div class="main-container">
         <header class="header">
             <a href="index.html" class="logo-link">
                 <img src="https://files.catbox.moe/hrtpys.jpg" alt="WALZSHOP Icon" class="logo-icon">
                 <h1 class="website-name">WALZSHOP</h1>
             </a>
-            <div class="header-right">
-                <a href="#" class="header-link"><i class="fas fa-user"></i></a>
-            </div>
         </header>
 
-        <a href="index.html" class="back-button-top" style="margin-top:20px; margin-bottom: 20px;">
-            <i class="fas fa-arrow-left"></i> Kembali
-        </a>
+        <div class="cart-page-container">
+            <div id="cart-summary-card" class="cart-summary-card">
+                </div>
 
-        <div id="game-info-header" class="game-info-header">
-            </div>
+            <div id="payment-info-section" class="payment-info-section">
+                </div>
 
-        <form id="topup-form" onsubmit="return false;">
-            <section class="section-card">
-                <div class="section-header">
-                    <div class="section-number">1</div>
-                    <h3>Lengkapi Data</h3>
-                </div>
-                <div class="input-group">
-                    <i class="fas fa-user-circle input-icon"></i>
-                    <input type="number" id="user-id" placeholder="Masukkan User ID" required>
-                </div>
-                <div class="input-group" id="server-id-container">
-                    </div>
-            </section>
-            
-            <section class="section-card">
-                <div class="section-header">
-                    <div class="section-number">2</div>
-                    <h3>Pilih Nominal</h3>
-                </div>
-                <div class="options-grid" id="product-list">
-                    </div>
-            </section>
-
-            <section class="section-card">
-                <div class="section-header">
-                    <div class="section-number">3</div>
-                    <h3>Pilih Pembayaran</h3>
-                </div>
-                <div class="options-grid" id="payment-list">
-                    </div>
-            </section>
-
-            <section class="section-card">
-                <div class="section-header">
-                    <div class="section-number">4</div>
-                    <h3>Beli</h3>
-                </div>
-                 <div class="input-group">
-                    <i class="fab fa-whatsapp input-icon"></i>
-                    <input type="number" id="whatsapp-number" placeholder="Nomor WhatsApp untuk Notifikasi" required>
-                </div>
-                <div class="voucher-input-group">
-                    <div class="input-group" style="flex-grow:1; margin:0;">
-                         <i class="fas fa-ticket-alt input-icon"></i>
-                         <input type="text" id="promo-code" class="voucher-input" placeholder="Kode Promo">
-                    </div>
-                    <button type="button" id="use-voucher-btn" class="voucher-button">Gunakan</button>
-                </div>
-                <button id="confirm-button" class="confirm-button" disabled>Beli Sekarang</button>
-            </section>
-        </form>
+            <button id="pay-button" class="confirm-button">Konfirmasi Pembayaran via WhatsApp</button>
+        </div>
     </div>
-
-    <div id="summary-card" class="summary-card" style="display: none;">
-        <div id="summary-product-details" class="summary-product"></div>
-        <div id="summary-price" class="summary-price"></div>
-    </div>
-    
     <script src="script.js"></script>
 </body>
 </html>
