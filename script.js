@@ -256,7 +256,7 @@ const PRODUCTS = {
     ]
 };
 
-/*~~~~~~~~~~~~~~~~~~~*\
+/* ================ *\
 
 const PULSA_DATA = {
     providers: {
