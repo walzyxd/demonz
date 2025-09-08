@@ -3,45 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ringkasan Pesanan | Walzshop</title>
+    <title>Keranjang Belanja</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header class="header">
-        <a href="game.html" class="header-link back-button"><i class="fas fa-arrow-left"></i></a>
-        <div class="header-center">
-            <h1>Ringkasan Pesanan</h1>
-        </div>
-        <a href="index.html" class="header-link home-icon"><i class="fas fa-home"></i></a>
-    </header>
 
-    <main class="main-content container">
-        <div class="cart-card-group">
-            <div class="page-section" id="cart-summary-card">
-                <h3>Detail Pesanan</h3>
-                <div class="summary-details" id="summary-details">
-                    </div>
+    <div class="main-container cart-page-container">
+        <header class="header">
+            <a href="index.html" class="logo-link">
+                <img src="https://files.catbox.moe/hrtpys.jpg" alt="WALZSHOP Icon" class="logo-icon">
+                <h1 class="website-name">WALZSHOP</h1>
+            </a>
+            <div class="header-right">
+                <a href="search.html" class="header-link">
+                    <i class="fas fa-search"></i>
+                </a>
+                <a href="profile.html" class="header-link">
+                    <i class="fas fa-user"></i>
+                </a>
             </div>
+        </header>
 
-            <div class="page-section payment-info-card" id="payment-info-section">
+        <main class="cart-main">
+            <a href="javascript:history.back()" class="back-button-top" style="margin-bottom: 20px;"><i class="fas fa-arrow-left"></i> Kembali</a>
+
+            <div id="cart-summary-card" class="cart-summary-card">
                 </div>
-        </div>
-    </main>
+            
+            <div id="payment-info-section" class="payment-info-section">
+                </div>
 
-    <footer class="footer-fixed">
-        <button class="action-button" id="pay-button">
-            <i class="fas fa-shopping-cart"></i> Beli Sekarang
-        </button>
+            <button type="button" id="pay-button" class="confirm-button">Bayar Sekarang</button>
+
+        </main>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-socials">
+            <a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me/walzshopid" target="_blank" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+        <ul class="footer-links">
+            <li><a href="#">Tentang Kami</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Syarat & Ketentuan</a></li>
+        </ul>
+        <p>&copy; 2024 WALZSHOP. All rights reserved.</p>
     </footer>
 
     <div class="notification-container"></div>
     <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            renderCartPage();
-        });
-    </script>
 </body>
 </html>
