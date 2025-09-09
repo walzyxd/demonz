@@ -194,6 +194,24 @@ a {
 /* ======================== */
 /* Game List & Cards (Home) */
 /* ======================== */
+.guidance-card {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow-light);
+    margin-bottom: 1.5rem;
+}
+
+.guidance-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.guidance-card p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
 .game-grid-custom {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
@@ -308,7 +326,7 @@ a {
     align-items: center;
     width: 100%;
     margin-top: 1rem;
-    border-top: 1px dashed rgba(0, 0, 0, 0.1);
+    border-top: 1px dashed var(--text-light);
     padding-top: 1rem;
     color: var(--text-light);
 }
@@ -627,7 +645,7 @@ a {
     justify-content: space-between;
     align-items: center;
     padding: 0.75rem 0;
-    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+    border-bottom: 1px dashed var(--text-light);
     font-size: 0.9rem;
     color: var(--text-color);
 }
@@ -731,14 +749,14 @@ a {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background-color: var(--bg-secondary);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
     padding: 0.75rem 0;
     text-align: center;
     z-index: 1000;
     box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.1);
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid var(--text-light);
     transition: background-color 0.5s ease, box-shadow 0.5s ease;
 }
 
@@ -906,5 +924,13 @@ a {
     .summary-card {
         bottom: 4rem;
         padding: 1rem;
+    }
+
+    .main-footer {
+        padding: 0.5rem 0;
+    }
+
+    .footer-links-group a {
+        font-size: 0.7rem;
     }
 }
