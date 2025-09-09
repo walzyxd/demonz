@@ -329,6 +329,8 @@ function selectOption(element) {
         updateSummary();
     } else if (document.getElementById('topup-pulsa-form')) {
         updatePulsaSummary();
+    } else if (document.getElementById('panel-form')) {
+        // Logika untuk halaman panel
     }
 }
 
@@ -521,8 +523,10 @@ function setupGamePage() {
 
     if (game.needsServerId) {
         serverIdContainer.innerHTML = `
-            <i class="fas fa-server input-icon"></i>
-            <input type="number" id="server-id" placeholder="Masukkan Server ID">
+            <div class="input-group">
+                <i class="fas fa-server input-icon"></i>
+                <input type="number" id="server-id" placeholder="Masukkan Server ID">
+            </div>
         `;
     } else {
         serverIdContainer.innerHTML = '';
@@ -868,7 +872,6 @@ function setupThemeToggle() {
         body.classList.add(currentTheme);
         updateThemeIcon(currentTheme);
     } else {
-        // Default to light theme if no preference is found
         body.classList.add('light-mode');
         updateThemeIcon('light-mode');
     }
@@ -876,16 +879,16 @@ function setupThemeToggle() {
     function updateThemeIcon(theme) {
         const icon = themeToggleBtn.querySelector('i');
         if (theme === 'dark-mode') {
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        } else {
             icon.classList.remove('fa-sun');
             icon.classList.add('fa-moon');
+        } else {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
         }
     }
 
     themeToggleBtn.addEventListener('click', () => {
-        const newTheme = body.classList.contains('dark-mode') ? 'light-mode' : 'dark-mode';
+        const newTheme = body.classList.contains('light-mode') ? 'dark-mode' : 'light-mode';
         body.classList.remove('dark-mode', 'light-mode');
         body.classList.add(newTheme);
         localStorage.setItem('theme', newTheme);
