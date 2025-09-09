@@ -255,11 +255,9 @@ const PRODUCTS = {
     ]
 };
 
-// Variabel untuk menyimpan harga asli produk dan status voucher
 let originalPrices = {};
 let isVoucherApplied = false;
 
-// Fungsi Global
 function formatRupiah(number) {
     return new Intl.NumberFormat('id-ID', {
         style: 'currency',
@@ -329,12 +327,17 @@ function copyToClipboard(text) {
 }
 
 // Logika Halaman Index
-function renderGameCards() {
+function renderGameCards(gamesToRender) {
     const gameListContainer = document.getElementById('game-list');
     if (!gameListContainer) return;
 
     gameListContainer.innerHTML = '';
-    GAMES.forEach(game => {
+    if (gamesToRender.length === 0) {
+        gameListContainer.innerHTML = '<p class="no-results-message" style="text-align:center; color:var(--text-light);">Game tidak ditemukan.</p>';
+        return;
+    }
+    
+    gamesToRender.forEach(game => {
         const gameCard = document.createElement('div');
         gameCard.classList.add("game-card-custom");
         gameCard.innerHTML = `
@@ -348,6 +351,18 @@ function renderGameCards() {
         `;
         gameListContainer.appendChild(gameCard);
     });
+}
+
+function liveSearchGames() {
+    const searchInput = document.getElementById('game-search');
+    const searchTerm = searchInput.value.toLowerCase();
+    
+    const filteredGames = GAMES.filter(game => {
+        return game.name.toLowerCase().includes(searchTerm) ||
+               game.publisher.toLowerCase().includes(searchTerm);
+    });
+    
+    renderGameCards(filteredGames);
 }
 
 // Logika Halaman Game
@@ -775,7 +790,11 @@ function setupPanelPage() {
 // DOMContentLoaded Event Listener Utama
 document.addEventListener("DOMContentLoaded", () => {
     if (document.querySelector('.game-grid-custom')) {
-        renderGameCards();
+        renderGameCards(GAMES);
+        const searchInput = document.getElementById('game-search');
+        if (searchInput) {
+            searchInput.addEventListener('input', liveSearchGames);
+        }
     } else if (document.getElementById('topup-form')) {
         setupGamePage();
     } else if (document.getElementById('cart-summary-card')) {
