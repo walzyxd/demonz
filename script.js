@@ -473,7 +473,7 @@ function updateSummary() {
     }
 
     if (isProductSelected && isPaymentSelected && isIdValid && isWhatsappValid && isServerIdValid) {
-        summaryCard.style.display = 'flex';
+        summaryCard.style.display = 'block';
         confirmButton.disabled = false;
 
         const productId = selectedProductCard.dataset.id;
@@ -725,7 +725,7 @@ function updatePulsaSummary() {
     const isPhoneValid = phoneNumberInput && phoneNumberInput.value.length >= 10;
 
     if (isProductSelected && isPaymentSelected && isPhoneValid) {
-        summaryCard.style.display = 'flex';
+        summaryCard.style.display = 'block';
         confirmButton.disabled = false;
 
         const productLabel = selectedProductCard.dataset.label;
