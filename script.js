@@ -674,7 +674,7 @@ Silakan scan kode QR di atas untuk melakukan pembayaran. Setelah berhasil, klik 
     } else {
         cartSummaryCard.innerHTML = `
             <h3>Terjadi Kesalahan</h3>
-            <p style="text-align: center; color: var(--text-light);">Data pesanan tidak ditemukan. Silakan kembali ke halaman utama.</p>
+            <p style="text-align: center; color: var(--text-color-light);">Data pesanan tidak ditemukan. Silakan kembali ke halaman utama.</p>
         `;
         if (payButton) payButton.style.display = 'none';
         if (paymentInfoSection) paymentInfoSection.style.display = 'none';
@@ -749,7 +749,6 @@ function setupPulsaPage() {
 
     if (!paymentListContainer || !phoneNumberInput || !operatorSelect) return;
 
-    // Populate operator dropdown
     Object.keys(PRODUCTS["pulsa"]).forEach(op => {
         const option = document.createElement('option');
         option.value = op;
@@ -859,8 +858,44 @@ function setupPanelPage() {
     updatePanelButtonStatus();
 }
 
+// Theme Toggle Logic
+function setupThemeToggle() {
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme) {
+        body.classList.add(currentTheme);
+        updateThemeIcon(currentTheme);
+    } else {
+        // Default to light theme if no preference is found
+        body.classList.add('light-mode');
+        updateThemeIcon('light-mode');
+    }
+
+    function updateThemeIcon(theme) {
+        const icon = themeToggleBtn.querySelector('i');
+        if (theme === 'dark-mode') {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        }
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        const newTheme = body.classList.contains('dark-mode') ? 'light-mode' : 'dark-mode';
+        body.classList.remove('dark-mode', 'light-mode');
+        body.classList.add(newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+    });
+}
+
 // DOMContentLoaded Event Listener Utama
 document.addEventListener("DOMContentLoaded", () => {
+    setupThemeToggle();
     if (document.querySelector('.game-grid-custom')) {
         renderGameCards(GAMES);
         const searchInput = document.getElementById('game-search');
