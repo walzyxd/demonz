@@ -246,12 +246,54 @@ const PRODUCTS = {
         { id: "d-5532", label: "5532 Diamonds", price: 1216499, badges: ["sale"] },
         { id: "d-9288", label: "9288 Diamonds", price: 2027499, badges: ["sale"] }
     ],
-    "pulsa": [
-        { id: "pulsa-5k", label: "Pulsa Rp 5.000", price: 6500 },
-        { id: "pulsa-10k", label: "Pulsa Rp 10.000", price: 11500 },
-        { id: "pulsa-20k", label: "Pulsa Rp 20.000", price: 21500 },
-        { id: "pulsa-50k", label: "Pulsa Rp 50.000", price: 51500 },
-        { id: "pulsa-100k", label: "Pulsa Rp 100.000", price: 101500 }
+    "pulsa": {
+        "telkomsel": [
+            { id: "tel-5k", label: "Pulsa Rp 5.000", price: 6500 },
+            { id: "tel-10k", label: "Pulsa Rp 10.000", price: 11500 },
+            { id: "tel-20k", label: "Pulsa Rp 20.000", price: 21500 },
+            { id: "tel-50k", label: "Pulsa Rp 50.000", price: 51500 },
+            { id: "tel-100k", label: "Pulsa Rp 100.000", price: 101500 }
+        ],
+        "indosat": [
+            { id: "ind-5k", label: "Pulsa Rp 5.000", price: 6800 },
+            { id: "ind-10k", label: "Pulsa Rp 10.000", price: 11800 },
+            { id: "ind-20k", label: "Pulsa Rp 20.000", price: 21800 },
+            { id: "ind-50k", label: "Pulsa Rp 50.000", price: 51800 },
+            { id: "ind-100k", label: "Pulsa Rp 100.000", price: 101800 }
+        ],
+        "xl": [
+            { id: "xl-5k", label: "Pulsa Rp 5.000", price: 6700 },
+            { id: "xl-10k", label: "Pulsa Rp 10.000", price: 11700 },
+            { id: "xl-20k", label: "Pulsa Rp 20.000", price: 21700 },
+            { id: "xl-50k", label: "Pulsa Rp 50.000", price: 51700 },
+            { id: "xl-100k", label: "Pulsa Rp 100.000", price: 101700 }
+        ],
+        "axis": [
+            { id: "axis-5k", label: "Pulsa Rp 5.000", price: 6700 },
+            { id: "axis-10k", label: "Pulsa Rp 10.000", price: 11700 },
+            { id: "axis-20k", label: "Pulsa Rp 20.000", price: 21700 },
+            { id: "axis-50k", label: "Pulsa Rp 50.000", price: 51700 },
+            { id: "axis-100k", label: "Pulsa Rp 100.000", price: 101700 }
+        ],
+        "smartfren": [
+            { id: "smf-5k", label: "Pulsa Rp 5.000", price: 6900 },
+            { id: "smf-10k", label: "Pulsa Rp 10.000", price: 11900 },
+            { id: "smf-20k", label: "Pulsa Rp 20.000", price: 21900 },
+            { id: "smf-50k", label: "Pulsa Rp 50.000", price: 51900 },
+            { id: "smf-100k", label: "Pulsa Rp 100.000", price: 101900 }
+        ],
+        "byu": [
+            { id: "byu-5k", label: "Pulsa Rp 5.000", price: 6500 },
+            { id: "byu-10k", label: "Pulsa Rp 10.000", price: 11500 },
+            { id: "byu-20k", label: "Pulsa Rp 20.000", price: 21500 },
+            { id: "byu-50k", label: "Pulsa Rp 50.000", price: 51500 },
+            { id: "byu-100k", label: "Pulsa Rp 100.000", price: 101500 }
+        ]
+    },
+    "panel": [
+        { name: "Paket 1", price: 10000, desc: "1 CPU, 256 MB RAM, 1 GB Storage" },
+        { name: "Paket 2", price: 20000, desc: "2 CPU, 512 MB RAM, 2 GB Storage" },
+        { name: "Paket 3", price: 35000, desc: "4 CPU, 1 GB RAM, 5 GB Storage" }
     ]
 };
 
@@ -641,25 +683,30 @@ Silakan scan kode QR di atas untuk melakukan pembayaran. Setelah berhasil, klik 
 
 // Logika Halaman Pulsa
 function renderPulsaProducts() {
+    const operatorSelect = document.getElementById('operator-select');
     const pulsaListContainer = document.getElementById("pulsa-list");
-    if (!pulsaListContainer) return;
-    
+    if (!operatorSelect || !pulsaListContainer) return;
+
     pulsaListContainer.innerHTML = '';
-    const products = PRODUCTS["pulsa"];
-    products.forEach(product => {
-        const productDiv = document.createElement("div");
-        productDiv.classList.add("option-card");
-        productDiv.setAttribute('data-id', product.id);
-        productDiv.setAttribute('data-label', product.label);
-        productDiv.innerHTML = `
-            <div class="label">${product.label}</div>
-            <div class="price-group">
-                <div class="price">${formatRupiah(product.price)}</div>
-            </div>
-        `;
-        productDiv.onclick = () => selectOption(productDiv);
-        pulsaListContainer.appendChild(productDiv);
-    });
+    const selectedOperator = operatorSelect.value;
+    const products = PRODUCTS["pulsa"][selectedOperator];
+
+    if (products) {
+        products.forEach(product => {
+            const productDiv = document.createElement("div");
+            productDiv.classList.add("option-card");
+            productDiv.setAttribute('data-id', product.id);
+            productDiv.setAttribute('data-label', product.label);
+            productDiv.innerHTML = `
+                <div class="label">${product.label}</div>
+                <div class="price-group">
+                    <div class="price">${formatRupiah(product.price)}</div>
+                </div>
+            `;
+            productDiv.onclick = () => selectOption(productDiv);
+            pulsaListContainer.appendChild(productDiv);
+        });
+    }
 }
 
 function updatePulsaSummary() {
@@ -679,7 +726,9 @@ function updatePulsaSummary() {
 
         const productLabel = selectedProductCard.dataset.label;
         const productId = selectedProductCard.dataset.id;
-        const product = PRODUCTS["pulsa"].find(p => p.id === productId);
+        const operatorSelect = document.getElementById('operator-select');
+        const selectedOperator = operatorSelect.value;
+        const product = PRODUCTS["pulsa"][selectedOperator].find(p => p.id === productId);
 
         document.getElementById('summary-product-details').innerHTML = `
             <i class="fas fa-mobile-alt" style="color:var(--accent-color);"></i>
@@ -696,8 +745,22 @@ function setupPulsaPage() {
     const paymentListContainer = document.getElementById("payment-list");
     const phoneNumberInput = document.getElementById('phone-number');
     const confirmButton = document.getElementById('confirm-button');
+    const operatorSelect = document.getElementById('operator-select');
 
-    if (!paymentListContainer || !phoneNumberInput) return;
+    if (!paymentListContainer || !phoneNumberInput || !operatorSelect) return;
+
+    // Populate operator dropdown
+    Object.keys(PRODUCTS["pulsa"]).forEach(op => {
+        const option = document.createElement('option');
+        option.value = op;
+        option.textContent = op.charAt(0).toUpperCase() + op.slice(1);
+        operatorSelect.appendChild(option);
+    });
+
+    operatorSelect.addEventListener('change', () => {
+        renderPulsaProducts();
+        updatePulsaSummary();
+    });
 
     renderPulsaProducts();
     
@@ -724,7 +787,9 @@ function setupPulsaPage() {
         const paymentName = selectedPaymentCard.dataset.id;
         const phoneNumber = phoneNumberInput.value;
         
-        const product = PRODUCTS["pulsa"].find(p => p.id === selectedProductCard.dataset.id);
+        const operatorSelect = document.getElementById('operator-select');
+        const selectedOperator = operatorSelect.value;
+        const product = PRODUCTS["pulsa"][selectedOperator].find(p => p.id === selectedProductCard.dataset.id);
 
         const adminWhatsapp = '6282298902274';
         const message = `Halo Admin, saya ingin konfirmasi pesanan pulsa.\n\n*Detail Pesanan:*\nNomor HP: ${phoneNumber}\nProduk: ${productLabel}\nMetode Pembayaran: ${paymentName}\nTotal: ${formatRupiah(product.price)}\n\nMohon bantuannya untuk diproses, terima kasih.`;
@@ -738,22 +803,29 @@ function setupPulsaPage() {
 function setupPanelPage() {
     const productNameInput = document.getElementById('user-name');
     const whatsappInput = document.getElementById('user-whatsapp');
-    const productCards = document.querySelectorAll('#panel-product-list .option-card');
+    const panelProductList = document.getElementById('panel-product-list');
     const orderButton = document.getElementById('panel-order-button');
     let selectedProduct = null;
 
-    productCards.forEach(card => {
-        card.addEventListener('click', () => {
-            productCards.forEach(c => c.classList.remove('selected'));
-            card.classList.add('selected');
+    if (!panelProductList || !orderButton) return;
 
-            selectedProduct = {
-                name: card.dataset.name,
-                price: card.dataset.price
-            };
-            
+    PRODUCTS["panel"].forEach(product => {
+        const productDiv = document.createElement('div');
+        productDiv.classList.add('option-card');
+        productDiv.setAttribute('data-name', product.name);
+        productDiv.setAttribute('data-price', product.price);
+        productDiv.innerHTML = `
+            <div class="label">${product.name}</div>
+            <div class="price">${formatRupiah(product.price)}</div>
+            <p class="description">${product.desc}</p>
+        `;
+        productDiv.addEventListener('click', () => {
+            document.querySelectorAll('#panel-product-list .option-card').forEach(c => c.classList.remove('selected'));
+            productDiv.classList.add('selected');
+            selectedProduct = product;
             updatePanelButtonStatus();
         });
+        panelProductList.appendChild(productDiv);
     });
 
     [productNameInput, whatsappInput].forEach(input => {
