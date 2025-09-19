@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Up Game</title>
+    <title>WALZSHOP - Top Up Game</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -24,12 +24,12 @@
         </header>
 
         <main class="game-page-container">
-            <a href="javascript:history.back()" class="back-button-top">
+            <a href="index.html" class="back-button-top">
                 <i class="fas fa-arrow-left"></i> Kembali
             </a>
 
             <div id="game-info-header" class="game-info-header">
-            </div>
+                </div>
 
             <form id="topup-form" onsubmit="return false;">
                 <section class="section-card">
@@ -38,14 +38,18 @@
                         <h3>Lengkapi Data Akun</h3>
                     </div>
                     <div class="section-description">
-                        Pastikan ID pemain sudah benar untuk menghindari kesalahan.
+                        Gunakan tombol Cek Akun untuk memastikan ID Anda benar.
                     </div>
                     <div class="input-group">
                         <i class="fas fa-user input-icon"></i>
                         <input type="number" id="user-id" placeholder="Masukkan ID">
                     </div>
                     <div id="server-id-container">
-                    </div>
+                        </div>
+
+                    <button type="button" id="check-button" class="check-id-button">Cek Akun</button>
+                    <div id="nickname-result" class="nickname-display"></div>
+
                 </section>
 
                 <section class="section-card">
@@ -54,18 +58,18 @@
                         <h3>Pilih Nominal Top Up</h3>
                     </div>
                     <div id="product-list" class="options-grid">
-                    </div>
+                        </div>
                 </section>
-                
+
                 <section class="section-card">
                     <div class="section-header">
                         <div class="section-number">3</div>
                         <h3>Pilih Metode Pembayaran</h3>
                     </div>
                     <div id="payment-list" class="options-grid">
-                    </div>
+                        </div>
                 </section>
-                
+
                 <section class="section-card">
                     <div class="section-header">
                         <div class="section-number">4</div>
@@ -101,25 +105,18 @@
             <button type="button" id="confirm-button" class="confirm-button" disabled>Beli Sekarang</button>
         </main>
     </div>
-    
+
     <footer class="main-footer">
         <div class="footer-links-group">
-            <a href="index.html">
-                <i class="fas fa-gem"></i>
-                <span>Top Up</span>
-            </a>
-            <a href="pulsa.html">
-                <i class="fas fa-mobile-alt"></i>
-                <span>Pulsa</span>
-            </a>
-            <a href="panel.html">
-                <i class="fas fa-server"></i>
-                <span>Panel</span>
-            </a>
+            <a href="index.html"><i class="fas fa-gem"></i><span>Top Up</span></a>
+            <a href="pulsa.html"><i class="fas fa-mobile-alt"></i><span>Pulsa</span></a>
+            <a href="panel.html"><i class="fas fa-server"></i><span>Panel</span></a>
         </div>
     </footer>
 
     <div class="notification-container"></div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
