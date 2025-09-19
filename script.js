@@ -6,50 +6,23 @@ const GAME_API_CODES = { "mobile-legends": "MLBB", "free-fire": "FREEFIRE", "hon
 
 let originalPrices = {};
 let isVoucherApplied = false;
-let validatedNickname = null; // Untuk menyimpan nickname setelah validasi
+let validatedNickname = null;
 
+// --- FUNGSI-FUNGSI UTAMA ---
 function formatRupiah(number) { return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number); }
 function getUrlParameter(name) { name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]'); const regex = new RegExp('[\\?&]' + name + '=([^&#]*)'); const results = regex.exec(location.search); return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' ')); }
-
-function selectOption(element) {
-    const parent = element.closest('.options-grid');
-    if (!parent) return;
-    const siblings = parent.querySelectorAll(`.option-card`);
-    siblings.forEach(sibling => sibling.classList.remove('selected'));
-    element.classList.add('selected');
-    if (document.getElementById('topup-form')) { updateSummary(); }
-    else if (document.getElementById('topup-pulsa-form')) { updatePulsaSummary(); }
-}
-
-function showNotification(message, isSuccess = true) {
-    const container = document.querySelector('.notification-container') || document.body.appendChild(document.createElement('div'));
-    if (!container.classList.contains('notification-container')) { container.classList.add('notification-container'); }
-    const popup = document.createElement('div');
-    popup.classList.add('notification-popup');
-    const iconClass = isSuccess ? 'fa-check-circle' : 'fa-times-circle';
-    const iconColor = isSuccess ? 'var(--selected-border)' : 'var(--price-color)';
-    popup.innerHTML = `<i class="fas ${iconClass} icon" style="color:${iconColor};"></i><span class="message">${message}</span>`;
-    container.appendChild(popup);
-    setTimeout(() => { popup.classList.add('fade-out'); popup.addEventListener('animationend', () => { if (popup) popup.remove(); }); }, 3000);
-}
-
+function selectOption(element) { const parent = element.closest('.options-grid'); if (!parent) return; const siblings = parent.querySelectorAll(`.option-card`); siblings.forEach(sibling => sibling.classList.remove('selected')); element.classList.add('selected'); if (document.getElementById('topup-form')) { updateSummary(); } else if (document.getElementById('topup-pulsa-form')) { updatePulsaSummary(); } }
+function showNotification(message, isSuccess = true) { const container = document.querySelector('.notification-container') || document.body.appendChild(document.createElement('div')); if (!container.classList.contains('notification-container')) { container.classList.add('notification-container'); } const popup = document.createElement('div'); popup.classList.add('notification-popup'); const iconClass = isSuccess ? 'fa-check-circle' : 'fa-times-circle'; const iconColor = isSuccess ? 'var(--selected-border)' : 'var(--price-color)'; popup.innerHTML = `<i class="fas ${iconClass} icon" style="color:${iconColor};"></i><span class="message">${message}</span>`; container.appendChild(popup); setTimeout(() => { popup.classList.add('fade-out'); popup.addEventListener('animationend', () => { if (popup) popup.remove(); }); }, 3000); }
 function copyToClipboard(text) { navigator.clipboard.writeText(text).then(() => { showNotification('Nomor berhasil disalin!', true); }).catch(err => { console.error('Gagal menyalin:', err); showNotification('Gagal menyalin nomor. Coba lagi.', false); }); }
 
-function renderGameCards(gamesToRender) {
-    const gameListContainer = document.getElementById('game-list');
-    if (!gameListContainer) return;
-    gameListContainer.innerHTML = '';
-    if (gamesToRender.length === 0) { gameListContainer.innerHTML = '<p class="no-results-message">Game tidak ditemukan.</p>'; return; }
-    gamesToRender.forEach(game => { const gameCard = document.createElement('div'); gameCard.classList.add("game-card-custom"); gameCard.innerHTML = `<a href="${game.url}"><img src="${game.img}" alt="${game.name}" class="game-card-img"><div class="game-card-content-custom"><h3>${game.name}</h3><p>${game.publisher}</p></div></a>`; gameListContainer.appendChild(gameCard); });
-}
-
+// --- FUNGSI PENGECEKAN ID GAME (BARU & AMAN) ---
 async function checkGameId(gameKey) {
     const userIdInput = document.getElementById('user-id');
     const zoneIdInput = document.getElementById('server-id');
     const resultDiv = document.getElementById('nickname-result');
     
-    validatedNickname = null; // Reset nickname setiap kali cek
-    if (!resultDiv) { console.error("Elemen #nickname-result tidak ditemukan."); return; }
+    validatedNickname = null;
+    if (!resultDiv) { return; }
 
     const userId = userIdInput.value;
     const zoneId = zoneIdInput ? zoneIdInput.value : '';
@@ -58,182 +31,48 @@ async function checkGameId(gameKey) {
     const gameCode = GAME_API_CODES[gameKey];
     if (!gameCode) { resultDiv.innerHTML = `<span style="color: orange;">Pengecekan ID tidak tersedia.</span>`; return; }
 
-    // PERINGATAN KEAMANAN: Jangan letakkan Secret Key di kode client-side pada website produksi.
-    const merchantId = "M250907JZZY9386TE";
-    const secretKey = "2cbefb6a1e0a229d12c318747c59e36d0c6a38827e5984c077ec143a26471986";
-
     const fullUserId = (gameCode === 'MLBB' && zoneId) ? `${userId}(${zoneId})` : userId;
-    const refId = 'walzshop-check-' + Date.now();
-    const signature = CryptoJS.MD5(merchantId + secretKey + refId).toString();
-    
     resultDiv.innerHTML = '<span><i class="fas fa-spinner fa-spin"></i> Mengecek...</span>';
 
     try {
-        const apiUrl = 'https://api.games.id/v1/check-account';
-        const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ merchant_id: merchantId, game_code: gameCode, user_id: fullUserId, ref_id: refId, signature: signature }) });
+        const response = await fetch('cek_id.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                game_code: gameCode,
+                user_id: fullUserId
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         const result = await response.json();
+
         if (result.status === 'success' && result.data && result.data.nickname) {
-            validatedNickname = result.data.nickname; // Simpan nickname jika berhasil
+            validatedNickname = result.data.nickname;
             resultDiv.innerHTML = `<span style="color: green;">✔️ Nickname: <strong>${validatedNickname}</strong></span>`;
         } else {
             resultDiv.innerHTML = `<span style="color: red;">❌ Error: ${result.error_msg || 'ID tidak ditemukan'}</span>`;
         }
     } catch (error) {
-        console.error('Error saat menghubungi API:', error);
+        console.error('Error saat menghubungi proxy:', error);
         resultDiv.innerHTML = `<span style="color: red;">Gagal terhubung ke server verifikasi.</span>`;
     }
 }
 
-function renderProducts(gameKey) {
-    const productListContainer = document.getElementById("product-list");
-    if (!productListContainer) return;
-    productListContainer.innerHTML = '';
-    const products = PRODUCTS[gameKey];
-    if (products) {
-        products.forEach(product => { const productDiv = document.createElement("div"); productDiv.classList.add("option-card"); productDiv.setAttribute('data-id', product.id); let badgeHtml = ''; if (product.badges && product.badges.length > 0) { const badgeText = product.badges[0].charAt(0).toUpperCase() + product.badges[0].slice(1); badgeHtml = `<span class="special-badge">${badgeText}</span>`; } const currentPrice = isVoucherApplied ? Math.max(0, product.price - 100) : product.price; productDiv.innerHTML = `${badgeHtml}<i class="fas fa-gem icon"></i><div class="label">${product.label}</div><div class="price-group">${isVoucherApplied ? `<div class="original-price">${formatRupiah(product.price)}</div>` : ''}<div class="price">${formatRupiah(currentPrice)}</div></div>`; productDiv.onclick = () => { selectOption(productDiv); }; productListContainer.appendChild(productDiv); });
-    }
-}
-
-function updateSummary() {
-    const selectedProductCard = document.querySelector('#product-list .option-card.selected');
-    const selectedPaymentCard = document.querySelector('#payment-list .option-card.selected');
-    const summaryCard = document.getElementById('summary-card');
-    const confirmButton = document.getElementById('confirm-button');
-    const userIdInput = document.getElementById('user-id');
-    const whatsappInput = document.getElementById('whatsapp-number');
-    const serverIdInput = document.getElementById('server-id');
-    const gameKey = getUrlParameter('key');
-    const game = GAMES.find(g => g.key === gameKey);
-    const isProductSelected = !!selectedProductCard;
-    const isPaymentSelected = !!selectedPaymentCard;
-    const isIdValid = userIdInput && userIdInput.value.length > 0;
-    const isWhatsappValid = whatsappInput && whatsappInput.value.length > 0;
-    let isServerIdValid = !game || !game.needsServerId || (serverIdInput && serverIdInput.value.length > 0);
-
-    if (isProductSelected && isPaymentSelected && isIdValid && isWhatsappValid && isServerIdValid) {
-        summaryCard.style.display = 'flex';
-        confirmButton.disabled = false;
-        const productId = selectedProductCard.dataset.id;
-        const product = PRODUCTS[gameKey].find(p => p.id === productId);
-        const finalPrice = isVoucherApplied ? Math.max(0, product.price - 100) : product.price;
-        document.getElementById('summary-product-details').innerHTML = `<i class="fas fa-gem"></i><span class="product-text">${product.label}</span>`;
-        document.getElementById('summary-price').innerText = formatRupiah(finalPrice);
-    } else {
-        summaryCard.style.display = 'none';
-        confirmButton.disabled = true;
-    }
-}
-
-function setupGamePage() {
-    const gameKey = getUrlParameter('key');
-    const game = GAMES.find(g => g.key === gameKey);
-    if (!game || !document.getElementById('topup-form')) return;
-
-    // Setup elemen halaman
-    document.getElementById("game-info-header").innerHTML = `<img src="${game.img}" alt="${game.name}" class="game-img"><h2>${game.name}</h2><div class="game-info-details"><div class="game-detail-item"><i class="fas fa-shield-alt"></i><p>Pembayaran Aman</p></div><div class="game-detail-item"><i class="fas fa-certificate"></i><p>Official Distributor</p></div></div>`;
-    const serverIdContainer = document.getElementById("server-id-container");
-    if (game.needsServerId) { serverIdContainer.innerHTML = `<div class="input-group"><i class="fas fa-server input-icon"></i><input type="number" id="server-id" placeholder="Masukkan Server ID"></div>`; } else { serverIdContainer.innerHTML = ''; }
-    
-    renderProducts(gameKey);
-
-    const paymentListContainer = document.getElementById("payment-list");
-    PAYMENTS.forEach(payment => { const paymentDiv = document.createElement("div"); paymentDiv.classList.add("option-card", "payment"); paymentDiv.setAttribute('data-id', payment.id); paymentDiv.innerHTML = `<img src="${payment.img}" alt="${payment.name}"><div class="label">${payment.name}</div>`; paymentDiv.onclick = () => { selectOption(paymentDiv); }; paymentListContainer.appendChild(paymentDiv); });
-    
-    // Event listeners untuk update summary
-    document.getElementById('user-id').addEventListener('input', updateSummary);
-    if (game.needsServerId) { document.getElementById('server-id').addEventListener('input', updateSummary); }
-    document.getElementById('whatsapp-number').addEventListener('input', updateSummary);
-
-    // Event listener untuk tombol Cek Akun
-    const checkButton = document.getElementById('check-button');
-    if (checkButton) {
-        checkButton.addEventListener('click', () => checkGameId(gameKey));
-    }
-
-    // Event listener untuk tombol Beli Sekarang
-    document.getElementById('confirm-button').addEventListener('click', () => {
-        const selectedProductCard = document.querySelector('#product-list .option-card.selected');
-        const selectedPaymentCard = document.querySelector('#payment-list .option-card.selected');
-        const userId = document.getElementById('user-id').value;
-        const serverIdEl = document.getElementById('server-id');
-        const serverId = serverIdEl ? serverIdEl.value : '';
-        const whatsappNumber = document.getElementById('whatsapp-number').value;
-
-        if (!selectedProductCard || !selectedPaymentCard || !userId || !whatsappNumber) {
-            showNotification('Mohon lengkapi semua data sebelum melanjutkan.', false);
-            return;
-        }
-
-        const productId = selectedProductCard.dataset.id;
-        const paymentId = selectedPaymentCard.dataset.id;
-        let nicknameParam = '';
-        if (validatedNickname) {
-            nicknameParam = `&nickname=${encodeURIComponent(validatedNickname)}`;
-        }
-        
-        const url = `cart.html?game_key=${gameKey}&product_id=${productId}&payment_id=${paymentId}&user_id=${userId}&server_id=${serverId}&whatsapp_number=${whatsappNumber}&voucher_applied=${isVoucherApplied}${nicknameParam}`;
-        window.location.href = url;
-    });
-
-    document.getElementById('use-voucher-btn').addEventListener('click', () => { 
-        const promoCodeInput = document.getElementById('promo-code');
-        const promoCode = promoCodeInput.value.toUpperCase(); 
-        if (promoCode === "WALZPROMO") { 
-            isVoucherApplied = true; 
-            showNotification(`Voucher Berhasil digunakan! Potongan: ${formatRupiah(100)}`, true); 
-        } else { 
-            isVoucherApplied = false; 
-            showNotification('Voucher Tidak valid', false); 
-        } 
-        renderProducts(gameKey); 
-        updateSummary();
-    });
-}
-
-function setupCartPage() {
-    const params = new URLSearchParams(window.location.search);
-    const gameKey = params.get('game_key');
-    const productId = params.get('product_id');
-    const paymentId = params.get('payment_id');
-    const userId = params.get('user_id');
-    const serverId = params.get('server_id');
-    const whatsappNumber = params.get('whatsapp_number');
-    const voucherApplied = params.get('voucher_applied') === 'true';
-    const nickname = params.get('nickname');
-
-    const game = GAMES.find(g => g.key === gameKey);
-    const product = PRODUCTS[gameKey] ? PRODUCTS[gameKey].find(p => p.id === productId) : null;
-    const payment = PAYMENTS.find(p => p.id === paymentId);
-
-    const cartSummaryCard = document.getElementById('cart-summary-card');
-    if (!game || !product || !payment || !cartSummaryCard) return;
-
-    const finalPrice = voucherApplied ? Math.max(0, product.price - 100) : product.price;
-
-    const nicknameHtml = nickname ? `<div class="summary-detail-item"><span class="label"><i class="fas fa-user-check"></i> Nickname</span><span class="value">${decodeURIComponent(nickname)}</span></div>` : '';
-
-    cartSummaryCard.innerHTML = `<h3>Rincian Pesanan</h3>${nicknameHtml}<div class="summary-detail-item"><span class="label"><i class="fas fa-gamepad"></i> Game</span><span class="value">${game.name}</span></div><div class="summary-detail-item"><span class="label"><i class="fas fa-gem"></i> Produk</span><span class="value">${product.label}</span></div><div class="summary-detail-item"><span class="label"><i class="fas fa-user"></i> Player ID</span><span class="value">${userId}${serverId ? ` (${serverId})` : ''}</span></div><div class="summary-detail-item"><span class="label"><i class="fas fa-wallet"></i> Metode Pembayaran</span><span class="value"><img src="${payment.img}" alt="${payment.name}" class="payment-image">${payment.name}</span></div><div class="summary-detail-item"><span class="label"><i class="fab fa-whatsapp"></i> Nomor WhatsApp</span><span class="value">${whatsappNumber}</span></div><div class="summary-total"><span class="label">Total Pembayaran</span><span class="value">${formatRupiah(finalPrice)}</span></div>`;
-    
-    const paymentInfoSection = document.getElementById('payment-info-section');
-    let paymentContent = '';
-    if (payment.qr) { paymentContent = `<h4>Scan untuk Bayar</h4><img src="${payment.qr}" alt="QR Code" class="qr-code-image"><div class="qr-caption">⚠️Perhatian: Transfer harus sesuai Dengan Harga Yang Tertera Di Atas⚠️ Silakan scan kode QR di atas untuk melakukan pembayaran. Setelah berhasil, klik **Bayar Sekarang**.</div>`; } 
-    else if (payment.number) { paymentContent = `<h4>Transfer ke ${payment.name}</h4><img src="${payment.img}" alt="${payment.name}" class="payment-image"><div class="payment-caption">A.N. ${payment.holder}</div><div class="payment-number">${payment.number}</div><button class="copy-button" onclick="copyToClipboard('${payment.number}')">Salin Nomor</button>`; }
-    paymentInfoSection.innerHTML = paymentContent;
-
-    document.getElementById('pay-button').addEventListener('click', () => {
-        const adminWhatsapp = '6282298902274';
-        const message = `Halo Admin, saya ingin konfirmasi pesanan saya.\n\n*Detail Pesanan:*\nGame: ${game.name}\nNickname: ${decodeURIComponent(nickname || 'N/A')}\nProduk: ${product.label}\nPlayer ID: ${userId}${serverId ? ` (${serverId})` : ''}\nMetode Pembayaran: ${payment.name}\nTotal: ${formatRupiah(finalPrice)}\n\nNomor WA saya: ${whatsappNumber}\n\nMohon bantuannya untuk diproses, terima kasih.`;
-        window.location.href = `https://wa.me/${adminWhatsapp}?text=${encodeURIComponent(message)}`;
-    });
-}
-
-// Sisa fungsi lain (setupPulsaPage, setupPanelPage)
+// --- LOGIKA HALAMAN ---
+function renderGameCards(gamesToRender) { const gameListContainer = document.getElementById('game-list'); if (!gameListContainer) return; gameListContainer.innerHTML = ''; if (gamesToRender.length === 0) { gameListContainer.innerHTML = '<p class="no-results-message">Game tidak ditemukan.</p>'; return; } gamesToRender.forEach(game => { const gameCard = document.createElement('div'); gameCard.classList.add("game-card-custom"); gameCard.innerHTML = `<a href="${game.url}"><img src="${game.img}" alt="${game.name}" class="game-card-img"><div class="game-card-content-custom"><h3>${game.name}</h3><p>${game.publisher}</p></div></a>`; gameListContainer.appendChild(gameCard); }); }
+function renderProducts(gameKey) { const productListContainer = document.getElementById("product-list"); if (!productListContainer) return; productListContainer.innerHTML = ''; const products = PRODUCTS[gameKey]; if (products) { products.forEach(product => { const productDiv = document.createElement("div"); productDiv.classList.add("option-card"); productDiv.setAttribute('data-id', product.id); let badgeHtml = ''; if (product.badges && product.badges.length > 0) { const badgeText = product.badges[0].charAt(0).toUpperCase() + product.badges[0].slice(1); badgeHtml = `<span class="special-badge">${badgeText}</span>`; } const currentPrice = isVoucherApplied ? Math.max(0, product.price - 100) : product.price; productDiv.innerHTML = `${badgeHtml}<i class="fas fa-gem icon"></i><div class="label">${product.label}</div><div class="price-group">${isVoucherApplied ? `<div class="original-price">${formatRupiah(product.price)}</div>` : ''}<div class="price">${formatRupiah(currentPrice)}</div></div>`; productDiv.onclick = () => { selectOption(productDiv); }; productListContainer.appendChild(productDiv); }); } }
+function updateSummary() { const selectedProductCard = document.querySelector('#product-list .option-card.selected'); const selectedPaymentCard = document.querySelector('#payment-list .option-card.selected'); const summaryCard = document.getElementById('summary-card'); const confirmButton = document.getElementById('confirm-button'); const userIdInput = document.getElementById('user-id'); const whatsappInput = document.getElementById('whatsapp-number'); const serverIdInput = document.getElementById('server-id'); const gameKey = getUrlParameter('key'); const game = GAMES.find(g => g.key === gameKey); const isProductSelected = !!selectedProductCard; const isPaymentSelected = !!selectedPaymentCard; const isIdValid = userIdInput && userIdInput.value.length > 0; const isWhatsappValid = whatsappInput && whatsappInput.value.length > 0; let isServerIdValid = !game || !game.needsServerId || (serverIdInput && serverIdInput.value.length > 0); if (isProductSelected && isPaymentSelected && isIdValid && isWhatsappValid && isServerIdValid) { summaryCard.style.display = 'flex'; confirmButton.disabled = false; const productId = selectedProductCard.dataset.id; const product = PRODUCTS[gameKey].find(p => p.id === productId); const finalPrice = isVoucherApplied ? Math.max(0, product.price - 100) : product.price; document.getElementById('summary-product-details').innerHTML = `<i class="fas fa-gem"></i><span class="product-text">${product.label}</span>`; document.getElementById('summary-price').innerText = formatRupiah(finalPrice); } else { summaryCard.style.display = 'none'; confirmButton.disabled = true; } }
+function setupGamePage() { const gameKey = getUrlParameter('key'); const game = GAMES.find(g => g.key === gameKey); if (!game || !document.getElementById('topup-form')) return; document.getElementById("game-info-header").innerHTML = `<img src="${game.img}" alt="${game.name}" class="game-img"><h2>${game.name}</h2><div class="game-info-details"><div class="game-detail-item"><i class="fas fa-shield-alt"></i><p>Pembayaran Aman</p></div><div class="game-detail-item"><i class="fas fa-certificate"></i><p>Official Distributor</p></div></div>`; const serverIdContainer = document.getElementById("server-id-container"); if (game.needsServerId) { serverIdContainer.innerHTML = `<div class="input-group"><i class="fas fa-server input-icon"></i><input type="number" id="server-id" placeholder="Masukkan Server ID"></div>`; } else { serverIdContainer.innerHTML = ''; } renderProducts(gameKey); const paymentListContainer = document.getElementById("payment-list"); PAYMENTS.forEach(payment => { const paymentDiv = document.createElement("div"); paymentDiv.classList.add("option-card", "payment"); paymentDiv.setAttribute('data-id', payment.id); paymentDiv.innerHTML = `<img src="${payment.img}" alt="${payment.name}"><div class="label">${payment.name}</div>`; paymentDiv.onclick = () => { selectOption(productDiv); }; paymentListContainer.appendChild(paymentDiv); }); document.getElementById('user-id').addEventListener('input', updateSummary); if (game.needsServerId) { document.getElementById('server-id').addEventListener('input', updateSummary); } document.getElementById('whatsapp-number').addEventListener('input', updateSummary); const checkButton = document.getElementById('check-button'); if (checkButton) { checkButton.addEventListener('click', () => checkGameId(gameKey)); } document.getElementById('confirm-button').addEventListener('click', () => { const selectedProductCard = document.querySelector('#product-list .option-card.selected'); const selectedPaymentCard = document.querySelector('#payment-list .option-card.selected'); const userId = document.getElementById('user-id').value; const serverIdEl = document.getElementById('server-id'); const serverId = serverIdEl ? serverIdEl.value : ''; const whatsappNumber = document.getElementById('whatsapp-number').value; if (!selectedProductCard || !selectedPaymentCard || !userId || !whatsappNumber) { showNotification('Mohon lengkapi semua data sebelum melanjutkan.', false); return; } const productId = selectedProductCard.dataset.id; const paymentId = selectedPaymentCard.dataset.id; let nicknameParam = ''; if (validatedNickname) { nicknameParam = `&nickname=${encodeURIComponent(validatedNickname)}`; } const url = `cart.html?game_key=${gameKey}&product_id=${productId}&payment_id=${paymentId}&user_id=${userId}&server_id=${serverId}&whatsapp_number=${whatsappNumber}&voucher_applied=${isVoucherApplied}${nicknameParam}`; window.location.href = url; }); document.getElementById('use-voucher-btn').addEventListener('click', () => { const promoCodeInput = document.getElementById('promo-code'); const promoCode = promoCodeInput.value.toUpperCase(); if (promoCode === "WALZPROMO") { isVoucherApplied = true; showNotification(`Voucher Berhasil digunakan! Potongan: ${formatRupiah(100)}`, true); } else { isVoucherApplied = false; showNotification('Voucher Tidak valid', false); } renderProducts(gameKey); updateSummary(); }); }
+function setupCartPage() { const params = new URLSearchParams(window.location.search); const gameKey = params.get('game_key'); const productId = params.get('product_id'); const paymentId = params.get('payment_id'); const userId = params.get('user_id'); const serverId = params.get('server_id'); const whatsappNumber = params.get('whatsapp_number'); const voucherApplied = params.get('voucher_applied') === 'true'; const nickname = params.get('nickname'); const game = GAMES.find(g => g.key === gameKey); const product = PRODUCTS[gameKey] ? PRODUCTS[gameKey].find(p => p.id === productId) : null; const payment = PAYMENTS.find(p => p.id === paymentId); const cartSummaryCard = document.getElementById('cart-summary-card'); if (!game || !product || !payment || !cartSummaryCard) return; const finalPrice = voucherApplied ? Math.max(0, product.price - 100) : product.price; const nicknameHtml = nickname ? `<div class="summary-detail-item"><span class="label"><i class="fas fa-user-check"></i> Nickname</span><span class="value">${decodeURIComponent(nickname)}</span></div>` : ''; cartSummaryCard.innerHTML = `<h3>Rincian Pesanan</h3>${nicknameHtml}<div class="summary-detail-item"><span class="label"><i class="fas fa-gamepad"></i> Game</span><span class="value">${game.name}</span></div><div class="summary-detail-item"><span class="label"><i class="fas fa-gem"></i> Produk</span><span class="value">${product.label}</span></div><div class="summary-detail-item"><span class="label"><i class="fas fa-user"></i> Player ID</span><span class="value">${userId}${serverId ? ` (${serverId})` : ''}</span></div><div class="summary-detail-item"><span class="label"><i class="fas fa-wallet"></i> Metode Pembayaran</span><span class="value"><img src="${payment.img}" alt="${payment.name}" class="payment-image">${payment.name}</span></div><div class="summary-detail-item"><span class="label"><i class="fab fa-whatsapp"></i> Nomor WhatsApp</span><span class="value">${whatsappNumber}</span></div><div class="summary-total"><span class="label">Total Pembayaran</span><span class="value">${formatRupiah(finalPrice)}</span></div>`; const paymentInfoSection = document.getElementById('payment-info-section'); let paymentContent = ''; if (payment.qr) { paymentContent = `<h4>Scan untuk Bayar</h4><img src="${payment.qr}" alt="QR Code" class="qr-code-image"><div class="qr-caption">⚠️Perhatian: Transfer harus sesuai Dengan Harga Yang Tertera Di Atas⚠️ Silakan scan kode QR di atas untuk melakukan pembayaran. Setelah berhasil, klik **Bayar Sekarang**.</div>`; } else if (payment.number) { paymentContent = `<h4>Transfer ke ${payment.name}</h4><img src="${payment.img}" alt="${payment.name}" class="payment-image"><div class="payment-caption">A.N. ${payment.holder}</div><div class="payment-number">${payment.number}</div><button class="copy-button" onclick="copyToClipboard('${payment.number}')">Salin Nomor</button>`; } paymentInfoSection.innerHTML = paymentContent; document.getElementById('pay-button').addEventListener('click', () => { const adminWhatsapp = '6282298902274'; const message = `Halo Admin, saya ingin konfirmasi pesanan saya.\n\n*Detail Pesanan:*\nGame: ${game.name}\nNickname: ${decodeURIComponent(nickname || 'N/A')}\nProduk: ${product.label}\nPlayer ID: ${userId}${serverId ? ` (${serverId})` : ''}\nMetode Pembayaran: ${payment.name}\nTotal: ${formatRupiah(finalPrice)}\n\nNomor WA saya: ${whatsappNumber}\n\nMohon bantuannya untuk diproses, terima kasih.`; window.location.href = `https://wa.me/${adminWhatsapp}?text=${encodeURIComponent(message)}`; }); }
 function setupPulsaPage() { /* ... kode Anda untuk halaman pulsa ... */ }
 function setupPanelPage() { /* ... kode Anda untuk halaman panel ... */ }
-
-
 function setupThemeToggle() { const themeToggleBtn = document.getElementById('theme-toggle'); if (!themeToggleBtn) return; const body = document.body; const currentTheme = localStorage.getItem('theme'); const updateThemeIcon = (theme) => { const icon = themeToggleBtn.querySelector('i'); if (theme === 'dark-mode') { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); } else { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); } }; if (currentTheme) { body.classList.add(currentTheme); updateThemeIcon(currentTheme); } else { body.classList.add('light-mode'); updateThemeIcon('light-mode'); } themeToggleBtn.addEventListener('click', () => { const newTheme = body.classList.contains('light-mode') ? 'dark-mode' : 'light-mode'; body.classList.remove('dark-mode', 'light-mode'); body.classList.add(newTheme); localStorage.setItem('theme', newTheme); updateThemeIcon(newTheme); }); }
 
+// --- EVENT LISTENER UTAMA ---
 document.addEventListener("DOMContentLoaded", () => {
     setupThemeToggle();
     if (document.querySelector('.game-grid-custom')) { renderGameCards(GAMES); const searchInput = document.getElementById('game-search'); if (searchInput) searchInput.addEventListener('input', liveSearchGames); } 
